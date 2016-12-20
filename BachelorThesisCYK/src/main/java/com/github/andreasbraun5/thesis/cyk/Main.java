@@ -1,11 +1,18 @@
-package com.company;
+package com.github.andreasbraun5.thesis.cyk;
 
-import com.sun.org.apache.xerces.internal.xni.grammars.Grammar;
+import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.Variable;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
+
+    /*
+    Vorwärtsproblem zuerst lösen.
+    Ableitbare Eigentschaften nicht mit übergeben.
+     */
+
     /*
     1) Generate a string over the alphabet
     2) Row1: Distribute the alphabet symbols over the variables. Every alphabet symbol needs at least one var.
@@ -20,7 +27,11 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        double succesRate;
+        Grammar grammar = new Grammar();
+        {
+            Variable A = new Variable("A");
+
+        }
 
         // define parameters here
         String[] allPossibleVariables = {"A", "B", "C", "D", "E"};
@@ -56,15 +67,8 @@ public class Main {
         int randomNumber;
         for(int i = 0; i <= grammarProperties.getSizeOfWord(); i++) {
             randomNumber = random.nextInt(max - min) + min;
-            // TODO adding cases for larger number of alphabet
             assert randomNumber <= possibleTerminals.length :"randomNumber is bigger than possibleVars.length";
-            switch (randomNumber) {
-                case 0: randomWordBuf.append(possibleTerminals[0]); break;
-                case 1: randomWordBuf.append(possibleTerminals[1]); break;
-                case 2: randomWordBuf.append(possibleTerminals[2]); break;
-                case 3: randomWordBuf.append(possibleTerminals[3]); break;
-                case 4: randomWordBuf.append(possibleTerminals[4]); break;
-            }
+            randomWordBuf.append(possibleTerminals[randomNumber]);
         }
         assert randomWordBuf.length() <= grammarProperties.getMaxSizeOfWord() : "randomWord.length is bigger than maxSizeOfWord";
         return randomWordBuf;
@@ -86,17 +90,12 @@ public class Main {
             //grammarbuf.get(i).get()
         }
 
-
         // Update the setVij
         // i is the depth of the pyramid, equals the rownumber of the matrix, ?equals j+1?
         // j is the length of the word
         int j = word.length();
         int i = j++;
         String[][] setV = new String[i][j];
-
-
-
-
 
         // variable for the v_ij set
         // variable for the pyramid
