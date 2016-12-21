@@ -1,4 +1,4 @@
-package com.github.andreasbraun5.thesis.cyk;
+package com.github.andreasbraun5.thesis.main;
 
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -25,4 +25,11 @@ public class GrammarProperties {
         Collections.addAll(this.terminals, terms);
     }
 
+    @Override
+    public String toString() {
+        return "\nGrammarProperties:" +
+                "\nsizeOfWord= " + sizeOfWord +
+                "\nvariables= " + variables +
+                "\nterminals= " + terminals;
+    }
 }

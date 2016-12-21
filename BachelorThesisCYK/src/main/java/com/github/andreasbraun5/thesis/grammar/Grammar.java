@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.grammar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,14 +23,14 @@ public class Grammar {
         return productions;
     }
 
-    public void addProduction(Production production) {
-        this.productions.add(production);
+    public void addProduction(Production...  production) {
+        this.productions.addAll(Arrays.asList(production).subList(0, production.length));
     }
 
     @Override
     public String toString() {
         return "Grammar{" +
-                "productions=" + productions +
+                "" + productions +
                 '}';
     }
 }

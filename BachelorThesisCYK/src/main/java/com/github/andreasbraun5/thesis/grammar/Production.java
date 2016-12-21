@@ -1,6 +1,8 @@
 package com.github.andreasbraun5.thesis.grammar;
 
+import java.time.temporal.ValueRange;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -11,12 +13,17 @@ public class Production {
     private Variable leftHandSide;
     private final List<RuleElement> rightHandSide = new ArrayList<>();
 
-    public Production(Variable leftHandSide) {
+    public Production(Variable leftHandSide, RuleElement ... rightHandside) {
         this.leftHandSide = leftHandSide;
+        this.rightHandSide.addAll(Arrays.asList(rightHandside).subList(0, rightHandside.length));
     }
 
     public Variable getLeftHandSide() {
         return leftHandSide;
+    }
+
+    public boolean isTerminalAtRightSide(RuleElement ruleElement){
+        return rightHandSide.contains(ruleElement);
     }
 
     public List<RuleElement> getRightHandSide() {
@@ -26,8 +33,7 @@ public class Production {
     @Override
     public String toString() {
         return "Production{" +
-                "leftHandSide=" + leftHandSide +
-                ", rightHandSide=" + rightHandSide +
-                '}';
+                leftHandSide + "-->" + rightHandSide +
+                "}\n";
     }
 }

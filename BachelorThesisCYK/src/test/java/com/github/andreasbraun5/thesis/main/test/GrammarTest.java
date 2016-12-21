@@ -1,4 +1,4 @@
-package com.github.andreasbraun5.thesis.cyk.test;
+package com.github.andreasbraun5.thesis.main.test;
 
 import org.junit.Test;
 

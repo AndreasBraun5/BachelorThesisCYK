@@ -15,10 +15,9 @@ public class Variable implements RuleElement{
         return name;
     }
 
+
     @Override
     public String toString() {
-        return "Variable{" +
-                "name='" + name + '\'' +
-                '}';
+        return name;
     }
 }
