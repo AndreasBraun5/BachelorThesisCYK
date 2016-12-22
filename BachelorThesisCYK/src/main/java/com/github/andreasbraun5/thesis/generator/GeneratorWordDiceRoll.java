@@ -1,13 +1,13 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import com.github.andreasbraun5.thesis.main.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 
 import java.util.Random;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
  */
-public class WordGeneratorDiceRoll implements WordGenerator {
+public class GeneratorWordDiceRoll implements GeneratorWord {
     public StringBuilder generateWord(GrammarProperties grammarProperties){
         StringBuilder randomWord = new StringBuilder("");
         //String[] possibleTerminals= grammarProperties.getPossibleTerminals();

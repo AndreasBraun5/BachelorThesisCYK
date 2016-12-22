@@ -1,34 +1,30 @@
 package com.github.andreasbraun5.thesis.main;
 
-import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.Production;
-import com.github.andreasbraun5.thesis.grammar.Terminal;
-import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammar;
+import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
+import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.parser.CYK;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Main {
 
-    /*
-    Vorwärtsproblem zuerst lösen.
-    Ableitbare Eigentschaften nicht mit übergeben.
-     */
-
-    /*
-    1) Generate a string over the alphabet
-    2) Row1: Distribute the alphabet symbols over the variables. Every alphabet symbol needs at least one var.
-        --> numberOfVars <= sizeOfAlphabet
-        (make configurable!) Default: at least one, at most 2.
-        --> sizeOfAlphabet/2 <= numberOfVars <=  sizeOfAlphabet
-    3) Row2: Per cell, compute combinations of vars. Distribute again over right hand sides of vars such that the
-        0-2 constraint (maxNumberOfVarsPerCell) is satisfied. Note: Here it hurts less to also have an empty cell.
-    4) Row3 till last row: Similar procedure, but we have to take more cell combinations into account
-    5) One goal is to determine and increase the success ratio
-    6) Printing of the matrices must be possible
-     */
     public static void main(String[] args) {
+        testHack();
+        Set<Variable> variables = new HashSet<>();
+        variables.add(new Variable("A"));
+        variables.add(new Variable("B"));
+        variables.add(new Variable("C"));
+        String word = "01110100";
+        int maxNumberOfVarsPerCell = 3;
+        Grammar grammar = GeneratorGrammar.findGrammar(word, variables, maxNumberOfVarsPerCell);
+        CYK.cykAlgorithmSimple(word, grammar);
+    }
 
-        // int maxNumberOfVarsPerCell = 3;
+    public static void testHack() {
 
         // Test: Printing of a word
         GrammarProperties grammarProperties = new GrammarProperties();
@@ -39,29 +35,33 @@ public class Main {
 
 
         // Test: Printing of a word
-        WordGeneratorDiceRoll diceRoll = new WordGeneratorDiceRoll();
-        StringBuilder word = diceRoll.generateWord(grammarProperties);
+        GeneratorWordDiceRoll diceRoll = new GeneratorWordDiceRoll();
+        StringBuilder word1 = diceRoll.generateWord(grammarProperties);
         System.out.println();
         System.out.println("word:");
-        System.out.println(word);
+        System.out.println(word1);
 
         // Test: Printing of productions
-        Production production1 = new Production(new Variable("A"), new Terminal("a"));
-        Production production2 = new Production(new Variable("B"), new Terminal("b"));
+        Production production11 = new Production(new Variable("A"), new Terminal("a"), new Variable("CA"), new Variable("CC"));
+        Production production22 = new Production(new Variable("B"), new Terminal("b"));
         Terminal[] terminals = {new Terminal("a"), new Terminal("b")};
-        Production production3 = new Production(new Variable("C"), terminals);
+        Production production33 = new Production(new Variable("C"), terminals);
         System.out.println();
-        System.out.print(production1);
-        System.out.print(production2);
-        System.out.print(production3);
+        System.out.print(production11);
+        System.out.print(production22);
+        System.out.print(production33);
+
+        // Test: Printing of Is
+        boolean temp = production11.isRuleElementAtRightSide(new Variable("CA"));
+        System.out.println(temp);
 
         // Test: Printing of a grammar
         CYK cyk = new CYK();
-        Grammar grammar = new Grammar();
-        Production[] productions = {production1, production2, production3};
-        grammar.addProduction(productions);
+        Grammar grammar1 = new Grammar();
+        Production[] productions = {production11, production22, production33};
+        grammar1.addProduction(productions);
         System.out.println();
-        System.out.println(grammar);
+        System.out.println(grammar1);
 
         // Test: Printing setV
         int size = 10;
@@ -69,7 +69,21 @@ public class Main {
         setV[0][0] = new Variable("A");
         setV[3][3]= new Variable("B");
         //CYK.printSetV(setV, size);
-        cyk.cykAlgorithmSimple(word, grammar);
 
+        // Testing: CYK-SimpleAlgorithm for the grammar out of the script.
+        Production production1 = new Production(new Variable("S"), new Variable("NB"), new Variable("EA"), new Terminal(""));
+        Production production2 = new Production(new Variable("S'"), new Variable("NB"), new Variable("EA"));
+        Production production3 = new Production(new Variable("N"), new Terminal("0"));
+        Production production4 = new Production(new Variable("E"), new Terminal("1"));
+        Production production5 = new Production(new Variable("A"), new Terminal("0"), new Variable("NS'"), new Variable("EC"));
+        Production production6 = new Production(new Variable("B"), new Terminal("1"), new Variable("ES'"), new Variable("ND"));
+        Production production7 = new Production(new Variable("C"), new Variable("AA"));
+        Production production8 = new Production(new Variable("D"), new Variable("BB"));
+        Grammar grammar = new Grammar();
+        grammar.addProduction(production1, production2, production3, production4, production5, production6, production7, production8);
+        String word = new String("01110100");
+        boolean isWordInGrammar = cyk.cykAlgorithmSimple(word, grammar);
+        StringBuilder str = new StringBuilder("");
+        System.out.println("Word: " + word + "\nGrammar: " + grammar + "\nisWordInGrammar: " + isWordInGrammar);
     }
 }

@@ -1,10 +1,10 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import com.github.andreasbraun5.thesis.main.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
  */
-public interface WordGenerator {
+public interface GeneratorWord {
     public StringBuilder generateWord(GrammarProperties grammarProperties);
 }

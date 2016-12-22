@@ -1,9 +1,7 @@
 package com.github.andreasbraun5.thesis.grammar;
 
 import java.time.temporal.ValueRange;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
@@ -11,7 +9,7 @@ import java.util.List;
 public class Production {
 
     private Variable leftHandSide;
-    private final List<RuleElement> rightHandSide = new ArrayList<>();
+    private List<RuleElement> rightHandSide = new ArrayList<>();
 
     public Production(Variable leftHandSide, RuleElement ... rightHandside) {
         this.leftHandSide = leftHandSide;
@@ -22,7 +20,7 @@ public class Production {
         return leftHandSide;
     }
 
-    public boolean isTerminalAtRightSide(RuleElement ruleElement){
+    public boolean isRuleElementAtRightSide(RuleElement ruleElement){
         return rightHandSide.contains(ruleElement);
     }
 
@@ -36,4 +34,5 @@ public class Production {
                 leftHandSide + "-->" + rightHandSide +
                 "}\n";
     }
+
 }

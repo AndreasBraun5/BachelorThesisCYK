@@ -1,11 +1,6 @@
-package com.github.andreasbraun5.thesis.main;
+package com.github.andreasbraun5.thesis.grammar;
 
-import com.github.andreasbraun5.thesis.grammar.Terminal;
-import com.github.andreasbraun5.thesis.grammar.Variable;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
@@ -16,6 +11,7 @@ public class GrammarProperties {
     public final List<Terminal> terminals = new ArrayList<>();
 
     public int sizeOfWord;
+    public int numberOfVars;
 
     public void addVariables(Variable... vars) {
         Collections.addAll(this.variables, vars);
@@ -23,6 +19,19 @@ public class GrammarProperties {
 
     public void addTerminals(Terminal... terms) {
         Collections.addAll(this.terminals, terms);
+    }
+
+    public static GrammarProperties generateGrammarPropertiesFromWord(String word) {
+        GrammarProperties grammarProperties = new GrammarProperties();
+        Set<Character> terminals = new HashSet<>();
+        for(int i=0;  i< word.length(); i++) {
+            terminals.add(word.charAt(i));
+        }
+        for(Character t : terminals) {
+            grammarProperties.addTerminals(new Terminal(terminals.toString()));
+        }
+        grammarProperties.numberOfVars = terminals.size();
+        return grammarProperties;
     }
 
     @Override

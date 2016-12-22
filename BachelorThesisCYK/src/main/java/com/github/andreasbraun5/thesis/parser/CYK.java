@@ -4,6 +4,7 @@ import com.github.andreasbraun5.thesis.grammar.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -11,10 +12,10 @@ import java.util.Set;
  */
 public class CYK {
 
-    public boolean cykAlgorithmSimple(StringBuilder word, Grammar grammar) {
+    //TODO: epsilon rule not implemented?!?
+    public static boolean cykAlgorithmSimple(String word, Grammar grammar) {
         int wordlength = word.length();
-        List<Production> productions = grammar.getProductions();
-        int countOfProductions = productions.size();
+        Map<Variable, List<Production>> productions = grammar.productions;
         Set<Variable>[][] setV = new HashSet[wordlength][wordlength];
         for (int i = 0; i < wordlength; i++) {
             for (int j = 0; j < wordlength; j++) {
@@ -22,30 +23,66 @@ public class CYK {
             }
         }
         // Check whether the terminal is on the right side of the production, then add its left variable to v_ii
-        for (int i = 0; i < wordlength - 1; i++) { // n=0 therefore n-1, false
+        for (int i = 0; i < wordlength; i++) {
             RuleElement tempTerminal = new Terminal(String.valueOf(word.charAt(i)));
-            for (int j = 0; j < countOfProductions; j++) {
-                Production tempProduction = productions.get(j);
-                if (tempProduction.isTerminalAtRightSide(tempTerminal)) {
-                    setV[i][i].add(tempProduction.getLeftHandSide());
+            for (Map.Entry<Variable, List<Production>> entry : productions.entrySet()) {
+                Variable var = entry.getKey();
+                List<Production> prods = entry.getValue();
+                for(Production prod : prods) {
+                    if(prod.isRuleElementAtRightSide(tempTerminal)) {
+                        setV[i][i].add(var);
+                    }
                 }
             }
+            /*/
+            for (Production tempProduction : productions) {
+                if (tempProduction.isRuleElementAtRightSide(tempTerminal)) {
+                    setV[i][i].add(tempProduction.getLeftHandSide());
+                }
+            }*/
         }
-        // Be careful with boundaries. In the TI script the loop counters begin with 1 instead of 0, like here.
-        // Here (l-1) is used as l. The same goes for (i-1) as i. false
-        for (int l = 0; l < wordlength; l++) { // l=0 therefore l=0 to n-2, false
-            for (int i = 0; i < wordlength - l; i++) { // i=0 therefore i=0 to n-l-1, false
-                // setV[i][i+l-1] = EmptySet; This is already done via initialisation (set.size = 0).
+        for (int l = 0; l <= wordlength - 1; l++) {
+            for (int i = 0; i < wordlength - l; i++) {
+                // setV[i][i+l] = EmptySet; This is already done via initialisation (set.size = 0).
                 for (int k = i; k < i + l; k++) {
-                    // Check for combinations of substrings that concatenate to the word.
-                    // This is done through taking the
-                    setV[i][i + l].add(new Variable("XX "));
-                    //setV[i][i+l];
+                    Set<Variable> tempSetX = new HashSet<>();
+                    Set<Variable> tempSetY = setV[i][k];
+                    Set<Variable> tempSetZ = setV[k+1][i+l];
+                    Set<Variable> tempSetYZ = new HashSet<>();
+
+                    for(Variable y : tempSetY) {
+                        for(Variable z : tempSetZ) {
+                            Variable tempVariable = new Variable(y, z);
+                            tempSetYZ.add(tempVariable);
+                        }
+                    }
+                    System.out.println();
+                    System.out.println();
+                    System.out.println(productions);
+                    System.out.println("tempSetYZ" + tempSetYZ);
+                    // for all productions check if there is any of the combined Variables, which equals a RuleElement
+                    for (List<Production> tempProductions : productions.values()) {
+                        for(Production tempProduction : tempProductions) {
+                            for (Variable yz : tempSetYZ) {
+                                System.out.println("tempSetYZ" + tempSetYZ);
+                                System.out.println("tempXY: " + yz);
+                                System.out.println("tempProduction: " + tempProduction);
+                                if (tempProduction.isRuleElementAtRightSide(yz)) {
+                                    tempSetX.add(tempProduction.getLeftHandSide());
+                                }
+                                System.out.println("temppSetX step: " + tempSetX);
+                            }
+                            System.out.println("temppSetX final: " + tempSetX);
+                        }
+                    }
+                    setV[i][i+l].addAll(tempSetX);
                 }
             }
         }
         CYK.printSetV(setV, wordlength);
-        return false;
+        // TODO: Here it is, that our starting variable always is S. This needs to be changed.
+        System.out.println("The result is: " + setV[0][wordlength-1]);
+        return setV[0][wordlength-1].contains(new Variable("S"));
     }
 
     public Tree cykAlgorithmAdvanced(StringBuilder word, Grammar grammar) {
@@ -56,11 +93,26 @@ public class CYK {
     public static void printSetV(Set<Variable>[][] setV, int wordlength) {
         System.out.println();
         System.out.println("setV:");
+        int maxLen = 0;
         for (int i = 0; i < wordlength; i++) {
             for (int j = 0; j < wordlength; j++) {
-                System.out.print(setV[i][j].toString());
+                maxLen = Math.max(maxLen, setV[j][i].toString().length());
+            }
+        }
+
+        for (int i = 0; i < wordlength; i++) {
+            for (int j = 0; j < wordlength; j++) {
+                System.out.print(uniformStringMaker(setV[j][i].toString(), maxLen));
             }
             System.out.println();
         }
+    }
+
+    public static String uniformStringMaker(String str, int length) {
+        StringBuilder builder = new StringBuilder(str);
+        for(int i = str.length(); i < length; ++i) {
+            builder.append(" ");
+        }
+        return builder.toString();
     }
 }

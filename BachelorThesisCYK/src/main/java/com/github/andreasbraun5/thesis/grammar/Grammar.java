@@ -1,30 +1,30 @@
 package com.github.andreasbraun5.thesis.grammar;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
  */
 public class Grammar {
 
-    private final List<Production> productions = new ArrayList<>();
-
-    public List<Variable> getAllVariables() {
-        List<Variable> ret = new ArrayList<>();
-        for(Production prod : this.productions) {
-            ret.add(prod.getLeftHandSide());
-        }
-        return ret;
-    }
-
-    public List<Production> getProductions() {
-        return productions;
-    }
+    // TODO: make private with getter
+    public Map<Variable, List<Production>> productions = new HashMap<>();
 
     public void addProduction(Production...  production) {
-        this.productions.addAll(Arrays.asList(production).subList(0, production.length));
+        for (Production aProduction : production) {
+            List<Production> prods = productions.get(aProduction.getLeftHandSide());
+            if (prods == null) {
+                prods = new ArrayList<>();
+                productions.put(aProduction.getLeftHandSide(), prods);
+            }
+            prods.add(aProduction);
+        }
+    }
+
+    public void replaceProductions(Variable variable, List<Production> productions) {
+        //assert production.getLeftHandSide() == variable;
+        this.productions.put(variable, productions);
     }
 
     @Override
