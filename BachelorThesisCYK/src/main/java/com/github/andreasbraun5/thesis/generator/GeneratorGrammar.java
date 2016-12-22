@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.parser.CYK;
 
 import java.util.*;
 
@@ -8,6 +9,9 @@ import java.util.*;
  * Created by Andreas Braun on 21.12.2016.
  */
 public class GeneratorGrammar {
+
+    // TODO: Stepwise CYK;
+
     /*
     CHECK 1) Generate a string over the alphabet
     Check 2) Row1: Distribute the alphabet symbols over the variables. Every alphabet symbol needs at least one var.
@@ -43,8 +47,16 @@ public class GeneratorGrammar {
 
     public static Grammar findGrammar(List<Terminal> word, Set<Variable> variablesSet, int maxVariableInCell){
         Grammar grammar = new Grammar();
+        int wordlength = word.size();
+        Set<Variable>[][] setV = new Set[wordlength][wordlength];
+        for (int i = 0; i < wordlength; i++) {
+            for (int j = 0; j < wordlength; j++) {
+                setV[i][j] = new HashSet<>();
+            }
+        }
         List<Terminal> alphabet = withoutDuplicates(word);
         List<Variable> variablesList = withoutDuplicates(variablesSet);
+        // TODO: think about the need of the GrammarProperties class
         //GrammarProperties grammarProperties = GrammarProperties.generateGrammarPropertiesFromWord(word);
         //grammarProperties.variables.addAll(variables);
 
@@ -73,7 +85,9 @@ public class GeneratorGrammar {
                 ++curVar;
             }
         }
+        CYK.stepII(setV, word, wordlength, grammar);
         System.out.println(grammar);
+        CYK.printSetV(setV, wordlength);
 
         // Row2: Per cell, compute combinations of vars. Distribute again over right hand sides of vars such that the
 

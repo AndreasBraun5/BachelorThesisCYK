@@ -2,30 +2,26 @@ package com.github.andreasbraun5.thesis.parser;
 
 import com.github.andreasbraun5.thesis.grammar.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
  */
 public class CYK {
 
-    //TODO: epsilon rule not implemented?!?
     public static boolean cykAlgorithmSimple(String word, Grammar grammar) {
-        int wordlength = word.length();
-        Map<Variable, List<Production>> productions = grammar.productions;
-        Set<Variable>[][] setV = new HashSet[wordlength][wordlength];
-        for (int i = 0; i < wordlength; i++) {
-            for (int j = 0; j < wordlength; j++) {
-                setV[i][j] = new HashSet<>();
-            }
+        List<Terminal> list = new ArrayList<>();
+        for(int i = 0; i < word.length(); i++) {
+            list.add(new Terminal(String.valueOf(word.charAt(i))));
         }
-        // Check whether the terminal is on the right side of the production, then add its left variable to v_ii
+        return cykAlgorithmSimple(list, grammar);
+    }
+
+    public static void stepII(Set<Variable>[][] setV, List<Terminal> word, int wordlength,
+                              Grammar grammar) {
         for (int i = 0; i < wordlength; i++) {
-            RuleElement tempTerminal = new Terminal(String.valueOf(word.charAt(i)));
-            for (Map.Entry<Variable, List<Production>> entry : productions.entrySet()) {
+            RuleElement tempTerminal = word.get(i);
+            for (Map.Entry<Variable, List<Production>> entry : grammar.productions.entrySet()) {
                 Variable var = entry.getKey();
                 List<Production> prods = entry.getValue();
                 for(Production prod : prods) {
@@ -34,13 +30,22 @@ public class CYK {
                     }
                 }
             }
-            /*/
-            for (Production tempProduction : productions) {
-                if (tempProduction.isRuleElementAtRightSide(tempTerminal)) {
-                    setV[i][i].add(tempProduction.getLeftHandSide());
-                }
-            }*/
         }
+    }
+
+    //TODO: epsilon rule not implemented?!?
+    public static boolean cykAlgorithmSimple(List<Terminal> word, Grammar grammar) {
+        int wordlength = word.size();
+        Map<Variable, List<Production>> productions = grammar.productions;
+        Set<Variable>[][] setV = new Set[wordlength][wordlength];
+        for (int i = 0; i < wordlength; i++) {
+            for (int j = 0; j < wordlength; j++) {
+                setV[i][j] = new HashSet<>();
+            }
+        }
+        // Check whether the terminal is on the right side of the production, then add its left variable to v_ii
+        stepII(setV, word, wordlength, grammar);
+
         for (int l = 0; l <= wordlength - 1; l++) {
             for (int i = 0; i < wordlength - l; i++) {
                 // setV[i][i+l] = EmptySet; This is already done via initialisation (set.size = 0).
