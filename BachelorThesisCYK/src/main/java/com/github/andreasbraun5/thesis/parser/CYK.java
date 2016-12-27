@@ -17,8 +17,8 @@ public class CYK {
         return cykAlgorithmSimple(list, grammar);
     }
 
-    public static void stepII(Set<Variable>[][] setV, List<Terminal> word, int wordlength,
-                              Grammar grammar) {
+    public static void stepII(Set<Variable>[][] setV, List<Terminal> word,
+                              int wordlength, Grammar grammar) {
         for (int i = 0; i < wordlength; i++) {
             RuleElement tempTerminal = word.get(i);
             for (Map.Entry<Variable, List<Production>> entry : grammar.productions.entrySet()) {
@@ -33,7 +33,7 @@ public class CYK {
         }
     }
 
-    //TODO: epsilon rule not implemented?!?
+    //TODO: Think about epsilon rule being implemented?!?
     public static boolean cykAlgorithmSimple(List<Terminal> word, Grammar grammar) {
         int wordlength = word.size();
         Map<Variable, List<Production>> productions = grammar.productions;

@@ -18,6 +18,9 @@ public class GeneratorGrammar {
         --> numberOfVars <= sizeOfAlphabet
         (make configurable!) Default: at least one, at most 2.
         --> sizeOfAlphabet/2 <= numberOfVars <=  sizeOfAlphabet
+
+        Variabl
+
     3) Row2: Per cell, compute combinations of vars. Distribute again over right hand sides of vars such that the
         0-2 constraint (maxNumberOfVarsPerCell) is satisfied. Note: Here it hurts less to also have an empty cell.
     4) Row3 till last row: Similar procedure, but we have to take more cell combinations into account
@@ -45,6 +48,7 @@ public class GeneratorGrammar {
         return ret;
     }
 
+    // TODO: evtl ohne Beschränkung sogar
     public static Grammar findGrammar(List<Terminal> word, Set<Variable> variablesSet, int maxVariableInCell){
         Grammar grammar = new Grammar();
         int wordlength = word.size();
@@ -71,7 +75,9 @@ public class GeneratorGrammar {
         // Now you have a production for every possible variable with an empty rightSide (Set with size of 0)
         System.out.println(grammar);
 
-        // Row1: Distributing the Terminals equally over the Variables
+        // Row1: Distributing the Terminals equally over the Variables. For over Terminal symbole: An nur eine oder an zwei seiten.
+        // Würfle an welch an welche Variable es dran gemacht werden soll.
+        // TODO: gleichmäßig verteilen nicht erlaubt.
         {
             int curVar = 0;
             for(Terminal terminal : alphabet) {
