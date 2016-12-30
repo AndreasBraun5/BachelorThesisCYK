@@ -5,33 +5,40 @@ import java.util.*;
 /**
  * Created by Andreas Braun on 20.12.2016.
  */
+
 public class Production {
 
-    private Variable leftHandSide;
-    private List<RuleElement> rightHandSide = new ArrayList<>();
+    private Variable leftHandSideElement;
+    // List<RightHandSideElement> because A --> BC or A --> AB is possible and the ordering is important
+    private List<RightHandSideElement> rightHandSideElements = new ArrayList<>();
 
-    public Production(Variable leftHandSide, RuleElement ... rightHandside) {
-        this.leftHandSide = leftHandSide;
-        this.rightHandSide.addAll(Arrays.asList(rightHandside).subList(0, rightHandside.length));
+    public Production(Variable leftHandSideElement, RightHandSideElement... rightHandSideElements) {
+        this.leftHandSideElement = leftHandSideElement;
+        this.rightHandSideElements.addAll(Arrays.asList(rightHandSideElements).subList(0, rightHandSideElements.length));
     }
 
-    public Variable getLeftHandSide() {
-        return leftHandSide;
-    }
-
-    public boolean isRuleElementAtRightSide(RuleElement ruleElement){
-        return rightHandSide.contains(ruleElement);
-    }
-
-    public List<RuleElement> getRightHandSide() {
-        return rightHandSide;
+    /*
+    Calling isElementAtRightHandSide checks whether one specific production already exists
+     */
+    public boolean isElementAtRightHandSide(RightHandSideElement rightHandSideElement){
+        //System.out.println();
+        //System.out.println(this.rightHandSideElements);
+        //System.out.println(rightHandSideElement);
+        return this.rightHandSideElements.contains(rightHandSideElement);
     }
 
     @Override
     public String toString() {
         return "Production{" +
-                leftHandSide + "-->" + rightHandSide +
+                leftHandSideElement + "-->" + rightHandSideElements +
                 "}\n";
     }
 
+    public Variable getLeftHandSideElement() {
+        return leftHandSideElement;
+    }
+
+    public List<RightHandSideElement> getRightHandSideElements() {
+        return rightHandSideElements;
+    }
 }

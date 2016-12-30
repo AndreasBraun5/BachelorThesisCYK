@@ -17,15 +17,19 @@ public class CYK {
         return cykAlgorithmSimple(list, grammar);
     }
 
+    /*
+    Each variable that has the terminal at position i of the word as its rightHandSideElement,
+    will be added to setV[i][i]
+     */
     public static void stepII(Set<Variable>[][] setV, List<Terminal> word,
-                              int wordlength, Grammar grammar) {
-        for (int i = 0; i < wordlength; i++) {
-            RuleElement tempTerminal = word.get(i);
-            for (Map.Entry<Variable, List<Production>> entry : grammar.productions.entrySet()) {
+                              int wordLength, Grammar grammar) {
+        for (int i = 0; i < wordLength; i++) {
+            RightHandSideElement tempTerminal = word.get(i);
+            for (Map.Entry<Variable, List<Production>> entry : grammar.getProductions().entrySet()) {
                 Variable var = entry.getKey();
                 List<Production> prods = entry.getValue();
                 for(Production prod : prods) {
-                    if(prod.isRuleElementAtRightSide(tempTerminal)) {
+                    if(prod.isElementAtRightHandSide(tempTerminal)) {
                         setV[i][i].add(var);
                     }
                 }
@@ -35,19 +39,20 @@ public class CYK {
 
     //TODO: Think about epsilon rule being implemented?!?
     public static boolean cykAlgorithmSimple(List<Terminal> word, Grammar grammar) {
-        int wordlength = word.size();
-        Map<Variable, List<Production>> productions = grammar.productions;
-        Set<Variable>[][] setV = new Set[wordlength][wordlength];
-        for (int i = 0; i < wordlength; i++) {
-            for (int j = 0; j < wordlength; j++) {
+        int wordLength = word.size();
+        Map<Variable, List<Production>> productions = grammar.getProductions();
+        // TODO why problem here? Generics stuff?
+        Set<Variable>[][] setV = new Set[wordLength][wordLength];
+        for (int i = 0; i < wordLength; i++) {
+            for (int j = 0; j < wordLength; j++) {
                 setV[i][j] = new HashSet<>();
             }
         }
         // Check whether the terminal is on the right side of the production, then add its left variable to v_ii
-        stepII(setV, word, wordlength, grammar);
+        stepII(setV, word, wordLength, grammar);
 
-        for (int l = 0; l <= wordlength - 1; l++) {
-            for (int i = 0; i < wordlength - l; i++) {
+        for (int l = 0; l <= wordLength - 1; l++) {
+            for (int i = 0; i < wordLength - l; i++) {
                 // setV[i][i+l] = EmptySet; This is already done via initialisation (set.size = 0).
                 for (int k = i; k < i + l; k++) {
                     Set<Variable> tempSetX = new HashSet<>();
@@ -65,15 +70,15 @@ public class CYK {
                     System.out.println();
                     System.out.println(productions);
                     System.out.println("tempSetYZ" + tempSetYZ);
-                    // for all productions check if there is any of the combined Variables, which equals a RuleElement
+                    // for all productions check if there is any of the combined Variables, which equals a RightHandSideElement
                     for (List<Production> tempProductions : productions.values()) {
                         for(Production tempProduction : tempProductions) {
                             for (Variable yz : tempSetYZ) {
                                 System.out.println("tempSetYZ" + tempSetYZ);
                                 System.out.println("tempXY: " + yz);
                                 System.out.println("tempProduction: " + tempProduction);
-                                if (tempProduction.isRuleElementAtRightSide(yz)) {
-                                    tempSetX.add(tempProduction.getLeftHandSide());
+                                if (tempProduction.isElementAtRightHandSide(yz)) {
+                                    tempSetX.add(tempProduction.getLeftHandSideElement());
                                 }
                                 System.out.println("temppSetX step: " + tempSetX);
                             }
@@ -84,10 +89,10 @@ public class CYK {
                 }
             }
         }
-        CYK.printSetV(setV, wordlength);
+        CYK.printSetV(setV, wordLength);
         // TODO: Here it is, that our starting variable always is S. This needs to be changed.
-        System.out.println("The result is: " + setV[0][wordlength-1]);
-        return setV[0][wordlength-1].contains(new Variable("S"));
+        System.out.println("The result is: " + setV[0][wordLength-1]);
+        return setV[0][wordLength-1].contains(new Variable("S"));
     }
 
     public Tree cykAlgorithmAdvanced(StringBuilder word, Grammar grammar) {

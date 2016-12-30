@@ -42,7 +42,7 @@ public class GeneratorGrammar {
         return findGrammar(list, variables, maxVariableInCell);
     }
 
-    public static <T extends RuleElement> List<T> withoutDuplicates(Collection<T> ruleElements) {
+    public static <T extends RightHandSideElement> List<T> withoutDuplicates(Collection<T> ruleElements) {
         List<T> ret = new ArrayList<>();
         ret.addAll(new HashSet<>(ruleElements));
         return ret;

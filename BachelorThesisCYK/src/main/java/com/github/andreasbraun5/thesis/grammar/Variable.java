@@ -1,18 +1,16 @@
 package com.github.andreasbraun5.thesis.grammar;
 
-import java.time.temporal.ValueRange;
-
 /**
  * Created by Andreas Braun on 20.12.2016.
  */
-public class Variable implements RuleElement{
+public class Variable implements RightHandSideElement, LeftHandSideElement {
 
     private final String name;
 
-    public Variable(String name) {
-        this.name = name;
-    }
-
+    /*
+    Constructing single variables like A, B for the LeftHandSideElement and also compound variables like AB, BC, BD for
+    the RightHandSideElement possible.
+    */
     public Variable(Variable... variable) {
         StringBuilder string = new StringBuilder("");
         for (Variable v : variable) {
@@ -21,8 +19,8 @@ public class Variable implements RuleElement{
         this.name = string.toString();
     }
 
-    public String getName() {
-        return name;
+    public Variable(String name) {
+        this.name = name;
     }
 
     @Override
@@ -33,7 +31,6 @@ public class Variable implements RuleElement{
         Variable variable = (Variable) o;
 
         return name.equals(variable.name);
-
     }
 
     @Override
@@ -45,4 +42,9 @@ public class Variable implements RuleElement{
     public String toString() {
         return name;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

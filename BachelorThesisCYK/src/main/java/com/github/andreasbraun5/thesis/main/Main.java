@@ -5,9 +5,7 @@ import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.parser.CYK;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Main {
@@ -52,7 +50,7 @@ public class Main {
         System.out.print(production33);
 
         // Test: Printing of Is
-        boolean temp = production11.isRuleElementAtRightSide(new Variable("CA"));
+        boolean temp = production11.isElementAtRightHandSide(new Variable("CA"));
         System.out.println(temp);
 
         // Test: Printing of a grammar
@@ -60,6 +58,8 @@ public class Main {
         Grammar grammar1 = new Grammar();
         Production[] productions = {production11, production22, production33};
         grammar1.addProduction(productions);
+        Production production44 = new Production(new Variable("C"), new Terminal("a"), new Terminal("b"), new Variable("CA") );
+        grammar1.addProduction(production44);
         System.out.println();
         System.out.println(grammar1);
 
