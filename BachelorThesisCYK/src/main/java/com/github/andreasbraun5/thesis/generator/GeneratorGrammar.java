@@ -48,6 +48,10 @@ public class GeneratorGrammar {
         return ret;
     }
 
+    public boolean checkIntegrity(){
+        return false;
+    }
+
     // TODO: evtl ohne Beschränkung sogar
     public static Grammar findGrammar(List<Terminal> word, Set<Variable> variablesSet, int maxVariableInCell){
         Grammar grammar = new Grammar();
