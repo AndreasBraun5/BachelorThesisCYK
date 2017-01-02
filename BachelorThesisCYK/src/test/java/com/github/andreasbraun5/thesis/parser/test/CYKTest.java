@@ -5,7 +5,11 @@ import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.parser.CYK;
+import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Andreas Braun on 02.01.2017.
@@ -13,11 +17,10 @@ import org.junit.Test;
 public class CYKTest {
 
     @Test
-    public void CYKcykAlgorithmSimple(){
-        // Testing: CYK-SimpleAlgorithm for the grammar out of the script.
+    public void CYKCalculateSetVTest(){
         System.out.println("");
         System.out.println("############################");
-        System.out.println("Test CYK: cykAlgorithmSimple with input Grammar from the TI1 script");
+        System.out.println("Test CYK: algorithmSimple with input Grammar from the TI1 script");
 
         CYK cyk = new CYK();
         Production production1 = new Production(new Variable("S"), new Variable("NB"), new Variable("EA"), new Terminal(""));
@@ -31,8 +34,25 @@ public class CYKTest {
         Grammar grammar = new Grammar();
         grammar.addProduction(production1, production2, production3, production4, production5, production6, production7, production8);
         String word = new String("01110100");
-        boolean isWordInGrammar = cyk.cykAlgorithmSimple(word, grammar);
-        StringBuilder str = new StringBuilder("");
-        System.out.println("Word: " + word + "\nGrammar: " + grammar + "\nisWordInGrammar: " + isWordInGrammar);
-    }
+
+        Set<Variable> setV[][] = CYK.calculateSetV(word, grammar);
+
+        boolean temp = true;
+
+        int wordLength = word.length();
+        Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
+        for (int i = 0; i < wordLength; i++) {
+            for (int j = 0; j < wordLength; j++) {
+                setVTemp[i][j] = new HashSet<>();
+            }
+        }
+
+
+        setV[1][1].contains(new Variable("A"));
+        setV[1][1].contains(new Variable("N"));
+        boolean a = setV[1][1].size()==2;
+        // if one is not true then temp = false
+        Assert.assertEquals(true, temp);
+
+        }
 }

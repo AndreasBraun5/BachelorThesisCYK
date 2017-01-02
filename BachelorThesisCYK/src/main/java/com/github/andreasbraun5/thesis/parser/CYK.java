@@ -9,12 +9,20 @@ import java.util.*;
  */
 public class CYK {
 
-    public static boolean cykAlgorithmSimple(String word, Grammar grammar) {
+    public static Set<Variable>[][] calculateSetV(String word, Grammar grammar) {
         List<Terminal> list = new ArrayList<>();
         for(int i = 0; i < word.length(); i++) {
             list.add(new Terminal(String.valueOf(word.charAt(i))));
         }
-        return cykAlgorithmSimple(list, grammar);
+        return calculateSetV(list, grammar);
+    }
+
+    public static boolean algorithmSimple(String word, Grammar grammar) {
+        List<Terminal> list = new ArrayList<>();
+        for(int i = 0; i < word.length(); i++) {
+            list.add(new Terminal(String.valueOf(word.charAt(i))));
+        }
+        return algorithmSimple(list, grammar);
     }
 
     /*
@@ -28,8 +36,8 @@ public class CYK {
             for (Map.Entry<Variable, List<Production>> entry : grammar.getProductions().entrySet()) {
                 Variable var = entry.getKey();
                 List<Production> prods = entry.getValue();
-                for(Production prod : prods) {
-                    if(prod.isElementAtRightHandSide(tempTerminal)) {
+                for (Production prod : prods) {
+                    if (prod.isElementAtRightHandSide(tempTerminal)) {
                         setV[i][i].add(var);
                     }
                 }
@@ -37,8 +45,16 @@ public class CYK {
         }
     }
 
+    public static boolean algorithmSimple(List<Terminal> word, Grammar grammar){
+        Set<Variable>[][] setV = calculateSetV(word, grammar);
+        int wordLength = word.size();
+        // TODO: Here it is, that our starting variable always is S. This needs to be changed.
+        System.out.println("The result is: " + setV[0][wordLength-1]);
+        return setV[0][wordLength-1].contains(new Variable("S"));
+    }
+
     //TODO: Think about epsilon rule being implemented?!?
-    public static boolean cykAlgorithmSimple(List<Terminal> word, Grammar grammar) {
+    public static Set<Variable>[][] calculateSetV(List<Terminal> word, Grammar grammar) {
         int wordLength = word.size();
         Map<Variable, List<Production>> productions = grammar.getProductions();
         // TODO why problem here? Generics stuff?
@@ -90,12 +106,10 @@ public class CYK {
             }
         }
         CYK.printSetV(setV, wordLength);
-        // TODO: Here it is, that our starting variable always is S. This needs to be changed.
-        System.out.println("The result is: " + setV[0][wordLength-1]);
-        return setV[0][wordLength-1].contains(new Variable("S"));
+        return setV;
     }
 
-    public Tree cykAlgorithmAdvanced(StringBuilder word, Grammar grammar) {
+    public Tree algorithmAdvanced(StringBuilder word, Grammar grammar) {
 
         return new Tree();
     }

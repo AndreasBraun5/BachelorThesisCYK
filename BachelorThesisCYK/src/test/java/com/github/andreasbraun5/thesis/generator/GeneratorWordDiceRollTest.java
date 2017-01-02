@@ -4,6 +4,7 @@ import com.github.andreasbraun5.thesis.exception.GrammarException;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
+import org.junit.Assert;
 import org.junit.Test;
 
 
@@ -24,7 +25,9 @@ public class GeneratorWordDiceRollTest {
         grammarProperties.sizeOfWord = 10;
         GeneratorWordDiceRoll diceRoll = new GeneratorWordDiceRoll();
         StringBuilder word1 = diceRoll.generateWord(grammarProperties); // GrammarException
-        System.out.println("word:" + word1);
+        System.out.println(grammarProperties);
+        System.out.println("generated word: " + word1);
+        Assert.assertEquals(true, grammarProperties.sizeOfWord == word1.length());
     }
 
 }

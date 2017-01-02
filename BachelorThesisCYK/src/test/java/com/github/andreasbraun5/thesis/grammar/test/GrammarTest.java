@@ -6,6 +6,7 @@ import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import org.junit.Test;
+import org.junit.runners.model.TestClass;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
@@ -28,7 +29,7 @@ public class GrammarTest {
         grammar1.addProduction(productions);
         Production production44 = new Production(new Variable("C"), new Terminal("a"), new Terminal("b"), new Variable("CA") );
         grammar1.addProduction(production44);
-        System.out.println("Grammar: " + grammar1);
+        System.out.println(grammar1);
     }
 
 }

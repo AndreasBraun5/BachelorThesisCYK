@@ -34,9 +34,21 @@ public class GrammarProperties {
         return grammarProperties;
     }
 
+    public static GrammarProperties generateGrammarPropertiesFromGrammar(Grammar grammar) {
+        GrammarProperties grammarProperties = new GrammarProperties();
+        Map<Variable, List<Production>> productions = grammar.getProductions();
+        for(Map.Entry<Variable, List<Production>> entry : productions.entrySet()){
+            // now we iterate over the map
+            // TODO: Generate properties
+        }
+
+
+        return grammarProperties;
+    }
+
     @Override
     public String toString() {
-        return "\nGrammarProperties:" +
+        return "GrammarProperties:" +
                 "\nsizeOfWord= " + sizeOfWord +
                 "\nvariables= " + variables +
                 "\nterminals= " + terminals;

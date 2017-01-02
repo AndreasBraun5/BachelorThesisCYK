@@ -19,7 +19,7 @@ public class GrammarPropertiesTest {
         grammarProperties.addVariables(new Variable("A"), new Variable("B"));
         grammarProperties.addTerminals(new Terminal("a"), new Terminal("b"));
         grammarProperties.sizeOfWord = 10;
-        System.out.println("GrammarProperties: " + grammarProperties);
+        System.out.println(grammarProperties);
     }
 
 }

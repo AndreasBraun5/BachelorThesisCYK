@@ -17,6 +17,26 @@ public class Main {
         String word = "01110100";
         int maxNumberOfVarsPerCell = 3;
         Grammar grammar = GeneratorGrammar.findGrammar(word, variables, maxNumberOfVarsPerCell);
-        CYK.cykAlgorithmSimple(word, grammar);
+        CYK.algorithmSimple(word, grammar);
+
+/*
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("Test GeneratorWordDiceRoll: generateWord");
+
+        GrammarProperties grammarProperties = new GrammarProperties();
+        grammarProperties.addVariables(new Variable("A"), new Variable("B"));
+        grammarProperties.addTerminals(new Terminal("a"), new Terminal("b"));
+        grammarProperties.sizeOfWord = 10;
+        GeneratorWordDiceRoll diceRoll = new GeneratorWordDiceRoll();
+        StringBuilder word1 = null; // GrammarException
+        try {
+            word1 = diceRoll.generateWord(grammarProperties);
+        } catch (GrammarException e) {
+            e.printStackTrace();
+        }
+        System.out.println("word:" + word1);
+    */
     }
+
 }
