@@ -22,7 +22,7 @@ public class GeneratorWordDiceRoll implements GeneratorWord {
             randomNumber = random.nextInt(max - min) + min;
             randomWord.append(grammarProperties.terminals.get(randomNumber));
         }
-        if(randomWord.length() <= grammarProperties.sizeOfWord) throw new GrammarException("randomWord.length of the " +
+        if(randomWord.length() > grammarProperties.sizeOfWord) throw new GrammarException("randomWord.length of the " +
                 "generated word is bigger than the specified sizeOfWord of the grammar");
         return randomWord;
     }

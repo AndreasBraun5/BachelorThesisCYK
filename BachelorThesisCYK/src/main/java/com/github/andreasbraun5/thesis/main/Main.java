@@ -16,6 +16,7 @@ public class Main {
             testHack();
         } catch (GrammarException e) {
             e.printStackTrace();
+            System.exit(0);
         }
         Set<Variable> variables = new HashSet<>();
         variables.add(new Variable("A"));

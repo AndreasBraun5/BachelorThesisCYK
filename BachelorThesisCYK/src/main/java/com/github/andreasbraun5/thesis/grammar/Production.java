@@ -9,7 +9,9 @@ import java.util.*;
 public class Production {
 
     private Variable leftHandSideElement;
-    // List<RightHandSideElement> because A --> BC or A --> AB is possible and the ordering is important
+    /* List<RightHandSideElement> because A --> BC or A --> AB is possible and the ordering is important.
+        The example above shows that there are two rightHandSideElements each.
+     */
     private List<RightHandSideElement> rightHandSideElements = new ArrayList<>();
 
     public Production(Variable leftHandSideElement, RightHandSideElement... rightHandSideElements) {
