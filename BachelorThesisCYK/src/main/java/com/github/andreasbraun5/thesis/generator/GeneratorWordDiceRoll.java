@@ -9,10 +9,9 @@ import java.util.Random;
  * Created by Andreas Braun on 20.12.2016.
  */
 public class GeneratorWordDiceRoll implements GeneratorWord {
+
     public StringBuilder generateWord(GrammarProperties grammarProperties) throws GrammarException {
         StringBuilder randomWord = new StringBuilder("");
-        //String[] possibleTerminals= grammarProperties.getPossibleTerminals();
-
         // Generate random word out the alphabet with the given size
         Random random = new Random();
         int min = 0 ; // lower limit is inclusive
@@ -26,4 +25,5 @@ public class GeneratorWordDiceRoll implements GeneratorWord {
                 "generated word is bigger than the specified sizeOfWord of the grammar");
         return randomWord;
     }
+
 }
