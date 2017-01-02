@@ -17,10 +17,9 @@ public class ProductionTest {
         System.out.println("############################");
         System.out.println("Test Production: toString");
 
-        Production production11 = new Production(new Variable("A"), new Terminal("a"), new Variable("CA"), new Variable("CC"));
-        Production production22 = new Production(new Variable("B"), new Terminal("b"));
-        Terminal[] terminals = {new Terminal("a"), new Terminal("b")};
-        Production production33 = new Production(new Variable("C"), terminals);
+        Production production11 = new Production(new Variable("A"), new Terminal("a"));
+        Production production22 = new Production(new Variable("B"), new Terminal("B"));
+        Production production33 = new Production(new Variable("C"), new Terminal("a"));
         System.out.print("1." + production11);
         System.out.print("2." + production22);
         System.out.print("3." + production33);
@@ -32,11 +31,11 @@ public class ProductionTest {
         System.out.println("############################");
         System.out.println("Test Production: isElementAtRightHandSide");
 
-        Production production11 = new Production(new Variable("A"), new Terminal("a"), new Variable("CA"), new Variable("CC"));
+        Production production11 = new Production(new Variable("A"), new Terminal("a"));
         System.out.print(production11);
-        boolean temp = production11.isElementAtRightHandSide(new Variable("CA"));
+        boolean temp = production11.isElementAtRightHandSide(new Variable("a"));
         Assert.assertEquals(true, temp);
-        System.out.println("Variable CA isElementAtRightHandSide: " + temp);
+        System.out.println("Terminal a isElementAtRightHandSide: " + temp);
     }
 
 }

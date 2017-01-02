@@ -19,16 +19,16 @@ public class GrammarTest {
         System.out.println("############################");
         System.out.println("Test Grammar: toString");
 
-        Production production11 = new Production(new Variable("A"), new Terminal("a"), new Variable("CA"), new Variable("CC"));
-        Production production22 = new Production(new Variable("B"), new Terminal("b"));
-        Terminal[] terminals = {new Terminal("a"), new Terminal("b")};
-        Production production33 = new Production(new Variable("C"), terminals);
+        // TODO: duplicate productions won´t be added
+        Production production11 = new Production(new Variable("A"), new Terminal("a"));
+        Production production12 = new Production(new Variable("A"), new Terminal("a"));
+        Production production13 = new Production(new Variable("A"), new Terminal("A"));
+        Production production22 = new Production(new Variable("B"), new Terminal("B"));
+        Production production33 = new Production(new Variable("C"), new Terminal("a"));
 
         Grammar grammar1 = new Grammar();
-        Production[] productions = {production11, production22, production33};
+        Production[] productions = {production11, production12, production13, production22, production33};
         grammar1.addProduction(productions);
-        Production production44 = new Production(new Variable("C"), new Terminal("a"), new Terminal("b"), new Variable("CA") );
-        grammar1.addProduction(production44);
         System.out.println(grammar1);
     }
 

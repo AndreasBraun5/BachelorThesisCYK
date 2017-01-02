@@ -97,7 +97,7 @@ public class GeneratorGrammar {
         }
         CYK.stepII(setV, word, wordlength, grammar);
         System.out.println(grammar);
-        CYK.printSetV(setV, wordlength);
+        CYK.printSetV(setV);
 
         // Row2: Per cell, compute combinations of vars. Distribute again over right hand sides of vars such that the
 

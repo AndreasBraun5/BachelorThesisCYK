@@ -105,7 +105,7 @@ public class CYK {
                 }
             }
         }
-        CYK.printSetV(setV, wordLength);
+        CYK.printSetV(setV);
         return setV;
     }
 
@@ -114,9 +114,10 @@ public class CYK {
         return new Tree();
     }
 
-    public static void printSetV(Set<Variable>[][] setV, int wordlength) {
+    public static void printSetV(Set<Variable>[][] setV) {
         System.out.println();
         System.out.println("setV:");
+        int wordlength = setV.length;
         int maxLen = 0;
         for (int i = 0; i < wordlength; i++) {
             for (int j = 0; j < wordlength; j++) {

@@ -15,8 +15,11 @@ public class Grammar {
     // TODO: it may be possible to have more Productions for one Variable here
     private Map<Variable, List<Production>> productions = new HashMap<>();
 
+    // removes duplicate productions
     public void addProduction(Production...  production) {
-        for (Production aProduction : production) {
+        Set<Production> tempSet = new HashSet<>(Arrays.asList(production));
+        Production tempProduction[] = tempSet.toArray(new Production[tempSet.size()]);
+        for (Production aProduction : tempProduction) {
             List<Production> prods = productions.get(aProduction.getLeftHandSideElement());
             if (prods == null) {
                 prods = new ArrayList<>();

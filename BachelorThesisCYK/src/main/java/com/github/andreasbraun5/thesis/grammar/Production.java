@@ -12,35 +12,56 @@ public class Production {
     /* List<RightHandSideElement> because A --> BC or A --> AB is possible and the ordering is important.
         The example above shows that there are two rightHandSideElements each.
      */
-    private List<RightHandSideElement> rightHandSideElements = new ArrayList<>();
+    private RightHandSideElement rightHandSideElement;
 
-    public Production(Variable leftHandSideElement, RightHandSideElement... rightHandSideElements) {
+    public Production(Variable leftHandSideElement, RightHandSideElement rightHandSideElement) {
         this.leftHandSideElement = leftHandSideElement;
-        this.rightHandSideElements.addAll(Arrays.asList(rightHandSideElements).subList(0, rightHandSideElements.length));
+        this.rightHandSideElement = rightHandSideElement;
+    }
+
+    public Production(Variable leftHandSideElement) {
+        this.leftHandSideElement = leftHandSideElement;
     }
 
     /*
     Calling isElementAtRightHandSide checks whether one specific production already exists
      */
     public boolean isElementAtRightHandSide(RightHandSideElement rightHandSideElement){
-        //System.out.println();
-        //System.out.println(this.rightHandSideElements);
-        //System.out.println(rightHandSideElement);
-        return this.rightHandSideElements.contains(rightHandSideElement);
+        return this.rightHandSideElement.equals(rightHandSideElement);
     }
 
     @Override
     public String toString() {
         return "Production{" +
-                leftHandSideElement + "-->" + rightHandSideElements +
+                leftHandSideElement + "-->" + rightHandSideElement +
                 "}\n";
     }
 
-    public Variable getLeftHandSideElement() {
-        return leftHandSideElement;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Production that = (Production) o;
+
+        if (leftHandSideElement != null ? !leftHandSideElement.equals(that.leftHandSideElement) : that.leftHandSideElement != null)
+            return false;
+        return rightHandSideElement != null ? rightHandSideElement.equals(that.rightHandSideElement) : that.rightHandSideElement == null;
+
     }
 
-    public List<RightHandSideElement> getRightHandSideElements() {
-        return rightHandSideElements;
+    @Override
+    public int hashCode() {
+        int result = leftHandSideElement != null ? leftHandSideElement.hashCode() : 0;
+        result = 31 * result + (rightHandSideElement != null ? rightHandSideElement.hashCode() : 0);
+        return result;
+    }
+
+    public Variable getLeftHandSideElement() {
+        return this.leftHandSideElement;
+    }
+
+    public RightHandSideElement getRightHandSideElement() {
+        return this.rightHandSideElement;
     }
 }
