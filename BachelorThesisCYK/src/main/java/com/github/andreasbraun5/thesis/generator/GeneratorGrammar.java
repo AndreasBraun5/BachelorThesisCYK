@@ -52,8 +52,9 @@ public class GeneratorGrammar {
 
     // TODO: evtl ohne Beschränkung sogar
     // TODO: every Variable must have at least one righthandsideElement before calling stepII
+    // TODO: consider the VariableStart
     public static Grammar findGrammar(List<Terminal> word, Set<Variable> variablesSet, int maxVariableInCell){
-        Grammar grammar = new Grammar();
+        Grammar grammar = new Grammar(new VariableStart("S"));
         int wordlength = word.size();
         Set<Variable>[][] setV = new Set[wordlength][wordlength];
         for (int i = 0; i < wordlength; i++) {
@@ -97,7 +98,7 @@ public class GeneratorGrammar {
         // TODO: NullPointerException, now here C-->null
         CYK.stepII(setV, word, grammar);
         System.out.println(grammar);
-        CYK.printSetV(setV);
+        CYK.printSetV(setV, "setV");
 
         // Row2: Per cell, compute combinations of vars. Distribute again over right hand sides of vars such that the
 

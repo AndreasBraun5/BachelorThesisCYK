@@ -16,8 +16,8 @@ public class Main {
         variables.add(new Variable("C"));
         String word = "01110100";
         int maxNumberOfVarsPerCell = 3;
-        Grammar grammar = GeneratorGrammar.findGrammar(word, variables, maxNumberOfVarsPerCell);
-        CYK.algorithmSimple(word, grammar);
+        //Grammar grammar = GeneratorGrammar.findGrammar(word, variables, maxNumberOfVarsPerCell);
+        //CYK.algorithmSimple(word, grammar);
 
     }
 

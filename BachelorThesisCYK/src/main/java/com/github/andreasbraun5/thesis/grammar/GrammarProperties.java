@@ -12,6 +12,7 @@ public class GrammarProperties {
 
     public int sizeOfWord;
     public int numberOfVars;
+    public VariableStart variableStart;
 
     public void addVariables(Variable... vars) {
         Collections.addAll(this.variables, vars);

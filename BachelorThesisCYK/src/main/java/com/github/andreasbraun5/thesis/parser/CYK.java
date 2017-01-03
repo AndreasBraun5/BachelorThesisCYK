@@ -7,19 +7,18 @@ import java.util.*;
 /**
  * Created by Andreas Braun on 20.12.2016.
  */
+/*
+    TODO: should implement interface Parser
+ */
 public class CYK {
-    /*
+    /* ###############################################################
         - Epsilon rule is implemented
-     */
+        ############################################################### */
 
-    public static Set<Variable>[][] calculateSetV(String word, Grammar grammar) {
-        List<Terminal> list = new ArrayList<>();
-        for(int i = 0; i < word.length(); i++) {
-            list.add(new Terminal(String.valueOf(word.charAt(i))));
-        }
-        return calculateSetV(list, grammar);
-    }
 
+    /*
+        Implementation of the simple Algorithm described in the script TI1. Overloaded method for simple usage.
+    */
     public static boolean algorithmSimple(String word, Grammar grammar) {
         List<Terminal> list = new ArrayList<>();
         for(int i = 0; i < word.length(); i++) {
@@ -27,19 +26,27 @@ public class CYK {
         }
         return algorithmSimple(list, grammar);
     }
+    public static boolean algorithmSimple(List<Terminal> word, Grammar grammar){
+        Set<Variable>[][] setV = calculateSetV(word, grammar);
+        int wordLength = word.size();
+        return setV[0][wordLength-1].contains(grammar.getVariableStart());
+    }
 
     /*
-    Each variable that has the terminal at position i of the word as its rightHandSideElement,
-    will be added to setV[i][i]
+        Each variable that has the terminal at position i of the word as its rightHandSideElement,
+        will be added to setV[i][i]
      */
-    public static void stepII(Set<Variable>[][] setV, List<Terminal> word,
-                              Grammar grammar) {
+    public static void stepII(Set<Variable>[][] setV, List<Terminal> word, Grammar grammar) {
         int wordLength = word.size();
+        // Look at each terminal of the word
         for (int i = 0; i < wordLength; i++) {
             RightHandSideElement tempTerminal = word.get(i);
+            // Get all productions that have the same leftHandSide variable. This is done for all unique variables.
+            // So all production in general are taken into account.
             for (Map.Entry<Variable, List<Production>> entry : grammar.getProductions().entrySet()) {
                 Variable var = entry.getKey();
                 List<Production> prods = entry.getValue();
+                // Check if there is one rightHandSideElement that equals the observed terminal.
                 for (Production prod : prods) {
                     if (prod.isElementAtRightHandSide(tempTerminal)) {
                         setV[i][i].add(var);
@@ -49,13 +56,15 @@ public class CYK {
         }
     }
 
-    public static boolean algorithmSimple(List<Terminal> word, Grammar grammar){
-        Set<Variable>[][] setV = calculateSetV(word, grammar);
-        int wordLength = word.size();
-        // TODO: Here it is, that our starting variable always is S. This needs to be changed.
-        System.out.println("The result is: " + setV[0][wordLength-1]);
-
-        return setV[0][wordLength-1].contains(new Variable("S"));
+    /*
+        Calculating the set needed for the cyk algorithm. Overloaded method for simple usage.
+     */
+    public static Set<Variable>[][] calculateSetV(String word, Grammar grammar) {
+        List<Terminal> list = new ArrayList<>();
+        for(int i = 0; i < word.length(); i++) {
+            list.add(new Terminal(String.valueOf(word.charAt(i))));
+        }
+        return calculateSetV(list, grammar);
     }
 
     public static Set<Variable>[][] calculateSetV(List<Terminal> word, Grammar grammar) {
@@ -65,15 +74,21 @@ public class CYK {
         Set<Variable>[][] setV = new Set[wordLength][wordLength];
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
-                setV[i][j] = new HashSet<>();
+                setV[i][j] = new HashSet<>(); // this generates a set with size = 0
             }
         }
         // Check whether the terminal is on the right side of the production, then add its left variable to v_ii
         stepII(setV, word, grammar);
 
+
+        /**
+         * commenting done until here
+         */
+        //
         for (int l = 0; l <= wordLength - 1; l++) {
+            //
             for (int i = 0; i < wordLength - l; i++) {
-                // setV[i][i+l] = EmptySet; This is already done via initialisation (set.size = 0).
+                //
                 for (int k = i; k < i + l; k++) {
                     Set<Variable> tempSetX = new HashSet<>();
                     Set<Variable> tempSetY = setV[i][k];
@@ -86,23 +101,23 @@ public class CYK {
                             tempSetYZ.add(tempVariable);
                         }
                     }
-                    System.out.println();
-                    System.out.println();
-                    System.out.println(productions);
-                    System.out.println("tempSetYZ" + tempSetYZ);
+                    //System.out.println();
+                    //System.out.println();
+                    //System.out.println(productions);
+                    //System.out.println("tempSetYZ" + tempSetYZ);
                     // for all productions check if there is any of the combined Variables, which equals a RightHandSideElement
                     for (List<Production> tempProductions : productions.values()) {
                         for(Production tempProduction : tempProductions) {
                             for (Variable yz : tempSetYZ) {
-                                System.out.println("tempSetYZ" + tempSetYZ);
-                                System.out.println("tempXY: " + yz);
-                                System.out.println("tempProduction: " + tempProduction);
+                                //System.out.println("tempSetYZ" + tempSetYZ);
+                                //System.out.println("tempXY: " + yz);
+                                //System.out.println("tempProduction: " + tempProduction);
                                 if (tempProduction.isElementAtRightHandSide(yz)) {
                                     tempSetX.add(tempProduction.getLeftHandSideElement());
                                 }
-                                System.out.println("temppSetX step: " + tempSetX);
+                                //System.out.println("temppSetX step: " + tempSetX);
                             }
-                            System.out.println("temppSetX final: " + tempSetX);
+                            //System.out.println("temppSetX final: " + tempSetX);
                         }
                     }
                     setV[i][i+l].addAll(tempSetX);
@@ -112,14 +127,19 @@ public class CYK {
         return setV;
     }
 
+    /*
+        not yet implemented algorithm
+     */
     public static Tree algorithmAdvanced(StringBuilder word, Grammar grammar) {
-
         return new Tree();
     }
 
-    public static void printSetV(Set<Variable>[][] setV) {
+    /*
+        Method for printing the set matrix
+     */
+    public static void printSetV(Set<Variable>[][] setV, String setName) {
         System.out.println();
-        System.out.println("setV:");
+        System.out.println(setName);
         int wordlength = setV.length;
         int maxLen = 0;
         for (int i = 0; i < wordlength; i++) {
@@ -136,6 +156,9 @@ public class CYK {
         }
     }
 
+    /*
+        helper method used by printSetV
+     */
     public static String uniformStringMaker(String str, int length) {
         StringBuilder builder = new StringBuilder(str);
         for(int i = str.length(); i < length; ++i) {

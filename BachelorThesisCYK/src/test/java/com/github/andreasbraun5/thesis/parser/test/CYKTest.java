@@ -105,24 +105,20 @@ public class CYKTest {
 
         setVTemp[7][7].add(new Variable("A"));
         setVTemp[7][7].add(new Variable("N"));
-        CYK.printSetV(setVTemp);
+        CYK.printSetV(setVTemp, "setVSolution");
 
         boolean temp = true;
         // optimizing possible, if one time temp == false, then stop executing the loops
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
-                System.out.println("\n" + setVTemp[i][j] + "###" + setV[i][j]);
-                boolean a = setVTemp[i][j].containsAll(setV[i][j]);
-                boolean b = setVTemp[i][j].size() == setV[i][j].size();
                 if (!(setVTemp[i][j].containsAll(setV[i][j])) &&
                         setVTemp[i][j].size() == setV[i][j].size()) {
-                    System.out.println("\n" + setVTemp[i][j] + "###" + setV[i][j]);
                     temp = false;
                 }
             }
         }
-        CYK.printSetV(setV);
+        CYK.printSetV(setV, "setVCalculated");
         Assert.assertEquals(true, temp);
-        System.out.println("SetV from script is the same as the calculated SetV: " + temp);
+        System.out.println("\nSetV from script is the same as the calculated SetV: " + temp);
     }
 }
