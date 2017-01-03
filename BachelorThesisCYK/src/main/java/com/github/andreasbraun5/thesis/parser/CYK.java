@@ -8,6 +8,9 @@ import java.util.*;
  * Created by Andreas Braun on 20.12.2016.
  */
 public class CYK {
+    /*
+        - Epsilon rule is implemented
+     */
 
     public static Set<Variable>[][] calculateSetV(String word, Grammar grammar) {
         List<Terminal> list = new ArrayList<>();
@@ -30,7 +33,8 @@ public class CYK {
     will be added to setV[i][i]
      */
     public static void stepII(Set<Variable>[][] setV, List<Terminal> word,
-                              int wordLength, Grammar grammar) {
+                              Grammar grammar) {
+        int wordLength = word.size();
         for (int i = 0; i < wordLength; i++) {
             RightHandSideElement tempTerminal = word.get(i);
             for (Map.Entry<Variable, List<Production>> entry : grammar.getProductions().entrySet()) {
@@ -50,10 +54,10 @@ public class CYK {
         int wordLength = word.size();
         // TODO: Here it is, that our starting variable always is S. This needs to be changed.
         System.out.println("The result is: " + setV[0][wordLength-1]);
+
         return setV[0][wordLength-1].contains(new Variable("S"));
     }
 
-    //TODO: Think about epsilon rule being implemented?!?
     public static Set<Variable>[][] calculateSetV(List<Terminal> word, Grammar grammar) {
         int wordLength = word.size();
         Map<Variable, List<Production>> productions = grammar.getProductions();
@@ -65,7 +69,7 @@ public class CYK {
             }
         }
         // Check whether the terminal is on the right side of the production, then add its left variable to v_ii
-        stepII(setV, word, wordLength, grammar);
+        stepII(setV, word, grammar);
 
         for (int l = 0; l <= wordLength - 1; l++) {
             for (int i = 0; i < wordLength - l; i++) {
@@ -105,11 +109,10 @@ public class CYK {
                 }
             }
         }
-        CYK.printSetV(setV);
         return setV;
     }
 
-    public Tree algorithmAdvanced(StringBuilder word, Grammar grammar) {
+    public static Tree algorithmAdvanced(StringBuilder word, Grammar grammar) {
 
         return new Tree();
     }

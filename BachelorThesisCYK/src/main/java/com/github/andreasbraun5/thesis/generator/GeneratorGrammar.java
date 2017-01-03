@@ -19,8 +19,6 @@ public class GeneratorGrammar {
         (make configurable!) Default: at least one, at most 2.
         --> sizeOfAlphabet/2 <= numberOfVars <=  sizeOfAlphabet
 
-        Variabl
-
     3) Row2: Per cell, compute combinations of vars. Distribute again over right hand sides of vars such that the
         0-2 constraint (maxNumberOfVarsPerCell) is satisfied. Note: Here it hurts less to also have an empty cell.
     4) Row3 till last row: Similar procedure, but we have to take more cell combinations into account
@@ -48,11 +46,12 @@ public class GeneratorGrammar {
         return ret;
     }
 
-    public boolean checkIntegrity(){
+    public static boolean checkIntegrity(){
         return false;
     }
 
     // TODO: evtl ohne Beschränkung sogar
+    // TODO: every Variable must have at least one righthandsideElement before calling stepII
     public static Grammar findGrammar(List<Terminal> word, Set<Variable> variablesSet, int maxVariableInCell){
         Grammar grammar = new Grammar();
         int wordlength = word.size();
@@ -95,7 +94,8 @@ public class GeneratorGrammar {
                 ++curVar;
             }
         }
-        CYK.stepII(setV, word, wordlength, grammar);
+        // TODO: NullPointerException, now here C-->null
+        CYK.stepII(setV, word, grammar);
         System.out.println(grammar);
         CYK.printSetV(setV);
 

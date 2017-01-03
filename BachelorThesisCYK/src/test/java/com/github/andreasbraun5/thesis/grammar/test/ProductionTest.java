@@ -33,7 +33,7 @@ public class ProductionTest {
 
         Production production11 = new Production(new Variable("A"), new Terminal("a"));
         System.out.print(production11);
-        boolean temp = production11.isElementAtRightHandSide(new Variable("a"));
+        boolean temp = production11.isElementAtRightHandSide(new Terminal("a"));
         Assert.assertEquals(true, temp);
         System.out.println("Terminal a isElementAtRightHandSide: " + temp);
     }

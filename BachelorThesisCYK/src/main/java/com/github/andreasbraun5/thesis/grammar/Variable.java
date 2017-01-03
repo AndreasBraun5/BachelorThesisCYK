@@ -5,7 +5,7 @@ package com.github.andreasbraun5.thesis.grammar;
  */
 public class Variable implements RightHandSideElement, LeftHandSideElement {
 
-    private final String name;
+    protected String name;
 
     /*
     Constructing single variables like A, B for the LeftHandSideElement and also compound variables like AB, BC, BD for
@@ -30,12 +30,13 @@ public class Variable implements RightHandSideElement, LeftHandSideElement {
 
         Variable variable = (Variable) o;
 
-        return name.equals(variable.name);
+        return name != null ? name.equals(variable.name) : variable.name == null;
+
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return name != null ? name.hashCode() : 0;
     }
 
     @Override
@@ -48,3 +49,9 @@ public class Variable implements RightHandSideElement, LeftHandSideElement {
     }
 
 }
+/*
+            boolean t1 = o==null;
+            Class c1 = getClass();
+            Class c2 = o.getClass();
+            boolean t2 = getClass() != o.getClass();
+ */

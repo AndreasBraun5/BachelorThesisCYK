@@ -19,8 +19,6 @@ public class Main {
         Grammar grammar = GeneratorGrammar.findGrammar(word, variables, maxNumberOfVarsPerCell);
         CYK.algorithmSimple(word, grammar);
 
-
-
     }
 
 }

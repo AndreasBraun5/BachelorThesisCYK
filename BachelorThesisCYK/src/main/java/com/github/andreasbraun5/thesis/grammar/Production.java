@@ -27,7 +27,11 @@ public class Production {
     Calling isElementAtRightHandSide checks whether one specific production already exists
      */
     public boolean isElementAtRightHandSide(RightHandSideElement rightHandSideElement){
-        return this.rightHandSideElement.equals(rightHandSideElement);
+        if(this.rightHandSideElement == null) {
+            return false;
+        } else {
+            return this.rightHandSideElement.equals(rightHandSideElement);
+        }
     }
 
     @Override
