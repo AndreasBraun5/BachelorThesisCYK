@@ -7,12 +7,15 @@ import java.util.*;
  */
 /*
 In the class Grammar one entry of productions represents not only one production exclusively, more specific it contains
-all summed up productions of one variable. A-->a and A-->B and A--> AB is represented analogue to the script of TI1 as
-one "line" of productions like "A --> a | A | AB".
+all summed up productions of one variable. Key=A, Value: A-->a and A-->B and A--> AB. Is represented analogue to the
+script of TI1 as one "line" of productions like "A --> a | A | AB".
+ */
+/**
+ * A Grammar must at least have its variable start defined.
  */
 public class Grammar {
 
-    // TODO: it may be possible to have more Productions for one Variable here
+    // As stated above. Key=A, Value: A-->a and A-->B and A--> AB
     private Map<Variable, List<Production>> productions = new HashMap<>();
     private VariableStart variableStart;
 
@@ -20,11 +23,9 @@ public class Grammar {
         this.variableStart = variableStart;
     }
 
-    public Grammar(Production... productions) {
-        addProduction(productions);
-    }
-
-    // removes duplicate productions
+    /**
+     * Removes duplicate productions while adding
+     */
     public void addProduction(Production...  production) {
         Set<Production> tempSet = new HashSet<>(Arrays.asList(production));
         Production tempProduction[] = tempSet.toArray(new Production[tempSet.size()]);
@@ -46,7 +47,8 @@ public class Grammar {
     @Override
     public String toString() {
         return "Grammar{" +
-                "" + productions +
+                "\nvariableStart: " + variableStart +
+                "\n" + productions +
                 '}';
     }
 

@@ -15,16 +15,6 @@ public class GrammarProperties {
     /**
      * TODO: variableStart if not set manually will be "S"
      */
-    public VariableStart variableStart =  new VariableStart("S");
-
-    public void addVariables(Variable... vars) {
-        Collections.addAll(this.variables, vars);
-    }
-
-    public void addTerminals(Terminal... terms) {
-        Collections.addAll(this.terminals, terms);
-    }
-
     public GrammarProperties generatePartOfGrammarPropertiesFromWord(String word) {
         GrammarProperties grammarProperties = new GrammarProperties();
         Set<Character> terminals = new HashSet<>();
@@ -52,6 +42,25 @@ public class GrammarProperties {
 
         return grammarProperties;
     }
+
+    public VariableStart variableStart =  new VariableStart("S");
+
+    public void addVariables(Variable... vars) {
+        Collections.addAll(this.variables, vars);
+    }
+
+    public void addTerminals(Terminal... terms) {
+        Collections.addAll(this.terminals, terms);
+    }
+
+    public void addVariables(Set<Variable> variables){
+        this.variables.addAll(variables);
+    }
+
+    public void addTerminals(Set<Terminal> terminal){
+        this.terminals.addAll(terminal);
+    }
+
 
     @Override
     public String toString() {

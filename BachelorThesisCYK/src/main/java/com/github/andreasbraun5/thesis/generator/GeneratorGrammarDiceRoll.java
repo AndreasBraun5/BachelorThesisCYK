@@ -7,6 +7,7 @@ import java.util.*;
 
 /**
  * Created by Andreas Braun on 21.12.2016.
+ *  - consider terminals and alphabet as synonyms
  */
 public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
     // TODO: Stepwise CYK = equals a backtracking attempt.
@@ -33,15 +34,84 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
         }
         return generateGrammar(variables, list);
     }*/
-    // TODO: every Variable must have at least one rightHandSideElement before calling stepII
-    // TODO: consider the VariableStart
-    public static Grammar generateGrammar(GrammarProperties grammarProperties){
-        Set<Variable> variables = grammarProperties.variables;
-        Set<Terminal> tempTerminalsSet = grammarProperties.terminals;
+    public Grammar generateGrammar(GrammarProperties grammarProperties){
+        // using lists now, because of easier access.
         List<Terminal> terminals = new ArrayList<>();
-        terminals.addAll(tempTerminalsSet);
+        terminals.addAll(grammarProperties.terminals);
+        List<Variable> variables = new ArrayList<>();
+        variables.addAll(grammarProperties.variables);
+        // GrammarProperties and Grammar are no longer interconnected. Therefore the startingVariable needs to be added
+        // to the grammar specifically.
+        Grammar grammar = new Grammar(grammarProperties.variableStart);
+        // Each variable gets to be one production on its own, not depended on the count of terminals
+        for (Variable variable : variables) {
+            Production production = new Production(variable);
+            grammar.addProduction(production);
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println("Grammar after each Variable has its Production: ");
+        // Now you have a production for every possible variable with an empty rightSide (Set with size of 0)
+        System.out.println(grammar);
+        // Each terminal can be distributed to none or to all possible variables
+        //  - decide to how many variables the terminal will be added
+        //  - decide to which variables the terminal will be added
+        int varCount = variables.size();
+        for (Terminal terminal : terminals) {
+            Random random = new Random();
+            // randomNumber is element of [0, variables.size()]
+            // TODO: Maybe exclude 0 by adding random.nextInt(varCount-1) + 1;
+            int numberOfVarsTerminalWillBeAdded = random.nextInt(varCount);
+            {
+                // Removing Variables from tempVariables until numberOfVarsTerminalWillBeAdded is left.
+                // Then add to these variables the looked at terminal.
+                List<Variable> tempVariables = new ArrayList<>(variables);
+                int tempVariablesSize = tempVariables.size();
+                for (int i = tempVariablesSize; i <= numberOfVarsTerminalWillBeAdded; i--){
+                    tempVariables.remove(random.nextInt(tempVariables.size()));
+                }
+            }
+            {
+                // For each left variable, the Productions needs to be added to its ProductionList regarding its key.
+                for (int i = 0; i <= varCount; i++){
+                    //TODO left here for writing the Tests
+                }
+            }
+        }
 
-        Grammar grammar = new Grammar(new VariableStart("S"));
+
+
+
+        {
+            int curVar = 0;
+            for(Terminal terminal : terminals) {
+                Variable variable = variables.get(curVar%2);
+                List<Production> productionSet = new ArrayList<>();
+                Production production = new Production(variable, terminal);
+                productionSet.add(production);
+                // The ProductionSet overrides the default production set that only
+                // contained an empty production. In this case, this is okay
+                grammar.replaceProductions(variable, productionSet);
+                ++curVar;
+            }
+        }
+        System.out.println(grammar);
+        return grammar;
+    }
+
+/*  // TODO: Backtracking attempt code to find here
+    // old Code with the goal to use the backtracking attempt to always generate a valid grammar. --> No increase of
+    // the succes rate would have been possible or more specific. The success rate is defined differently than that of the DiceRoll
+    public Grammar generateGrammar(GrammarProperties grammarProperties){
+        // using lists now, because of easier access.
+        List<Terminal> terminals = new ArrayList<>();
+        terminals.addAll(grammarProperties.terminals);
+        List<Variable> variables = new ArrayList<>();
+        variables.addAll(grammarProperties.variables);
+        // GrammarProperties and Grammar are no longer interconnected. Therefore the startingVariable needs to be added
+        // to the grammar specifically.
+        Grammar grammar = new Grammar(grammarProperties.variableStart);
+
         int wordlength = terminals.size();
         Set<Variable>[][] setV = new Set[wordlength][wordlength];
         for (int i = 0; i < wordlength; i++) {
@@ -49,13 +119,6 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
                 setV[i][j] = new HashSet<>();
             }
         }
-
-        List<Terminal> alphabet = withoutDuplicates(terminals);
-        List<Variable> variablesList = withoutDuplicates(variables);
-        // TODO: think about the need of the GrammarProperties class
-        //GrammarProperties grammarProperties = GrammarProperties.generateGrammarPropertiesFromWord(word);
-        //grammarProperties.variables.addAll(variables);
-
         // Each variable gets to be one Production, not depended on the count of terminals
         for (Variable variable : variables) {
             Production production = new Production(variable);
@@ -69,11 +132,11 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
 
         // Row1: Distributing the Terminals equally over the Variables. For over Terminal symbole: An nur eine oder an zwei seiten.
         // Würfle an welch an welche Variable es dran gemacht werden soll.
-        // TODO: gleichmäßig verteilen nicht erlaubt. random gleichmaßig
+        // TTODO: gleichmäßig verteilen nicht erlaubt. random gleichmaßig
         {
             int curVar = 0;
-            for(Terminal terminal : alphabet) {
-                Variable variable = variablesList.get(curVar);
+            for(Terminal terminal : terminals) {
+                Variable variable = variables.get(curVar);
                 Production production = new Production(variable, terminal);
                 List<Production> productionSet = new ArrayList<>();
                 productionSet.add(production);
@@ -83,22 +146,11 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
                 ++curVar;
             }
         }
-        // TODO: NullPointerException, now here C-->null
+        // TTODO: NullPointerException, now here C-->null
         CYK.stepII(setV, terminals, grammar);
         System.out.println(grammar);
         CYK.printSetV(setV, "setV");
 
         // Row2: Per cell, compute combinations of vars. Distribute again over right hand sides of vars such that the
-        return grammar;
-    }
-
-
-    /**
-     *  Helper Method used by generateGrammar. Removing duplicates from a collection.
-     */
-    private static <T extends RightHandSideElement> List<T> withoutDuplicates(Collection<T> ruleElements) {
-        List<T> ret = new ArrayList<>();
-        ret.addAll(new HashSet<>(ruleElements));
-        return ret;
-    }
+     }*/
 }

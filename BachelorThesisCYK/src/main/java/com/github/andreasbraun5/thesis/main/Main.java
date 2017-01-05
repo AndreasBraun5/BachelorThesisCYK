@@ -18,11 +18,13 @@ public class Main {
         variables.add(new Variable("A"));
         variables.add(new Variable("B"));
         variables.add(new Variable("C"));
-        List<Terminal> terminals = new ArrayList<>();
+        Set<Terminal> terminals = new HashSet<>();
         terminals.add(new Terminal("a"));
         terminals.add(new Terminal("b"));
-
-        Grammar grammar2 = new Grammar(); // TODO Discuss: why is this possible? no default constructor should be possible
+        terminals.add(new Terminal("c"));
+        terminals.add(new Terminal("d"));
+        terminals.add(new Terminal("e"));
+        terminals.add(new Terminal("f"));
 
         // Generating a word, that will be used for generating a grammar.
         GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
@@ -35,12 +37,14 @@ public class Main {
         // maxNumberOfVarsPerCell = 3
         GrammarProperties grammarProperties = new GrammarProperties();
         grammarProperties.generatePartOfGrammarPropertiesFromWord(word);
+        grammarProperties.addTerminals(terminals);
+        grammarProperties.addVariables(variables);
         grammarProperties.variableStart = new VariableStart("S"); // well it would already be as the default
         grammarProperties.maxNumberOfVarsPerCell = 3;
 
         // Generating a grammar.
         GeneratorGrammarDiceRoll generatorGrammarDiceRoll = new GeneratorGrammarDiceRoll();
-        Grammar grammar = generatorGrammarDiceRoll.generateGrammar(variables, word);
+        Grammar grammar = generatorGrammarDiceRoll.generateGrammar(grammarProperties);
 
         // Checking if the word is in the found grammar
         GrammarIntegrityChecker.checkIntegrity(grammar, grammarProperties, word);
