@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.exception.GrammarException;
+import com.github.andreasbraun5.thesis.exception.WordException;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -13,8 +14,13 @@ import org.junit.Test;
  */
 public class GeneratorWordDiceRollTest {
 
+    /**
+     * TODO: Test useless now
+     * @throws GrammarException
+     */
+
     @Test
-    public void generateWordTest() throws GrammarException {
+    public void generateWordTest() throws WordException {
         System.out.println("");
         System.out.println("############################");
         System.out.println("Test GeneratorWordDiceRoll: generateWord");

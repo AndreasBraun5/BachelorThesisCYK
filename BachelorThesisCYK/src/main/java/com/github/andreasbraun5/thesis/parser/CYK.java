@@ -17,24 +17,24 @@ public class CYK {
        ###############################################################
      */
     /**
-        Implementation of the simple Algorithm described in the script TI1. Overloaded method for simple usage.
-    */
-    public static boolean algorithmSimple(String word, Grammar grammar) {
+     *  Implementation of the simple Algorithm described in the script TI1. Overloaded method for simple usage.
+     */
+    public static boolean algorithmSimple(Grammar grammar, String word) {
         List<Terminal> list = new ArrayList<>();
         for(int i = 0; i < word.length(); i++) {
             list.add(new Terminal(String.valueOf(word.charAt(i))));
         }
-        return algorithmSimple(list, grammar);
+        return algorithmSimple(grammar, list);
     }
-    public static boolean algorithmSimple(List<Terminal> word, Grammar grammar){
-        Set<Variable>[][] setV = calculateSetV(word, grammar);
+    public static boolean algorithmSimple(Grammar grammar, List<Terminal> word){
+        Set<Variable>[][] setV = calculateSetV(grammar, word);
         int wordLength = word.size();
         return setV[0][wordLength-1].contains(grammar.getVariableStart());
     }
 
     /**
-        Each variable that has the terminal at position i of the word as its rightHandSideElement,
-        will be added to setV[i][i]
+     *  Each variable that has the terminal at position i of the word as its rightHandSideElement,
+     *  will be added to setV[i][i]
      */
     public static void stepII(Set<Variable>[][] setV, List<Terminal> word, Grammar grammar) {
         int wordLength = word.size();
@@ -57,17 +57,17 @@ public class CYK {
     }
 
     /**
-        Calculating the set needed for the cyk algorithm. Overloaded method for simple usage.
+     *  Calculating the set needed for the cyk algorithm. Overloaded method for simple usage.
      */
-    public static Set<Variable>[][] calculateSetV(String word, Grammar grammar) {
+    public static Set<Variable>[][] calculateSetV(Grammar grammar, String word) {
         List<Terminal> list = new ArrayList<>();
         for(int i = 0; i < word.length(); i++) {
             list.add(new Terminal(String.valueOf(word.charAt(i))));
         }
-        return calculateSetV(list, grammar);
+        return calculateSetV(grammar, list);
     }
 
-    public static Set<Variable>[][] calculateSetV(List<Terminal> word, Grammar grammar) {
+    public static Set<Variable>[][] calculateSetV(Grammar grammar, List<Terminal> word) {
         int wordLength = word.size();
         Map<Variable, List<Production>> productions = grammar.getProductions();
         // TODO why problem here? Generics stuff?
@@ -130,14 +130,14 @@ public class CYK {
     }
 
     /**
-        not yet implemented algorithm
+     * not yet implemented algorithm
      */
     public static Tree algorithmAdvanced(StringBuilder word, Grammar grammar) {
         return new Tree();
     }
 
     /**
-        Method for printing the set matrix
+     * Method for printing the set matrix
      */
     public static void printSetV(Set<Variable>[][] setV, String setName) {
         System.out.println();
@@ -158,7 +158,7 @@ public class CYK {
     }
 
     /**
-        helper method used by printSetV
+     * helper method used by printSetV
      */
     public static String uniformStringMaker(String str, int length) {
         StringBuilder builder = new StringBuilder(str);

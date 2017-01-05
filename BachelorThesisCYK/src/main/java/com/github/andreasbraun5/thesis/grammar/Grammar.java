@@ -15,13 +15,13 @@ public class Grammar {
     // TODO: it may be possible to have more Productions for one Variable here
     private Map<Variable, List<Production>> productions = new HashMap<>();
     private VariableStart variableStart;
-    public GrammarProperties grammarProperties;
 
     public Grammar(VariableStart variableStart) {
         this.variableStart = variableStart;
     }
 
-    public Grammar() {
+    public Grammar(Production... productions) {
+        addProduction(productions);
     }
 
     // removes duplicate productions

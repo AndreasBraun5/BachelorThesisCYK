@@ -36,11 +36,10 @@ public class CYKTest {
         productions[13] = new Production(new Variable("C"), new Variable("AA"));
         productions[14] = new Production(new Variable("D"), new Variable("BB"));
 
-        Grammar grammar = new Grammar();
-        grammar.addProduction(productions);
+        Grammar grammar = new Grammar(productions);
         String word = "01110100";
 
-        Set<Variable> setV[][] = CYK.calculateSetV(word, grammar);
+        Set<Variable> setV[][] = CYK.calculateSetV(grammar, word);
         int wordLength = word.length();
         Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
         for (int i = 0; i < wordLength; i++) {

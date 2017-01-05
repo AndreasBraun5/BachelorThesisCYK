@@ -7,12 +7,15 @@ import java.util.*;
  */
 public class GrammarProperties {
 
-    public final List<Variable> variables = new ArrayList<>();
-    public final List<Terminal> terminals = new ArrayList<>();
+    public final Set<Variable> variables = new HashSet<>();
+    public final Set<Terminal> terminals = new HashSet<>();
 
     public int sizeOfWord;
-    public int numberOfVars;
-    public VariableStart variableStart;
+    public int maxNumberOfVarsPerCell;
+    /**
+     * TODO: variableStart if not set manually will be "S"
+     */
+    public VariableStart variableStart =  new VariableStart("S");
 
     public void addVariables(Variable... vars) {
         Collections.addAll(this.variables, vars);
@@ -22,7 +25,7 @@ public class GrammarProperties {
         Collections.addAll(this.terminals, terms);
     }
 
-    public static GrammarProperties generateGrammarPropertiesFromWord(String word) {
+    public GrammarProperties generatePartOfGrammarPropertiesFromWord(String word) {
         GrammarProperties grammarProperties = new GrammarProperties();
         Set<Character> terminals = new HashSet<>();
         for(int i=0;  i< word.length(); i++) {
@@ -31,11 +34,14 @@ public class GrammarProperties {
         for(Character t : terminals) {
             grammarProperties.addTerminals(new Terminal(terminals.toString()));
         }
-        grammarProperties.numberOfVars = terminals.size();
+        this.sizeOfWord = word.length();
         return grammarProperties;
     }
 
-    public static GrammarProperties generateGrammarPropertiesFromGrammar(Grammar grammar) {
+    /**
+     *  not yet implemented yet
+     */
+    public GrammarProperties generatePartOfGrammarPropertiesFromGrammar(Grammar grammar) {
         GrammarProperties grammarProperties = new GrammarProperties();
         Map<Variable, List<Production>> productions = grammar.getProductions();
         for(Map.Entry<Variable, List<Production>> entry : productions.entrySet()){
