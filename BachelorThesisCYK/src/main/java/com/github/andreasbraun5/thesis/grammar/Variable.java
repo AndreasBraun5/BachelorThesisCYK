@@ -11,14 +11,20 @@ public class Variable implements RightHandSideElement, LeftHandSideElement {
     Constructing single variables like A, B for the LeftHandSideElement and also compound variables like AB, BC, BD for
     the RightHandSideElement possible.
     */
-    /*
-    public Variable(Variable... variable) {
+    // TODO: Compound variables allowed?
+    /*public Variable(Variable... variable) {
         StringBuilder string = new StringBuilder("");
         for (Variable v : variable) {
             string.append(v.getName());
         }
         this.name = string.toString();
     }*/
+    public Variable(String str1, String str2) {
+        StringBuilder string = new StringBuilder("");
+        string.append(str1);
+        string.append(str2);
+        this.name = string.toString();
+    }
 
     public Variable(String name) {
         this.name = name;

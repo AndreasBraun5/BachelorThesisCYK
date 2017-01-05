@@ -11,12 +11,12 @@ import java.util.*;
     TODO: should implement interface Parser
  */
 public class CYK {
-    /* ###############################################################
-        - Epsilon rule is implemented
-        ############################################################### */
-
-
     /*
+       ###############################################################
+       - Epsilon rule is implemented
+       ###############################################################
+     */
+    /**
         Implementation of the simple Algorithm described in the script TI1. Overloaded method for simple usage.
     */
     public static boolean algorithmSimple(String word, Grammar grammar) {
@@ -32,7 +32,7 @@ public class CYK {
         return setV[0][wordLength-1].contains(grammar.getVariableStart());
     }
 
-    /*
+    /**
         Each variable that has the terminal at position i of the word as its rightHandSideElement,
         will be added to setV[i][i]
      */
@@ -56,7 +56,7 @@ public class CYK {
         }
     }
 
-    /*
+    /**
         Calculating the set needed for the cyk algorithm. Overloaded method for simple usage.
      */
     public static Set<Variable>[][] calculateSetV(String word, Grammar grammar) {
@@ -79,25 +79,25 @@ public class CYK {
         }
         // Check whether the terminal is on the right side of the production, then add its left variable to v_ii
         stepII(setV, word, grammar);
-
-
-        /**
-         * commenting done until here
-         */
-        //
+        // l loop of the described algorithm
         for (int l = 0; l <= wordLength - 1; l++) {
-            //
+            // i loop of the described algorithm
             for (int i = 0; i < wordLength - l; i++) {
-                //
+                // k loop of the described algorithm
                 for (int k = i; k < i + l; k++) {
+                    // tempSetX contains the newly to be added variables, regarding the "X-->YZ" rule.
+                    // If the substring X can be concatenated with the substring Y and substring Z, whereas Y and Z
+                    // must be element of its specified subsets, then add the element X to setV[i][i+l]
                     Set<Variable> tempSetX = new HashSet<>();
                     Set<Variable> tempSetY = setV[i][k];
                     Set<Variable> tempSetZ = setV[k+1][i+l];
                     Set<Variable> tempSetYZ = new HashSet<>();
-
+                    // All possible concatenations of the variables yz are constructed. And so its substrings, which
+                    // they are able to generate
+                    // TODO: Compound variables allowed?
                     for(Variable y : tempSetY) {
                         for(Variable z : tempSetZ) {
-                            Variable tempVariable = new Variable(y, z);
+                            Variable tempVariable = new Variable(y.getName(), z.getName());
                             tempSetYZ.add(tempVariable);
                         }
                     }
@@ -105,7 +105,9 @@ public class CYK {
                     //System.out.println();
                     //System.out.println(productions);
                     //System.out.println("tempSetYZ" + tempSetYZ);
-                    // for all productions check if there is any of the combined Variables, which equals a RightHandSideElement
+                    // Looking at all productions of the grammar, it is checked if there is one rightHandSideElement that
+                    // equals any of the concatenated variables tempSetYZ. If yes, the LeftHandSideElement or more
+                    // specific the variable of the production is added to the tempSetX. All according to the "X-->YZ" rule.
                     for (List<Production> tempProductions : productions.values()) {
                         for(Production tempProduction : tempProductions) {
                             for (Variable yz : tempSetYZ) {
@@ -115,9 +117,9 @@ public class CYK {
                                 if (tempProduction.isElementAtRightHandSide(yz)) {
                                     tempSetX.add(tempProduction.getLeftHandSideElement());
                                 }
-                                //System.out.println("temppSetX step: " + tempSetX);
+                                //System.out.println("tempSetX step: " + tempSetX);
                             }
-                            //System.out.println("temppSetX final: " + tempSetX);
+                            //System.out.println("tempSetX final: " + tempSetX);
                         }
                     }
                     setV[i][i+l].addAll(tempSetX);
@@ -127,14 +129,14 @@ public class CYK {
         return setV;
     }
 
-    /*
+    /**
         not yet implemented algorithm
      */
     public static Tree algorithmAdvanced(StringBuilder word, Grammar grammar) {
         return new Tree();
     }
 
-    /*
+    /**
         Method for printing the set matrix
      */
     public static void printSetV(Set<Variable>[][] setV, String setName) {
@@ -147,7 +149,6 @@ public class CYK {
                 maxLen = Math.max(maxLen, setV[j][i].toString().length());
             }
         }
-
         for (int i = 0; i < wordlength; i++) {
             for (int j = 0; j < wordlength; j++) {
                 System.out.print(uniformStringMaker(setV[j][i].toString(), maxLen));
@@ -156,7 +157,7 @@ public class CYK {
         }
     }
 
-    /*
+    /**
         helper method used by printSetV
      */
     public static String uniformStringMaker(String str, int length) {

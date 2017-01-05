@@ -6,7 +6,7 @@ package com.github.andreasbraun5.thesis.grammar;
 public class VariableStart extends Variable {
 
     public VariableStart(String name) {
-        this.name = name;
+        super(name);
     }
 
 }
