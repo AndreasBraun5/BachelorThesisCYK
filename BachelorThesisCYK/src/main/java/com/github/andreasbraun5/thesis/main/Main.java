@@ -1,5 +1,6 @@
 package com.github.andreasbraun5.thesis.main;
 
+import com.github.andreasbraun5.thesis.exception.GrammarException;
 import com.github.andreasbraun5.thesis.exception.WordException;
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll;;
 import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
@@ -12,7 +13,7 @@ import java.util.Set;
 
 public class Main {
 
-    public static void main(String[] args) throws WordException {
+    public static void main(String[] args) throws WordException, GrammarException {
         // Defining variables and terminals that are used
         Set<Variable> variables = new HashSet<>();
         variables.add(new Variable("A"));

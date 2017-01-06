@@ -1,5 +1,6 @@
 package com.github.andreasbraun5.thesis.generator;
 
+import com.github.andreasbraun5.thesis.exception.GrammarException;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.parser.CYK;
 
@@ -34,7 +35,7 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
         }
         return generateGrammar(variables, list);
     }*/
-    public Grammar generateGrammar(GrammarProperties grammarProperties){
+    public Grammar generateGrammar(GrammarProperties grammarProperties) throws GrammarException {
         // using lists now, because of easier access.
         List<Terminal> terminals = new ArrayList<>();
         terminals.addAll(grammarProperties.terminals);
@@ -91,7 +92,8 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
                 productionSet.add(production);
                 // The ProductionSet overrides the default production set that only
                 // contained an empty production. In this case, this is okay
-                grammar.replaceProductions(variable, productionSet);
+                // TODO: ##########
+                //grammar.replaceProductions(variable, productionSet);
                 ++curVar;
             }
         }

@@ -8,7 +8,7 @@ import java.util.*;
  * Created by Andreas Braun on 20.12.2016.
  */
 /*
-    TODO: should implement interface Parser
+    TODO Later: Implement interface parser
  */
 public class CYK {
     /*
@@ -43,7 +43,7 @@ public class CYK {
             RightHandSideElement tempTerminal = word.get(i);
             // Get all productions that have the same leftHandSide variable. This is done for all unique variables.
             // So all production in general are taken into account.
-            for (Map.Entry<Variable, List<Production>> entry : grammar.getProductions().entrySet()) {
+            for (Map.Entry<Variable, List<Production>> entry : grammar.getProductionsMap().entrySet()) {
                 Variable var = entry.getKey();
                 List<Production> prods = entry.getValue();
                 // Check if there is one rightHandSideElement that equals the observed terminal.
@@ -69,8 +69,8 @@ public class CYK {
 
     public static Set<Variable>[][] calculateSetV(Grammar grammar, List<Terminal> word) {
         int wordLength = word.size();
-        Map<Variable, List<Production>> productions = grammar.getProductions();
-        // TODO why problem here? Generics stuff?
+        Map<Variable, List<Production>> productions = grammar.getProductionsMap();
+        // TODO Note: Why problem here? Generics stuff?
         Set<Variable>[][] setV = new Set[wordLength][wordLength];
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
@@ -94,7 +94,7 @@ public class CYK {
                     Set<Variable> tempSetYZ = new HashSet<>();
                     // All possible concatenations of the variables yz are constructed. And so its substrings, which
                     // they are able to generate
-                    // TODO: Compound variables allowed?
+                    // TODO Discuss: Compound variables allowed?
                     for(Variable y : tempSetY) {
                         for(Variable z : tempSetZ) {
                             Variable tempVariable = new Variable(y.getName(), z.getName());

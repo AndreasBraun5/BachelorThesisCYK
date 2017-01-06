@@ -11,7 +11,7 @@ public class Variable implements RightHandSideElement, LeftHandSideElement {
     Constructing single variables like A, B for the LeftHandSideElement and also compound variables like AB, BC, BD for
     the RightHandSideElement possible.
     */
-    // TODO: Compound variables allowed?
+    // TODO Discuss: Compound variables allowed?
     /*public Variable(Variable... variable) {
         StringBuilder string = new StringBuilder("");
         for (Variable v : variable) {

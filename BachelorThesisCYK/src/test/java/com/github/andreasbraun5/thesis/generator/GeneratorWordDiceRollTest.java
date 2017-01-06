@@ -14,11 +14,6 @@ import org.junit.Test;
  */
 public class GeneratorWordDiceRollTest {
 
-    /**
-     * TODO: Test useless now
-     * @throws GrammarException
-     */
-
     @Test
     public void generateWordTest() throws WordException {
         System.out.println("");

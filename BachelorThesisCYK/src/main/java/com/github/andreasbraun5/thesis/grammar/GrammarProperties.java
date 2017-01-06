@@ -13,8 +13,10 @@ public class GrammarProperties {
     public int sizeOfWord;
     public int maxNumberOfVarsPerCell;
     /**
-     * TODO: variableStart if not set manually will be "S"
+     * If variableStart is not set, by default it will be "S".
      */
+    public VariableStart variableStart =  new VariableStart("S");
+
     public GrammarProperties generatePartOfGrammarPropertiesFromWord(String word) {
         GrammarProperties grammarProperties = new GrammarProperties();
         Set<Character> terminals = new HashSet<>();
@@ -33,17 +35,15 @@ public class GrammarProperties {
      */
     public GrammarProperties generatePartOfGrammarPropertiesFromGrammar(Grammar grammar) {
         GrammarProperties grammarProperties = new GrammarProperties();
-        Map<Variable, List<Production>> productions = grammar.getProductions();
+        Map<Variable, List<Production>> productions = grammar.getProductionsMap();
         for(Map.Entry<Variable, List<Production>> entry : productions.entrySet()){
             // now we iterate over the map
-            // TODO: Generate properties
+            // TODO Later: Implement generatePartOfGrammarPropertiesFromGrammar.
         }
 
 
         return grammarProperties;
     }
-
-    public VariableStart variableStart =  new VariableStart("S");
 
     public void addVariables(Variable... vars) {
         Collections.addAll(this.variables, vars);

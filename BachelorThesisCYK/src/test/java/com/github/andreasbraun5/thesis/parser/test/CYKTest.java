@@ -1,5 +1,6 @@
 package com.github.andreasbraun5.thesis.parser.test;
 
+import com.github.andreasbraun5.thesis.exception.GrammarException;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import org.junit.Assert;
@@ -14,7 +15,7 @@ import java.util.Set;
 public class CYKTest {
 
     @Test
-    public void CYKCalculateSetVTest(){
+    public void CYKCalculateSetVTest() throws GrammarException {
         System.out.println("");
         System.out.println("############################");
         System.out.println("Test CYK: algorithmSimple with input Grammar from the TI1 script");
