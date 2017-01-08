@@ -13,7 +13,7 @@ all summed up productionsMap of one variable. Key=A, Value: A-->a and A-->B and 
 script of TI1 as one "line" of productionsMap like "A --> a | A | AB".
  */
 /**
- * A Grammar must at least have its variable start defined.
+ *  A Grammar must at least have its variableStart defined. By default its "S".
  */
 public class Grammar {
 
@@ -38,6 +38,7 @@ public class Grammar {
         }
         addProduction(tempSet);
     }
+
     /**
      *  No duplicate productions can be added. Duplicates are detected if the production already exists in the grammar.
      */

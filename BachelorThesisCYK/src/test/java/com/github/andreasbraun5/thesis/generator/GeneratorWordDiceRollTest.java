@@ -5,6 +5,7 @@ import com.github.andreasbraun5.thesis.exception.WordException;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,8 +20,7 @@ public class GeneratorWordDiceRollTest {
         System.out.println("");
         System.out.println("############################");
         System.out.println("Test GeneratorWordDiceRoll: generateWord");
-
-        GrammarProperties grammarProperties = new GrammarProperties();
+        GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"));
         grammarProperties.addVariables(new Variable("A"), new Variable("B"));
         grammarProperties.addTerminals(new Terminal("a"), new Terminal("b"));
         grammarProperties.sizeOfWord = 10;

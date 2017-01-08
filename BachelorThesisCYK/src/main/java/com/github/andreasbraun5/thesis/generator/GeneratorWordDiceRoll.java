@@ -18,6 +18,9 @@ public class GeneratorWordDiceRoll implements GeneratorWord {
         return generateWord(grammarProperties.terminals, grammarProperties.sizeOfWord);
     }
 
+    /**
+     *  Not all terminals must be included.
+     */
     public StringBuilder generateWord(Set<Terminal> terminals, int sizeOfWord)
             throws WordException {
         StringBuilder randomWord = new StringBuilder("");

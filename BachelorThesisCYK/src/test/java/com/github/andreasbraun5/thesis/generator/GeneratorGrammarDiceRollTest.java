@@ -1,18 +1,24 @@
-package com.github.andreasbraun5.thesis.main;
+package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.exception.GrammarException;
 import com.github.andreasbraun5.thesis.exception.WordException;
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll;
-import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.*;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Main {
+/**
+ * Created by Andreas Braun on 06.01.2017.
+ */
+public class GeneratorGrammarDiceRollTest {
 
-    public static void main(String[] args) throws WordException, GrammarException {
-        // Defining variables and terminals that are used
+    @Test
+    public void generateGrammar() throws GrammarException {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("Test GeneratorGrammarDiceRoll: generateGrammar");
         Set<Variable> variables = new HashSet<>();
         variables.add(new Variable("A"));
         variables.add(new Variable("B"));
@@ -24,28 +30,16 @@ public class Main {
         terminals.add(new Terminal("d"));
         terminals.add(new Terminal("e"));
         terminals.add(new Terminal("f"));
-
-        // Generating a word, that will be used for generating a grammar.
-        GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
-        String word = generatorWordDiceRoll.generateWord(terminals, 10).toString();
-        System.out.println(word);
-
-        // Defining the GrammarProperties
-        // numberOfVars from 2 to 5
-        // sizeOfAlphabet from 2 to 4
-        // maxNumberOfVarsPerCell = 3
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"));
-        grammarProperties.generatePartOfGrammarPropertiesFromWord(word);
         grammarProperties.addTerminals(terminals);
         grammarProperties.addVariables(variables);
+        grammarProperties.variableStart = new VariableStart("S");
         grammarProperties.maxNumberOfVarsPerCell = 3;
-
-        // Generating a grammar.
+        System.out.println(grammarProperties);
         GeneratorGrammarDiceRoll generatorGrammarDiceRoll = new GeneratorGrammarDiceRoll();
         Grammar grammar = generatorGrammarDiceRoll.generateGrammar(grammarProperties);
-
-        // Checking if the word is in the found grammar
-        GrammarIntegrityChecker.checkIntegrity(grammar, grammarProperties, word);
+        System.out.println(grammar);
+        GrammarProperties grammarProperties2 = new GrammarProperties(new VariableStart("S"));
+        // generatePartOfGrammarPropertiesFromGrammar now needed TODO: Left here
     }
-
 }

@@ -3,6 +3,7 @@ package com.github.andreasbraun5.thesis.grammar.test;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import org.junit.Test;
 
 /**
@@ -15,7 +16,7 @@ public class GrammarPropertiesTest {
         System.out.println("");
         System.out.println("############################");
         System.out.println("Test GrammarProperties: toString");
-        GrammarProperties grammarProperties = new GrammarProperties();
+        GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"));
         grammarProperties.addVariables(new Variable("A"), new Variable("B"));
         grammarProperties.addTerminals(new Terminal("a"), new Terminal("b"));
         grammarProperties.sizeOfWord = 10;

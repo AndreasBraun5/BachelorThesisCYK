@@ -2,7 +2,6 @@ package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.exception.GrammarException;
 import com.github.andreasbraun5.thesis.grammar.*;
-import com.github.andreasbraun5.thesis.parser.CYK;
 
 import java.util.*;
 
@@ -13,11 +12,7 @@ import java.util.*;
 public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
     // TODO: Stepwise CYK = equals a backtracking attempt.
     /*
-    Check 2) Row1: Distribute the alphabet symbols over the variables. Every alphabet symbol needs at least one var.
-        --> numberOfVars <= sizeOfAlphabet
-        (make configurable!) Default: at least one, at most 2.
-        --> sizeOfAlphabet/2 <= numberOfVars <=  sizeOfAlphabet
-
+    2) Row1:
     3) Row2: Per cell, compute combinations of vars. Distribute again over right hand sides of vars such that the
         0-2 constraint (maxNumberOfVarsPerCell) is satisfied. Note: Here it hurts less to also have an empty cell.
     4) Row3 till last row: Similar procedure, but we have to take more cell combinations into account
@@ -36,70 +31,47 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
         return generateGrammar(variables, list);
     }*/
     public Grammar generateGrammar(GrammarProperties grammarProperties) throws GrammarException {
-        // using lists now, because of easier access.
-        List<Terminal> terminals = new ArrayList<>();
-        terminals.addAll(grammarProperties.terminals);
-        List<Variable> variables = new ArrayList<>();
-        variables.addAll(grammarProperties.variables);
-        // GrammarProperties and Grammar are no longer interconnected. Therefore the startingVariable needs to be added
-        // to the grammar specifically.
+        // Set the variableStart specifically because  grammar and grammarProperties aren´t interconnected any more.
         Grammar grammar = new Grammar(grammarProperties.variableStart);
-        // Each variable gets to be one production on its own, not depended on the count of terminals
-        for (Variable variable : variables) {
-            Production production = new Production(variable);
-            grammar.addProduction(production);
-        }
-        System.out.println();
-        System.out.println();
-        System.out.println("Grammar after each Variable has its Production: ");
-        // Now you have a production for every possible variable with an empty rightSide (Set with size of 0)
-        System.out.println(grammar);
-        // Each terminal can be distributed to none or to all possible variables
-        //  - decide to how many variables the terminal will be added
-        //  - decide to which variables the terminal will be added
-        int varCount = variables.size();
-        for (Terminal terminal : terminals) {
-            Random random = new Random();
-            // randomNumber is element of [0, variables.size()]
-            // TODO: Maybe exclude 0 by adding random.nextInt(varCount-1) + 1;
-            int numberOfVarsTerminalWillBeAdded = random.nextInt(varCount);
-            {
-                // Removing Variables from tempVariables until numberOfVarsTerminalWillBeAdded is left.
-                // Then add to these variables the looked at terminal.
-                List<Variable> tempVariables = new ArrayList<>(variables);
-                int tempVariablesSize = tempVariables.size();
-                for (int i = tempVariablesSize; i <= numberOfVarsTerminalWillBeAdded; i--){
-                    tempVariables.remove(random.nextInt(tempVariables.size()));
-                }
-            }
-            {
-                // For each left variable, the Productions needs to be added to its ProductionList regarding its key.
-                for (int i = 0; i <= varCount; i++){
-                    //TODO left here for writing the Tests
-                }
+        // Distribute the terminals.
+        grammar = distributeDiceRollRightHandSideElement(grammar, grammarProperties, grammarProperties.terminals);
+        //System.out.println(grammar);
+        // Distribute all combinations of size two of the vars.
+        Set<VariableCompound> varTupel = new HashSet<>();
+        for(Variable var1 : grammarProperties.variables) {
+            for(Variable var2 : grammarProperties.variables) {
+                varTupel.add(new VariableCompound(var1, var2));
             }
         }
-
-
-
-
-        {
-            int curVar = 0;
-            for(Terminal terminal : terminals) {
-                Variable variable = variables.get(curVar%2);
-                List<Production> productionSet = new ArrayList<>();
-                Production production = new Production(variable, terminal);
-                productionSet.add(production);
-                // The ProductionSet overrides the default production set that only
-                // contained an empty production. In this case, this is okay
-                // TODO: ##########
-                //grammar.replaceProductions(variable, productionSet);
-                ++curVar;
-            }
-        }
-        System.out.println(grammar);
+        grammar = distributeDiceRollRightHandSideElement(grammar, grammarProperties, varTupel);
+        //System.out.println(grammar);
         return grammar;
     }
+
+    private Grammar distributeDiceRollRightHandSideElement(Grammar grammar,
+                                                           GrammarProperties grammarProperties,
+                                                           Set<? extends RightHandSideElement> rhse) throws GrammarException {
+        for (RightHandSideElement tempRhse : rhse) {
+            // Each rightHandSideElement can be distributed to none or to all possible variables.
+            Random random = new Random();
+            // randomNumber is element of [0, grammarProperties.variables.size()]
+            // TODO: Maybe exclude 0 by adding random.nextInt(grammarProperties.variables.size()-1) + 1;
+            // TODO make configurable: Give Parameters of min and max for countOfLeftSideRhseWillBeAdded
+            // Deciding to how many leftSides the rhse will be added. To none as min and to all as max.
+            int countOfLeftSideRhseWillBeAdded = random.nextInt(grammarProperties.variables.size());
+            // Removing Variables from tempVariables until countOfVarsTerminalWillBeAdded vars are left.
+            List<Variable> tempVariables = new ArrayList<>(grammarProperties.variables);
+            for (int i = tempVariables.size(); i > countOfLeftSideRhseWillBeAdded; i--) {
+                tempVariables.remove(random.nextInt(tempVariables.size()));
+            }
+            for (Variable var : tempVariables) {
+                grammar.addProduction(new Production(var, tempRhse));
+            }
+        }
+        return grammar;
+    }
+}
+
 
 /*  // TODO: Backtracking attempt code to find here
     // old Code with the goal to use the backtracking attempt to always generate a valid grammar. --> No increase of
@@ -155,4 +127,3 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
 
         // Row2: Per cell, compute combinations of vars. Distribute again over right hand sides of vars such that the
      }*/
-}
