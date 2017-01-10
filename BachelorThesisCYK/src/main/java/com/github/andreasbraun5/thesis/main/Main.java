@@ -34,10 +34,11 @@ public class Main {
         // numberOfVars from 2 to 5
         // sizeOfAlphabet from 2 to 4
         // maxNumberOfVarsPerCell = 3
-        GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"));
-        grammarProperties.generatePartOfGrammarPropertiesFromWord(word);
-        grammarProperties.addTerminals(terminals);
-        grammarProperties.addVariables(variables);
+        GrammarProperties grammarProperties = GrammarProperties.generatePartOfGrammarPropertiesFromWord(
+                new VariableStart("S"),
+                word
+        ).addTerminals(terminals)
+                .addVariables(variables);
         grammarProperties.maxNumberOfVarsPerCell = 3;
 
         // Generating a grammar.

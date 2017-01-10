@@ -31,8 +31,7 @@ public class GeneratorGrammarDiceRollTest {
         terminals.add(new Terminal("e"));
         terminals.add(new Terminal("f"));
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"));
-        grammarProperties.addTerminals(terminals);
-        grammarProperties.addVariables(variables);
+        grammarProperties.addTerminals(terminals).addVariables(variables);
         grammarProperties.variableStart = new VariableStart("S");
         grammarProperties.maxNumberOfVarsPerCell = 3;
         System.out.println(grammarProperties);

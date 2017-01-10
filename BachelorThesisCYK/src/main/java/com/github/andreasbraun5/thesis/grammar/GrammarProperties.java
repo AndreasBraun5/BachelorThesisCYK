@@ -19,22 +19,23 @@ public class GrammarProperties {
         this.variables.add(varStart);
     }
 
-    public void generatePartOfGrammarPropertiesFromWord(String word) {
+    public static GrammarProperties generatePartOfGrammarPropertiesFromWord(VariableStart startVariable, String word) {
+        GrammarProperties grammarProperties = new GrammarProperties(startVariable);
         Set<Character> terminals = new HashSet<>();
         for(int i=0;  i< word.length(); i++) {
             terminals.add(word.charAt(i));
         }
         for(Character t : terminals) {
-            this.addTerminals(new Terminal(t.toString()));
+            grammarProperties.addTerminals(new Terminal(t.toString()));
         }
-        this.sizeOfWord = word.length();
-        return;
+        grammarProperties.sizeOfWord = word.length();
+        return grammarProperties;
     }
 
     /**
      *  not yet implemented yet
      */
-    public GrammarProperties generatePartOfGrammarPropertiesFromGrammar(Grammar grammar) {
+    public static GrammarProperties generatePartOfGrammarPropertiesFromGrammar(Grammar grammar) {
         GrammarProperties grammarProperties = new GrammarProperties(grammar.getVariableStart());
         Map<Variable, List<Production>> productions = grammar.getProductionsMap();
 
@@ -45,20 +46,24 @@ public class GrammarProperties {
         return grammarProperties;
     }
 
-    public void addVariables(Variable... vars) {
+    public GrammarProperties addVariables(Variable... vars) {
         Collections.addAll(this.variables, vars);
+        return this;
     }
 
-    public void addTerminals(Terminal... terms) {
+    public GrammarProperties addTerminals(Terminal... terms) {
         Collections.addAll(this.terminals, terms);
+        return this;
     }
 
-    public void addVariables(Set<Variable> variables){
+    public GrammarProperties addVariables(Set<Variable> variables){
         this.variables.addAll(variables);
+        return this;
     }
 
-    public void addTerminals(Set<Terminal> terminal){
+    public GrammarProperties addTerminals(Set<Terminal> terminal){
         this.terminals.addAll(terminal);
+        return this;
     }
 
 

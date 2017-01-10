@@ -9,7 +9,18 @@ import java.util.*;
  * Created by Andreas Braun on 21.12.2016.
  *  - consider terminals and alphabet as synonyms
  */
-public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
+public class GeneratorGrammarDiceRoll implements GeneratorGrammar {
+
+    private final Random random;
+
+    public GeneratorGrammarDiceRoll(Random random) {
+        this.random = random;
+    }
+
+    public GeneratorGrammarDiceRoll() {
+        this(new Random());
+    }
+
     // TODO: Stepwise CYK = equals a backtracking attempt.
     /*
     2) Row1:
@@ -50,10 +61,10 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar{
 
     private Grammar distributeDiceRollRightHandSideElement(Grammar grammar,
                                                            GrammarProperties grammarProperties,
-                                                           Set<? extends RightHandSideElement> rhse) throws GrammarException {
-        for (RightHandSideElement tempRhse : rhse) {
+                                                           Set<? extends RightHandSideElement> rightHandSideElements)
+            throws GrammarException {
+        for (RightHandSideElement tempRhse : rightHandSideElements) {
             // Each rightHandSideElement can be distributed to none or to all possible variables.
-            Random random = new Random();
             // randomNumber is element of [0, grammarProperties.variables.size()]
             // TODO: Maybe exclude 0 by adding random.nextInt(grammarProperties.variables.size()-1) + 1;
             // TODO make configurable: Give Parameters of min and max for countOfLeftSideRhseWillBeAdded
