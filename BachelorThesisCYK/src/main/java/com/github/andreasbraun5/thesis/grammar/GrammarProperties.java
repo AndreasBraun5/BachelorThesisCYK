@@ -7,18 +7,23 @@ import java.util.*;
  */
 public class GrammarProperties {
 
-    public final Set<Variable> variables = new HashSet<>();
-    public final Set<Terminal> terminals = new HashSet<>();
+    public final Set<Variable> variables = new HashSet<>(); // obligatory attribute
+    public final Set<Terminal> terminals = new HashSet<>(); // obligatory attribute
 
     public int sizeOfWord;
     public int maxNumberOfVarsPerCell;
-    public VariableStart variableStart;
+    public VariableStart variableStart; // obligatory attribute
 
     public GrammarProperties(VariableStart varStart) {
         this.variableStart = varStart;
         this.variables.add(varStart);
     }
 
+    /**
+     *  Generates not all obligatory attributes of the GrammarProperties. E.g. terminal and VariableStart, but
+     *  variables is missing.
+     *  Also sets the sizeOf the Word variable.
+     */
     public static GrammarProperties generatePartOfGrammarPropertiesFromWord(VariableStart startVariable, String word) {
         GrammarProperties grammarProperties = new GrammarProperties(startVariable);
         Set<Character> terminals = new HashSet<>();
@@ -33,15 +38,16 @@ public class GrammarProperties {
     }
 
     /**
-     *  not yet implemented yet
+     *  Generates all obligatory attributes of GrammarProperties. E.g. variables, terminals, variableStart
      */
     public static GrammarProperties generatePartOfGrammarPropertiesFromGrammar(Grammar grammar) {
         GrammarProperties grammarProperties = new GrammarProperties(grammar.getVariableStart());
-        Map<Variable, List<Production>> productions = grammar.getProductionsMap();
-
-        for(Map.Entry<Variable, List<Production>> entry : productions.entrySet()){
-            // now we iterate over the map
-            // TODO Later: Implement generatePartOfGrammarPropertiesFromGrammar.
+        List<Production> productions = grammar.getProductionsAsList();
+        for(Production tempProd : productions){
+            grammarProperties.addVariables(tempProd.getLeftHandSideElement());
+            if(tempProd.getRightHandSideElement() instanceof  Terminal) { // TODO Discuss: Is it done like this?
+                grammarProperties.addTerminals((Terminal)tempProd.getRightHandSideElement());
+            }
         }
         return grammarProperties;
     }

@@ -28,7 +28,7 @@ public class GeneratorWordDiceRollTest {
         StringBuilder word1 = diceRoll.generateWord(grammarProperties); // GrammarException
         System.out.println(grammarProperties);
         System.out.println("generated word: " + word1);
-        Assert.assertEquals(true, grammarProperties.sizeOfWord == word1.length());
+        Assert.assertEquals("grammarProperties.sizeOfWord not the same as of word1", grammarProperties.sizeOfWord, word1.length());
     }
 
 }

@@ -39,6 +39,10 @@ public class GeneratorGrammarDiceRollTest {
         Grammar grammar = generatorGrammarDiceRoll.generateGrammar(grammarProperties);
         System.out.println(grammar);
         GrammarProperties grammarProperties2 = new GrammarProperties(new VariableStart("S"));
-        // generatePartOfGrammarPropertiesFromGrammar now needed TODO: Left here
+        grammarProperties2 = GrammarProperties.generatePartOfGrammarPropertiesFromGrammar(grammar);
+        // TODO: useless Test now...
+        //Assert.assertEquals("terminals size is not the same", grammarProperties.terminals.size(), grammarProperties2.terminals.size());
+        //Assert.assertEquals("variables size is not the same", grammarProperties.variables.size(), grammarProperties2.variables.size());
+        Assert.assertEquals("variable start is not the same", grammarProperties.variableStart, grammarProperties.variableStart);
     }
 }

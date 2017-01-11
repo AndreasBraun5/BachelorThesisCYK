@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  8 DEC 2016 14:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  11 JAN 2017 14:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1006,7 +1006,7 @@ LaTeX Info: Redefining \nameref on input line 131.
 \openout2 = `latex_settings/deckblatt.aux'.
 
 (./latex_settings/deckblatt.tex
-<abb/logo1.png, id=27, 536.0025pt x 165.61874pt>
+<abb/logo1.png, id=31, 536.0025pt x 165.61874pt>
 File: abb/logo1.png Graphic file (type png)
  <use abb/logo1.png>
 Package pdftex.def Info: abb/logo1.png used on input line 22.
@@ -1080,39 +1080,93 @@ File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
  [8
 
 ] (./1_introduction.tex) [9]
-(./2_overview_of_technologies.tex) [10] (./used_software.tex [11
+(./2_overview_of_technologies.tex) [10] (./courseOfAction.tex
+Underfull \hbox (badness 10000) in paragraph at lines 5--8
 
-]) [12]
-(./appendix/listings.tex [13]) [14] (./appendix/tables.tex [15]) [16]
-(./bibliography.tex) [17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 283.
- [18]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 283.
- (./bachelor_thesis.aux
-(./latex_settings/deckblatt.aux) (./abstract.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 283.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 283.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--17
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--24
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--27
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--34
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--36
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--38
+
+ []
+
+) [12] (./used_software.tex [13
+
+]) [14] (./appendix/listings.tex [15]) [16]
+(./appendix/tables.tex [17]) [18] (./bibliography.tex) [19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 285.
+ [20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 285.
+
+(./bachelor_thesis.aux (./latex_settings/deckblatt.aux) (./abstract.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 285.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 285.
 Package rerunfilecheck Info: File `bachelor_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 8B8747ADE8F81CCA97CCA885614BE377;281.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 283.
+(rerunfilecheck)             Checksum: 15867F1049F2EC79169FCDD8DB81012A;338.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 285.
  ) 
 Here is how much of TeX's memory you used:
- 12857 strings out of 493109
- 197361 string characters out of 6138588
+ 12868 strings out of 493109
+ 197529 string characters out of 6138588
  351374 words of memory out of 5000000
- 16020 multiletter control sequences out of 15000+600000
+ 16025 multiletter control sequences out of 15000+600000
  37610 words of font info for 40 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 76i,11n,114p,338b,367s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 76i,11n,114p,384b,367s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/texlive/2014/tex
 mf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2014/texmf-dist/fonts/type
 1/public/lm/lmr12.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmr17.p
 fb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2
 014/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on bachelor_thesis.pdf (18 pages, 142220 bytes).
+Output written on bachelor_thesis.pdf (20 pages, 146559 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 124 compressed objects within 2 object streams
- 31 named destinations out of 1000 (max. 500000)
- 54 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 167 PDF objects out of 1000 (max. 8388607)
+ 136 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
+ 62 words of extra memory for PDF output out of 10000 (max. 10000000)
 

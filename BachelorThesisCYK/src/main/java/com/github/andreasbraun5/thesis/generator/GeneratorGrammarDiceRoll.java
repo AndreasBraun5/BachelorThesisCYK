@@ -41,6 +41,11 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar {
         }
         return generateGrammar(variables, list);
     }*/
+    /**
+     *  Each terminal must not be element of the rightHandSide. If you are deriving a GrammarProperties obj from
+     *  a word, then there is a probability that not all terminals needed for construction of the word are at least
+     *  at one RightHandSide of the generated grammar.
+     */
     public Grammar generateGrammar(GrammarProperties grammarProperties) throws GrammarException {
         // Set the variableStart specifically because  grammar and grammarProperties aren´t interconnected any more.
         Grammar grammar = new Grammar(grammarProperties.variableStart);
@@ -59,6 +64,9 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar {
         return grammar;
     }
 
+    /**
+     *  Each terminal must not be element of the
+     */
     private Grammar distributeDiceRollRightHandSideElement(Grammar grammar,
                                                            GrammarProperties grammarProperties,
                                                            Set<? extends RightHandSideElement> rightHandSideElements)

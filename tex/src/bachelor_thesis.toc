@@ -1,6 +1,7 @@
-\contentsline {section}{\numberline {1}First chapter}{9}{section.1}
-\contentsline {section}{\numberline {2}Second chapter}{10}{section.2}
-\contentsline {section}{Used software}{11}{section.2}
-\contentsline {section}{Listings}{13}{section*.5}
-\contentsline {section}{Tables}{15}{section*.6}
-\contentsline {section}{References}{17}{section*.7}
+\contentsline {section}{\numberline {1}Introduction}{9}{section.1}
+\contentsline {section}{\numberline {2}Technology Overview}{10}{section.2}
+\contentsline {section}{\numberline {3}Course of Action}{11}{section.3}
+\contentsline {section}{Used software}{13}{section.3}
+\contentsline {section}{Listings}{15}{section*.5}
+\contentsline {section}{Tables}{17}{section*.6}
+\contentsline {section}{References}{19}{section*.7}

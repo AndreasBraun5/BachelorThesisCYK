@@ -19,7 +19,7 @@ public class Grammar {
 
     // As stated above. Key=A, Value: A-->a and A-->B and A--> AB
     private Map<Variable, List<Production>> productionsMap = new HashMap<>();
-    private VariableStart variableStart;
+    private VariableStart variableStart; // Implemented like this, because there can be only one variableStart.
 
     public Grammar(VariableStart variableStart) {
         this.variableStart = variableStart;
