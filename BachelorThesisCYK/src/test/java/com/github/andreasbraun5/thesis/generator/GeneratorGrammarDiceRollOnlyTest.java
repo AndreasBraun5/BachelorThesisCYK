@@ -1,7 +1,6 @@
 package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.exception.GrammarException;
-import com.github.andreasbraun5.thesis.exception.WordException;
 import com.github.andreasbraun5.thesis.grammar.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,13 +11,13 @@ import java.util.Set;
 /**
  * Created by Andreas Braun on 06.01.2017.
  */
-public class GeneratorGrammarDiceRollTest {
+public class GeneratorGrammarDiceRollOnlyTest {
 
     @Test
     public void generateGrammar() throws GrammarException {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("Test GeneratorGrammarDiceRoll: generateGrammar");
+        System.out.println("Test GeneratorGrammarDiceRollOnly: generateGrammar");
         Set<Variable> variables = new HashSet<>();
         variables.add(new Variable("A"));
         variables.add(new Variable("B"));
@@ -35,8 +34,8 @@ public class GeneratorGrammarDiceRollTest {
         grammarProperties.variableStart = new VariableStart("S");
         grammarProperties.maxNumberOfVarsPerCell = 3;
         System.out.println(grammarProperties);
-        GeneratorGrammarDiceRoll generatorGrammarDiceRoll = new GeneratorGrammarDiceRoll();
-        Grammar grammar = generatorGrammarDiceRoll.generateGrammar(grammarProperties);
+        GeneratorGrammarDiceRollOnly generatorGrammarDiceRollOnly = new GeneratorGrammarDiceRollOnly();
+        Grammar grammar = generatorGrammarDiceRollOnly.generateGrammar(grammarProperties);
         System.out.println(grammar);
         GrammarProperties grammarProperties2 = new GrammarProperties(new VariableStart("S"));
         grammarProperties2 = GrammarProperties.generatePartOfGrammarPropertiesFromGrammar(grammar);

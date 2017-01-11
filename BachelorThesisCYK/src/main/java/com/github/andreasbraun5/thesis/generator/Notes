@@ -1,0 +1,54 @@
+    // TODO: Backtracking attempt code to find here
+    // old Code with the goal to use the backtracking attempt to always generate a valid grammar. --> No increase of
+    // the succes rate would have been possible or more specific. The success rate is defined differently than that of the DiceRoll
+    public Grammar generateGrammar(GrammarProperties grammarProperties){
+        // using lists now, because of easier access.
+        List<Terminal> terminals = new ArrayList<>();
+        terminals.addAll(grammarProperties.terminals);
+        List<Variable> variables = new ArrayList<>();
+        variables.addAll(grammarProperties.variables);
+        // GrammarProperties and Grammar are no longer interconnected. Therefore the startingVariable needs to be added
+        // to the grammar specifically.
+        Grammar grammar = new Grammar(grammarProperties.variableStart);
+
+        int wordlength = terminals.size();
+        Set<Variable>[][] setV = new Set[wordlength][wordlength];
+        for (int i = 0; i < wordlength; i++) {
+            for (int j = 0; j < wordlength; j++) {
+                setV[i][j] = new HashSet<>();
+            }
+        }
+        // Each variable gets to be one Production, not depended on the count of terminals
+        for (Variable variable : variables) {
+            Production production = new Production(variable);
+            grammar.addProduction(production);
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println("Grammar after each Variable has its Production: ");
+        // Now you have a production for every possible variable with an empty rightSide (Set with size of 0)
+        System.out.println(grammar);
+
+        // Row1: Distributing the Terminals equally over the Variables. For over Terminal symbole: An nur eine oder an zwei seiten.
+        // Würfle an welch an welche Variable es dran gemacht werden soll.
+        // TTODO: gleichmäßig verteilen nicht erlaubt. random gleichmaßig
+        {
+            int curVar = 0;
+            for(Terminal terminal : terminals) {
+                Variable variable = variables.get(curVar);
+                Production production = new Production(variable, terminal);
+                List<Production> productionSet = new ArrayList<>();
+                productionSet.add(production);
+                // The ProductionSet overrides the default production set that only
+                // contained an empty production. In this case, this is okay
+                grammar.replaceProductions(variable, productionSet);
+                ++curVar;
+            }
+        }
+        // TTODO: NullPointerException, now here C-->null
+        CYK.stepII(setV, terminals, grammar);
+        System.out.println(grammar);
+        CYK.printSetV(setV, "setV");
+
+        // Row2: Per cell, compute combinations of vars. Distribute again over right hand sides of vars such that the
+     }*/

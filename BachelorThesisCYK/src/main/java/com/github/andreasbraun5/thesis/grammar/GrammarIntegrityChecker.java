@@ -7,7 +7,7 @@ import com.github.andreasbraun5.thesis.parser.CYK;
  */
 public class GrammarIntegrityChecker {
 
-    public static boolean checkIntegrity(Grammar grammar, GrammarProperties grammarProperties, String word){
+    public static boolean checkIntegrity(Grammar grammar, String word){
         return CYK.algorithmSimple(grammar, word);
     }
 }

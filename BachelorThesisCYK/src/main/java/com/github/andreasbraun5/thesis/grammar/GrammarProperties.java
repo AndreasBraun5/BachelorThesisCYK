@@ -5,6 +5,13 @@ import java.util.*;
 /**
  * Created by Andreas Braun on 20.12.2016.
  */
+
+/**
+ * Some settings for the beginning:
+ * terminals.size() should be 2.
+ * sizeOfWord should be between 6 and 10.
+ * maxNumberOfVarsPerCell should be 3.
+ */
 public class GrammarProperties {
 
     public final Set<Variable> variables = new HashSet<>(); // obligatory attribute
