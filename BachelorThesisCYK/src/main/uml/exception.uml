@@ -3,19 +3,19 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="0.0" y="192.0">com.github.andreasbraun5.thesis.exception.WordException</node>
-    <node x="0.0" y="0.0">com.github.andreasbraun5.thesis.exception.GrammarPropertiesException</node>
-    <node x="0.0" y="96.0">com.github.andreasbraun5.thesis.exception.GrammarException</node>
+    <node x="0.0" y="96.0">com.github.andreasbraun5.thesis.exception.GrammarRuntimeException</node>
+    <node x="0.0" y="192.0">com.github.andreasbraun5.thesis.exception.WordRuntimeException</node>
+    <node x="0.0" y="0.0">com.github.andreasbraun5.thesis.exception.GrammarPropertieRuntimeException</node>
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="0.0" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="144.5" y="121.5" />
   <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
-    <Category>Methods</Category>
     <Category>Properties</Category>
+    <Category>Methods</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

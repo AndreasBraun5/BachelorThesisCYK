@@ -41,6 +41,8 @@ public class CYKTest {
         Assert.assertEquals("The grammar and the word aren't compatible, but should be.", true, GrammarIntegrityChecker.checkIntegrity(grammar, word));
     }
 
+    //TODO: write 2 more Tests with know solution!!
+
     @Test
     public void CYKCalculateSetVTestWithScript() {
         System.out.println("");
@@ -134,6 +136,195 @@ public class CYKTest {
 
         setVTemp[7][7].add(new Variable("A"));
         setVTemp[7][7].add(new Variable("N"));
+        CYK.printSetV(setVTemp, "setVSolution");
+
+        boolean temp = true;
+        // optimizing possible, if one time temp == false, then stop executing the loops
+        for (int i = 0; i < wordLength; i++) {
+            for (int j = 0; j < wordLength; j++) {
+                if (!(setVTemp[i][j].containsAll(setV[i][j])) &&
+                        setVTemp[i][j].size() == setV[i][j].size()) {
+                    temp = false;
+                }
+            }
+        }
+        Assert.assertEquals(true, temp);
+        System.out.println("\nSetV from script is the same as the calculated SetV: " + temp);
+    }
+
+    @Test
+    public void CYKCalculateSetVTestWithSS12() {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("Test CYK: algorithmSimple with input Grammar from the SS12");
+
+        Grammar grammar = new Grammar(new VariableStart("S"));
+        Production productions[] = new Production[9];
+        productions[0] = new Production(new VariableStart("S"), new VariableCompound(new Variable("A"), new Variable("B")));
+        productions[1] = new Production(new VariableStart("S"), new VariableCompound(new Variable("B"), new Variable("C")));
+        productions[2] = new Production(new Variable("A"), new VariableCompound(new Variable("B"), new Variable("A")));
+        productions[3] = new Production(new Variable("A"), new Terminal("a"));
+        productions[4] = new Production(new Variable("A"), new Terminal("c"));
+        productions[5] = new Production(new Variable("B"), new VariableCompound(new Variable("C"), new Variable("B")));
+        productions[6] = new Production(new Variable("B"), new Terminal("b"));
+        productions[7] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("C")));
+        productions[8] = new Production(new Variable("C"), new Terminal("c"));
+        grammar.addProduction(productions);
+        String word = "cbbaaccb";
+
+        Set<Variable> setV[][] = CYK.calculateSetV(grammar, word);
+        CYK.printSetV(setV, "setV calculated:");
+
+        int wordLength = word.length();
+        Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
+        for (int i = 0; i < wordLength; i++) {
+            for (int j = 0; j < wordLength; j++) {
+                setVTemp[i][j] = new HashSet<>();
+            }
+        }
+        // reconstructing example matrix from scriptTI1
+        setVTemp[0][0].add(new Variable("A"));
+        setVTemp[0][0].add(new Variable("C"));
+        setVTemp[0][1].add(new VariableStart("S"));
+        setVTemp[0][1].add(new Variable("B"));
+        setVTemp[0][3].add(new Variable("A"));
+        setVTemp[0][5].add(new Variable("C"));
+        setVTemp[0][5].add(new VariableStart("S"));
+        setVTemp[0][6].add(new Variable("C"));
+        setVTemp[0][6].add(new VariableStart("S"));
+        setVTemp[0][7].add(new VariableStart("S"));
+        setVTemp[0][7].add(new Variable("B"));
+
+        setVTemp[1][1].add(new Variable("B"));
+        setVTemp[1][3].add(new Variable("A"));
+        setVTemp[1][5].add(new Variable("C"));
+        setVTemp[1][5].add(new VariableStart("S"));
+        setVTemp[1][6].add(new Variable("C"));
+        setVTemp[1][6].add(new VariableStart("S"));
+        setVTemp[1][7].add(new Variable("B"));
+        setVTemp[1][7].add(new VariableStart("S"));
+
+        setVTemp[2][2].add(new Variable("B"));
+        setVTemp[2][3].add(new Variable("A"));
+        setVTemp[2][5].add(new Variable("C"));
+        setVTemp[2][5].add(new VariableStart("S"));
+        setVTemp[2][6].add(new Variable("C"));
+        setVTemp[2][6].add(new VariableStart("S"));
+        setVTemp[2][7].add(new VariableStart("S"));
+        setVTemp[2][7].add(new Variable("B"));
+
+        setVTemp[3][3].add(new Variable("A"));
+        setVTemp[3][5].add(new Variable("C"));
+        setVTemp[3][6].add(new Variable("C"));
+        setVTemp[3][7].add(new VariableStart("S"));
+        setVTemp[3][7].add(new Variable("B"));
+
+        setVTemp[4][4].add(new Variable("A"));
+        setVTemp[4][5].add(new Variable("C"));
+        setVTemp[4][6].add(new Variable("C"));
+        setVTemp[4][7].add(new VariableStart("S"));
+        setVTemp[4][7].add(new Variable("B"));
+
+        setVTemp[5][5].add(new Variable("A"));
+        setVTemp[5][5].add(new Variable("C"));
+        setVTemp[5][6].add(new Variable("C"));
+        setVTemp[5][7].add(new VariableStart("S"));
+        setVTemp[5][7].add(new Variable("B"));
+
+        setVTemp[6][6].add(new Variable("A"));
+        setVTemp[6][6].add(new Variable("C"));
+        setVTemp[6][7].add(new Variable("B"));
+        setVTemp[6][7].add(new VariableStart("S"));
+
+        setVTemp[7][7].add(new Variable("B"));
+        CYK.printSetV(setVTemp, "setVSolution");
+
+        boolean temp = true;
+        // optimizing possible, if one time temp == false, then stop executing the loops
+        for (int i = 0; i < wordLength; i++) {
+            for (int j = 0; j < wordLength; j++) {
+                if (!(setVTemp[i][j].containsAll(setV[i][j])) &&
+                        setVTemp[i][j].size() == setV[i][j].size()) {
+                    temp = false;
+                }
+            }
+        }
+        Assert.assertEquals(true, temp);
+        System.out.println("\nSetV from script is the same as the calculated SetV: " + temp);
+
+    }
+
+    @Test
+    public void CYKCalculateSetVTestWithSS13() {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("Test CYK: algorithmSimple with input Grammar from the SS13");
+
+        Grammar grammar = new Grammar(new VariableStart("S"));
+        Production productions[] = new Production[10];
+        productions[0] = new Production(new VariableStart("S"), new VariableCompound(new Variable("A"), new Variable("A")));
+        productions[1] = new Production(new VariableStart("S"), new VariableCompound(new Variable("A"), new Variable("C")));
+        productions[2] = new Production(new VariableStart("S"), new VariableCompound(new Variable("C"), new Variable("B")));
+        productions[3] = new Production(new Variable("A"), new VariableCompound(new Variable("B"), new Variable("C")));
+        productions[4] = new Production(new Variable("A"), new Terminal("a"));
+        productions[5] = new Production(new Variable("A"), new Terminal("b"));
+        productions[6] = new Production(new Variable("B"), new VariableCompound(new Variable("B"), new Variable("B")));
+        productions[7] = new Production(new Variable("B"), new Terminal("b"));
+        productions[8] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("C")));
+        productions[9] = new Production(new Variable("C"), new Terminal("c"));
+
+        grammar.addProduction(productions);
+        String word = "bbacbc";
+
+        Set<Variable> setV[][] = CYK.calculateSetV(grammar, word);
+        CYK.printSetV(setV, "setV calculated:");
+
+        int wordLength = word.length();
+        Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
+        for (int i = 0; i < wordLength; i++) {
+            for (int j = 0; j < wordLength; j++) {
+                setVTemp[i][j] = new HashSet<>();
+            }
+        }
+        // reconstructing example matrix from scriptTI1
+        setVTemp[0][0].add(new Variable("A"));
+        setVTemp[0][0].add(new Variable("B"));
+        setVTemp[0][1].add(new VariableStart("S"));
+        setVTemp[0][1].add(new Variable("B"));
+        setVTemp[0][3].add(new VariableStart("S"));
+        setVTemp[0][3].add(new Variable("C"));
+        setVTemp[0][3].add(new Variable("A"));
+        setVTemp[0][4].add(new VariableStart("S"));
+        setVTemp[0][5].add(new VariableStart("S"));
+        setVTemp[0][5].add(new Variable("C"));
+        setVTemp[0][5].add(new Variable("A"));
+
+        setVTemp[1][1].add(new Variable("A"));
+        setVTemp[1][1].add(new Variable("B"));
+        setVTemp[1][2].add(new VariableStart("S"));
+        setVTemp[1][3].add(new Variable("C"));
+        setVTemp[1][3].add(new VariableStart("S"));
+        setVTemp[1][3].add(new Variable("A"));
+        setVTemp[1][4].add(new VariableStart("S"));
+        setVTemp[1][5].add(new Variable("C"));
+        setVTemp[1][5].add(new VariableStart("S"));
+
+        setVTemp[2][2].add(new Variable("A"));
+        setVTemp[2][3].add(new VariableStart("S"));
+        setVTemp[2][3].add(new Variable("C"));
+        setVTemp[2][4].add(new VariableStart("S"));
+        setVTemp[2][4].add(new VariableStart("S"));
+
+        setVTemp[3][3].add(new Variable("C"));
+        setVTemp[3][4].add(new VariableStart("S"));
+
+        setVTemp[4][4].add(new Variable("A"));
+        setVTemp[4][4].add(new Variable("B"));
+        setVTemp[4][5].add(new Variable("C"));
+        setVTemp[4][5].add(new VariableStart("S"));
+        setVTemp[4][5].add(new Variable("A"));
+
+        setVTemp[5][5].add(new Variable("C"));
         CYK.printSetV(setVTemp, "setVSolution");
 
         boolean temp = true;

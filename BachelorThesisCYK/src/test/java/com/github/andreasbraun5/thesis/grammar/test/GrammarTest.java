@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class GrammarTest {
 
-    private String toSetup;
+    private String toSetup; // TODO: why this here
 
     @Before
     public void setup() {
@@ -52,7 +52,7 @@ public class GrammarTest {
         System.out.println("Test Grammar: addProduction");
         Grammar grammar = new Grammar(new VariableStart("S"));
         System.out.println("Count of productions that should be added: " + 5);
-        System.out.println("An GrammarRuntimeException is to be excepted. Because of duplicate production A-->a");
+        System.out.println("An GrammarRuntimeException is to be excepted. Because of duplicate production A-->a");;
         grammar.addProduction(
                 new Production(new Variable("A"), new Terminal("a")),
                 new Production(new Variable("A"), new Terminal("a")),

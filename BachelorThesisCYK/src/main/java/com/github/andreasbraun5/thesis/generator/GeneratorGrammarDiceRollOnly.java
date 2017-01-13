@@ -6,7 +6,7 @@ import java.util.*;
 
 /**
  * Created by Andreas Braun on 21.12.2016.
- *  - consider terminals and alphabet as synonyms
+ *  - consider terminals (terminal set) and alphabet as synonyms
  */
 public class GeneratorGrammarDiceRollOnly implements GeneratorGrammar, GeneratorGrammarDiceRoll {
 
@@ -30,11 +30,11 @@ public class GeneratorGrammarDiceRollOnly implements GeneratorGrammar, Generator
      *  at one RightHandSide of the generated grammar.
      */
     public Grammar generateGrammar(GrammarProperties grammarProperties) {
-        // Set the variableStart specifically because  grammar and grammarProperties aren´t interconnected any more.
+        // Set the variableStart specifically because grammar and grammarProperties aren't interconnected any more.
         Grammar grammar = new Grammar(grammarProperties.variableStart);
         // Distribute the terminals.
         // TODO think about the 1
-        grammar = distributeDiceRollRightHandSideElement(grammar, grammarProperties, grammarProperties.terminals, 1);
+        grammar = distributeDiceRollRightHandSideElements(grammar, grammarProperties, grammarProperties.terminals, 1);
         //System.out.println(grammar);
         // Distribute all combinations of size two of the vars.
         Set<VariableCompound> varTupel = new HashSet<>();
@@ -44,7 +44,7 @@ public class GeneratorGrammarDiceRollOnly implements GeneratorGrammar, Generator
             }
         }
         // TODO think about the 1
-        grammar = distributeDiceRollRightHandSideElement(grammar, grammarProperties, varTupel, 1);
+        grammar = distributeDiceRollRightHandSideElements(grammar, grammarProperties, varTupel, 0);
         return grammar;
     }
 
@@ -53,10 +53,10 @@ public class GeneratorGrammarDiceRollOnly implements GeneratorGrammar, Generator
      * @param elementDistributedToAtLeast: If you want to distribute the terminals to at least one rightHandSide then
      *                                   this value is 1.
      */
-    private Grammar distributeDiceRollRightHandSideElement(Grammar grammar,
-                                                           GrammarProperties grammarProperties,
-                                                           Set<? extends RightHandSideElement> rightHandSideElements,
-                                                           int elementDistributedToAtLeast) {
+    private Grammar distributeDiceRollRightHandSideElements(Grammar grammar,
+                                                            GrammarProperties grammarProperties,
+                                                            Set<? extends RightHandSideElement> rightHandSideElements,
+                                                            int elementDistributedToAtLeast) {
         for (RightHandSideElement tempRhse : rightHandSideElements) {
             // Each rightHandSideElement can be distributed to none or to all possible variables.
             // randomNumber is element of [0, grammarProperties.variables.size()]
