@@ -10,7 +10,7 @@ import java.util.*;
 /*
     TODO Later: Implement interface parser
  */
-public class CYK {
+public class CYK implements Parser{
     /*
        ###############################################################
        - Epsilon rule is implemented
@@ -78,7 +78,9 @@ public class CYK {
             }
         }
         // Check whether the terminal is on the right side of the production, then add its left variable to v_ii
+        // TODO printSetV(setV, "setV1");
         stepII(setV, word, grammar);
+        // TODO printSetV(setV, "setV2");
         // l loop of the described algorithm
         for (int l = 0; l <= wordLength - 1; l++) {
             // i loop of the described algorithm
@@ -123,10 +125,12 @@ public class CYK {
                         }
                     }
                     setV[i][i+l].addAll(tempSetX);
+                    // TODO printSetV(setV, "setV3");
                 }
             }
         }
         return setV;
+        // The setV only contains values at the diagonal
     }
 
     /**

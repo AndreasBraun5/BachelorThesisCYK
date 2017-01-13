@@ -1,4 +1,4 @@
-package com.github.andreasbraun5.thesis.exception.com.github.andreasbraun5.thesis.util;
+package com.github.andreasbraun5.thesis.util;
 
 import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
 

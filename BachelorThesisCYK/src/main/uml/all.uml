@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1273.351640625" y="739.0">com.github.andreasbraun5.thesis.generator.GeneratorGrammar</node>
+    <node x="1957.5635456730756" y="408.0">com.github.andreasbraun5.thesis.grammar.VariableCompound</node>
+    <node x="376.3516406250001" y="739.0">com.github.andreasbraun5.thesis.exception.WordException</node>
+    <node x="323.0" y="1583.0">com.github.andreasbraun5.thesis.grammar.GrammarIntegrityChecker</node>
+    <node x="2664.8822956730755" y="694.0">com.github.andreasbraun5.thesis.grammar.Terminal</node>
+    <node x="2312.2822956730756" y="442.0">com.github.andreasbraun5.thesis.grammar.VariableStart</node>
+    <node x="3471.4239122596136" y="750.0">com.github.andreasbraun5.thesis.parser.Tree</node>
+    <node x="305.25" y="1080.0">com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll</node>
+    <node x="3267.2535216346137" y="1014.0">com.github.andreasbraun5.thesis.parser.CYK</node>
+    <node x="0.0" y="1583.0">com.github.andreasbraun5.thesis.util.Util</node>
+    <node x="1313.8635456730756" y="1465.0">com.github.andreasbraun5.thesis.parser.test.CYKTest</node>
+    <node x="1990.5603665865383" y="0.0">com.github.andreasbraun5.thesis.grammar.RightHandSideElement</node>
+    <node x="921.3516406250001" y="661.0">com.github.andreasbraun5.thesis.grammar.Grammar</node>
+    <node x="696.8635456730756" y="1476.0">com.github.andreasbraun5.thesis.main.Main</node>
+    <node x="1710.9" y="1046.0">com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly</node>
+    <node x="760.0" y="442.0">com.github.andreasbraun5.thesis.exception.GrammarException</node>
+    <node x="3320.491616586538" y="1476.0">com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest</node>
+    <node x="2908.2822956730756" y="1476.0">com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest</node>
+    <node x="3560.645390625" y="750.0">com.github.andreasbraun5.thesis.parser.Parser</node>
+    <node x="2398.929116586538" y="0.0">com.github.andreasbraun5.thesis.grammar.LeftHandSideElement</node>
+    <node x="2399.239140625" y="1476.0">com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest</node>
+    <node x="2147.351640625" y="1024.5">com.github.andreasbraun5.thesis.grammar.test.GrammarTest</node>
+    <node x="2494.2822956730756" y="1080.0">com.github.andreasbraun5.thesis.grammar.test.ProductionTest</node>
+    <node x="2266.429116586538" y="101.0">com.github.andreasbraun5.thesis.grammar.Variable</node>
+    <node x="107.35164062500007" y="739.0">com.github.andreasbraun5.thesis.exception.GrammarPropertiesException</node>
+    <node x="2780.0035216346137" y="958.0">com.github.andreasbraun5.thesis.grammar.GrammarProperties</node>
+    <node x="1606.351640625" y="750.0">com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll</node>
+    <node x="1470.2000000000003" y="364.0">com.github.andreasbraun5.thesis.grammar.Production</node>
+    <node x="571.3516406250001" y="728.0">com.github.andreasbraun5.thesis.generator.GeneratorWord</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
+      <point x="83.125" y="-36.5" />
+      <point x="1491.9885456730756" y="1435.0" />
+      <point x="2832.0035216346137" y="1435.0" />
+      <point x="-156.0" y="158.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll" target="com.github.andreasbraun5.thesis.exception.GrammarPropertiesException">
+      <point x="-110.0" y="-36.5" />
+      <point x="360.25" y="928.0" />
+      <point x="231.85164062500007" y="928.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.Grammar" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="-40.0" y="-103.5" />
+      <point x="1041.351640625" y="611.0" />
+      <point x="1055.601640625" y="611.0" />
+      <point x="1055.601640625" y="314.0" />
+      <point x="2319.1214242788456" y="314.0" />
+      <point x="-84.30769230769238" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.Production" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="108.25" y="-103.5" />
+      <point x="1794.9500000000003" y="324.0" />
+      <point x="2340.1983473557693" y="324.0" />
+      <point x="-63.230769230769056" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="0.0" y="-25.5" />
+      <point x="2499.239140625" y="1405.0" />
+      <point x="2483.7822956730756" y="1405.0" />
+      <point x="2483.7822956730756" y="344.0" />
+      <point x="2424.506039663461" y="344.0" />
+      <point x="21.076923076922867" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
+      <point x="-102.0" y="-25.5" />
+      <point x="3354.491616586538" y="1425.0" />
+      <point x="3144.0035216346137" y="1425.0" />
+      <point x="156.0" y="158.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.Grammar">
+      <point x="-35.625" y="-36.5" />
+      <point x="1373.2385456730756" y="1355.0" />
+      <point x="1041.351640625" y="1355.0" />
+      <point x="-40.0" y="103.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="40.0" y="-25.5" />
+      <point x="2539.239140625" y="1425.0" />
+      <point x="2769.8500000000004" y="1425.0" />
+      <point x="2769.8500000000004" y="938.0" />
+      <point x="2764.782295673076" y="938.0" />
+      <point x="-11.099999999999909" y="70.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll">
+      <point x="-59.375" y="-36.5" />
+      <point x="1349.4885456730756" y="1365.0" />
+      <point x="470.25" y="1365.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly">
+      <point x="-89.59999999999991" y="-25.5" />
+      <point x="2930.6822956730757" y="1305.0" />
+      <point x="1896.7333333333336" y="1305.0" />
+      <point x="74.33333333333326" y="70.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.Variable" target="com.github.andreasbraun5.thesis.grammar.LeftHandSideElement">
+      <point x="68.5" y="-81.5" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.Variable" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
+      <point x="-68.5" y="-81.5" />
+      <point x="2334.929116586538" y="81.0" />
+      <point x="2086.8103665865383" y="81.0" />
+      <point x="19.25" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="99.19999999999982" y="-92.0" />
+      <point x="2370.551640625" y="928.0" />
+      <point x="2698.1822956730757" y="928.0" />
+      <point x="-77.69999999999982" y="70.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.ProductionTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="83.0" y="-36.5" />
+      <point x="2701.7822956730756" y="938.0" />
+      <point x="2720.3822956730755" y="938.0" />
+      <point x="-55.5" y="70.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
+      <point x="0.0" y="-25.5" />
+      <point x="3020.2822956730756" y="1445.0" />
+      <point x="3040.0035216346137" y="1445.0" />
+      <point x="52.0" y="158.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.Grammar" target="com.github.andreasbraun5.thesis.grammar.Production">
+      <point x="40.0" y="-103.5" />
+      <point x="1121.351640625" y="601.0" />
+      <point x="1513.5000000000002" y="601.0" />
+      <point x="-173.20000000000005" y="103.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="0.0" y="-92.0" />
+      <point x="2271.351640625" y="908.0" />
+      <point x="2285.0635456730756" y="908.0" />
+      <point x="2285.0635456730756" y="344.0" />
+      <point x="2382.352193509615" y="344.0" />
+      <point x="-21.076923076922867" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="-63.75" y="-25.5" />
+      <point x="709.6135456730756" y="1445.0" />
+      <point x="0.0" y="1445.0" />
+      <point x="0.0" y="294.0" />
+      <point x="2276.967578125" y="294.0" />
+      <point x="-126.46153846153857" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.VariableStart" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="0.0" y="-25.5" />
+      <point x="2392.7822956730756" y="344.0" />
+      <point x="2403.429116586538" y="344.0" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.ProductionTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="0.0" y="-36.5" />
+      <point x="2618.7822956730756" y="334.0" />
+      <point x="2445.5829627403846" y="334.0" />
+      <point x="42.15384615384619" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest" target="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll">
+      <point x="-80.0" y="-25.5" />
+      <point x="2419.239140625" y="1325.0" />
+      <point x="580.25" y="1325.0" />
+      <point x="110.0" y="36.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll">
+      <point x="12.75" y="-25.5" />
+      <point x="786.1135456730756" y="1415.0" />
+      <point x="360.25" y="1415.0" />
+      <point x="-110.0" y="36.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.CYK" target="com.github.andreasbraun5.thesis.parser.Parser">
+      <point x="158.25" y="-102.5" />
+      <point x="3636.5035216346137" y="938.0" />
+      <point x="3592.645390625" y="938.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll">
+      <point x="0.0" y="-70.5" />
+      <point x="1822.4" y="918.0" />
+      <point x="1694.851640625" y="918.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.Production" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
+      <point x="-108.25" y="-103.5" />
+      <point x="1578.4500000000003" y="71.0" />
+      <point x="2009.8103665865383" y="71.0" />
+      <point x="-57.75" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.Production">
+      <point x="-11.875" y="-36.5" />
+      <point x="1396.9885456730756" y="1345.0" />
+      <point x="1251.851640625" y="1345.0" />
+      <point x="1251.851640625" y="611.0" />
+      <point x="1600.1000000000004" y="611.0" />
+      <point x="-86.59999999999991" y="103.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.CYK" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="-158.25" y="-102.5" />
+      <point x="3320.0035216346137" y="908.0" />
+      <point x="2875.782295673076" y="908.0" />
+      <point x="99.90000000000009" y="70.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammar">
+      <point x="-44.59999999999991" y="-70.5" />
+      <point x="1777.8000000000002" y="928.0" />
+      <point x="1429.851640625" y="928.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="155.9999999999999" y="-158.5" />
+      <point x="3144.0035216346137" y="938.0" />
+      <point x="3137.991616586538" y="938.0" />
+      <point x="3137.991616586538" y="324.0" />
+      <point x="2466.6598858173074" y="324.0" />
+      <point x="63.230769230769056" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="63.75" y="-25.5" />
+      <point x="837.1135456730756" y="1405.0" />
+      <point x="2109.4722716346137" y="1405.0" />
+      <point x="2109.4722716346137" y="918.0" />
+      <point x="2675.982295673076" y="918.0" />
+      <point x="-99.90000000000009" y="70.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.VariableCompound" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
+      <point x="-79.25" y="-59.5" />
+      <point x="2036.8135456730756" y="284.0" />
+      <point x="2002.4500000000003" y="284.0" />
+      <point x="2002.4500000000003" y="81.0" />
+      <point x="2048.3103665865383" y="81.0" />
+      <point x="-19.25" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly" target="com.github.andreasbraun5.thesis.grammar.Production">
+      <point x="44.59999999999991" y="-70.5" />
+      <point x="1867.0" y="908.0" />
+      <point x="1793.851640625" y="908.0" />
+      <point x="1793.851640625" y="611.0" />
+      <point x="1686.7000000000003" y="611.0" />
+      <point x="0.0" y="103.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="102.0" y="-25.5" />
+      <point x="3558.491616586538" y="1445.0" />
+      <point x="3710.7535216346137" y="1445.0" />
+      <point x="3710.7535216346137" y="294.0" />
+      <point x="2529.890655048077" y="294.0" />
+      <point x="126.46153846153857" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="-156.0" y="-158.5" />
+      <point x="2832.0035216346137" y="938.0" />
+      <point x="2809.1822956730757" y="938.0" />
+      <point x="33.30000000000018" y="70.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="52.0" y="-158.5" />
+      <point x="3040.0035216346137" y="938.0" />
+      <point x="3075.4239122596136" y="938.0" />
+      <point x="3075.4239122596136" y="631.0" />
+      <point x="2422.9697956730756" y="631.0" />
+      <point x="30.1875" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="34.0" y="-25.5" />
+      <point x="3490.491616586538" y="1435.0" />
+      <point x="3699.7535216346137" y="1435.0" />
+      <point x="3699.7535216346137" y="611.0" />
+      <point x="2463.2197956730756" y="611.0" />
+      <point x="70.4375" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.CYK" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="-52.75" y="-102.5" />
+      <point x="3425.5035216346137" y="938.0" />
+      <point x="3460.9239122596136" y="938.0" />
+      <point x="3460.9239122596136" y="304.0" />
+      <point x="2508.813731971153" y="304.0" />
+      <point x="105.38461538461524" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="-34.0" y="-25.5" />
+      <point x="3422.491616586538" y="1415.0" />
+      <point x="3245.7535216346137" y="1415.0" />
+      <point x="3245.7535216346137" y="918.0" />
+      <point x="2853.5822956730754" y="918.0" />
+      <point x="77.69999999999982" y="70.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.CYK" target="com.github.andreasbraun5.thesis.parser.Tree">
+      <point x="52.75" y="-102.5" />
+      <point x="3531.0035216346137" y="938.0" />
+      <point x="3498.9239122596136" y="938.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.Terminal" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
+      <point x="0.0" y="-70.5" />
+      <point x="2775.8822956730755" y="71.0" />
+      <point x="2125.3103665865383" y="71.0" />
+      <point x="57.75" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly" target="com.github.andreasbraun5.thesis.grammar.VariableCompound">
+      <point x="89.20000000000005" y="-70.5" />
+      <point x="1911.6000000000004" y="938.0" />
+      <point x="2087.0722716346136" y="938.0" />
+      <point x="2087.0722716346136" y="611.0" />
+      <point x="2116.0635456730756" y="611.0" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="-38.25" y="-25.5" />
+      <point x="735.1135456730756" y="1435.0" />
+      <point x="11.0" y="1435.0" />
+      <point x="11.0" y="621.0" />
+      <point x="2322.3447956730756" y="621.0" />
+      <point x="-70.4375" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarTest" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="49.59999999999991" y="-92.0" />
+      <point x="2320.951640625" y="908.0" />
+      <point x="2387.2822956730756" y="908.0" />
+      <point x="2387.2822956730756" y="641.0" />
+      <point x="2382.7197956730756" y="641.0" />
+      <point x="-10.0625" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
+      <point x="80.0" y="-25.5" />
+      <point x="2579.239140625" y="1445.0" />
+      <point x="2936.0035216346137" y="1445.0" />
+      <point x="-52.0" y="158.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll" target="com.github.andreasbraun5.thesis.generator.GeneratorWord">
+      <point x="110.0" y="-36.5" />
+      <point x="580.25" y="928.0" />
+      <point x="736.3516406250001" y="928.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.ProductionTest" target="com.github.andreasbraun5.thesis.grammar.Production">
+      <point x="-83.0" y="-36.5" />
+      <point x="2535.7822956730756" y="898.0" />
+      <point x="2341.9239122596136" y="898.0" />
+      <point x="2341.9239122596136" y="591.0" />
+      <point x="1859.9000000000003" y="591.0" />
+      <point x="173.20000000000005" y="103.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarTest" target="com.github.andreasbraun5.thesis.grammar.Production">
+      <point x="-49.59999999999991" y="-92.0" />
+      <point x="2221.751640625" y="888.0" />
+      <point x="2172.9239122596136" y="888.0" />
+      <point x="2172.9239122596136" y="601.0" />
+      <point x="1773.3000000000002" y="601.0" />
+      <point x="86.59999999999991" y="103.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly" target="com.github.andreasbraun5.thesis.grammar.Grammar">
+      <point x="-89.20000000000005" y="-70.5" />
+      <point x="1733.2000000000003" y="938.0" />
+      <point x="1121.351640625" y="938.0" />
+      <point x="40.0" y="103.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="-40.0" y="-25.5" />
+      <point x="2459.239140625" y="1315.0" />
+      <point x="2419.5635456730756" y="1315.0" />
+      <point x="2419.5635456730756" y="641.0" />
+      <point x="2402.8447956730756" y="641.0" />
+      <point x="10.0625" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.Grammar" target="com.github.andreasbraun5.thesis.exception.GrammarException">
+      <point x="-120.0" y="-103.5" />
+      <point x="961.3516406250001" y="611.0" />
+      <point x="858.0" y="611.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="-44.80000000000018" y="-25.5" />
+      <point x="2975.4822956730754" y="1295.0" />
+      <point x="2780.8500000000004" y="1295.0" />
+      <point x="2780.8500000000004" y="938.0" />
+      <point x="2786.982295673076" y="938.0" />
+      <point x="11.099999999999909" y="70.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly">
+      <point x="35.625" y="-36.5" />
+      <point x="1444.4885456730756" y="1395.0" />
+      <point x="1822.4" y="1395.0" />
+      <point x="0.0" y="70.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="-83.125" y="-36.5" />
+      <point x="1325.7385456730756" y="1375.0" />
+      <point x="96.85164062500007" y="1375.0" />
+      <point x="96.85164062500007" y="304.0" />
+      <point x="2298.0445012019227" y="304.0" />
+      <point x="-105.38461538461524" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="44.80000000000018" y="-25.5" />
+      <point x="3065.082295673076" y="1435.0" />
+      <point x="3206.5035216346137" y="1435.0" />
+      <point x="3206.5035216346137" y="621.0" />
+      <point x="2443.0947956730756" y="621.0" />
+      <point x="50.3125" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll" target="com.github.andreasbraun5.thesis.exception.WordException">
+      <point x="0.0" y="-36.5" />
+      <point x="470.25" y="928.0" />
+      <point x="463.8516406250001" y="928.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly">
+      <point x="38.25" y="-25.5" />
+      <point x="811.6135456730756" y="1385.0" />
+      <point x="1748.066666666667" y="1385.0" />
+      <point x="-74.33333333333326" y="70.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.VariableCompound" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="79.25" y="-59.5" />
+      <point x="2195.3135456730756" y="334.0" />
+      <point x="2361.275270432692" y="334.0" />
+      <point x="-42.15384615384619" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.Grammar" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="120.0" y="-103.5" />
+      <point x="1201.351640625" y="631.0" />
+      <point x="2342.4697956730756" y="631.0" />
+      <point x="-50.3125" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.grammar.Grammar">
+      <point x="-12.75" y="-25.5" />
+      <point x="760.6135456730756" y="1425.0" />
+      <point x="294.75" y="1425.0" />
+      <point x="294.75" y="938.0" />
+      <point x="961.3516406250001" y="938.0" />
+      <point x="-120.0" y="103.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarTest" target="com.github.andreasbraun5.thesis.grammar.Grammar">
+      <point x="-99.19999999999982" y="-92.0" />
+      <point x="2172.1516406250003" y="898.0" />
+      <point x="1201.351640625" y="898.0" />
+      <point x="120.0" y="103.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="11.875" y="-36.5" />
+      <point x="1420.7385456730756" y="1335.0" />
+      <point x="1262.851640625" y="1335.0" />
+      <point x="1262.851640625" y="641.0" />
+      <point x="2362.5947956730756" y="641.0" />
+      <point x="-30.1875" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="89.59999999999991" y="-25.5" />
+      <point x="3109.8822956730755" y="1445.0" />
+      <point x="3256.7535216346137" y="1445.0" />
+      <point x="3256.7535216346137" y="314.0" />
+      <point x="2487.7368088942303" y="314.0" />
+      <point x="84.30769230769238" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="59.375" y="-36.5" />
+      <point x="1468.2385456730756" y="1415.0" />
+      <point x="2753.7822956730756" y="1415.0" />
+      <point x="2753.7822956730756" y="938.0" />
+      <point x="2742.5822956730754" y="938.0" />
+      <point x="-33.30000000000018" y="70.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.3342267488608952" x="1855.5" y="817.0" />
+  <SelectedNodes>
+    <node>com.github.andreasbraun5.thesis.generator.GeneratorGrammar</node>
+    <node>com.github.andreasbraun5.thesis.grammar.VariableCompound</node>
+    <node>com.github.andreasbraun5.thesis.exception.WordException</node>
+    <node>com.github.andreasbraun5.thesis.grammar.GrammarIntegrityChecker</node>
+    <node>com.github.andreasbraun5.thesis.grammar.Terminal</node>
+    <node>com.github.andreasbraun5.thesis.grammar.VariableStart</node>
+    <node>com.github.andreasbraun5.thesis.parser.Tree</node>
+    <node>com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll</node>
+    <node>com.github.andreasbraun5.thesis.parser.CYK</node>
+    <node>com.github.andreasbraun5.thesis.util.Util</node>
+    <node>com.github.andreasbraun5.thesis.grammar.RightHandSideElement</node>
+    <node>com.github.andreasbraun5.thesis.grammar.Grammar</node>
+    <node>com.github.andreasbraun5.thesis.main.Main</node>
+    <node>com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly</node>
+    <node>com.github.andreasbraun5.thesis.exception.GrammarException</node>
+    <node>com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest</node>
+    <node>com.github.andreasbraun5.thesis.parser.Parser</node>
+    <node>com.github.andreasbraun5.thesis.grammar.LeftHandSideElement</node>
+    <node>com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest</node>
+    <node>com.github.andreasbraun5.thesis.grammar.Variable</node>
+    <node>com.github.andreasbraun5.thesis.exception.GrammarPropertiesException</node>
+    <node>com.github.andreasbraun5.thesis.grammar.GrammarProperties</node>
+    <node>com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll</node>
+    <node>com.github.andreasbraun5.thesis.grammar.Production</node>
+    <node>com.github.andreasbraun5.thesis.generator.GeneratorWord</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -65,6 +65,7 @@ public class GeneratorGrammarDiceRollOnly implements GeneratorGrammar, Generator
             // Deciding to how many leftSides the rhse will be added. To none as min and to all as max.
             int countOfLeftSideRhseWillBeAdded = random.nextInt(
                     grammarProperties.variables.size()-elementDistributedToAtLeast)+elementDistributedToAtLeast; // TODO: Redo Change here
+            // TODO: ungleichgewicht ins würfeln bringen.
             // Removing Variables from tempVariables until countOfVarsTerminalWillBeAdded vars are left.
             List<Variable> tempVariables = new ArrayList<>(grammarProperties.variables);
             for (int i = tempVariables.size(); i > countOfLeftSideRhseWillBeAdded; i--) {

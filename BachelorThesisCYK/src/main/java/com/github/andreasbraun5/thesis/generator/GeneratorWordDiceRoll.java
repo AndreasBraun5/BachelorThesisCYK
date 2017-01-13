@@ -1,5 +1,6 @@
 package com.github.andreasbraun5.thesis.generator;
 
+import com.github.andreasbraun5.thesis.exception.GrammarPropertiesException;
 import com.github.andreasbraun5.thesis.exception.WordException;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
@@ -14,7 +15,10 @@ import java.util.Set;
  */
 public class GeneratorWordDiceRoll implements GeneratorWord {
 
-    public StringBuilder generateWord(GrammarProperties grammarProperties) throws WordException {
+    public StringBuilder generateWord(GrammarProperties grammarProperties) throws WordException, GrammarPropertiesException {
+        if (grammarProperties.sizeOfWord == 0) {
+            throw new GrammarPropertiesException("The sizeOfWord is not defined.");
+        }
         return generateWord(grammarProperties.terminals, grammarProperties.sizeOfWord);
     }
 

@@ -55,7 +55,8 @@ public class Main {
         // 500000 Grammars works fine
         for(int i = 0; i<max; i++) {
             grammars[i] = generatorGrammarDiceRollOnly.generateGrammar(grammarProperties);
-            if(GrammarIntegrityChecker.checkIntegrity(grammars[i], word)) {
+            boolean temp = GrammarIntegrityChecker.checkIntegrity(grammars[i], word);
+            if(temp) {
                 trueCount++;
             } else {
                 falseCount++;

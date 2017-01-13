@@ -1,6 +1,10 @@
 package com.github.andreasbraun5.thesis.parser.test;
 
 import com.github.andreasbraun5.thesis.exception.GrammarException;
+import com.github.andreasbraun5.thesis.exception.GrammarPropertiesException;
+import com.github.andreasbraun5.thesis.exception.WordException;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly;
+import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import org.junit.Assert;
@@ -13,6 +17,31 @@ import java.util.Set;
  * Created by Andreas Braun on 02.01.2017.
  */
 public class CYKTest {
+
+    /**
+     *  Using a word like "aaaaaaa" and a grammar like A-->a and S-->a where each randomly grammar
+     *  should be able to generate the word.
+     */
+    @Test
+    public void CYKAlwaysTrue() throws GrammarException, WordException, GrammarPropertiesException {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("Test CYK: AlwaysTrue");
+        // Define GrammarProperties
+        GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"))
+                .addTerminals(new Terminal("a")).addVariables(new Variable("A"));
+        grammarProperties.maxNumberOfVarsPerCell = 3;
+        grammarProperties.sizeOfWord = 10; // TODO: what if size of word isn't set?
+        // Generate word
+        GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
+        String word = generatorWordDiceRoll.generateWord(grammarProperties).toString();
+        // Generate Grammar
+        GeneratorGrammarDiceRollOnly generatorGrammarDiceRollOnly = new GeneratorGrammarDiceRollOnly();
+        Grammar grammar = generatorGrammarDiceRollOnly.generateGrammar(grammarProperties);
+        // Check for integrity
+        GrammarIntegrityChecker.checkIntegrity(grammar, word);
+        Assert.assertEquals("The grammar and the word aren't compatible, but should be.", true, GrammarIntegrityChecker.checkIntegrity(grammar, word));
+    }
 
     @Test
     public void CYKCalculateSetVTest() throws GrammarException {
@@ -42,6 +71,7 @@ public class CYKTest {
         String word = "01110100";
 
         Set<Variable> setV[][] = CYK.calculateSetV(grammar, word);
+        CYK.printSetV(setV, "setV");
         int wordLength = word.length();
         Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
         for (int i = 0; i < wordLength; i++) {
