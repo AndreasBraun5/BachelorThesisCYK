@@ -1,6 +1,5 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import com.github.andreasbraun5.thesis.exception.GrammarException;
 import com.github.andreasbraun5.thesis.grammar.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,7 +13,7 @@ import java.util.Set;
 public class GeneratorGrammarDiceRollOnlyTest {
 
     @Test
-    public void generateGrammar() throws GrammarException {
+    public void generateGrammar() {
         System.out.println("");
         System.out.println("############################");
         System.out.println("Test GeneratorGrammarDiceRollOnly: generateGrammar");
@@ -39,7 +38,7 @@ public class GeneratorGrammarDiceRollOnlyTest {
         System.out.println(grammar);
         GrammarProperties grammarProperties2 = new GrammarProperties(new VariableStart("S"));
         grammarProperties2 = GrammarProperties.generatePartOfGrammarPropertiesFromGrammar(grammar);
-        // TODO: useless Test now...
+        // TODO: useless Test now... what should I test for here?
         //Assert.assertEquals("terminals size is not the same", grammarProperties.terminals.size(), grammarProperties2.terminals.size());
         //Assert.assertEquals("variables size is not the same", grammarProperties.variables.size(), grammarProperties2.variables.size());
         Assert.assertEquals("variable start is not the same", grammarProperties.variableStart, grammarProperties.variableStart);

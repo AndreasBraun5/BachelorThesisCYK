@@ -1,6 +1,6 @@
 package com.github.andreasbraun5.thesis.grammar;
 
-import com.github.andreasbraun5.thesis.exception.GrammarException;
+import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
 
 import java.util.*;
 
@@ -28,13 +28,13 @@ public class Grammar {
     /**
      *  No duplicate productionsMap can be added. Duplicates are detected in the production array.
      */
-    public void addProduction(Production...  production) throws GrammarException {
+    public void addProduction(Production...  production) {
         int countProductionsToAdd = production.length;
         // Making production that are added unique.
         Set<Production> tempSet = new HashSet<>(Arrays.asList(production));
         // Considering duplicates in the parameters.
         if(tempSet.size() != countProductionsToAdd) {
-            throw new GrammarException("AddProduction: Duplicate production found in the production list.");
+            throw new GrammarRuntimeException("AddProduction: Duplicate production found in the production list.");
         }
         addProduction(tempSet);
     }
@@ -42,7 +42,7 @@ public class Grammar {
     /**
      *  No duplicate productions can be added. Duplicates are detected if the production already exists in the grammar.
      */
-    public void addProduction(Set<Production> productions) throws GrammarException{
+    public void addProduction(Set<Production> productions) {
         int countProductionsBefore = this.getProductionsAsList().size();
         int countProductionsToAdd = productions.size();
         for (Production prod : productions) {
@@ -65,7 +65,7 @@ public class Grammar {
         }
         int countProductionsAfter = this.getProductionsAsList().size();
         if(countProductionsAfter != countProductionsBefore+countProductionsToAdd){
-            throw new GrammarException("AddProduction: Duplicate production found in the production set.");
+            throw new GrammarRuntimeException("AddProduction: Duplicate production found in the production set.");
         }
     }
 

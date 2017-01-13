@@ -14,7 +14,7 @@ public class Util {
     /**
      *  Removing duplicates from a collection.
      */
-    private static <T extends RightHandSideElement> List<T> withoutDuplicates(Collection<T> ruleElements) {
+    public static <T extends RightHandSideElement> List<T> withoutDuplicates(Collection<T> ruleElements) {
         List<T> ret = new ArrayList<>();
         ret.addAll(new HashSet<>(ruleElements));
         return ret;

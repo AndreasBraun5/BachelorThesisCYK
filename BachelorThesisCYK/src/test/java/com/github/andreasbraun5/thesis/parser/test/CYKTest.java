@@ -1,9 +1,5 @@
 package com.github.andreasbraun5.thesis.parser.test;
 
-import com.github.andreasbraun5.thesis.exception.GrammarException;
-import com.github.andreasbraun5.thesis.exception.GrammarPropertiesException;
-import com.github.andreasbraun5.thesis.exception.WordException;
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.parser.CYK;
@@ -19,59 +15,61 @@ import java.util.Set;
 public class CYKTest {
 
     /**
-     *  Using a word like "aaaaaaa" and a grammar like A-->a and S-->a where each randomly grammar
-     *  should be able to generate the word.
+     *  Checking the trivial case. A word like "a^sizeOfWord" and a grammar with S-->a|SS. The grammar must be
+     *  be able to generate each of the words.
      */
     @Test
-    public void CYKAlwaysTrue() throws GrammarException, WordException, GrammarPropertiesException {
+    public void CYKAlwaysTrue() {
         System.out.println("");
         System.out.println("############################");
         System.out.println("Test CYK: AlwaysTrue");
         // Define GrammarProperties
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"))
-                .addTerminals(new Terminal("a")).addVariables(new Variable("A"));
+                .addTerminals(new Terminal("a"));
         grammarProperties.maxNumberOfVarsPerCell = 3;
-        grammarProperties.sizeOfWord = 10; // TODO: what if size of word isn't set?
+        grammarProperties.sizeOfWord = 10;
         // Generate word
         GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
         String word = generatorWordDiceRoll.generateWord(grammarProperties).toString();
         // Generate Grammar
-        GeneratorGrammarDiceRollOnly generatorGrammarDiceRollOnly = new GeneratorGrammarDiceRollOnly();
-        Grammar grammar = generatorGrammarDiceRollOnly.generateGrammar(grammarProperties);
+        Grammar grammar = new Grammar(new VariableStart("S"));
+        grammar.addProduction(new Production(new VariableStart("S"), new Terminal("a")),
+                new Production(new VariableStart("S"), new VariableCompound(new VariableStart("S"), new VariableStart("S"))));
+        System.out.println(grammar);
         // Check for integrity
-        GrammarIntegrityChecker.checkIntegrity(grammar, word);
+        CYK.printSetV(CYK.calculateSetV(grammar,word), "setV");
         Assert.assertEquals("The grammar and the word aren't compatible, but should be.", true, GrammarIntegrityChecker.checkIntegrity(grammar, word));
     }
 
     @Test
-    public void CYKCalculateSetVTest() throws GrammarException {
+    public void CYKCalculateSetVTestWithScript() {
         System.out.println("");
         System.out.println("############################");
         System.out.println("Test CYK: algorithmSimple with input Grammar from the TI1 script");
 
+        Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[15];
-        productions[0] = new Production(new VariableStart("S"), new Variable("NB"));
-        productions[1] = new Production(new VariableStart("S"), new Variable("EA"));
+        productions[0] = new Production(new VariableStart("S"), new VariableCompound(new Variable("N"), new Variable("B")));
+        productions[1] = new Production(new VariableStart("S"), new VariableCompound(new Variable("E"), new Variable("A")));
         productions[2] = new Production(new VariableStart("S"), new Terminal(""));
-        productions[3] = new Production(new Variable("S'"), new Variable("NB"));
-        productions[4] = new Production(new Variable("S'"), new Variable("EA"));
+        productions[3] = new Production(new Variable("S'"), new VariableCompound(new Variable("N"), new Variable("B")));
+        productions[4] = new Production(new Variable("S'"), new VariableCompound(new Variable("E"), new Variable("A")));
         productions[5] = new Production(new Variable("N"), new Terminal("0"));
         productions[6] = new Production(new Variable("E"), new Terminal("1"));
         productions[7] = new Production(new Variable("A"), new Terminal("0"));
-        productions[8] = new Production(new Variable("A"), new Variable("NS'"));
-        productions[9] = new Production(new Variable("A"), new Variable("EC"));
+        productions[8] = new Production(new Variable("A"), new VariableCompound(new Variable("N"), new Variable("S'")));
+        productions[9] = new Production(new Variable("A"), new VariableCompound(new Variable("E"), new Variable("C")));
         productions[10] = new Production(new Variable("B"), new Terminal("1"));
-        productions[11] = new Production(new Variable("B"), new Variable("ES'"));
-        productions[12] = new Production(new Variable("B"), new Variable("ND"));
-        productions[13] = new Production(new Variable("C"), new Variable("AA"));
-        productions[14] = new Production(new Variable("D"), new Variable("BB"));
-
-        Grammar grammar = new Grammar(new VariableStart("S"));
+        productions[11] = new Production(new Variable("B"), new VariableCompound(new Variable("E"), new Variable("S'")));
+        productions[12] = new Production(new Variable("B"), new VariableCompound(new Variable("N"), new Variable("D")));
+        productions[13] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("A")));
+        productions[14] = new Production(new Variable("D"), new VariableCompound(new Variable("B"), new Variable("B")));
         grammar.addProduction(productions);
         String word = "01110100";
 
         Set<Variable> setV[][] = CYK.calculateSetV(grammar, word);
-        CYK.printSetV(setV, "setV");
+        CYK.printSetV(setV, "setV calculated:");
+
         int wordLength = word.length();
         Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
         for (int i = 0; i < wordLength; i++) {
@@ -148,7 +146,6 @@ public class CYKTest {
                 }
             }
         }
-        CYK.printSetV(setV, "setVCalculated");
         Assert.assertEquals(true, temp);
         System.out.println("\nSetV from script is the same as the calculated SetV: " + temp);
     }

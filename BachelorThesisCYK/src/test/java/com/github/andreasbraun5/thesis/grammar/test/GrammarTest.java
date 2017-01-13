@@ -1,6 +1,6 @@
 package com.github.andreasbraun5.thesis.grammar.test;
 
-import com.github.andreasbraun5.thesis.exception.GrammarException;
+import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.*;
 import org.junit.After;
 import org.junit.Assert;
@@ -27,7 +27,7 @@ public class GrammarTest {
     }
 
     @Test
-    public void grammarToString() throws GrammarException {
+    public void grammarToString() {
         System.out.println("");
         System.out.println("############################");
         System.out.println("Test Grammar: toString");
@@ -45,14 +45,14 @@ public class GrammarTest {
     /**
      *  No duplicate productions are added. No duplicate production can be given as argument.
      */
-    @Test(expected = GrammarException.class)
-    public void addProduction() throws  GrammarException{
+    @Test(expected = GrammarRuntimeException.class)
+    public void addProduction() {
         System.out.println("");
         System.out.println("############################");
         System.out.println("Test Grammar: addProduction");
         Grammar grammar = new Grammar(new VariableStart("S"));
         System.out.println("Count of productions that should be added: " + 5);
-        System.out.println("An GrammarException is to be excepted. Because of duplicate production A-->a");
+        System.out.println("An GrammarRuntimeException is to be excepted. Because of duplicate production A-->a");
         grammar.addProduction(
                 new Production(new Variable("A"), new Terminal("a")),
                 new Production(new Variable("A"), new Terminal("a")),
@@ -64,8 +64,8 @@ public class GrammarTest {
     /**
      *  No duplicate productions are added. No already existing production can be added.
      */
-    @Test(expected = GrammarException.class)
-    public void addProduction2() throws  GrammarException{
+    @Test(expected = GrammarRuntimeException.class)
+    public void addProduction2() {
         System.out.println("");
         System.out.println("############################");
         System.out.println("Test Grammar: addProduction2");
@@ -79,7 +79,7 @@ public class GrammarTest {
         System.out.println(Arrays.toString(productions));
         System.out.println("When adding the production: ");
         System.out.println(production11);
-        System.out.println("An GrammarException is to be excepted.");
+        System.out.println("An GrammarRuntimeException is to be excepted.");
         grammar.addProduction(production11);
     }
 
@@ -87,7 +87,7 @@ public class GrammarTest {
      *  Checking if a production actually is added.
      */
     @Test
-    public void addProduction3() throws  GrammarException{
+    public void addProduction3() {
         System.out.println("");
         System.out.println("############################");
         System.out.println("Test Grammar: addProduction3");
@@ -101,6 +101,6 @@ public class GrammarTest {
         System.out.println(Arrays.toString(productions));
         grammar.addProduction(productions);
         Assert.assertEquals("productions.length was not equal to .size", productions.length, grammar.getProductionsAsList().size());
-        System.out.println("Count of productions that acually have been added: " + grammar.getProductionsAsList().size());
+        System.out.println("Count of productions that actually have been added: " + grammar.getProductionsAsList().size());
     }
 }

@@ -7,25 +7,6 @@ public class Variable implements RightHandSideElement, LeftHandSideElement {
 
     protected String name;
 
-    /*
-    Constructing single variables like A, B for the LeftHandSideElement and also compound variables like AB, BC, BD for
-    the RightHandSideElement possible.
-    */
-    // TODO Discuss: Compound variables allowed?
-    /*public Variable(Variable... variable) {
-        StringBuilder string = new StringBuilder("");
-        for (Variable v : variable) {
-            string.append(v.getName());
-        }
-        this.name = string.toString();
-    }*/
-    public Variable(String str1, String str2) {
-        StringBuilder string = new StringBuilder("");
-        string.append(str1);
-        string.append(str2);
-        this.name = string.toString();
-    }
-
     public Variable(String name) {
         this.name = name;
     }
@@ -38,7 +19,6 @@ public class Variable implements RightHandSideElement, LeftHandSideElement {
         Variable variable = (Variable) o;
 
         return name != null ? name.equals(variable.name) : variable.name == null;
-
     }
 
     @Override
@@ -56,9 +36,3 @@ public class Variable implements RightHandSideElement, LeftHandSideElement {
     }
 
 }
-/*
-            boolean t1 = o==null;
-            Class c1 = getClass();
-            Class c2 = o.getClass();
-            boolean t2 = getClass() != o.getClass();
- */

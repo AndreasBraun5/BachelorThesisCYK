@@ -3,9 +3,9 @@ package com.github.andreasbraun5.thesis.exception;
 /**
  * Created by Andreas Braun on 12.01.2017.
  */
-public class GrammarPropertiesException extends Exception {
+public class GrammarPropertieRuntimeException extends RuntimeException {
 
-    public GrammarPropertiesException(String msg) {
+    public GrammarPropertieRuntimeException(String msg) {
         super(msg);
     }
 }

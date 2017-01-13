@@ -1,6 +1,5 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import com.github.andreasbraun5.thesis.exception.GrammarException;
 import com.github.andreasbraun5.thesis.grammar.*;
 
 import java.util.*;
@@ -30,12 +29,12 @@ public class GeneratorGrammarDiceRollOnly implements GeneratorGrammar, Generator
      *  a word, then there is a probability that not all terminals needed for construction of the word are at least
      *  at one RightHandSide of the generated grammar.
      */
-    public Grammar generateGrammar(GrammarProperties grammarProperties) throws GrammarException {
+    public Grammar generateGrammar(GrammarProperties grammarProperties) {
         // Set the variableStart specifically because  grammar and grammarProperties aren´t interconnected any more.
         Grammar grammar = new Grammar(grammarProperties.variableStart);
         // Distribute the terminals.
-        grammar = distributeDiceRollRightHandSideElement(grammar, grammarProperties, grammarProperties.terminals,
-                grammarProperties.variables.size()-1); // TODO: Redo Change here
+        // TODO think about the 1
+        grammar = distributeDiceRollRightHandSideElement(grammar, grammarProperties, grammarProperties.terminals, 1);
         //System.out.println(grammar);
         // Distribute all combinations of size two of the vars.
         Set<VariableCompound> varTupel = new HashSet<>();
@@ -44,7 +43,8 @@ public class GeneratorGrammarDiceRollOnly implements GeneratorGrammar, Generator
                 varTupel.add(new VariableCompound(var1, var2));
             }
         }
-        grammar = distributeDiceRollRightHandSideElement(grammar, grammarProperties, varTupel, 0);
+        // TODO think about the 1
+        grammar = distributeDiceRollRightHandSideElement(grammar, grammarProperties, varTupel, 1);
         return grammar;
     }
 
@@ -56,16 +56,15 @@ public class GeneratorGrammarDiceRollOnly implements GeneratorGrammar, Generator
     private Grammar distributeDiceRollRightHandSideElement(Grammar grammar,
                                                            GrammarProperties grammarProperties,
                                                            Set<? extends RightHandSideElement> rightHandSideElements,
-                                                           int elementDistributedToAtLeast)
-            throws GrammarException {
+                                                           int elementDistributedToAtLeast) {
         for (RightHandSideElement tempRhse : rightHandSideElements) {
             // Each rightHandSideElement can be distributed to none or to all possible variables.
             // randomNumber is element of [0, grammarProperties.variables.size()]
             // TODO make configurable: Give Parameters of min and max for countOfLeftSideRhseWillBeAdded
             // Deciding to how many leftSides the rhse will be added. To none as min and to all as max.
             int countOfLeftSideRhseWillBeAdded = random.nextInt(
-                    grammarProperties.variables.size()-elementDistributedToAtLeast)+elementDistributedToAtLeast; // TODO: Redo Change here
-            // TODO: ungleichgewicht ins würfeln bringen.
+                    grammarProperties.variables.size())+elementDistributedToAtLeast; // TODO: Think about the elementDistributedToAtLeast
+            // TODO: try biased dice rolling, like here as example
             // Removing Variables from tempVariables until countOfVarsTerminalWillBeAdded vars are left.
             List<Variable> tempVariables = new ArrayList<>(grammarProperties.variables);
             for (int i = tempVariables.size(); i > countOfLeftSideRhseWillBeAdded; i--) {

@@ -4,27 +4,27 @@
   <OriginalElement />
   <nodes>
     <node x="0.0" y="79.0">com.github.andreasbraun5.thesis.parser.CYK</node>
-    <node x="139.25" y="0.0">com.github.andreasbraun5.thesis.parser.Parser</node>
-    <node x="223.25" y="0.0">com.github.andreasbraun5.thesis.parser.Tree</node>
+    <node x="0.0" y="329.0">com.github.andreasbraun5.thesis.parser.test.CYKTest</node>
+    <node x="179.0" y="0.0">com.github.andreasbraun5.thesis.parser.Parser</node>
+    <node x="251.0" y="329.0">com.github.andreasbraun5.thesis.parser.Tree</node>
   </nodes>
   <notes />
   <edges>
     <edge source="com.github.andreasbraun5.thesis.parser.CYK" target="com.github.andreasbraun5.thesis.parser.Tree">
-      <point x="105.5" y="-102.5" />
-      <point x="316.5" y="54.0" />
-      <point x="250.75" y="54.0" />
-      <point x="0.0" y="14.5" />
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.parser.CYK" target="com.github.andreasbraun5.thesis.parser.Parser">
-      <point x="-105.5" y="-102.5" />
-      <point x="105.5" y="54.0" />
-      <point x="171.25" y="54.0" />
+      <point x="0.0" y="-102.5" />
       <point x="0.0" y="14.5" />
     </edge>
   </edges>
   <settings layout="Hierarchic Group" zoom="1.0" x="211.0" y="142.0" />
   <SelectedNodes>
+    <node>com.github.andreasbraun5.thesis.parser.CYK</node>
+    <node>com.github.andreasbraun5.thesis.parser.test.CYKTest</node>
     <node>com.github.andreasbraun5.thesis.parser.Parser</node>
+    <node>com.github.andreasbraun5.thesis.parser.Tree</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>

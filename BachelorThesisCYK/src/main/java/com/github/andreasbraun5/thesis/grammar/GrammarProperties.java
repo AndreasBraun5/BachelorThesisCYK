@@ -52,7 +52,7 @@ public class GrammarProperties {
         List<Production> productions = grammar.getProductionsAsList();
         for(Production tempProd : productions){
             grammarProperties.addVariables(tempProd.getLeftHandSideElement());
-            if(tempProd.getRightHandSideElement() instanceof  Terminal) { // TODO Discuss: Is it done like this?
+            if(tempProd.getRightHandSideElement() instanceof  Terminal) {
                 grammarProperties.addTerminals((Terminal)tempProd.getRightHandSideElement());
             }
         }

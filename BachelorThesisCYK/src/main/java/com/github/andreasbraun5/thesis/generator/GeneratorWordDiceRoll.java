@@ -1,7 +1,7 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import com.github.andreasbraun5.thesis.exception.GrammarPropertiesException;
-import com.github.andreasbraun5.thesis.exception.WordException;
+import com.github.andreasbraun5.thesis.exception.GrammarPropertieRuntimeException;
+import com.github.andreasbraun5.thesis.exception.WordRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 
@@ -15,9 +15,12 @@ import java.util.Set;
  */
 public class GeneratorWordDiceRoll implements GeneratorWord {
 
-    public StringBuilder generateWord(GrammarProperties grammarProperties) throws WordException, GrammarPropertiesException {
+    /**
+     *  Excludes the case where the word could be the empty word.
+     */
+    public StringBuilder generateWord(GrammarProperties grammarProperties) {
         if (grammarProperties.sizeOfWord == 0) {
-            throw new GrammarPropertiesException("The sizeOfWord is not defined.");
+            throw new GrammarPropertieRuntimeException("The sizeOfWord is not defined.");
         }
         return generateWord(grammarProperties.terminals, grammarProperties.sizeOfWord);
     }
@@ -25,8 +28,7 @@ public class GeneratorWordDiceRoll implements GeneratorWord {
     /**
      *  Not all terminals must be included.
      */
-    public StringBuilder generateWord(Set<Terminal> terminals, int sizeOfWord)
-            throws WordException {
+    public StringBuilder generateWord(Set<Terminal> terminals, int sizeOfWord) {
         StringBuilder randomWord = new StringBuilder("");
         List<Terminal> tempTerminals = new ArrayList<>();
         tempTerminals.addAll(terminals);
@@ -39,7 +41,7 @@ public class GeneratorWordDiceRoll implements GeneratorWord {
             randomNumber = random.nextInt(max - min) + min;
             randomWord.append(tempTerminals.get(randomNumber));
         }
-        if(randomWord.length() > sizeOfWord) throw new WordException("randomWord.length of the " +
+        if(randomWord.length() > sizeOfWord) throw new WordRuntimeException("randomWord.length of the " +
                 "generated word is bigger than the specified sizeOfWord of the grammar");
         return randomWord;
     }

@@ -6,5 +6,6 @@ package com.github.andreasbraun5.thesis.grammar;
 public interface RightHandSideElement {
 
     String getName();
+    boolean equals(Object o);
 
 }

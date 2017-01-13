@@ -37,5 +37,4 @@ public class ProductionTest {
         Assert.assertEquals(true, temp);
         System.out.println("Terminal a isElementAtRightHandSide: " + temp);
     }
-
 }

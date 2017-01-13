@@ -1,32 +1,29 @@
 package com.github.andreasbraun5.thesis.main;
 
-import com.github.andreasbraun5.thesis.exception.GrammarException;
-import com.github.andreasbraun5.thesis.exception.WordException;
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammar;
+import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
+import com.github.andreasbraun5.thesis.exception.WordRuntimeException;
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.*;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Main {
 
-    public static void main(String[] args) throws WordException, GrammarException {
+    public static void main(String[] args) {
         // Defining variables and terminals that are used
         Set<Variable> variables = new HashSet<>();
         variables.add(new Variable("A"));
-        //variables.add(new Variable("B"));
-        //variables.add(new Variable("C"));
+        variables.add(new Variable("B"));
+        variables.add(new Variable("C"));
         Set<Terminal> terminals = new HashSet<>();
         terminals.add(new Terminal("a"));
         terminals.add(new Terminal("b"));
-        //terminals.add(new Terminal("c"));
-        //terminals.add(new Terminal("d"));
-        //terminals.add(new Terminal("e"));
-        //terminals.add(new Terminal("f"));
+        terminals.add(new Terminal("c"));
+        terminals.add(new Terminal("d"));
+        terminals.add(new Terminal("e"));
+        terminals.add(new Terminal("f"));
 
         // Generating a word, that will be used for generating a grammar.
         GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
@@ -44,8 +41,6 @@ public class Main {
 
         //GeneratorGrammarDiceRollOnly generatorGrammarDiceRollOnly = new GeneratorGrammarDiceRollOnly();
 
-        // TODO Always gives back wrong
-        // /*
         // Generating a grammar.
         GeneratorGrammarDiceRollOnly generatorGrammarDiceRollOnly = new GeneratorGrammarDiceRollOnly();
         int max = 10000;
@@ -65,10 +60,9 @@ public class Main {
         System.out.println("True: " + trueCount + " and False: " + falseCount);
         // Checking if the word is in the found grammar
         //System.out.println(GrammarIntegrityChecker.checkIntegrity(grammar, grammarProperties, word));
-        // */
     }
 }
-// Generating one million grammars takes too long ^^
+// Generating one million grammars takes too long ^^; JVM is bottle neck
 /**
  * Generate N grammars (N=100000) and then evaluate these regarding the different requirements.
  * Most general approaches that use no restrictions:

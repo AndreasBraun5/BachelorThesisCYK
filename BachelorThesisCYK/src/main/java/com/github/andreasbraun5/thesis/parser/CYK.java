@@ -7,10 +7,7 @@ import java.util.*;
 /**
  * Created by Andreas Braun on 20.12.2016.
  */
-/*
-    TODO Later: Implement interface parser
- */
-public class CYK implements Parser{
+public class CYK {
     /*
        ###############################################################
        - Epsilon rule is implemented
@@ -78,9 +75,9 @@ public class CYK implements Parser{
             }
         }
         // Check whether the terminal is on the right side of the production, then add its left variable to v_ii
-        // TODO printSetV(setV, "setV1");
+        //printSetV(setV, "setV1");
         stepII(setV, word, grammar);
-        // TODO printSetV(setV, "setV2");
+        //printSetV(setV, "setV2");
         // l loop of the described algorithm
         for (int l = 0; l <= wordLength - 1; l++) {
             // i loop of the described algorithm
@@ -93,13 +90,12 @@ public class CYK implements Parser{
                     Set<Variable> tempSetX = new HashSet<>();
                     Set<Variable> tempSetY = setV[i][k];
                     Set<Variable> tempSetZ = setV[k+1][i+l];
-                    Set<Variable> tempSetYZ = new HashSet<>();
+                    Set<VariableCompound> tempSetYZ = new HashSet<>();
                     // All possible concatenations of the variables yz are constructed. And so its substrings, which
                     // they are able to generate
-                    // TODO Discuss: Compound variables allowed?
                     for(Variable y : tempSetY) {
                         for(Variable z : tempSetZ) {
-                            Variable tempVariable = new Variable(y.getName(), z.getName());
+                            VariableCompound tempVariable = new VariableCompound(y, z);
                             tempSetYZ.add(tempVariable);
                         }
                     }
@@ -112,7 +108,7 @@ public class CYK implements Parser{
                     // specific the variable of the production is added to the tempSetX. All according to the "X-->YZ" rule.
                     for (List<Production> tempProductions : productions.values()) {
                         for(Production tempProduction : tempProductions) {
-                            for (Variable yz : tempSetYZ) {
+                            for (VariableCompound yz : tempSetYZ) {
                                 //System.out.println("tempSetYZ" + tempSetYZ);
                                 //System.out.println("tempXY: " + yz);
                                 //System.out.println("tempProduction: " + tempProduction);
@@ -125,10 +121,11 @@ public class CYK implements Parser{
                         }
                     }
                     setV[i][i+l].addAll(tempSetX);
-                    // TODO printSetV(setV, "setV3");
+                    //printSetV(setV, "setV3");
                 }
             }
         }
+        //printSetV(setV, "setV3");
         return setV;
         // The setV only contains values at the diagonal
     }
@@ -164,7 +161,7 @@ public class CYK implements Parser{
     /**
      * helper method used by printSetV
      */
-    public static String uniformStringMaker(String str, int length) {
+    private static String uniformStringMaker(String str, int length) {
         StringBuilder builder = new StringBuilder(str);
         for(int i = str.length(); i < length; ++i) {
             builder.append(" ");
