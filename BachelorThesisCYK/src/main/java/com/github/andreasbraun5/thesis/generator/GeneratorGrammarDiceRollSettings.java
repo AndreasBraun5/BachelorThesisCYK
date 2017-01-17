@@ -12,7 +12,7 @@ import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
  * By default each variableCompound can be a rightHandSideElement of none or all variables.
  * GrammarProperties are the most basic settings for a generator, and
  */
-public class GeneratorGrammarDiceRollSettings extends GeneratorGrammarSettings {
+public abstract class GeneratorGrammarDiceRollSettings extends GeneratorGrammarSettings {
 	// TODO: different biases for dice rolling
 	public final GrammarProperties grammarProperties;
 	private int minValueCompoundVariablesAreAddedTo; // default is 0

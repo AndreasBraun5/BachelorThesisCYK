@@ -34,14 +34,14 @@ public class GeneratorGrammarDiceRollOnlyTest {
 		grammarProperties.variableStart = new VariableStart( "S" );
 		grammarProperties.maxNumberOfVarsPerCell = 3;
 		System.out.println( grammarProperties );
-		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings = new GeneratorGrammarDiceRollSettings(grammarProperties);
+		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings = new GeneratorGrammarDiceRollOnlySettings(grammarProperties);
 		GeneratorGrammarDiceRollOnly generatorGrammarDiceRollOnly = new GeneratorGrammarDiceRollOnly(
 				generatorGrammarDiceRollSettings );
 		Grammar grammar = generatorGrammarDiceRollOnly.generateGrammar();
 		System.out.println( grammar );
 		GrammarProperties grammarProperties2 = new GrammarProperties( new VariableStart( "S" ) );
 		grammarProperties2 = GrammarProperties.generatePartOfGrammarPropertiesFromGrammar( grammar );
-		// TODO: useless Test now... what should I test for here?
+		// TODO: useless Test now... still reasonable?
 		//Assert.assertEquals("terminals size is not the same", grammarProperties.terminals.size(), grammarProperties2.terminals.size());
 		//Assert.assertEquals("variables size is not the same", grammarProperties.variables.size(), grammarProperties2.variables.size());
 		Assert.assertEquals(

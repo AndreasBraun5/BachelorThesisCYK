@@ -1,7 +1,5 @@
 package com.github.andreasbraun5.thesis.grammar;
 
-import java.util.*;
-
 /**
  * Created by Andreas Braun on 20.12.2016.
  */

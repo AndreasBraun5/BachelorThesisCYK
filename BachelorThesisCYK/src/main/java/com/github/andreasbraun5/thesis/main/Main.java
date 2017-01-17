@@ -1,18 +1,54 @@
 package com.github.andreasbraun5.thesis.main;
 
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly;
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
-import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
-import com.github.andreasbraun5.thesis.grammar.*;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlySettings;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
+import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
+import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammar.Terminal;
+import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableStart;
+import com.github.andreasbraun5.thesis.test.Test;
+import com.github.andreasbraun5.thesis.test.TestResult;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		// Defining variables and terminals that are used for the tests.
+		/**
+		 * 	Generating the settings for the test.
+		 * 	GrammarProperties = general settings.
+		 * 	GeneratorGrammarDiceRollSettings = generator specific settings.
+		 */
+		GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
+		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings =
+				new GeneratorGrammarDiceRollOnlySettings( grammarProperties );
+
+		/**
+		 *  Generating a random word.
+		 */
+		grammarProperties.sizeOfWord = 10; // All TestResults will be based on this sizeOfWord.
+		GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
+		String word = generatorWordDiceRoll.generateWord( grammarProperties ).toString();
+
+		/**
+		 * 	N = countOfGrammarsTogGenerate.
+		 * 	Select the testing method.
+		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
+		 */
+		int countOfGrammarsToGenerate = 100000;
+		Test test1 = new Test( countOfGrammarsToGenerate );
+		TestResult test1DiceRollOnlyResult = test1.testGeneratorGrammarDiceRollOnly( generatorGrammarDiceRollSettings );
+		System.out.println( test1DiceRollOnlyResult.toString() );
+
+		// deriving GrammarProperties from a word possible
+		// deriving GrammarProperties from a grammar possible
+		// Generating a random word possible
+	}
+
+	public static GrammarProperties generateGrammarPropertiesForTesting() {
 		Set<Variable> variables = new HashSet<>();
 		variables.add( new Variable( "A" ) );
 		variables.add( new Variable( "B" ) );
@@ -20,37 +56,23 @@ public class Main {
 		Set<Terminal> terminals = new HashSet<>();
 		terminals.add( new Terminal( "a" ) );
 		terminals.add( new Terminal( "b" ) );
-		terminals.add( new Terminal( "c" ) );
-		terminals.add( new Terminal( "d" ) );
-		terminals.add( new Terminal( "e" ) );
-		terminals.add( new Terminal( "f" ) );
-
+		//terminals.add( new Terminal( "c" ) );
+		//terminals.add( new Terminal( "d" ) );
+		//terminals.add( new Terminal( "e" ) );
+		//terminals.add( new Terminal( "f" ) );
+		/**
+		 * Some settings for the beginning:
+		 * variables.size() should be around 4, considering exam exam exercises.
+		 * terminals.size() should be 2. TODO: not correctly set up till now
+		 * sizeOfWord should be between 6 and 10. TODO: used for word generation only
+		 * maxNumberOfVarsPerCell should be 3 TODO: not used up till now
+		 */
 		GrammarProperties grammarProperties = new GrammarProperties( new VariableStart( "S" ),
 																	 variables, terminals
 		);
-		grammarProperties.sizeOfWord = 10;
-
-		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings = new GeneratorGrammarDiceRollSettings(
-				grammarProperties );
-
-		int countOfGrammarsTogGenerate = 5000;
-		Test test = new Test( countOfGrammarsTogGenerate, generatorGrammarDiceRollSettings );
-		test.testGeneratorGrammarDiceRollOnly();
-
-
-		// Generating a random word with length 10.
-		GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
-		String word = generatorWordDiceRoll.generateWord( terminals, 10 ).toString();
-		System.out.println( word );
-
-		// Derive the GrammarProperties from
-		GrammarProperties grammarPropertiesExample = GrammarProperties.
-				generatePartOfGrammarPropertiesFromWord( new VariableStart( "S" ), word )
-				.addTerminals( terminals ).addVariables( variables );
-		grammarProperties.maxNumberOfVarsPerCell = 3;
-
-
+		return grammarProperties;
 	}
+
 }
 /**
  * Generate N grammars (N=100000) and then evaluate these regarding the different requirements.

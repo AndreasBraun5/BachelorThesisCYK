@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  13 JAN 2017 09:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  17 JAN 2017 09:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1130,11 +1130,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 35--36
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 37--38
-
- []
-
 ) [12] (./used_software.tex [13
 
 ]) [14] (./appendix/listings.tex [15]) [16]
@@ -1163,7 +1158,7 @@ mf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2014/texmf-dist/fonts/type
 1/public/lm/lmr12.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmr17.p
 fb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2
 014/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on bachelor_thesis.pdf (20 pages, 146559 bytes).
+Output written on bachelor_thesis.pdf (20 pages, 146551 bytes).
 PDF statistics:
  167 PDF objects out of 1000 (max. 8388607)
  136 compressed objects within 2 object streams

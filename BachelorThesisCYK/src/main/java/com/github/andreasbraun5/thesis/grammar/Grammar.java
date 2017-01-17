@@ -9,7 +9,7 @@ import java.util.*;
  */
 /*
 In the class Grammar one entry of productionsMap represents not only one production exclusively, more specific it contains
-all summed up productionsMap of one variable. Key=A, Value: A-->a and A-->B and A--> AB. Is represented analogue to the
+all summed up productions of one variable. Key=A, Value: A-->a and A-->B and A--> AB. Is represented analogue to the
 script of TI1 as one "line" of productionsMap like "A --> a | A | AB".
  */
 

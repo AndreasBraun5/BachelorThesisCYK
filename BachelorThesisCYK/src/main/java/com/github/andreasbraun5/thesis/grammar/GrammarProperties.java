@@ -4,13 +4,11 @@ import java.util.*;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
- */
-
-/**
- * Some settings for the beginning:
- * terminals.size() should be 2.
- * sizeOfWord should be between 6 and 10.
- * maxNumberOfVarsPerCell should be 3.
+ * variables
+ * terminals
+ * sizeOfWord
+ * maxNumberOfVarsPerCell
+ * variableStart
  */
 public class GrammarProperties {
 
@@ -24,10 +22,11 @@ public class GrammarProperties {
 	public GrammarProperties(VariableStart varStart) {
 		this.variableStart = varStart;
 		this.variables.add( varStart );
+
 	}
 
-	public GrammarProperties(VariableStart varStart, Set<Variable> variables, Set<Terminal> terminals){
-		this (varStart);
+	public GrammarProperties(VariableStart varStart, Set<Variable> variables, Set<Terminal> terminals) {
+		this( varStart );
 		this.variables.addAll( variables );
 		this.terminals.addAll( terminals );
 	}
@@ -85,12 +84,12 @@ public class GrammarProperties {
 		return this;
 	}
 
-
 	@Override
 	public String toString() {
 		return "GrammarProperties:" +
 				"\nsizeOfWord= " + sizeOfWord +
 				"\nvariables= " + variables +
+				"\nvariableStart=" + variableStart +
 				"\nterminals= " + terminals;
 	}
 }

@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class CYK {
 	/*
-       ###############################################################
+	   ###############################################################
        - Epsilon rule is implemented
        ###############################################################
      */
@@ -29,6 +29,13 @@ public class CYK {
 		Set<Variable>[][] setV = calculateSetV( grammar, word );
 		int wordLength = word.size();
 		return setV[0][wordLength - 1].contains( grammar.getVariableStart() );
+	}
+
+	public static boolean algorithmSimple(
+			Set<Variable>[][] setV,
+			Grammar grammar,
+			GrammarProperties grammarProperties) {
+		return setV[0][grammarProperties.sizeOfWord - 1].contains( grammar.getVariableStart() );
 	}
 
 	/**
@@ -77,9 +84,7 @@ public class CYK {
 			}
 		}
 		// Check whether the terminal is on the right side of the production, then add its left variable to v_ii
-		//printSetV(setV, "setV1");
 		stepII( setV, word, grammar );
-		//printSetV(setV, "setV2");
 		// l loop of the described algorithm
 		for ( int l = 0; l <= wordLength - 1; l++ ) {
 			// i loop of the described algorithm
@@ -101,35 +106,23 @@ public class CYK {
 							tempSetYZ.add( tempVariable );
 						}
 					}
-					//System.out.println();
-					//System.out.println();
-					//System.out.println(productions);
-					//System.out.println("tempSetYZ" + tempSetYZ);
 					// Looking at all productions of the grammar, it is checked if there is one rightHandSideElement that
 					// equals any of the concatenated variables tempSetYZ. If yes, the LeftHandSideElement or more
 					// specific the variable of the production is added to the tempSetX. All according to the "X-->YZ" rule.
 					for ( List<Production> tempProductions : productions.values() ) {
 						for ( Production tempProduction : tempProductions ) {
 							for ( VariableCompound yz : tempSetYZ ) {
-								//System.out.println("tempSetYZ" + tempSetYZ);
-								//System.out.println("tempXY: " + yz);
-								//System.out.println("tempProduction: " + tempProduction);
 								if ( tempProduction.isElementAtRightHandSide( yz ) ) {
 									tempSetX.add( tempProduction.getLeftHandSideElement() );
 								}
-								//System.out.println("tempSetX step: " + tempSetX);
 							}
-							//System.out.println("tempSetX final: " + tempSetX);
 						}
 					}
 					setV[i][i + l].addAll( tempSetX );
-					//printSetV(setV, "setV3");
 				}
 			}
 		}
-		//printSetV(setV, "setV3");
 		return setV;
-		// The setV only contains values at the diagonal
 	}
 
 	/**

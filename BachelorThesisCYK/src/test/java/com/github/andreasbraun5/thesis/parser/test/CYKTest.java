@@ -38,10 +38,8 @@ public class CYKTest {
         System.out.println(grammar);
         // Check for integrity
         CYK.printSetV(CYK.calculateSetV(grammar,word), "setV");
-        Assert.assertEquals("The grammar and the word aren't compatible, but should be.", true, GrammarIntegrityChecker.checkIntegrity(grammar, word));
+        Assert.assertEquals("The grammar and the word aren't compatible, but should be.", true, CYK.algorithmSimple(grammar, word));
     }
-
-    //TODO: write 2 more Tests with know solution!!
 
     @Test
     public void CYKCalculateSetVTestWithScript() {

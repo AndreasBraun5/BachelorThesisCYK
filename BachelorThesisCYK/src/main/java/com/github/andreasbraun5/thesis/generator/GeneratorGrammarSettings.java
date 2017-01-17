@@ -8,7 +8,9 @@ import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
  * All more variables are additional settings needed for the specific generator.
  */
 public abstract class GeneratorGrammarSettings {
+
 	public final GrammarProperties grammarProperties;
+
 	GeneratorGrammarSettings(GrammarProperties grammarProperties) {
 		this.grammarProperties = grammarProperties;
 	}

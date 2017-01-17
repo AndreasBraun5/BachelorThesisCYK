@@ -9,11 +9,19 @@ public class GrammarIntegrityChecker {
 
 	/**
 	 * 	Is intended to check the the constructed grammars to all restrictions that are wanted.
-	 * 	GrammarProperties need to be checked too.
-	 * 	// TODO not implemented fully yet, another parameter would be grammarProperties
+	 *
 	 */
 	public static boolean checkIntegrity(Grammar grammar, String word) {
-		boolean temp = CYK.algorithmSimple( grammar, word );
+		CYK.algorithmSimple( grammar, word );
+		return CYK.algorithmSimple( grammar, word );
+	}
+
+	public static boolean checkGrammarRestrictions(GrammarProperties grammarProperties){
+
+		return true;
+	}
+
+	public static boolean checkProducability(Grammar grammar, String word){
 		return CYK.algorithmSimple( grammar, word );
 	}
 }
