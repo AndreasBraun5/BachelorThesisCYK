@@ -7,17 +7,40 @@ import java.util.concurrent.TimeUnit;
  */
 public class TestResult {
 	private int generatedGrammars;
-	private int trueGrammars;
-	private int falseGrammars;
-	private double successRate;
 	private long totalTime;
+	private int trueCount;
+	private int falseCount;
+	private double successRate;
+	private int trueProduciblityCount;
+	private int falseProduciblityCount;
+	private double successRateProducibility;
+	private int trueRestrictionsCount;
+	private int falseRestrictionsCount;
+	private double successRateRestrictions;
 
-	public TestResult(int generatedGrammars, int trueGrammars, int falseGrammars, double successRate, long totalTime) {
+
+
+	public TestResult(
+			int generatedGrammars,
+			long totalTime,
+			int trueCount,
+			int falseCount,
+			int trueProduciblityCount,
+			int falseProduciblityCount,
+			int trueRestrictionsCount,
+			int falseRestricitonsCount
+	) {
 		this.generatedGrammars = generatedGrammars;
-		this.trueGrammars = trueGrammars;
-		this.falseGrammars = falseGrammars;
-		this.successRate = successRate;
 		this.totalTime = totalTime;
+		this.trueCount = trueCount;
+		this.falseCount = falseCount;
+		this.successRate = (double) trueCount / generatedGrammars;
+		this.trueProduciblityCount = trueProduciblityCount;
+		this.falseProduciblityCount = falseProduciblityCount;
+		this.successRateProducibility = (double) trueProduciblityCount / generatedGrammars;
+		this.trueRestrictionsCount = trueRestrictionsCount;
+		this.falseRestrictionsCount = falseRestricitonsCount;
+		this.successRateRestrictions = (double) trueRestrictionsCount / generatedGrammars;
 	}
 
 	@Override
@@ -27,11 +50,17 @@ public class TestResult {
 		long seconds = TimeUnit.MILLISECONDS.toSeconds( tempTime );
 		return "TestResult{" +
 				"\ngeneratedGrammars= " + generatedGrammars +
-				"\ntrueGrammars= " + trueGrammars +
-				"\nfalseGrammars= " + falseGrammars +
-				"\nsuccessRate= " + successRate +
 				"\ntotalTime= " + totalTime + "ms" +
 				"\ntotalTime= " + minutes + "min " + seconds + "sec" +
+				"\ntrueCount= " + trueCount +
+				"\nfalseCount= " + falseCount +
+				"\nsuccessRate= " + successRate +
+				"\ntrueProduciblityCount= " + trueProduciblityCount +
+				"\nfalseProduciblityCount= " + falseProduciblityCount +
+				"\nsuccessRateProducibility= " + successRateProducibility +
+				"\ntrueRestrictionsCount= " + trueRestrictionsCount +
+				"\nfalseRestrictionsCount= " + falseRestrictionsCount +
+				"\nsuccessRateRestrictions= " + successRateRestrictions +
 				"\n}";
 	}
 }

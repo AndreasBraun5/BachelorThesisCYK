@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlySettings;
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
 import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
@@ -23,13 +22,15 @@ public class Main {
 		 * 	GeneratorGrammarDiceRollSettings = generator specific settings.
 		 */
 		GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
-		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings =
+		GeneratorGrammarDiceRollOnlySettings generatorGrammarDiceRollOnlySettings =
 				new GeneratorGrammarDiceRollOnlySettings( grammarProperties );
 
 		/**
 		 *  Generating a random word.
 		 */
 		grammarProperties.sizeOfWord = 10; // All TestResults will be based on this sizeOfWord.
+		// TODO check for succesrate being nearly 1 with maxVarPerCell = 4, and being nearly 0 for =3
+		grammarProperties.maxNumberOfVarsPerCell = 4;
 		GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
 		String word = generatorWordDiceRoll.generateWord( grammarProperties ).toString();
 
@@ -38,9 +39,10 @@ public class Main {
 		 * 	Select the testing method.
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
-		int countOfGrammarsToGenerate = 100000;
+		int countOfGrammarsToGenerate = 10000;
 		Test test1 = new Test( countOfGrammarsToGenerate );
-		TestResult test1DiceRollOnlyResult = test1.testGeneratorGrammarDiceRollOnly( generatorGrammarDiceRollSettings );
+		TestResult test1DiceRollOnlyResult = test1.testGeneratorGrammarDiceRollOnly(
+				generatorGrammarDiceRollOnlySettings );
 		System.out.println( test1DiceRollOnlyResult.toString() );
 
 		// deriving GrammarProperties from a word possible
