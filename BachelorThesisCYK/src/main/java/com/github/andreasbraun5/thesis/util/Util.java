@@ -11,12 +11,12 @@ import java.util.List;
  * Created by Andreas Braun on 05.01.2017.
  */
 public class Util {
-    /**
-     *  Removing duplicates from a collection.
-     */
-    public static <T extends RightHandSideElement> List<T> withoutDuplicates(Collection<T> ruleElements) {
-        List<T> ret = new ArrayList<>();
-        ret.addAll(new HashSet<>(ruleElements));
-        return ret;
-    }
+	/**
+	 * Removing duplicates from a collection.
+	 */
+	public static <T extends RightHandSideElement> List<T> withoutDuplicates(Collection<T> ruleElements) {
+		List<T> ret = new ArrayList<>();
+		ret.addAll( new HashSet<>( ruleElements ) );
+		return ret;
+	}
 }

@@ -5,6 +5,6 @@ package com.github.andreasbraun5.thesis.grammar;
  */
 public interface LeftHandSideElement {
 
-    String getName();
+	String getName();
 
 }

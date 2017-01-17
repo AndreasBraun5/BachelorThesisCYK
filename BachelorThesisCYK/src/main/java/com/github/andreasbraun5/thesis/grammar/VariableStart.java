@@ -5,8 +5,8 @@ package com.github.andreasbraun5.thesis.grammar;
  */
 public class VariableStart extends Variable {
 
-    public VariableStart(String name) {
-        super(name);
-    }
+	public VariableStart(String name) {
+		super( name );
+	}
 
 }

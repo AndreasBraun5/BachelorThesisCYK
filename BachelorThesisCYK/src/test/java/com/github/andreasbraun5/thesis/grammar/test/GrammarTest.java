@@ -14,18 +14,6 @@ import java.util.*;
  */
 public class GrammarTest {
 
-    private String toSetup; // TODO: why this here
-
-    @Before
-    public void setup() {
-
-    }
-
-    @After
-    public void teardown() {
-
-    }
-
     @Test
     public void grammarToString() {
         System.out.println("");

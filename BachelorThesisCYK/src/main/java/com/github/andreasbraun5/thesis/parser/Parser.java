@@ -5,7 +5,7 @@ package com.github.andreasbraun5.thesis.parser;
  */
 
 /**
- *  Maybe this could be implemented
+ * Maybe this could be implemented
  */
 public interface Parser {
 

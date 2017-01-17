@@ -8,41 +8,45 @@ import java.util.List;
  */
 public class VariableCompound implements RightHandSideElement {
 
-    protected List<Variable> variables;
+	protected List<Variable> variables;
 
-    public VariableCompound(Variable varLeft, Variable varRight) {
-        variables = new ArrayList<>();
-        variables.add(varLeft);
-        variables.add(varRight);
-    }
+	public VariableCompound(Variable varLeft, Variable varRight) {
+		variables = new ArrayList<>();
+		variables.add( varLeft );
+		variables.add( varRight );
+	}
 
-    public List<Variable> getVariables() {
-        return variables;
-    }
+	public List<Variable> getVariables() {
+		return variables;
+	}
 
-    @Override
-    public String getName() {
-        return variables.get(0).toString() + variables.get(1).toString();
-    }
+	@Override
+	public String getName() {
+		return variables.get( 0 ).toString() + variables.get( 1 ).toString();
+	}
 
-    @Override
-    public String toString() {
-        return variables.get(0).toString() + variables.get(1).toString();
-    }
+	@Override
+	public String toString() {
+		return variables.get( 0 ).toString() + variables.get( 1 ).toString();
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	@Override
+	public boolean equals(Object o) {
+		if ( this == o ) {
+			return true;
+		}
+		if ( o == null || getClass() != o.getClass() ) {
+			return false;
+		}
 
-        VariableCompound that = (VariableCompound) o;
+		VariableCompound that = (VariableCompound) o;
 
-        return variables != null ? variables.equals(that.variables) : that.variables == null;
+		return variables != null ? variables.equals( that.variables ) : that.variables == null;
 
-    }
+	}
 
-    @Override
-    public int hashCode() {
-        return variables != null ? variables.hashCode() : 0;
-    }
+	@Override
+	public int hashCode() {
+		return variables != null ? variables.hashCode() : 0;
+	}
 }
