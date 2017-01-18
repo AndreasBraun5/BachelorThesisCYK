@@ -3,7 +3,7 @@ package com.github.andreasbraun5.thesis.main;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlySettings;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
 import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
@@ -22,8 +22,8 @@ public class Main {
 		 * 	GeneratorGrammarDiceRollSettings = generator specific settings.
 		 */
 		GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
-		GeneratorGrammarDiceRollOnlySettings generatorGrammarDiceRollOnlySettings =
-				new GeneratorGrammarDiceRollOnlySettings( grammarProperties );
+		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings =
+				new GeneratorGrammarDiceRollSettings( grammarProperties );
 
 		/**
 		 *  Generating a random word.
@@ -42,8 +42,8 @@ public class Main {
 		int countOfGrammarsToGenerate = 10000; // Up to around 70000 together is ok, then the RAM is full.
 		// If you want to compare two TestResults in one go, then you only can compute half of it.
 		TestGrammar testGrammar1 = new TestGrammar( countOfGrammarsToGenerate );
-		TestGrammarResult test1DiceRollOnlyResult = testGrammar1.testGeneratorGrammarDiceRollOnly(
-				generatorGrammarDiceRollOnlySettings );
+		TestGrammarResult test1DiceRollResult = testGrammar1.testGeneratorGrammarDiceRollOnly(
+				generatorGrammarDiceRollSettings );
 		/* // Now countOfGrammarsToGenerate = 35000 !!!
 		TestGrammarResult test2DiceRollOnlyResult = testGrammar1.testGeneratorGrammarDiceRollOnly(
 				generatorGrammarDiceRollOnlySettings );
@@ -51,7 +51,7 @@ public class Main {
 		/**
 		 * 	Further inspecting results here
 		 */
-		System.out.println( test1DiceRollOnlyResult.toString() );
+		System.out.println( test1DiceRollResult.toString() );
 
 		// deriving GrammarProperties from a word possible
 		// deriving GrammarProperties from a grammar possible

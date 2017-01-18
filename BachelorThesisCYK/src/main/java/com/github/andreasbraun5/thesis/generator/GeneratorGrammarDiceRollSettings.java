@@ -12,8 +12,8 @@ import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
  * By default each variableCompound can be a rightHandSideElement of none or all variables.
  * GrammarProperties are the most basic settings for a generator, and
  */
-public abstract class GeneratorGrammarDiceRollSettings extends GeneratorGrammarSettings {
-	// TODO: different biases for dice rolling
+public class GeneratorGrammarDiceRollSettings extends GeneratorGrammarSettings {
+	// TODO: different biases for dice rolling, biases here are the min and max values of the RightHandSideElement
 	public final GrammarProperties grammarProperties;
 	private int minValueCompoundVariablesAreAddedTo; // default is 0
 	private int minValueTerminalsAreAddedTo; // default is 1
@@ -21,7 +21,7 @@ public abstract class GeneratorGrammarDiceRollSettings extends GeneratorGrammarS
 	private int maxValueTerminalsAreAddedTo; // default is to all variables would be possible
 
 	public GeneratorGrammarDiceRollSettings(GrammarProperties grammarProperties) {
-		super(grammarProperties);
+		super( grammarProperties );
 		this.grammarProperties = grammarProperties;
 		minValueTerminalsAreAddedTo = 1;
 		minValueCompoundVariablesAreAddedTo = 0;
@@ -46,9 +46,14 @@ public abstract class GeneratorGrammarDiceRollSettings extends GeneratorGrammarS
 	}
 
 	public void setMinValueTerminalsAreAddedTo(int minValueTerminalsAreAddedTo) {
-		if ( minValueTerminalsAreAddedTo > maxValueTerminalsAreAddedTo ) {
-			throw new GrammarSettingException( "minValueTerminalsAreAddedTo is bigger than maxValueTerminalsAreAddedTo." );
+		if ( minValueTerminalsAreAddedTo == 0 ) {
+			throw new GrammarSettingException( "minValueTerminalsAreAddedTo must be at least one." );
 		}
+		if ( minValueTerminalsAreAddedTo > maxValueTerminalsAreAddedTo ) {
+			throw new GrammarSettingException(
+					"minValueTerminalsAreAddedTo is bigger than maxValueTerminalsAreAddedTo." );
+		}
+
 		this.minValueTerminalsAreAddedTo = minValueTerminalsAreAddedTo;
 	}
 

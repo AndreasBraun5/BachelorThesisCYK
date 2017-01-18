@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly;
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlySettings;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
 import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
@@ -25,13 +25,13 @@ public class TestGrammar {
 		this.countOfGrammarsToGenerate = countOfGrammarsToGenerate;
 	}
 
-	public TestGrammarResult testGeneratorGrammarDiceRollOnly(GeneratorGrammarDiceRollOnlySettings generatorGrammarDiceRollOnlySettings) {
+	public TestGrammarResult testGeneratorGrammarDiceRollOnly(GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings) {
 
-		GrammarProperties tempGrammarProperties = generatorGrammarDiceRollOnlySettings.grammarProperties;
+		GrammarProperties tempGrammarProperties = generatorGrammarDiceRollSettings.grammarProperties;
 		long startTime = System.currentTimeMillis();
 		//	Initialising the specific generatorTest with its settings.
-		GeneratorGrammarDiceRollOnly generatorGrammarDiceRollOnly =
-				new GeneratorGrammarDiceRollOnly( generatorGrammarDiceRollOnlySettings );
+		GeneratorGrammarDiceRoll generatorGrammarDiceRoll =
+				new GeneratorGrammarDiceRoll( generatorGrammarDiceRollSettings );
 
 		// Generate a random word that is used to decide whether the Grammar is true or false.
 		GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
@@ -45,7 +45,7 @@ public class TestGrammar {
 		List<Boolean> booleanRestrictions = new ArrayList<>();
 		List<Boolean> booleanOverall = new ArrayList<>();
 		for ( int i = 0; i < countOfGrammarsToGenerate; i++ ) {
-			grammars.add( generatorGrammarDiceRollOnly.generateGrammar() );
+			grammars.add( generatorGrammarDiceRoll.generateGrammar() );
 			setVs.add( CYK.calculateSetV( grammars.get( i ), word ) );
 			boolean producibility = GrammarValidityChecker.checkProducibilityCYK(
 					setVs.get( i ),

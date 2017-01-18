@@ -11,13 +11,13 @@ import java.util.Set;
 /**
  * Created by Andreas Braun on 06.01.2017.
  */
-public class GeneratorGrammarDiceRollOnlyTest {
+public class GeneratorGrammarDiceRollTest {
 
 	@Test
 	public void generateGrammar() {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "TestGrammar GeneratorGrammarDiceRollOnly: generateGrammar" );
+		System.out.println( "TestGrammar GeneratorGrammarDiceRoll: generateGrammar" );
 		Set<Variable> variables = new HashSet<>();
 		variables.add( new Variable( "A" ) );
 		variables.add( new Variable( "B" ) );
@@ -34,10 +34,10 @@ public class GeneratorGrammarDiceRollOnlyTest {
 		grammarProperties.variableStart = new VariableStart( "S" );
 		grammarProperties.maxNumberOfVarsPerCell = 3;
 		System.out.println( grammarProperties );
-		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings = new GeneratorGrammarDiceRollOnlySettings(grammarProperties);
-		GeneratorGrammarDiceRollOnly generatorGrammarDiceRollOnly = new GeneratorGrammarDiceRollOnly(
+		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings = new GeneratorGrammarDiceRollSettings(grammarProperties);
+		GeneratorGrammarDiceRoll generatorGrammarDiceRoll = new GeneratorGrammarDiceRoll(
 				generatorGrammarDiceRollSettings );
-		Grammar grammar = generatorGrammarDiceRollOnly.generateGrammar();
+		Grammar grammar = generatorGrammarDiceRoll.generateGrammar();
 		System.out.println( grammar );
 		GrammarProperties grammarProperties2 = new GrammarProperties( new VariableStart( "S" ) );
 		grammarProperties2 = GrammarProperties.generatePartOfGrammarPropertiesFromGrammar( grammar );

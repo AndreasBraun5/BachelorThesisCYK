@@ -13,20 +13,20 @@ import com.github.andreasbraun5.thesis.grammar.VariableCompound;
  * - consider terminals (terminal set) and alphabet as synonyms
  * - each of the terminals must be included in the grammar at least in one production
  */
-public class GeneratorGrammarDiceRollOnly implements GeneratorGrammar {
+public class GeneratorGrammarDiceRoll implements GeneratorGrammar {
 
 	private GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings;
 	private final Random random;
 
 	// Needed for testing purposes, fixed seed possible.
-	public GeneratorGrammarDiceRollOnly(
+	public GeneratorGrammarDiceRoll(
 			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings,
 			Random random) {
 		this.generatorGrammarDiceRollSettings = generatorGrammarDiceRollSettings;
 		this.random = random;
 	}
 
-	public GeneratorGrammarDiceRollOnly(
+	public GeneratorGrammarDiceRoll(
 			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings) {
 		this( generatorGrammarDiceRollSettings, new Random() );
 	}
@@ -36,7 +36,7 @@ public class GeneratorGrammarDiceRollOnly implements GeneratorGrammar {
 	 */
 	@Override
 	public Grammar generateGrammar() {
-		// Set the variableStart specifically because grammar and grammarProperties aren't interconnected any more.
+		// Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
 		Grammar grammar = new Grammar( generatorGrammarDiceRollSettings.grammarProperties.variableStart );
 		grammar = distributeTerminals( grammar );
 		grammar = distributeCompoundVariables( grammar );
@@ -77,9 +77,14 @@ public class GeneratorGrammarDiceRollOnly implements GeneratorGrammar {
 			int minCountElementDistributedTo,
 			int maxCountElementDistributedTo) {
 		for ( RightHandSideElement tempRhse : rightHandSideElements ) {
-			// countOfLeftSideRhseWillBeAdded = [minCountElementDistributedTo, maxCountElementDistributedTo]
+			// countOfLeftSideRhseWillBeAdded is element of the interval [minCountElementDistributedTo, maxCountElementDistributedTo]
 			int countOfLeftSideRhseWillBeAdded = random.nextInt( maxCountElementDistributedTo ) + minCountElementDistributedTo;
-			// TODO: try biased dice rolling, like here as example
+			// TODO: try biased dice rolling, think about it more.
+			/**
+			 * Bias is already implemented here via the minCountElementDistributedTo and maxCountElementDistributedTo.
+			 * Up till like this you can specify how you want to distribute the terminals and compoundVariables.
+			 */
+			// TODO: bias = one variable gets more rightHandSideElements than the others
 			// Removing Variables from tempVariables until countOfVarsTerminalWillBeAdded vars are left.
 			List<Variable> tempVariables = new ArrayList<>( generatorGrammarDiceRollSettings.grammarProperties.variables );
 			for ( int i = tempVariables.size(); i > countOfLeftSideRhseWillBeAdded; i-- ) {
