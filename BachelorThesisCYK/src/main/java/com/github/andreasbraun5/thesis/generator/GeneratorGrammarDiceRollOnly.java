@@ -1,8 +1,12 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import com.github.andreasbraun5.thesis.grammar.*;
-
 import java.util.*;
+
+import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.Production;
+import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
+import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 
 /**
  * Created by Andreas Braun on 21.12.2016.

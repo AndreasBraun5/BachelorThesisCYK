@@ -17,7 +17,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		/**
-		 * 	Generating the settings for the generatortest.
+		 * 	Generating the settings for the generatorTest.
 		 * 	GrammarProperties = general settings.
 		 * 	GeneratorGrammarDiceRollSettings = generator specific settings.
 		 */
@@ -29,7 +29,7 @@ public class Main {
 		 *  Generating a random word.
 		 */
 		grammarProperties.sizeOfWord = 10; // All TestResults will be based on this sizeOfWord.
-		// TODO check for succesrate being nearly 1 with maxVarPerCell = 4, and being nearly 0 for =3
+		// TODO check for successRate being nearly 1 with maxVarPerCell = 4, and being nearly 0 for =3
 		grammarProperties.maxNumberOfVarsPerCell = 2;
 		GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
 		String word = generatorWordDiceRoll.generateWord( grammarProperties ).toString();
@@ -39,10 +39,18 @@ public class Main {
 		 * 	Select the testing method.
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
-		int countOfGrammarsToGenerate = 100000;
+		int countOfGrammarsToGenerate = 10000; // Up to around 70000 together is ok, then the RAM is full.
+		// If you want to compare two TestResults in one go, then you only can compute half of it.
 		TestGrammar testGrammar1 = new TestGrammar( countOfGrammarsToGenerate );
 		TestGrammarResult test1DiceRollOnlyResult = testGrammar1.testGeneratorGrammarDiceRollOnly(
 				generatorGrammarDiceRollOnlySettings );
+		/* // Now countOfGrammarsToGenerate = 35000 !!!
+		TestGrammarResult test2DiceRollOnlyResult = testGrammar1.testGeneratorGrammarDiceRollOnly(
+				generatorGrammarDiceRollOnlySettings );
+		*/
+		/**
+		 * 	Further inspecting results here
+		 */
 		System.out.println( test1DiceRollOnlyResult.toString() );
 
 		// deriving GrammarProperties from a word possible
