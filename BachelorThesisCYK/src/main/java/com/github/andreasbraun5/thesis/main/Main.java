@@ -9,15 +9,15 @@ import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
-import com.github.andreasbraun5.thesis.test.Test;
-import com.github.andreasbraun5.thesis.test.TestResult;
+import com.github.andreasbraun5.thesis.generatortest.TestGrammar;
+import com.github.andreasbraun5.thesis.generatortest.TestGrammarResult;
 
 public class Main {
 
 	public static void main(String[] args) {
 
 		/**
-		 * 	Generating the settings for the test.
+		 * 	Generating the settings for the generatortest.
 		 * 	GrammarProperties = general settings.
 		 * 	GeneratorGrammarDiceRollSettings = generator specific settings.
 		 */
@@ -30,7 +30,7 @@ public class Main {
 		 */
 		grammarProperties.sizeOfWord = 10; // All TestResults will be based on this sizeOfWord.
 		// TODO check for succesrate being nearly 1 with maxVarPerCell = 4, and being nearly 0 for =3
-		grammarProperties.maxNumberOfVarsPerCell = 4;
+		grammarProperties.maxNumberOfVarsPerCell = 2;
 		GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
 		String word = generatorWordDiceRoll.generateWord( grammarProperties ).toString();
 
@@ -39,9 +39,9 @@ public class Main {
 		 * 	Select the testing method.
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
-		int countOfGrammarsToGenerate = 10000;
-		Test test1 = new Test( countOfGrammarsToGenerate );
-		TestResult test1DiceRollOnlyResult = test1.testGeneratorGrammarDiceRollOnly(
+		int countOfGrammarsToGenerate = 100000;
+		TestGrammar testGrammar1 = new TestGrammar( countOfGrammarsToGenerate );
+		TestGrammarResult test1DiceRollOnlyResult = testGrammar1.testGeneratorGrammarDiceRollOnly(
 				generatorGrammarDiceRollOnlySettings );
 		System.out.println( test1DiceRollOnlyResult.toString() );
 
@@ -103,7 +103,7 @@ public class Main {
  * <p>
  * SECOND Approach starting from one grammar to one word:
  * 1.1) Randomly generate one grammar.
- * 1.2) Test for more restrictions regarding the grammar, e.g. maxVarCount and so on.
+ * 1.2) TestGrammar for more restrictions regarding the grammar, e.g. maxVarCount and so on.
  * Restrictions = PARAMETERS which still need to be found.
  * 3) Randomly generate words derived from it. Derived means using generatePartOfGrammarPropertiesFromGrammar
  * which is input to generateWord.

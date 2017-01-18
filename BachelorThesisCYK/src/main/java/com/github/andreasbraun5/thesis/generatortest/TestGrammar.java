@@ -1,5 +1,7 @@
-package com.github.andreasbraun5.thesis.test;
+package com.github.andreasbraun5.thesis.generatortest;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly;
@@ -13,21 +15,21 @@ import com.github.andreasbraun5.thesis.parser.CYK;
 
 /**
  * Created by Andreas Braun on 15.01.2017.
- * Each instance of Test should use the same countOfGrammarsToGenerate that the results are comparable.
+ * Each instance of TestGrammar should use the same countOfGrammarsToGenerate that the results are comparable.
  */
-public class Test {
+public class TestGrammar {
 
 	private int countOfGrammarsToGenerate;
 
-	public Test(int countOfGrammarsToGenerate) {
+	public TestGrammar(int countOfGrammarsToGenerate) {
 		this.countOfGrammarsToGenerate = countOfGrammarsToGenerate;
 	}
 
-	public TestResult testGeneratorGrammarDiceRollOnly(GeneratorGrammarDiceRollOnlySettings generatorGrammarDiceRollOnlySettings) {
+	public TestGrammarResult testGeneratorGrammarDiceRollOnly(GeneratorGrammarDiceRollOnlySettings generatorGrammarDiceRollOnlySettings) {
 
 		GrammarProperties tempGrammarProperties = generatorGrammarDiceRollOnlySettings.grammarProperties;
 		long startTime = System.currentTimeMillis();
-		//	Initialising the specific test with its settings.
+		//	Initialising the specific generatorTest with its settings.
 		GeneratorGrammarDiceRollOnly generatorGrammarDiceRollOnly =
 				new GeneratorGrammarDiceRollOnly( generatorGrammarDiceRollOnlySettings );
 
@@ -36,56 +38,52 @@ public class Test {
 		String word = generatorWordDiceRoll.generateWord( tempGrammarProperties )
 				.toString();
 
-		// looping to generate the grammars
-		Grammar[] grammars = new Grammar[countOfGrammarsToGenerate];
-		int trueProduciblityCount = 0;
-		int falseProduciblityCount = 0;
-		int trueRestrictionsCount = 0;
-		int falseRestricitonsCount = 0;
-		int trueCount = 0;
-		int falseCount = 0;
+		// looping to generate the TestGrammarResult instance
+		List<Grammar> grammars = new ArrayList<>();
+		List<Set<Variable>[][]> setVs = new ArrayList<>();
+		List<Boolean> booleanProducibility = new ArrayList<>();
+		List<Boolean> booleanRestrictions = new ArrayList<>();
+		List<Boolean> booleanOverall = new ArrayList<>();
 		for ( int i = 0; i < countOfGrammarsToGenerate; i++ ) {
-			grammars[i] = generatorGrammarDiceRollOnly.generateGrammar();
-			Set<Variable>[][] setV = CYK.calculateSetV( grammars[i], word );
+			grammars.add( generatorGrammarDiceRollOnly.generateGrammar() );
+			setVs.add( CYK.calculateSetV( grammars.get( i ), word ) );
 			boolean producibility = GrammarValidityChecker.checkProducibilityCYK(
-					setV,
-					grammars[i],
+					setVs.get( i ),
+					grammars.get( i ),
 					tempGrammarProperties
 			);
-			/**
-			 * up till now only maxVarPerCell is checked
-			 */
-			boolean restrictions = GrammarValidityChecker.checkGrammarRestrictions( tempGrammarProperties, setV );
+			// TODO: up till now only maxVarPerCell is checked
+			boolean restrictions = GrammarValidityChecker.checkGrammarRestrictions(
+					tempGrammarProperties, setVs.get( i ) );
 			if ( producibility ) {
-				trueProduciblityCount++;
+				booleanProducibility.add( Boolean.TRUE );
 			}
 			else {
-				falseProduciblityCount++;
+				booleanProducibility.add( Boolean.FALSE );
 			}
 			if ( restrictions ) {
-				trueRestrictionsCount++;
+				booleanRestrictions.add( Boolean.TRUE );
 			}
 			else {
-				falseRestricitonsCount++;
+				booleanRestrictions.add( Boolean.FALSE );
 			}
 			if ( restrictions && producibility ) {
-				trueCount++;
+				booleanOverall.add( Boolean.TRUE );
 			}
 			else {
-				falseCount++;
+				booleanOverall.add( Boolean.FALSE );
 			}
 		}
 		long endTime = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
-		return new TestResult(
+		return new TestGrammarResult(
 				countOfGrammarsToGenerate,
 				totalTime,
-				trueCount,
-				falseCount,
-				trueProduciblityCount,
-				falseProduciblityCount,
-				trueRestrictionsCount,
-				falseRestricitonsCount
+				grammars,
+				setVs,
+				booleanOverall,
+				booleanProducibility,
+				booleanRestrictions
 		);
 	}
 }

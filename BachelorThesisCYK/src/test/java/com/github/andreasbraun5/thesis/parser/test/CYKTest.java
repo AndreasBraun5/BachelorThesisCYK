@@ -22,7 +22,7 @@ public class CYKTest {
     public void CYKAlwaysTrue() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("Test CYK: AlwaysTrue");
+        System.out.println("TestGrammar CYK: AlwaysTrue");
         // Define GrammarProperties
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"))
                 .addTerminals(new Terminal("a"));
@@ -45,7 +45,7 @@ public class CYKTest {
     public void CYKCalculateSetVTestWithScript() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("Test CYK: algorithmSimple with input Grammar from the TI1 script");
+        System.out.println("TestGrammar CYK: algorithmSimple with input Grammar from the TI1 script");
 
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[15];
@@ -154,7 +154,7 @@ public class CYKTest {
     public void CYKCalculateSetVTestWithSS12() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("Test CYK: algorithmSimple with input Grammar from the SS12");
+        System.out.println("TestGrammar CYK: algorithmSimple with input Grammar from the SS12");
 
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[9];
@@ -256,7 +256,7 @@ public class CYKTest {
     public void CYKCalculateSetVTestWithSS13() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("Test CYK: algorithmSimple with input Grammar from the SS13");
+        System.out.println("TestGrammar CYK: algorithmSimple with input Grammar from the SS13");
 
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[10];

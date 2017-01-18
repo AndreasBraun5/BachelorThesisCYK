@@ -17,7 +17,7 @@ public class GeneratorGrammarDiceRollOnlyTest {
 	public void generateGrammar() {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "Test GeneratorGrammarDiceRollOnly: generateGrammar" );
+		System.out.println( "TestGrammar GeneratorGrammarDiceRollOnly: generateGrammar" );
 		Set<Variable> variables = new HashSet<>();
 		variables.add( new Variable( "A" ) );
 		variables.add( new Variable( "B" ) );
@@ -41,7 +41,7 @@ public class GeneratorGrammarDiceRollOnlyTest {
 		System.out.println( grammar );
 		GrammarProperties grammarProperties2 = new GrammarProperties( new VariableStart( "S" ) );
 		grammarProperties2 = GrammarProperties.generatePartOfGrammarPropertiesFromGrammar( grammar );
-		// TODO: useless Test now... still reasonable?
+		// TODO: useless TestGrammar now... still reasonable?
 		//Assert.assertEquals("terminals size is not the same", grammarProperties.terminals.size(), grammarProperties2.terminals.size());
 		//Assert.assertEquals("variables size is not the same", grammarProperties.variables.size(), grammarProperties2.variables.size());
 		Assert.assertEquals(
