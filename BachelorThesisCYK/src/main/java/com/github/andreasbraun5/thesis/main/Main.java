@@ -3,6 +3,7 @@ package com.github.andreasbraun5.thesis.main;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.github.andreasbraun5.thesis.exception.GrammarSettingException;
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
 import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
@@ -35,21 +36,31 @@ public class Main {
 		String word = generatorWordDiceRoll.generateWord( grammarProperties ).toString();
 
 		/**
+		 * 	One idea would be to store the console output in a file.
+		 */
+
+		/**
 		 * 	N = countOfGrammarsTogGenerate.
 		 * 	Select the testing method.
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
-		int countOfGrammarsToGenerate = 10000; // Up to around 70000 together is ok, then the RAM is full.
-		// If you want to compare two TestResults in one go, then you only can compute half of it.
-		TestGrammar testGrammar1 = new TestGrammar( countOfGrammarsToGenerate );
+		// countGeneratedGrammarsPerWord * countDifferentWords <= 70000.
+		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
+		int countGeneratedGrammarsPerWord = 1000;
+		int countDifferentWords = 50;
+		// this boundary is relevant so that the JVM doesn't run out of memory while calculating one TestGrammarResult.
+		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
+			throw new GrammarSettingException( "Too many grammars would be generated. [ N !< 70000 ]" );
+		}
+		TestGrammar testGrammar1 = new TestGrammar( countGeneratedGrammarsPerWord, countDifferentWords );
 		TestGrammarResult test1DiceRollResult = testGrammar1.testGeneratorGrammarDiceRollOnly(
 				generatorGrammarDiceRollSettings );
-		/* // Now countOfGrammarsToGenerate = 35000 !!!
+		/*
 		TestGrammarResult test2DiceRollOnlyResult = testGrammar1.testGeneratorGrammarDiceRollOnly(
 				generatorGrammarDiceRollOnlySettings );
 		*/
 		/**
-		 * 	Further inspecting results here
+		 * 	Further inspecting results here or maybe print them to a txt file
 		 */
 		System.out.println( test1DiceRollResult.toString() );
 
