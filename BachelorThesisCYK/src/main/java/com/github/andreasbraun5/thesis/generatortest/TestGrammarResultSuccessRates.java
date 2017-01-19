@@ -62,4 +62,41 @@ public class TestGrammarResultSuccessRates {
 				"\n			-->	SUCCESSRATERESTRICTIONS=" + successRateRestrictions +
 				"\n}";
 	}
+
+	public int getTrueCount() {
+		return trueCount;
+	}
+
+	public int getFalseCount() {
+		return falseCount;
+	}
+
+	public double getSuccessRate() {
+		return successRate;
+	}
+
+	public int getTrueProducibilityCount() {
+		return trueProducibilityCount;
+	}
+
+	public int getFalseProducibilityCount() {
+		return falseProducibilityCount;
+	}
+
+	public double getSuccessRateProducibility() {
+		return successRateProducibility;
+	}
+
+	public int getTrueRestrictionsCount() {
+		return trueRestrictionsCount;
+	}
+
+	public int getFalseRestrictionsCount() {
+		return falseRestrictionsCount;
+	}
+
+	public double getSuccessRateRestrictions() {
+		return successRateRestrictions;
+	}
+
 }

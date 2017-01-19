@@ -46,8 +46,8 @@ public class Main {
 		 */
 		// countGeneratedGrammarsPerWord * countDifferentWords <= 70000.
 		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
-		int countGeneratedGrammarsPerWord = 1000;
-		int countDifferentWords = 50;
+		int countGeneratedGrammarsPerWord = 200;
+		int countDifferentWords = 10;
 		// this boundary is relevant so that the JVM doesn't run out of memory while calculating one TestGrammarResult.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingException( "Too many grammars would be generated. [ N !< 70000 ]" );

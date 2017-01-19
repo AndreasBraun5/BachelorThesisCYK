@@ -10,11 +10,14 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 /**
  * Created by Andreas Braun on 17.01.2017.
  * countGeneratedGrammars = countGeneratedGrammarsPerWord * countDifferentWords
+ * word[1] has sampleGrammars from 1 to 10 and its corresponding sampleSetVs
+ * word[2] has sampleGrammars from 2 to 20 ...
  */
 public class TestGrammarResult {
 	private int countGeneratedGrammarsPerWord;
 	private int countDifferentWords;
 	private long totalTime;
+	private List<String> sampleWords;
 	private List<Grammar> sampleGrammars;
 	private List<Set<Variable>[][]> sampleSetVs;
 	private TestGrammarResultSuccessRates testGrammarResultSuccessRates;
@@ -23,6 +26,7 @@ public class TestGrammarResult {
 			int countGeneratedGrammarsPerWord,
 			int countDifferentWords,
 			long totalTime,
+			List<String> sampleWords,
 			List<Grammar> sampleGrammars,
 			List<Set<Variable>[][]> sampleSetVs,
 			List<Boolean> booleanOverall,
@@ -31,6 +35,7 @@ public class TestGrammarResult {
 	) {
 		this.countGeneratedGrammarsPerWord = countGeneratedGrammarsPerWord;
 		this.countDifferentWords = countDifferentWords;
+		this.sampleWords = sampleWords;
 		this.totalTime = totalTime;
 		this.sampleGrammars = sampleGrammars;
 		this.sampleSetVs = sampleSetVs;
@@ -54,4 +59,33 @@ public class TestGrammarResult {
 				testGrammarResultSuccessRates.toString() +
 				"\n}";
 	}
+
+	public int getCountGeneratedGrammarsPerWord() {
+		return countGeneratedGrammarsPerWord;
+	}
+
+	public int getCountDifferentWords() {
+		return countDifferentWords;
+	}
+
+	public long getTotalTime() {
+		return totalTime;
+	}
+
+	public List<String> getSampleWords() {
+		return sampleWords;
+	}
+
+	public List<Grammar> getSampleGrammars() {
+		return sampleGrammars;
+	}
+
+	public List<Set<Variable>[][]> getSampleSetVs() {
+		return sampleSetVs;
+	}
+
+	public TestGrammarResultSuccessRates getTestGrammarResultSuccessRates() {
+		return testGrammarResultSuccessRates;
+	}
+
 }

@@ -29,18 +29,13 @@ public class TestGrammar {
 	}
 
 	public TestGrammarResult testGeneratorGrammarDiceRollOnly(GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings) {
-
 		GrammarProperties tempGrammarProperties = generatorGrammarDiceRollSettings.grammarProperties;
 		long startTime = System.currentTimeMillis();
 		//	Initialising the specific generatorTest with its settings.
 		GeneratorGrammarDiceRoll generatorGrammarDiceRoll =
 				new GeneratorGrammarDiceRoll( generatorGrammarDiceRollSettings );
-		// TODO: left here. think about which grammars should be stored. map(word, grammars),
 		// looping to generate the TestGrammarResult instance
-
-		// right now 100 grammars for the first word are stored.
-		int countSamplesToKeep = 100;
-		int countSamplesStored = 0;
+		List<String> sampleWords = new ArrayList<>();
 		List<Grammar> sampleGrammars = new ArrayList<>();
 		List<Set<Variable>[][]> sampleSetVs = new ArrayList<>();
 		List<Grammar> grammars = new ArrayList<>();
@@ -49,26 +44,31 @@ public class TestGrammar {
 		List<Boolean> booleanRestrictions = new ArrayList<>();
 		List<Boolean> booleanOverall = new ArrayList<>();
 		for ( int i = 0; i < countDifferentWords; i++ ) {
-			// Generate a random word that is used to decide whether the Grammar is true or false.
+			// For each of the first 10 sampleWords that are generated, 10 grammars are stored = 100 grammars maximum together per TestGrammarResult
+			int countSamplesToKeepPerWord = 10;
+			int countSamplesStoredPerWord = 0;
+			// Generate a random word that is used to decide whether the Grammar is true or false. Generate more words
+			// so that one possible "not ordinary" word does't bias the result too much.
 			GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
-			String word = generatorWordDiceRoll.generateWord( tempGrammarProperties )
-					.toString();
+			sampleWords.add( generatorWordDiceRoll.generateWord( tempGrammarProperties )
+									 .toString() );
 			for ( int j = 0; j <= countOfGrammarsToGeneratePerWord; j++ ) {
+				// The generated word and the grammar share the same grammarProperties --> no parameters needed for generateGrammar
 				grammars.add( generatorGrammarDiceRoll.generateGrammar() );
-				setVs.add( CYK.calculateSetV( grammars.get( i ), word ) );
-				if ( countSamplesStored < countSamplesToKeep ) {
-					sampleGrammars.add( grammars.get( i ) );
-					sampleSetVs.add( setVs.get( i ) );
-					countSamplesStored++;
+				setVs.add( CYK.calculateSetV( grammars.get( i + j ), sampleWords.get( i ) ) );
+				if ( countSamplesStoredPerWord < countSamplesToKeepPerWord ) {
+					sampleGrammars.add( grammars.get( i + j ) );
+					sampleSetVs.add( setVs.get( i + j ) );
+					countSamplesStoredPerWord++;
 				}
 				boolean producibility = GrammarValidityChecker.checkProducibilityCYK(
-						setVs.get( i ),
-						grammars.get( i ),
+						setVs.get( i + j ),
+						grammars.get( i + j ),
 						tempGrammarProperties
 				);
 				// TODO: up till now only maxVarPerCell is checked
 				boolean restrictions = GrammarValidityChecker.checkGrammarRestrictions(
-						tempGrammarProperties, setVs.get( i ) );
+						tempGrammarProperties, setVs.get( i + j ) );
 				if ( producibility ) {
 					booleanProducibility.add( Boolean.TRUE );
 				}
@@ -95,6 +95,7 @@ public class TestGrammar {
 				countOfGrammarsToGeneratePerWord,
 				countDifferentWords,
 				totalTime,
+				sampleWords,
 				sampleGrammars,
 				sampleSetVs,
 				booleanOverall,

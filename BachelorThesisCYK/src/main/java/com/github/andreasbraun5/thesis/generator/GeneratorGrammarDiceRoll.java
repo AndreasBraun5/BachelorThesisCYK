@@ -84,7 +84,7 @@ public class GeneratorGrammarDiceRoll implements GeneratorGrammar {
 			 * Bias is already implemented here via the minCountElementDistributedTo and maxCountElementDistributedTo.
 			 * Up till like this you can specify how you want to distribute the terminals and compoundVariables.
 			 */
-			// TODO: bias = one variable gets more rightHandSideElements than the others
+			// TODO: bias = one variable gets more rightHandSideElements than the others, this happens with a probability
 			// Removing Variables from tempVariables until countOfVarsTerminalWillBeAdded vars are left.
 			List<Variable> tempVariables = new ArrayList<>( generatorGrammarDiceRollSettings.grammarProperties.variables );
 			for ( int i = tempVariables.size(); i > countOfLeftSideRhseWillBeAdded; i-- ) {
