@@ -154,6 +154,27 @@ public class CYK {
 	}
 
 	/**
+	 * Method for printing the set matrix
+	 */
+	public static String getStringSetV(Set<Variable>[][] setV, String setName) {
+		StringBuilder stringBuilder = new StringBuilder( setName ).append( "\n" );
+		int wordlength = setV.length;
+		int maxLen = 0;
+		for ( int i = 0; i < wordlength; i++ ) {
+			for ( int j = 0; j < wordlength; j++ ) {
+				maxLen = Math.max( maxLen, setV[j][i].toString().length() );
+			}
+		}
+		for ( int i = 0; i < wordlength; i++ ) {
+			for ( int j = 0; j < wordlength; j++ ) {
+				stringBuilder.append( uniformStringMaker( setV[j][i].toString(), maxLen ) );
+			}
+			stringBuilder.append( "\n" );
+		}
+		return stringBuilder.toString();
+	}
+
+	/**
 	 * helper method used by printSetV
 	 */
 	private static String uniformStringMaker(String str, int length) {

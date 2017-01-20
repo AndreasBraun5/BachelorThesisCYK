@@ -1,20 +1,27 @@
 package com.github.andreasbraun5.thesis.main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarSettingException;
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
-import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
+import com.github.andreasbraun5.thesis.generatortest.TestGrammar;
+import com.github.andreasbraun5.thesis.generatortest.TestGrammarResult;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
-import com.github.andreasbraun5.thesis.generatortest.TestGrammar;
-import com.github.andreasbraun5.thesis.generatortest.TestGrammarResult;
 
 public class Main {
-
+	// TODO: txt saving done
+	// TODO: prepare overview of test data to inspect
+	// TODO: CYK advanced
+	// TODO: CYK tree
+	// TODO: bias implementation, prefer one of the variables specifically
+	// TODO: implement that at least one cell can only be filled through combination of two "correct" cells
 	public static void main(String[] args) {
 
 		/**
@@ -27,27 +34,16 @@ public class Main {
 				new GeneratorGrammarDiceRollSettings( grammarProperties );
 
 		/**
-		 *  Generating a random word.
-		 */
-		grammarProperties.sizeOfWord = 10; // All TestResults will be based on this sizeOfWord.
-		// TODO check for successRate being nearly 1 with maxVarPerCell = 4, and being nearly 0 for =3
-		grammarProperties.maxNumberOfVarsPerCell = 2;
-		GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
-		String word = generatorWordDiceRoll.generateWord( grammarProperties ).toString();
-
-		/**
-		 * 	One idea would be to store the console output in a file.
-		 */
-
-		/**
 		 * 	N = countOfGrammarsTogGenerate.
 		 * 	Select the testing method.
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
 		// countGeneratedGrammarsPerWord * countDifferentWords <= 70000.
 		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
-		int countGeneratedGrammarsPerWord = 200;
-		int countDifferentWords = 10;
+		grammarProperties.sizeOfWord = 10; // All TestResults will be based on this sizeOfWord.
+		grammarProperties.maxNumberOfVarsPerCell = 3;
+		int countGeneratedGrammarsPerWord = 1000;
+		int countDifferentWords = 50;
 		// this boundary is relevant so that the JVM doesn't run out of memory while calculating one TestGrammarResult.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingException( "Too many grammars would be generated. [ N !< 70000 ]" );
@@ -59,11 +55,13 @@ public class Main {
 		TestGrammarResult test2DiceRollOnlyResult = testGrammar1.testGeneratorGrammarDiceRollOnly(
 				generatorGrammarDiceRollOnlySettings );
 		*/
+
 		/**
-		 * 	Further inspecting results here or maybe print them to a txt file
+		 * Further inspecting results here or maybe print them to a txt file
 		 */
 		System.out.println( test1DiceRollResult.toString() );
-
+		System.out.println( test1DiceRollResult.getTestGrammarSamples().toString() );
+		writeToFile( test1DiceRollResult );
 		// deriving GrammarProperties from a word possible
 		// deriving GrammarProperties from a grammar possible
 		// Generating a random word possible
@@ -91,7 +89,24 @@ public class Main {
 		GrammarProperties grammarProperties = new GrammarProperties( new VariableStart( "S" ),
 																	 variables, terminals
 		);
+		grammarProperties.sizeOfWord = 10; // All TestResults will be based on this sizeOfWord.
+		grammarProperties.maxNumberOfVarsPerCell = 2;
 		return grammarProperties;
+	}
+
+	public static void writeToFile(TestGrammarResult testGrammarResult) {
+		try {
+			File file = new File( "./filename.txt");
+			file.getParentFile().mkdirs();
+			PrintWriter out = new PrintWriter( file );
+			out.println(testGrammarResult);
+			out.print( testGrammarResult.getGeneratorGrammarDiceRollSettings().grammarProperties );
+			out.println( testGrammarResult.getTestGrammarSamples().toString() );
+			out.close();
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
@@ -113,6 +128,7 @@ public class Main {
  * This will be checked with the CYK-algorithm.
  * 4) n valid grammars are the final result. n is element of [0, N]
  * Usage of different success rates:
+ * // TODO: correct documentation
  * - Success rate SR = n/N;
  * - Dropout rate of checking for the restrictions DRR = r/N;
  * - Dropout rate of checking for the producibility DRP = p/N;

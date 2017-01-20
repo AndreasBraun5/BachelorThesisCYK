@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import com.github.andreasbraun5.thesis.exception.GrammarSettingException;
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
-import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.GrammarValidityChecker;
@@ -30,7 +29,7 @@ public class TestGrammarTest {
 				new GeneratorGrammarDiceRollSettings( grammarProperties );
 		grammarProperties.sizeOfWord = 10; // All TestResults will be based on this sizeOfWord.
 		grammarProperties.maxNumberOfVarsPerCell = 2;
-		int countGeneratedGrammarsPerWord = 100;
+		int countGeneratedGrammarsPerWord = 20;
 		int countDifferentWords = 10;
 		// this boundary is relevant so that the JVM doesn't run out of memory while calculating one TestGrammarResult.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
@@ -39,21 +38,30 @@ public class TestGrammarTest {
 		TestGrammar testGrammar1 = new TestGrammar( countGeneratedGrammarsPerWord, countDifferentWords );
 		TestGrammarResult test1DiceRollResult = testGrammar1.testGeneratorGrammarDiceRollOnly(
 				generatorGrammarDiceRollSettings );
-		List<String> sampleWords = test1DiceRollResult.getSampleWords();
-		List<Grammar> sampleGrammars = test1DiceRollResult.getSampleGrammars();
-		List<Set<Variable>[][]> sampleSetVs = test1DiceRollResult.getSampleSetVs();
+		List<String> sampleWords = test1DiceRollResult.getTestGrammarSamples().getSampleWords();
+		List<Grammar> sampleGrammars = test1DiceRollResult.getTestGrammarSamples().getSampleGrammars();
+		List<Set<Variable>[][]> sampleSetVs = test1DiceRollResult.getTestGrammarSamples().getSampleSetVs();
+		List<Boolean> sampleBooleanOverall = test1DiceRollResult.getTestGrammarSamples().getSampleBooleanOverall();
+		List<Boolean> sampleBooleanProducibility = test1DiceRollResult.getTestGrammarSamples()
+				.getSampleBooleanProducibility();
+		List<Boolean> SampleBooleanRestrictions = test1DiceRollResult.getTestGrammarSamples()
+				.getSampleBooleanRestrictions();
+		int curIndex = 0;
 		for ( int i = 0; i <= sampleWords.size(); i++ ) {
 			for ( int j = 0; j <= sampleGrammars.size(); j++ ) {
 				Assert.assertEquals(
-						"TestGrammarTest: The sampleSetVs and Grammars and words don't match",
+						"productions.length was not equal to .size",
+						sampleBooleanProducibility.get( curIndex ),
 						GrammarValidityChecker.checkProducibilityCYK(
-								sampleSetVs.get( i + j ),
-								sampleGrammars.get( i + j ),
+								sampleSetVs.get( curIndex ),
+								sampleGrammars.get( curIndex ),
 								grammarProperties
-						) // producibility must be the same as in the array
+						)
 				);
 			}
-
+			curIndex++;
 		}
+		System.out.println( "Executed successfully." );
 	}
 }
+

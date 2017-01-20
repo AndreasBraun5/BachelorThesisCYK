@@ -86,10 +86,12 @@ public class GrammarProperties {
 
 	@Override
 	public String toString() {
-		return "GrammarProperties:" +
+		return "GrammarProperties: {" +
 				"\nsizeOfWord= " + sizeOfWord +
+				"\nmaxNumberOfVarsPerCell= " + maxNumberOfVarsPerCell +
 				"\nvariables= " + variables +
 				"\nvariableStart=" + variableStart +
-				"\nterminals= " + terminals;
+				"\nterminals= " + terminals +
+				"\n}";
 	}
 }

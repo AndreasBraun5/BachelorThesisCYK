@@ -1,11 +1,9 @@
 package com.github.andreasbraun5.thesis.generatortest;
 
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
 
 /**
  * Created by Andreas Braun on 17.01.2017.
@@ -16,29 +14,26 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 public class TestGrammarResult {
 	private int countGeneratedGrammarsPerWord;
 	private int countDifferentWords;
+	private GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings;
 	private long totalTime;
-	private List<String> sampleWords;
-	private List<Grammar> sampleGrammars;
-	private List<Set<Variable>[][]> sampleSetVs;
+	private TestGrammarSamples testGrammarSamples;
 	private TestGrammarResultSuccessRates testGrammarResultSuccessRates;
 
 	public TestGrammarResult(
 			int countGeneratedGrammarsPerWord,
 			int countDifferentWords,
+			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings,
 			long totalTime,
-			List<String> sampleWords,
-			List<Grammar> sampleGrammars,
-			List<Set<Variable>[][]> sampleSetVs,
+			TestGrammarSamples testGrammarSamples,
 			List<Boolean> booleanOverall,
 			List<Boolean> booleanProducibility,
 			List<Boolean> booleanRestrictions
 	) {
 		this.countGeneratedGrammarsPerWord = countGeneratedGrammarsPerWord;
 		this.countDifferentWords = countDifferentWords;
-		this.sampleWords = sampleWords;
+		this.generatorGrammarDiceRollSettings = generatorGrammarDiceRollSettings;
 		this.totalTime = totalTime;
-		this.sampleGrammars = sampleGrammars;
-		this.sampleSetVs = sampleSetVs;
+		this.testGrammarSamples = testGrammarSamples;
 		this.testGrammarResultSuccessRates = new TestGrammarResultSuccessRates(
 				booleanOverall,
 				booleanProducibility,
@@ -52,6 +47,7 @@ public class TestGrammarResult {
 		long tempTime = totalTime - minutes * 60 * 1000;
 		long seconds = TimeUnit.MILLISECONDS.toSeconds( tempTime );
 		return "TestGrammarResult{" +
+				"\ncountGeneratedGrammars= " + countGeneratedGrammarsPerWord * countDifferentWords +
 				"\ncountGeneratedGrammarsPerWord= " + countGeneratedGrammarsPerWord +
 				"\ncountDifferentWords= " + countDifferentWords +
 				"\ntotalTime= " + totalTime + "ms" +
@@ -72,20 +68,15 @@ public class TestGrammarResult {
 		return totalTime;
 	}
 
-	public List<String> getSampleWords() {
-		return sampleWords;
-	}
-
-	public List<Grammar> getSampleGrammars() {
-		return sampleGrammars;
-	}
-
-	public List<Set<Variable>[][]> getSampleSetVs() {
-		return sampleSetVs;
+	public TestGrammarSamples getTestGrammarSamples() {
+		return testGrammarSamples;
 	}
 
 	public TestGrammarResultSuccessRates getTestGrammarResultSuccessRates() {
 		return testGrammarResultSuccessRates;
 	}
 
+	public GeneratorGrammarDiceRollSettings getGeneratorGrammarDiceRollSettings() {
+		return generatorGrammarDiceRollSettings;
+	}
 }
