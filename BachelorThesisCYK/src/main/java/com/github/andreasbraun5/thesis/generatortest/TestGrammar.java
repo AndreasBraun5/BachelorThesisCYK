@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException;
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll;
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
 import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
@@ -14,7 +15,6 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.parser.CYK;
 
 /**
- * Created by Andreas Braun on 15.01.2017.
  * Each instance of TestGrammar should use the same countOfGrammarsToGeneratePerWord that the results are comparable.
  * countSamplesToKeep = 100 grammars and its setVs are kept for further inspection.
  */
@@ -28,7 +28,9 @@ public class TestGrammar {
 		this.countDifferentWords = countDifferentWords;
 	}
 
-	public TestGrammarResult testGeneratorGrammarDiceRollOnly(GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings) {
+	public TestGrammarResult testGeneratorGrammar(
+			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings,
+			TestMethods testMethods) {
 		GrammarProperties tempGrammarProperties = generatorGrammarDiceRollSettings.grammarProperties;
 		long startTime = System.currentTimeMillis();
 		//	Initialising the specific generatorTest with its settings.
@@ -43,12 +45,20 @@ public class TestGrammar {
 		for ( int i = 0; i < countDifferentWords; i++ ) {
 			// Generate a random word that is used to decide whether the Grammar is true or false. Generate more words
 			// so that one possible "not ordinary" word does't bias the result too much.
-			GeneratorWordDiceRoll generatorWordDiceRoll = new GeneratorWordDiceRoll();
-			wordsToGenerateSetVs.add( generatorWordDiceRoll.generateWord( tempGrammarProperties )
-													.toString() );
+			wordsToGenerateSetVs.add( GeneratorWordDiceRoll.generateWord( tempGrammarProperties )
+											  .toString() );
 			for ( int j = 0; j < countOfGrammarsToGeneratePerWord; j++ ) {
 				// The generated word and the grammar share the same grammarProperties --> no parameters needed for generateGrammar
-				grammars.add( generatorGrammarDiceRoll.generateGrammar() );
+				// Depending on how the grammar is generated the respecting method will be called.
+				if ( testMethods == TestMethods.DICE ) {
+					grammars.add( generatorGrammarDiceRoll.generateGrammar() );
+				}
+				else if ( testMethods == TestMethods.DICEANDBIAS ) {
+					grammars.add( generatorGrammarDiceRoll.generateGrammarBias() );
+				}
+				else {
+					throw new TestGrammarRuntimeException( "Incompatible TestMethod found." );
+				}
 				int curGrammarIndex = grammars.size() - 1;
 				setVs.add( CYK.calculateSetV( grammars.get( curGrammarIndex ), wordsToGenerateSetVs.get( i ) ) );
 				boolean producibility = GrammarValidityChecker.checkProducibilityCYK(
@@ -90,13 +100,14 @@ public class TestGrammar {
 				booleanOverall,
 				booleanProducibility,
 				booleanRestrictions
-
 		);
+		System.out.println( "\nTic at time: " + System.currentTimeMillis() );
 		return new TestGrammarResult(
 				countOfGrammarsToGeneratePerWord,
 				countDifferentWords,
 				generatorGrammarDiceRollSettings,
 				totalTime,
+				TestMethods.DICEANDBIAS.toString(),
 				testGrammarSamples,
 				booleanOverall,
 				booleanProducibility,

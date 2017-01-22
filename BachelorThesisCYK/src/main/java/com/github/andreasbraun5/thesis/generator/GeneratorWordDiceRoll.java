@@ -12,15 +12,13 @@ import java.util.Set;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
- * // TODO: default constructor still possible.
  */
-public class GeneratorWordDiceRoll implements GeneratorWord {
+public class GeneratorWordDiceRoll {
 
 	/**
 	 * Excludes the case where the word could be the empty word.
 	 */
-	@Override
-	public StringBuilder generateWord(GrammarProperties grammarProperties) {
+	public static StringBuilder generateWord(GrammarProperties grammarProperties) {
 		if ( grammarProperties.sizeOfWord == 0 ) {
 			throw new GrammarPropertiesRuntimeException( "The sizeOfWord is not defined." );
 		}
@@ -28,20 +26,19 @@ public class GeneratorWordDiceRoll implements GeneratorWord {
 	}
 
 	/**
-	 * Not all terminals must be included.
+	 * Not all terminals must be included in the word.
 	 */
-	@Override
-	public StringBuilder generateWord(Set<Terminal> terminals, int sizeOfWord) {
+	public static StringBuilder generateWord(Set<Terminal> terminals, int sizeOfWord) {
 		StringBuilder randomWord = new StringBuilder( "" );
 		List<Terminal> tempTerminals = new ArrayList<>();
 		tempTerminals.addAll( terminals );
 		// Generate random word out the alphabet with the given size
 		Random random = new Random();
-		int min = 0; // lower limit is inclusive
-		int max = tempTerminals.size(); // upper limit would be exclusive without the +1
 		int randomNumber;
+		int min = 0; //
+		int max = tempTerminals.size();
 		for ( int i = 0; i < sizeOfWord; i++ ) {
-			randomNumber = random.nextInt( max - min ) + min;
+			randomNumber = random.nextInt( max ) + min;
 			randomWord.append( tempTerminals.get( randomNumber ) );
 		}
 		if ( randomWord.length() > sizeOfWord ) {

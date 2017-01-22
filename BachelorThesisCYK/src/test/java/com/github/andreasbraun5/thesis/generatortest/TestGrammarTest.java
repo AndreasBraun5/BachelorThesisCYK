@@ -6,7 +6,7 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.github.andreasbraun5.thesis.exception.GrammarSettingException;
+import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
@@ -23,7 +23,7 @@ public class TestGrammarTest {
 	public void testGeneratorGrammarDiceRollOnly() {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "TestGrammarTest testGeneratorGrammarDiceRollOnly:" );
+		System.out.println( "TestGrammarTest testGeneratorGrammar:" );
 		GrammarProperties grammarProperties = Main.generateGrammarPropertiesForTesting();
 		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings =
 				new GeneratorGrammarDiceRollSettings( grammarProperties );
@@ -33,11 +33,11 @@ public class TestGrammarTest {
 		int countDifferentWords = 10;
 		// this boundary is relevant so that the JVM doesn't run out of memory while calculating one TestGrammarResult.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
-			throw new GrammarSettingException( "Too many grammars would be generated. [ N !< 70000 ]" );
+			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );
 		}
 		TestGrammar testGrammar1 = new TestGrammar( countGeneratedGrammarsPerWord, countDifferentWords );
-		TestGrammarResult test1DiceRollResult = testGrammar1.testGeneratorGrammarDiceRollOnly(
-				generatorGrammarDiceRollSettings );
+		TestGrammarResult test1DiceRollResult = testGrammar1.testGeneratorGrammar(
+				generatorGrammarDiceRollSettings, TestMethods.DICE );
 		List<String> sampleWords = test1DiceRollResult.getTestGrammarSamples().getSampleWords();
 		List<Grammar> sampleGrammars = test1DiceRollResult.getTestGrammarSamples().getSampleGrammars();
 		List<Set<Variable>[][]> sampleSetVs = test1DiceRollResult.getTestGrammarSamples().getSampleSetVs();

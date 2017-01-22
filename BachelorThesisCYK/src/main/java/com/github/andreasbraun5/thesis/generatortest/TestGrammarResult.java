@@ -16,6 +16,7 @@ public class TestGrammarResult {
 	private int countDifferentWords;
 	private GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings;
 	private long totalTime;
+	private String testMethod;
 	private TestGrammarSamples testGrammarSamples;
 	private TestGrammarResultSuccessRates testGrammarResultSuccessRates;
 
@@ -24,6 +25,7 @@ public class TestGrammarResult {
 			int countDifferentWords,
 			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings,
 			long totalTime,
+			String testMethod,
 			TestGrammarSamples testGrammarSamples,
 			List<Boolean> booleanOverall,
 			List<Boolean> booleanProducibility,
@@ -32,6 +34,7 @@ public class TestGrammarResult {
 		this.countGeneratedGrammarsPerWord = countGeneratedGrammarsPerWord;
 		this.countDifferentWords = countDifferentWords;
 		this.generatorGrammarDiceRollSettings = generatorGrammarDiceRollSettings;
+		this.testMethod = testMethod;
 		this.totalTime = totalTime;
 		this.testGrammarSamples = testGrammarSamples;
 		this.testGrammarResultSuccessRates = new TestGrammarResultSuccessRates(
@@ -46,12 +49,13 @@ public class TestGrammarResult {
 		long minutes = TimeUnit.MILLISECONDS.toMinutes( totalTime );
 		long tempTime = totalTime - minutes * 60 * 1000;
 		long seconds = TimeUnit.MILLISECONDS.toSeconds( tempTime );
-		return "TestGrammarResult{" +
+		return "\n\nTestGrammarResult{" +
 				"\ncountGeneratedGrammars= " + countGeneratedGrammarsPerWord * countDifferentWords +
 				"\ncountGeneratedGrammarsPerWord= " + countGeneratedGrammarsPerWord +
 				"\ncountDifferentWords= " + countDifferentWords +
 				"\ntotalTime= " + totalTime + "ms" +
 				"\ntotalTime= " + minutes + "min " + seconds + "sec" +
+				"\ntestMethod= " + this.testMethod +
 				testGrammarResultSuccessRates.toString() +
 				"\n}";
 	}

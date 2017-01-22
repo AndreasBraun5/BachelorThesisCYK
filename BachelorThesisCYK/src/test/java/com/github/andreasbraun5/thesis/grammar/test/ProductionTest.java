@@ -1,10 +1,11 @@
 package com.github.andreasbraun5.thesis.grammar.test;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * Created by Andreas Braun on 02.01.2017.
