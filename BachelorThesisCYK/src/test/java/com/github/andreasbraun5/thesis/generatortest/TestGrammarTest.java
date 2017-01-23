@@ -37,7 +37,7 @@ public class TestGrammarTest {
 		}
 		TestGrammar testGrammar1 = new TestGrammar( countGeneratedGrammarsPerWord, countDifferentWords );
 		TestGrammarResult test1DiceRollResult = testGrammar1.testGeneratorGrammar(
-				generatorGrammarDiceRollSettings, TestMethods.DICE );
+				generatorGrammarDiceRollSettings, TestMethod.DICE );
 		List<String> sampleWords = test1DiceRollResult.getTestGrammarSamples().getSampleWords();
 		List<Grammar> sampleGrammars = test1DiceRollResult.getTestGrammarSamples().getSampleGrammars();
 		List<Set<Variable>[][]> sampleSetVs = test1DiceRollResult.getTestGrammarSamples().getSampleSetVs();

@@ -1,6 +1,5 @@
 package com.github.andreasbraun5.thesis.grammar;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
@@ -12,19 +11,10 @@ import com.github.andreasbraun5.thesis.parser.CYK;
 public class GrammarValidityChecker {
 
 	public static boolean checkGrammarRestrictions(GrammarProperties grammarProperties, Set<Variable>[][] setV) {
-		if (grammarProperties.maxNumberOfVarsPerCell == 0) {
-			throw new GrammarPropertiesRuntimeException( "maxNumberOfVarsPerCell is zero." );
-		}
-		int numberOfVarsPerCell = 0;
-		int wordLength = grammarProperties.sizeOfWord;
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				if(setV[i][j].size() > numberOfVarsPerCell){
-					numberOfVarsPerCell = setV[i][j].size();
-				}
-			}
-		}
-		return grammarProperties.maxNumberOfVarsPerCell >= numberOfVarsPerCell;
+		return checkMaxNumberOfVarsPerCell(
+				grammarProperties.maxNumberOfVarsPerCell,
+				setV
+		) && checkRightCellCombinationForced( setV );
 	}
 
 	public static boolean checkProducibilityCYK(
@@ -32,5 +22,26 @@ public class GrammarValidityChecker {
 			Grammar grammar,
 			GrammarProperties grammarProperties) {
 		return CYK.algorithmSimple( setV, grammar, grammarProperties );
+	}
+
+	private static boolean checkMaxNumberOfVarsPerCell(int maxNumberOfVarsPerCell, Set<Variable>[][] setV) {
+		if ( maxNumberOfVarsPerCell == 0 ) {
+			throw new GrammarPropertiesRuntimeException( "maxNumberOfVarsPerCell is zero." );
+		}
+		int numberOfVarsPerCell = 0;
+		int wordLength = setV[0].length;
+		for ( int i = 0; i < wordLength; i++ ) {
+			for ( int j = 0; j < wordLength; j++ ) {
+				if ( setV[i][j].size() > numberOfVarsPerCell ) {
+					numberOfVarsPerCell = setV[i][j].size();
+				}
+			}
+		}
+		return maxNumberOfVarsPerCell >= numberOfVarsPerCell;
+	}
+
+	private static boolean checkRightCellCombinationForced(Set<Variable>[][] setV) {
+
+		return false;
 	}
 }

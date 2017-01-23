@@ -7,6 +7,7 @@ import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
  * Created by Andreas Braun on 15.01.2017.
  * By default each terminal will be distributed to at least one variable.
  * By default each variableCompound can be a rightHandSideElement of none or all variables.
+ * A separate Settings class exists so that the the tests with similar settings can be done more easily.
  * One kind of bias is the setting of the minValue* and maxValue* variables.
  * Another kind of bias is that one variable gets more rightHandSideElements than the others, this happens with a probability.
  * favouritism = list of probabilities to favour a variable.

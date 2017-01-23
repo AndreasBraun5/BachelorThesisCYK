@@ -138,7 +138,7 @@ public class TestGrammarSamples {
 						.append( "\nsampleGrammars=" ).append( sampleGrammars.get( i ).toString() )
 						.append( "\nsampleWords=" ).append( sampleWords.get( j ) )
 						.append( "\nsampleMaxVarsPerCellSetV=" ).append( sampleMaxVarsPerCellSetV.get( i ) )
-						.append( "\nsampleSetVs=" ).append( CYK.getStringSetV( sampleSetVs.get( i ), "" ) )
+						.append( "\nsampleSetVs=" ).append( Util.getSetVAsStringForPrinting( sampleSetVs.get( i ), "" ) )
 						.append( "sampleBooleanOverall=" ).append( sampleBooleanOverall.get( i ) )
 						.append( "\nsampleBooleanProducibility=" ).append( sampleBooleanProducibility.get( i ) )
 						.append( "\nsampleBooleanRestrictions=" ).append( sampleBooleanRestrictions.get( i ) );

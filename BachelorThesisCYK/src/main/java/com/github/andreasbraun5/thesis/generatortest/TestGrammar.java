@@ -13,6 +13,7 @@ import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.GrammarValidityChecker;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.parser.CYK;
+import com.github.andreasbraun5.thesis.util.Util;
 
 /**
  * Each instance of TestGrammar should use the same countOfGrammarsToGeneratePerWord that the results are comparable.
@@ -30,7 +31,7 @@ public class TestGrammar {
 
 	public TestGrammarResult testGeneratorGrammar(
 			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings,
-			TestMethods testMethods) {
+			TestMethod testMethod) {
 		GrammarProperties tempGrammarProperties = generatorGrammarDiceRollSettings.grammarProperties;
 		long startTime = System.currentTimeMillis();
 		//	Initialising the specific generatorTest with its settings.
@@ -50,17 +51,20 @@ public class TestGrammar {
 			for ( int j = 0; j < countOfGrammarsToGeneratePerWord; j++ ) {
 				// The generated word and the grammar share the same grammarProperties --> no parameters needed for generateGrammar
 				// Depending on how the grammar is generated the respecting method will be called.
-				if ( testMethods == TestMethods.DICE ) {
+				if ( testMethod == TestMethod.DICE ) {
 					grammars.add( generatorGrammarDiceRoll.generateGrammar() );
 				}
-				else if ( testMethods == TestMethods.DICEANDBIAS ) {
+				else if ( testMethod == TestMethod.DICEANDBIAS ) {
 					grammars.add( generatorGrammarDiceRoll.generateGrammarBias() );
 				}
 				else {
 					throw new TestGrammarRuntimeException( "Incompatible TestMethod found." );
 				}
 				int curGrammarIndex = grammars.size() - 1;
-				setVs.add( CYK.calculateSetV( grammars.get( curGrammarIndex ), wordsToGenerateSetVs.get( i ) ) );
+				setVs.add( CYK.calculateSetV(
+						grammars.get( curGrammarIndex ),
+						Util.stringToTerminalList( wordsToGenerateSetVs.get( i ) )
+				) );
 				boolean producibility = GrammarValidityChecker.checkProducibilityCYK(
 						setVs.get( curGrammarIndex ),
 						grammars.get( curGrammarIndex ),
@@ -107,7 +111,7 @@ public class TestGrammar {
 				countDifferentWords,
 				generatorGrammarDiceRollSettings,
 				totalTime,
-				TestMethods.DICEANDBIAS.toString(),
+				TestMethod.DICEANDBIAS.toString(),
 				testGrammarSamples,
 				booleanOverall,
 				booleanProducibility,

@@ -15,16 +15,8 @@ public class CYK {
      */
 
 	/**
-	 * Implementation of the simple Algorithm described in the script TI1. Overloaded method for simple usage.
+	 * Implementation of the simple Algorithm described in the script TI1. Overloaded method for simpler usage.
 	 */
-	public static boolean algorithmSimple(Grammar grammar, String word) {
-		List<Terminal> list = new ArrayList<>();
-		for ( int i = 0; i < word.length(); i++ ) {
-			list.add( new Terminal( String.valueOf( word.charAt( i ) ) ) );
-		}
-		return algorithmSimple( grammar, list );
-	}
-
 	public static boolean algorithmSimple(Grammar grammar, List<Terminal> word) {
 		Set<Variable>[][] setV = calculateSetV( grammar, word );
 		int wordLength = word.size();
@@ -63,16 +55,8 @@ public class CYK {
 	}
 
 	/**
-	 * Calculating the set needed for the cyk algorithm. Overloaded method for simple usage.
+	 * Calculating the set needed for the cyk algorithm.
 	 */
-	public static Set<Variable>[][] calculateSetV(Grammar grammar, String word) {
-		List<Terminal> list = new ArrayList<>();
-		for ( int i = 0; i < word.length(); i++ ) {
-			list.add( new Terminal( String.valueOf( word.charAt( i ) ) ) );
-		}
-		return calculateSetV( grammar, list );
-	}
-
 	public static Set<Variable>[][] calculateSetV(Grammar grammar, List<Terminal> word) {
 		int wordLength = word.size();
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
@@ -132,56 +116,5 @@ public class CYK {
 		return new Tree();
 	}
 
-	/**
-	 * Method for printing the set matrix
-	 */
-	public static void printSetV(Set<Variable>[][] setV, String setName) {
-		System.out.println();
-		System.out.println( setName );
-		int wordlength = setV.length;
-		int maxLen = 0;
-		for ( int i = 0; i < wordlength; i++ ) {
-			for ( int j = 0; j < wordlength; j++ ) {
-				maxLen = Math.max( maxLen, setV[j][i].toString().length() );
-			}
-		}
-		for ( int i = 0; i < wordlength; i++ ) {
-			for ( int j = 0; j < wordlength; j++ ) {
-				System.out.print( uniformStringMaker( setV[j][i].toString(), maxLen ) );
-			}
-			System.out.println();
-		}
-	}
 
-	/**
-	 * Method for printing the set matrix
-	 */
-	public static String getStringSetV(Set<Variable>[][] setV, String setName) {
-		StringBuilder stringBuilder = new StringBuilder( setName ).append( "\n" );
-		int wordlength = setV.length;
-		int maxLen = 0;
-		for ( int i = 0; i < wordlength; i++ ) {
-			for ( int j = 0; j < wordlength; j++ ) {
-				maxLen = Math.max( maxLen, setV[j][i].toString().length() );
-			}
-		}
-		for ( int i = 0; i < wordlength; i++ ) {
-			for ( int j = 0; j < wordlength; j++ ) {
-				stringBuilder.append( uniformStringMaker( setV[j][i].toString(), maxLen ) );
-			}
-			stringBuilder.append( "\n" );
-		}
-		return stringBuilder.toString();
-	}
-
-	/**
-	 * helper method used by printSetV
-	 */
-	private static String uniformStringMaker(String str, int length) {
-		StringBuilder builder = new StringBuilder( str );
-		for ( int i = str.length(); i < length; ++i ) {
-			builder.append( " " );
-		}
-		return builder.toString();
-	}
 }
