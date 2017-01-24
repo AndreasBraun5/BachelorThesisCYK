@@ -88,6 +88,7 @@ public class CYKTest {
 				setVTemp[i][j] = new HashSet<>();
 			}
 		}
+		// TODO: make this a comment and use the VariableKWrapper stuff
 		// reconstructing example matrix from scriptTI1
 		setVTemp[0][0].add( new Variable( "A" ) );
 		setVTemp[0][0].add( new Variable( "N" ) );
@@ -145,6 +146,66 @@ public class CYKTest {
 
 		setVTemp[7][7].add( new Variable( "A" ) );
 		setVTemp[7][7].add( new Variable( "N" ) );
+
+		/*
+		// reconstructing example matrix from scriptTI1
+		setVTemp[0][0].add( new Variable( "A1" ) );
+		setVTemp[0][0].add( new Variable( "N1" ) );
+		setVTemp[0][1].add( new VariableStart( "S1" ) );
+		setVTemp[0][1].add( new Variable( "S'1" ) );
+		setVTemp[0][2].add( new Variable( "B1" ) );
+		setVTemp[0][3].add( new Variable( "D3" ) );
+		setVTemp[0][4].add( new Variable( "B1" ) );
+		setVTemp[0][5].add( new Variable( "D3" ) );
+		setVTemp[0][6].add( new Variable( "B1" ) );
+		setVTemp[0][7].add( new VariableStart( "S1" ) );
+		setVTemp[0][7].add( new Variable( "S'1" ) );
+
+		setVTemp[1][1].add( new Variable( "E2" ) );
+		setVTemp[1][1].add( new Variable( "B2" ) );
+		setVTemp[1][2].add( new Variable( "D2" ) );
+		setVTemp[1][4].add( new Variable( "D2" ) );
+		setVTemp[1][6].add( new Variable( "D2" ) );
+		setVTemp[1][7].add( new Variable( "B2" ) );
+
+		setVTemp[2][2].add( new Variable( "E3" ) );
+		setVTemp[2][2].add( new Variable( "B3" ) );
+		setVTemp[2][3].add( new Variable( "D3" ) );
+		setVTemp[2][4].add( new Variable( "B3" ) );
+		setVTemp[2][5].add( new Variable( "D3" ) );
+		setVTemp[2][6].add( new Variable( "B3" ) );
+		setVTemp[2][7].add( new VariableStart( "S3" ) );
+		setVTemp[2][7].add( new Variable( "S'3" ) );
+
+		setVTemp[3][3].add( new Variable( "E4" ) );
+		setVTemp[3][3].add( new Variable( "B4" ) );
+		setVTemp[3][4].add( new VariableStart( "S4" ) );
+		setVTemp[3][4].add( new Variable( "S'4" ) );
+		setVTemp[3][5].add( new Variable( "B4" ) );
+		setVTemp[3][6].add( new VariableStart( "S4" ) );
+		setVTemp[3][6].add( new Variable( "S'4" ) );
+		setVTemp[3][7].add( new Variable( "A4" ) );
+
+		setVTemp[4][4].add( new Variable( "A5" ) );
+		setVTemp[4][4].add( new Variable( "N5" ) );
+		setVTemp[4][5].add( new VariableStart( "S5" ) );
+		setVTemp[4][5].add( new Variable( "S'5" ) );
+		setVTemp[4][6].add( new Variable( "A5" ) );
+		setVTemp[4][7].add( new Variable( "C5" ) );
+
+		setVTemp[5][5].add( new Variable( "E6" ) );
+		setVTemp[5][5].add( new Variable( "B6" ) );
+		setVTemp[5][6].add( new VariableStart( "S6" ) );
+		setVTemp[5][6].add( new Variable( "S'6" ) );
+		setVTemp[5][7].add( new Variable( "A6" ) );
+
+		setVTemp[6][6].add( new Variable( "A7" ) );
+		setVTemp[6][6].add( new Variable( "N7" ) );
+		setVTemp[6][7].add( new Variable( "C7" ) );
+
+		setVTemp[7][7].add( new Variable( "A8" ) );
+		setVTemp[7][7].add( new Variable( "N8" ) );
+		*/
 		Util.printSetV( setVTemp, "setVSolution" );
 
 		boolean temp = true;
@@ -191,7 +252,7 @@ public class CYKTest {
 				setVTemp[i][j] = new HashSet<>();
 			}
 		}
-		// reconstructing example matrix from scriptTI1
+		// reconstructing example matrix from SS12
 		setVTemp[0][0].add( new Variable( "A" ) );
 		setVTemp[0][0].add( new Variable( "C" ) );
 		setVTemp[0][1].add( new VariableStart( "S" ) );
@@ -246,6 +307,73 @@ public class CYKTest {
 		setVTemp[6][7].add( new VariableStart( "S" ) );
 
 		setVTemp[7][7].add( new Variable( "B" ) );
+		/*
+		// reconstructing example matrix from SS12
+		setVTemp[0][0].add( new Variable( "A1" ) );
+		setVTemp[0][0].add( new Variable( "C1" ) );
+		setVTemp[0][1].add( new VariableStart( "S1" ) );
+		setVTemp[0][1].add( new Variable( "B1" ) );
+		setVTemp[0][3].add( new Variable( "A2" ) );
+		setVTemp[0][5].add( new Variable( "C1" ) );
+		setVTemp[0][5].add( new Variable( "C4" ) );
+		setVTemp[0][5].add( new VariableStart( "S2" ) );
+		setVTemp[0][6].add( new Variable( "C1" ) );
+		setVTemp[0][6].add( new Variable( "C4" ) );
+		setVTemp[0][6].add( new VariableStart( "S2" ) );
+		setVTemp[0][7].add( new VariableStart( "S1" ) );
+		setVTemp[0][7].add( new VariableStart( "S4" ) );
+		setVTemp[0][7].add( new Variable( "B1" ) );
+		setVTemp[0][7].add( new Variable( "B6" ) );
+		setVTemp[0][7].add( new Variable( "B7" ) );
+
+		setVTemp[1][1].add( new Variable( "B2" ) );
+		setVTemp[1][3].add( new Variable( "A2" ) );
+		setVTemp[1][5].add( new Variable( "C4" ) );
+		setVTemp[1][5].add( new VariableStart( "S2" ) );
+		setVTemp[1][6].add( new Variable( "C4" ) );
+		setVTemp[1][6].add( new VariableStart( "S2" ) );
+		setVTemp[1][7].add( new Variable( "B6" ) );
+		setVTemp[1][7].add( new Variable( "B7" ) );
+		setVTemp[1][7].add( new VariableStart( "S4" ) );
+
+		setVTemp[2][2].add( new Variable( "B3" ) );
+		setVTemp[2][3].add( new Variable( "A3" ) );
+		setVTemp[2][5].add( new Variable( "C4" ) );
+		setVTemp[2][5].add( new VariableStart( "S3" ) );
+		setVTemp[2][6].add( new Variable( "C4" ) );
+		setVTemp[2][6].add( new VariableStart( "S3" ) );
+		setVTemp[2][7].add( new VariableStart( "S4" ) );
+		setVTemp[2][7].add( new Variable( "B6" ) );
+		setVTemp[2][7].add( new Variable( "B7" ) );
+
+		setVTemp[3][3].add( new Variable( "A5" ) );
+		setVTemp[3][5].add( new Variable( "C5" ) );
+		setVTemp[3][6].add( new Variable( "C5" ) );
+		setVTemp[3][7].add( new VariableStart( "S5" ) );
+		setVTemp[3][7].add( new Variable( "B6" ) );
+		setVTemp[3][7].add( new Variable( "B7" ) );
+
+		setVTemp[4][4].add( new Variable( "A5" ) );
+		setVTemp[4][5].add( new Variable( "C5" ) );
+		setVTemp[4][6].add( new Variable( "C"5 ) );
+		setVTemp[4][7].add( new VariableStart( "S5" ) );
+		setVTemp[4][7].add( new Variable( "B6" ) );
+		setVTemp[4][7].add( new Variable( "B7" ) );
+
+		setVTemp[5][5].add( new Variable( "A6" ) );
+		setVTemp[5][5].add( new Variable( "C6" ) );
+		setVTemp[5][6].add( new Variable( "C6" ) );
+		setVTemp[5][7].add( new VariableStart( "S6" ) );
+		setVTemp[5][7].add( new Variable( "B6" ) );
+		setVTemp[5][7].add( new Variable( "B7" ) );
+
+		setVTemp[6][6].add( new Variable( "A7" ) );
+		setVTemp[6][6].add( new Variable( "C7" ) );
+		setVTemp[6][7].add( new Variable( "B7" ) );
+		setVTemp[6][7].add( new VariableStart( "S7" ) );
+
+		setVTemp[7][7].add( new Variable( "B8" ) );
+		 */
 		Util.printSetV( setVTemp, "setVSolution" );
 
 		boolean temp = true;
@@ -322,7 +450,6 @@ public class CYKTest {
 		setVTemp[2][3].add( new VariableStart( "S" ) );
 		setVTemp[2][3].add( new Variable( "C" ) );
 		setVTemp[2][4].add( new VariableStart( "S" ) );
-		setVTemp[2][4].add( new VariableStart( "S" ) );
 
 		setVTemp[3][3].add( new Variable( "C" ) );
 		setVTemp[3][4].add( new VariableStart( "S" ) );
@@ -334,6 +461,50 @@ public class CYKTest {
 		setVTemp[4][5].add( new Variable( "A" ) );
 
 		setVTemp[5][5].add( new Variable( "C" ) );
+		/*
+		// reconstructing example matrix from scriptTI1
+		setVTemp[0][0].add( new Variable( "A1" ) );
+		setVTemp[0][0].add( new Variable( "B1" ) );
+		setVTemp[0][1].add( new VariableStart( "S1" ) );
+		setVTemp[0][1].add( new Variable( "B1" ) );
+		setVTemp[0][3].add( new VariableStart( "S1" ) );
+		setVTemp[0][3].add( new Variable( "C1" ) );
+		setVTemp[0][3].add( new Variable( "A1" ) );
+		setVTemp[0][3].add( new Variable( "A2" ) );
+		setVTemp[0][4].add( new VariableStart( "S4" ) );
+		setVTemp[0][5].add( new VariableStart( "S1" ) );
+		setVTemp[0][5].add( new VariableStart( "S4" ) );
+		setVTemp[0][5].add( new Variable( "C1" ) );
+		setVTemp[0][5].add( new Variable( "C4" ) );
+		setVTemp[0][5].add( new Variable( "A1" ) );
+
+		setVTemp[1][1].add( new Variable( "A2" ) );
+		setVTemp[1][1].add( new Variable( "B2" ) );
+		setVTemp[1][2].add( new VariableStart( "S2" ) );
+		setVTemp[1][3].add( new Variable( "C2" ) );
+		setVTemp[1][3].add( new VariableStart( "S2" ) );
+		setVTemp[1][3].add( new Variable( "A2" ) );
+		setVTemp[1][4].add( new VariableStart( "S4" ) );
+		setVTemp[1][5].add( new Variable( "C4" ) );
+		setVTemp[1][5].add( new VariableStart( "S4" ) );
+
+		setVTemp[2][2].add( new Variable( "A3" ) );
+		setVTemp[2][3].add( new VariableStart( "S3" ) );
+		setVTemp[2][3].add( new Variable( "C3" ) );
+		setVTemp[2][4].add( new VariableStart( "S4" ) );
+
+		setVTemp[3][3].add( new Variable( "C4" ) );
+		setVTemp[3][4].add( new VariableStart( "S4" ) );
+
+		setVTemp[4][4].add( new Variable( "A5" ) );
+		setVTemp[4][4].add( new Variable( "B5" ) );
+		setVTemp[4][5].add( new Variable( "C5" ) );
+		setVTemp[4][5].add( new VariableStart( "S5" ) );
+		setVTemp[4][5].add( new Variable( "A5" ) );
+
+		setVTemp[5][5].add( new Variable( "C6" ) );
+		 */
+
 		Util.printSetV( setVTemp, "setVSolution" );
 
 		boolean temp = true;

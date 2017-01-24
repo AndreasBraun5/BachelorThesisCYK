@@ -74,7 +74,8 @@ public class GeneratorGrammarDiceRollSettings extends GeneratorGrammarSettings {
 
 	public void setMaxValueCompoundVariablesAreAddedTo(int maxValueCompoundVariablesAreAddedTo) {
 		if ( maxValueCompoundVariablesAreAddedTo > grammarProperties.variables.size() ) {
-			throw new GrammarSettingRuntimeException( "maxValueCompoundVariablesAreAddedTo is bigger than variables.size()." );
+			throw new GrammarSettingRuntimeException(
+					"maxValueCompoundVariablesAreAddedTo is bigger than variables.size()." );
 		}
 		this.maxValueCompoundVariablesAreAddedTo = maxValueCompoundVariablesAreAddedTo;
 	}

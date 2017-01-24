@@ -10,11 +10,12 @@ import com.github.andreasbraun5.thesis.parser.CYK;
  */
 public class GrammarValidityChecker {
 
+	// TODO: up till now only maxVarPerCell is checked
 	public static boolean checkGrammarRestrictions(GrammarProperties grammarProperties, Set<Variable>[][] setV) {
 		return checkMaxNumberOfVarsPerCell(
 				grammarProperties.maxNumberOfVarsPerCell,
 				setV
-		) && checkRightCellCombinationForced( setV );
+		); //&& checkRightCellCombinationForced( setV );
 	}
 
 	public static boolean checkProducibilityCYK(

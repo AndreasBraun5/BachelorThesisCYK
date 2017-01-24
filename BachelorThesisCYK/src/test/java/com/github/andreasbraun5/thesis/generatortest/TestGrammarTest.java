@@ -41,11 +41,11 @@ public class TestGrammarTest {
 		List<String> sampleWords = test1DiceRollResult.getTestGrammarSamples().getSampleWords();
 		List<Grammar> sampleGrammars = test1DiceRollResult.getTestGrammarSamples().getSampleGrammars();
 		List<Set<Variable>[][]> sampleSetVs = test1DiceRollResult.getTestGrammarSamples().getSampleSetVs();
-		List<Boolean> sampleBooleanOverall = test1DiceRollResult.getTestGrammarSamples().getSampleBooleanOverall();
+		List<Boolean> sampleBooleanOverall = test1DiceRollResult.getTestGrammarSamples().getSampleIsOverall();
 		List<Boolean> sampleBooleanProducibility = test1DiceRollResult.getTestGrammarSamples()
-				.getSampleBooleanProducibility();
+				.getSampleIsProducibility();
 		List<Boolean> SampleBooleanRestrictions = test1DiceRollResult.getTestGrammarSamples()
-				.getSampleBooleanRestrictions();
+				.getSampleIsRestrictions();
 		int curIndex = 0;
 		for ( int i = 0; i <= sampleWords.size(); i++ ) {
 			for ( int j = 0; j <= sampleGrammars.size(); j++ ) {

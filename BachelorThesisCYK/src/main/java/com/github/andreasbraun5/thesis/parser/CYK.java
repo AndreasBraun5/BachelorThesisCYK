@@ -1,11 +1,21 @@
 package com.github.andreasbraun5.thesis.parser;
 
-import com.github.andreasbraun5.thesis.grammar.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import java.util.*;
+import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammar.Production;
+import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
+import com.github.andreasbraun5.thesis.grammar.Terminal;
+import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
+ * https://github.com/AndreasBraun5/
  */
 public class CYK {
 	/*
@@ -17,6 +27,8 @@ public class CYK {
 	/**
 	 * Implementation of the simple Algorithm described in the script TI1. Overloaded method for simpler usage.
 	 */
+	// TODO: the simple algorithm is a special case of the advanced algorithm. Use a util method to "convert" the
+	// Set<VariableKWrapper>[][] to a Set<Variable>[][] when needed.
 	public static boolean algorithmSimple(Grammar grammar, List<Terminal> word) {
 		Set<Variable>[][] setV = calculateSetV( grammar, word );
 		int wordLength = word.size();
@@ -60,7 +72,7 @@ public class CYK {
 	public static Set<Variable>[][] calculateSetV(Grammar grammar, List<Terminal> word) {
 		int wordLength = word.size();
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
-		// TODO Note: Why problem here? Generics stuff?
+		@SuppressWarnings("unchecked")
 		Set<Variable>[][] setV = new Set[wordLength][wordLength];
 		for ( int i = 0; i < wordLength; i++ ) {
 			for ( int j = 0; j < wordLength; j++ ) {

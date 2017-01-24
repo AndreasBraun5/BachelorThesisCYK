@@ -24,7 +24,9 @@ public class Main {
 	// TODO: Hast du eigentlich den Test implementiert, dass man (mind. eine) Zelle nur durch Kombination von den
 	// “korrekten” anderen Zellen und eben nicht dadurch, dass man die beiden direkt darüber anschaut, bekommt?
 	// --> modify cyk advanced and store how .... no
-	// TODO: Idea StartVariable has no terminal
+	// TODO: Idea StartVariable has no terminal, kind of "pattern" from exam excercises
+	// TODO: Test DiceRolling and DiceRollingBias. Idea is to take a look at the relative of occurrence for the
+	// 			Variables considering all generated grammars.
 	public static void main(String[] args) {
 
 		/**
@@ -50,6 +52,7 @@ public class Main {
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );
 		}
+		// TODO: check, testResults should have identical sucessrate
 		TestGrammar testGrammar1 = new TestGrammar( countGeneratedGrammarsPerWord, countDifferentWords );
 		TestGrammarResult test1DiceRollResult = testGrammar1.testGeneratorGrammar(
 				generatorGrammarDiceRollSettings, TestMethod.DICE );

@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException;
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
 import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
@@ -35,31 +34,22 @@ public class TestGrammar {
 		GrammarProperties tempGrammarProperties = generatorGrammarDiceRollSettings.grammarProperties;
 		long startTime = System.currentTimeMillis();
 		//	Initialising the specific generatorTest with its settings.
-		GeneratorGrammarDiceRoll generatorGrammarDiceRoll =
-				new GeneratorGrammarDiceRoll( generatorGrammarDiceRollSettings );
+		GeneratorGrammarDiceRollOnly generatorGrammarDiceRollOnly =
+				new GeneratorGrammarDiceRollOnly( generatorGrammarDiceRollSettings );
 		List<Grammar> grammars = new ArrayList<>();
 		List<String> wordsToGenerateSetVs = new ArrayList<>();
 		List<Set<Variable>[][]> setVs = new ArrayList<>();
-		List<Boolean> booleanProducibility = new ArrayList<>();
-		List<Boolean> booleanRestrictions = new ArrayList<>();
-		List<Boolean> booleanOverall = new ArrayList<>();
+		List<Boolean> isProducibility = new ArrayList<>();
+		List<Boolean> isRestrictions = new ArrayList<>();
+		List<Boolean> isOverall = new ArrayList<>();
 		for ( int i = 0; i < countDifferentWords; i++ ) {
 			// Generate a random word that is used to decide whether the Grammar is true or false. Generate more words
 			// so that one possible "not ordinary" word does't bias the result too much.
 			wordsToGenerateSetVs.add( GeneratorWordDiceRoll.generateWord( tempGrammarProperties )
 											  .toString() );
 			for ( int j = 0; j < countOfGrammarsToGeneratePerWord; j++ ) {
-				// The generated word and the grammar share the same grammarProperties --> no parameters needed for generateGrammar
-				// Depending on how the grammar is generated the respecting method will be called.
-				if ( testMethod == TestMethod.DICE ) {
-					grammars.add( generatorGrammarDiceRoll.generateGrammar() );
-				}
-				else if ( testMethod == TestMethod.DICEANDBIAS ) {
-					grammars.add( generatorGrammarDiceRoll.generateGrammarBias() );
-				}
-				else {
-					throw new TestGrammarRuntimeException( "Incompatible TestMethod found." );
-				}
+				// Regarding the specified testMethod enum, the correct grammar is being added to the grammar list.
+				grammars = testMethod.generateGrammar( generatorGrammarDiceRollOnly, grammars );
 				int curGrammarIndex = grammars.size() - 1;
 				setVs.add( CYK.calculateSetV(
 						grammars.get( curGrammarIndex ),
@@ -70,40 +60,39 @@ public class TestGrammar {
 						grammars.get( curGrammarIndex ),
 						tempGrammarProperties
 				);
-				// TODO: up till now only maxVarPerCell is checked
 				boolean restrictions = GrammarValidityChecker.checkGrammarRestrictions(
 						tempGrammarProperties, setVs.get( curGrammarIndex ) );
 				if ( producibility ) {
-					booleanProducibility.add( Boolean.TRUE );
+					isProducibility.add( Boolean.TRUE );
 				}
 				else {
-					booleanProducibility.add( Boolean.FALSE );
+					isProducibility.add( Boolean.FALSE );
 				}
 				if ( restrictions ) {
-					booleanRestrictions.add( Boolean.TRUE );
+					isRestrictions.add( Boolean.TRUE );
 				}
 				else {
-					booleanRestrictions.add( Boolean.FALSE );
+					isRestrictions.add( Boolean.FALSE );
 				}
 				if ( restrictions && producibility ) {
-					booleanOverall.add( Boolean.TRUE );
+					isOverall.add( Boolean.TRUE );
 				}
 				else {
-					booleanOverall.add( Boolean.FALSE );
+					isOverall.add( Boolean.FALSE );
 				}
 			}
 		}
 		long endTime = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
-		// TODO Discuss: How to make sure the parameters are given in the right order?
+
 		TestGrammarSamples testGrammarSamples = TestGrammarSamples.calculateTestGrammarResult(
 				countOfGrammarsToGeneratePerWord,
 				grammars,
 				wordsToGenerateSetVs,
 				setVs,
-				booleanOverall,
-				booleanProducibility,
-				booleanRestrictions
+				isOverall,
+				isProducibility,
+				isRestrictions
 		);
 		System.out.println( "\nTic at time: " + System.currentTimeMillis() );
 		return new TestGrammarResult(
@@ -113,9 +102,9 @@ public class TestGrammar {
 				totalTime,
 				TestMethod.DICEANDBIAS.toString(),
 				testGrammarSamples,
-				booleanOverall,
-				booleanProducibility,
-				booleanRestrictions
+				isOverall,
+				isProducibility,
+				isRestrictions
 		);
 	}
 }

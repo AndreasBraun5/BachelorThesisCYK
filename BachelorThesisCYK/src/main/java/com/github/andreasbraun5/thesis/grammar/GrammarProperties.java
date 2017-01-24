@@ -1,6 +1,9 @@
 package com.github.andreasbraun5.thesis.grammar;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Andreas Braun on 20.12.2016.

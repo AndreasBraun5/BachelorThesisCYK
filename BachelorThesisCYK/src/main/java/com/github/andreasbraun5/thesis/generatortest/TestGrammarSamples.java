@@ -6,7 +6,6 @@ import java.util.Set;
 
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.Util;
 
 /**
@@ -18,24 +17,24 @@ public class TestGrammarSamples {
 	private List<Grammar> sampleGrammars;
 	private List<String> sampleWords;
 	private List<Set<Variable>[][]> sampleSetVs;
-	private List<Boolean> sampleBooleanOverall;
-	private List<Boolean> sampleBooleanProducibility;
-	private List<Boolean> sampleBooleanRestrictions;
+	private List<Boolean> sampleIsOverall;
+	private List<Boolean> sampleIsProducibility;
+	private List<Boolean> sampleIsRestrictions;
 	private List<Integer> sampleMaxVarsPerCellSetV;
 
 	public TestGrammarSamples(
 			List<Grammar> sampleGrammars,
 			List<String> sampleWords,
 			List<Set<Variable>[][]> sampleSetVs,
-			List<Boolean> sampleBooleanOverall,
-			List<Boolean> sampleBooleanProducibility,
-			List<Boolean> sampleBooleanRestrictions) {
+			List<Boolean> sampleIsOverall,
+			List<Boolean> sampleIsProducibility,
+			List<Boolean> sampleIsRestrictions) {
 		this.sampleGrammars = sampleGrammars;
 		this.sampleWords = sampleWords;
 		this.sampleSetVs = sampleSetVs;
-		this.sampleBooleanOverall = sampleBooleanOverall;
-		this.sampleBooleanProducibility = sampleBooleanProducibility;
-		this.sampleBooleanRestrictions = sampleBooleanRestrictions;
+		this.sampleIsOverall = sampleIsOverall;
+		this.sampleIsProducibility = sampleIsProducibility;
+		this.sampleIsRestrictions = sampleIsRestrictions;
 		for ( int i = 0; i < sampleGrammars.size(); i++ ) {
 			this.sampleMaxVarsPerCellSetV.add( Util.getMaxVarPerCellForSetV( sampleSetVs.get( i ) ) );
 		}
@@ -45,16 +44,16 @@ public class TestGrammarSamples {
 			List<Grammar> sampleGrammars,
 			List<String> sampleWords,
 			List<Set<Variable>[][]> sampleSetVs,
-			List<Boolean> sampleBooleanOverall,
-			List<Boolean> sampleBooleanProducibility,
-			List<Boolean> sampleBooleanRestrictions,
+			List<Boolean> sampleIsOverall,
+			List<Boolean> sampleIsProducibility,
+			List<Boolean> sampleIsRestrictions,
 			List<Integer> sampleMaxVarsPerCellSetV) {
 		this.sampleGrammars = sampleGrammars;
 		this.sampleWords = sampleWords;
 		this.sampleSetVs = sampleSetVs;
-		this.sampleBooleanOverall = sampleBooleanOverall;
-		this.sampleBooleanProducibility = sampleBooleanProducibility;
-		this.sampleBooleanRestrictions = sampleBooleanRestrictions;
+		this.sampleIsOverall = sampleIsOverall;
+		this.sampleIsProducibility = sampleIsProducibility;
+		this.sampleIsRestrictions = sampleIsRestrictions;
 		this.sampleMaxVarsPerCellSetV = sampleMaxVarsPerCellSetV;
 	}
 
@@ -63,9 +62,9 @@ public class TestGrammarSamples {
 			List<Grammar> grammars,
 			List<String> wordsToGenerateSetVs,
 			List<Set<Variable>[][]> setVs,
-			List<Boolean> booleanOverall,
-			List<Boolean> booleanProducibility,
-			List<Boolean> booleanRestrictions
+			List<Boolean> isOverall,
+			List<Boolean> isProducibility,
+			List<Boolean> isRestrictions
 	) {
 		int countSamplesToKeepPerWord = 10;
 		int countSamplesAreStoredForWords = 10;
@@ -75,9 +74,9 @@ public class TestGrammarSamples {
 		List<String> sampleWords = new ArrayList<>();
 		List<Grammar> sampleGrammars = new ArrayList<>();
 		List<Set<Variable>[][]> sampleSetVs = new ArrayList<>();
-		List<Boolean> sampleBooleanOverall = new ArrayList<>();
-		List<Boolean> sampleBooleanProducibility = new ArrayList<>();
-		List<Boolean> sampleBooleanRestrictions = new ArrayList<>();
+		List<Boolean> sampleIsOverall = new ArrayList<>();
+		List<Boolean> sampleIsProducibility = new ArrayList<>();
+		List<Boolean> sampleIsRestrictions = new ArrayList<>();
 		List<Integer> sampleMaxVarsPerCellSetV = new ArrayList<>();
 		for ( int i = 0; i < countSamplesAreStoredForWords; i++ ) {
 			sampleWords.add( wordsToGenerateSetVs.get( i ) );
@@ -85,9 +84,9 @@ public class TestGrammarSamples {
 				int index = i * countOfGrammarsToGeneratePerWord + j;
 				sampleGrammars.add( grammars.get( index ) );
 				sampleSetVs.add( setVs.get( index ) );
-				sampleBooleanOverall.add( booleanOverall.get( index ) );
-				sampleBooleanProducibility.add( booleanProducibility.get( index ) );
-				sampleBooleanRestrictions.add( booleanRestrictions.get( index ) );
+				sampleIsOverall.add( isOverall.get( index ) );
+				sampleIsProducibility.add( isProducibility.get( index ) );
+				sampleIsRestrictions.add( isRestrictions.get( index ) );
 			}
 		}
 		for ( int i = 0; i < sampleGrammars.size(); i++ ) {
@@ -97,9 +96,9 @@ public class TestGrammarSamples {
 				sampleGrammars,
 				sampleWords,
 				sampleSetVs,
-				sampleBooleanOverall,
-				sampleBooleanProducibility,
-				sampleBooleanRestrictions,
+				sampleIsOverall,
+				sampleIsProducibility,
+				sampleIsRestrictions,
 				sampleMaxVarsPerCellSetV
 		);
 	}
@@ -116,16 +115,16 @@ public class TestGrammarSamples {
 		return sampleSetVs;
 	}
 
-	public List<Boolean> getSampleBooleanOverall() {
-		return sampleBooleanOverall;
+	public List<Boolean> getSampleIsOverall() {
+		return sampleIsOverall;
 	}
 
-	public List<Boolean> getSampleBooleanProducibility() {
-		return sampleBooleanProducibility;
+	public List<Boolean> getSampleIsProducibility() {
+		return sampleIsProducibility;
 	}
 
-	public List<Boolean> getSampleBooleanRestrictions() {
-		return sampleBooleanRestrictions;
+	public List<Boolean> getSampleIsRestrictions() {
+		return sampleIsRestrictions;
 	}
 
 	@Override
@@ -138,10 +137,13 @@ public class TestGrammarSamples {
 						.append( "\nsampleGrammars=" ).append( sampleGrammars.get( i ).toString() )
 						.append( "\nsampleWords=" ).append( sampleWords.get( j ) )
 						.append( "\nsampleMaxVarsPerCellSetV=" ).append( sampleMaxVarsPerCellSetV.get( i ) )
-						.append( "\nsampleSetVs=" ).append( Util.getSetVAsStringForPrinting( sampleSetVs.get( i ), "" ) )
-						.append( "sampleBooleanOverall=" ).append( sampleBooleanOverall.get( i ) )
-						.append( "\nsampleBooleanProducibility=" ).append( sampleBooleanProducibility.get( i ) )
-						.append( "\nsampleBooleanRestrictions=" ).append( sampleBooleanRestrictions.get( i ) );
+						.append( "\nsampleSetVs=" ).append( Util.getSetVAsStringForPrinting(
+						sampleSetVs.get( i ),
+						""
+				) )
+						.append( "sampleIsOverall=" ).append( sampleIsOverall.get( i ) )
+						.append( "\nsampleIsProducibility=" ).append( sampleIsProducibility.get( i ) )
+						.append( "\nsampleIsRestrictions=" ).append( sampleIsRestrictions.get( i ) );
 			}
 		}
 		return stringBuilder.toString();

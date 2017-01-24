@@ -1,11 +1,5 @@
 package com.github.andreasbraun5.thesis.util;
 
-import com.github.andreasbraun5.thesis.generatortest.TestGrammarResult;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
-import com.github.andreasbraun5.thesis.grammar.Terminal;
-import com.github.andreasbraun5.thesis.grammar.Variable;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -14,6 +8,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import com.github.andreasbraun5.thesis.generatortest.TestGrammarResult;
+import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
+import com.github.andreasbraun5.thesis.grammar.Terminal;
+import com.github.andreasbraun5.thesis.grammar.Variable;
 
 /**
  * Created by Andreas Braun on 05.01.2017.
@@ -29,7 +28,7 @@ public class Util {
 	}
 
 	/**
-	 * 	Counting the stored elements in each entry of the setV matrix and looking for the max count.
+	 * Counting the stored elements in each entry of the setV matrix and looking for the max count.
 	 */
 	public static int getMaxVarPerCellForSetV(Set<Variable>[][] setV) {
 		int numberOfVarsPerCell = 0;
