@@ -17,21 +17,22 @@ import com.github.andreasbraun5.thesis.grammar.VariableCompound;
  * Created by Andreas Braun on 24.01.2017.
  * https://github.com/AndreasBraun5/
  */
-public class GeneratorGrammarDiceRollBias extends GeneratorGrammarDiceRoll {
+public class GeneratorGrammarDiceRollBias extends GeneratorGrammarDiceRoll<GeneratorGrammarDiceRollSettings> {
 
 	public GeneratorGrammarDiceRollBias(
 			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings,
-			Random random) {
-		super( generatorGrammarDiceRollSettings, random );
+			Random random, GeneratorType generatorType) {
+		super( generatorGrammarDiceRollSettings, random, generatorType );
 	}
 
-	public GeneratorGrammarDiceRollBias(GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings) {
-		super( generatorGrammarDiceRollSettings );
+	public GeneratorGrammarDiceRollBias(GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings, GeneratorType generatorType) {
+		super( generatorGrammarDiceRollSettings, generatorType );
 	}
 
-	public Grammar generateGrammarBias() {
+	@Override
+	public Grammar generateGrammar() {
 		// Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
-		Grammar grammar = new Grammar( generatorGrammarDiceRollSettings.grammarProperties.variableStart );
+		Grammar grammar = new Grammar( generatorGrammarSettings.grammarProperties.variableStart );
 		grammar = distributeTerminals( grammar );
 		grammar = distributeCompoundVariables( grammar );
 		return grammar;
@@ -41,27 +42,27 @@ public class GeneratorGrammarDiceRollBias extends GeneratorGrammarDiceRoll {
 	protected Grammar distributeTerminals(Grammar grammar) {
 		return distributeDiceRollRightHandSideElementsBias(
 				grammar,
-				generatorGrammarDiceRollSettings.grammarProperties.terminals,
-				generatorGrammarDiceRollSettings.getMinValueTerminalsAreAddedTo(),
-				generatorGrammarDiceRollSettings.getMaxValueTerminalsAreAddedTo(),
-				generatorGrammarDiceRollSettings.getFavouritism()
+				this.generatorGrammarSettings.grammarProperties.terminals,
+				this.generatorGrammarSettings.getMinValueTerminalsAreAddedTo(),
+				this.generatorGrammarSettings.getMaxValueTerminalsAreAddedTo(),
+				this.generatorGrammarSettings.getFavouritism()
 		);
 	}
 
 	@Override
 	protected Grammar distributeCompoundVariables(Grammar grammar) {
 		Set<VariableCompound> varTupel = new HashSet<>();
-		for ( Variable var1 : generatorGrammarDiceRollSettings.grammarProperties.variables ) {
-			for ( Variable var2 : generatorGrammarDiceRollSettings.grammarProperties.variables ) {
+		for ( Variable var1 : this.generatorGrammarSettings.grammarProperties.variables ) {
+			for ( Variable var2 : this.generatorGrammarSettings.grammarProperties.variables ) {
 				varTupel.add( new VariableCompound( var1, var2 ) );
 			}
 		}
 		return distributeDiceRollRightHandSideElementsBias(
 				grammar,
 				varTupel,
-				generatorGrammarDiceRollSettings.getMinValueCompoundVariablesAreAddedTo(),
-				generatorGrammarDiceRollSettings.getMaxValueCompoundVariablesAreAddedTo(),
-				generatorGrammarDiceRollSettings.getFavouritism()
+				this.generatorGrammarSettings.getMinValueCompoundVariablesAreAddedTo(),
+				this.generatorGrammarSettings.getMaxValueCompoundVariablesAreAddedTo(),
+				this.generatorGrammarSettings.getFavouritism()
 		);
 	}
 
@@ -71,7 +72,7 @@ public class GeneratorGrammarDiceRollBias extends GeneratorGrammarDiceRoll {
 			int minCountElementDistributedTo,
 			int maxCountElementDistributedTo,
 			int favouritism[]) {
-		List<Variable> tempVariables2 = new ArrayList<>( generatorGrammarDiceRollSettings.grammarProperties.variables );
+		List<Variable> tempVariables2 = new ArrayList<>( this.generatorGrammarSettings.grammarProperties.variables );
 		Map<Variable, Integer> favouritismToVariable = new HashMap<>();
 		{
 			// Mapping the favouritism randomly to the variables. Pick one random variable and add the first favouritism to it.

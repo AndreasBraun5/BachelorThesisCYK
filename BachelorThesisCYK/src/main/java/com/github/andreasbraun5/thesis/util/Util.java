@@ -30,6 +30,7 @@ public class Util {
 	/**
 	 * Counting the stored elements in each entry of the setV matrix and looking for the max count.
 	 */
+	// TODO: duplicate maxVarPerCell
 	public static int getMaxVarPerCellForSetV(Set<Variable>[][] setV) {
 		int numberOfVarsPerCell = 0;
 		int temp = setV.length;
@@ -55,8 +56,7 @@ public class Util {
 			PrintWriter out = new PrintWriter( file );
 			for ( TestGrammarResult aResult : testGrammarResult ) {
 				out.println( aResult );
-				out.print( aResult.getGeneratorGrammarDiceRollSettings().grammarProperties );
-				out.println( aResult.getTestGrammarSamples().toString() );
+				out.println( aResult.getTestGrammarRepresentativeExamples().toString() );
 			}
 			out.close();
 		}

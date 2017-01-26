@@ -7,11 +7,8 @@ import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
  * Each GeneratorGrammarSettings subclass should have at least GrammarProperties as its minimum settings.
  * All more variables are additional settings needed for the specific generator.
  */
-public abstract class GeneratorGrammarSettings {
+public interface GeneratorGrammarSettings {
 
-	public final GrammarProperties grammarProperties;
+	GrammarProperties getGrammarProperties();
 
-	GeneratorGrammarSettings(GrammarProperties grammarProperties) {
-		this.grammarProperties = grammarProperties;
-	}
 }

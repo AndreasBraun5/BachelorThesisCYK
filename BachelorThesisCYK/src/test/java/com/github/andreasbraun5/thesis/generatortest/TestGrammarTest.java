@@ -1,17 +1,16 @@
 package com.github.andreasbraun5.thesis.generatortest;
 
 import java.util.List;
-import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.generator.GeneratorType;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.GrammarValidityChecker;
-import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.main.Main;
 
 /**
@@ -35,33 +34,27 @@ public class TestGrammarTest {
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );
 		}
-		TestGrammar testGrammar1 = new TestGrammar( countGeneratedGrammarsPerWord, countDifferentWords );
+		TestGrammar testGrammar1 = new TestGrammar( countDifferentWords, countGeneratedGrammarsPerWord);
 		TestGrammarResult test1DiceRollResult = testGrammar1.testGeneratorGrammar(
-				generatorGrammarDiceRollSettings, TestMethod.DICE );
-		List<String> sampleWords = test1DiceRollResult.getTestGrammarSamples().getSampleWords();
-		List<Grammar> sampleGrammars = test1DiceRollResult.getTestGrammarSamples().getSampleGrammars();
-		List<Set<Variable>[][]> sampleSetVs = test1DiceRollResult.getTestGrammarSamples().getSampleSetVs();
-		List<Boolean> sampleBooleanOverall = test1DiceRollResult.getTestGrammarSamples().getSampleIsOverall();
-		List<Boolean> sampleBooleanProducibility = test1DiceRollResult.getTestGrammarSamples()
-				.getSampleIsProducibility();
-		List<Boolean> SampleBooleanRestrictions = test1DiceRollResult.getTestGrammarSamples()
-				.getSampleIsRestrictions();
+				new GeneratorGrammarDiceRollOnly( generatorGrammarDiceRollSettings, GeneratorType.DICEROLLONLY )
+		);
+		List<TestGrammarSample> testGrammarRepresentativeExamples = test1DiceRollResult.getTestGrammarRepresentativeExamples()
+				.getTestGrammarRepresentativeExamples();
 		int curIndex = 0;
-		for ( int i = 0; i <= sampleWords.size(); i++ ) {
-			for ( int j = 0; j <= sampleGrammars.size(); j++ ) {
-				Assert.assertEquals(
-						"productions.length was not equal to .size",
-						sampleBooleanProducibility.get( curIndex ),
-						GrammarValidityChecker.checkProducibilityCYK(
-								sampleSetVs.get( curIndex ),
-								sampleGrammars.get( curIndex ),
-								grammarProperties
-						)
-				);
-			}
-			curIndex++;
+		for ( TestGrammarSample testGrammarSample : testGrammarRepresentativeExamples ) {
+			Assert.assertEquals(
+					"productions.length was not equal to .size",
+					testGrammarSample.isValidity(),
+					GrammarValidityChecker.checkProducibilityCYK(
+							testGrammarSample.getSetV(),
+							testGrammarSample.getGrammar(),
+							grammarProperties
+					)
+			);
 		}
+		curIndex++;
 		System.out.println( "Executed successfully." );
 	}
 }
+
 

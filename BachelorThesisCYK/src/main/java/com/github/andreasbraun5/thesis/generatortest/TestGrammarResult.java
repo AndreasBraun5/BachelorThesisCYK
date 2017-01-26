@@ -1,9 +1,12 @@
 package com.github.andreasbraun5.thesis.generatortest;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarSettings;
+import com.github.andreasbraun5.thesis.generator.GeneratorType;
 
 /**
  * Created by Andreas Braun on 17.01.2017.
@@ -14,34 +17,28 @@ import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSetting
 public class TestGrammarResult {
 	private int countGeneratedGrammarsPerWord;
 	private int countDifferentWords;
-	private GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings;
+	private GeneratorGrammarSettings generatorGrammarSettings;
 	private long totalTime;
-	private String testMethod;
-	private TestGrammarSamples testGrammarSamples;
+	private GeneratorType generatorType;
+	private TestGrammarRepresentativeExamples testGrammarRepresentativeExamples;
 	private TestGrammarResultSuccessRates testGrammarResultSuccessRates;
 
 	public TestGrammarResult(
 			int countGeneratedGrammarsPerWord,
 			int countDifferentWords,
-			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings,
+			GeneratorGrammarSettings generatorGrammarSettings,
 			long totalTime,
-			String testMethod,
-			TestGrammarSamples testGrammarSamples,
-			List<Boolean> booleanOverall,
-			List<Boolean> booleanProducibility,
-			List<Boolean> booleanRestrictions
+			GeneratorType generatorType,
+			TestGrammarRepresentativeExamples testGrammarRepresentativeExamples,
+			Map<String, List<TestGrammarSample>> testGrammarSamples
 	) {
 		this.countGeneratedGrammarsPerWord = countGeneratedGrammarsPerWord;
 		this.countDifferentWords = countDifferentWords;
-		this.generatorGrammarDiceRollSettings = generatorGrammarDiceRollSettings;
-		this.testMethod = testMethod;
+		this.generatorGrammarSettings = generatorGrammarSettings;
+		this.generatorType = generatorType;
 		this.totalTime = totalTime;
-		this.testGrammarSamples = testGrammarSamples;
-		this.testGrammarResultSuccessRates = new TestGrammarResultSuccessRates(
-				booleanOverall,
-				booleanProducibility,
-				booleanRestrictions
-		);
+		this.testGrammarRepresentativeExamples = testGrammarRepresentativeExamples;
+		this.testGrammarResultSuccessRates = new TestGrammarResultSuccessRates( testGrammarSamples );
 	}
 
 	@Override
@@ -55,7 +52,8 @@ public class TestGrammarResult {
 				"\ncountDifferentWords= " + countDifferentWords +
 				"\ntotalTime= " + totalTime + "ms" +
 				"\ntotalTime= " + minutes + "min " + seconds + "sec" +
-				"\ntestMethod= " + this.testMethod +
+				"\ngeneratorType= " + this.generatorType +
+				"\ngeneratorGrammarSettings" + generatorGrammarSettings +
 				testGrammarResultSuccessRates.toString() +
 				"\n}";
 	}
@@ -72,15 +70,15 @@ public class TestGrammarResult {
 		return totalTime;
 	}
 
-	public TestGrammarSamples getTestGrammarSamples() {
-		return testGrammarSamples;
+	public TestGrammarRepresentativeExamples getTestGrammarRepresentativeExamples() {
+		return testGrammarRepresentativeExamples;
 	}
 
 	public TestGrammarResultSuccessRates getTestGrammarResultSuccessRates() {
 		return testGrammarResultSuccessRates;
 	}
 
-	public GeneratorGrammarDiceRollSettings getGeneratorGrammarDiceRollSettings() {
-		return generatorGrammarDiceRollSettings;
+	public GeneratorGrammarSettings getGeneratorGrammarDiceRollSettings() {
+		return generatorGrammarSettings;
 	}
 }

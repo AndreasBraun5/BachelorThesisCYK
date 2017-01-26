@@ -1,5 +1,7 @@
 package com.github.andreasbraun5.thesis.generator;
 
+import java.util.Arrays;
+
 import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 
@@ -12,12 +14,13 @@ import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
  * Another kind of bias is that one variable gets more rightHandSideElements than the others, this happens with a probability.
  * favouritism = list of probabilities to favour a variable.
  */
-public class GeneratorGrammarDiceRollSettings extends GeneratorGrammarSettings {
-	public final GrammarProperties grammarProperties;
-	private int minValueCompoundVariablesAreAddedTo; // default is 0
-	private int minValueTerminalsAreAddedTo; // default is 1
-	private int maxValueCompoundVariablesAreAddedTo; // default is to all variables would be possible
-	private int maxValueTerminalsAreAddedTo; // default is to all variables would be possible
+public class GeneratorGrammarDiceRollSettings implements GeneratorGrammarSettings {
+
+	public final GrammarProperties grammarProperties; //
+	protected int minValueCompoundVariablesAreAddedTo; // default is 0
+	protected int minValueTerminalsAreAddedTo; // default is 1
+	protected int maxValueCompoundVariablesAreAddedTo; // default is to all variables would be possible
+	protected int maxValueTerminalsAreAddedTo; // default is to all variables would be possible
 	// TODO: bias favouritism
 	// favouritism element of [1, ...]. One is neutral favouritism. All numbers bigger indicate more favouritism, e.g.
 	// 2 == 200% favouritism, it is 2 times more likely to use this variables for distributing the elements. It is not
@@ -26,7 +29,6 @@ public class GeneratorGrammarDiceRollSettings extends GeneratorGrammarSettings {
 	private int[] favouritism;
 
 	public GeneratorGrammarDiceRollSettings(GrammarProperties grammarProperties) {
-		super( grammarProperties );
 		this.grammarProperties = grammarProperties;
 		minValueTerminalsAreAddedTo = 1;
 		minValueCompoundVariablesAreAddedTo = 0;
@@ -93,5 +95,22 @@ public class GeneratorGrammarDiceRollSettings extends GeneratorGrammarSettings {
 
 	public int[] getFavouritism() {
 		return favouritism;
+	}
+
+	@Override
+	public GrammarProperties getGrammarProperties() {
+		return grammarProperties;
+	}
+
+	@Override
+	public String toString() {
+		return "GeneratorGrammarDiceRollSettings{" +
+				"\ngrammarProperties=" + grammarProperties +
+				"\nminValueCompoundVariablesAreAddedTo=" + minValueCompoundVariablesAreAddedTo +
+				"\nminValueTerminalsAreAddedTo=" + minValueTerminalsAreAddedTo +
+				"\nmaxValueCompoundVariablesAreAddedTo=" + maxValueCompoundVariablesAreAddedTo +
+				"\nmaxValueTerminalsAreAddedTo=" + maxValueTerminalsAreAddedTo +
+				"\nfavouritism=" + Arrays.toString( favouritism ) +
+				"\n}";
 	}
 }

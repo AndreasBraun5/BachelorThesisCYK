@@ -24,7 +24,7 @@ public class GrammarValidityChecker {
 			GrammarProperties grammarProperties) {
 		return CYK.algorithmSimple( setV, grammar, grammarProperties );
 	}
-
+	// TODO: duplicate maxVarPerCell
 	private static boolean checkMaxNumberOfVarsPerCell(int maxNumberOfVarsPerCell, Set<Variable>[][] setV) {
 		if ( maxNumberOfVarsPerCell == 0 ) {
 			throw new GrammarPropertiesRuntimeException( "maxNumberOfVarsPerCell is zero." );

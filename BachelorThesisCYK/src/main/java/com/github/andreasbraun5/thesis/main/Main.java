@@ -4,10 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollBias;
+import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
+import com.github.andreasbraun5.thesis.generator.GeneratorType;
 import com.github.andreasbraun5.thesis.generatortest.TestGrammar;
 import com.github.andreasbraun5.thesis.generatortest.TestGrammarResult;
-import com.github.andreasbraun5.thesis.generatortest.TestMethod;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -15,18 +17,21 @@ import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.util.Util;
 
 public class Main {
-	// TODO: prepare overview of test data to inspect
-	// TODO: CYK advanced, instead of storing X now you must save (X,k)
-	// TODO: CYK tree
-	// TODO: bias implementation, prefer one of the variables specifically, check it
-	// TODO: implement that at least one cell can only be filled through combination of two "correct" cells, forced
+	// TODO:1 prepare overview of test data to inspect
+	// TODO:2 CYK advanced, instead of storing X now you must save (X,k)
+	// TODO:2 CYK tree
+	// TODO:3 bias implementation, prefer one of the variables specifically, check it
+	// TODO:3 implement that at least one cell can only be filled through combination of two "correct" cells, forced
 	// combination of words of the right size.
-	// TODO: Hast du eigentlich den Test implementiert, dass man (mind. eine) Zelle nur durch Kombination von den
+	// TODO:3 Hast du eigentlich den Test implementiert, dass man (mind. eine) Zelle nur durch Kombination von den
 	// “korrekten” anderen Zellen und eben nicht dadurch, dass man die beiden direkt darüber anschaut, bekommt?
 	// --> modify cyk advanced and store how .... no
-	// TODO: Idea StartVariable has no terminal, kind of "pattern" from exam excercises
+	// TODO: Idea StartVariable has no terminal, kind of "pattern" from exam exercises
 	// TODO: Test DiceRolling and DiceRollingBias. Idea is to take a look at the relative of occurrence for the
 	// 			Variables considering all generated grammars.
+	// TODO: !!!!!!!!!!!!!!!!!!!!!!! check, testResults should have identical successrate !!!!!!!!!!!!!!!!!!!!!!!
+	// 			It is like this therefore it works.
+
 	public static void main(String[] args) {
 
 		/**
@@ -37,6 +42,8 @@ public class Main {
 		GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
 		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings =
 				new GeneratorGrammarDiceRollSettings( grammarProperties );
+		generatorGrammarDiceRollSettings.setMaxValueCompoundVariablesAreAddedTo( 2 );
+		generatorGrammarDiceRollSettings.setMaxValueTerminalsAreAddedTo( 2 );
 
 		/**
 		 * 	N = countOfGrammarsTogGenerate.
@@ -46,23 +53,31 @@ public class Main {
 		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
 		grammarProperties.sizeOfWord = 10; // All TestResults will be based on words of this size.
 		grammarProperties.maxNumberOfVarsPerCell = 3; // Used for restrictions check.
-		int countGeneratedGrammarsPerWord = 100;
-		int countDifferentWords = 10;
+		int countGeneratedGrammarsPerWord = 500;
+		int countDifferentWords = 100;
 		// this boundary is relevant so that the JVM doesn't run out of memory while calculating one TestGrammarResult.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );
 		}
-		// TODO: check, testResults should have identical sucessrate
-		TestGrammar testGrammar1 = new TestGrammar( countGeneratedGrammarsPerWord, countDifferentWords );
+		// TODO: check, testResults should have identical success rate
+		TestGrammar testGrammar1 = new TestGrammar( countDifferentWords, countGeneratedGrammarsPerWord );
 		TestGrammarResult test1DiceRollResult = testGrammar1.testGeneratorGrammar(
-				generatorGrammarDiceRollSettings, TestMethod.DICE );
+				new GeneratorGrammarDiceRollOnly( generatorGrammarDiceRollSettings, GeneratorType.DICEROLLONLY )
+		);
 		TestGrammarResult test2DiceRollBiasResult = testGrammar1.testGeneratorGrammar(
-				generatorGrammarDiceRollSettings, TestMethod.DICEANDBIAS );
+				new GeneratorGrammarDiceRollBias( generatorGrammarDiceRollSettings, GeneratorType.DICEROLLBIAS )
+		);
+		TestGrammarResult test3DiceRollResult = testGrammar1.testGeneratorGrammar(
+				new GeneratorGrammarDiceRollOnly( generatorGrammarDiceRollSettings, GeneratorType.DICEROLLONLY )
+		);
+		TestGrammarResult test4DiceRollBiasResult = testGrammar1.testGeneratorGrammar(
+				new GeneratorGrammarDiceRollBias( generatorGrammarDiceRollSettings, GeneratorType.DICEROLLBIAS )
+		);
 
 		/**
 		 * 	Storing all the samples in a txt.
 		 */
-		Util.writeToFile( "filename", test1DiceRollResult, test2DiceRollBiasResult );
+		Util.writeToFile( "filename", test1DiceRollResult, test2DiceRollBiasResult, test3DiceRollResult, test4DiceRollBiasResult );
 	}
 
 	public static GrammarProperties generateGrammarPropertiesForTesting() {

@@ -14,34 +14,36 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
  * Created by Andreas Braun on 24.01.2017.
  * https://github.com/AndreasBraun5/
  */
-public abstract class GeneratorGrammarDiceRoll {
+public abstract class GeneratorGrammarDiceRoll<T extends GeneratorGrammarDiceRollSettings> extends GeneratorGrammar<T> {
 
-	protected GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings;
 	protected final Random random;
 
 	// Needed for testing purposes, fixed seed possible.
 	public GeneratorGrammarDiceRoll(
-			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings,
-			Random random) {
-		this.generatorGrammarDiceRollSettings = generatorGrammarDiceRollSettings;
+			T generatorGrammarDiceRollSettings,
+			Random random, GeneratorType generatorType) {
+		super( generatorGrammarDiceRollSettings, generatorType );
 		this.random = random;
+		this.generatorGrammarSettings = generatorGrammarDiceRollSettings;
 	}
 
-	public GeneratorGrammarDiceRoll(
-			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings) {
-		this( generatorGrammarDiceRollSettings, new Random() );
+	public GeneratorGrammarDiceRoll(T generatorGrammarDiceRollSettings, GeneratorType generatorType) {
+		this( generatorGrammarDiceRollSettings, new Random(), generatorType );
 	}
 
+	@Override
 	public Grammar generateGrammar() {
 		// Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
-		Grammar grammar = new Grammar( generatorGrammarDiceRollSettings.grammarProperties.variableStart );
+		Grammar grammar = new Grammar( generatorGrammarSettings.grammarProperties.variableStart );
 		grammar = distributeTerminals( grammar );
 		grammar = distributeCompoundVariables( grammar );
 		return grammar;
 	}
 
+	@Override
 	protected abstract Grammar distributeTerminals(Grammar grammar);
 
+	@Override
 	protected abstract Grammar distributeCompoundVariables(Grammar grammar);
 
 	/**

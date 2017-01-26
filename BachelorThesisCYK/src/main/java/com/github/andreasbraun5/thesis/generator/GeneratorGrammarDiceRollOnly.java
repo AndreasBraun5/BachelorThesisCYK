@@ -16,18 +16,18 @@ import com.github.andreasbraun5.thesis.grammar.VariableCompound;
  * - One kind of bias is the setting of the minValue* and maxValue* variables.
  * - Another kind of bias is that one variable gets more rightHandSideElements than the others, this happens with a probability.
  */
-public class GeneratorGrammarDiceRollOnly extends GeneratorGrammarDiceRoll {
+public class GeneratorGrammarDiceRollOnly extends GeneratorGrammarDiceRoll<GeneratorGrammarDiceRollSettings> {
 
 	// Needed for testing purposes, fixed seed possible.
 	public GeneratorGrammarDiceRollOnly(
 			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings,
-			Random random) {
-		super( generatorGrammarDiceRollSettings, random );
+			Random random, GeneratorType generatorType) {
+		super( generatorGrammarDiceRollSettings, random, generatorType );
 	}
 
 	public GeneratorGrammarDiceRollOnly(
-			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings) {
-		super( generatorGrammarDiceRollSettings, new Random() );
+			GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings, GeneratorType generatorType) {
+		super( generatorGrammarDiceRollSettings, new Random(), generatorType );
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class GeneratorGrammarDiceRollOnly extends GeneratorGrammarDiceRoll {
 	@Override
 	public Grammar generateGrammar() {
 		// Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
-		Grammar grammar = new Grammar( generatorGrammarDiceRollSettings.grammarProperties.variableStart );
+		Grammar grammar = new Grammar( generatorGrammarSettings.grammarProperties.variableStart );
 		grammar = distributeTerminals( grammar );
 		grammar = distributeCompoundVariables( grammar );
 		return grammar;
@@ -46,27 +46,27 @@ public class GeneratorGrammarDiceRollOnly extends GeneratorGrammarDiceRoll {
 	protected Grammar distributeTerminals(Grammar grammar) {
 		return distributeDiceRollRightHandSideElements(
 				grammar,
-				generatorGrammarDiceRollSettings.grammarProperties.terminals,
-				generatorGrammarDiceRollSettings.getMinValueTerminalsAreAddedTo(),
-				generatorGrammarDiceRollSettings.getMaxValueTerminalsAreAddedTo(),
-				new ArrayList<>( generatorGrammarDiceRollSettings.grammarProperties.variables )
+				generatorGrammarSettings.grammarProperties.terminals,
+				generatorGrammarSettings.getMinValueTerminalsAreAddedTo(),
+				generatorGrammarSettings.getMaxValueTerminalsAreAddedTo(),
+				new ArrayList<>( generatorGrammarSettings.grammarProperties.variables )
 		);
 	}
 
 	@Override
 	protected Grammar distributeCompoundVariables(Grammar grammar) {
 		Set<VariableCompound> varTupel = new HashSet<>();
-		for ( Variable var1 : generatorGrammarDiceRollSettings.grammarProperties.variables ) {
-			for ( Variable var2 : generatorGrammarDiceRollSettings.grammarProperties.variables ) {
+		for ( Variable var1 : generatorGrammarSettings.grammarProperties.variables ) {
+			for ( Variable var2 : generatorGrammarSettings.grammarProperties.variables ) {
 				varTupel.add( new VariableCompound( var1, var2 ) );
 			}
 		}
 		return super.distributeDiceRollRightHandSideElements(
 				grammar,
 				varTupel,
-				generatorGrammarDiceRollSettings.getMinValueCompoundVariablesAreAddedTo(),
-				generatorGrammarDiceRollSettings.getMaxValueCompoundVariablesAreAddedTo(),
-				new ArrayList<>( generatorGrammarDiceRollSettings.grammarProperties.variables )
+				generatorGrammarSettings.getMinValueCompoundVariablesAreAddedTo(),
+				generatorGrammarSettings.getMaxValueCompoundVariablesAreAddedTo(),
+				new ArrayList<>( generatorGrammarSettings.grammarProperties.variables )
 		);
 	}
 

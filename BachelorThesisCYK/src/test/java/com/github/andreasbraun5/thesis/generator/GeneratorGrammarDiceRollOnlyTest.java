@@ -36,7 +36,7 @@ public class GeneratorGrammarDiceRollOnlyTest {
 		System.out.println( grammarProperties );
 		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings = new GeneratorGrammarDiceRollSettings(grammarProperties);
 		GeneratorGrammarDiceRollOnly generatorGrammarDiceRollOnly = new GeneratorGrammarDiceRollOnly(
-				generatorGrammarDiceRollSettings );
+				generatorGrammarDiceRollSettings, GeneratorType.DICEROLLONLY );
 		Grammar grammar = generatorGrammarDiceRollOnly.generateGrammar();
 		System.out.println( grammar );
 		GrammarProperties grammarProperties2 = new GrammarProperties( new VariableStart( "S" ) );
