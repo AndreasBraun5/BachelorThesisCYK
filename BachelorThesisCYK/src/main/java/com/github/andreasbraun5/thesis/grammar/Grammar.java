@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
-
 /**
  * Created by Andreas Braun on 20.12.2016.
  */
@@ -25,8 +23,8 @@ script of TI1 as one "line" of productionsMap like "A --> a | A | AB".
 public class Grammar {
 
 	// As stated above. Key=A, Value: A-->a and A-->B and A--> AB
-	private Map<Variable, List<Production>> productionsMap = new HashMap<>();
-	private VariableStart variableStart; // Implemented like this, because there can be only one variableStart.
+	private final Map<Variable, List<Production>> productionsMap = new HashMap<>();
+	private final VariableStart variableStart; // Implemented like this, because there can be only one variableStart.
 
 	public Grammar(VariableStart variableStart) {
 		this.variableStart = variableStart;
@@ -40,9 +38,11 @@ public class Grammar {
 		// Making production that are added unique.
 		Set<Production> tempSet = new HashSet<>( Arrays.asList( production ) );
 		// Considering duplicates in the parameters.
+		/* TODO: think about this Exceptions, does not work with bias
 		if ( tempSet.size() != countProductionsToAdd ) {
 			throw new GrammarRuntimeException( "AddProduction: Duplicate production found in the production list." );
 		}
+		*/
 		addProduction( tempSet );
 	}
 
@@ -71,9 +71,11 @@ public class Grammar {
 			replaceProductions( var, prodsList );
 		}
 		int countProductionsAfter = this.getProductionsAsList().size();
+		/* TODO: think about this Exceptions, does not work with bias
 		if ( countProductionsAfter != countProductionsBefore + countProductionsToAdd ) {
 			throw new GrammarRuntimeException( "AddProduction: Duplicate production found in the production set." );
 		}
+		*/
 	}
 
 	/**
@@ -85,10 +87,15 @@ public class Grammar {
 
 	@Override
 	public String toString() {
-		return "Grammar{" +
-				"\nvariableStart: " + variableStart +
-				"\n" + productionsMap +
-				'}';
+		StringBuilder str = new StringBuilder( "Grammar{" +
+													   "\nvariableStart: " + variableStart +
+													   "\nProductions\n" );
+		for ( Map.Entry<Variable, List<Production>> entry : productionsMap.entrySet() ) {
+			str.append( entry.getKey() );
+			str.append( entry.getValue() );
+			str.append( "\n" );
+		}
+		return str.toString();
 	}
 
 	public Map<Variable, List<Production>> getProductionsMap() {

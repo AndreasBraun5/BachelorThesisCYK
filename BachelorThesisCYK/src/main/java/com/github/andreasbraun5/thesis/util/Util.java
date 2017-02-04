@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.github.andreasbraun5.thesis.generatortest.TestGrammarResult;
+import com.github.andreasbraun5.thesis.resultcalculator.Result;
 import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -17,7 +17,7 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 /**
  * Created by Andreas Braun on 05.01.2017.
  */
-public class Util {
+public abstract class Util {
 	/**
 	 * Removing duplicates from a collection.
 	 */
@@ -48,20 +48,19 @@ public class Util {
 	 * Storing the result output in a text file.
 	 */
 	public static void writeToFile(
-			String filename,
-			TestGrammarResult... testGrammarResult) {
-		try {
-			File file = new File( "./" + filename + ".txt" );
-			file.getParentFile().mkdirs();
-			PrintWriter out = new PrintWriter( file );
-			for ( TestGrammarResult aResult : testGrammarResult ) {
-				out.println( aResult );
-				out.println( aResult.getTestGrammarRepresentativeExamples().toString() );
+			Result... result) {
+		for ( int i=0; i< result.length; i++) {
+			try {
+				File file = new File( "./" + "Test" + i +".txt" );
+				file.getParentFile().mkdirs();
+				PrintWriter out = new PrintWriter( file );
+				out.println( result[i] );
+				out.println( result[i].getRepresentativeResultSamples().toString() );
+				out.close();
 			}
-			out.close();
-		}
-		catch (FileNotFoundException e) {
-			e.printStackTrace();
+			catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -76,20 +75,23 @@ public class Util {
 		return wordAsTerminalList;
 	}
 
+
+	// TODO: Remove duplicate code.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 	/**
 	 * Method to get the setV as a String for printing purposes.
 	 */
-	public static String getSetVAsStringForPrinting(Set<Variable>[][] setV, String setName) {
+	public static String getSetVAsStringForPrintingAsLowerTriangularMatrix(Set<Variable>[][] setV, String setName) {
 		StringBuilder stringBuilder = new StringBuilder( setName ).append( "\n" );
-		int wordlength = setV.length;
+		int wordLength = setV.length;
 		int maxLen = 0;
-		for ( int i = 0; i < wordlength; i++ ) {
-			for ( int j = 0; j < wordlength; j++ ) {
+		for ( int i = 0; i < wordLength; i++ ) {
+			for ( int j = 0; j < wordLength; j++ ) {
 				maxLen = Math.max( maxLen, setV[j][i].toString().length() );
 			}
 		}
-		for ( int i = 0; i < wordlength; i++ ) {
-			for ( int j = 0; j < wordlength; j++ ) {
+		for ( int i = 0; i < wordLength; i++ ) {
+			for ( int j = 0; j < wordLength; j++ ) {
 				stringBuilder.append( uniformStringMaker( setV[j][i].toString(), maxLen ) );
 			}
 			stringBuilder.append( "\n" );
@@ -98,9 +100,9 @@ public class Util {
 	}
 
 	/**
-	 * Method for printing the set matrix
+	 * Method for printing the set matrix.
 	 */
-	public static void printSetV(Set<Variable>[][] setV, String setName) {
+	public static void printSetVAsLowerTriangularMatrix(Set<Variable>[][] setV, String setName) {
 		System.out.println();
 		System.out.println( setName );
 		int wordlength = setV.length;
@@ -108,6 +110,7 @@ public class Util {
 		for ( int i = 0; i < wordlength; i++ ) {
 			for ( int j = 0; j < wordlength; j++ ) {
 				maxLen = Math.max( maxLen, setV[j][i].toString().length() );
+
 			}
 		}
 		for ( int i = 0; i < wordlength; i++ ) {
@@ -119,7 +122,50 @@ public class Util {
 	}
 
 	/**
-	 * helper method used by printSetV
+	 * Method to get the setV as a String for printing purposes.
+	 */
+	public static String getSetVAsStringForPrintingAsUpperTriangularMatrix(Set<Variable>[][] setV, String setName) {
+		StringBuilder stringBuilder = new StringBuilder( setName ).append( "\n" );
+		int wordLength = setV.length;
+		int maxLen = 0;
+		for ( int i = 0; i < wordLength; i++ ) {
+			for ( int j = 0; j < wordLength; j++ ) {
+				maxLen = Math.max( maxLen, setV[i][j].toString().length() );
+			}
+		}
+		for ( int i = 0; i < wordLength; i++ ) {
+			for ( int j = 0; j < wordLength; j++ ) {
+				stringBuilder.append( uniformStringMaker( setV[i][j].toString(), maxLen ) );
+			}
+			stringBuilder.append( "\n" );
+		}
+		return stringBuilder.toString();
+	}
+
+	/**
+	 * Method for printing the set matrix.
+	 */
+	public static void printSetVAsUpperTriangularMatrix(Set<Variable>[][] setV, String setName) {
+		System.out.println();
+		System.out.println( setName );
+		int wordlength = setV.length;
+		int maxLen = 0;
+		for ( int i = 0; i < wordlength; i++ ) {
+			for ( int j = 0; j < wordlength; j++ ) {
+				maxLen = Math.max( maxLen, setV[i][j].toString().length() );
+
+			}
+		}
+		for ( int i = 0; i < wordlength; i++ ) {
+			for ( int j = 0; j < wordlength; j++ ) {
+				System.out.print( uniformStringMaker( setV[i][j].toString(), maxLen ) );
+			}
+			System.out.println();
+		}
+	}
+
+	/**
+	 * helper method used by printSetVAsLowerTriangularMatrix
 	 */
 	private static String uniformStringMaker(String str, int length) {
 		StringBuilder builder = new StringBuilder( str );

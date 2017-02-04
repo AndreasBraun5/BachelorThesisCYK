@@ -18,7 +18,7 @@ public class GeneratorWordDiceRollTest {
 	public void generateWordTest() {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "TestGrammar GeneratorWordDiceRoll: generateWord" );
+		System.out.println( "ResultCalculator GeneratorWordDiceRoll: generateWord" );
 		GrammarProperties grammarProperties = new GrammarProperties( new VariableStart( "S" ) );
 		grammarProperties.addVariables( new Variable( "A" ), new Variable( "B" ) );
 		grammarProperties.addTerminals(
@@ -30,7 +30,7 @@ public class GeneratorWordDiceRollTest {
 		System.out.println( grammarProperties );
 		grammarProperties.sizeOfWord = 10;
 		for ( int i = 0; i <= 10; i++ ) {
-			StringBuilder word1 = GeneratorWordDiceRoll.generateWord( grammarProperties ); // GrammarRuntimeException
+			String word1 = GeneratorWordDiceRoll.generateWord( grammarProperties ); // GrammarRuntimeException
 			System.out.println( "generated word: " + word1 );
 
 			Assert.assertEquals(

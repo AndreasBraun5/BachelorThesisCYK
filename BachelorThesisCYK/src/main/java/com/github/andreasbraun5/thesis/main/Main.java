@@ -4,80 +4,83 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollBias;
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly;
-import com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings;
-import com.github.andreasbraun5.thesis.generator.GeneratorType;
-import com.github.andreasbraun5.thesis.generatortest.TestGrammar;
-import com.github.andreasbraun5.thesis.generatortest.TestGrammarResult;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollBias;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettingsDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
+import com.github.andreasbraun5.thesis.resultcalculator.Result;
+import com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator;
 import com.github.andreasbraun5.thesis.util.Util;
 
 public class Main {
-	// TODO:1 prepare overview of test data to inspect
-	// TODO:2 CYK advanced, instead of storing X now you must save (X,k)
+	// TODO:2 CYK advanced, instead of storing X now you must save (X,k) [= VariableKWrapper]
 	// TODO:2 CYK tree
-	// TODO:3 bias implementation, prefer one of the variables specifically, check it
-	// TODO:3 implement that at least one cell can only be filled through combination of two "correct" cells, forced
-	// combination of words of the right size.
-	// TODO:3 Hast du eigentlich den Test implementiert, dass man (mind. eine) Zelle nur durch Kombination von den
-	// “korrekten” anderen Zellen und eben nicht dadurch, dass man die beiden direkt darüber anschaut, bekommt?
-	// --> modify cyk advanced and store how .... no
-	// TODO: Idea StartVariable has no terminal, kind of "pattern" from exam exercises
-	// TODO: Test DiceRolling and DiceRollingBias. Idea is to take a look at the relative of occurrence for the
-	// 			Variables considering all generated grammars.
-	// TODO: !!!!!!!!!!!!!!!!!!!!!!! check, testResults should have identical successrate !!!!!!!!!!!!!!!!!!!!!!!
-	// 			It is like this therefore it works.
+	// TODO: Idea StartVariable has no terminal, kind of "pattern" from exam exercises. There the favouritism should be mapped to a variable.
+	// TODO: implement stuff from last meeting
 
 	public static void main(String[] args) {
 
 		/**
 		 * 	Generating the settings for the generatorTest.
-		 * 	GrammarProperties = general settings.
-		 * 	GeneratorGrammarDiceRollSettings = generator specific settings.
+		 * 	GrammarProperties = general settings, the same for all settings of one run.
+		 * 	GrammarGeneratorSettingsDiceRoll = generator specific settings.
 		 */
-		GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
-		GeneratorGrammarDiceRollSettings generatorGrammarDiceRollSettings =
-				new GeneratorGrammarDiceRollSettings( grammarProperties );
-		generatorGrammarDiceRollSettings.setMaxValueCompoundVariablesAreAddedTo( 2 );
-		generatorGrammarDiceRollSettings.setMaxValueTerminalsAreAddedTo( 2 );
-
 		/**
-		 * 	N = countOfGrammarsTogGenerate.
+		 * 	N = countOfGrammarsToGenerate.
 		 * 	Select the testing method.
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
 		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
-		grammarProperties.sizeOfWord = 10; // All TestResults will be based on words of this size.
-		grammarProperties.maxNumberOfVarsPerCell = 3; // Used for restrictions check.
-		int countGeneratedGrammarsPerWord = 500;
-		int countDifferentWords = 100;
-		// this boundary is relevant so that the JVM doesn't run out of memory while calculating one TestGrammarResult.
+		int countGeneratedGrammarsPerWord = 20;
+		int countDifferentWords = 10;
+		// this boundary is relevant so that the JVM doesn't run out of memory on my computer while calculating one Result.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );
 		}
-		// TODO: check, testResults should have identical success rate
-		TestGrammar testGrammar1 = new TestGrammar( countDifferentWords, countGeneratedGrammarsPerWord );
-		TestGrammarResult test1DiceRollResult = testGrammar1.testGeneratorGrammar(
-				new GeneratorGrammarDiceRollOnly( generatorGrammarDiceRollSettings, GeneratorType.DICEROLLONLY )
-		);
-		TestGrammarResult test2DiceRollBiasResult = testGrammar1.testGeneratorGrammar(
-				new GeneratorGrammarDiceRollBias( generatorGrammarDiceRollSettings, GeneratorType.DICEROLLBIAS )
-		);
-		TestGrammarResult test3DiceRollResult = testGrammar1.testGeneratorGrammar(
-				new GeneratorGrammarDiceRollOnly( generatorGrammarDiceRollSettings, GeneratorType.DICEROLLONLY )
-		);
-		TestGrammarResult test4DiceRollBiasResult = testGrammar1.testGeneratorGrammar(
-				new GeneratorGrammarDiceRollBias( generatorGrammarDiceRollSettings, GeneratorType.DICEROLLBIAS )
-		);
+		ResultCalculator resultCalculator = new ResultCalculator( countDifferentWords, countGeneratedGrammarsPerWord );
+
+		GrammarProperties grammarProperties1 = generateGrammarPropertiesForTesting();
+		GrammarGeneratorSettingsDiceRoll settings1 = new GrammarGeneratorSettingsDiceRoll( grammarProperties1 );
+		Result result1 = resultCalculator.buildResultFromGenerator(
+				new GrammarGeneratorDiceRollOnly( settings1 ) );
+
+		GrammarProperties grammarProperties2 = generateGrammarPropertiesForTesting();
+		grammarProperties2.maxNumberOfVarsPerCell = 2;
+		GrammarGeneratorSettingsDiceRoll settings2 = new GrammarGeneratorSettingsDiceRoll( grammarProperties2 );
+		Result result2 = resultCalculator.buildResultFromGenerator(
+				new GrammarGeneratorDiceRollOnly( settings2 ) );
+
+		GrammarProperties grammarProperties3 = generateGrammarPropertiesForTesting();
+		GrammarGeneratorSettingsDiceRoll settings3 = new GrammarGeneratorSettingsDiceRoll( grammarProperties3 );
+		settings3.setMaxValueCompoundVariablesAreAddedTo( 2 );
+		settings3.setMaxValueTerminalsAreAddedTo( 2 );
+		Result result3 = resultCalculator.buildResultFromGenerator(
+				new GrammarGeneratorDiceRollOnly( settings3 ) );
+
+		GrammarProperties grammarProperties4 = generateGrammarPropertiesForTesting();
+		GrammarGeneratorSettingsDiceRoll settings4 = new GrammarGeneratorSettingsDiceRoll( grammarProperties4 );
+		settings4.setMaxValueTerminalsAreAddedTo( 2 );
+		settings4.setMaxValueCompoundVariablesAreAddedTo( 2 );
+		int[] favouritism = { 4, 2, 1, 1 };
+		settings4.setFavouritism( favouritism );
+		Result result4 = resultCalculator.buildResultFromGenerator(
+				new GrammarGeneratorDiceRollBias( settings4 ) );
+
+		GrammarProperties grammarProperties5 = generateGrammarPropertiesForTesting();
+		grammarProperties5.addTerminals( new Terminal( "c" ), new Terminal( "d" ) );
+		GrammarGeneratorSettingsDiceRoll settings5 = new GrammarGeneratorSettingsDiceRoll( grammarProperties5 );
+		settings5.setMaxValueTerminalsAreAddedTo( 2 );
+		settings5.setMaxValueCompoundVariablesAreAddedTo( 2 );
+		Result result5 = resultCalculator.buildResultFromGenerator(
+				new GrammarGeneratorDiceRollOnly( settings5 ) );
 
 		/**
-		 * 	Storing all the samples in a txt.
+		 * 	Storing all the results in a txt.
 		 */
-		Util.writeToFile( "filename", test1DiceRollResult, test2DiceRollBiasResult, test3DiceRollResult, test4DiceRollBiasResult );
+		Util.writeToFile( result1, result2, result3, result4, result5 );
 	}
 
 	public static GrammarProperties generateGrammarPropertiesForTesting() {
@@ -103,7 +106,7 @@ public class Main {
 																	 variables, terminals
 		);
 		grammarProperties.sizeOfWord = 10; // All TestResults will be based on words of this size.
-		grammarProperties.maxNumberOfVarsPerCell = 2;
+		grammarProperties.maxNumberOfVarsPerCell = 3;
 		return grammarProperties;
 	}
 }
@@ -123,17 +126,18 @@ public class Main {
  * 3.2) Producibility: Check the grammar if it can generate the word.
  * p grammars do fulfill the producibility property.
  * This will be checked with the CYK-algorithm.
- * 4) n valid grammars are the final result. n is element of [0, N] and n = r + p.
+ * 4) n valid grammars are the final result. n is element of [0, N] and n = r * p.
  * Usage of different success rates:
  * // TODO: more fine grained SR's?
  * - Success rate SR = n/N;
- * - Success rate of checking for the restrictions RSR = r/N;
- * - Success rate of checking for the producibility PSR = p/N;
- * - Conditional probability for one grammar of being a validGrammar and being able to generate the word. COND = RSR*PSR.
+ * - Success rate of checking for the restrictions SRR = r/N;
+ * - Success rate of checking for the producibility SRP = p/N;
+ * - TODO: missing SRC
+ * - Conditional probability for one grammar of being a validGrammar and being able to generate the word. COND = SRR*SRR.
  * <p>
  * SECOND Approach starting from one grammar to one word:
  * 1.1) Randomly generate one grammar.
- * 1.2) TestGrammar for more restrictions regarding the grammar, e.g. maxVarCount and so on.
+ * 1.2) ResultCalculator for more restrictions regarding the grammar, e.g. maxVarCount and so on.
  * [ 1.3) Accept the grammar if all the restrictions are met, otherwise goto 1.1). In this approach it may be possible to
  * use even more restrictions, e.g. more this approach regarding specific restrictions ]
  * 3) Randomly generate words derived from it. Derived means using generatePartOfGrammarPropertiesFromGrammar

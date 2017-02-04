@@ -35,6 +35,7 @@ public class Variable implements RightHandSideElement, LeftHandSideElement {
 		return name;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}

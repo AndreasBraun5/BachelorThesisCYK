@@ -16,7 +16,7 @@ public class ProductionTest {
     public void productionToStringTest() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("TestGrammar Production: toString");
+        System.out.println("ResultCalculator Production: toString");
 
         Production production11 = new Production(new Variable("A"), new Terminal("a"));
         Production production22 = new Production(new Variable("B"), new Terminal("B"));
@@ -30,7 +30,7 @@ public class ProductionTest {
     public void productionIsElementAtRightHandSide() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("TestGrammar Production: isElementAtRightHandSide");
+        System.out.println("ResultCalculator Production: isElementAtRightHandSide");
 
         Production production11 = new Production(new Variable("A"), new Terminal("a"));
         System.out.print(production11);

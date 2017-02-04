@@ -93,7 +93,7 @@ public class GrammarProperties {
 				"\nsizeOfWord= " + sizeOfWord +
 				"\nmaxNumberOfVarsPerCell= " + maxNumberOfVarsPerCell +
 				"\nvariables= " + variables +
-				"\nvariableStart=" + variableStart +
+				"\nvariableStart= " + variableStart +
 				"\nterminals= " + terminals +
 				"\n}";
 	}

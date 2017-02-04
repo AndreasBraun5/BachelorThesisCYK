@@ -6,18 +6,18 @@ package com.github.andreasbraun5.thesis.grammar;
  * The VariableKWrapper class is need for the calculation of the setV for the advancedCYK algorithm. The index k of the
  * loop is additionally stored to the Variable.
  */
-public class VariableKWrapper {
+public class VariableKWrapper extends Variable { // TODO: extend VariableStart?
 
-	private String name;
 	private Variable variable;
 	private int k;
 
 	public VariableKWrapper(Variable variable, int k) {
+		super(variable.toString() + k);
 		this.variable = variable;
 		this.k = k;
-		this.name = variable.toString() + k;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="426.0">com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettingsDiceRoll</node>
+    <node x="863.5" y="794.0">com.github.andreasbraun5.thesis.main.Main</node>
+    <node x="911.0" y="526.0">com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly</node>
+    <node x="137.0" y="269.0">com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings</node>
+    <node x="1313.96875" y="0.0">com.github.andreasbraun5.thesis.generator.GrammarGenerator</node>
+    <node x="1463.0" y="515.0">com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollBias</node>
+    <node x="1328.96875" y="213.0">com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRoll</node>
+    <node x="555.0" y="525.5">com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollBias" target="com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRoll">
+      <point x="0.0" y="-70.0" />
+      <point x="1737.0" y="401.0" />
+      <point x="1511.21875" y="401.0" />
+      <point x="60.75" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollBias">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettingsDiceRoll">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly" target="com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRoll">
+      <point x="0.0" y="-59.0" />
+      <point x="1177.0" y="401.0" />
+      <point x="1389.71875" y="401.0" />
+      <point x="-60.75" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettingsDiceRoll" target="com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings">
+      <point x="0.0" y="-159.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRoll" target="com.github.andreasbraun5.thesis.generator.GrammarGenerator">
+      <point x="0.0" y="-81.5" />
+      <point x="0.0" y="81.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7183653372722797" x="1005.5" y="433.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

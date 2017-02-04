@@ -21,7 +21,7 @@ public class GrammarTest {
     public void grammarToString() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("TestGrammar Grammar: toString");
+        System.out.println("ResultCalculator Grammar: toString");
         Production production11 = new Production(new Variable("A"), new Terminal("a"));
         Production production13 = new Production(new Variable("A"), new Terminal("A"));
         Production production22 = new Production(new Variable("B"), new Terminal("B"));
@@ -35,12 +35,12 @@ public class GrammarTest {
 
     /**
      *  No duplicate productions are added. No duplicate production can be given as argument.
-     */
+     */ // TODO: rethink test
     @Test(expected = GrammarRuntimeException.class)
     public void addProduction() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("TestGrammar Grammar: addProduction");
+        System.out.println("ResultCalculator Grammar: addProduction");
         Grammar grammar = new Grammar(new VariableStart("S"));
         System.out.println("Count of productions that should be added: " + 5);
         System.out.println("An GrammarRuntimeException is to be excepted. Because of duplicate production A-->a");;
@@ -54,12 +54,12 @@ public class GrammarTest {
 
     /**
      *  No duplicate productions are added. No already existing production can be added.
-     */
+     */ // TODO: rethink test
     @Test(expected = GrammarRuntimeException.class)
     public void addProduction2() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("TestGrammar Grammar: addProduction2");
+        System.out.println("ResultCalculator Grammar: addProduction2");
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production production11 = new Production(new Variable("A"), new Terminal("a"));
         Production production13 = new Production(new Variable("A"), new Terminal("A"));
@@ -81,7 +81,7 @@ public class GrammarTest {
     public void addProduction3() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("TestGrammar Grammar: addProduction3");
+        System.out.println("ResultCalculator Grammar: addProduction3");
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production production11 = new Production(new Variable("A"), new Terminal("a"));
         Production production13 = new Production(new Variable("A"), new Terminal("A"));

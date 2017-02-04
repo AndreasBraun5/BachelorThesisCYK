@@ -19,16 +19,16 @@ public class GeneratorWordDiceRoll {
 	/**
 	 * Excludes the case where the word could be the empty word.
 	 */
-	public static StringBuilder generateWord(GrammarProperties grammarProperties) {
+	public static String generateWord(GrammarProperties grammarProperties) {
 		if ( grammarProperties.sizeOfWord == 0 ) {
 			throw new GrammarPropertiesRuntimeException( "The sizeOfWord is not defined." );
 		}
-		return generateWord( grammarProperties.terminals, grammarProperties.sizeOfWord );
+		return generateWord( grammarProperties.terminals, grammarProperties.sizeOfWord ).toString();
 	}
 
 	/**
 	 * Not all terminals must be included in the word.
-	 */
+	 */ // TODO: all terminals must be included?!
 	public static StringBuilder generateWord(Set<Terminal> terminals, int sizeOfWord) {
 		StringBuilder randomWord = new StringBuilder( "" );
 		List<Terminal> tempTerminals = new ArrayList<>();
@@ -42,6 +42,7 @@ public class GeneratorWordDiceRoll {
 			randomNumber = random.nextInt( max ) + min;
 			randomWord.append( tempTerminals.get( randomNumber ) );
 		}
+		// dice roll the word as long until all terminals are used.
 		if ( randomWord.length() > sizeOfWord ) {
 			throw new WordRuntimeException( "randomWord.length of the " +
 													"generated word is bigger than the specified sizeOfWord of the grammar" );

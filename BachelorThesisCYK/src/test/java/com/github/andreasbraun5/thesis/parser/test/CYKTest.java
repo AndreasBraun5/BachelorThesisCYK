@@ -24,7 +24,7 @@ public class CYKTest {
 	public void CYKAlwaysTrue() {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "TestGrammar CYK: AlwaysTrue" );
+		System.out.println( "ResultCalculator CYK: AlwaysTrue" );
 		// Define GrammarProperties
 		GrammarProperties grammarProperties = new GrammarProperties( new VariableStart( "S" ) )
 				.addTerminals( new Terminal( "a" ) );
@@ -44,7 +44,7 @@ public class CYKTest {
 		);
 		System.out.println( grammar );
 		// Check for integrity
-		Util.printSetV( CYK.calculateSetV( grammar, Util.stringToTerminalList( word ) ), "setV" );
+		Util.printSetVAsLowerTriangularMatrix( CYK.calculateSetV( grammar, Util.stringToTerminalList( word ) ), "setV" );
 		Assert.assertEquals( "The grammar and the word aren't compatible, but should be.", true, CYK.algorithmSimple(
 				grammar,
 				Util.stringToTerminalList( word )
@@ -55,7 +55,7 @@ public class CYKTest {
 	public void CYKCalculateSetVTestWithScript() {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "TestGrammar CYK: algorithmSimple with input Grammar from the TI1 script" );
+		System.out.println( "ResultCalculator CYK: algorithmSimple with input Grammar from the TI1 script" );
 		// @formatter:off
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[15];
@@ -79,7 +79,7 @@ public class CYKTest {
 		// @formatter:on
 
 		Set<Variable> setV[][] = CYK.calculateSetV( grammar, Util.stringToTerminalList( word ) );
-		Util.printSetV( setV, "setV calculated:" );
+		Util.printSetVAsLowerTriangularMatrix( setV, "setV calculated:" );
 
 		int wordLength = word.length();
 		Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
@@ -206,7 +206,7 @@ public class CYKTest {
 		setVTemp[7][7].add( new Variable( "A8" ) );
 		setVTemp[7][7].add( new Variable( "N8" ) );
 		*/
-		Util.printSetV( setVTemp, "setVSolution" );
+		Util.printSetVAsLowerTriangularMatrix( setVTemp, "setVSolution" );
 
 		boolean temp = true;
 		// optimizing possible, if one time temp == false, then stop executing the loops
@@ -226,7 +226,7 @@ public class CYKTest {
 	public void CYKCalculateSetVTestWithSS12() {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "TestGrammar CYK: algorithmSimple with input Grammar from the SS12" );
+		System.out.println( "ResultCalculator CYK: algorithmSimple with input Grammar from the SS12" );
 		// @formatter:off
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[9];
@@ -243,7 +243,7 @@ public class CYKTest {
         String word = "cbbaaccb";
         // @formatter:on
 		Set<Variable> setV[][] = CYK.calculateSetV( grammar, Util.stringToTerminalList( word ) );
-		Util.printSetV( setV, "setV calculated:" );
+		Util.printSetVAsLowerTriangularMatrix( setV, "setV calculated:" );
 
 		int wordLength = word.length();
 		Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
@@ -374,7 +374,7 @@ public class CYKTest {
 
 		setVTemp[7][7].add( new Variable( "B8" ) );
 		 */
-		Util.printSetV( setVTemp, "setVSolution" );
+		Util.printSetVAsLowerTriangularMatrix( setVTemp, "setVSolution" );
 
 		boolean temp = true;
 		// optimizing possible, if one time temp == false, then stop executing the loops
@@ -395,7 +395,7 @@ public class CYKTest {
 	public void CYKCalculateSetVTestWithSS13() {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "TestGrammar CYK: algorithmSimple with input Grammar from the SS13" );
+		System.out.println( "ResultCalculator CYK: algorithmSimple with input Grammar from the SS13" );
 		// @formatter:off
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[10];
@@ -414,7 +414,7 @@ public class CYKTest {
 		String word = "bbacbc";
 
 		Set<Variable> setV[][] = CYK.calculateSetV( grammar, Util.stringToTerminalList( word ) );
-		Util.printSetV( setV, "setV calculated:" );
+		Util.printSetVAsLowerTriangularMatrix( setV, "setV calculated:" );
 
 		int wordLength = word.length();
 		Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
@@ -505,7 +505,7 @@ public class CYKTest {
 		setVTemp[5][5].add( new Variable( "C6" ) );
 		 */
 
-		Util.printSetV( setVTemp, "setVSolution" );
+		Util.printSetVAsLowerTriangularMatrix( setVTemp, "setVSolution" );
 
 		boolean temp = true;
 		// optimizing possible, if one time temp == false, then stop executing the loops

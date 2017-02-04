@@ -15,7 +15,7 @@ public class GrammarPropertiesTest {
     public void grammarPropertiesToStringTest() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("TestGrammar GrammarProperties: toString");
+        System.out.println("ResultCalculator GrammarProperties: toString");
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"));
         grammarProperties.addVariables(new Variable("A"), new Variable("B"));
         grammarProperties.addTerminals(new Terminal("a"), new Terminal("b"));

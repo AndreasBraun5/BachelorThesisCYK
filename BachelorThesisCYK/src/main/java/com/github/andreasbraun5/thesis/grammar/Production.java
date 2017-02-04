@@ -35,9 +35,9 @@ public class Production {
 
 	@Override
 	public String toString() {
-		return "Production{" +
+		return "{ " +
 				leftHandSideElement + "-->" + rightHandSideElement +
-				"}\n";
+				" }";
 	}
 
 	@Override

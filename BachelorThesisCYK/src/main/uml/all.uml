@@ -3,169 +3,113 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="2129.4583781362035" y="1526.0">com.github.andreasbraun5.thesis.generator.GeneratorGrammar</node>
-    <node x="2548.729166666667" y="443.0">com.github.andreasbraun5.thesis.exception.GrammarRuntimeException</node>
-    <node x="2916.4409946236597" y="1826.5">com.github.andreasbraun5.thesis.grammar.VariableCompound</node>
-    <node x="737.8708781361997" y="398.0">com.github.andreasbraun5.thesis.grammar.Terminal</node>
-    <node x="1788.666666666667" y="2189.5">com.github.andreasbraun5.thesis.parser.test</node>
-    <node x="473.62087813619974" y="443.0">com.github.andreasbraun5.thesis.grammar.VariableStart</node>
-    <node x="5094.045116487457" y="1893.5">com.github.andreasbraun5.thesis.parser.Tree</node>
-    <node x="4738.840949820793" y="2406.0">com.github.andreasbraun5.thesis.generatortest.TestGrammarTest</node>
-    <node x="3309.045116487456" y="2123.0">com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollBias</node>
-    <node x="752.1666666666667" y="1571.0">com.github.andreasbraun5.thesis.exception.WordRuntimeException</node>
-    <node x="779.6666666666667" y="1871.5">com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll</node>
-    <node x="4812.545116487457" y="2134.5">com.github.andreasbraun5.thesis.parser.CYK</node>
-    <node x="1702.5868279569927" y="790.0">com.github.andreasbraun5.thesis.util.Util</node>
-    <node x="2147.541666666667" y="0.0">com.github.andreasbraun5.thesis.grammar.RightHandSideElement</node>
-    <node x="2382.9583781362035" y="778.0">com.github.andreasbraun5.thesis.grammar.Grammar</node>
-    <node x="4766.045116487457" y="1793.0">com.github.andreasbraun5.thesis.generatortest.TestGrammarResult</node>
-    <node x="3536.3784946236597" y="2395.0">com.github.andreasbraun5.thesis.main.Main</node>
-    <node x="2485.7458781362" y="2134.0">com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly</node>
-    <node x="0.0" y="2513.0">com.github.andreasbraun5.thesis.parser.Parser</node>
-    <node x="54.21178315412271" y="2406.0">com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest</node>
-    <node x="953.270833333333" y="11.5">com.github.andreasbraun5.thesis.grammar.LeftHandSideElement</node>
-    <node x="3120.420116487456" y="1471.0">com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings</node>
-    <node x="338.9999999999998" y="1270.0">com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest</node>
-    <node x="4341.420116487457" y="2144.5">com.github.andreasbraun5.thesis.generatortest.TestGrammar</node>
-    <node x="2155.2083781362035" y="1258.5">com.github.andreasbraun5.thesis.generator.GeneratorGrammarSettings</node>
-    <node x="972.020833333333" y="124.0">com.github.andreasbraun5.thesis.grammar.Variable</node>
-    <node x="4483.045116487457" y="1882.5">com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException</node>
-    <node x="1658.666666666667" y="1281.0">com.github.andreasbraun5.thesis.grammar.test</node>
-    <node x="723.8083781361997" y="712.0">com.github.andreasbraun5.thesis.grammar.GrammarProperties</node>
-    <node x="2462.8750448028704" y="1815.5">com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll</node>
-    <node x="1906.666666666667" y="2156.0">com.github.andreasbraun5.thesis.generatortest.TestMethod</node>
-    <node x="3909.045116487456" y="1270.0">com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException</node>
-    <node x="4376.4958781362" y="1525.5">com.github.andreasbraun5.thesis.generatortest.TestGrammarRepresentativeExamples</node>
-    <node x="1945.291666666667" y="365.0">com.github.andreasbraun5.thesis.grammar.Production</node>
-    <node x="1129.6666666666667" y="1849.5">com.github.andreasbraun5.thesis.grammar.GrammarValidityChecker</node>
-    <node x="214.62087813619974" y="386.5">com.github.andreasbraun5.thesis.grammar.VariableKWrapper</node>
-    <node x="4760.7458781362" y="1460.0">com.github.andreasbraun5.thesis.generatortest.TestGrammarResultSuccessRates</node>
-    <node x="4207.045116487457" y="1181.0">com.github.andreasbraun5.thesis.generatortest.TestGrammarSample</node>
-    <node x="1163.1666666666667" y="1571.0">com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException</node>
+    <node x="2564.6041666666665" y="377.0">com.github.andreasbraun5.thesis.grammar.VariableCompound</node>
+    <node x="308.0" y="1293.0">com.github.andreasbraun5.thesis.exception.GrammarRuntimeException</node>
+    <node x="1027.3251511852927" y="388.0">com.github.andreasbraun5.thesis.grammar.Terminal</node>
+    <node x="799.5751511852926" y="433.0">com.github.andreasbraun5.thesis.grammar.VariableStart</node>
+    <node x="2485.3541666666665" y="444.0">com.github.andreasbraun5.thesis.parser.Tree</node>
+    <node x="2941.6041666666665" y="433.0">com.github.andreasbraun5.thesis.exception.WordRuntimeException</node>
+    <node x="2409.8541666666665" y="792.0">com.github.andreasbraun5.thesis.parser.CYK</node>
+    <node x="2978.3541666666665" y="825.0">com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll</node>
+    <node x="1132.0" y="748.0">com.github.andreasbraun5.thesis.util.Util</node>
+    <node x="2104.762796323174" y="1131.0">com.github.andreasbraun5.thesis.parser.test.CYKTest</node>
+    <node x="1577.9501511852925" y="0.0">com.github.andreasbraun5.thesis.grammar.RightHandSideElement</node>
+    <node x="2046.8541666666665" y="758.0">com.github.andreasbraun5.thesis.grammar.Grammar</node>
+    <node x="201.20000000000005" y="1153.0">com.github.andreasbraun5.thesis.main.Main</node>
+    <node x="756.387796323174" y="1164.0">com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest</node>
+    <node x="594.0" y="1293.0">com.github.andreasbraun5.thesis.parser.Parser</node>
+    <node x="752.8251511852926" y="11.5">com.github.andreasbraun5.thesis.grammar.LeftHandSideElement</node>
+    <node x="509.38779632317403" y="1164.0">com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest</node>
+    <node x="1647.637796323174" y="1131.0">com.github.andreasbraun5.thesis.grammar.test.GrammarTest</node>
+    <node x="1591.0" y="825.0">com.github.andreasbraun5.thesis.grammar.test.ProductionTest</node>
+    <node x="0.0" y="1293.0">com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException</node>
+    <node x="771.5751511852926" y="124.0">com.github.andreasbraun5.thesis.grammar.Variable</node>
+    <node x="460.46294750846664" y="692.0">com.github.andreasbraun5.thesis.grammar.GrammarProperties</node>
+    <node x="0.0" y="836.0">com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException</node>
+    <node x="1872.0" y="355.0">com.github.andreasbraun5.thesis.grammar.Production</node>
+    <node x="3291.354166666666" y="803.0">com.github.andreasbraun5.thesis.grammar.GrammarValidityChecker</node>
+    <node x="519.5751511852926" y="376.5">com.github.andreasbraun5.thesis.grammar.VariableKWrapper</node>
+    <node x="3324.8541666666665" y="433.0">com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammar" target="com.github.andreasbraun5.thesis.generatortest.TestGrammarResult">
-      <point x="126.0" y="-59.5" />
-      <point x="4635.420116487457" y="2103.0" />
-      <point x="4920.045116487457" y="2103.0" />
-      <point x="0.0" y="115.0" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.parser.test" target="com.github.andreasbraun5.thesis.grammar.Terminal">
-      <point x="-18.375" y="-14.5" />
-      <point x="1819.291666666667" y="2083.0" />
-      <point x="549.4999999999998" y="2083.0" />
-      <point x="549.4999999999998" y="692.0" />
-      <point x="807.2458781361997" y="692.0" />
-      <point x="-41.625" y="70.5" />
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
+      <point x="-107.625" y="-58.5" />
+      <point x="2120.137796323174" y="1061.0" />
+      <point x="841.9629475084666" y="1061.0" />
+      <point x="163.5" y="169.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll" target="com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException">
-      <point x="82.5" y="-36.5" />
-      <point x="1027.1666666666667" y="1773.0" />
-      <point x="1236.6666666666667" y="1773.0" />
+      <point x="73.25" y="-36.5" />
+      <point x="3198.1041666666665" y="672.0" />
+      <point x="3398.3541666666665" y="672.0" />
       <point x="-73.5" y="25.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
-      <point x="-76.88888888888891" y="-36.5" />
-      <point x="3545.9896057347705" y="2365.0" />
-      <point x="2020.166666666667" y="2365.0" />
-      <point x="2020.166666666667" y="1091.0" />
-      <point x="1050.8083781361997" y="1091.0" />
-      <point x="109.0" y="169.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollBias">
-      <point x="0.0" y="-36.5" />
-      <point x="3622.8784946236597" y="2325.0" />
-      <point x="3593.045116487456" y="2325.0" />
-      <point x="0.0" y="81.0" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.test" target="com.github.andreasbraun5.thesis.grammar.Variable">
-      <point x="8.166666666666742" y="-14.5" />
-      <point x="1715.8333333333337" y="1101.0" />
-      <point x="1666.2083781362035" y="1101.0" />
-      <point x="1666.2083781362035" y="345.0" />
-      <point x="1089.5624999999995" y="345.0" />
-      <point x="9.041666666666515" y="70.5" />
+      <point x="69.20000000000005" y="-36.5" />
+      <point x="356.9000000000001" y="1111.0" />
+      <point x="514.9629475084666" y="1111.0" />
+      <point x="-163.5" y="169.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.Grammar" target="com.github.andreasbraun5.thesis.grammar.Variable">
-      <point x="120.0" y="-103.5" />
-      <point x="2662.9583781362035" y="692.0" />
-      <point x="2800.229166666667" y="692.0" />
-      <point x="2800.229166666667" y="325.0" />
-      <point x="1125.7291666666663" y="325.0" />
-      <point x="45.20833333333326" y="70.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammarSample" target="com.github.andreasbraun5.thesis.grammar.Variable">
-      <point x="171.25" y="-114.5" />
-      <point x="4720.795116487457" y="295.0" />
-      <point x="1179.9791666666663" y="295.0" />
-      <point x="99.45833333333326" y="70.5" />
+      <point x="106.66666666666674" y="-103.5" />
+      <point x="2313.520833333333" y="672.0" />
+      <point x="2315.5" y="672.0" />
+      <point x="2315.5" y="305.0" />
+      <point x="946.8443819545234" y="305.0" />
+      <point x="66.76923076923083" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.Production" target="com.github.andreasbraun5.thesis.grammar.Variable">
       <point x="-108.25" y="-103.5" />
-      <point x="2053.541666666667" y="335.0" />
-      <point x="1107.645833333333" y="335.0" />
-      <point x="27.12499999999997" y="70.5" />
+      <point x="1980.25" y="315.0" />
+      <point x="930.1520742622157" y="315.0" />
+      <point x="50.076923076923094" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.parser.CYK" target="com.github.andreasbraun5.thesis.grammar.VariableCompound">
-      <point x="-103.0" y="-69.5" />
-      <point x="4915.545116487457" y="2053.0" />
-      <point x="3228.8159946236597" y="2053.0" />
-      <point x="133.875" y="81.5" />
+      <point x="103.0" y="-69.5" />
+      <point x="2718.8541666666665" y="672.0" />
+      <point x="2653.8541666666665" y="672.0" />
+      <point x="-89.25" y="81.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.VariableCompound">
+      <point x="76.875" y="-58.5" />
+      <point x="2304.637796323174" y="1101.0" />
+      <point x="2832.3541666666665" y="1101.0" />
+      <point x="89.25" y="81.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
       <point x="-75.0" y="-25.5" />
-      <point x="363.9999999999998" y="1151.0" />
-      <point x="92.0" y="1151.0" />
-      <point x="92.0" y="315.0" />
-      <point x="1017.2291666666663" y="315.0" />
-      <point x="-63.29166666666674" y="70.5" />
+      <point x="534.387796323174" y="1101.0" />
+      <point x="321.5" y="1101.0" />
+      <point x="321.5" y="295.0" />
+      <point x="796.6136127237542" y="295.0" />
+      <point x="-83.46153846153845" y="70.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.test" target="com.github.andreasbraun5.thesis.grammar.Terminal">
-      <point x="-8.166666666666742" y="-14.5" />
-      <point x="1699.5000000000002" y="1111.0" />
-      <point x="1615.2708781362035" y="1111.0" />
-      <point x="1615.2708781362035" y="642.0" />
-      <point x="890.4958781361997" y="642.0" />
-      <point x="41.625" y="70.5" />
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
+      <point x="-34.0" y="-25.5" />
+      <point x="858.387796323174" y="1071.0" />
+      <point x="732.9629475084666" y="1071.0" />
+      <point x="54.5" y="169.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.parser.test" target="com.github.andreasbraun5.thesis.grammar.Variable">
-      <point x="-42.875" y="-14.5" />
-      <point x="1794.791666666667" y="2103.0" />
-      <point x="70.0" y="2103.0" />
-      <point x="70.0" y="305.0" />
-      <point x="999.145833333333" y="305.0" />
-      <point x="-81.375" y="70.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollBias" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll">
-      <point x="-189.33333333333337" y="-81.0" />
-      <point x="3403.7117831541227" y="2073.0" />
-      <point x="2682.0417114695374" y="2073.0" />
-      <point x="87.66666666666674" y="92.5" />
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.Grammar">
+      <point x="-46.125" y="-58.5" />
+      <point x="2181.637796323174" y="1061.0" />
+      <point x="2286.8541666666665" y="1061.0" />
+      <point x="80.0" y="103.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
-      <point x="25.0" y="-25.5" />
-      <point x="463.9999999999998" y="682.0" />
-      <point x="779.4958781361997" y="682.0" />
-      <point x="-69.375" y="70.5" />
+      <point x="75.0" y="-25.5" />
+      <point x="684.387796323174" y="1111.0" />
+      <point x="928.9629475084666" y="1111.0" />
+      <point x="928.9629475084666" y="672.0" />
+      <point x="1113.658484518626" y="672.0" />
+      <point x="-24.66666666666663" y="70.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly">
-      <point x="93.33333333333337" y="-25.5" />
-      <point x="259.5451164874562" y="2375.0" />
-      <point x="2577.7458781362" y="2375.0" />
-      <point x="-184.0" y="70.0" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammarResult" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings">
-      <point x="-115.5" y="-115.0" />
-      <point x="4804.545116487457" y="1773.0" />
-      <point x="3417.295116487456" y="1773.0" />
-      <point x="59.375" y="125.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.generatortest.TestGrammar">
-      <point x="76.88888888888891" y="-36.5" />
-      <point x="3699.767383512549" y="2375.0" />
-      <point x="4425.420116487457" y="2375.0" />
-      <point x="-84.0" y="59.5" />
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll">
+      <point x="107.625" y="-58.5" />
+      <point x="2335.387796323174" y="1111.0" />
+      <point x="3124.8541666666665" y="1111.0" />
+      <point x="0.0" y="36.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.Variable" target="com.github.andreasbraun5.thesis.grammar.LeftHandSideElement">
       <point x="-54.25" y="-70.5" />
@@ -173,460 +117,252 @@
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.Variable" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
       <point x="54.25" y="-70.5" />
-      <point x="1134.770833333333" y="104.0" />
-      <point x="2221.041666666667" y="104.0" />
-      <point x="-24.5" y="37.0" />
+      <point x="934.3251511852926" y="94.0" />
+      <point x="1602.4501511852925" y="94.0" />
+      <point x="-73.5" y="37.0" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammar">
-      <point x="-87.66666666666669" y="-92.5" />
-      <point x="2506.708378136204" y="1763.0" />
-      <point x="2340.9583781362035" y="1763.0" />
-      <point x="0.0" y="70.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings">
-      <point x="-19.22222222222217" y="-36.5" />
-      <point x="3603.6562724014375" y="2335.0" />
-      <point x="3298.545116487456" y="2335.0" />
-      <point x="-59.375" y="125.5" />
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="-51.400000000000006" y="-58.5" />
+      <point x="1724.737796323174" y="1081.0" />
+      <point x="1850.5" y="1081.0" />
+      <point x="1850.5" y="612.0" />
+      <point x="1212.3251511852927" y="612.0" />
+      <point x="74.00000000000011" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll" target="com.github.andreasbraun5.thesis.exception.WordRuntimeException">
-      <point x="-82.5" y="-36.5" />
+      <point x="-73.25" y="-36.5" />
       <point x="0.0" y="25.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.parser.test" target="com.github.andreasbraun5.thesis.grammar.Grammar">
-      <point x="30.625" y="-14.5" />
-      <point x="1868.291666666667" y="2043.0" />
-      <point x="1767.166666666667" y="2043.0" />
-      <point x="1767.166666666667" y="1151.0" />
-      <point x="2442.9583781362035" y="1151.0" />
-      <point x="-100.0" y="103.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammarTest" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly">
-      <point x="-109.5" y="-25.5" />
-      <point x="4775.340949820793" y="2315.0" />
-      <point x="2945.7458781362" y="2315.0" />
-      <point x="184.0" y="70.0" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.test" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
-      <point x="-40.83333333333326" y="-14.5" />
-      <point x="1666.8333333333337" y="1131.0" />
-      <point x="441.9999999999998" y="1131.0" />
-      <point x="441.9999999999998" y="662.0" />
-      <point x="554.1208781361997" y="662.0" />
-      <point x="0.0" y="25.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
-      <point x="18.666666666666515" y="-25.5" />
-      <point x="184.87844982078923" y="2345.0" />
-      <point x="59.0" y="2345.0" />
-      <point x="59.0" y="1440.0" />
-      <point x="645.5833333333333" y="1440.0" />
-      <point x="645.5833333333333" y="1151.0" />
-      <point x="832.8083781361997" y="1151.0" />
-      <point x="-109.0" y="169.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollBias" target="com.github.andreasbraun5.thesis.grammar.Grammar">
-      <point x="189.33333333333326" y="-81.0" />
-      <point x="3782.3784498207897" y="2103.0" />
-      <point x="3764.166666666667" y="2103.0" />
-      <point x="3764.166666666667" y="1141.0" />
-      <point x="2642.9583781362035" y="1141.0" />
-      <point x="100.0" y="103.5" />
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.ProductionTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="-83.0" y="-36.5" />
+      <point x="1632.5" y="622.0" />
+      <point x="1187.658484518626" y="622.0" />
+      <point x="49.33333333333337" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.Grammar" target="com.github.andreasbraun5.thesis.grammar.Production">
-      <point x="-40.0" y="-103.5" />
-      <point x="2502.9583781362035" y="612.0" />
-      <point x="2215.916666666667" y="612.0" />
+      <point x="0.0" y="-103.5" />
+      <point x="2206.8541666666665" y="672.0" />
+      <point x="2142.625" y="672.0" />
       <point x="54.125" y="103.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.Grammar" target="com.github.andreasbraun5.thesis.exception.GrammarRuntimeException">
-      <point x="40.0" y="-103.5" />
-      <point x="2582.9583781362035" y="682.0" />
-      <point x="2669.229166666667" y="682.0" />
-      <point x="0.0" y="25.5" />
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="0.0" y="-58.5" />
+      <point x="1776.137796323174" y="1091.0" />
+      <point x="1861.5" y="1091.0" />
+      <point x="1861.5" y="325.0" />
+      <point x="913.459766569908" y="325.0" />
+      <point x="33.38461538461536" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.grammar.Variable">
-      <point x="38.44444444444434" y="-36.5" />
-      <point x="3661.322939068104" y="2355.0" />
-      <point x="3898.545116487456" y="2355.0" />
-      <point x="3898.545116487456" y="305.0" />
-      <point x="1161.895833333333" y="305.0" />
-      <point x="81.375" y="70.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.util.Util" target="com.github.andreasbraun5.thesis.grammar.Terminal">
-      <point x="0.0" y="-91.5" />
-      <point x="1901.5868279569927" y="632.0" />
-      <point x="918.2458781361997" y="632.0" />
-      <point x="69.375" y="70.5" />
+      <point x="-34.59999999999991" y="-36.5" />
+      <point x="253.10000000000014" y="1101.0" />
+      <point x="288.5" y="1101.0" />
+      <point x="288.5" y="285.0" />
+      <point x="779.9213050314464" y="285.0" />
+      <point x="-100.15384615384619" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.VariableStart" target="com.github.andreasbraun5.thesis.grammar.Variable">
       <point x="0.0" y="-25.5" />
-      <point x="554.1208781361997" y="335.0" />
-      <point x="1053.395833333333" y="335.0" />
-      <point x="-27.125000000000014" y="70.5" />
+      <point x="0.0" y="70.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammar" target="com.github.andreasbraun5.thesis.generatortest.TestGrammarRepresentativeExamples">
-      <point x="-42.0" y="-59.5" />
-      <point x="4467.420116487457" y="2103.0" />
-      <point x="4460.2458781362" y="2103.0" />
-      <point x="-83.75" y="71.0" />
+    <edge source="com.github.andreasbraun5.thesis.util.Util" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="0.0" y="-113.5" />
+      <point x="1351.0" y="672.0" />
+      <point x="1162.9918178519592" y="672.0" />
+      <point x="24.66666666666663" y="70.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.test" target="com.github.andreasbraun5.thesis.grammar.Grammar">
-      <point x="40.83333333333326" y="-14.5" />
-      <point x="1748.5000000000002" y="1141.0" />
-      <point x="2402.9583781362035" y="1141.0" />
-      <point x="-140.0" y="103.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammar" target="com.github.andreasbraun5.thesis.generatortest.TestGrammarSample">
-      <point x="-126.0" y="-59.5" />
-      <point x="4383.420116487457" y="2103.0" />
-      <point x="4365.9958781362" y="2103.0" />
-      <point x="4365.9958781362" y="1440.0" />
-      <point x="4378.295116487457" y="1440.0" />
-      <point x="-171.25" y="114.5" />
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.ProductionTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="0.0" y="-36.5" />
+      <point x="1715.5" y="335.0" />
+      <point x="896.7674588776003" y="335.0" />
+      <point x="16.692307692307736" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.Production" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
       <point x="108.25" y="-103.5" />
+      <point x="2196.75" y="335.0" />
+      <point x="2238.582232704403" y="335.0" />
+      <point x="2238.582232704403" y="104.0" />
+      <point x="1700.4501511852925" y="104.0" />
       <point x="24.5" y="37.0" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammarTest" target="com.github.andreasbraun5.thesis.generatortest.TestGrammar">
-      <point x="-36.5" y="-25.5" />
-      <point x="4848.340949820793" y="2305.0" />
-      <point x="4593.420116487457" y="2305.0" />
-      <point x="84.0" y="59.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll">
-      <point x="-184.0" y="-70.0" />
-      <point x="2577.7458781362" y="2083.0" />
-      <point x="2594.3750448028704" y="2083.0" />
-      <point x="0.0" y="92.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.parser.test" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
-      <point x="-30.625" y="-14.5" />
-      <point x="1807.041666666667" y="2093.0" />
-      <point x="215.74999999999977" y="2093.0" />
-      <point x="215.74999999999977" y="642.0" />
-      <point x="508.12087813619974" y="642.0" />
-      <point x="-46.0" y="25.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammarTest" target="com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException">
-      <point x="109.5" y="-25.5" />
-      <point x="4994.340949820793" y="2375.0" />
-      <point x="5437.795116487457" y="2375.0" />
-      <point x="5437.795116487457" y="1430.0" />
-      <point x="4140.711783154123" y="1430.0" />
-      <point x="92.66666666666674" y="25.5" />
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.Production">
+      <point x="15.375" y="-58.5" />
+      <point x="2243.137796323174" y="1081.0" />
+      <point x="2388.3541666666665" y="1081.0" />
+      <point x="2388.3541666666665" y="582.0" />
+      <point x="2250.875" y="582.0" />
+      <point x="162.375" y="103.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.Variable">
-      <point x="163.5" y="-169.5" />
-      <point x="1105.3083781361997" y="672.0" />
-      <point x="970.3708781361997" y="672.0" />
-      <point x="970.3708781361997" y="345.0" />
-      <point x="1071.4791666666663" y="345.0" />
-      <point x="-9.041666666666742" y="70.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException">
-      <point x="57.666666666666515" y="-36.5" />
-      <point x="3680.545161290326" y="2365.0" />
-      <point x="4008.6284946236597" y="2365.0" />
-      <point x="4008.6284946236597" y="1440.0" />
-      <point x="4048.045116487456" y="1440.0" />
-      <point x="0.0" y="25.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.parser.test" target="com.github.andreasbraun5.thesis.grammar.VariableCompound">
-      <point x="42.875" y="-14.5" />
-      <point x="1880.541666666667" y="2093.0" />
-      <point x="2961.0659946236597" y="2093.0" />
-      <point x="-133.875" y="81.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammar" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarSettings">
-      <point x="-105.75" y="-70.5" />
-      <point x="2235.2083781362035" y="1440.0" />
-      <point x="2225.4583781362035" y="1440.0" />
-      <point x="-70.25" y="37.0" />
+      <point x="-163.5" y="-169.5" />
+      <point x="514.9629475084666" y="602.0" />
+      <point x="488.0751511852926" y="602.0" />
+      <point x="488.0751511852926" y="315.0" />
+      <point x="829.9982281083695" y="315.0" />
+      <point x="-50.076923076923094" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.grammar.Terminal">
-      <point x="19.22222222222217" y="-36.5" />
-      <point x="3642.100716845882" y="2345.0" />
-      <point x="3887.545116487456" y="2345.0" />
-      <point x="3887.545116487456" y="592.0" />
-      <point x="945.9958781361997" y="592.0" />
-      <point x="97.125" y="70.5" />
+      <point x="34.59999999999991" y="-36.5" />
+      <point x="322.29999999999995" y="1111.0" />
+      <point x="310.5" y="1111.0" />
+      <point x="310.5" y="642.0" />
+      <point x="1039.658484518626" y="642.0" />
+      <point x="-98.66666666666663" y="70.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammarResult" target="com.github.andreasbraun5.thesis.generatortest.TestGrammarRepresentativeExamples">
-      <point x="-38.5" y="-115.0" />
-      <point x="4881.545116487457" y="1763.0" />
-      <point x="4627.7458781362" y="1763.0" />
-      <point x="83.75" y="71.0" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.parser.test" target="com.github.andreasbraun5.thesis.grammar.Production">
-      <point x="18.375" y="-14.5" />
-      <point x="1856.041666666667" y="2053.0" />
-      <point x="1648.166666666667" y="2053.0" />
-      <point x="1648.166666666667" y="1161.0" />
-      <point x="1692.0868279569927" y="1161.0" />
-      <point x="1692.0868279569927" y="692.0" />
-      <point x="1999.416666666667" y="692.0" />
-      <point x="-162.375" y="103.5" />
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException">
+      <point x="-69.20000000000005" y="-36.5" />
+      <point x="218.5" y="1111.0" />
+      <point x="139.0" y="1111.0" />
+      <point x="0.0" y="25.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.VariableCompound" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
       <point x="89.25" y="-81.5" />
-      <point x="3184.1909946236597" y="1763.0" />
-      <point x="3052.395833333334" y="1763.0" />
-      <point x="3052.395833333334" y="104.0" />
-      <point x="2319.041666666667" y="104.0" />
+      <point x="2832.3541666666665" y="94.0" />
+      <point x="1749.4501511852925" y="94.0" />
       <point x="73.5" y="37.0" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.parser.test" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
-      <point x="-6.125" y="-14.5" />
-      <point x="1831.541666666667" y="2073.0" />
-      <point x="741.6666666666667" y="2073.0" />
-      <point x="741.6666666666667" y="1161.0" />
-      <point x="905.4750448028665" y="1161.0" />
-      <point x="-36.33333333333326" y="169.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarSettings">
-      <point x="-118.75" y="-125.5" />
-      <point x="3239.170116487456" y="1430.0" />
-      <point x="2365.9583781362035" y="1430.0" />
-      <point x="70.25" y="37.0" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammarRepresentativeExamples" target="com.github.andreasbraun5.thesis.generatortest.TestGrammarSample">
-      <point x="0.0" y="-71.0" />
-      <point x="4543.9958781362" y="1440.0" />
-      <point x="4720.795116487457" y="1440.0" />
-      <point x="171.25" y="114.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarSettings" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
-      <point x="0.0" y="-37.0" />
-      <point x="2295.7083781362035" y="1071.0" />
-      <point x="1123.4750448028665" y="1071.0" />
-      <point x="181.66666666666674" y="169.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.parser.test" target="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll">
-      <point x="6.125" y="-14.5" />
-      <point x="1843.791666666667" y="2063.0" />
-      <point x="944.6666666666667" y="2063.0" />
-      <point x="0.0" y="36.5" />
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="-102.0" y="-25.5" />
+      <point x="790.387796323174" y="1081.0" />
+      <point x="359.38779632317414" y="1081.0" />
+      <point x="359.38779632317414" y="305.0" />
+      <point x="813.3059204160618" y="305.0" />
+      <point x="-66.76923076923083" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.Terminal">
-      <point x="54.5" y="-169.5" />
-      <point x="996.3083781361997" y="682.0" />
-      <point x="862.7458781361997" y="682.0" />
-      <point x="13.875" y="70.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammarResult" target="com.github.andreasbraun5.thesis.generatortest.TestGrammarResultSuccessRates">
-      <point x="38.5" y="-115.0" />
-      <point x="4958.545116487457" y="1773.0" />
-      <point x="4916.9958781362" y="1773.0" />
-      <point x="-156.25" y="136.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammar" target="com.github.andreasbraun5.thesis.grammar.Grammar">
-      <point x="105.75" y="-70.5" />
-      <point x="2446.7083781362035" y="1440.0" />
-      <point x="2545.649327956993" y="1440.0" />
-      <point x="2545.649327956993" y="1161.0" />
-      <point x="2522.9583781362035" y="1161.0" />
-      <point x="-20.0" y="103.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings">
-      <point x="56.0" y="-25.5" />
-      <point x="222.2117831541227" y="2365.0" />
-      <point x="1778.166666666667" y="2365.0" />
-      <point x="1778.166666666667" y="1773.0" />
-      <point x="3179.795116487456" y="1773.0" />
-      <point x="-178.125" y="125.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestMethod" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll">
-      <point x="25.75" y="-48.0" />
-      <point x="1983.916666666667" y="2083.0" />
-      <point x="2506.708378136204" y="2083.0" />
-      <point x="-87.66666666666669" y="92.5" />
+      <point x="163.5" y="-169.5" />
+      <point x="841.9629475084666" y="662.0" />
+      <point x="1088.9918178519592" y="662.0" />
+      <point x="-49.33333333333337" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
-      <point x="-163.5" y="-169.5" />
-      <point x="778.3083781361997" y="662.0" />
-      <point x="577.1208781361997" y="662.0" />
-      <point x="23.0" y="25.5" />
+      <point x="-54.5" y="-169.5" />
+      <point x="623.9629475084666" y="632.0" />
+      <point x="857.0751511852926" y="632.0" />
+      <point x="-23.0" y="25.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings" target="com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException">
-      <point x="118.75" y="-125.5" />
-      <point x="3476.670116487456" y="1440.0" />
-      <point x="3955.3784498207897" y="1440.0" />
-      <point x="-92.66666666666674" y="25.5" />
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="34.0" y="-25.5" />
+      <point x="926.387796323174" y="1101.0" />
+      <point x="906.9629475084666" y="1101.0" />
+      <point x="906.9629475084666" y="632.0" />
+      <point x="880.0751511852926" y="632.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="102.0" y="-25.5" />
+      <point x="994.387796323174" y="1111.0" />
+      <point x="1121.5" y="1111.0" />
+      <point x="1121.5" y="672.0" />
+      <point x="1138.3251511852927" y="672.0" />
+      <point x="0.0" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.parser.CYK" target="com.github.andreasbraun5.thesis.parser.Tree">
-      <point x="103.0" y="-69.5" />
+      <point x="-103.0" y="-69.5" />
       <point x="0.0" y="14.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.test" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
-      <point x="-24.5" y="-14.5" />
-      <point x="1683.166666666667" y="1121.0" />
-      <point x="978.141711469533" y="1121.0" />
-      <point x="36.33333333333326" y="169.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll" target="com.github.andreasbraun5.thesis.grammar.Grammar">
-      <point x="0.0" y="-92.5" />
-      <point x="2594.3750448028704" y="1763.0" />
-      <point x="2657.024327956993" y="1763.0" />
-      <point x="2657.024327956993" y="1161.0" />
-      <point x="2562.9583781362035" y="1161.0" />
-      <point x="20.0" y="103.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.Terminal" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
       <point x="0.0" y="-70.5" />
-      <point x="848.8708781361997" y="285.0" />
-      <point x="778.6874999999998" y="285.0" />
-      <point x="778.6874999999998" y="94.0" />
-      <point x="2172.041666666667" y="94.0" />
-      <point x="-73.5" y="37.0" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly" target="com.github.andreasbraun5.thesis.grammar.VariableCompound">
-      <point x="184.0" y="-70.0" />
-      <point x="2945.7458781362" y="2103.0" />
-      <point x="3050.3159946236597" y="2103.0" />
-      <point x="-44.625" y="81.5" />
+      <point x="1138.3251511852927" y="104.0" />
+      <point x="1651.4501511852925" y="104.0" />
+      <point x="-24.5" y="37.0" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
-      <point x="-57.66666666666674" y="-36.5" />
-      <point x="3565.211827956993" y="2355.0" />
-      <point x="2031.166666666667" y="2355.0" />
-      <point x="2031.166666666667" y="1081.0" />
-      <point x="1506.2083781362035" y="1081.0" />
-      <point x="1506.2083781362035" y="652.0" />
-      <point x="600.1208781361997" y="652.0" />
-      <point x="46.0" y="25.5" />
+      <point x="0.0" y="-36.5" />
+      <point x="287.70000000000005" y="1111.0" />
+      <point x="299.5" y="1111.0" />
+      <point x="299.5" y="612.0" />
+      <point x="811.0751511852926" y="612.0" />
+      <point x="-69.0" y="25.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
-      <point x="75.0" y="-25.5" />
-      <point x="513.9999999999998" y="1141.0" />
-      <point x="760.141711469533" y="1141.0" />
-      <point x="-181.66666666666674" y="169.5" />
+      <point x="25.0" y="-25.5" />
+      <point x="634.387796323174" y="1111.0" />
+      <point x="623.9629475084666" y="1111.0" />
+      <point x="-54.5" y="169.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly" target="com.github.andreasbraun5.thesis.grammar.Grammar">
-      <point x="0.0" y="-70.0" />
-      <point x="2761.7458781362" y="2083.0" />
-      <point x="2905.9409946236597" y="2083.0" />
-      <point x="2905.9409946236597" y="1151.0" />
-      <point x="2602.9583781362035" y="1151.0" />
-      <point x="60.0" y="103.5" />
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarTest" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="-102.80000000000001" y="-58.5" />
+      <point x="1673.337796323174" y="1091.0" />
+      <point x="917.9629475084666" y="1091.0" />
+      <point x="917.9629475084666" y="622.0" />
+      <point x="903.0751511852926" y="622.0" />
+      <point x="23.0" y="25.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.ProductionTest" target="com.github.andreasbraun5.thesis.grammar.Production">
+      <point x="83.0" y="-36.5" />
+      <point x="1798.5" y="672.0" />
+      <point x="1926.125" y="672.0" />
+      <point x="-162.375" y="103.5" />
+    </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarTest" target="com.github.andreasbraun5.thesis.grammar.Production">
+      <point x="51.39999999999998" y="-58.5" />
+      <point x="1827.537796323174" y="1101.0" />
+      <point x="2034.375" y="1101.0" />
+      <point x="-54.125" y="103.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.VariableKWrapper" target="com.github.andreasbraun5.thesis.grammar.Variable">
-      <point x="0.0" y="-82.0" />
-      <point x="334.12087813619974" y="325.0" />
-      <point x="1035.3124999999998" y="325.0" />
-      <point x="-45.20833333333334" y="70.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.test" target="com.github.andreasbraun5.thesis.grammar.Production">
-      <point x="24.5" y="-14.5" />
-      <point x="1732.166666666667" y="1131.0" />
-      <point x="2111.0868279569927" y="1131.0" />
-      <point x="2111.0868279569927" y="692.0" />
-      <point x="2107.666666666667" y="692.0" />
-      <point x="-54.125" y="103.5" />
+      <point x="59.75" y="-82.0" />
+      <point x="698.8251511852926" y="335.0" />
+      <point x="863.3828434929849" y="335.0" />
+      <point x="-16.69230769230768" y="70.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
       <point x="-25.0" y="-25.5" />
-      <point x="413.9999999999998" y="1141.0" />
-      <point x="312.3750448028702" y="1141.0" />
-      <point x="312.3750448028702" y="652.0" />
-      <point x="531.1208781361997" y="652.0" />
-      <point x="-23.0" y="25.5" />
+      <point x="584.387796323174" y="1091.0" />
+      <point x="449.96294750846664" y="1091.0" />
+      <point x="449.96294750846664" y="622.0" />
+      <point x="834.0751511852926" y="622.0" />
+      <point x="-46.0" y="25.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
-      <point x="-18.666666666666515" y="-25.5" />
-      <point x="147.5451164874562" y="2355.0" />
-      <point x="48.0" y="2355.0" />
-      <point x="48.0" y="1161.0" />
-      <point x="452.9999999999998" y="1161.0" />
-      <point x="452.9999999999998" y="672.0" />
-      <point x="751.7458781361997" y="672.0" />
-      <point x="-97.125" y="70.5" />
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
+      <point x="46.125" y="-58.5" />
+      <point x="2273.887796323174" y="1091.0" />
+      <point x="2399.3541666666665" y="1091.0" />
+      <point x="2399.3541666666665" y="295.0" />
+      <point x="963.5366896468311" y="295.0" />
+      <point x="83.46153846153845" y="70.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
-      <point x="-56.0" y="-25.5" />
-      <point x="110.21178315412271" y="2365.0" />
-      <point x="37.0" y="2365.0" />
-      <point x="37.0" y="1151.0" />
-      <point x="81.0" y="1151.0" />
-      <point x="81.0" y="632.0" />
-      <point x="485.12087813619974" y="632.0" />
-      <point x="-69.0" y="25.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnly">
-      <point x="-38.44444444444446" y="-36.5" />
-      <point x="3584.4340501792153" y="2345.0" />
-      <point x="2761.7458781362" y="2345.0" />
-      <point x="0.0" y="70.0" />
+    <edge source="com.github.andreasbraun5.thesis.grammar.Grammar" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="-106.66666666666674" y="-103.5" />
+      <point x="2100.1875" y="602.0" />
+      <point x="949.0751511852926" y="602.0" />
+      <point x="69.0" y="25.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.VariableCompound" target="com.github.andreasbraun5.thesis.grammar.Variable">
       <point x="-89.25" y="-81.5" />
-      <point x="3005.6909946236597" y="1763.0" />
-      <point x="3041.395833333334" y="1763.0" />
-      <point x="3041.395833333334" y="315.0" />
-      <point x="1143.8124999999995" y="315.0" />
-      <point x="63.291666666666515" y="70.5" />
+      <point x="2653.8541666666665" y="285.0" />
+      <point x="980.2289973391387" y="285.0" />
+      <point x="100.15384615384613" y="70.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.Grammar" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
-      <point x="-120.0" y="-103.5" />
-      <point x="2422.9583781362035" y="622.0" />
-      <point x="623.1208781361997" y="622.0" />
-      <point x="69.0" y="25.5" />
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarTest" target="com.github.andreasbraun5.thesis.grammar.Grammar">
+      <point x="102.80000000000001" y="-58.5" />
+      <point x="1878.937796323174" y="1111.0" />
+      <point x="2126.8541666666665" y="1111.0" />
+      <point x="-80.0" y="103.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammarSample" target="com.github.andreasbraun5.thesis.grammar.Grammar">
-      <point x="-171.25" y="-114.5" />
-      <point x="4378.295116487457" y="1131.0" />
-      <point x="2682.9583781362035" y="1131.0" />
-      <point x="140.0" y="103.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRoll" target="com.github.andreasbraun5.thesis.grammar.Production">
-      <point x="87.66666666666663" y="-92.5" />
-      <point x="2682.041711469537" y="1763.0" />
-      <point x="2737.774327956993" y="1763.0" />
-      <point x="2737.774327956993" y="602.0" />
-      <point x="2324.166666666667" y="602.0" />
-      <point x="162.375" y="103.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollBias" target="com.github.andreasbraun5.thesis.grammar.VariableCompound">
-      <point x="0.0" y="-81.0" />
-      <point x="3593.045116487456" y="2063.0" />
-      <point x="3139.5659946236597" y="2063.0" />
-      <point x="44.625" y="81.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammar" target="com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException">
-      <point x="42.0" y="-59.5" />
-      <point x="4551.420116487457" y="2103.0" />
-      <point x="4614.545116487457" y="2103.0" />
-      <point x="0.0" y="25.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestMethod" target="com.github.andreasbraun5.thesis.grammar.Grammar">
-      <point x="-25.75" y="-48.0" />
-      <point x="1932.416666666667" y="1161.0" />
-      <point x="2482.9583781362035" y="1161.0" />
-      <point x="-60.0" y="103.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollOnlyTest" target="com.github.andreasbraun5.thesis.grammar.Variable">
-      <point x="-93.33333333333348" y="-25.5" />
-      <point x="72.87844982078923" y="2375.0" />
-      <point x="26.0" y="2375.0" />
-      <point x="26.0" y="295.0" />
-      <point x="981.0624999999998" y="295.0" />
-      <point x="-99.45833333333326" y="70.5" />
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+      <point x="-76.875" y="-58.5" />
+      <point x="2150.887796323174" y="1051.0" />
+      <point x="1580.5" y="1051.0" />
+      <point x="1580.5" y="632.0" />
+      <point x="926.0751511852926" y="632.0" />
+      <point x="46.0" y="25.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.GrammarValidityChecker" target="com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException">
       <point x="0.0" y="-58.5" />
       <point x="73.5" y="25.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generatortest.TestGrammarTest" target="com.github.andreasbraun5.thesis.generator.GeneratorGrammarDiceRollSettings">
-      <point x="36.5" y="-25.5" />
-      <point x="4921.340949820793" y="2365.0" />
-      <point x="5235.045116487457" y="2365.0" />
-      <point x="5235.045116487457" y="1753.0" />
-      <point x="3536.045116487456" y="1753.0" />
-      <point x="178.125" y="125.5" />
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+      <point x="-15.375" y="-58.5" />
+      <point x="2212.387796323174" y="1071.0" />
+      <point x="2377.3541666666665" y="1071.0" />
+      <point x="2377.3541666666665" y="592.0" />
+      <point x="1236.9918178519592" y="592.0" />
+      <point x="98.66666666666674" y="70.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.3595628415300547" x="2195.226443768997" y="995.7340425531913" />
+  <settings layout="Hierarchic Group" zoom="0.3819371727748691" x="1900.0" y="672.0" />
   <SelectedNodes />
   <Categories>
     <Category>Fields</Category>

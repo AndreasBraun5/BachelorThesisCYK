@@ -35,6 +35,7 @@ public class Terminal implements RightHandSideElement {
 		return name.hashCode();
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
