@@ -45,7 +45,7 @@ public class ResultSample {
 		return "ResultSample{" +
 				"\ngrammar=" + grammar +
 				"\nword='" + word + '\'' +
-				"\nsetV=" + Util.getSetVAsStringForPrintingAsLowerTriangularMatrix( setV, "setV" ) +
+				"\nsetV=" + Util.getSetVVariableAsStringForPrintingAsLowerTriangularMatrix( setV, "setV" ) +
 				"\nvalidity=" + validity +
 				"\nisWordProducible=" + isWordProducible +
 				"\nfulfillsRestriction=" + fulfillsRestriction +

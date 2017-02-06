@@ -12,12 +12,14 @@ import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
+import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.util.Util;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
  * https://github.com/AndreasBraun5/
  */
+@SuppressWarnings("Duplicates")
 public class CYK {
 	/*
 	   ###############################################################
@@ -28,15 +30,35 @@ public class CYK {
 	/**
 	 * Implementation of the simple Algorithm described in the script TI1. Overloaded method for simpler usage.
 	 */
-	// TODO: the simple algorithm is a special case of the advanced algorithm. Use a util method to "convert" the
-	// Set<VariableKWrapper>[][] to a Set<Variable>[][] when needed.
+	// Think about deleting this.
 	public static boolean algorithmSimple(Grammar grammar, List<Terminal> word) {
-		Set<Variable>[][] setV = calculateSetV( grammar, word );
+		Set<VariableKWrapper>[][] setV = calculateSetVAdvanced( grammar, word );
 		int wordLength = word.size();
-		return setV[0][wordLength - 1].contains( grammar.getVariableStart() );
+		return Util.getVarsFromSet( setV[0][wordLength - 1] ).contains( grammar.getVariableStart() );
 	}
 
 	public static boolean algorithmSimple(
+			Set<Variable>[][] setV,
+			Grammar grammar,
+			GrammarProperties grammarProperties) {
+		return setV[0][grammarProperties.sizeOfWord - 1].contains( grammar.getVariableStart() );
+	}
+
+	public static boolean algorithmAdvanced(Grammar grammar, List<Terminal> word) {
+		Set<VariableKWrapper>[][] setV = calculateSetVAdvanced( grammar, word );
+
+		int wordLength = word.size();
+		return Util.getVarsFromSet( setV[0][wordLength - 1] ).contains( grammar.getVariableStart() );
+	}
+	/* TODO Discuss: Both methods have the same erasure.
+	public static boolean algorithmAdvanced(
+			Set<VariableKWrapper>[][] setV,
+			Grammar grammar,
+			GrammarProperties grammarProperties) {
+		return Util.getVarsFromSet( setV[0][grammarProperties.sizeOfWord - 1] ).contains( grammar.getVariableStart() );
+	}*/
+
+	public static boolean algorithmAdvanced(
 			Set<Variable>[][] setV,
 			Grammar grammar,
 			GrammarProperties grammarProperties) {
@@ -47,20 +69,20 @@ public class CYK {
 	 * Each variable that has the terminal at position i of the word as its rightHandSideElement,
 	 * will be added to setV[i][i]
 	 */
-	public static void stepII(Set<Variable>[][] setV, List<Terminal> word, Grammar grammar) {
+	public static void stepIIAdvanced(Set<VariableKWrapper>[][] setV, List<Terminal> word, Grammar grammar) {
 		int wordLength = word.size();
 		// Look at each terminal of the word
-		for ( int i = 0; i < wordLength; i++ ) {
-			RightHandSideElement tempTerminal = word.get( i );
+		for ( int i = 1; i <= wordLength; i++ ) {
+			RightHandSideElement tempTerminal = word.get( i - 1 );
 			// Get all productions that have the same leftHandSide variable. This is done for all unique variables.
 			// So all production in general are taken into account.
 			for ( Map.Entry<Variable, List<Production>> entry : grammar.getProductionsMap().entrySet() ) {
-				Variable var = entry.getKey();
+				VariableKWrapper var = new VariableKWrapper( entry.getKey(), i );
 				List<Production> prods = entry.getValue();
 				// Check if there is one rightHandSideElement that equals the observed terminal.
 				for ( Production prod : prods ) {
 					if ( prod.isElementAtRightHandSide( tempTerminal ) ) {
-						setV[i][i].add( var );
+						setV[i - 1][i - 1].add( var );
 					}
 				}
 			}
@@ -70,35 +92,40 @@ public class CYK {
 	/**
 	 * Calculating the set needed for the cyk algorithm.
 	 */
-	public static Set<Variable>[][] calculateSetV(Grammar grammar, List<Terminal> word) {
+	public static Set<VariableKWrapper>[][] calculateSetVAdvanced(Grammar grammar, List<Terminal> word) {
 		int wordLength = word.size();
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
 		@SuppressWarnings("unchecked")
-		Set<Variable>[][] setV = new Set[wordLength][wordLength];
+		Set<VariableKWrapper>[][] setV = new Set[wordLength][wordLength];
+		VariableKWrapper temp = new VariableKWrapper( new Variable( "A" ), 6 );
+		temp.getVariable();
 		for ( int i = 0; i < wordLength; i++ ) {
 			for ( int j = 0; j < wordLength; j++ ) {
 				setV[i][j] = new HashSet<>(); // this generates a set with size = 0
 			}
 		}
 		// Check whether the terminal is on the right side of the production, then add its left variable to v_ii
-		stepII( setV, word, grammar );
+		stepIIAdvanced( setV, word, grammar );
 		// l loop of the described algorithm
-		for ( int l = 0; l <= wordLength - 1; l++ ) {
-			// i loop of the described algorithm
-			for ( int i = 0; i < wordLength - l; i++ ) {
+		for ( int l = 1; l <= wordLength - 1; l++ ) {
+			// i loop of the described algorithm.
+			// Needs to be 1 <= i <= n-1-l, because of index starting from 0 for an array.
+			for ( int i = 0; i <= wordLength - l - 1; i++ ) {
 				// k loop of the described algorithm
+				// Needs to be i <= k <= i+l, because of index starting from 0 for i already.
 				for ( int k = i; k < i + l; k++ ) {
 					// tempSetX contains the newly to be added variables, regarding the "X-->YZ" rule.
 					// If the substring X can be concatenated with the substring Y and substring Z, whereas Y and Z
 					// must be element of its specified subsets, then add the element X to setV[i][i+l]
 					Set<Variable> tempSetX = new HashSet<>();
-					Set<Variable> tempSetY = setV[i][k];
-					Set<Variable> tempSetZ = setV[k + 1][i + l];
+					Set<Variable> tempSetY = Util.getVarsFromSet( setV[i][k] );
+					Set<Variable> tempSetZ = Util.getVarsFromSet( setV[k + 1][i + l] );
 					Set<VariableCompound> tempSetYZ = new HashSet<>();
 					// All possible concatenations of the variables yz are constructed. And so its substrings, which
 					// they are able to generate
 					for ( Variable y : tempSetY ) {
 						for ( Variable z : tempSetZ ) {
+							@SuppressWarnings("SuspiciousNameCombination")
 							VariableCompound tempVariable = new VariableCompound( y, z );
 							tempSetYZ.add( tempVariable );
 						}
@@ -115,19 +142,13 @@ public class CYK {
 							}
 						}
 					}
-					setV[i][i + l].addAll( tempSetX );
+					for ( Variable var : tempSetX ) {
+						// ( k + 1) because of index range of k  because of i.
+						setV[i][i + l].add( new VariableKWrapper( var, ( k + 1 ) ) );
+					}
 				}
 			}
 		}
 		return setV;
 	}
-
-	/**
-	 * not yet implemented algorithm
-	 */
-	public static Tree algorithmAdvanced(StringBuilder word, Grammar grammar) {
-		return new Tree();
-	}
-
-
 }

@@ -16,6 +16,7 @@ import com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator;
 import com.github.andreasbraun5.thesis.util.Util;
 
 public class Main {
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// TODO:2 CYK advanced, instead of storing X now you must save (X,k) [= VariableKWrapper]
 	// TODO:2 CYK tree
 	// TODO: Idea StartVariable has no terminal, kind of "pattern" from exam exercises. There the favouritism should be mapped to a variable.

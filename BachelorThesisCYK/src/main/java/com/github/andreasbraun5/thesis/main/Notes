@@ -1,54 +1,78 @@
-    // TODO: Backtracking attempt code to find here
-    // old Code with the goal to use the backtracking attempt to always generate a valid grammar. --> No increase of
-    // the succes rate would have been possible or more specific. The success rate is defined differently than that of the DiceRoll
-    public Grammar generateGrammar(GrammarProperties grammarProperties){
-        // using lists now, because of easier access.
-        List<Terminal> terminals = new ArrayList<>();
-        terminals.addAll(grammarProperties.terminals);
-        List<Variable> variables = new ArrayList<>();
-        variables.addAll(grammarProperties.variables);
-        // GrammarProperties and Grammar are no longer interconnected. Therefore the startingVariable needs to be added
-        // to the grammar specifically.
-        Grammar grammar = new Grammar(grammarProperties.variableStart);
+Maybe keep this code here. Is has a little bit more performance.
+/*
+	public static void stepII(Set<Variable>[][] setV, List<Terminal> word, Grammar grammar) {
+		int wordLength = word.size();
+		// Look at each terminal of the word
+		for ( int i = 0; i < wordLength; i++ ) {
+			RightHandSideElement tempTerminal = word.get( i );
+			// Get all productions that have the same leftHandSide variable. This is done for all unique variables.
+			// So all production in general are taken into account.
+			for ( Map.Entry<Variable, List<Production>> entry : grammar.getProductionsMap().entrySet() ) {
+				Variable var = entry.getKey();
+				List<Production> prods = entry.getValue();
+				// Check if there is one rightHandSideElement that equals the observed terminal.
+				for ( Production prod : prods ) {
+					if ( prod.isElementAtRightHandSide( tempTerminal ) ) {
+						setV[i][i].add( var );
+					}
+				}
+			}
+		}
+	}
+*/
 
-        int wordlength = terminals.size();
-        Set<Variable>[][] setV = new Set[wordlength][wordlength];
-        for (int i = 0; i < wordlength; i++) {
-            for (int j = 0; j < wordlength; j++) {
-                setV[i][j] = new HashSet<>();
-            }
-        }
-        // Each variable gets to be one Production, not depended on the count of terminals
-        for (Variable variable : variables) {
-            Production production = new Production(variable);
-            grammar.addProduction(production);
-        }
-        System.out.println();
-        System.out.println();
-        System.out.println("Grammar after each Variable has its Production: ");
-        // Now you have a production for every possible variable with an empty rightSide (Set with size of 0)
-        System.out.println(grammar);
-
-        // Row1: Distributing the Terminals equally over the Variables. For over Terminal symbole: An nur eine oder an zwei seiten.
-        // Würfle an welch an welche Variable es dran gemacht werden soll.
-        // TTODO: gleichmäßig verteilen nicht erlaubt. random gleichmaßig
-        {
-            int curVar = 0;
-            for(Terminal terminal : terminals) {
-                Variable variable = variables.get(curVar);
-                Production production = new Production(variable, terminal);
-                List<Production> productionSet = new ArrayList<>();
-                productionSet.add(production);
-                // The ProductionSet overrides the default production set that only
-                // contained an empty production. In this case, this is okay
-                grammar.replaceProductions(variable, productionSet);
-                ++curVar;
-            }
-        }
-        // TTODO: NullPointerException, now here C-->null
-        CYK.stepII(setV, terminals, grammar);
-        System.out.println(grammar);
-        CYK.printSetV(setV, "setV");
-
-        // Row2: Per cell, compute combinations of vars. Distribute again over right hand sides of vars such that the
-     }*/
+	/*
+	public static Set<Variable>[][] calculateSetV(Grammar grammar, List<Terminal> word) {
+		int wordLength = word.size();
+		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
+		@SuppressWarnings("unchecked")
+		Set<Variable>[][] setV = new Set[wordLength][wordLength];
+		for ( int i = 0; i < wordLength; i++ ) {
+			for ( int j = 0; j < wordLength; j++ ) {
+				setV[i][j] = new HashSet<>(); // this generates a set with size = 0
+			}
+		}
+		// Check whether the terminal is on the right side of the production, then add its left variable to v_ii
+		stepII( setV, word, grammar );
+		// l loop of the described algorithm
+		for ( int l = 0; l <= wordLength - 1; l++ ) {
+			// i loop of the described algorithm
+			for ( int i = 0; i < wordLength - l; i++ ) {
+				// k loop of the described algorithm
+				for ( int k = i; k < i + l; k++ ) {
+					// tempSetX contains the newly to be added variables, regarding the "X-->YZ" rule.
+					// If the substring X can be concatenated with the substring Y and substring Z, whereas Y and Z
+					// must be element of its specified subsets, then add the element X to setV[i][i+l]
+					Set<Variable> tempSetX = new HashSet<>();
+					Set<Variable> tempSetY = setV[i][k];
+					Set<Variable> tempSetZ = setV[k + 1][i + l];
+					Set<VariableCompound> tempSetYZ = new HashSet<>();
+					// All possible concatenations of the variables yz are constructed. And so its substrings, which
+					// they are able to generate
+					for ( Variable y : tempSetY ) {
+						for ( Variable z : tempSetZ ) {
+							@SuppressWarnings("SuspiciousNameCombination")
+							VariableCompound tempVariable = new VariableCompound( y, z );
+							tempSetYZ.add( tempVariable );
+						}
+					}
+					// Looking at all productions of the grammar, it is checked if there is one rightHandSideElement
+					// that equals any of the concatenated variables tempSetYZ. If yes, the LeftHandSideElement or more
+					// specific the variable of the production is added to the tempSetX. All according to the "X-->YZ"
+					// rule.
+					for ( List<Production> tempProductions : productions.values() ) {
+						for ( Production tempProduction : tempProductions ) {
+							for ( VariableCompound yz : tempSetYZ ) {
+								if ( tempProduction.isElementAtRightHandSide( yz ) ) {
+									tempSetX.add( tempProduction.getLeftHandSideElement() );
+								}
+							}
+						}
+					}
+					setV[i][i + l].addAll( tempSetX );
+				}
+			}
+		}
+		return setV;
+	}
+*/

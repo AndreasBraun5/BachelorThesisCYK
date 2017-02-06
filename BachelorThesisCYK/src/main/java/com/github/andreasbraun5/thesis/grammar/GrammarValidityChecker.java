@@ -4,7 +4,6 @@ import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
 import com.github.andreasbraun5.thesis.parser.CYK;
-import com.github.andreasbraun5.thesis.util.Util;
 
 /**
  * Created by Andreas Braun on 05.01.2017.
@@ -26,7 +25,7 @@ public class GrammarValidityChecker {
 			Set<Variable>[][] setV,
 			Grammar grammar,
 			GrammarProperties grammarProperties) {
-		return CYK.algorithmSimple( setV, grammar, grammarProperties );
+		return CYK.algorithmAdvanced( setV, grammar, grammarProperties );
 	}
 
 	/**

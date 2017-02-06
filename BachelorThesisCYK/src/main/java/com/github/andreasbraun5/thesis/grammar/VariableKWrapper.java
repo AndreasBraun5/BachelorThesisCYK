@@ -46,4 +46,13 @@ public class VariableKWrapper extends Variable { // TODO: extend VariableStart?
 		result = 31 * result + k;
 		return result;
 	}
+
+	public Variable getVariable() {
+		return variable;
+	}
+
+	@Override
+	public String toString() {
+		return variable.toString() + k ;
+	}
 }

@@ -9,10 +9,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.github.andreasbraun5.thesis.resultcalculator.Result;
 import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
+import com.github.andreasbraun5.thesis.resultcalculator.Result;
 
 /**
  * Created by Andreas Braun on 05.01.2017.
@@ -49,9 +50,9 @@ public abstract class Util {
 	 */
 	public static void writeToFile(
 			Result... result) {
-		for ( int i=0; i< result.length; i++) {
+		for ( int i = 0; i < result.length; i++ ) {
 			try {
-				File file = new File( "./" + "Test" + i +".txt" );
+				File file = new File( "./" + "Test" + i + ".txt" );
 				file.getParentFile().mkdirs();
 				PrintWriter out = new PrintWriter( file );
 				out.println( result[i] );
@@ -62,6 +63,37 @@ public abstract class Util {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * Set<VariableKWrapper> --> Set<Variable>
+	 */
+	public static Set<Variable> getVarsFromSet(Set<VariableKWrapper> setVWrapper) {
+		Set<Variable> setVVariable = new HashSet<>();
+		for ( VariableKWrapper variableKWrapper : setVWrapper ) {
+			setVVariable.add( variableKWrapper.getVariable() );
+		}
+		return setVVariable;
+	}
+
+	/**
+	 * Set<VariableKWrapper>[][] --> Set<Variable>[][]
+	 */
+	public static Set<Variable>[][] getVarsFromSetDoubleArray(Set<VariableKWrapper>[][] setVWrapper) {
+		int length = setVWrapper.length;
+		@SuppressWarnings("unchecked")
+		Set<Variable>[][] setVVariable = new Set[length][length];
+		for ( int i = 0; i < length; i++ ) {
+			for ( int j = 0; j < length; j++ ) {
+				setVVariable[i][j] = new HashSet<>(); // this generates a set with size = 0
+			}
+		}
+		for ( int i = 0; i < length; i++ ) {
+			for ( int j = 0; j < length; j++ ) {
+				setVVariable[i][j] = getVarsFromSet( setVWrapper[i][j] );
+			}
+		}
+		return setVVariable;
 	}
 
 	/**
@@ -76,12 +108,13 @@ public abstract class Util {
 	}
 
 
-	// TODO: Remove duplicate code.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 	/**
 	 * Method to get the setV as a String for printing purposes.
 	 */
-	public static String getSetVAsStringForPrintingAsLowerTriangularMatrix(Set<Variable>[][] setV, String setName) {
+	@SuppressWarnings("Duplicates")
+	public static String getSetVVariableKAsStringForPrintingAsLowerTriangularMatrix(
+			Set<VariableKWrapper>[][] setV,
+			String setName) {
 		StringBuilder stringBuilder = new StringBuilder( setName ).append( "\n" );
 		int wordLength = setV.length;
 		int maxLen = 0;
@@ -100,31 +133,36 @@ public abstract class Util {
 	}
 
 	/**
-	 * Method for printing the set matrix.
+	 * Method to get the setV as a String for printing purposes.
 	 */
-	public static void printSetVAsLowerTriangularMatrix(Set<Variable>[][] setV, String setName) {
-		System.out.println();
-		System.out.println( setName );
-		int wordlength = setV.length;
+	@SuppressWarnings("Duplicates")
+	public static String getSetVVariableAsStringForPrintingAsLowerTriangularMatrix(
+			Set<Variable>[][] setV,
+			String setName) {
+		StringBuilder stringBuilder = new StringBuilder( setName ).append( "\n" );
+		int wordLength = setV.length;
 		int maxLen = 0;
-		for ( int i = 0; i < wordlength; i++ ) {
-			for ( int j = 0; j < wordlength; j++ ) {
+		for ( int i = 0; i < wordLength; i++ ) {
+			for ( int j = 0; j < wordLength; j++ ) {
 				maxLen = Math.max( maxLen, setV[j][i].toString().length() );
-
 			}
 		}
-		for ( int i = 0; i < wordlength; i++ ) {
-			for ( int j = 0; j < wordlength; j++ ) {
-				System.out.print( uniformStringMaker( setV[j][i].toString(), maxLen ) );
+		for ( int i = 0; i < wordLength; i++ ) {
+			for ( int j = 0; j < wordLength; j++ ) {
+				stringBuilder.append( uniformStringMaker( setV[j][i].toString(), maxLen ) );
 			}
-			System.out.println();
+			stringBuilder.append( "\n" );
 		}
+		return stringBuilder.toString();
 	}
 
 	/**
 	 * Method to get the setV as a String for printing purposes.
 	 */
-	public static String getSetVAsStringForPrintingAsUpperTriangularMatrix(Set<Variable>[][] setV, String setName) {
+	@SuppressWarnings("Duplicates")
+	public static String getSetVVariableAsStringForPrintingAsUpperTriangularMatrix(
+			Set<Variable>[][] setV,
+			String setName) {
 		StringBuilder stringBuilder = new StringBuilder( setName ).append( "\n" );
 		int wordLength = setV.length;
 		int maxLen = 0;
@@ -143,28 +181,6 @@ public abstract class Util {
 	}
 
 	/**
-	 * Method for printing the set matrix.
-	 */
-	public static void printSetVAsUpperTriangularMatrix(Set<Variable>[][] setV, String setName) {
-		System.out.println();
-		System.out.println( setName );
-		int wordlength = setV.length;
-		int maxLen = 0;
-		for ( int i = 0; i < wordlength; i++ ) {
-			for ( int j = 0; j < wordlength; j++ ) {
-				maxLen = Math.max( maxLen, setV[i][j].toString().length() );
-
-			}
-		}
-		for ( int i = 0; i < wordlength; i++ ) {
-			for ( int j = 0; j < wordlength; j++ ) {
-				System.out.print( uniformStringMaker( setV[i][j].toString(), maxLen ) );
-			}
-			System.out.println();
-		}
-	}
-
-	/**
 	 * helper method used by printSetVAsLowerTriangularMatrix
 	 */
 	private static String uniformStringMaker(String str, int length) {
@@ -174,5 +190,6 @@ public abstract class Util {
 		}
 		return builder.toString();
 	}
+
 
 }

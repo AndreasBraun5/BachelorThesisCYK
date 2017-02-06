@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException;
-import com.github.andreasbraun5.thesis.generator.GrammarGenerator;
 import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
+import com.github.andreasbraun5.thesis.generator.GrammarGenerator;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.GrammarValidityChecker;
@@ -62,29 +62,24 @@ public class ResultCalculator {
 			for ( int j = 0; j < countOfGrammarsToGeneratePerWord; j++ ) {
 				// Regarding the specified testMethod enum, the correct grammar is being added to the grammar list.
 				grammar = grammarGenerator.generateGrammar();
-				tempSetV = CYK.calculateSetV( grammar, Util.stringToTerminalList( tempWord ) );
+				tempSetV = Util.getVarsFromSetDoubleArray(
+						CYK.calculateSetVAdvanced( grammar, Util.stringToTerminalList( tempWord ) )
+				);
 				tempIsWordProducible = GrammarValidityChecker.checkProducibilityCYK(
-						tempSetV,
-						grammar,
-						tempGrammarProperties
+						tempSetV, grammar, tempGrammarProperties
 				);
 				tempFulfillsRestriction = GrammarValidityChecker.checkGrammarRestrictions(
-						tempGrammarProperties,
-						tempSetV
+						tempGrammarProperties, tempSetV
 				);
 				tempRightCellCombinationForced = GrammarValidityChecker.checkRightCellCombinationForced( tempSetV );
 				tempValidity = tempIsWordProducible && tempFulfillsRestriction && tempRightCellCombinationForced;
 				tempMaxVarsPerCellSetV = Util.getMaxVarPerCellForSetV( tempSetV );
-				allResultSamples.get( tempWord ).add( new ResultSample(
-						grammar,
-						tempWord,
-						tempSetV,
-						tempValidity,
-						tempIsWordProducible,
-						tempFulfillsRestriction,
-						tempRightCellCombinationForced,
-						tempMaxVarsPerCellSetV
-				) );
+				allResultSamples.get( tempWord ).add(
+						new ResultSample(
+								grammar, tempWord, tempSetV, tempValidity, tempIsWordProducible,
+								tempFulfillsRestriction, tempRightCellCombinationForced, tempMaxVarsPerCellSetV
+						)
+				);
 			}
 		}
 		long endTime = System.currentTimeMillis();
