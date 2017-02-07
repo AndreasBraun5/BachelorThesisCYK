@@ -4,8 +4,8 @@ Result{
 countGeneratedGrammars= 200
 countGeneratedGrammarsPerWord= 20
 countDifferentWords= 10
-totalTime= 789ms
-totalTime= 0min 0sec
+totalTime= 1206ms
+totalTime= 0min 1sec
 generatorType= DICEROLLONLY
 grammarGeneratorSettingsGrammarGeneratorSettingsDiceRoll{
 grammarProperties=GrammarProperties: {
@@ -25,15 +25,15 @@ SuccessRates{
 trueCount=0
 falseCount=200
 			-->	SUCCESSRATE=0.0
-trueProducibilityCount=197
-falseProducibilityCount=3
-			-->	SUCCESSRATEPRODUCIBILITY=0.985
-trueRestrictionsCount=2
-falseRestrictionsCount=198
-			-->	SUCCESSRATERESTRICTIONS=0.01
-trueExamConstraints=59
-falseExamConstraints=141
-			-->	SUCCESSRATEEXAMCONSTRAINTS=0.295
+trueProducibilityCount=191
+falseProducibilityCount=9
+			-->	SUCCESSRATEPRODUCIBILITY=0.955
+trueRestrictionsCount=9
+falseRestrictionsCount=191
+			-->	SUCCESSRATERESTRICTIONS=0.045
+trueExamConstraints=68
+falseExamConstraints=132
+			-->	SUCCESSRATEEXAMCONSTRAINTS=0.34
 }
 }
 
@@ -47,276 +47,28 @@ sampleGrammars=ResultSample{
 grammar=Grammar{
 variableStart: S
 Productions
-A[{ A-->a }, { A-->AA }, { A-->CC }, { A-->b }, { A-->BC }, { A-->AC }, { A-->BA }]
-B[{ B-->BS }, { B-->CB }, { B-->SB }, { B-->a }, { B-->AA }, { B-->SS }, { B-->CC }, { B-->CS }]
-S[{ S-->BA }, { S-->CB }, { S-->a }, { S-->SS }, { S-->CS }, { S-->b }, { S-->BS }]
-C[{ C-->AC }, { C-->BA }, { C-->AA }, { C-->SS }, { C-->CC }, { C-->CS }, { C-->BS }]
+A[{ A-->a }, { A-->BB }, { A-->CC }, { A-->AB }, { A-->BC }, { A-->BS }, { A-->AC }, { A-->AS }, { A-->SA }, { A-->CA }, { A-->CB }]
+B[{ B-->BC }, { B-->AC }, { B-->SA }, { B-->CA }, { B-->BA }, { B-->CB }, { B-->a }, { B-->AA }, { B-->CC }, { B-->SC }, { B-->CS }]
+S[{ S-->SA }, { S-->CA }, { S-->BA }, { S-->CB }, { S-->a }, { S-->BB }, { S-->CC }, { S-->b }, { S-->AB }, { S-->BS }]
+C[{ C-->AC }, { C-->a }, { C-->AA }, { C-->BB }, { C-->SC }, { C-->CS }, { C-->b }, { C-->BC }, { C-->BS }]
 
-word='baabbabbbb'
+word='aababbbbaa'
 setV=setV
-[A, S]      []          []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S]   []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->AA }, { A-->BB }, { A-->CS }, { A-->b }, { A-->AB }, { A-->BS }, { A-->SA }, { A-->CB }]
-B[{ B-->BS }, { B-->AC }, { B-->BB }]
-S[{ S-->AC }, { S-->SA }, { S-->BA }, { S-->a }, { S-->AA }, { S-->SS }]
-C[{ C-->AC }, { C-->BA }, { C-->a }, { C-->AA }, { C-->BB }, { C-->SS }, { C-->b }, { C-->AB }]
-
-word='baabbabbbb'
-setV=setV
-[A, C]      []          []          []          []          []          []          []          []          []          
-[A, B, S, C][S, C]      []          []          []          []          []          []          []          []          
-[A, B, S, C][A, S, C]   [S, C]      []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, S]      [A, C]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, S]      [A, C]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->CC }, { A-->SC }, { A-->CS }, { A-->b }, { A-->BS }, { A-->CB }]
-B[{ B-->BS }, { B-->SA }, { B-->CA }, { B-->BA }, { B-->CB }, { B-->CS }]
-S[{ S-->AS }, { S-->SA }, { S-->BA }, { S-->CB }, { S-->a }, { S-->SS }, { S-->CC }, { S-->SC }, { S-->AB }]
-C[{ C-->AS }, { C-->SA }, { C-->CA }, { C-->BA }, { C-->SS }, { C-->CC }, { C-->CS }, { C-->b }, { C-->AB }, { C-->BC }, { C-->BS }]
-
-word='baabbabbbb'
-setV=setV
-[A, C]      []          []          []          []          []          []          []          []          []          
-[A, B, S, C][S]         []          []          []          []          []          []          []          []          
-[A, B, S, C][S, C]      [S]         []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->b }, { A-->AC }, { A-->CB }, { A-->SB }]
-B[{ B-->AB }, { B-->SA }, { B-->BA }, { B-->CB }, { B-->SC }]
-S[{ S-->AC }, { S-->SA }, { S-->CB }, { S-->SC }, { S-->b }]
-C[{ C-->SA }, { C-->BA }, { C-->SC }, { C-->b }, { C-->AB }]
-
-word='baabbabbbb'
-setV=setV
-[A, S, C]   []          []          []          []          []          []          []          []          []          
-[A, B, S, C][A]         []          []          []          []          []          []          []          []          
-[A, B, S, C][A]         [A]         []          []          []          []          []          []          []          
-[A, B, S, C][A, S]      [A, S]      [A, S, C]   []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, S]      [A, S, C]   []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->BB }, { A-->CC }, { A-->CS }, { A-->b }, { A-->BC }, { A-->BS }, { A-->AC }, { A-->CA }, { A-->CB }, { A-->SB }]
-B[{ B-->b }, { B-->AB }, { B-->AS }, { B-->SA }, { B-->CB }]
-C[{ C-->AC }, { C-->SA }, { C-->CA }, { C-->CB }, { C-->SB }, { C-->a }, { C-->b }]
-S[{ S-->AS }, { S-->BA }, { S-->CC }, { S-->SC }, { S-->CS }, { S-->b }, { S-->BC }]
-
-word='baabbabbbb'
-setV=setV
-[A, B, C, S][]          []          []          []          []          []          []          []          []          
-[A, C, S]   [C]         []          []          []          []          []          []          []          []          
-[A, B, C, S][A, S]      [C]         []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C, S]   [C]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S]
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->BB }, { A-->SC }, { A-->b }, { A-->CA }, { A-->BA }]
-B[{ B-->AB }, { B-->BS }, { B-->AS }, { B-->BA }, { B-->BB }, { B-->CC }]
-C[{ C-->CA }, { C-->BA }, { C-->CB }, { C-->a }, { C-->BB }, { C-->BC }, { C-->BS }]
-S[{ S-->CA }, { S-->SB }, { S-->b }, { S-->AB }, { S-->BC }]
-
-word='bbbababbbb'
-setV=setV
-[A, S]      []          []          []          []          []          []          []          []          []          
-[B]         [A, S]      []          []          []          []          []          []          []          []          
-[A, B, S, C][B]         [A, S]      []          []          []          []          []          []          []          
-[A, B, C, S][C, S]      [A]         [C]         []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B]      [A, C, S]   [A, S]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, C, S][A]         [C]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B]      [A, C, S]   [A, S]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, C, S][B]         [A, S]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][B]         [A, S]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B]         [A, S]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->AA }, { A-->BB }, { A-->SC }, { A-->AB }, { A-->AC }, { A-->SA }, { A-->BA }]
-B[{ B-->AB }, { B-->BS }, { B-->SA }, { B-->CA }, { B-->CB }, { B-->SB }, { B-->SC }]
-S[{ S-->AS }, { S-->CB }, { S-->SB }, { S-->a }, { S-->SC }, { S-->b }, { S-->BC }]
-C[{ C-->AC }, { C-->AS }, { C-->SA }, { C-->CA }, { C-->BA }, { C-->AB }, { C-->BS }]
-
-word='bbbababbbb'
-setV=setV
-[S][] [] [] [] [] [] [] [] [] 
-[] [S][] [] [] [] [] [] [] [] 
-[] [] [S][] [] [] [] [] [] [] 
-[] [] [] [S][] [] [] [] [] [] 
-[] [] [] [] [S][] [] [] [] [] 
-[] [] [] [] [] [S][] [] [] [] 
-[] [] [] [] [] [] [S][] [] [] 
-[] [] [] [] [] [] [] [S][] [] 
-[] [] [] [] [] [] [] [] [S][] 
-[] [] [] [] [] [] [] [] [] [S]
-
-validity=false
-isWordProducible=false
-fulfillsRestriction=true
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=1
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->SC }, { A-->CS }, { A-->b }, { A-->AB }, { A-->BC }, { A-->AC }, { A-->BA }]
-B[{ B-->b }, { B-->AB }, { B-->AC }, { B-->SA }, { B-->CA }, { B-->BA }, { B-->AA }]
-S[{ S-->SA }, { S-->CA }, { S-->BA }, { S-->a }, { S-->SS }, { S-->CS }]
-C[{ C-->AS }, { C-->AA }, { C-->SC }, { C-->CS }, { C-->b }, { C-->AB }]
-
-word='bbbababbbb'
-setV=setV
-[A, B, C]   []          []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, C]   []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AB }, { A-->SA }, { A-->CA }]
-B[{ B-->b }, { B-->BS }, { B-->BA }, { B-->CB }, { B-->a }, { B-->CS }]
-S[{ S-->CA }, { S-->CB }, { S-->SB }, { S-->a }, { S-->BB }, { S-->SC }, { S-->CS }, { S-->b }, { S-->AB }]
-C[{ C-->BA }, { C-->a }, { C-->BB }, { C-->CC }, { C-->CS }, { C-->AB }]
-
-word='bbbababbbb'
-setV=setV
-[B, S]      []          []          []          []          []          []          []          []          []          
-[B, S, C]   [B, S]      []          []          []          []          []          []          []          []          
-[B, S, C]   [B, S, C]   [B, S]      []          []          []          []          []          []          []          
+[A, B, S, C][]          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          []          []          
 [A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [B, S]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][B, S, C]   [B, S, C]   [B, S]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][B, S, C]   [B, S, C]   [B, S, C]   [B, S]      
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
 
 validity=false
 isWordProducible=true
 fulfillsRestriction=false
-rightCellCombinationsForced=true
+rightCellCombinationsForced=false
 maxVarsPerCellSetV=4
 }
 
@@ -326,23 +78,116 @@ sampleGrammars=ResultSample{
 grammar=Grammar{
 variableStart: S
 Productions
-A[{ A-->a }, { A-->AA }, { A-->SS }, { A-->CS }, { A-->BC }, { A-->AS }, { A-->CA }]
-B[{ B-->BS }, { B-->AS }, { B-->CA }, { B-->SC }, { B-->CS }]
-C[{ C-->SA }, { C-->a }, { C-->SS }, { C-->SC }, { C-->b }, { C-->AB }, { C-->BC }, { C-->BS }]
-S[{ S-->AS }, { S-->CA }, { S-->BA }, { S-->AA }, { S-->SS }, { S-->CC }, { S-->CS }, { S-->BS }]
+A[{ A-->a }, { A-->AA }, { A-->BB }, { A-->CC }, { A-->SC }, { A-->CS }, { A-->AB }, { A-->BC }, { A-->AC }, { A-->SA }, { A-->BA }, { A-->SB }]
+B[{ B-->BS }, { B-->CA }, { B-->CB }, { B-->a }, { B-->BB }, { B-->SS }, { B-->CC }, { B-->SC }]
+S[{ S-->AC }, { S-->AS }, { S-->CA }, { S-->BA }, { S-->SB }, { S-->BB }, { S-->SS }, { S-->b }]
+C[{ C-->AC }, { C-->SA }, { C-->BA }, { C-->SB }, { C-->CC }, { C-->CS }, { C-->b }, { C-->AB }, { C-->BC }, { C-->BS }]
 
-word='bbbababbbb'
+word='aababbbbaa'
+setV=setV
+[A, B]      []          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B]      []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B]      []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B]      []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->AA }, { A-->CS }, { A-->b }, { A-->BS }, { A-->AS }, { A-->SA }, { A-->CA }, { A-->BA }, { A-->SB }]
+B[{ B-->AS }, { B-->CA }, { B-->CB }, { B-->SC }]
+C[{ C-->AS }, { C-->SA }, { C-->CA }, { C-->BA }, { C-->CB }, { C-->SB }, { C-->a }, { C-->AA }, { C-->BB }, { C-->CC }, { C-->b }]
+S[{ S-->CB }, { S-->AA }, { S-->CS }, { S-->AB }, { S-->BS }]
+
+word='aababbbbaa'
 setV=setV
 [C]         []          []          []          []          []          []          []          []          []          
-[S]         [C]         []          []          []          []          []          []          []          []          
-[A, B, S, C][S]         [C]         []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S]   [A, C]      []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][S]         [C]         []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, C, S][A, B, S]   [A, C]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][S]         [C]         []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][S]         [C]         []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][S]         [C]         []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][S]         [C]         
+[C]         [C]         []          []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C]   [A, C]      []          []          []          []          []          []          []          
+[B, C]      [C]         [C]         [C]         []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [A, C]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C]      []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C]      []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [B, C]      [C]         [C]         []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [B, C]      [C]         [C]         [C]         
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->BC }, { A-->BS }, { A-->AC }, { A-->BA }, { A-->CB }]
+B[{ B-->BC }, { B-->CA }, { B-->AA }, { B-->CC }, { B-->SC }]
+C[{ C-->CA }, { C-->BA }, { C-->CB }, { C-->a }, { C-->SS }]
+S[{ S-->AC }, { S-->AS }, { S-->BA }, { S-->SB }, { S-->AA }, { S-->b }, { S-->BS }]
+
+word='aababbbbaa'
+setV=setV
+[C]         []          []          []          []          []          []          []          []          []          
+[B]         [C]         []          []          []          []          []          []          []          []          
+[A, S]      []          [S]         []          []          []          []          []          []          []          
+[A, B, S, C][A, C]      [B]         [C]         []          []          []          []          []          []          
+[A, B, C, S][B, S, C]   [A, S]      []          [S]         []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][B]         [C]         [S]         []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, C, S]   [B]         [C]         [S]         []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S]   [B]         [C]         [S]         []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, S]      [B]         [C]         []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S]   [B]         [C]         
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->CS }, { A-->b }, { A-->BC }, { A-->SA }, { A-->CA }, { A-->CB }, { A-->SB }]
+B[{ B-->b }, { B-->AB }, { B-->BA }, { B-->CB }, { B-->SB }, { B-->a }, { B-->SS }, { B-->CS }]
+S[{ S-->a }, { S-->SS }, { S-->CC }, { S-->CS }, { S-->b }, { S-->BC }, { S-->BS }]
+C[{ C-->CA }, { C-->CB }, { C-->SB }, { C-->AA }, { C-->SS }, { C-->CC }]
+
+word='aababbbbaa'
+setV=setV
+[B, S]      []          []          []          []          []          []          []          []          []          
+[A, B, S, C][B, S]      []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][B, S]      []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S]      []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S]      
 
 validity=false
 isWordProducible=true
@@ -357,177 +202,53 @@ sampleGrammars=ResultSample{
 grammar=Grammar{
 variableStart: S
 Productions
-A[{ A-->AA }, { A-->CC }, { A-->BC }, { A-->SB }]
-B[{ B-->b }, { B-->BS }, { B-->BA }, { B-->a }, { B-->SS }, { B-->CC }, { B-->SC }]
-C[{ C-->AC }, { C-->SB }, { C-->a }, { C-->SS }, { C-->b }, { C-->BC }]
-S[{ S-->BA }, { S-->CB }, { S-->AA }, { S-->b }, { S-->BC }]
+A[{ A-->SS }, { A-->SC }, { A-->CS }, { A-->b }, { A-->BC }, { A-->BS }, { A-->AC }, { A-->AS }, { A-->SA }, { A-->CA }, { A-->BA }, { A-->CB }]
+B[{ B-->b }, { B-->AB }, { B-->BS }, { B-->AC }, { B-->SA }, { B-->BA }, { B-->AA }, { B-->SC }]
+C[{ C-->AS }, { C-->BA }, { C-->a }, { C-->AA }, { C-->SS }, { C-->CC }, { C-->b }, { C-->AB }]
+S[{ S-->AC }, { S-->AS }, { S-->SA }, { S-->CA }, { S-->AA }, { S-->SS }, { S-->SC }, { S-->b }, { S-->AB }, { S-->BS }]
 
-word='baaaaabbab'
+word='aabbabbbaa'
 setV=setV
-[B, C, S]   []          []          []          []          []          []          []          []          []          
+[C]         []          []          []          []          []          []          []          []          []          
+[C]         [C]         []          []          []          []          []          []          []          []          
+[A, C, S]   [A, C, S]   [A, B, C, S][]          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][C]         []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C, S]   [A, B, C, S][]          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][C]         []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][C]         [C]         
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->SS }, { A-->CC }, { A-->SC }, { A-->CS }, { A-->BS }, { A-->CB }]
+B[{ B-->b }, { B-->AB }, { B-->BC }, { B-->AC }, { B-->AS }, { B-->CB }, { B-->a }]
+C[{ C-->AC }, { C-->AS }, { C-->SA }, { C-->CB }, { C-->a }, { C-->CC }, { C-->SC }, { C-->CS }, { C-->b }, { C-->BC }]
+S[{ S-->AC }, { S-->AS }, { S-->SB }, { S-->BB }, { S-->SC }, { S-->AB }, { S-->BC }, { S-->BS }]
+
+word='aabbabbbaa'
+setV=setV
+[B, C]      []          []          []          []          []          []          []          []          []          
 [A, B, C, S][B, C]      []          []          []          []          []          []          []          []          
 [A, B, C, S][A, B, C, S][B, C]      []          []          []          []          []          []          []          
 [A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          []          []          []          
 [A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          []          []          
 [A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          
 [A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->BB }, { A-->SS }, { A-->BC }, { A-->AS }, { A-->CA }]
-B[{ B-->AB }, { B-->BS }, { B-->BA }, { B-->a }, { B-->CC }, { B-->SC }]
-C[{ C-->AS }, { C-->BA }, { C-->CB }, { C-->SS }, { C-->b }, { C-->AB }, { C-->BC }, { C-->BS }]
-S[{ S-->AC }, { S-->AS }, { S-->CA }, { S-->BA }, { S-->CC }, { S-->AB }, { S-->BS }]
-
-word='baaaaabbab'
-setV=setV
-[C]         []          []          []          []          []          []          []          []          []          
-[C]         [B]         []          []          []          []          []          []          []          []          
-[A, S, C]   [A]         [B]         []          []          []          []          []          []          []          
-[A, B, C, S][B, C, S]   [A]         [B]         []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][B, C, S]   [A]         [B]         []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [A]         [B]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C]      [C]         []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, S]      [C]         []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S]   [C]         [B]         []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S]   [A, C]      [C]         
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->BB }, { A-->CC }, { A-->AB }, { A-->BS }, { A-->AS }, { A-->SA }, { A-->BA }]
-B[{ B-->AB }, { B-->BS }, { B-->SA }, { B-->CA }, { B-->CB }, { B-->SB }, { B-->a }, { B-->AA }, { B-->CC }]
-C[{ C-->BA }, { C-->SB }, { C-->a }, { C-->AA }, { C-->BB }, { C-->SS }, { C-->SC }, { C-->b }]
-S[{ S-->AS }, { S-->CA }, { S-->BA }, { S-->CB }, { S-->SC }, { S-->AB }, { S-->BS }]
-
-word='baaaaabbab'
-setV=setV
-[C]         []          []          []          []          []          []          []          []          []          
-[A, B, S]   [A, B, C]   []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C]   []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B]      [C]         []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B]      [C]         []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S]   [A, B, C]   []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][B, S, C]   [A, B]      [C]         
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->SC }, { A-->AB }, { A-->SA }, { A-->BA }]
-B[{ B-->AC }, { B-->SA }, { B-->CA }, { B-->BA }, { B-->CB }, { B-->SB }, { B-->a }, { B-->CC }]
-S[{ S-->AC }, { S-->BA }, { S-->a }, { S-->SC }, { S-->CS }, { S-->BC }]
-C[{ C-->SA }, { C-->CA }, { C-->SB }, { C-->a }, { C-->BB }, { C-->SC }, { C-->b }, { C-->BS }]
-
-word='baaaaabbab'
-setV=setV
-[C]         []          []          []          []          []          []          []          []          []          
-[B, S, C]   [A, B, S, C][]          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][C]         []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, C, S][B]         [C]         []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [A, B, S, C][]          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][C]         
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->CC }, { A-->SC }, { A-->CS }, { A-->CA }, { A-->BA }, { A-->SB }]
-B[{ B-->AB }, { B-->AC }, { B-->AS }, { B-->CA }, { B-->CB }, { B-->a }, { B-->AA }, { B-->SS }, { B-->CS }]
-C[{ C-->AC }, { C-->AS }, { C-->BA }, { C-->CB }, { C-->SB }, { C-->a }, { C-->AA }, { C-->SS }, { C-->CC }, { C-->SC }]
-S[{ S-->AS }, { S-->SA }, { S-->CA }, { S-->BA }, { S-->CB }, { S-->AA }, { S-->BB }, { S-->CC }, { S-->CS }, { S-->b }, { S-->AB }]
-
-word='baaaaabbab'
-setV=setV
-[S]         []          []          []          []          []          []          []          []          []          
-[A, C, S]   [A, B, C]   []          []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C]   []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][S]         []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      [S]         []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C, S]   [A, B, C]   []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][S]         
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->AA }, { A-->BB }, { A-->AB }, { A-->SA }]
-B[{ B-->b }, { B-->AB }, { B-->BC }, { B-->AC }, { B-->AS }, { B-->SA }, { B-->CA }, { B-->CB }, { B-->a }, { B-->AA }, { B-->CC }]
-C[{ C-->AC }, { C-->CB }, { C-->a }, { C-->BB }, { C-->CS }, { C-->AB }, { C-->BS }]
-S[{ S-->AC }, { S-->AS }, { S-->SA }, { S-->CA }, { S-->CB }, { S-->AA }, { S-->BB }, { S-->CC }, { S-->BC }, { S-->BS }]
-
-word='aabaabbaba'
-setV=setV
-[B, C]      []          []          []          []          []          []          []          []          []          
-[A, B, C, S][B, C]      []          []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][B]         []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C, S]   [B]         []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B]         []          
 [A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      
 
 validity=false
@@ -543,457 +264,23 @@ sampleGrammars=ResultSample{
 grammar=Grammar{
 variableStart: S
 Productions
-A[{ A-->AA }, { A-->BB }, { A-->CC }, { A-->CS }, { A-->AB }, { A-->BC }, { A-->AC }, { A-->AS }, { A-->CA }, { A-->SB }]
-B[{ B-->BS }, { B-->AS }, { B-->SA }, { B-->CA }, { B-->BA }, { B-->SB }, { B-->a }, { B-->SS }, { B-->CC }, { B-->SC }, { B-->CS }]
-C[{ C-->AS }, { C-->SA }, { C-->CB }, { C-->a }, { C-->AA }, { C-->SC }, { C-->b }, { C-->BS }]
-S[{ S-->CA }, { S-->BA }, { S-->CB }, { S-->SB }, { S-->AA }, { S-->CC }, { S-->AB }, { S-->BC }]
+A[{ A-->CC }, { A-->b }, { A-->BC }, { A-->AC }, { A-->AS }, { A-->CA }, { A-->BA }, { A-->CB }, { A-->SB }]
+B[{ B-->b }, { B-->BC }, { B-->AS }, { B-->CA }, { B-->BA }, { B-->SB }, { B-->SS }]
+S[{ S-->AC }, { S-->SA }, { S-->CB }, { S-->SB }, { S-->a }, { S-->b }]
+C[{ C-->AS }, { C-->CA }, { C-->CB }, { C-->AA }, { C-->CC }, { C-->b }, { C-->AB }]
 
-word='aabaabbaba'
-setV=setV
-[B, C]      []          []          []          []          []          []          []          []          []          
-[A, B, C, S][B, C]      []          []          []          []          []          []          []          []          
-[A, B, C, S][A, B, S]   [C]         []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S]   [C]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S]   [C]         []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S]   [C]         []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->BB }, { A-->SS }, { A-->SC }, { A-->AB }, { A-->BC }, { A-->AC }, { A-->SA }, { A-->CA }, { A-->SB }]
-B[{ B-->b }, { B-->BS }, { B-->SA }, { B-->BA }, { B-->BB }, { B-->SC }, { B-->CS }]
-C[{ C-->SC }, { C-->BS }, { C-->AS }, { C-->CA }, { C-->BA }, { C-->CB }, { C-->a }, { C-->AA }, { C-->BB }, { C-->SS }, { C-->b }, { C-->AB }, { C-->BC }]
-S[{ S-->AC }, { S-->BA }, { S-->CB }, { S-->SB }, { S-->SS }, { S-->b }, { S-->AB }, { S-->BC }, { S-->BS }]
-
-word='aabaabbaba'
-setV=setV
-[C]         []          []          []          []          []          []          []          []          []          
-[]          [C]         []          []          []          []          []          []          []          []          
-[B, C, S]   [B, C, S]   [B, C, S]   []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][C]         []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][]          [C]         []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [B, C, S]   [B, C, S]   []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][C]         []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [B, C, S]   []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][C]         
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->BB }, { A-->SS }, { A-->CC }, { A-->SC }, { A-->CS }, { A-->b }, { A-->BC }, { A-->AS }, { A-->SB }]
-B[{ B-->b }, { B-->SA }, { B-->BA }, { B-->SB }, { B-->a }, { B-->AA }, { B-->BB }, { B-->CC }, { B-->CS }]
-S[{ S-->AC }, { S-->SA }, { S-->BA }, { S-->a }, { S-->BB }, { S-->SC }, { S-->b }, { S-->BC }]
-C[{ C-->AS }, { C-->BA }, { C-->a }, { C-->AA }, { C-->SC }, { C-->CS }, { C-->BC }, { C-->BS }]
-
-word='aabaabbaba'
-setV=setV
-[A, B, S, C][]          []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->BB }, { A-->b }, { A-->AB }, { A-->AS }, { A-->SA }]
-B[{ B-->b }, { B-->BS }, { B-->AS }, { B-->CC }]
-S[{ S-->AS }, { S-->SA }, { S-->CB }, { S-->a }, { S-->BB }, { S-->CC }, { S-->b }, { S-->AB }, { S-->BC }]
-C[{ C-->CB }, { C-->a }, { C-->BB }, { C-->b }, { C-->AB }, { C-->BS }]
-
-word='aabaabbaba'
-setV=setV
-[A, S, C]   []          []          []          []          []          []          []          []          []          
-[A, B, S]   [A, S, C]   []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [A, S, C]   []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->AA }, { A-->SS }, { A-->CS }, { A-->b }, { A-->AB }, { A-->BC }, { A-->AS }, { A-->SB }]
-B[{ B-->b }, { B-->AS }, { B-->SB }, { B-->a }, { B-->SS }]
-S[{ S-->AC }, { S-->AA }, { S-->CC }, { S-->SC }, { S-->CS }, { S-->b }, { S-->AB }, { S-->BS }]
-C[{ C-->AS }, { C-->CB }, { C-->SB }, { C-->AA }, { C-->SS }, { C-->SC }, { C-->CS }, { C-->b }, { C-->AB }, { C-->BC }]
-
-word='aaaaabbbaa'
-setV=setV
-[B]         []          []          []          []          []          []          []          []          []          
-[]          [B]         []          []          []          []          []          []          []          []          
-[]          []          [B]         []          []          []          []          []          []          []          
-[]          []          []          [B]         []          []          []          []          []          []          
-[]          []          []          []          [B]         []          []          []          []          []          
-[A, S, C]   [A, S, C]   [A, S, C]   [A, S, C]   [A, S, C]   [A, B, S, C][]          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B]         []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][]          [B]         
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->CS }, { A-->AB }, { A-->BC }, { A-->AC }, { A-->AS }, { A-->CA }, { A-->SB }]
-B[{ B-->b }, { B-->AS }, { B-->SA }, { B-->BA }, { B-->CB }, { B-->SB }, { B-->a }]
-S[{ S-->AS }, { S-->BA }, { S-->SB }, { S-->a }, { S-->AA }, { S-->SS }, { S-->BS }]
-C[{ C-->AC }, { C-->BA }, { C-->CB }, { C-->a }, { C-->AA }, { C-->AB }]
-
-word='aaaaabbbaa'
-setV=setV
-[A, B, S, C][]          []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][]          [B]         []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][]          []          [B]         []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->SC }, { A-->BS }, { A-->AC }, { A-->SA }, { A-->CA }]
-B[{ B-->AS }, { B-->SA }, { B-->CB }, { B-->CC }, { B-->SC }]
-S[{ S-->AC }, { S-->SA }, { S-->CB }, { S-->SB }, { S-->a }, { S-->SC }, { S-->BC }]
-C[{ C-->AC }, { C-->CA }, { C-->CB }, { C-->a }, { C-->CC }, { C-->b }, { C-->BS }]
-
-word='aaaaabbbaa'
-setV=setV
-[A, S, C]   []          []          []          []          []          []          []          []          []          
-[A, B, S, C][A, S, C]   []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][C]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, C]      [C]         []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][B, S, C]   [B, C]      [C]         []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, C]   [A, S, C]   []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->BB }, { A-->CC }, { A-->SC }, { A-->CS }, { A-->b }, { A-->AB }, { A-->BS }, { A-->CA }, { A-->BA }]
-B[{ B-->b }, { B-->AB }, { B-->AS }, { B-->SA }, { B-->CB }, { B-->BB }, { B-->SS }, { B-->CS }]
-S[{ S-->SA }, { S-->CA }, { S-->BA }, { S-->SS }, { S-->BC }, { S-->BS }]
-C[{ C-->BA }, { C-->AA }, { C-->BB }, { C-->SS }, { C-->CS }, { C-->AB }, { C-->BC }, { C-->BS }]
-
-word='aaaaabbbaa'
-setV=setV
-[A]         []          []          []          []          []          []          []          []          []          
-[C]         [A]         []          []          []          []          []          []          []          []          
-[A, S]      [C]         [A]         []          []          []          []          []          []          []          
-[A, B, S, C][A, S]      [C]         [A]         []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, S]      [C]         [A]         []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [A, B]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, S, C]   [A]         []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][C]         [A]         
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->BB }, { A-->CC }, { A-->CS }, { A-->b }, { A-->AB }, { A-->BS }, { A-->AS }, { A-->CA }]
-B[{ B-->b }, { B-->CA }, { B-->BB }, { B-->CC }]
-S[{ S-->SA }, { S-->CB }, { S-->a }, { S-->BB }, { S-->CC }, { S-->SC }]
-C[{ C-->AS }, { C-->SA }, { C-->CA }, { C-->CB }, { C-->BS }]
-
-word='aaaaabbbaa'
-setV=setV
-[A, S]      []          []          []          []          []          []          []          []          []          
-[A, S, C]   [A, S]      []          []          []          []          []          []          []          []          
-[A, B, S, C][A, S, C]   [A, S]      []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, S, C]   [A, S]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, S, C]   [A, S]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, S, C]   [A, B]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [A, B]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [A, B]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, S, C]   [A, C]      [A, S]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, C]   [A, S, C]   [A, S]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->BB }, { A-->CC }, { A-->SC }, { A-->b }, { A-->AB }, { A-->BS }, { A-->AS }, { A-->CB }]
-B[{ B-->b }, { B-->AB }, { B-->AS }, { B-->SA }, { B-->CA }, { B-->SB }, { B-->CC }]
-S[{ S-->BA }, { S-->CB }, { S-->a }, { S-->BB }, { S-->SC }]
-C[{ C-->AS }, { C-->CA }, { C-->a }, { C-->AA }, { C-->BB }, { C-->SS }, { C-->CC }, { C-->SC }, { C-->CS }]
-
-word='baababaaaa'
-setV=setV
-[A, B]      []          []          []          []          []          []          []          []          []          
-[A, B, C]   [S, C]      []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, C]   [S, C]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, C]   [S, C]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->SS }, { A-->AB }, { A-->BC }, { A-->BS }, { A-->SB }]
-B[{ B-->b }, { B-->AB }, { B-->AC }, { B-->a }, { B-->BB }]
-S[{ S-->AC }, { S-->CB }, { S-->SB }, { S-->a }, { S-->AA }, { S-->AB }, { S-->BS }]
-C[{ C-->a }, { C-->AA }, { C-->CC }]
-
-word='baababaaaa'
-setV=setV
-[B]         []          []          []          []          []          []          []          []          []          
-[A, B, S]   [A, B, S, C][]          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S]   [B]         []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [A, B, S, C][]          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S]   [A, B, S]   [B]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [A, B, S, C][]          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->SC }, { A-->b }, { A-->BS }, { A-->CA }]
-B[{ B-->b }, { B-->BA }, { B-->CB }, { B-->SB }, { B-->a }, { B-->CS }]
-S[{ S-->CA }, { S-->CB }, { S-->SB }, { S-->a }, { S-->AA }, { S-->SC }, { S-->b }, { S-->BC }]
-C[{ C-->AS }, { C-->CA }, { C-->BA }, { C-->SB }, { C-->SS }, { C-->SC }, { C-->CS }, { C-->b }, { C-->BC }]
-
-word='baababaaaa'
-setV=setV
-[A, B, S, C][]          []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S]   []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->CS }, { A-->AB }, { A-->BC }, { A-->BS }, { A-->CB }]
-B[{ B-->b }, { B-->AB }, { B-->CA }, { B-->CB }, { B-->a }, { B-->BB }, { B-->CC }]
-S[{ S-->a }, { S-->CC }, { S-->CS }, { S-->b }, { S-->BC }, { S-->BS }]
-C[{ C-->CA }, { C-->BA }, { C-->a }, { C-->AA }, { C-->SC }, { C-->CS }, { C-->b }, { C-->BC }]
-
-word='baababaaaa'
-setV=setV
-[B, S, C]   []          []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->CC }, { A-->CS }, { A-->b }, { A-->AS }, { A-->SA }]
-B[{ B-->AB }, { B-->BS }, { B-->SA }, { B-->BA }, { B-->CB }, { B-->CC }]
-S[{ S-->AC }, { S-->AS }, { S-->BA }, { S-->a }, { S-->SS }, { S-->CC }, { S-->SC }, { S-->CS }, { S-->BS }]
-C[{ C-->BA }, { C-->CB }, { C-->SB }, { C-->a }, { C-->SC }, { C-->CS }, { C-->b }, { C-->AB }]
-
-word='baababaaaa'
-setV=setV
-[A, C]      []          []          []          []          []          []          []          []          []          
-[A, B, S, C][S, C]      []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AB }, { A-->BC }, { A-->BS }, { A-->AC }, { A-->CA }, { A-->BA }]
-B[{ B-->CA }, { B-->BA }, { B-->CB }, { B-->SB }, { B-->a }, { B-->SC }]
-S[{ S-->CA }, { S-->BA }, { S-->CB }, { S-->a }, { S-->SS }, { S-->SC }, { S-->b }, { S-->BS }]
-C[{ C-->AC }, { C-->SA }, { C-->SB }, { C-->SS }, { C-->BC }]
-
-word='bbbbbaaabb'
+word='aabbabbbaa'
 setV=setV
 [S]         []          []          []          []          []          []          []          []          []          
-[S, C]      [S]         []          []          []          []          []          []          []          []          
-[B, S, C]   [S, C]      [S]         []          []          []          []          []          []          []          
-[A, B, S, C][B, S, C]   [S, C]      [S]         []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][B, S, C]   [S, C]      [S]         []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [A, B, S]   []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, S, C]   [S]         []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][S, C]      [S]         
+[B]         [S]         []          []          []          []          []          []          []          []          
+[A, B, S]   [A, B, S]   [A, B, S, C][]          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   [S]         []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [A, B, S, C][]          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, C]   [S]         []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B]         [S]         
 
 validity=false
 isWordProducible=true
@@ -1008,144 +295,20 @@ sampleGrammars=ResultSample{
 grammar=Grammar{
 variableStart: S
 Productions
-A[{ A-->BB }, { A-->CC }, { A-->SC }, { A-->CS }, { A-->AB }, { A-->AC }, { A-->BA }]
-B[{ B-->BC }, { B-->BS }, { B-->AS }, { B-->CA }, { B-->a }, { B-->CS }]
-S[{ S-->AC }, { S-->BA }, { S-->a }, { S-->BB }, { S-->SS }, { S-->CC }, { S-->SC }, { S-->b }, { S-->BS }]
-C[{ C-->AC }, { C-->SA }, { C-->CA }, { C-->BA }, { C-->BB }, { C-->CC }, { C-->SC }, { C-->CS }]
+A[{ A-->a }, { A-->AA }, { A-->BB }, { A-->SC }, { A-->b }, { A-->CA }]
+B[{ B-->b }, { B-->AC }, { B-->a }, { B-->SS }, { B-->SC }, { B-->CS }]
+S[{ S-->AC }, { S-->CA }, { S-->BA }, { S-->SB }, { S-->a }, { S-->SS }, { S-->SC }, { S-->CS }]
+C[{ C-->AS }, { C-->SA }, { C-->CA }, { C-->a }, { C-->SS }, { C-->CS }, { C-->b }, { C-->AB }, { C-->BS }]
 
-word='bbbbbaaabb'
+word='aabbabbbaa'
 setV=setV
-[S]         []          []          []          []          []          []          []          []          []          
-[S]         [S]         []          []          []          []          []          []          []          []          
-[S]         [S]         [S]         []          []          []          []          []          []          []          
-[S]         [S]         [S]         [S]         []          []          []          []          []          []          
-[S]         [S]         [S]         [S]         [S]         []          []          []          []          []          
-[S]         [S]         [S]         [S]         [S]         [B, S]      []          []          []          []          
-[A, C, S]   [A, C, S]   [A, S, C]   [A, S, C]   [A, S, C]   [A, B, S, C][B, S]      []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S]      []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S]      [S]         []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][B, S]      [S]         [S]         
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->SS }, { A-->CC }, { A-->CS }, { A-->AB }, { A-->BS }, { A-->SA }, { A-->CA }, { A-->BA }, { A-->SB }]
-B[{ B-->b }, { B-->SB }, { B-->AA }, { B-->BB }, { B-->SS }, { B-->SC }]
-S[{ S-->AC }, { S-->SA }, { S-->CA }, { S-->BA }, { S-->CB }, { S-->AA }, { S-->CS }, { S-->BC }]
-C[{ C-->AC }, { C-->CA }, { C-->BA }, { C-->CB }, { C-->SB }, { C-->SC }, { C-->CS }, { C-->BC }]
-
-word='bbbbbaaabb'
-setV=setV
-[B]         []          []          []          []          []          []          []          []          []          
-[B]         [B]         []          []          []          []          []          []          []          []          
-[B]         [B]         [B]         []          []          []          []          []          []          []          
-[B]         [B]         [B]         [B]         []          []          []          []          []          []          
-[B]         [B]         [B]         [B]         [B]         []          []          []          []          []          
-[A, C, S]   [A, S, C]   [A, S, C]   [A, S, C]   [A, S, C]   [A]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [A]         []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [A]         []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A]         [B]         []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A]         [B]         [B]         
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->AA }, { A-->CC }, { A-->SC }, { A-->b }, { A-->AB }, { A-->AC }, { A-->AS }, { A-->CA }, { A-->CB }, { A-->SB }]
-B[{ B-->b }, { B-->AC }, { B-->CB }, { B-->BB }, { B-->SS }, { B-->CC }, { B-->SC }, { B-->CS }]
-C[{ C-->AC }, { C-->BA }, { C-->SB }, { C-->a }, { C-->BB }, { C-->SS }, { C-->SC }, { C-->b }, { C-->AB }]
-S[{ S-->SB }, { S-->b }, { S-->AB }]
-
-word='bbbbbaaabb'
-setV=setV
-[A, B, C, S][]          []          []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][]          []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [C]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B]      [C]         []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [A, B]      [C]         []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B]      [A, B, C, S][]          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S]
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->BB }, { A-->CS }, { A-->b }, { A-->BS }, { A-->AS }, { A-->SA }, { A-->BA }]
-B[{ B-->BS }, { B-->AC }, { B-->SA }, { B-->CA }, { B-->CB }, { B-->SB }, { B-->a }, { B-->AA }, { B-->BB }, { B-->SS }, { B-->CC }]
-S[{ S-->AS }, { S-->SA }, { S-->CA }, { S-->SB }, { S-->a }, { S-->AA }, { S-->BB }, { S-->AB }, { S-->BC }, { S-->BS }]
-C[{ C-->AS }, { C-->CA }, { C-->SB }, { C-->AA }, { C-->SS }, { C-->CC }, { C-->SC }, { C-->CS }, { C-->b }, { C-->AB }, { C-->BC }]
-
-word='bbbbbaaabb'
-setV=setV
-[A, C]      []          []          []          []          []          []          []          []          []          
-[B, S, C]   [A, C]      []          []          []          []          []          []          []          []          
-[A, B, S, C][B, S, C]   [A, C]      []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][B, S, C]   [A, C]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [A, C]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [A, C]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->CS }, { A-->b }, { A-->BC }, { A-->BS }, { A-->SA }, { A-->BA }, { A-->CB }, { A-->SB }]
-B[{ B-->b }, { B-->BC }, { B-->CA }, { B-->BA }, { B-->a }, { B-->SC }, { B-->CS }]
-S[{ S-->AS }, { S-->CA }, { S-->CB }, { S-->a }, { S-->BB }, { S-->CC }, { S-->AB }, { S-->BS }]
-C[{ C-->CA }, { C-->BA }, { C-->CB }, { C-->SB }, { C-->a }, { C-->BB }, { C-->SC }, { C-->b }, { C-->BC }]
-
-word='bbbbababaa'
-setV=setV
-[A, B, C]   []          []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, C]   []          []          []          []          []          []          []          []          
+[A, B, S, C][]          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
 [A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          []          []          
 [A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          []          
 [A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
 [A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          
 [A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          
 [A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
 [A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
@@ -1163,302 +326,23 @@ sampleGrammars=ResultSample{
 grammar=Grammar{
 variableStart: S
 Productions
-A[{ A-->a }, { A-->AA }, { A-->SS }, { A-->CC }, { A-->AB }, { A-->BC }, { A-->AC }, { A-->SA }, { A-->CA }]
-B[{ B-->b }, { B-->BC }, { B-->AC }, { B-->AA }, { B-->SS }, { B-->SC }]
-S[{ S-->a }, { S-->SS }, { S-->SC }, { S-->CS }, { S-->AB }, { S-->BS }]
-C[{ C-->AC }, { C-->AS }, { C-->AA }, { C-->CC }, { C-->CS }, { C-->AB }, { C-->BC }, { C-->BS }]
+A[{ A-->a }, { A-->BB }, { A-->CC }, { A-->SC }, { A-->CS }, { A-->AB }, { A-->BC }, { A-->BA }, { A-->CB }]
+B[{ B-->AB }, { B-->CB }, { B-->SB }, { B-->AA }, { B-->SS }, { B-->CS }]
+C[{ C-->SA }, { C-->a }, { C-->AA }, { C-->SS }, { C-->CC }, { C-->b }]
+S[{ S-->SA }, { S-->CB }, { S-->SS }, { S-->CS }, { S-->AB }]
 
-word='bbbbababaa'
-setV=setV
-[B]         []          []          []          []          []          []          []          []          []          
-[]          [B]         []          []          []          []          []          []          []          []          
-[]          []          [B]         []          []          []          []          []          []          []          
-[]          []          []          [B]         []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][S, C]      [A, S]      []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   [B]         []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      [A, S]      []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, S, C]   [B]         []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][S, C]      [A, S]      []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=true
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->AA }, { A-->BB }, { A-->SC }, { A-->CS }, { A-->AB }, { A-->BC }, { A-->BS }, { A-->CA }, { A-->BA }]
-B[{ B-->AB }, { B-->SA }, { B-->CA }, { B-->a }, { B-->BB }, { B-->SS }, { B-->CS }]
-S[{ S-->SA }, { S-->CA }, { S-->BA }, { S-->a }, { S-->AA }, { S-->SS }, { S-->b }, { S-->AB }, { S-->BC }]
-C[{ C-->a }, { C-->AA }, { C-->SS }, { C-->CC }, { C-->SC }, { C-->CS }, { C-->b }, { C-->BC }]
-
-word='bbbbababaa'
-setV=setV
-[S, C]      []          []          []          []          []          []          []          []          []          
-[A, B, S, C][S, C]      []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->SS }, { A-->AB }, { A-->BC }, { A-->AC }, { A-->AS }, { A-->SB }]
-B[{ B-->BC }, { B-->AS }, { B-->CA }, { B-->BA }, { B-->a }, { B-->AA }, { B-->CC }, { B-->CS }]
-S[{ S-->SB }, { S-->a }, { S-->AA }, { S-->BB }, { S-->CC }, { S-->b }, { S-->BS }]
-C[{ C-->CA }, { C-->SB }, { C-->a }, { C-->SS }, { C-->CC }, { C-->CS }, { C-->b }, { C-->BC }, { C-->BS }]
-
-word='bbbbababaa'
-setV=setV
-[S, C]      []          []          []          []          []          []          []          []          []          
-[A, B, S, C][S, C]      []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->SC }, { A-->b }, { A-->AC }, { A-->CA }]
-B[{ B-->b }, { B-->AC }, { B-->CA }, { B-->a }, { B-->CC }, { B-->SC }, { B-->CS }]
-C[{ C-->AS }, { C-->SA }, { C-->CA }, { C-->BA }, { C-->CB }, { C-->a }, { C-->CC }, { C-->SC }]
-S[{ S-->SA }, { S-->CC }, { S-->b }]
-
-word='bbbbababaa'
-setV=setV
-[A, B, S]   []          []          []          []          []          []          []          []          []          
-[C, S]      [A, B, S]   []          []          []          []          []          []          []          []          
-[A, B, C, S][C, S]      [A, B, S]   []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][C, S]      [A, B, S]   []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [B, C]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [A, B, S]   []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [B, C]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [A, B, S]   []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [B, C]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [B, C]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->BB }, { A-->SS }, { A-->CS }, { A-->AS }, { A-->CA }, { A-->CB }]
-B[{ B-->b }, { B-->AB }, { B-->AC }, { B-->SB }, { B-->a }]
-S[{ S-->AC }, { S-->AS }, { S-->CA }, { S-->CB }, { S-->a }, { S-->SS }, { S-->b }, { S-->AB }]
-C[{ C-->AC }, { C-->AS }, { C-->CA }, { C-->BA }, { C-->CB }, { C-->SB }, { C-->a }, { C-->CS }, { C-->BC }]
-
-word='bbababaaba'
-setV=setV
-[B, S]      []          []          []          []          []          []          []          []          []          
-[A, B, S, C][B, S]      []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][B, S]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->BB }, { A-->AB }, { A-->BC }, { A-->AS }, { A-->SA }]
-B[{ B-->AB }, { B-->BC }, { B-->BS }, { B-->AC }, { B-->SA }, { B-->BA }, { B-->a }, { B-->AA }, { B-->BB }]
-S[{ S-->AC }, { S-->SA }, { S-->CB }, { S-->a }, { S-->AA }, { S-->CC }, { S-->b }, { S-->BC }, { S-->BS }]
-C[{ C-->a }]
-
-word='bbababaaba'
-setV=setV
-[S]         []          []          []          []          []          []          []          []          []          
-[]          [S]         []          []          []          []          []          []          []          []          
-[A, B, S]   [A, B, S]   [A, B, S, C][]          []          []          []          []          []          []          
-[A, B, S]   [A, B, S]   [A, B, S]   [S]         []          []          []          []          []          []          
-[A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S, C][]          []          []          []          []          
-[A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [S]         []          []          []          []          
-[A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S, C][]          []          []          
-[A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S, C][]          []          
-[A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [S]         []          
-[A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S]   [A, B, S, C]
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->BB }, { A-->CS }, { A-->b }, { A-->BC }, { A-->AS }, { A-->SB }]
-B[{ B-->b }, { B-->BC }, { B-->SA }, { B-->CA }, { B-->BA }, { B-->SB }, { B-->a }, { B-->BB }, { B-->CC }, { B-->CS }]
-S[{ S-->AS }, { S-->SA }, { S-->CA }, { S-->CB }, { S-->SB }, { S-->a }, { S-->CS }, { S-->b }, { S-->BC }]
-C[{ C-->SA }, { C-->CA }, { C-->a }, { C-->AA }, { C-->BB }, { C-->SS }, { C-->b }]
-
-word='bbababaaba'
-setV=setV
-[A, B, S, C][]          []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->CC }, { A-->SC }, { A-->CS }, { A-->b }, { A-->BS }, { A-->CB }]
-B[{ B-->b }, { B-->BS }, { B-->AC }, { B-->AS }, { B-->a }, { B-->AA }, { B-->SC }]
-S[{ S-->AS }, { S-->CB }, { S-->a }, { S-->AA }, { S-->CC }, { S-->b }]
-C[{ C-->AC }, { C-->AS }, { C-->BA }, { C-->CB }, { C-->SB }, { C-->a }, { C-->BB }, { C-->SS }, { C-->CC }, { C-->SC }, { C-->b }]
-
-word='bbababaaba'
-setV=setV
-[A, B, S, C][]          []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->SC }, { A-->CS }, { A-->b }, { A-->BC }, { A-->BS }]
-B[{ B-->AB }, { B-->BS }, { B-->AC }, { B-->CB }, { B-->SB }, { B-->CC }, { B-->SC }, { B-->CS }]
-S[{ S-->CB }, { S-->a }, { S-->BB }, { S-->SS }, { S-->CC }, { S-->SC }, { S-->CS }, { S-->BC }, { S-->BS }]
-C[{ C-->CA }, { C-->a }, { C-->CC }, { C-->b }, { C-->BC }]
-
-word='bbababaaba'
+word='aabbabbbaa'
 setV=setV
 [A, C]      []          []          []          []          []          []          []          []          []          
-[B, S, C]   [A, C]      []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->BB }, { A-->b }, { A-->BC }, { A-->BS }, { A-->AS }, { A-->CA }, { A-->CB }, { A-->SB }]
-B[{ B-->b }, { B-->BC }, { B-->AS }, { B-->CB }, { B-->SB }, { B-->CC }, { B-->SC }]
-C[{ C-->AC }, { C-->AS }, { C-->a }, { C-->BB }, { C-->CS }, { C-->b }, { C-->AB }]
-S[{ S-->SA }, { S-->SB }, { S-->SC }, { S-->CS }, { S-->b }]
-
-word='bbabaaaaab'
-setV=setV
-[A, B, C, S][]          []          []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][]          []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][C]         []          []          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][C]         []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B]         [C]         []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B]      [B]         [C]         []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [A, B]      [B]         [C]         []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C]   [A, B, C]   [A, B]      [B]         [C]         []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S]
+[A, B, C]   [A, C]      []          []          []          []          []          []          []          []          
+[A, B, C]   [A, C]      [C]         []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C]   [A, C]      [C]         []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C]   [A, C]      [A, C]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C]   [A, C]      [A, C]      [C]         []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [A, C]      [C]         []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [A, C]      [A, C]      [C]         []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [A, C]      [A, C]      []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [A, C]      
 
 validity=false
 isWordProducible=true
@@ -1473,74 +357,12 @@ sampleGrammars=ResultSample{
 grammar=Grammar{
 variableStart: S
 Productions
-A[{ A-->SS }, { A-->CC }, { A-->AC }, { A-->AS }, { A-->CA }, { A-->CB }, { A-->SB }]
-B[{ B-->AB }, { B-->CA }, { B-->SB }, { B-->a }, { B-->BB }, { B-->SS }, { B-->CC }]
-S[{ S-->AC }, { S-->AS }, { S-->CA }, { S-->BA }, { S-->CB }, { S-->SB }, { S-->a }, { S-->AA }, { S-->SS }, { S-->b }]
-C[{ C-->AS }, { C-->CB }, { C-->AA }, { C-->SC }, { C-->CS }]
+A[{ A-->a }, { A-->SS }, { A-->CC }, { A-->SC }, { A-->b }, { A-->AC }, { A-->SA }, { A-->BA }]
+B[{ B-->b }, { B-->AB }, { B-->AC }, { B-->SA }, { B-->CB }, { B-->SB }, { B-->a }, { B-->AA }, { B-->BB }]
+C[{ C-->AC }, { C-->BA }, { C-->CB }, { C-->a }, { C-->BB }, { C-->CC }, { C-->CS }, { C-->b }]
+S[{ S-->SA }, { S-->BA }, { S-->CB }, { S-->SB }, { S-->CC }, { S-->SC }, { S-->AB }]
 
-word='bbabaaaaab'
-setV=setV
-[S]         []          []          []          []          []          []          []          []          []          
-[A, B, S]   [S]         []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S]   [B, S]      []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S]   [S]         []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [B, S]      []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [B, S]      []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [B, S]      []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [B, S]      []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [B, S]      []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [S]         
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->BB }, { A-->SC }, { A-->CS }, { A-->b }, { A-->BC }, { A-->SB }]
-B[{ B-->AC }, { B-->AS }, { B-->SA }, { B-->BA }, { B-->SB }, { B-->a }, { B-->BB }, { B-->SS }]
-S[{ S-->AC }, { S-->SA }, { S-->CB }, { S-->SB }, { S-->a }, { S-->SS }, { S-->SC }, { S-->b }]
-C[{ C-->BA }, { C-->CB }, { C-->a }, { C-->BB }, { C-->SC }, { C-->CS }]
-
-word='bbabaaaaab'
-setV=setV
-[A, S]      []          []          []          []          []          []          []          []          []          
-[B, S]      [A, S]      []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          []          []          []          []          []          
-[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          
-[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          
-[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          
-[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      
-
-validity=false
-isWordProducible=true
-fulfillsRestriction=false
-rightCellCombinationsForced=false
-maxVarsPerCellSetV=4
-}
-
-############################################################
-############################################################
-sampleGrammars=ResultSample{
-grammar=Grammar{
-variableStart: S
-Productions
-A[{ A-->a }, { A-->AA }, { A-->BB }, { A-->SS }, { A-->CC }, { A-->SC }, { A-->b }, { A-->BC }]
-B[{ B-->b }, { B-->AB }, { B-->BS }, { B-->AC }, { B-->SA }, { B-->BA }, { B-->CB }, { B-->SB }, { B-->a }, { B-->AA }, { B-->BB }, { B-->SC }]
-C[{ C-->AS }, { C-->SA }, { C-->BA }, { C-->CB }, { C-->a }, { C-->BB }, { C-->CC }, { C-->SC }, { C-->b }, { C-->BS }]
-S[{ S-->AS }, { S-->BA }, { S-->SB }, { S-->BC }]
-
-word='bbabaaaaab'
+word='bbbbbbabab'
 setV=setV
 [A, B, C]   []          []          []          []          []          []          []          []          []          
 [A, B, C, S][A, B, C]   []          []          []          []          []          []          []          []          
@@ -1566,23 +388,1201 @@ sampleGrammars=ResultSample{
 grammar=Grammar{
 variableStart: S
 Productions
-A[{ A-->a }, { A-->SS }, { A-->b }, { A-->AC }, { A-->AS }, { A-->SB }]
-B[{ B-->b }, { B-->BC }, { B-->BS }, { B-->AC }, { B-->AS }, { B-->a }, { B-->BB }, { B-->SS }, { B-->CC }, { B-->CS }]
-S[{ S-->CA }, { S-->SB }, { S-->a }, { S-->AA }, { S-->BB }, { S-->b }, { S-->AB }, { S-->BS }]
-C[{ C-->AC }, { C-->SA }, { C-->CA }, { C-->SB }, { C-->a }, { C-->BB }, { C-->AB }]
+A[{ A-->a }, { A-->SC }, { A-->CS }, { A-->b }, { A-->BC }, { A-->BS }, { A-->BA }, { A-->SB }]
+B[{ B-->CA }, { B-->SB }, { B-->BB }, { B-->SC }]
+S[{ S-->AS }, { S-->SA }, { S-->BA }, { S-->SB }, { S-->SS }, { S-->SC }, { S-->BC }]
+C[{ C-->AC }, { C-->BA }, { C-->CC }]
 
-word='bbabaaaaab'
+word='bbbbbbabab'
 setV=setV
-[A, B, S]   []          []          []          []          []          []          []          []          []          
-[A, B, S, C][A, B, S]   []          []          []          []          []          []          []          []          
+[A][] [] [] [] [] [] [] [] [] 
+[] [A][] [] [] [] [] [] [] [] 
+[] [] [A][] [] [] [] [] [] [] 
+[] [] [] [A][] [] [] [] [] [] 
+[] [] [] [] [A][] [] [] [] [] 
+[] [] [] [] [] [A][] [] [] [] 
+[] [] [] [] [] [] [A][] [] [] 
+[] [] [] [] [] [] [] [A][] [] 
+[] [] [] [] [] [] [] [] [A][] 
+[] [] [] [] [] [] [] [] [] [A]
+
+validity=false
+isWordProducible=false
+fulfillsRestriction=true
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=1
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->AA }, { A-->BB }, { A-->SC }, { A-->CS }, { A-->AC }, { A-->AS }, { A-->SB }]
+B[{ B-->b }, { B-->BC }, { B-->BS }, { B-->SA }, { B-->CA }, { B-->BB }, { B-->CS }]
+C[{ C-->SA }, { C-->SB }, { C-->a }, { C-->SS }, { C-->CC }, { C-->b }, { C-->BS }]
+S[{ S-->SA }, { S-->CA }, { S-->SB }, { S-->AA }, { S-->BB }, { S-->CS }, { S-->BS }]
+
+word='bbbbbbabab'
+setV=setV
+[B, C]      []          []          []          []          []          []          []          []          []          
+[A, B, C, S][B, C]      []          []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][B, C]      []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [A, C]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C]      [B, C]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [A, C]      []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C]      [B, C]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->SS }, { A-->CS }, { A-->b }, { A-->BS }, { A-->CB }]
+B[{ B-->BS }, { B-->SA }, { B-->a }, { B-->BB }]
+S[{ S-->SA }, { S-->CB }, { S-->a }, { S-->BB }, { S-->CS }, { S-->b }]
+C[{ C-->AC }, { C-->BA }, { C-->CB }, { C-->AA }, { C-->BB }, { C-->SS }, { C-->BS }]
+
+word='bbbbbbabab'
+setV=setV
+[A, S]      []          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, S]      []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, S]      []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->AA }, { A-->SS }, { A-->CC }, { A-->SC }, { A-->CS }, { A-->AS }, { A-->CA }, { A-->BA }, { A-->CB }, { A-->SB }]
+B[{ B-->b }, { B-->AS }, { B-->BA }, { B-->a }, { B-->BB }, { B-->SS }]
+S[{ S-->CB }, { S-->SB }, { S-->a }, { S-->BB }, { S-->CC }, { S-->SC }, { S-->CS }, { S-->BC }]
+C[{ C-->CA }, { C-->SB }, { C-->a }, { C-->AA }, { C-->BB }, { C-->CC }, { C-->SC }, { C-->CS }]
+
+word='bbbbbbabab'
+setV=setV
+[B]         []          []          []          []          []          []          []          []          []          
+[B, S, C]   [B]         []          []          []          []          []          []          []          []          
+[A, B, S, C][B, S, C]   [B]         []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][B, S, C]   [B]         []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [B]         []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [B]         []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B]         []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B]         
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->AA }, { A-->BB }, { A-->CC }, { A-->b }, { A-->AB }, { A-->AS }, { A-->SA }, { A-->SB }]
+B[{ B-->BC }, { B-->AS }, { B-->SA }, { B-->SB }, { B-->a }, { B-->AA }, { B-->SS }, { B-->CS }]
+S[{ S-->CB }, { S-->SB }, { S-->a }, { S-->BB }, { S-->SS }, { S-->CC }, { S-->b }, { S-->AB }]
+C[{ C-->AS }, { C-->SA }, { C-->CB }, { C-->a }, { C-->SS }, { C-->CC }, { C-->SC }, { C-->CS }, { C-->b }, { C-->AB }]
+
+word='ababbabbab'
+setV=setV
+[A, B, S, C][]          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, S, C]   []          []          []          []          []          []          []          []          
 [A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->SS }, { A-->SC }, { A-->b }, { A-->BS }, { A-->BA }]
+B[{ B-->AB }, { B-->BC }, { B-->BS }, { B-->AC }, { B-->BA }, { B-->CB }, { B-->SB }, { B-->AA }, { B-->SS }]
+C[{ C-->AC }, { C-->SB }, { C-->a }, { C-->CC }, { C-->SC }, { C-->AB }, { C-->BC }]
+S[{ S-->AC }, { S-->BA }, { S-->AA }, { S-->CC }, { S-->SC }, { S-->b }, { S-->AB }]
+
+word='ababbabbab'
+setV=setV
+[A, C]      []          []          []          []          []          []          []          []          []          
+[B, S]      [A, S]      []          []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, C]      []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][B, S]      [A, S]      []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S]   [A, S]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C]      []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, S]      [A, S]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S]   [A, S]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C]      []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, S]      [A, S]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->AA }, { A-->CC }, { A-->SC }, { A-->CS }, { A-->AB }, { A-->AS }]
+B[{ B-->AB }, { B-->AS }, { B-->a }, { B-->AA }, { B-->BB }, { B-->SS }, { B-->CC }]
+S[{ S-->a }, { S-->AA }, { S-->SC }, { S-->CS }, { S-->b }, { S-->AB }]
+C[{ C-->AC }, { C-->BA }, { C-->a }, { C-->BB }, { C-->CC }, { C-->SC }, { C-->CS }]
+
+word='ababbabbab'
+setV=setV
+[A, B, S, C][]          []          []          []          []          []          []          []          []          
+[A, B, S, C][S]         []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][S]         []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][B]         [S]         []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S]         []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B]         [S]         []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S]         
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->AA }, { A-->SS }, { A-->CC }, { A-->AC }, { A-->AS }, { A-->SA }, { A-->CB }]
+B[{ B-->b }, { B-->BC }, { B-->CA }, { B-->BA }, { B-->SB }, { B-->a }, { B-->AA }, { B-->BB }, { B-->CC }]
+S[{ S-->CA }, { S-->CB }, { S-->a }, { S-->CS }, { S-->BS }]
+C[{ C-->AC }, { C-->AS }, { C-->SA }, { C-->CA }, { C-->SB }, { C-->a }, { C-->SS }, { C-->b }]
+
+word='ababbabbab'
+setV=setV
+[A, B, S, C][]          []          []          []          []          []          []          []          []          
+[A, B, S, C][B, C]      []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][B, C]      []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [B, C]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, C]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [B, C]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, C]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->BB }, { A-->BA }, { A-->SB }]
+B[{ B-->AC }, { B-->AS }, { B-->CA }, { B-->SB }, { B-->CS }]
+C[{ C-->BA }, { C-->SB }, { C-->a }, { C-->CC }, { C-->b }, { C-->BC }]
+S[{ S-->AS }, { S-->CA }, { S-->BA }, { S-->CS }, { S-->b }, { S-->BC }]
+
+word='ababbabbab'
+setV=setV
+[A, C]      []          []          []          []          []          []          []          []          []          
+[B, C, S]   [C, S]      []          []          []          []          []          []          []          []          
+[A, B, C, S][B, C, S]   [A, C]      []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][B, C, S]   [C, S]      []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][B, C, S]   [B, C, S]   [C, S]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [A, C]      []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [C, S]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [B, C, S]   [C, S]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [A, C]      []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [C, S]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->b }, { A-->AB }, { A-->BC }, { A-->BS }, { A-->BA }]
+B[{ B-->AC }, { B-->CA }, { B-->BA }]
+C[{ C-->AS }, { C-->CA }, { C-->a }, { C-->SS }, { C-->BS }]
+S[{ S-->AC }, { S-->AS }, { S-->CA }, { S-->BA }, { S-->b }, { S-->AB }]
+
+word='baaabbaabb'
+setV=setV
+[A, S]      []          []          []          []          []          []          []          []          []          
+[B, S]      [C]         []          []          []          []          []          []          []          []          
+[A]         []          [C]         []          []          []          []          []          []          []          
+[B, S]      []          []          [C]         []          []          []          []          []          []          
+[A, B, C, S][]          []          [B, C, S]   [A, S]      []          []          []          []          []          
+[A, B, C, S][]          [B, C, S]   [A, B, C, S][C, S]      [A, S]      []          []          []          []          
+[A, B, C, S][B, C, S]   [A, B, C, S][A, B, C, S][A, C, S]   [B, S]      [C]         []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, S]      [A]         []          [C]         []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C, S]   []          [B, C, S]   [A, S]      []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [A, B, C, S][C, S]      [A, S]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->AA }, { A-->SS }, { A-->SC }, { A-->BS }, { A-->AS }, { A-->SA }, { A-->BA }]
+B[{ B-->AB }, { B-->AC }, { B-->AS }, { B-->CB }, { B-->SB }, { B-->a }, { B-->AA }, { B-->BB }, { B-->CC }, { B-->SC }]
+S[{ S-->SA }, { S-->BA }, { S-->a }, { S-->CC }, { S-->SC }, { S-->b }, { S-->AB }, { S-->BS }]
+C[{ C-->AS }, { C-->SA }, { C-->BA }, { C-->CB }, { C-->a }, { C-->AA }, { C-->CS }, { C-->b }, { C-->AB }, { C-->BS }]
+
+word='baaabbaabb'
+setV=setV
+[S, C]      []          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->AA }, { A-->CC }, { A-->SC }, { A-->CS }, { A-->AS }, { A-->BA }, { A-->CB }, { A-->SB }]
+B[{ B-->b }, { B-->AB }, { B-->BS }, { B-->AS }, { B-->SA }, { B-->BA }, { B-->CB }, { B-->SB }, { B-->AA }, { B-->BB }, { B-->SC }, { B-->CS }]
+S[{ S-->AS }, { S-->SA }, { S-->a }, { S-->AA }, { S-->BB }, { S-->CC }, { S-->AB }]
+C[{ C-->SA }, { C-->CB }, { C-->SB }, { C-->a }, { C-->BB }, { C-->SS }, { C-->CC }, { C-->SC }, { C-->AB }]
+
+word='baaabbaabb'
+setV=setV
+[B]         []          []          []          []          []          []          []          []          []          
+[A, B]      [A, S, C]   []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B]         []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [B]         []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B]      [A, S, C]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B]         []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [B]         
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->SS }, { A-->b }, { A-->AB }, { A-->SA }, { A-->BA }]
+B[{ B-->b }, { B-->AB }, { B-->SA }, { B-->CA }, { B-->a }, { B-->BB }, { B-->CC }]
+S[{ S-->CA }, { S-->a }, { S-->BB }, { S-->b }]
+C[{ C-->SA }, { C-->CA }, { C-->SB }, { C-->a }, { C-->BB }, { C-->b }, { C-->AB }]
+
+word='baaabbaabb'
+setV=setV
+[A, B, S, C][]          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
 [A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
 [A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
 [A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
 [A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
 [A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
-[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->CC }, { A-->SC }, { A-->b }, { A-->BC }, { A-->BS }, { A-->AC }, { A-->SA }, { A-->CB }]
+B[{ B-->b }, { B-->AC }, { B-->CA }, { B-->BA }, { B-->AA }, { B-->BB }]
+S[{ S-->CA }, { S-->a }, { S-->AA }, { S-->SC }, { S-->b }, { S-->BC }, { S-->BS }]
+C[{ C-->BA }, { C-->a }, { C-->AA }, { C-->BB }, { C-->CC }, { C-->SC }, { C-->b }]
+
+word='baaabbaabb'
+setV=setV
+[A, B, S, C][]          []          []          []          []          []          []          []          []          
+[A, B, S, C][S, C]      []          []          []          []          []          []          []          []          
+[A, B, S, C][A, S, C]   [S, C]      []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, S, C]   [S, C]      []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, S, C]   [S, C]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->AA }, { A-->SS }, { A-->CC }, { A-->b }, { A-->AB }, { A-->BC }, { A-->BS }, { A-->AS }, { A-->CB }]
+B[{ B-->b }, { B-->AB }, { B-->BB }, { B-->CS }]
+C[{ C-->AC }, { C-->AS }, { C-->SA }, { C-->CB }, { C-->SB }, { C-->a }, { C-->AA }, { C-->CC }, { C-->b }]
+S[{ S-->AS }, { S-->CA }, { S-->CB }, { S-->SB }, { S-->AA }, { S-->BB }, { S-->CC }, { S-->b }]
+
+word='baaabaabab'
+setV=setV
+[A, B, C, S][]          []          []          []          []          []          []          []          []          
+[A, C, S]   [C]         []          []          []          []          []          []          []          []          
+[A, B, C, S][A, C, S]   [C]         []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, C, S]   [C]         []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C, S]   [C]         []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C, S]   [C]         []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C, S]   [C]         []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S]
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->AC }, { A-->AS }, { A-->SA }, { A-->CA }, { A-->SB }]
+B[{ B-->BC }, { B-->AC }, { B-->AS }, { B-->CA }, { B-->BA }, { B-->CB }, { B-->SB }, { B-->a }, { B-->AA }, { B-->CC }, { B-->CS }]
+S[{ S-->AS }, { S-->SA }, { S-->CA }, { S-->BA }, { S-->CB }, { S-->SB }, { S-->a }, { S-->CC }, { S-->CS }, { S-->b }, { S-->BS }]
+C[{ C-->SA }, { C-->a }, { C-->CS }, { C-->b }, { C-->BC }, { C-->BS }]
+
+word='baaabaabab'
+setV=setV
+[S, C]      []          []          []          []          []          []          []          []          []          
+[A, B, S, C][B, S, C]   []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [S, C]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [S, C]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [S, C]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->BB }, { A-->CC }, { A-->CS }, { A-->b }, { A-->SA }, { A-->BA }, { A-->SB }]
+B[{ B-->AB }, { B-->CB }, { B-->a }, { B-->BB }]
+S[{ S-->AS }, { S-->SA }, { S-->BA }, { S-->CB }, { S-->SB }, { S-->a }, { S-->SC }, { S-->b }]
+C[{ C-->AS }, { C-->SA }, { C-->BA }, { C-->CB }, { C-->a }, { C-->BB }, { C-->SS }, { C-->CC }, { C-->b }]
+
+word='baaabaabab'
+setV=setV
+[A, S, C]   []          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
+[A, S, C]   [A, S, C]   [A, S, C]   [A, S, C]   [A, S, C]   []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
+[A, C, S]   [A, C, S]   [A, C, S]   [A, S, C]   [A, S, C]   [A, S, C]   [A, S, C]   [A, S, C]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
+[A, S, C]   [A, C, S]   [A, C, S]   [A, C, S]   [A, C, S]   [A, S, C]   [A, S, C]   [A, S, C]   [A, S, C]   [A, S, C]   
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->AA }, { A-->BB }, { A-->SS }, { A-->CC }, { A-->CS }, { A-->AC }, { A-->AS }, { A-->SA }, { A-->CA }, { A-->BA }]
+B[{ B-->b }, { B-->AB }, { B-->BC }, { B-->BS }, { B-->CA }, { B-->BA }, { B-->CB }, { B-->SB }, { B-->BB }]
+S[{ S-->BA }, { S-->CB }, { S-->a }, { S-->AA }, { S-->BB }, { S-->b }, { S-->BC }, { S-->AC }, { S-->SA }, { S-->SB }, { S-->SC }, { S-->CS }, { S-->BS }]
+C[{ C-->AC }, { C-->AS }, { C-->CB }, { C-->SB }, { C-->SC }, { C-->CS }, { C-->b }, { C-->AB }]
+
+word='baaabaabab'
+setV=setV
+[B, S, C]   []          []          []          []          []          []          []          []          []          
+[A, B, S, C][S]         []          []          []          []          []          []          []          []          
+[A, B, S, C][A]         [S]         []          []          []          []          []          []          []          
+[A, B, S, C][A, C, S]   [A]         [S]         []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S]         []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A]         [S]         []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S]         []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->SS }, { A-->BC }, { A-->AS }, { A-->SA }, { A-->CB }]
+B[{ B-->b }, { B-->AB }, { B-->BC }, { B-->CA }, { B-->CB }, { B-->a }, { B-->SS }, { B-->SC }]
+C[{ C-->CA }, { C-->SB }, { C-->a }, { C-->SC }, { C-->b }, { C-->AB }, { C-->BC }, { C-->BS }]
+S[{ S-->CA }, { S-->CB }, { S-->BB }, { S-->CC }, { S-->b }, { S-->AB }]
+
+word='baaabaabab'
+setV=setV
+[B, C, S]   []          []          []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C]   []          []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C]   []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->AA }, { A-->SS }, { A-->b }, { A-->AB }, { A-->BS }, { A-->AC }, { A-->AS }, { A-->SA }]
+B[{ B-->b }, { B-->AB }, { B-->BC }, { B-->BA }, { B-->BB }, { B-->CC }, { B-->SC }]
+C[{ C-->AC }, { C-->AS }, { C-->SB }, { C-->a }, { C-->BB }, { C-->CC }, { C-->SC }, { C-->b }, { C-->AB }, { C-->BC }]
+S[{ S-->BA }, { S-->SB }, { S-->BB }, { S-->b }]
+
+word='abbbbbaaba'
+setV=setV
+[C]         []          []          []          []          []          []          []          []          []          
+[B, C]      [A, B, C, S][]          []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][]          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C]   [C]         []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      [C]         []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      [A, B, C, S][]          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      [A, B, C]   [C]         
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->CS }, { A-->AB }, { A-->BC }, { A-->SB }]
+B[{ B-->b }, { B-->a }, { B-->BB }, { B-->SS }, { B-->SC }, { B-->CS }]
+C[{ C-->SB }, { C-->a }, { C-->BB }, { C-->CC }, { C-->BC }]
+S[{ S-->SA }, { S-->SS }, { S-->CC }, { S-->SC }, { S-->CS }, { S-->BC }, { S-->BS }]
+
+word='abbbbbaaba'
+setV=setV
+[B, C]      []          []          []          []          []          []          []          []          []          
+[B, C]      [B]         []          []          []          []          []          []          []          []          
+[A, B, C, S][B, C]      [B]         []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][B, C]      [B]         []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][B, C]      [B]         []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      [B]         []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      [B]         []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->BB }, { A-->CC }, { A-->SC }, { A-->b }, { A-->AB }, { A-->BS }, { A-->SA }, { A-->BA }]
+B[{ B-->b }, { B-->AB }, { B-->AS }, { B-->CA }, { B-->CB }, { B-->SB }, { B-->a }, { B-->SS }]
+S[{ S-->AS }, { S-->SA }, { S-->BA }, { S-->CB }, { S-->a }, { S-->AA }, { S-->SC }, { S-->b }, { S-->BS }]
+C[{ C-->SA }, { C-->CA }, { C-->BA }, { C-->CB }, { C-->a }, { C-->BB }, { C-->SS }, { C-->b }, { C-->BS }]
+
+word='abbbbbaaba'
+setV=setV
+[B, S, C]   []          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->AA }, { A-->SC }, { A-->b }, { A-->AB }, { A-->SA }]
+B[{ B-->b }, { B-->BS }, { B-->AC }, { B-->BA }, { B-->a }, { B-->SS }, { B-->CS }]
+S[{ S-->AC }, { S-->AS }, { S-->a }, { S-->AA }, { S-->SS }, { S-->AB }]
+C[{ C-->AC }, { C-->AS }, { C-->a }, { C-->AA }, { C-->SS }, { C-->SC }, { C-->CS }, { C-->b }]
+
+word='abbbbbaaba'
+setV=setV
+[B, S, C]   []          []          []          []          []          []          []          []          []          
+[A, B, C]   [A, B, C]   []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, C, S][A, B, C]   [A, B, C]   []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->BB }, { A-->SS }, { A-->CC }, { A-->CS }, { A-->b }]
+B[{ B-->AB }, { B-->AC }, { B-->SA }, { B-->CA }, { B-->BA }, { B-->CB }, { B-->a }, { B-->SS }, { B-->CS }]
+S[{ S-->AC }, { S-->BA }, { S-->a }, { S-->AA }, { S-->SS }, { S-->CC }, { S-->b }, { S-->AB }]
+C[{ C-->AC }, { C-->BA }, { C-->a }, { C-->AA }, { C-->CS }, { C-->b }, { C-->AB }]
+
+word='abbbbbaaba'
+setV=setV
+[A, B, S, C][]          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, S, C]   []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->SC }]
+B[{ B-->BC }, { B-->SA }, { B-->BB }]
+S[{ S-->SA }, { S-->SB }, { S-->a }, { S-->AA }, { S-->SC }, { S-->b }]
+C[{ C-->AC }, { C-->AS }, { C-->SA }, { C-->CA }, { C-->CB }, { C-->SB }, { C-->BB }, { C-->SC }, { C-->AB }]
+
+word='aaaaaabbab'
+setV=setV
+[S][] [] [] [] [] [] [] [] [] 
+[] [S][] [] [] [] [] [] [] [] 
+[] [] [S][] [] [] [] [] [] [] 
+[] [] [] [S][] [] [] [] [] [] 
+[] [] [] [] [S][] [] [] [] [] 
+[] [] [] [] [] [S][] [] [] [] 
+[] [] [] [] [] [] [S][] [] [] 
+[] [] [] [] [] [] [] [S][] [] 
+[] [] [] [] [] [] [] [] [S][] 
+[] [] [] [] [] [] [] [] [] [S]
+
+validity=false
+isWordProducible=false
+fulfillsRestriction=true
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=1
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->SS }, { A-->CS }, { A-->b }, { A-->CA }]
+B[{ B-->BS }, { B-->SA }, { B-->BA }, { B-->a }, { B-->BB }]
+C[{ C-->CA }, { C-->BB }, { C-->SS }, { C-->SC }, { C-->CS }, { C-->b }]
+S[{ S-->AS }, { S-->BA }, { S-->SB }, { S-->AA }, { S-->SS }, { S-->CC }, { S-->BC }]
+
+word='aaaaaabbab'
+setV=setV
+[A, B]      []          []          []          []          []          []          []          []          []          
+[B, C, S]   [A, B]      []          []          []          []          []          []          []          []          
+[A, B, C, S][B, C, S]   [A, B]      []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][B, C, S]   [A, B]      []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [A, B]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [A, B]      []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, S]      [A, C]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, S, C]   [A, C, S]   [A, C]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C, S]   [A, B]      []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, S]      [A, C]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->BB }, { A-->b }, { A-->AB }, { A-->AC }, { A-->AS }, { A-->SA }, { A-->CB }]
+B[{ B-->AB }, { B-->BC }, { B-->AC }, { B-->AA }, { B-->BB }, { B-->CC }]
+S[{ S-->AS }, { S-->SA }, { S-->CB }, { S-->SB }, { S-->a }, { S-->AA }]
+C[{ C-->AC }, { C-->AS }, { C-->CB }, { C-->AA }, { C-->BB }, { C-->CC }, { C-->b }]
+
+word='aaaaaabbab'
+setV=setV
+[S]         []          []          []          []          []          []          []          []          []          
+[]          [S]         []          []          []          []          []          []          []          []          
+[]          []          [S]         []          []          []          []          []          []          []          
+[]          []          []          [S]         []          []          []          []          []          []          
+[]          []          []          []          [S]         []          []          []          []          []          
+[]          []          []          []          []          [S]         []          []          []          []          
+[A, S]      [A, S]      [A, S]      [A, S]      [A, S]      [A, S]      [A, C]      []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, C]      []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   [S]         []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, S]      [A, C]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->BB }, { A-->SC }, { A-->b }, { A-->BC }, { A-->AC }, { A-->CA }, { A-->CB }]
+B[{ B-->b }, { B-->AC }, { B-->AS }, { B-->a }, { B-->AA }, { B-->SS }, { B-->SC }]
+S[{ S-->CA }, { S-->BA }, { S-->CB }, { S-->a }, { S-->AA }, { S-->SS }, { S-->b }, { S-->BC }]
+C[{ C-->AC }, { C-->AS }, { C-->CB }, { C-->AA }, { C-->SS }, { C-->SC }, { C-->b }, { C-->AB }, { C-->BC }]
+
+word='aaaaaabbab'
+setV=setV
+[A, B, S]   []          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S]   []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S]   []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->CC }, { A-->BC }, { A-->BS }, { A-->AC }, { A-->AS }, { A-->SA }, { A-->CA }, { A-->SB }]
+B[{ B-->AC }, { B-->AS }, { B-->SA }, { B-->BA }, { B-->SB }, { B-->CS }]
+S[{ S-->AC }, { S-->BA }, { S-->a }, { S-->SS }, { S-->b }, { S-->AB }, { S-->BC }]
+C[{ C-->SB }, { C-->SS }, { C-->CS }, { C-->b }]
+
+word='aaaaaabbab'
+setV=setV
+[S]         []          []          []          []          []          []          []          []          []          
+[S, C]      [S]         []          []          []          []          []          []          []          []          
+[B, S, C]   [S, C]      [S]         []          []          []          []          []          []          []          
+[A, B, S, C][B, S, C]   [S, C]      [S]         []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][B, S, C]   [S, C]      [S]         []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][B, S, C]   [S, C]      [S]         []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][S, C]      [S, C]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [S]         []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][S, C]      [S, C]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->AA }, { A-->SS }, { A-->AC }, { A-->AS }, { A-->SA }, { A-->SB }]
+B[{ B-->b }, { B-->BC }, { B-->BS }, { B-->AC }, { B-->CB }, { B-->SB }, { B-->AA }, { B-->CC }]
+C[{ C-->CB }, { C-->a }, { C-->BB }, { C-->SS }, { C-->CC }, { C-->b }, { C-->BC }]
+S[{ S-->AC }, { S-->CB }, { S-->AA }, { S-->CC }, { S-->BC }, { S-->BS }]
+
+word='abbbbaaaab'
+setV=setV
+[A, C]      []          []          []          []          []          []          []          []          []          
+[A, B, C, S][B, C]      []          []          []          []          []          []          []          []          
+[A, B, C, S][B, C, S]   [B, C]      []          []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][B, C, S]   [B, C]      []          []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [B, C]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C, S]   [A, C]      []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, C]      []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->CC }, { A-->BS }, { A-->SA }, { A-->CA }, { A-->SB }]
+B[{ B-->b }, { B-->AB }, { B-->BC }, { B-->AC }, { B-->BA }, { B-->a }, { B-->BB }, { B-->CC }]
+S[{ S-->CA }, { S-->CB }, { S-->SB }, { S-->AA }, { S-->BB }, { S-->CS }, { S-->b }, { S-->AB }]
+C[{ C-->AC }, { C-->AS }, { C-->CA }, { C-->b }, { C-->AB }, { C-->BC }]
+
+word='abbbbaaaab'
+setV=setV
+[A, B]      []          []          []          []          []          []          []          []          []          
+[A, B, S, C][B, S, C]   []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B]      []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [A, B]      []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [A, B]      []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [A, B]      []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->SC }, { A-->b }, { A-->CA }, { A-->BA }]
+B[{ B-->b }, { B-->BC }, { B-->AC }, { B-->AS }, { B-->CA }, { B-->BA }, { B-->a }, { B-->AA }, { B-->CC }, { B-->CS }]
+S[{ S-->AC }, { S-->AS }, { S-->CB }, { S-->a }, { S-->AA }, { S-->CC }, { S-->SC }, { S-->CS }, { S-->BS }]
+C[{ C-->AC }, { C-->AS }, { C-->BA }, { C-->CB }, { C-->a }, { C-->BB }, { C-->CC }, { C-->SC }, { C-->CS }, { C-->b }, { C-->BC }]
+
+word='abbbbaaaab'
+setV=setV
+[B, S, C]   []          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, C]   []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][B, S, C]   [B, S, C]   []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->BB }, { A-->SC }, { A-->b }, { A-->CA }]
+B[{ B-->AC }, { B-->SA }, { B-->a }, { B-->AA }, { B-->BB }, { B-->SS }, { B-->SC }]
+S[{ S-->CA }, { S-->BA }, { S-->a }, { S-->BB }, { S-->CC }, { S-->b }, { S-->AB }, { S-->BS }]
+C[{ C-->AC }, { C-->SA }, { C-->BA }, { C-->SB }, { C-->a }, { C-->AA }, { C-->b }]
+
+word='abbbbaaaab'
+setV=setV
+[B, S, C]   []          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, S, C]   []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, S, C]   
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->SS }, { A-->CC }, { A-->SC }, { A-->CS }, { A-->b }, { A-->AB }, { A-->SA }, { A-->CA }, { A-->BA }]
+B[{ B-->b }, { B-->CA }, { B-->BA }, { B-->SB }]
+S[{ S-->AC }, { S-->AS }, { S-->SA }, { S-->BA }, { S-->AA }, { S-->SC }, { S-->CS }, { S-->b }, { S-->AB }]
+C[{ C-->SA }, { C-->CA }, { C-->AA }, { C-->SS }, { C-->CC }, { C-->SC }, { C-->b }, { C-->AB }, { C-->BS }]
+
+word='abbbbaaaab'
+setV=setV
+[A]         []          []          []          []          []          []          []          []          []          
+[A, S, C]   [A, B, S, C][]          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A]         []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][S, C]      [A]         []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][S, C]      [A]         []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][S, C]      [A]         []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, S, C]   [A, B, S, C]
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->BB }, { A-->b }, { A-->SA }, { A-->CA }, { A-->CB }]
+B[{ B-->AB }, { B-->BS }, { B-->AS }, { B-->CA }, { B-->BA }, { B-->a }, { B-->SS }]
+S[{ S-->SA }, { S-->CA }, { S-->BA }, { S-->CB }, { S-->SB }, { S-->a }, { S-->BB }, { S-->SS }, { S-->BS }]
+C[{ C-->AS }, { C-->SA }, { C-->BA }, { C-->CB }, { C-->BB }, { C-->SC }, { C-->AB }, { C-->BS }]
+
+word='bbbbabbbab'
+setV=setV
+[A]         []          []          []          []          []          []          []          []          []          
+[]          [A]         []          []          []          []          []          []          []          []          
+[]          []          [A]         []          []          []          []          []          []          []          
+[]          []          []          [A]         []          []          []          []          []          []          
+[B, C]      [B, C]      [B, C]      [B, C]      [B, S]      []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, S, C][A]         []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, S, C][]          [A]         []          []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, S, C][]          []          [A]         []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][B, C]      [B, C]      [B, C]      [B, S]      []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A]         
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=true
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->SS }, { A-->SC }, { A-->b }, { A-->AB }, { A-->CB }, { A-->SB }]
+B[{ B-->b }, { B-->AS }, { B-->CA }, { B-->BA }, { B-->CB }, { B-->SB }, { B-->BB }, { B-->SS }, { B-->CC }]
+S[{ S-->CA }, { S-->CB }, { S-->a }, { S-->SC }, { S-->CS }, { S-->b }, { S-->AB }, { S-->BC }]
+C[{ C-->AS }, { C-->a }, { C-->CC }, { C-->SC }, { C-->b }]
+
+word='bbbbabbbab'
+setV=setV
+[A, B, S, C][]          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][S, C]      []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->AA }, { A-->BB }, { A-->SS }, { A-->SC }, { A-->CS }, { A-->AS }, { A-->SA }]
+B[{ B-->b }, { B-->a }, { B-->AA }, { B-->BB }, { B-->CC }]
+S[{ S-->AA }, { S-->BB }, { S-->SS }, { S-->SC }, { S-->b }, { S-->AB }]
+C[{ C-->CC }, { C-->SC }, { C-->CS }, { C-->b }]
+
+word='bbbbabbbab'
+setV=setV
+[B, S, C]   []          []          []          []          []          []          []          []          []          
+[A, B, S, C][B, S, C]   []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [B]         []          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [B, S, C]   []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][B, S, C]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [B]         []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S]   [B, S, C]   
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->AA }, { A-->BB }, { A-->SC }, { A-->CS }, { A-->b }, { A-->AB }, { A-->BS }, { A-->AC }, { A-->SA }, { A-->BA }, { A-->CB }]
+B[{ B-->b }, { B-->AB }, { B-->BC }, { B-->BS }, { B-->AC }, { B-->SA }, { B-->CB }, { B-->SB }, { B-->a }, { B-->BB }, { B-->CC }, { B-->CS }]
+S[{ S-->AC }, { S-->CA }, { S-->SB }, { S-->a }, { S-->SC }, { S-->b }, { S-->BC }, { S-->BS }]
+C[{ C-->SC }, { C-->CS }, { C-->CA }, { C-->BA }, { C-->CB }, { C-->a }, { C-->AA }, { C-->BB }, { C-->SS }, { C-->CC }, { C-->b }, { C-->AB }, { C-->BC }]
+
+word='bbbbabbbab'
+setV=setV
+[A, B, S, C][]          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C]
+
+validity=false
+isWordProducible=true
+fulfillsRestriction=false
+rightCellCombinationsForced=false
+maxVarsPerCellSetV=4
+}
+
+############################################################
+############################################################
+sampleGrammars=ResultSample{
+grammar=Grammar{
+variableStart: S
+Productions
+A[{ A-->a }, { A-->BB }, { A-->SC }, { A-->b }, { A-->AC }, { A-->SB }]
+B[{ B-->b }, { B-->BC }, { B-->AC }, { B-->AS }, { B-->BA }, { B-->SB }, { B-->a }, { B-->BB }, { B-->SC }]
+S[{ S-->AC }, { S-->AS }, { S-->CB }, { S-->a }, { S-->CS }, { S-->BC }, { S-->BS }]
+C[{ C-->CB }, { C-->a }, { C-->BB }, { C-->SS }, { C-->SC }, { C-->b }, { C-->BC }]
+
+word='bbbbabbbab'
+setV=setV
+[A, B, C]   []          []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, C]   []          []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          []          []          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          []          []          
+[A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          []          
+[A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          []          
+[A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   []          []          
+[A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, S, C][]          
+[A, B, S, C][A, B, S, C][A, B, S, C][A, B, C, S][A, B, C, S][A, B, C, S][A, B, S, C][A, B, S, C][A, B, S, C][A, B, C]   
 
 validity=false
 isWordProducible=true

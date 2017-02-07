@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
+
 /**
  * Created by Andreas Braun on 20.12.2016.
  */
@@ -33,23 +35,22 @@ public class Grammar {
 	/**
 	 * No duplicate productionsMap can be added. Duplicates are detected in the production array.
 	 */
-	public void addProduction(Production... production) {
+	public void addProduction(Production... production) throws GrammarRuntimeException {
 		int countProductionsToAdd = production.length;
 		// Making production that are added unique.
 		Set<Production> tempSet = new HashSet<>( Arrays.asList( production ) );
 		// Considering duplicates in the parameters.
-		/* TODO: think about this Exceptions, does not work with bias
 		if ( tempSet.size() != countProductionsToAdd ) {
 			throw new GrammarRuntimeException( "AddProduction: Duplicate production found in the production list." );
 		}
-		*/
+
 		addProduction( tempSet );
 	}
 
 	/**
 	 * No duplicate productions can be added. Duplicates are detected if the production already exists in the grammar.
 	 */
-	public void addProduction(Set<Production> productions) {
+	public void addProduction(Set<Production> productions) throws GrammarRuntimeException {
 		int countProductionsBefore = this.getProductionsAsList().size();
 		int countProductionsToAdd = productions.size();
 		for ( Production prod : productions ) {
@@ -71,11 +72,10 @@ public class Grammar {
 			replaceProductions( var, prodsList );
 		}
 		int countProductionsAfter = this.getProductionsAsList().size();
-		/* TODO: think about this Exceptions, does not work with bias
 		if ( countProductionsAfter != countProductionsBefore + countProductionsToAdd ) {
 			throw new GrammarRuntimeException( "AddProduction: Duplicate production found in the production set." );
 		}
-		*/
+
 	}
 
 	/**

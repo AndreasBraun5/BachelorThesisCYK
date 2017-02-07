@@ -27,7 +27,7 @@ public abstract class GrammarGeneratorDiceRoll<T extends GrammarGeneratorSetting
 		this.generatorGrammarSettings = generatorGrammarDiceRollSettings;
 	}
 
-	public GrammarGeneratorDiceRoll( T generatorGrammarDiceRollSettings ) {
+	public GrammarGeneratorDiceRoll(T generatorGrammarDiceRollSettings) {
 		this( generatorGrammarDiceRollSettings, new Random() );
 	}
 

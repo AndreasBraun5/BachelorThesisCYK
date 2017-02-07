@@ -32,13 +32,14 @@ public abstract class Util {
 	 * Counting the stored elements in each entry of the setV matrix and looking for the max count.
 	 */
 	// TODO: duplicate maxVarPerCell
-	public static int getMaxVarPerCellForSetV(Set<Variable>[][] setV) {
+	public static int getMaxVarPerCellForSetV(Set<VariableKWrapper>[][] setV) {
+		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
 		int numberOfVarsPerCell = 0;
-		int temp = setV.length;
+		int temp = tempSetV.length;
 		for ( int i = 0; i < temp; i++ ) {
 			for ( int j = 0; j < temp; j++ ) {
-				if ( setV[i][j].size() > numberOfVarsPerCell ) {
-					numberOfVarsPerCell = setV[i][j].size();
+				if ( tempSetV[i][j].size() > numberOfVarsPerCell ) {
+					numberOfVarsPerCell = tempSetV[i][j].size();
 				}
 			}
 		}

@@ -3,7 +3,7 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.util.Util;
 
 /**
@@ -14,7 +14,7 @@ public class ResultSample {
 
 	private Grammar grammar;
 	private String word;
-	private Set<Variable>[][] setV;
+	private Set<VariableKWrapper>[][] setV;
 	private boolean validity;
 	private boolean isWordProducible;
 	private boolean fulfillsRestriction;
@@ -24,7 +24,7 @@ public class ResultSample {
 	public ResultSample(
 			Grammar grammar,
 			String word,
-			Set<Variable>[][] setV,
+			Set<VariableKWrapper>[][] setV,
 			boolean validity,
 			boolean isWordProducible,
 			boolean fulfillsRestriction,
@@ -45,7 +45,8 @@ public class ResultSample {
 		return "ResultSample{" +
 				"\ngrammar=" + grammar +
 				"\nword='" + word + '\'' +
-				"\nsetV=" + Util.getSetVVariableAsStringForPrintingAsLowerTriangularMatrix( setV, "setV" ) +
+				"\nsetV=" + Util.getSetVVariableAsStringForPrintingAsLowerTriangularMatrix(
+				Util.getVarsFromSetDoubleArray( setV ), "setV" ) +
 				"\nvalidity=" + validity +
 				"\nisWordProducible=" + isWordProducible +
 				"\nfulfillsRestriction=" + fulfillsRestriction +
@@ -62,7 +63,7 @@ public class ResultSample {
 		return word;
 	}
 
-	public Set<Variable>[][] getSetV() {
+	public Set<VariableKWrapper>[][] getSetV() {
 		return setV;
 	}
 

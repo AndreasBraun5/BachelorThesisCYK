@@ -35,7 +35,7 @@ public class GrammarTest {
 
     /**
      *  No duplicate productions are added. No duplicate production can be given as argument.
-     */ // TODO: rethink test
+     */
     @Test(expected = GrammarRuntimeException.class)
     public void addProduction() {
         System.out.println("");
@@ -54,7 +54,7 @@ public class GrammarTest {
 
     /**
      *  No duplicate productions are added. No already existing production can be added.
-     */ // TODO: rethink test
+     */
     @Test(expected = GrammarRuntimeException.class)
     public void addProduction2() {
         System.out.println("");

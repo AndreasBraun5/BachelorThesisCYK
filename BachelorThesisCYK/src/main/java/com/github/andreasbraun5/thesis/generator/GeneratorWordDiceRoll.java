@@ -28,7 +28,7 @@ public class GeneratorWordDiceRoll {
 
 	/**
 	 * Not all terminals must be included in the word.
-	 */ // TODO: all terminals must be included?!
+	 */ // TODO Note: Include all terminals?
 	public static StringBuilder generateWord(Set<Terminal> terminals, int sizeOfWord) {
 		StringBuilder randomWord = new StringBuilder( "" );
 		List<Terminal> tempTerminals = new ArrayList<>();

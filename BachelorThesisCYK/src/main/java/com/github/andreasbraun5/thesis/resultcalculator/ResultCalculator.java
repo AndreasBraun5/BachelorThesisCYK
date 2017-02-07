@@ -12,7 +12,7 @@ import com.github.andreasbraun5.thesis.generator.GrammarGenerator;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.GrammarValidityChecker;
-import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.Util;
 
@@ -33,6 +33,9 @@ public class ResultCalculator {
 		this.countDifferentWords = countDifferentWords;
 	}
 
+	/**
+	 * TODO: Up till now no SetVAdvanced is used
+	 */
 	public Result buildResultFromGenerator(
 			//GrammarGeneratorSettings generatorGrammarSettings,
 			GrammarGenerator grammarGenerator) {
@@ -43,7 +46,7 @@ public class ResultCalculator {
 		// You could directly add the resultSample to the allResultSamples
 		String tempWord;
 		Grammar grammar;
-		Set<Variable>[][] tempSetV;
+		Set<VariableKWrapper>[][] tempSetV;
 		boolean tempValidity;
 		boolean tempIsWordProducible;
 		boolean tempFulfillsRestriction;
@@ -62,9 +65,7 @@ public class ResultCalculator {
 			for ( int j = 0; j < countOfGrammarsToGeneratePerWord; j++ ) {
 				// Regarding the specified testMethod enum, the correct grammar is being added to the grammar list.
 				grammar = grammarGenerator.generateGrammar();
-				tempSetV = Util.getVarsFromSetDoubleArray(
-						CYK.calculateSetVAdvanced( grammar, Util.stringToTerminalList( tempWord ) )
-				);
+				tempSetV = CYK.calculateSetVAdvanced( grammar, Util.stringToTerminalList( tempWord ) );
 				tempIsWordProducible = GrammarValidityChecker.checkProducibilityCYK(
 						tempSetV, grammar, tempGrammarProperties
 				);

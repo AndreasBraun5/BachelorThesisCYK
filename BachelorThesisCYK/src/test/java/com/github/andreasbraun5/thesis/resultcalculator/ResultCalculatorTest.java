@@ -37,14 +37,12 @@ public class ResultCalculatorTest {
 		Result test1DiceRollResult = resultCalculator1.buildResultFromGenerator(
 				new GrammarGeneratorDiceRollOnly( generatorGrammarDiceRollSettings )
 		);
-		List<ResultSample> testGrammarRepresentativeExamples = test1DiceRollResult.getRepresentativeResultSamples()
+		List<ResultSample> representativeResultSamples = test1DiceRollResult.getRepresentativeResultSamples()
 				.getTestGrammarRepresentativeExamples();
-		int curIndex = 0;
-		// TODO: correct the test
-		for ( ResultSample resultSample : testGrammarRepresentativeExamples ) {
+		for ( ResultSample resultSample : representativeResultSamples ) {
 			Assert.assertEquals(
-					"productions.length was not equal to .size",
-					resultSample.isValidity(),
+					"ResultSample validity is not as expected.",
+					resultSample.isWordProducible(),
 					GrammarValidityChecker.checkProducibilityCYK(
 							resultSample.getSetV(),
 							resultSample.getGrammar(),
@@ -52,7 +50,6 @@ public class ResultCalculatorTest {
 					)
 			);
 		}
-		curIndex++;
 		System.out.println( "Executed successfully." );
 	}
 }

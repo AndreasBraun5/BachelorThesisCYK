@@ -17,10 +17,10 @@ import com.github.andreasbraun5.thesis.util.Util;
 
 public class Main {
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// TODO:2 CYK advanced, instead of storing X now you must save (X,k) [= VariableKWrapper]
-	// TODO:2 CYK tree
+	// TODO: CYK tree
 	// TODO: Idea StartVariable has no terminal, kind of "pattern" from exam exercises. There the favouritism should be mapped to a variable.
 	// TODO: implement stuff from last meeting
+	// TODO: last meeting;
 
 	public static void main(String[] args) {
 
@@ -81,7 +81,9 @@ public class Main {
 		/**
 		 * 	Storing all the results in a txt.
 		 */
-		Util.writeToFile( result1, result2, result3, result4, result5 );
+		Util.writeToFile( result1, result2, result3,
+						  result4, result5
+		);
 	}
 
 	public static GrammarProperties generateGrammarPropertiesForTesting() {

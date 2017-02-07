@@ -8,7 +8,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
@@ -56,6 +58,35 @@ public class GrammarGeneratorDiceRollBias extends GrammarGeneratorDiceRoll<Gramm
 				this.generatorGrammarSettings.getMaxValueCompoundVariablesAreAddedTo(),
 				this.generatorGrammarSettings.getFavouritism()
 		);
+	}
+
+	@Override
+	protected Grammar distributeDiceRollRightHandSideElements(
+			Grammar grammar,
+			Set<? extends RightHandSideElement> rightHandSideElements,
+			int minCountElementDistributedTo,
+			int maxCountElementDistributedTo,
+			List<Variable> variablesWeighted) {
+		for ( RightHandSideElement tempRhse : rightHandSideElements ) {
+			// countOfLeftSideRhseWillBeAdded is element of the interval [minCountElementDistributedTo, maxCountElementDistributedTo]
+			int countOfLeftSideRhseWillBeAdded = random.nextInt( maxCountElementDistributedTo ) + minCountElementDistributedTo;
+			//Removing Variables from variablesWeighted until countOfVarsTerminalWillBeAdded vars are left.
+			List<Variable> tempVar = new ArrayList<>( variablesWeighted );
+			for ( int i = tempVar.size(); i > countOfLeftSideRhseWillBeAdded; i-- ) {
+				tempVar.remove( random.nextInt( tempVar.size() ) );
+			}
+			//Adding the element to the leftover variables
+			for ( Variable var : tempVar ) {
+				// The difference to its superclass method is that, the GrammarRunTimeException is being ignored here.
+				// This effect doesn't occur in the superclass method.
+				try {
+					grammar.addProduction( new Production( var, tempRhse ) );
+				}
+				catch (GrammarRuntimeException ignored) {
+				}
+			}
+		}
+		return grammar;
 	}
 
 	protected Grammar distributeDiceRollRightHandSideElementsBias(
