@@ -7,20 +7,17 @@ import java.util.Set;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
- * variables
- * terminals
- * sizeOfWord
- * maxNumberOfVarsPerCell
- * variableStart
  */
 public class GrammarProperties {
 
 	public final Set<Variable> variables = new HashSet<>(); // obligatory attribute
 	public final Set<Terminal> terminals = new HashSet<>(); // obligatory attribute
-
-	public int sizeOfWord; // optional
-	public int maxNumberOfVarsPerCell; // optional
 	public VariableStart variableStart; // obligatory attribute
+
+	public GrammarPropertiesGrammarRestrictions grammarPropertiesGrammarRestrictions =
+			GrammarPropertiesGrammarRestrictions.buildGrammarRestrictionsWrapper(); // optional, uses default values.
+	public GrammarPropertiesExamConstraints grammarPropertiesExamConstraints =
+			GrammarPropertiesExamConstraints.buildGrammarExamConstraintsWrapper(); // optional, uses default values.
 
 	public GrammarProperties(VariableStart varStart) {
 		this.variableStart = varStart;
@@ -48,7 +45,7 @@ public class GrammarProperties {
 		for ( Character t : terminals ) {
 			grammarProperties.addTerminals( new Terminal( t.toString() ) );
 		}
-		grammarProperties.sizeOfWord = word.length();
+		grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord( word.length() );
 		return grammarProperties;
 	}
 
@@ -90,11 +87,11 @@ public class GrammarProperties {
 	@Override
 	public String toString() {
 		return "GrammarProperties: {" +
-				"\nsizeOfWord= " + sizeOfWord +
-				"\nmaxNumberOfVarsPerCell= " + maxNumberOfVarsPerCell +
 				"\nvariables= " + variables +
 				"\nvariableStart= " + variableStart +
 				"\nterminals= " + terminals +
+				grammarPropertiesGrammarRestrictions.toString() +
+				grammarPropertiesExamConstraints.toString() +
 				"\n}";
 	}
 }

@@ -20,10 +20,11 @@ public class GeneratorWordDiceRoll {
 	 * Excludes the case where the word could be the empty word.
 	 */
 	public static String generateWord(GrammarProperties grammarProperties) {
-		if ( grammarProperties.sizeOfWord == 0 ) {
+		if ( grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord() == 0 ) {
 			throw new GrammarPropertiesRuntimeException( "The sizeOfWord is not defined." );
 		}
-		return generateWord( grammarProperties.terminals, grammarProperties.sizeOfWord ).toString();
+		return generateWord( grammarProperties.terminals, grammarProperties.grammarPropertiesGrammarRestrictions.
+				getSizeOfWord() ).toString();
 	}
 
 	/**

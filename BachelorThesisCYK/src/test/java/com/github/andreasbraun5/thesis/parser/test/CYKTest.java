@@ -35,8 +35,8 @@ public class CYKTest {
 		// Define GrammarProperties
 		GrammarProperties grammarProperties = new GrammarProperties( new VariableStart( "S" ) )
 				.addTerminals( new Terminal( "a" ) );
-		grammarProperties.maxNumberOfVarsPerCell = 3;
-		grammarProperties.sizeOfWord = 10;
+		grammarProperties.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell( 3 );
+		grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord( 10 );
 		// Generate word
 		// @formatter:off
 		String word = GeneratorWordDiceRoll.generateWord( grammarProperties );
@@ -302,7 +302,7 @@ public class CYKTest {
 				setVTemp[i][j] = new HashSet<>();
 			}
 		}
-		// reconstructing example matrix from scriptTI1
+		// reconstructing example matrix
 		setVTemp[0][0].add( new Variable( "A" ) );
 		setVTemp[0][0].add( new Variable( "B" ) );
 		setVTemp[0][1].add( new VariableStart( "S" ) );

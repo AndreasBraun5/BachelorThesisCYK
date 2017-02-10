@@ -6,10 +6,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
-import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettingsDiceRoll;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettingsDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
-import com.github.andreasbraun5.thesis.grammar.GrammarValidityChecker;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
 import com.github.andreasbraun5.thesis.main.Main;
 
 /**
@@ -25,15 +25,18 @@ public class ResultCalculatorTest {
 		GrammarProperties grammarProperties = Main.generateGrammarPropertiesForTesting();
 		GrammarGeneratorSettingsDiceRoll generatorGrammarDiceRollSettings =
 				new GrammarGeneratorSettingsDiceRoll( grammarProperties );
-		grammarProperties.sizeOfWord = 10; // All TestResults will be based on this sizeOfWord.
-		grammarProperties.maxNumberOfVarsPerCell = 2;
+		grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord( 10 ); // All TestResults will be based on this sizeOfWord.
+		grammarProperties.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell( 2 );
+
 		int countGeneratedGrammarsPerWord = 20;
 		int countDifferentWords = 10;
 		// this boundary is relevant so that the JVM doesn't run out of memory while calculating one Result.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );
 		}
-		ResultCalculator resultCalculator1 = new ResultCalculator( countDifferentWords, countGeneratedGrammarsPerWord);
+		ResultCalculator resultCalculator1 = ResultCalculator.buildResultCalculator().
+				setCountDifferentWords( countDifferentWords ).
+				setCountOfGrammarsToGeneratePerWord( countGeneratedGrammarsPerWord );
 		Result test1DiceRollResult = resultCalculator1.buildResultFromGenerator(
 				new GrammarGeneratorDiceRollOnly( generatorGrammarDiceRollSettings )
 		);

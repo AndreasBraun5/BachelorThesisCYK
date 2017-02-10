@@ -18,12 +18,36 @@ import com.github.andreasbraun5.thesis.util.Util;
 public class Main {
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// TODO: CYK tree
-	// TODO: Idea StartVariable has no terminal, kind of "pattern" from exam exercises. There the favouritism should be mapped to a variable.
-	// TODO: implement stuff from last meeting
-	// TODO: last meeting;
+	// TODO: Idea StartVariable has no terminal, kind of "pattern" from exam exercises.
+	// 			There the favouritism should be mapped to a variable.
 
+	// TODO: last meeting 1: for exam store sumOfProductions
+	// TODO: last meeting 2: for exam store sumVariablesInCellsOfPyramid
+	// The same I did for wrapper with properties exam constraints and restrictions, now do for result object to save
+	// the actual values.
+
+	// TODO: last meeting 3: Maybe use the fraction of CountVars and countTerminals
+	// TODO: last meeting 5: rightCellCombinationForced has a parameter to set it.
+	// TODO: last meeting 4: only keep producing and reachable rhse's in the grammar. Also see script in TI.
+	// TODO: See [Duda, Pattern Classification] chapter 8.5 Recognition with strings. In more Detail:
+	//			8.5.2 Edit Distance(p. 418): Definition of similarity or difference between two strings. Deletion,
+	//				insertion and exchange operations with different weighting possible. In general this is used for
+	//				string matching with errors. So to say more error robust classification or recognition of spoken
+	// 				words and and hand written words.
+	// TODO: See [Duda, Pattern Classification] chapter 8.6 Grammatical Methods. In more Detail:
+	//			8.6.2 Recognition Using Grammars (p. 426): Bottom-Up Parsing = CKY, starting from the leaves;
+	// 				Top-Down, starting from root node, "with some specified criteria that guide the choice of which
+	//				rule to apply. Such criteria could include beginning the parse ...";
+	// TODO: See [Duda, Pattern Classification] chapter 8.7 Grammatical Inference. In more Detail:
+	//			8.7 "In many applications, the grammar is designed by hand. ... It is important to learn a grammar from
+	//				example sentences [ for our case this would only be the wanted or validity==true samples ]
+	// 				{ Guess of myself: So to find some kind of meta grammar that describes grammars we seek }
+	//				https://en.wikipedia.org/wiki/Grammar_induction
+	//				See algorithm 5: Grammatical Inference (Overview).
+	//				https://en.wikipedia.org/wiki/Grammar_induction
+	//				https://en.wikipedia.org/wiki/Grammar_induction
+	// TODO: use wrapper classes for holden its properties and checking if true and so on.
 	public static void main(String[] args) {
-
 		/**
 		 * 	Generating the settings for the generatorTest.
 		 * 	GrammarProperties = general settings, the same for all settings of one run.
@@ -35,13 +59,15 @@ public class Main {
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
 		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
-		int countGeneratedGrammarsPerWord = 20;
-		int countDifferentWords = 10;
+		int countGeneratedGrammarsPerWord = 150;
+		int countDifferentWords = 100;
 		// this boundary is relevant so that the JVM doesn't run out of memory on my computer while calculating one Result.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );
 		}
-		ResultCalculator resultCalculator = new ResultCalculator( countDifferentWords, countGeneratedGrammarsPerWord );
+		ResultCalculator resultCalculator = ResultCalculator.buildResultCalculator().
+				setCountDifferentWords( countDifferentWords ).
+				setCountOfGrammarsToGeneratePerWord( countGeneratedGrammarsPerWord );
 
 		GrammarProperties grammarProperties1 = generateGrammarPropertiesForTesting();
 		GrammarGeneratorSettingsDiceRoll settings1 = new GrammarGeneratorSettingsDiceRoll( grammarProperties1 );
@@ -49,7 +75,7 @@ public class Main {
 				new GrammarGeneratorDiceRollOnly( settings1 ) );
 
 		GrammarProperties grammarProperties2 = generateGrammarPropertiesForTesting();
-		grammarProperties2.maxNumberOfVarsPerCell = 2;
+		grammarProperties2.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell( 2 );
 		GrammarGeneratorSettingsDiceRoll settings2 = new GrammarGeneratorSettingsDiceRoll( grammarProperties2 );
 		Result result2 = resultCalculator.buildResultFromGenerator(
 				new GrammarGeneratorDiceRollOnly( settings2 ) );
@@ -102,61 +128,14 @@ public class Main {
 		 * Some settings for the beginning:
 		 * variables.size() should be around 4, considering exam exercises.
 		 * terminals.size() should be 2.
-		 * sizeOfWord should be between 6 and 10.
-		 * maxNumberOfVarsPerCell should be 3.
+		 * Used default setting:
+		 * grammarPropertiesGrammarRestrictions: sizeOfWord = 10 // All TestResults will be based on words of this size
+		 * grammarPropertiesGrammarRestrictions: maxNumberOfVarsPerCell = 3 // The CYK simple pyramid must contain less than 4 vars in cone cell
+		 * grammarPropertiesExamConstraints: minRightCellCombinationsForced = 1
+		 * grammarPropertiesExamConstraints: countSumOfProductions = 10; // approximate maximum value taken from the exam exercises
+		 * grammarPropertiesExamConstraints: minRightCellCombinationsForced = 1 countSumOfVarsInPyramid = 50; // approximate maximum value taken from the exam exercises
 		 */
-		GrammarProperties grammarProperties = new GrammarProperties( new VariableStart( "S" ),
-																	 variables, terminals
-		);
-		grammarProperties.sizeOfWord = 10; // All TestResults will be based on words of this size.
-		grammarProperties.maxNumberOfVarsPerCell = 3;
+		GrammarProperties grammarProperties = new GrammarProperties( new VariableStart( "S" ), variables, terminals );
 		return grammarProperties;
 	}
 }
-/**
- * Generate N grammars (N=100000) and then evaluate these regarding the different requirements.
- * Most general approaches that use no restrictions:
- * <p>
- * FIRST Approach starting from one word to N grammars:
- * 1) Randomly generate one word.
- * 2) Randomly generate grammars derived from it. Derived means using generatePartOfGrammarPropertiesFromWord
- * which is the indirect input to generateGrammar via the settings.
- * 3) Checking restrictions and producibility.
- * 3.1) Restrictions: Check the the grammar regarding its demanded restrictions, e.g. max vars per cell and so on.
- * Restrictions are PARAMETERS which still need to be identified and optimized later on.
- * r grammars do fulfill the restrictions property.
- * Maybe even use more fine grained structure of r --> more fine grained dropout rates.
- * 3.2) Producibility: Check the grammar if it can generate the word.
- * p grammars do fulfill the producibility property.
- * This will be checked with the CYK-algorithm.
- * 4) n valid grammars are the final result. n is element of [0, N] and n = r * p.
- * Usage of different success rates:
- * // TODO: more fine grained SR's?
- * - Success rate SR = n/N;
- * - Success rate of checking for the restrictions SRR = r/N;
- * - Success rate of checking for the producibility SRP = p/N;
- * - TODO: missing SRC
- * - Conditional probability for one grammar of being a validGrammar and being able to generate the word. COND = SRR*SRR.
- * <p>
- * SECOND Approach starting from one grammar to one word:
- * 1.1) Randomly generate one grammar.
- * 1.2) ResultCalculator for more restrictions regarding the grammar, e.g. maxVarCount and so on.
- * [ 1.3) Accept the grammar if all the restrictions are met, otherwise goto 1.1). In this approach it may be possible to
- * use even more restrictions, e.g. more this approach regarding specific restrictions ]
- * 3) Randomly generate words derived from it. Derived means using generatePartOfGrammarPropertiesFromGrammar
- * which is the indirect input to generateWord via the settings. One would maybe define properties for the word.
- * 4) Check for the words that can be be generated out of the grammar.
- * 5) One or more valid grammars are the final result.
- * <p>
- * <p>
- * THIRD Approach starting with the half of a word and half of grammar.
- * <p>
- * Input for word generation:
- * [GrammarProperties object] Parameters could be:
- * variables count, terminals count, sizeOfWord,
- * <p>
- * Understand why the grammar are broken, try to repair with hand.
- * How to improve a Grammar? Maybe deleting a right side.
- * <p>
- * [numberOfVars from 2 to 5, sizeOfAlphabet from 2 to 4, maxNumberOfVarsPerCell = 3]
- */

@@ -5,21 +5,20 @@ import java.util.Map;
 
 /**
  * Created by Andreas Braun on 18.01.2017.
+ * https://github.com/AndreasBraun5/
  */
 public class SuccessRates {
 
 	private int trueCount;
 	private int falseCount;
 	private double successRate;
+
 	private int trueProducibilityCount;
 	private int falseProducibilityCount;
 	private double successRateProducibility;
-	private int trueRestrictionsCount;
-	private int falseRestrictionsCount;
-	private double successRateRestrictions;
-	private int trueExamConstraints;
-	private int falseExamConstraints;
-	private double successRateExamConstraints;
+
+	private SuccessRatesGrammarRestrictions successRatesGrammarRestrictions;
+	private SuccessRatesExamConstraints successRatesExamConstraints;
 
 	public SuccessRates(Map<String, List<ResultSample>> allResultSamples) {
 		int countGeneratedGrammars = 0;
@@ -32,47 +31,40 @@ public class SuccessRates {
 				else {
 					falseProducibilityCount++;
 				}
-				if ( resultSample.isFulfillsRestriction() ) {
-					trueRestrictionsCount++;
-				}
-				else {
-					falseRestrictionsCount++;
-				}
 				if ( resultSample.isValidity() ) {
 					trueCount++;
 				}
 				else {
 					falseCount++;
 				}
-				if ( resultSample.isRightCellCombinationForced() ) {
-					trueExamConstraints++;
-				}
-				else {
-					falseExamConstraints++;
-				}
 			}
 		}
 		successRate = (double) trueCount / countGeneratedGrammars;
 		successRateProducibility = (double) trueProducibilityCount / countGeneratedGrammars;
-		successRateRestrictions = (double) trueRestrictionsCount / countGeneratedGrammars;
-		successRateExamConstraints = (double) trueExamConstraints / countGeneratedGrammars;
+		successRatesExamConstraints = new SuccessRatesExamConstraints( allResultSamples );
+		successRatesGrammarRestrictions = new SuccessRatesGrammarRestrictions( allResultSamples );
 	}
 
 	@Override
 	public String toString() {
 		return "\nSuccessRates{" +
+
+				"\nSUCCESSRATEOVERVIEW:" +
+				"\n			-->	SUCCESSRATE=" + successRate +
+				"\n			-->	SUCCESSRATEPRODUCIBILITY=" + successRateProducibility +
+				"\n			-->	SUCCESSRATEGRAMMARRESTRICTIONS=" +
+				successRatesGrammarRestrictions.getSuccessRateGrammarRestrictions() +
+				"\n			-->	SUCCESSRATEEXAMCONSTRAINTS=" +
+				successRatesExamConstraints.getSuccessRateExamConstraints() +
+				"\n" +
+				"\nSUCCESSRATE=" + successRate +
 				"\ntrueCount=" + trueCount +
 				"\nfalseCount=" + falseCount +
-				"\n			-->	SUCCESSRATE=" + successRate +
+				"\nSUCCESSRATEPRODUCIBILITY=" + successRateProducibility +
 				"\ntrueProducibilityCount=" + trueProducibilityCount +
 				"\nfalseProducibilityCount=" + falseProducibilityCount +
-				"\n			-->	SUCCESSRATEPRODUCIBILITY=" + successRateProducibility +
-				"\ntrueRestrictionsCount=" + trueRestrictionsCount +
-				"\nfalseRestrictionsCount=" + falseRestrictionsCount +
-				"\n			-->	SUCCESSRATERESTRICTIONS=" + successRateRestrictions +
-				"\ntrueExamConstraints=" + trueExamConstraints +
-				"\nfalseExamConstraints=" + falseExamConstraints +
-				"\n			-->	SUCCESSRATEEXAMCONSTRAINTS=" + successRateExamConstraints +
+				successRatesGrammarRestrictions.toString() +
+				successRatesExamConstraints.toString() +
 				"\n}";
 	}
 }

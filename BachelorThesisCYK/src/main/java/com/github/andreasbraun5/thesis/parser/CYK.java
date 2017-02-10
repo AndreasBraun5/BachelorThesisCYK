@@ -41,7 +41,8 @@ public class CYK {
 			Set<Variable>[][] setV,
 			Grammar grammar,
 			GrammarProperties grammarProperties) {
-		return setV[0][grammarProperties.sizeOfWord - 1].contains( grammar.getVariableStart() );
+		return setV[0][grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord() - 1].
+				contains( grammar.getVariableStart() );
 	}
 
 	public static boolean algorithmAdvanced(Grammar grammar, List<Terminal> word) {
@@ -62,7 +63,8 @@ public class CYK {
 			Set<Variable>[][] setV,
 			Grammar grammar,
 			GrammarProperties grammarProperties) {
-		return setV[0][grammarProperties.sizeOfWord - 1].contains( grammar.getVariableStart() );
+		return setV[0][grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord() - 1].
+				contains( grammar.getVariableStart() );
 	}
 
 	/**

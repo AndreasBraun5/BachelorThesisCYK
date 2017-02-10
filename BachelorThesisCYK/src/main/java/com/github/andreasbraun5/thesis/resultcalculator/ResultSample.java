@@ -2,8 +2,12 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 
 import java.util.Set;
 
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesExamConstraints;
+import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesGrammarRestrictions;
 import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
 import com.github.andreasbraun5.thesis.util.Util;
 
 /**
@@ -15,29 +19,68 @@ public class ResultSample {
 	private Grammar grammar;
 	private String word;
 	private Set<VariableKWrapper>[][] setV;
+
+	// TODO stays here
 	private boolean validity;
 	private boolean isWordProducible;
-	private boolean fulfillsRestriction;
-	private boolean rightCellCombinationForced;
-	private Integer maxVarsPerCellSetV;
+
+	private ResultSampleExamConstraints resultSampleExamConstraints = new ResultSampleExamConstraints();
+	private ResultSampleGrammarRestrictions resultSampleGrammarRestrictions = new ResultSampleGrammarRestrictions();
 
 	public ResultSample(
 			Grammar grammar,
 			String word,
 			Set<VariableKWrapper>[][] setV,
-			boolean validity,
-			boolean isWordProducible,
-			boolean fulfillsRestriction,
-			boolean rightCellCombinationForced,
-			int maxVarsPerCellSetV) {
+			GrammarGeneratorSettings grammarGeneratorSettings
+	) {
 		this.grammar = grammar;
 		this.word = word;
 		this.setV = setV;
-		this.validity = validity;
-		this.isWordProducible = isWordProducible;
-		this.fulfillsRestriction = fulfillsRestriction;
-		this.rightCellCombinationForced = rightCellCombinationForced;
-		this.maxVarsPerCellSetV = maxVarsPerCellSetV;
+		this.isWordProducible = GrammarValidityChecker.
+				checkProducibilityCYK( setV, grammar, grammarGeneratorSettings.getGrammarProperties() );
+
+		GrammarPropertiesExamConstraints tempExamConstraints = grammarGeneratorSettings.getGrammarProperties().
+				grammarPropertiesExamConstraints;
+		this.resultSampleExamConstraints.setMaxVarsPerCell( Util.getMaxVarPerCellForSetV( setV ) );
+		this.resultSampleExamConstraints.setMaxSumOfProductionsCount(
+				GrammarValidityChecker.checkSumOfProductions(
+						grammar,
+						tempExamConstraints.getMaxSumOfProductions()
+				) );
+		this.resultSampleExamConstraints.setMaxSumOfVarsInPyramidCount(
+				GrammarValidityChecker.checkMaxSumOfVarsInPyramid(
+						setV,
+						tempExamConstraints.getMaxSumOfVarsInPyramid()
+				) );
+		this.resultSampleExamConstraints.setRightCellCombinationsForced(
+				GrammarValidityChecker.checkRightCellCombinationForced(
+						setV,
+						tempExamConstraints.getMinRightCellCombinationsForced()
+				) );
+		this.resultSampleExamConstraints.setExamConstraints(
+				resultSampleExamConstraints.isMaxSumOfProductionsCount() &&
+						resultSampleExamConstraints.isMaxSumOfVarsInPyramidCount() &&
+						resultSampleExamConstraints.isRightCellCombinationsForced()
+		);
+
+		GrammarPropertiesGrammarRestrictions tempGrammarRestrictions = grammarGeneratorSettings.getGrammarProperties().
+				grammarPropertiesGrammarRestrictions;
+		this.resultSampleGrammarRestrictions.setMaxNumberOfVarsPerCellCount(
+				GrammarValidityChecker.checkMaxNumberOfVarsPerCell(
+						setV,
+						tempGrammarRestrictions.getMaxNumberOfVarsPerCell()
+				) );
+
+		// TODO: Up till now isSizeOfWordCount is always true...
+		this.resultSampleGrammarRestrictions.setSizeOfWordCount( true );
+
+		this.resultSampleGrammarRestrictions.setRestrictions(
+				resultSampleGrammarRestrictions.isMaxNumberOfVarsPerCellCount() &&
+						resultSampleGrammarRestrictions.isSizeOfWordCount() );
+
+		this.validity = resultSampleExamConstraints.isExamConstraints() &&
+				resultSampleGrammarRestrictions.isGrammarRestrictions() &&
+				isWordProducible;
 	}
 
 	@Override
@@ -49,9 +92,9 @@ public class ResultSample {
 				Util.getVarsFromSetDoubleArray( setV ), "setV" ) +
 				"\nvalidity=" + validity +
 				"\nisWordProducible=" + isWordProducible +
-				"\nfulfillsRestriction=" + fulfillsRestriction +
-				"\nrightCellCombinationsForced=" + rightCellCombinationForced +
-				"\nmaxVarsPerCellSetV=" + maxVarsPerCellSetV +
+				"\nmaxVarsPerCellSetV=" + resultSampleExamConstraints.getMaxVarsPerCell() +
+				resultSampleExamConstraints.toString() +
+				resultSampleGrammarRestrictions.toString() +
 				"\n}";
 	}
 
@@ -67,23 +110,19 @@ public class ResultSample {
 		return setV;
 	}
 
+	public ResultSampleExamConstraints getResultSampleExamConstraints() {
+		return resultSampleExamConstraints;
+	}
+
+	public ResultSampleGrammarRestrictions getResultSampleGrammarRestrictions() {
+		return resultSampleGrammarRestrictions;
+	}
+
 	public boolean isValidity() {
 		return validity;
 	}
 
 	public boolean isWordProducible() {
 		return isWordProducible;
-	}
-
-	public boolean isFulfillsRestriction() {
-		return fulfillsRestriction;
-	}
-
-	public Integer getMaxVarsPerCellSetV() {
-		return maxVarsPerCellSetV;
-	}
-
-	public boolean isRightCellCombinationForced() {
-		return rightCellCombinationForced;
 	}
 }

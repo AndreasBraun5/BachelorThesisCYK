@@ -27,7 +27,6 @@ public class Result {
 			GrammarGeneratorSettings grammarGeneratorSettings,
 			long totalTime,
 			String generatorType,
-			RepresentativeResultSamples RepresentativeResultSamples,
 			Map<String, List<ResultSample>> allResultSamples
 	) {
 		this.countGeneratedGrammarsPerWord = countGeneratedGrammarsPerWord;
@@ -35,7 +34,8 @@ public class Result {
 		this.grammarGeneratorSettings = grammarGeneratorSettings;
 		this.generatorType = generatorType;
 		this.totalTime = totalTime;
-		this.RepresentativeResultSamples = RepresentativeResultSamples;
+
+		RepresentativeResultSamples = new RepresentativeResultSamples( allResultSamples );
 		this.SuccessRates = new SuccessRates( allResultSamples );
 	}
 

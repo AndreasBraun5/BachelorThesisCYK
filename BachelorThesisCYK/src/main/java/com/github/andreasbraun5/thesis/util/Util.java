@@ -181,6 +181,8 @@ public abstract class Util {
 		return stringBuilder.toString();
 	}
 
+	// TODO: Maybe add methods that set<Variable>[][] --> List<Variable> and the same for VariableKWrapper.
+
 	/**
 	 * helper method used by printSetVAsLowerTriangularMatrix
 	 */

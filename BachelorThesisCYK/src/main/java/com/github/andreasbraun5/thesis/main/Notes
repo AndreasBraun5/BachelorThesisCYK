@@ -76,3 +76,51 @@ Maybe keep this code here. Is has a little bit more performance.
 		return setV;
 	}
 */
+
+/**
+ * Generate N grammars (N=100000) and then evaluate these regarding the different requirements.
+ * Most general approaches that use no restrictions:
+ * <p>
+ * FIRST Approach starting from one word to N grammars:
+ * 1) Randomly generate one word.
+ * 2) Randomly generate grammars derived from it. Derived means using generatePartOfGrammarPropertiesFromWord
+ * which is the indirect input to generateGrammar via the settings.
+ * 3) Checking restrictions and producibility.
+ * 3.1) Restrictions: Check the the grammar regarding its demanded restrictions, e.g. max vars per cell and so on.
+ * Restrictions are PARAMETERS which still need to be identified and optimized later on.
+ * r grammars do fulfill the restrictions property.
+ * Maybe even use more fine grained structure of r --> more fine grained dropout rates.
+ * 3.2) Producibility: Check the grammar if it can generate the word.
+ * p grammars do fulfill the producibility property.
+ * This will be checked with the CYK-algorithm.
+ * 4) n valid grammars are the final result. n is element of [0, N] and n = r * p.
+ * Usage of different success rates:
+ * ////// more fine grained SR's?
+ * - Success rate SR = n/N;
+ * - Success rate of checking for the restrictions SRR = r/N;
+ * - Success rate of checking for the producibility SRP = p/N;
+ * ////// missing SRC
+ * - Conditional probability for one grammar of being a validGrammar and being able to generate the word. COND = SRR*SRR.
+ * <p>
+ * SECOND Approach starting from one grammar to one word:
+ * 1.1) Randomly generate one grammar.
+ * 1.2) ResultCalculator for more restrictions regarding the grammar, e.g. maxVarCount and so on.
+ * [ 1.3) Accept the grammar if all the restrictions are met, otherwise goto 1.1). In this approach it may be possible to
+ * use even more restrictions, e.g. more this approach regarding specific restrictions ]
+ * 3) Randomly generate words derived from it. Derived means using generatePartOfGrammarPropertiesFromGrammar
+ * which is the indirect input to generateWord via the settings. One would maybe define properties for the word.
+ * 4) Check for the words that can be be generated out of the grammar.
+ * 5) One or more valid grammars are the final result.
+ * <p>
+ * <p>
+ * THIRD Approach starting with the half of a word and half of grammar.
+ * <p>
+ * Input for word generation:
+ * [GrammarProperties object] Parameters could be:
+ * variables count, terminals count, sizeOfWord,
+ * <p>
+ * Understand why the grammar are broken, try to repair with hand.
+ * How to improve a Grammar? Maybe deleting a right side.
+ * <p>
+ * [numberOfVars from 2 to 5, sizeOfAlphabet from 2 to 4, maxNumberOfVarsPerCell = 3]
+ */

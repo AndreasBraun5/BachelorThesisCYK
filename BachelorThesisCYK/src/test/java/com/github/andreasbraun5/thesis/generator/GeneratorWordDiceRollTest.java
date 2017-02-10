@@ -1,12 +1,12 @@
 package com.github.andreasbraun5.thesis.generator;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 
 /**
@@ -28,14 +28,14 @@ public class GeneratorWordDiceRollTest {
 				new Terminal( "d" )
 		);
 		System.out.println( grammarProperties );
-		grammarProperties.sizeOfWord = 10;
+		grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord( 10 );
 		for ( int i = 0; i <= 10; i++ ) {
 			String word1 = GeneratorWordDiceRoll.generateWord( grammarProperties ); // GrammarRuntimeException
 			System.out.println( "generated word: " + word1 );
 
 			Assert.assertEquals(
 					"grammarProperties.sizeOfWord not the same as of word1",
-					grammarProperties.sizeOfWord,
+					grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord(),
 					word1.length()
 			);
 		}
