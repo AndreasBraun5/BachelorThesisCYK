@@ -25,7 +25,7 @@ script of TI1 as one "line" of productionsMap like "A --> a | A | AB".
 public class Grammar {
 
 	// As stated above. Key=A, Value: A-->a and A-->B and A--> AB
-	private final Map<Variable, List<Production>> productionsMap = new HashMap<>();
+	private Map<Variable, List<Production>> productionsMap = new HashMap<>();
 	private final VariableStart variableStart; // Implemented like this, because there can be only one variableStart.
 
 	public Grammar(VariableStart variableStart) {
@@ -85,6 +85,10 @@ public class Grammar {
 		this.productionsMap.put( variable, productions );
 	}
 
+	public void removeAllProductions(){
+		this.productionsMap.clear();
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder( "Grammar{" +
@@ -118,5 +122,10 @@ public class Grammar {
 			productionsList.addAll( temp );
 		}
 		return productionsList;
+	}
+
+	public Grammar setProductionsMap(Map<Variable, List<Production>> productionsMap) {
+		this.productionsMap = productionsMap;
+		return this;
 	}
 }

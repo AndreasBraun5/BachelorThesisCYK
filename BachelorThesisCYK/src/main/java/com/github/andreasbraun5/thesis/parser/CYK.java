@@ -71,7 +71,7 @@ public class CYK {
 	 * Each variable that has the terminal at position i of the word as its rightHandSideElement,
 	 * will be added to setV[i][i]
 	 */
-	public static void stepIIAdvanced(Set<VariableKWrapper>[][] setV, List<Terminal> word, Grammar grammar) {
+	private static void stepIIAdvanced(Set<VariableKWrapper>[][] setV, List<Terminal> word, Grammar grammar) {
 		int wordLength = word.size();
 		// Look at each terminal of the word
 		for ( int i = 1; i <= wordLength; i++ ) {
@@ -99,8 +99,6 @@ public class CYK {
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
 		@SuppressWarnings("unchecked")
 		Set<VariableKWrapper>[][] setV = new Set[wordLength][wordLength];
-		VariableKWrapper temp = new VariableKWrapper( new Variable( "A" ), 6 );
-		temp.getVariable();
 		for ( int i = 0; i < wordLength; i++ ) {
 			for ( int j = 0; j < wordLength; j++ ) {
 				setV[i][j] = new HashSet<>(); // this generates a set with size = 0

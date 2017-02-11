@@ -1,5 +1,10 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
+import java.util.Set;
+
+import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.util.Util;
+
 /**
  * Created by Andreas Braun on 09.02.2017.
  * https://github.com/AndreasBraun5/
@@ -11,8 +16,11 @@ public class ResultSampleExamConstraints {
 	private boolean isMaxSumOfProductionsCount;
 	private boolean isMaxSumOfVarsInPyramidCount;
 	private int maxVarsPerCell;
+	private int countRightCellCombinationsForced;
+	private Set<Variable>[][] markedRightCellCombinationForced;
 
-	public static ResultSampleExamConstraints buildResultSampleExamConstraints(){
+
+	public static ResultSampleExamConstraints buildResultSampleExamConstraints() {
 		return new ResultSampleExamConstraints();
 	}
 
@@ -61,6 +69,24 @@ public class ResultSampleExamConstraints {
 		return this;
 	}
 
+	public int getCountRightCellCombinationsForced() {
+		return countRightCellCombinationsForced;
+	}
+
+	public ResultSampleExamConstraints setCountRightCellCombinationsForced(int countRightCellCombinationsForced) {
+		this.countRightCellCombinationsForced = countRightCellCombinationsForced;
+		return this;
+	}
+
+	public Set<Variable>[][] getMarkedRightCellCombinationForced() {
+		return markedRightCellCombinationForced;
+	}
+
+	public ResultSampleExamConstraints setMarkedRightCellCombinationForced(Set<Variable>[][] markedRightCellCombinationForced) {
+		this.markedRightCellCombinationForced = markedRightCellCombinationForced;
+		return this;
+	}
+
 	@Override
 	public String toString() {
 		return "\n\nResultSampleExamConstraints{" +
@@ -68,6 +94,7 @@ public class ResultSampleExamConstraints {
 				"\nisRightCellCombinationsForced=" + isRightCellCombinationsForced +
 				"\nisMaxSumOfProductionsCount=" + isMaxSumOfProductionsCount +
 				"\nisMaxSumOfVarsInPyramidCount=" + isMaxSumOfVarsInPyramidCount +
+				"\ncountRightCellCombinationsForced=" + countRightCellCombinationsForced +
 				"\n";
 	}
 }

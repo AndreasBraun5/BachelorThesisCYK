@@ -69,6 +69,7 @@ public class ResultCalculator {
 				// Regarding the specified testMethod of grammarGenerator the correct grammar is generated.
 				grammar = grammarGenerator.generateGrammar();
 				tempSetV = CYK.calculateSetVAdvanced( grammar, Util.stringToTerminalList( tempWord ) );
+				Util.removeUselessProductions( grammar, tempSetV, Util.stringToTerminalList( tempWord ) );
 				allResultSamples.get( tempWord ).add(
 						new ResultSample(
 								grammar,

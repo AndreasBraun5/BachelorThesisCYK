@@ -32,13 +32,13 @@ public class RepresentativeResultSamples {
 			int tempCountInvalidGrammarsPerWord = 0;
 			int tempCountGrammarsPerWord = 0;
 			for ( ResultSample resultSample : entry.getValue() ) {
-				if ( resultSample.isValidity() && tempCountValidGrammarsPerWord < COUNT_OF_VALID_GRAMMARS_TO_KEEP_PER_WORD
+				if ( resultSample.isValid() && tempCountValidGrammarsPerWord < COUNT_OF_VALID_GRAMMARS_TO_KEEP_PER_WORD
 						&& tempCountGrammarsPerWord < COUNT_OF_GRAMMARS_TO_KEEP_PER_WORD ) {
 					tempRepresentativeResultSamples.add( resultSample );
 					tempCountValidGrammarsPerWord++;
 					tempCountGrammarsPerWord++;
 				}
-				if ( !resultSample.isValidity() && tempCountInvalidGrammarsPerWord < COUNT_OF_INVALID_GRAMMARS_TO_KEEP_PER_WORD
+				if ( !resultSample.isValid() && tempCountInvalidGrammarsPerWord < COUNT_OF_INVALID_GRAMMARS_TO_KEEP_PER_WORD
 						&& tempCountGrammarsPerWord < COUNT_OF_GRAMMARS_TO_KEEP_PER_WORD ) {
 					tempRepresentativeResultSamples.add( resultSample );
 					tempCountInvalidGrammarsPerWord++;
@@ -54,10 +54,10 @@ public class RepresentativeResultSamples {
 		Collections.sort( representativeResultSamples, new Comparator<ResultSample>() {
 			@Override
 			public int compare(ResultSample first, ResultSample second) {
-				if ( first.isValidity() == second.isValidity() ) {
+				if ( first.isValid() == second.isValid() ) {
 					return 0;
 				}
-				if ( first.isValidity() ) {
+				if ( first.isValid() ) {
 					return -1;
 				}
 				return +1;

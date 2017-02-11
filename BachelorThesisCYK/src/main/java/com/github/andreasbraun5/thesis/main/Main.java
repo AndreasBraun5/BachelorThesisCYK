@@ -17,18 +17,15 @@ import com.github.andreasbraun5.thesis.util.Util;
 
 public class Main {
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// TODO Note: The favouritism can be set for the starting variable specifically.
+	// TODO Note: Maybe use the fraction of CountVars and countTerminals.
 	// TODO: CYK tree
-	// TODO: Idea StartVariable has no terminal, kind of "pattern" from exam exercises.
-	// 			There the favouritism should be mapped to a variable.
-
-	// TODO: last meeting 1: for exam store sumOfProductions
-	// TODO: last meeting 2: for exam store sumVariablesInCellsOfPyramid
-	// The same I did for wrapper with properties exam constraints and restrictions, now do for result object to save
-	// the actual values.
-
-	// TODO: last meeting 3: Maybe use the fraction of CountVars and countTerminals
-	// TODO: last meeting 5: rightCellCombinationForced has a parameter to set it.
-	// TODO: last meeting 4: only keep producing and reachable rhse's in the grammar. Also see script in TI.
+	// TODO: Write Test for removeUselessProductions.
+	// TODO: write test for rightCellCombinationsForced
+	// TODO: Implement Wim's algorithm from meeting 6!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// TODO: all checks are done on the simpleSetV
+	// TODO: DONE? Only keep producing and reachable rhse's in the grammar. Also see script in TI.
+	//
 	// TODO: See [Duda, Pattern Classification] chapter 8.5 Recognition with strings. In more Detail:
 	//			8.5.2 Edit Distance(p. 418): Definition of similarity or difference between two strings. Deletion,
 	//				insertion and exchange operations with different weighting possible. In general this is used for
@@ -44,7 +41,6 @@ public class Main {
 	// 				{ Guess of myself: So to find some kind of meta grammar that describes grammars we seek }
 	//				https://en.wikipedia.org/wiki/Grammar_induction
 	//				See algorithm 5: Grammatical Inference (Overview).
-	//				https://en.wikipedia.org/wiki/Grammar_induction
 	//				https://en.wikipedia.org/wiki/Grammar_induction
 	// TODO: use wrapper classes for holden its properties and checking if true and so on.
 	public static void main(String[] args) {
@@ -69,7 +65,7 @@ public class Main {
 				setCountDifferentWords( countDifferentWords ).
 				setCountOfGrammarsToGeneratePerWord( countGeneratedGrammarsPerWord );
 
-		GrammarProperties grammarProperties1 = generateGrammarPropertiesForTesting();
+		/*GrammarProperties grammarProperties1 = generateGrammarPropertiesForTesting();
 		GrammarGeneratorSettingsDiceRoll settings1 = new GrammarGeneratorSettingsDiceRoll( grammarProperties1 );
 		Result result1 = resultCalculator.buildResultFromGenerator(
 				new GrammarGeneratorDiceRollOnly( settings1 ) );
@@ -79,6 +75,7 @@ public class Main {
 		GrammarGeneratorSettingsDiceRoll settings2 = new GrammarGeneratorSettingsDiceRoll( grammarProperties2 );
 		Result result2 = resultCalculator.buildResultFromGenerator(
 				new GrammarGeneratorDiceRollOnly( settings2 ) );
+		*/
 
 		GrammarProperties grammarProperties3 = generateGrammarPropertiesForTesting();
 		GrammarGeneratorSettingsDiceRoll settings3 = new GrammarGeneratorSettingsDiceRoll( grammarProperties3 );
@@ -107,8 +104,8 @@ public class Main {
 		/**
 		 * 	Storing all the results in a txt.
 		 */
-		Util.writeToFile( result1, result2, result3,
-						  result4, result5
+		Util.writeToFile( //result1, result2,
+						  result3, result4, result5
 		);
 	}
 
@@ -136,6 +133,7 @@ public class Main {
 		 * grammarPropertiesExamConstraints: minRightCellCombinationsForced = 1 countSumOfVarsInPyramid = 50; // approximate maximum value taken from the exam exercises
 		 */
 		GrammarProperties grammarProperties = new GrammarProperties( new VariableStart( "S" ), variables, terminals );
+		grammarProperties.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell( 3 ); //Set like this
 		return grammarProperties;
 	}
 }

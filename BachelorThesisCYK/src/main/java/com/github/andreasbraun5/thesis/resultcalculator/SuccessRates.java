@@ -31,7 +31,7 @@ public class SuccessRates {
 				else {
 					falseProducibilityCount++;
 				}
-				if ( resultSample.isValidity() ) {
+				if ( resultSample.isValid() ) {
 					trueCount++;
 				}
 				else {
@@ -57,10 +57,10 @@ public class SuccessRates {
 				"\n			-->	SUCCESSRATEEXAMCONSTRAINTS=" +
 				successRatesExamConstraints.getSuccessRateExamConstraints() +
 				"\n" +
-				"\nSUCCESSRATE=" + successRate +
+				"\n			-->	SUCCESSRATE=" + successRate +
 				"\ntrueCount=" + trueCount +
 				"\nfalseCount=" + falseCount +
-				"\nSUCCESSRATEPRODUCIBILITY=" + successRateProducibility +
+				"\n			-->	SUCCESSRATEPRODUCIBILITY=" + successRateProducibility +
 				"\ntrueProducibilityCount=" + trueProducibilityCount +
 				"\nfalseProducibilityCount=" + falseProducibilityCount +
 				successRatesGrammarRestrictions.toString() +

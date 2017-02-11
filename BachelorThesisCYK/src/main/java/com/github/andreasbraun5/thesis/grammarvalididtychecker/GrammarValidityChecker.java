@@ -1,13 +1,17 @@
 package com.github.andreasbraun5.thesis.grammarvalididtychecker;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.Util;
@@ -88,24 +92,81 @@ public class GrammarValidityChecker {
 	 * True if more than one "rightCellCombination" is forced. Exam relevant restriction.
 	 * The upper two rows of the pyramid aren't checked.
 	 * Starting from from the upper right index of the matrix setV[0][wL-1] towards the diagonal.
-	 */ // TODO: write Tests for!!
-	public static boolean checkRightCellCombinationForced(
-			Set<VariableKWrapper>[][] setV, int minCountRightCellCombinationsForced) {
+	 * // TODO: write Tests for checkRightCellCombinationForced
+	 */
+	public static RightCellCombinationsForcedWrapper checkRightCellCombinationForced(
+			Set<VariableKWrapper>[][] setV, int minCountRightCellCombinationsForced, Grammar grammar) {
+
 		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
-		int rightCellCombinationsForced = 0;
+
 		int wordLength = tempSetV[0].length;
+		@SuppressWarnings("unchecked")
+		Set<Variable>[][] markedRightCellCombinationForced = new Set[wordLength][wordLength];
+		for ( int i = 0; i < wordLength; i++ ) {
+			for ( int j = 0; j < wordLength; j++ ) {
+				markedRightCellCombinationForced[i][j] = new HashSet<>(); // this generates a set with size = 0
+			}
+		}
+		Map<Variable, List<Production>> prodMap = grammar.getProductionsMap();
+		int rightCellCombinationsForced = 0;
+		// Keep in mind that the setV matrix is a upper right matrix. But descriptions of how the algorithm works
+		// are done, as if the setV pyramid points downwards.
+		// Regarding one cell, its upper left cell and its upper right cell are looked at.
+		// setV[i][j] = down
+		// setV[i + 1][j] = upper right
+		// setV[i][j - 1] = upper left
 		for ( int i = 0; i < wordLength; i++ ) { // row
-			// here it is restricted that the upper two rows aren't checked.
+			// here it is restricted that the upper two rows aren't checked. Trivial cases, which would fulfill the
+			// restrictions each time.
 			for ( int j = wordLength - 1; j > i + 2; j-- ) { // column
-				//Util.printSetVAsUpperTriangularMatrix( setV, "setV" );
-				for ( Variable var : tempSetV[i][j] ) {
-					if ( !tempSetV[i + 1][j].contains( var ) || !tempSetV[i][j - 1].contains( var ) ) {
-						rightCellCombinationsForced++;
+				Set<VariableCompound> tempVarCompSet = new HashSet<>();
+				// if one of the left or right cells is empty then rightCellCombinationsForced wont't be incremented.
+				if ( tempSetV[i][j - 1].size() != 0 && tempSetV[i + 1][j].size() != 0 ) {
+					// make all tuples of left and right --> tempVariablesCompound = tuples of type
+					// ({varLeft}, {varRight})
+					for ( Variable varLeft : tempSetV[i][j - 1] ) {
+						for ( Variable varRight : tempSetV[i + 1][j] ) {
+							tempVarCompSet.add( new VariableCompound( varLeft, varRight ) );
+						}
+					}
+					// for each var in down check if no combination is rhse of var in its prodMap
+					boolean isRightCellCombinationForced = true;
+					for ( Variable varDown : tempSetV[i][j] ) {
+						// As long as the opposite isn't found isRightCellCombinationForced is true
+						isRightCellCombinationForced = true;
+						// Get its map
+						List<Production> varDownProdList = prodMap.get( varDown );
+						// Check for each tempVarComp if it is element of the rhse of the observed variable <-> prodmap
+						for ( VariableCompound tempVarComp : tempVarCompSet ) {
+							// regarding an empty cell down
+							if ( varDownProdList == null ) {
+								isRightCellCombinationForced = false;
+								break;
+							}
+							for ( Production prod : varDownProdList ) {
+								if ( prod.getRightHandSideElement().equals( tempVarComp ) ) {
+									isRightCellCombinationForced = false;
+								}
+								if ( !isRightCellCombinationForced ) {
+									break;
+								}
+							}
+							if ( !isRightCellCombinationForced ) {
+								break;
+							}
+						}
+						if ( isRightCellCombinationForced ) {
+							rightCellCombinationsForced++;
+							markedRightCellCombinationForced[i][j].add( new Variable( varDown.toString() ) );
+						}
 					}
 				}
 			}
 		}
-		return rightCellCombinationsForced >= minCountRightCellCombinationsForced;
+		return RightCellCombinationsForcedWrapper.buildRightCellCombinationsForcedWrapper().
+				setCountRightCellCombinationForced( rightCellCombinationsForced ).
+				setRightCellCombinationForced( rightCellCombinationsForced >= minCountRightCellCombinationsForced ).
+				setMarkedRightCellCombinationForced( markedRightCellCombinationForced );
 	}
 
 	// TODO: Test checksumOfProductions
