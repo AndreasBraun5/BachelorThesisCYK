@@ -35,7 +35,7 @@ public abstract class Util {
 	/**
 	 * Counting the stored elements in each entry of the setV matrix and looking for the max count.
 	 */
-	// TODO: duplicate maxVarPerCell
+	// TODO ???: duplicate maxVarPerCell
 	public static int getMaxVarPerCellForSetV(Set<VariableKWrapper>[][] setV) {
 		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
 		int numberOfVarsPerCell = 0;
@@ -70,6 +70,7 @@ public abstract class Util {
 		}
 	}
 
+	// TODO Test: removeUselessProductions
 	// Its structure is very similar to stepIIAdvanced and calculateSetVAdvanced.
 	public static Grammar removeUselessProductions(
 			Grammar grammar,
@@ -193,6 +194,7 @@ public abstract class Util {
 
 	/**
 	 * Method to get the setV as a String for printing purposes.
+	 * The setV pyramid points downwards (reflection on the diagonal).
 	 */
 	@SuppressWarnings("Duplicates")
 	public static String getSetVVariableKAsStringForPrintingAsLowerTriangularMatrix(
@@ -217,6 +219,7 @@ public abstract class Util {
 
 	/**
 	 * Method to get the setV as a String for printing purposes.
+	 * The setV pyramid points downwards (reflection on the diagonal).
 	 */
 	@SuppressWarnings("Duplicates")
 	public static String getSetVVariableAsStringForPrintingAsLowerTriangularMatrix(
@@ -263,7 +266,7 @@ public abstract class Util {
 		return stringBuilder.toString();
 	}
 
-	// TODO: Maybe add methods that set<Variable>[][] --> List<Variable> and the same for VariableKWrapper.
+	// TODO Note: Maybe add methods that set<Variable>[][] --> List<Variable> and the same for VariableKWrapper.
 
 	/**
 	 * helper method used by printSetVAsLowerTriangularMatrix

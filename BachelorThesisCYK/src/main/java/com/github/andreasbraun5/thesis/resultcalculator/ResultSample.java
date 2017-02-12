@@ -21,11 +21,11 @@ public class ResultSample {
 	private String word;
 	private Set<VariableKWrapper>[][] setV;
 
-	// TODO stays here
+	// This stays here
 	private boolean isValid;
 	private boolean isWordProducible;
 
-	//TODO remove new here and use builder pattern
+	//TODO Martin: Remove new here and use builder pattern
 	private ResultSampleExamConstraints resultSampleExamConstraints = new ResultSampleExamConstraints();
 	private ResultSampleGrammarRestrictions resultSampleGrammarRestrictions = new ResultSampleGrammarRestrictions();
 
@@ -80,7 +80,7 @@ public class ResultSample {
 						tempGrammarRestrictions.getMaxNumberOfVarsPerCell()
 				) );
 
-		// TODO: Up till now isSizeOfWordCount is always true...
+		// TODO Note: Up till now isSizeOfWordCount is always true...
 		this.resultSampleGrammarRestrictions.setSizeOfWordCount( true );
 
 		this.resultSampleGrammarRestrictions.setRestrictions(

@@ -71,7 +71,7 @@ public class GrammarValidityChecker {
 	 * True if more than one "rightCellCombination" is forced. Exam relevant restriction.
 	 * The upper two rows of the pyramid aren't checked.
 	 * Starting from from the upper right index of the matrix setV[0][wL-1] towards the diagonal.
-	 */ // TODO: write Tests for!!
+	 */ // TODO delete: not needed any more.
 	/*
 	public static GrammarPropertiesExamConstraints checkExamConstraints(
 			Set<VariableKWrapper>[][] setV,
@@ -92,7 +92,7 @@ public class GrammarValidityChecker {
 	 * True if more than one "rightCellCombination" is forced. Exam relevant restriction.
 	 * The upper two rows of the pyramid aren't checked.
 	 * Starting from from the upper right index of the matrix setV[0][wL-1] towards the diagonal.
-	 * // TODO: write Tests for checkRightCellCombinationForced
+	 * // TODO Test: checkRightCellCombinationForced
 	 */
 	public static RightCellCombinationsForcedWrapper checkRightCellCombinationForced(
 			Set<VariableKWrapper>[][] setV, int minCountRightCellCombinationsForced, Grammar grammar) {
@@ -110,7 +110,7 @@ public class GrammarValidityChecker {
 		Map<Variable, List<Production>> prodMap = grammar.getProductionsMap();
 		int rightCellCombinationsForced = 0;
 		// Keep in mind that the setV matrix is a upper right matrix. But descriptions of how the algorithm works
-		// are done, as if the setV pyramid points downwards.
+		// is done, as if the setV pyramid points downwards (reflection on the diagonal).
 		// Regarding one cell, its upper left cell and its upper right cell are looked at.
 		// setV[i][j] = down
 		// setV[i + 1][j] = upper right
@@ -120,7 +120,7 @@ public class GrammarValidityChecker {
 			// restrictions each time.
 			for ( int j = wordLength - 1; j > i + 2; j-- ) { // column
 				Set<VariableCompound> tempVarCompSet = new HashSet<>();
-				// if one of the left or right cells is empty then rightCellCombinationsForced wont't be incremented.
+				// if one., the left or right cell is empty, then rightCellCombinationsForced wont't be incremented.
 				if ( tempSetV[i][j - 1].size() != 0 && tempSetV[i + 1][j].size() != 0 ) {
 					// make all tuples of left and right --> tempVariablesCompound = tuples of type
 					// ({varLeft}, {varRight})
@@ -169,14 +169,15 @@ public class GrammarValidityChecker {
 				setMarkedRightCellCombinationForced( markedRightCellCombinationForced );
 	}
 
-	// TODO: Test checksumOfProductions
+	// TODO Test: checksumOfProductions
 	public static boolean checkSumOfProductions(Grammar grammar, int maxSumOfProductions) {
 		return grammar.getProductionsAsList().size() <= maxSumOfProductions;
 	}
 
 	/**
 	 * checkMaxSumOfVarsInPyramid is tested only on the setV simple.
-	 */ // TODO: Test checkMaxSumOfVarsInPyramid
+	 */
+	// TODO Test: checkMaxSumOfVarsInPyramid
 	public static boolean checkMaxSumOfVarsInPyramid(Set<VariableKWrapper>[][] setV, int maxSumOfVarsInPyramid) {
 		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
 		// put all vars of the matrix into one list and use its length.

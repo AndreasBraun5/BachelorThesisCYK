@@ -24,6 +24,7 @@ public class CYK {
 	/*
 	   ###############################################################
        - Epsilon rule is implemented
+       - !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
        ###############################################################
      */
 
@@ -51,7 +52,7 @@ public class CYK {
 		int wordLength = word.size();
 		return Util.getVarsFromSet( setV[0][wordLength - 1] ).contains( grammar.getVariableStart() );
 	}
-	/* TODO Discuss: Both methods have the same erasure.
+	/* TODO Martin: Both methods have the same erasure.
 	public static boolean algorithmAdvanced(
 			Set<VariableKWrapper>[][] setV,
 			Grammar grammar,
@@ -71,8 +72,11 @@ public class CYK {
 	 * Each variable that has the terminal at position i of the word as its rightHandSideElement,
 	 * will be added to setV[i][i]
 	 */
-	private static void stepIIAdvanced(Set<VariableKWrapper>[][] setV, List<Terminal> word, Grammar grammar) {
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	private static Set<VariableKWrapper>[][] stepIIAdvanced(
+			Set<VariableKWrapper>[][] setV, List<Terminal> word, Grammar grammar) {
 		int wordLength = word.size();
+		// TODO Martin: How to prevent writing CYK.stepIIAdvanced instead of setV = CYK.stepIIAdvanced?
 		// Look at each terminal of the word
 		for ( int i = 1; i <= wordLength; i++ ) {
 			RightHandSideElement tempTerminal = word.get( i - 1 );
@@ -89,11 +93,13 @@ public class CYK {
 				}
 			}
 		}
+		return setV;
 	}
 
 	/**
 	 * Calculating the set needed for the cyk algorithm.
 	 */
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	public static Set<VariableKWrapper>[][] calculateSetVAdvanced(Grammar grammar, List<Terminal> word) {
 		int wordLength = word.size();
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
@@ -105,7 +111,7 @@ public class CYK {
 			}
 		}
 		// Check whether the terminal is on the right side of the production, then add its left variable to v_ii
-		stepIIAdvanced( setV, word, grammar );
+		setV = stepIIAdvanced( setV, word, grammar );
 		// l loop of the described algorithm
 		for ( int l = 1; l <= wordLength - 1; l++ ) {
 			// i loop of the described algorithm.

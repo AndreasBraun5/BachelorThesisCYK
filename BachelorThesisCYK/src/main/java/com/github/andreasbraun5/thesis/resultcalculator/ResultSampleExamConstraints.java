@@ -3,7 +3,6 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.util.Util;
 
 /**
  * Created by Andreas Braun on 09.02.2017.

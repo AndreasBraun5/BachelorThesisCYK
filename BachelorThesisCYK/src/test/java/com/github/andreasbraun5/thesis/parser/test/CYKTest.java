@@ -6,7 +6,7 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
+import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Production;
@@ -39,7 +39,7 @@ public class CYKTest {
 		grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord( 10 );
 		// Generate word
 		// @formatter:off
-		String word = GeneratorWordDiceRoll.generateWord( grammarProperties );
+		String word = WordGeneratorDiceRoll.generateWordAsString( grammarProperties );
 		// Generate Grammar
 		Grammar grammar = new Grammar( new VariableStart( "S" ) );
 		grammar.addProduction(
@@ -160,6 +160,10 @@ public class CYKTest {
 		setVTemp[7][7].add( new Variable( "N" ) );
 
 		System.out.println( Util.getSetVVariableAsStringForPrintingAsLowerTriangularMatrix(
+				setVTemp,
+				"setVSolution"
+		) );
+		System.out.println( Util.getSetVVariableAsStringForPrintingAsUpperTriangularMatrix(
 				setVTemp,
 				"setVSolution"
 		) );
@@ -669,7 +673,7 @@ public class CYKTest {
 		boolean temp = true;
 		for ( int i = 0; i < wordLength; i++ ) {
 			for ( int j = 0; j < wordLength; j++ ) {
-				// TODO Discuss: Why not possible? Set<T>[][] setVTemp2 = new HashSet<T>(). setVTemp.addAll(setVTemp)
+				// TODO Martin: Why not possible? Set<T>[][] setVTemp2 = new HashSet<T>(). setVTemp.addAll(setVTemp)
 				if ( !setVTemp[i][j].containsAll( setV[i][j] ) ||
 						!setV[i][j].containsAll( setV[i][j] ) ||
 						setVTemp[i][j].size() != setV[i][j].size() ) {

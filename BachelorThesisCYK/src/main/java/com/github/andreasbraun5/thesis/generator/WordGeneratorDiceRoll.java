@@ -9,28 +9,38 @@ import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeExcepti
 import com.github.andreasbraun5.thesis.exception.WordRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
+import com.github.andreasbraun5.thesis.util.Util;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
  * https://github.com/AndreasBraun5/
  */
-public class GeneratorWordDiceRoll {
+public class WordGeneratorDiceRoll {
 
 	/**
 	 * Excludes the case where the word could be the empty word.
 	 */
-	public static String generateWord(GrammarProperties grammarProperties) {
+	public static String generateWordAsString(GrammarProperties grammarProperties) {
 		if ( grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord() == 0 ) {
 			throw new GrammarPropertiesRuntimeException( "The sizeOfWord is not defined." );
 		}
-		return generateWord( grammarProperties.terminals, grammarProperties.grammarPropertiesGrammarRestrictions.
+		return generateWordAsString( grammarProperties.terminals, grammarProperties.grammarPropertiesGrammarRestrictions.
 				getSizeOfWord() ).toString();
+	}
+
+	public static List<Terminal> generateWordAsTerminalList(GrammarProperties grammarProperties) {
+		if ( grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord() == 0 ) {
+			throw new GrammarPropertiesRuntimeException( "The sizeOfWord is not defined." );
+		}
+		return Util.stringToTerminalList(
+				generateWordAsString( grammarProperties.terminals, grammarProperties.grammarPropertiesGrammarRestrictions.
+						getSizeOfWord() ).toString() );
 	}
 
 	/**
 	 * Not all terminals must be included in the word.
 	 */ // TODO Note: Include all terminals?
-	public static StringBuilder generateWord(Set<Terminal> terminals, int sizeOfWord) {
+	public static StringBuilder generateWordAsString(Set<Terminal> terminals, int sizeOfWord) {
 		StringBuilder randomWord = new StringBuilder( "" );
 		List<Terminal> tempTerminals = new ArrayList<>();
 		tempTerminals.addAll( terminals );

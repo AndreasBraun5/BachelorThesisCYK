@@ -10,6 +10,7 @@ import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -19,23 +20,23 @@ import com.github.andreasbraun5.thesis.grammar.VariableCompound;
  * Created by Andreas Braun on 24.01.2017.
  * https://github.com/AndreasBraun5/
  */
-public class GrammarGeneratorDiceRollBias extends GrammarGeneratorDiceRoll<GrammarGeneratorSettingsDiceRoll> {
+public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<GrammarGeneratorSettingsDiceRoll> {
 
-	public GrammarGeneratorDiceRollBias(
+	public GrammarGeneratorDiceRollOnlyBias(
 			GrammarGeneratorSettingsDiceRoll generatorGrammarDiceRollSettings, Random random) {
 		super( generatorGrammarDiceRollSettings, random );
-		this.generatorType = "DICEROLLBIAS";
+		this.generatorType = "DICEROLLONLYBIAS";
 	}
 
-	public GrammarGeneratorDiceRollBias(GrammarGeneratorSettingsDiceRoll generatorGrammarDiceRollSettings) {
+	public GrammarGeneratorDiceRollOnlyBias(GrammarGeneratorSettingsDiceRoll generatorGrammarDiceRollSettings) {
 		super( generatorGrammarDiceRollSettings );
-		this.generatorType = "DICEROLLBIAS";
+		this.generatorType = "DICEROLLONLYBIAS";
 	}
 
 	@Override
-	protected Grammar distributeTerminals(Grammar grammar) {
+	protected GrammarWrapper distributeTerminals(GrammarWrapper grammarWrapper) {
 		return distributeDiceRollRightHandSideElementsBias(
-				grammar,
+				grammarWrapper,
 				this.generatorGrammarSettings.grammarProperties.terminals,
 				this.generatorGrammarSettings.getMinValueTerminalsAreAddedTo(),
 				this.generatorGrammarSettings.getMaxValueTerminalsAreAddedTo(),
@@ -44,7 +45,7 @@ public class GrammarGeneratorDiceRollBias extends GrammarGeneratorDiceRoll<Gramm
 	}
 
 	@Override
-	protected Grammar distributeCompoundVariables(Grammar grammar) {
+	protected GrammarWrapper distributeCompoundVariables(GrammarWrapper grammarWrapper) {
 		Set<VariableCompound> varTupel = new HashSet<>();
 		for ( Variable var1 : this.generatorGrammarSettings.grammarProperties.variables ) {
 			for ( Variable var2 : this.generatorGrammarSettings.grammarProperties.variables ) {
@@ -52,7 +53,7 @@ public class GrammarGeneratorDiceRollBias extends GrammarGeneratorDiceRoll<Gramm
 			}
 		}
 		return distributeDiceRollRightHandSideElementsBias(
-				grammar,
+				grammarWrapper,
 				varTupel,
 				this.generatorGrammarSettings.getMinValueCompoundVariablesAreAddedTo(),
 				this.generatorGrammarSettings.getMaxValueCompoundVariablesAreAddedTo(),
@@ -60,37 +61,8 @@ public class GrammarGeneratorDiceRollBias extends GrammarGeneratorDiceRoll<Gramm
 		);
 	}
 
-	@Override
-	protected Grammar distributeDiceRollRightHandSideElements(
-			Grammar grammar,
-			Set<? extends RightHandSideElement> rightHandSideElements,
-			int minCountElementDistributedTo,
-			int maxCountElementDistributedTo,
-			List<Variable> variablesWeighted) {
-		for ( RightHandSideElement tempRhse : rightHandSideElements ) {
-			// countOfLeftSideRhseWillBeAdded is element of the interval [minCountElementDistributedTo, maxCountElementDistributedTo]
-			int countOfLeftSideRhseWillBeAdded = random.nextInt( maxCountElementDistributedTo ) + minCountElementDistributedTo;
-			//Removing Variables from variablesWeighted until countOfVarsTerminalWillBeAdded vars are left.
-			List<Variable> tempVar = new ArrayList<>( variablesWeighted );
-			for ( int i = tempVar.size(); i > countOfLeftSideRhseWillBeAdded; i-- ) {
-				tempVar.remove( random.nextInt( tempVar.size() ) );
-			}
-			//Adding the element to the leftover variables
-			for ( Variable var : tempVar ) {
-				// The difference to its superclass method is that, the GrammarRunTimeException is being ignored here.
-				// This effect doesn't occur in the superclass method.
-				try {
-					grammar.addProduction( new Production( var, tempRhse ) );
-				}
-				catch (GrammarRuntimeException ignored) {
-				}
-			}
-		}
-		return grammar;
-	}
-
-	protected Grammar distributeDiceRollRightHandSideElementsBias(
-			Grammar grammar,
+	private GrammarWrapper distributeDiceRollRightHandSideElementsBias(
+			GrammarWrapper grammarWrapper,
 			Set<? extends RightHandSideElement> rightHandSideElements,
 			int minCountElementDistributedTo,
 			int maxCountElementDistributedTo,
@@ -117,12 +89,45 @@ public class GrammarGeneratorDiceRollBias extends GrammarGeneratorDiceRoll<Gramm
 			}
 		}
 		return distributeDiceRollRightHandSideElements(
-				grammar,
+				grammarWrapper,
 				rightHandSideElements,
 				minCountElementDistributedTo,
 				maxCountElementDistributedTo,
 				tempVariables2
 		);
+	}
+
+	@Override
+	protected GrammarWrapper distributeDiceRollRightHandSideElements(
+			GrammarWrapper grammarWrapper,
+			Set<? extends RightHandSideElement> rightHandSideElements,
+			int minCountElementDistributedTo,
+			int maxCountElementDistributedTo,
+			List<Variable> variablesWeighted) {
+		Grammar grammar = grammarWrapper.getGrammar();
+		for ( RightHandSideElement tempRhse : rightHandSideElements ) {
+			// countOfLeftSideRhseWillBeAdded is element of the interval [minCountElementDistributedTo, maxCountElementDistributedTo]
+			int countOfLeftSideRhseWillBeAdded = random.nextInt( maxCountElementDistributedTo ) + minCountElementDistributedTo;
+			//Removing Variables from variablesWeighted until countOfVarsTerminalWillBeAdded vars are left.
+			List<Variable> tempVar = new ArrayList<>( variablesWeighted );
+			for ( int i = tempVar.size(); i > countOfLeftSideRhseWillBeAdded; i-- ) {
+				tempVar.remove( random.nextInt( tempVar.size() ) );
+			}
+			//Adding the element to the leftover variables
+			for ( Variable var : tempVar ) {
+				// The difference to its superclass method is that, the GrammarRunTimeException is being ignored here.
+				// This effect doesn't occur in the superclass method.
+				// Because of dice rolling and a large amount of generated grammars, the actually to be added
+				// variable will just be ignored.
+				try {
+					grammar.addProduction( new Production( var, tempRhse ) );
+				} // TODO Martin: this ok?
+				catch (GrammarRuntimeException ignored) {
+				}
+			}
+		}
+		grammarWrapper.setGrammar( grammar );
+		return grammarWrapper;
 	}
 }
 

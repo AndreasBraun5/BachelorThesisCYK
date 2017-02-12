@@ -7,10 +7,11 @@ import java.util.Map;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException;
-import com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRoll;
 import com.github.andreasbraun5.thesis.generator.GrammarGenerator;
+import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.Util;
@@ -60,14 +61,17 @@ public class ResultCalculator {
 		for ( int i = 0; i < countDifferentWords; i++ ) {
 			// Generate a random word that is used to decide whether the Grammar is true or false. Generate more words
 			// Make sure that 100 different words are stored into the map.
-			tempWord = GeneratorWordDiceRoll.generateWord( tempGrammarProperties );
+			tempWord = WordGeneratorDiceRoll.generateWordAsString( tempGrammarProperties );
 			while ( allResultSamples.containsKey( tempWord ) ) {
-				tempWord = GeneratorWordDiceRoll.generateWord( tempGrammarProperties );
+				tempWord = WordGeneratorDiceRoll.generateWordAsString( tempGrammarProperties );
 			}
 			allResultSamples.put( tempWord, new ArrayList<>() );
 			for ( int j = 0; j < countOfGrammarsToGeneratePerWord; j++ ) {
 				// Regarding the specified testMethod of grammarGenerator the correct grammar is generated.
-				grammar = grammarGenerator.generateGrammar();
+				GrammarWrapper grammarWrapper = GrammarWrapper.buildGrammarWrapper().setWord(
+						Util.stringToTerminalList( tempWord ) );
+				grammarWrapper = grammarGenerator.generateGrammarWrapper(grammarWrapper);
+				grammar = grammarWrapper.getGrammar();
 				tempSetV = CYK.calculateSetVAdvanced( grammar, Util.stringToTerminalList( tempWord ) );
 				Util.removeUselessProductions( grammar, tempSetV, Util.stringToTerminalList( tempWord ) );
 				allResultSamples.get( tempWord ).add(

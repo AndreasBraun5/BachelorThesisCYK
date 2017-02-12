@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 
@@ -23,20 +23,18 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGeneratorDiceRoll<Gramm
 			GrammarGeneratorSettingsDiceRoll generatorGrammarDiceRollSettings, Random random) {
 		super( generatorGrammarDiceRollSettings, random );
 		this.generatorType = "DICEROLLONLY";
-
 	}
 
 	public GrammarGeneratorDiceRollOnly(
 			GrammarGeneratorSettingsDiceRoll generatorGrammarDiceRollSettings) {
 		super( generatorGrammarDiceRollSettings, new Random() );
 		this.generatorType = "DICEROLLONLY";
-
 	}
 
 	@Override
-	protected Grammar distributeTerminals(Grammar grammar) {
+	protected GrammarWrapper distributeTerminals(GrammarWrapper grammarWrapper) {
 		return distributeDiceRollRightHandSideElements(
-				grammar,
+				grammarWrapper,
 				generatorGrammarSettings.grammarProperties.terminals,
 				generatorGrammarSettings.getMinValueTerminalsAreAddedTo(),
 				generatorGrammarSettings.getMaxValueTerminalsAreAddedTo(),
@@ -45,7 +43,7 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGeneratorDiceRoll<Gramm
 	}
 
 	@Override
-	protected Grammar distributeCompoundVariables(Grammar grammar) {
+	protected GrammarWrapper distributeCompoundVariables(GrammarWrapper grammarWrapper) {
 		Set<VariableCompound> varTupel = new HashSet<>();
 		for ( Variable var1 : generatorGrammarSettings.grammarProperties.variables ) {
 			for ( Variable var2 : generatorGrammarSettings.grammarProperties.variables ) {
@@ -53,7 +51,7 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGeneratorDiceRoll<Gramm
 			}
 		}
 		return super.distributeDiceRollRightHandSideElements(
-				grammar,
+				grammarWrapper,
 				varTupel,
 				generatorGrammarSettings.getMinValueCompoundVariablesAreAddedTo(),
 				generatorGrammarSettings.getMaxValueCompoundVariablesAreAddedTo(),

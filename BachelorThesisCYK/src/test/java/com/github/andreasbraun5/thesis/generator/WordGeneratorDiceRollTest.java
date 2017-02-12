@@ -12,13 +12,13 @@ import com.github.andreasbraun5.thesis.grammar.VariableStart;
 /**
  * Created by Andreas Braun on 02.01.2017.
  */
-public class GeneratorWordDiceRollTest {
+public class WordGeneratorDiceRollTest {
 
 	@Test
 	public void generateWordTest() {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "ResultCalculator GeneratorWordDiceRoll: generateWord" );
+		System.out.println( "ResultCalculator WordGeneratorDiceRoll: generateWordAsString" );
 		GrammarProperties grammarProperties = new GrammarProperties( new VariableStart( "S" ) );
 		grammarProperties.addVariables( new Variable( "A" ), new Variable( "B" ) );
 		grammarProperties.addTerminals(
@@ -30,7 +30,7 @@ public class GeneratorWordDiceRollTest {
 		System.out.println( grammarProperties );
 		grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord( 10 );
 		for ( int i = 0; i <= 10; i++ ) {
-			String word1 = GeneratorWordDiceRoll.generateWord( grammarProperties ); // GrammarRuntimeException
+			String word1 = WordGeneratorDiceRoll.generateWordAsString( grammarProperties ); // GrammarRuntimeException
 			System.out.println( "generated word: " + word1 );
 
 			Assert.assertEquals(

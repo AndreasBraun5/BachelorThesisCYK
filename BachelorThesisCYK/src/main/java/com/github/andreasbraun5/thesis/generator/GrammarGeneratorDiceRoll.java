@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -32,21 +33,23 @@ public abstract class GrammarGeneratorDiceRoll<T extends GrammarGeneratorSetting
 	}
 
 	@Override
-	protected abstract Grammar distributeTerminals(Grammar grammar);
+	protected abstract GrammarWrapper distributeTerminals(GrammarWrapper grammarWrapper);
 
 	@Override
-	protected abstract Grammar distributeCompoundVariables(Grammar grammar);
+	protected abstract GrammarWrapper distributeCompoundVariables(GrammarWrapper grammarWrapper);
 
 	/**
 	 * @param minCountElementDistributedTo: If you want to distribute the terminals to at least one rightHandSide then
 	 * this value is 1.
+	 * Dice roll for every rhse how often it is added and to which vars in the grammar it is added.
 	 */
-	protected Grammar distributeDiceRollRightHandSideElements(
-			Grammar grammar,
+	protected GrammarWrapper distributeDiceRollRightHandSideElements(
+			GrammarWrapper grammarWrapper,
 			Set<? extends RightHandSideElement> rightHandSideElements,
 			int minCountElementDistributedTo,
 			int maxCountElementDistributedTo,
 			List<Variable> variablesWeighted) {
+		Grammar grammar = grammarWrapper.getGrammar();
 		for ( RightHandSideElement tempRhse : rightHandSideElements ) {
 			// countOfLeftSideRhseWillBeAdded is element of the interval [minCountElementDistributedTo, maxCountElementDistributedTo]
 			int countOfLeftSideRhseWillBeAdded = random.nextInt( maxCountElementDistributedTo ) + minCountElementDistributedTo;
@@ -60,7 +63,8 @@ public abstract class GrammarGeneratorDiceRoll<T extends GrammarGeneratorSetting
 				grammar.addProduction( new Production( var, tempRhse ) );
 			}
 		}
-		return grammar;
+		grammarWrapper.setGrammar( grammar );
+		return grammarWrapper;
 	}
 
 

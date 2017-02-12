@@ -4,10 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
-import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollBias;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnlyBias;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollTopDownMartens;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettingsDiceRoll;
+import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
@@ -19,12 +22,17 @@ public class Main {
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// TODO Note: The favouritism can be set for the starting variable specifically.
 	// TODO Note: Maybe use the fraction of CountVars and countTerminals.
-	// TODO: CYK tree
-	// TODO: Write Test for removeUselessProductions.
-	// TODO: write test for rightCellCombinationsForced
-	// TODO: Implement Wim's algorithm from meeting 6!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// TODO: all checks are done on the simpleSetV
-	// TODO: DONE? Only keep producing and reachable rhse's in the grammar. Also see script in TI.
+	// TODO Note: Maybe incorporate in rightCellCombinations forced, that more than * different vars are forcing.
+	// TODO Note: all checks are done on the simpleSetV
+
+	// TODO Implement: CYK tree
+	// TODO Test: rightCellCombinationsForced
+	// TODO Test: checksumOfProductions
+	// TODO Test: removeUselessProductions
+	// TODO Test: checkMaxSumOfVarsInPyramid
+	// TODO DONE?: Implement Wim's algorithm from meeting 6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// TODO DONE?: Only keep producing and reachable rhse's in the grammar. Also see script in TI.
+	// TODO: How to show that the checks and the Algorithms work as expected?
 	//
 	// TODO: See [Duda, Pattern Classification] chapter 8.5 Recognition with strings. In more Detail:
 	//			8.5.2 Edit Distance(p. 418): Definition of similarity or difference between two strings. Deletion,
@@ -42,7 +50,6 @@ public class Main {
 	//				https://en.wikipedia.org/wiki/Grammar_induction
 	//				See algorithm 5: Grammatical Inference (Overview).
 	//				https://en.wikipedia.org/wiki/Grammar_induction
-	// TODO: use wrapper classes for holden its properties and checking if true and so on.
 	public static void main(String[] args) {
 		/**
 		 * 	Generating the settings for the generatorTest.
@@ -75,7 +82,7 @@ public class Main {
 		GrammarGeneratorSettingsDiceRoll settings2 = new GrammarGeneratorSettingsDiceRoll( grammarProperties2 );
 		Result result2 = resultCalculator.buildResultFromGenerator(
 				new GrammarGeneratorDiceRollOnly( settings2 ) );
-		*/
+
 
 		GrammarProperties grammarProperties3 = generateGrammarPropertiesForTesting();
 		GrammarGeneratorSettingsDiceRoll settings3 = new GrammarGeneratorSettingsDiceRoll( grammarProperties3 );
@@ -91,7 +98,7 @@ public class Main {
 		int[] favouritism = { 4, 2, 1, 1 };
 		settings4.setFavouritism( favouritism );
 		Result result4 = resultCalculator.buildResultFromGenerator(
-				new GrammarGeneratorDiceRollBias( settings4 ) );
+				new GrammarGeneratorDiceRollOnlyBias( settings4 ) );
 
 		GrammarProperties grammarProperties5 = generateGrammarPropertiesForTesting();
 		grammarProperties5.addTerminals( new Terminal( "c" ), new Terminal( "d" ) );
@@ -100,12 +107,24 @@ public class Main {
 		settings5.setMaxValueCompoundVariablesAreAddedTo( 2 );
 		Result result5 = resultCalculator.buildResultFromGenerator(
 				new GrammarGeneratorDiceRollOnly( settings5 ) );
-
+		*/
+		GrammarProperties grammarProperties6 = generateGrammarPropertiesForTesting();
+		GrammarGeneratorSettingsDiceRoll settings6 =
+				new GrammarGeneratorSettingsDiceRoll( grammarProperties6 );
+		settings6.setMaxValueTerminalsAreAddedTo( 1 );
+		settings6.setMinValueTerminalsAreAddedTo( 1 );
+		settings6.setMaxValueCompoundVariablesAreAddedTo( 2 );
+		Result result6 = resultCalculator.buildResultFromGenerator(
+				new GrammarGeneratorDiceRollTopDownMartens( settings6 ) );
 		/**
 		 * 	Storing all the results in a txt.
 		 */
-		Util.writeToFile( //result1, result2,
-						  result3, result4, result5
+		Util.writeToFile( //result1,
+						  //result2,
+						  //result3,
+						  //result4,
+						  //result5,
+						  result6
 		);
 	}
 
