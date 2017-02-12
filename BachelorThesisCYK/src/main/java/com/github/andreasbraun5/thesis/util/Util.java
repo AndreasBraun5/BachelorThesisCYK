@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
@@ -30,6 +31,20 @@ public abstract class Util {
 		List<T> ret = new ArrayList<>();
 		ret.addAll( new HashSet<>( ruleElements ) );
 		return ret;
+	}
+
+	/**
+	 *
+	 */
+	public static <T extends LeftHandSideElement> Set<T>[][] getInitialisedHashSetArray(int wordLength){
+		@SuppressWarnings("unchecked")
+		Set<T>[][] setVTemp = new Set[wordLength][wordLength];
+		for ( int i = 0; i < wordLength; i++ ) {
+			for ( int j = 0; j < wordLength; j++ ) {
+				setVTemp[i][j] = new HashSet<>();
+			}
+		}
+		return setVTemp;
 	}
 
 	/**

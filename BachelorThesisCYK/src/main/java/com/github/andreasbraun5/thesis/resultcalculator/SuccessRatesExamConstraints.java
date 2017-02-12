@@ -118,18 +118,18 @@ public class SuccessRatesExamConstraints {
 
 	@Override
 	public String toString() {
-		return "\n\nSuccessRatesExamConstraints{" +
-				"\ntrueExamConstraints=" + trueExamConstraints +
-				"\nfalseExamConstraints=" + falseExamConstraints +
+		return "\nSuccessRatesExamConstraints{" +
+				"\n		trueExamConstraints=" + trueExamConstraints +
+				"\n		falseExamConstraints=" + falseExamConstraints +
 				"\n			-->	SUCCESSRATEExamConstraints=" + successRateExamConstraints +
-				"\ntrueRightCellCombinationsForcedCount=" + trueRightCellCombinationsForcedCount +
-				"\nfalseRightCellCombinationsForcedCount=" + falseRightCellCombinationsForcedCount +
+				"\n		trueRightCellCombinationsForcedCount=" + trueRightCellCombinationsForcedCount +
+				"\n		falseRightCellCombinationsForcedCount=" + falseRightCellCombinationsForcedCount +
 				"\n			-->	SUCCESSRATERightCellCombinationsForced=" + successRateRightCellCombinationsForced +
-				"\ntrueMaxSumOfProductionsCount=" + trueMaxSumOfProductionsCount +
-				"\nfalseMaxSumOfProductionsCount=" + falseMaxSumOfProductionsCount +
+				"\n		trueMaxSumOfProductionsCount=" + trueMaxSumOfProductionsCount +
+				"\n		falseMaxSumOfProductionsCount=" + falseMaxSumOfProductionsCount +
 				"\n			-->	SUCCESSRATEMaxSumOfProductions=" + successRateMaxSumOfProductions +
-				"\ntrueMaxSumOfVarsInPyramidCount=" + trueMaxSumOfVarsInPyramidCount +
-				"\nfalseMaxSumOfVarsInPyramidCount=" + falseMaxSumOfVarsInPyramidCount +
+				"\n		trueMaxSumOfVarsInPyramidCount=" + trueMaxSumOfVarsInPyramidCount +
+				"\n		falseMaxSumOfVarsInPyramidCount=" + falseMaxSumOfVarsInPyramidCount +
 				"\n			-->	SUCCESSRATEMaxSumOfVarsInPyramid=" + successRateMaxSumOfVarsInPyramid +
 				"\n}";
 	}

@@ -44,9 +44,9 @@ public class GrammarPropertiesExamConstraints {
 	@Override
 	public String toString() {
 		return "\nGrammarPropertiesExamConstraints{" +
-				"\nminRightCellCombinationsForced=" + minRightCellCombinationsForced +
-				"\nmaxSumOfProductions=" + maxSumOfProductions +
-				"\nmaxSumOfVarsInPyramid=" + maxSumOfVarsInPyramid +
-				"\n";
+				"\n		minRightCellCombinationsForced=" + minRightCellCombinationsForced +
+				"\n		maxSumOfProductions=" + maxSumOfProductions +
+				"\n		maxSumOfVarsInPyramid=" + maxSumOfVarsInPyramid +
+				"\n}";
 	}
 }

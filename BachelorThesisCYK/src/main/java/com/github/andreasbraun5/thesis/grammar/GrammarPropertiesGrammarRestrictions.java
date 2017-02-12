@@ -34,8 +34,8 @@ public class GrammarPropertiesGrammarRestrictions {
 	@Override
 	public String toString() {
 		return "\nGrammarPropertiesGrammarRestrictions{" +
-				"\nsizeOfWord=" + sizeOfWord +
-				"\nmaxNumberOfVarsPerCell=" + maxNumberOfVarsPerCell +
+				"\n		sizeOfWord=" + sizeOfWord +
+				"\n		maxNumberOfVarsPerCell=" + maxNumberOfVarsPerCell +
 				"\n}";
 	}
 }

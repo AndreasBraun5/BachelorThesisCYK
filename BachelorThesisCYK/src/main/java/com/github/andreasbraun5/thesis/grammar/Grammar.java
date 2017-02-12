@@ -99,6 +99,7 @@ public class Grammar {
 			str.append( entry.getValue() );
 			str.append( "\n" );
 		}
+		str.append( "\n}" );
 		return str.toString();
 	}
 

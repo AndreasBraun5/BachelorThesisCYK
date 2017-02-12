@@ -94,13 +94,8 @@ public class CYKTest {
 
 
 		int wordLength = word.length();
-		@SuppressWarnings("unchecked")
-		Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				setVTemp[i][j] = new HashSet<>();
-			}
-		}
+		Set<Variable>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+
 		// reconstructing example matrix from scriptTI1
 		setVTemp[0][0].add( new Variable( "A" ) );
 		setVTemp[0][0].add( new Variable( "N" ) );
@@ -198,13 +193,8 @@ public class CYKTest {
 		);
         // @formatter:on
 		int wordLength = word.length();
-		@SuppressWarnings("unchecked")
-		Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				setVTemp[i][j] = new HashSet<>();
-			}
-		}
+		Set<Variable>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+
 		// reconstructing example matrix from SS12
 		setVTemp[0][0].add( new Variable( "A" ) );
 		setVTemp[0][0].add( new Variable( "C" ) );
@@ -299,13 +289,8 @@ public class CYKTest {
 		// @formatter:on
 
 		int wordLength = word.length();
-		@SuppressWarnings("unchecked")
-		Set<Variable>[][] setVTemp = new Set[wordLength][wordLength];
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				setVTemp[i][j] = new HashSet<>();
-			}
-		}
+		Set<Variable>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+
 		// reconstructing example matrix
 		setVTemp[0][0].add( new Variable( "A" ) );
 		setVTemp[0][0].add( new Variable( "B" ) );
@@ -382,13 +367,7 @@ public class CYKTest {
 		) );
 
 		int wordLength = word.length();
-		@SuppressWarnings("unchecked")
-		Set<VariableKWrapper>[][] setVTemp = new Set[wordLength][wordLength];
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				setVTemp[i][j] = new HashSet<>();
-			}
-		}
+		Set<VariableKWrapper>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
 
 		// reconstructing example matrix from SS12
 		setVTemp[0][0].add( new VariableKWrapper( new Variable( "A" ), 1 ) );
@@ -494,13 +473,8 @@ public class CYKTest {
 		) );
 
 		int wordLength = word.length();
-		@SuppressWarnings("unchecked")
-		Set<VariableKWrapper>[][] setVTemp = new Set[wordLength][wordLength];
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				setVTemp[i][j] = new HashSet<>();
-			}
-		}
+		Set<VariableKWrapper>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+
 
 		// reconstructing example matrix
 		setVTemp[0][0].add( new VariableKWrapper( new Variable( "A" ), 1 ) );
@@ -588,13 +562,8 @@ public class CYKTest {
 		) );
 
 		int wordLength = word.length();
-		@SuppressWarnings("unchecked")
-		Set<VariableKWrapper>[][] setVTemp = new Set[wordLength][wordLength];
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				setVTemp[i][j] = new HashSet<>();
-			}
-		}
+		Set<VariableKWrapper>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+
 		//reconstructing example matrix from scriptTI1
 		setVTemp[0][0].add( new VariableKWrapper( new Variable( "A" ), 1 ) );
 		setVTemp[0][0].add( new VariableKWrapper( new Variable( "N" ), 1 ) );

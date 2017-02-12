@@ -11,11 +11,9 @@ import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
-import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.parser.CYK;
-import com.github.andreasbraun5.thesis.util.Util;
 
 /**
  * Created by Andreas Braun on 11.02.2017.
@@ -52,16 +50,9 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 		GrammarProperties grammarProperties = generatorGrammarSettings.getGrammarProperties();
 		List<Terminal> word = grammarWrapper.getWord();
 		int wordSize = word.size();
-		@SuppressWarnings("unchecked")
-		Set<VariableKWrapper>[][] setVAdvanced = new Set[wordSize][wordSize];
-		for ( int i = 0; i < wordSize; i++ ) {
-			for ( int j = 0; j < wordSize; j++ ) {
-				setVAdvanced[i][j] = new HashSet<>(); // this generates a set with size = 0
-			}
-		}
 		// The stepII now needs to be done first. Usage of CYK.calculateSetVAdvanced equivalent to CYK.stepIIAdvanced.
 		// But like this stepIIAdvanced can stay private.
-		setVAdvanced = CYK.calculateSetVAdvanced( grammar, word );
+		Set<VariableKWrapper>[][] setVAdvanced = CYK.calculateSetVAdvanced( grammar, word );
 		// Keep in mind that the setV matrix is a upper right matrix. But the description of how the algorithm works
 		// is done, as if the setV pyramid points downwards (reflection on the diagonal)
 		// Regarding one cell, its upper left cell and its upper right cell are looked at.

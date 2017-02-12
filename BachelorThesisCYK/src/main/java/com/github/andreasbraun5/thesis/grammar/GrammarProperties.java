@@ -87,9 +87,9 @@ public class GrammarProperties {
 	@Override
 	public String toString() {
 		return "GrammarProperties: {" +
-				"\nvariables= " + variables +
-				"\nvariableStart= " + variableStart +
-				"\nterminals= " + terminals +
+				"\n		variables= " + variables +
+				"\n		variableStart= " + variableStart +
+				"\n		terminals= " + terminals +
 				grammarPropertiesGrammarRestrictions.toString() +
 				grammarPropertiesExamConstraints.toString() +
 				"\n}";

@@ -4,13 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
-import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
-import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnlyBias;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollTopDownMartens;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettingsDiceRoll;
-import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
-import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
@@ -62,8 +58,8 @@ public class Main {
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
 		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
-		int countGeneratedGrammarsPerWord = 150;
-		int countDifferentWords = 100;
+		int countGeneratedGrammarsPerWord = 15;
+		int countDifferentWords = 10;
 		// this boundary is relevant so that the JVM doesn't run out of memory on my computer while calculating one Result.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );

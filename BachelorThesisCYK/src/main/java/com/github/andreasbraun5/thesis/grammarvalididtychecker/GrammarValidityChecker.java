@@ -100,13 +100,8 @@ public class GrammarValidityChecker {
 		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
 
 		int wordLength = tempSetV[0].length;
-		@SuppressWarnings("unchecked")
-		Set<Variable>[][] markedRightCellCombinationForced = new Set[wordLength][wordLength];
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				markedRightCellCombinationForced[i][j] = new HashSet<>(); // this generates a set with size = 0
-			}
-		}
+		Set<Variable>[][] markedRightCellCombinationForced = Util.getInitialisedHashSetArray( wordLength );
+
 		Map<Variable, List<Production>> prodMap = grammar.getProductionsMap();
 		int rightCellCombinationsForced = 0;
 		// Keep in mind that the setV matrix is a upper right matrix. But descriptions of how the algorithm works

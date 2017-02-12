@@ -109,13 +109,13 @@ public class GrammarGeneratorSettingsDiceRoll implements GrammarGeneratorSetting
 
 	@Override
 	public String toString() {
-		return "GrammarGeneratorSettingsDiceRoll{" +
-				"\nminValueCompoundVariablesAreAddedTo=" + minValueCompoundVariablesAreAddedTo +
-				"\nminValueTerminalsAreAddedTo=" + minValueTerminalsAreAddedTo +
-				"\nmaxValueCompoundVariablesAreAddedTo=" + maxValueCompoundVariablesAreAddedTo +
-				"\nmaxValueTerminalsAreAddedTo=" + maxValueTerminalsAreAddedTo +
-				"\nfavouritism=" + Arrays.toString( favouritism ) +
-				"\ngrammarProperties=" + grammarProperties +
+		return "\nGrammarGeneratorSettingsDiceRoll{" +
+				"\n		minValueCompoundVariablesAreAddedTo=" + minValueCompoundVariablesAreAddedTo +
+				"\n		minValueTerminalsAreAddedTo=" + minValueTerminalsAreAddedTo +
+				"\n		maxValueCompoundVariablesAreAddedTo=" + maxValueCompoundVariablesAreAddedTo +
+				"\n		maxValueTerminalsAreAddedTo=" + maxValueTerminalsAreAddedTo +
+				"\n		favouritism=" + Arrays.toString( favouritism ) +
+				"\n" + grammarProperties +
 				"\n}";
 	}
 }

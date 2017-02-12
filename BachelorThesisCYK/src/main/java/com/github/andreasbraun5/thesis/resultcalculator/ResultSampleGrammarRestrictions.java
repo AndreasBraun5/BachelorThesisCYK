@@ -44,9 +44,9 @@ public class ResultSampleGrammarRestrictions {
 	@Override
 	public String toString() {
 		return "\nResultSampleGrammarRestrictions{" +
-				"\nisGrammarRestrictions=" + isRestrictions +
-				"\nisSizeOfWordCount=" + isSizeOfWordCount +
-				"\nisMaxNumberOfVarsPerCellCount=" + isMaxNumberOfVarsPerCellCount +
-				"\n";
+				"\n		isGrammarRestrictions=" + isRestrictions +
+				"\n		isSizeOfWordCount=" + isSizeOfWordCount +
+				"\n		isMaxNumberOfVarsPerCellCount=" + isMaxNumberOfVarsPerCellCount +
+				"\n}";
 	}
 }

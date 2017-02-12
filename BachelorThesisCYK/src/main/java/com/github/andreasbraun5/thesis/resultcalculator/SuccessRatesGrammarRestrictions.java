@@ -93,15 +93,15 @@ public class SuccessRatesGrammarRestrictions {
 
 	@Override
 	public String toString() {
-		return "\n\nSuccessRatesGrammarRestrictions{" +
-				"\ntrueGrammarRestrictionsCount=" + trueGrammarRestrictionsCount +
-				"\nfalseGrammarRestrictionsCount=" + falseGrammarRestrictionsCount +
+		return "\nSuccessRatesGrammarRestrictions{" +
+				"\n		trueGrammarRestrictionsCount=" + trueGrammarRestrictionsCount +
+				"\n		falseGrammarRestrictionsCount=" + falseGrammarRestrictionsCount +
 				"\n			-->	SUCCESSRATEGrammarRestrictions=" + successRateGrammarRestrictions +
-				"\ntrueSizeOfWordCount=" + trueSizeOfWordCount +
-				"\nfalseSizeOfWordCount=" + falseSizeOfWordCount +
+				"\n		trueSizeOfWordCount=" + trueSizeOfWordCount +
+				"\n		falseSizeOfWordCount=" + falseSizeOfWordCount +
 				"\n			-->	SUCCESSRATESizeOfWord=" + successRateSizeOfWord +
-				"\ntrueMaxNumberOfVarsPerCellCount=" + trueMaxNumberOfVarsPerCellCount +
-				"\nfalseMaxNumberOfVarsPerCellCount=" + falseMaxNumberOfVarsPerCellCount +
+				"\n		trueMaxNumberOfVarsPerCellCount=" + trueMaxNumberOfVarsPerCellCount +
+				"\n		falseMaxNumberOfVarsPerCellCount=" + falseMaxNumberOfVarsPerCellCount +
 				"\n			-->	SUCCESSRATEMaxNumberOfVarsPerCell=" + successRateMaxNumberOfVarsPerCell +
 				"\n}";
 	}

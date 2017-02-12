@@ -89,11 +89,11 @@ public class ResultSampleExamConstraints {
 	@Override
 	public String toString() {
 		return "\n\nResultSampleExamConstraints{" +
-				"\nisExamConstraints=" + isExamConstraints +
-				"\nisRightCellCombinationsForced=" + isRightCellCombinationsForced +
-				"\nisMaxSumOfProductionsCount=" + isMaxSumOfProductionsCount +
-				"\nisMaxSumOfVarsInPyramidCount=" + isMaxSumOfVarsInPyramidCount +
-				"\ncountRightCellCombinationsForced=" + countRightCellCombinationsForced +
-				"\n";
+				"\n		isExamConstraints=" + isExamConstraints +
+				"\n		isRightCellCombinationsForced=" + isRightCellCombinationsForced +
+				"\n		isMaxSumOfProductionsCount=" + isMaxSumOfProductionsCount +
+				"\n		isMaxSumOfVarsInPyramidCount=" + isMaxSumOfVarsInPyramidCount +
+				"\n		countRightCellCombinationsForced=" + countRightCellCombinationsForced +
+				"\n}";
 	}
 }

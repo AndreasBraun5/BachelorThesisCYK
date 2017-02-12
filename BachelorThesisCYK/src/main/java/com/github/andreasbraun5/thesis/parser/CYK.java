@@ -103,13 +103,7 @@ public class CYK {
 	public static Set<VariableKWrapper>[][] calculateSetVAdvanced(Grammar grammar, List<Terminal> word) {
 		int wordLength = word.size();
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
-		@SuppressWarnings("unchecked")
-		Set<VariableKWrapper>[][] setV = new Set[wordLength][wordLength];
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				setV[i][j] = new HashSet<>(); // this generates a set with size = 0
-			}
-		}
+		Set<VariableKWrapper>[][] setV = Util.getInitialisedHashSetArray( wordLength );
 		// Check whether the terminal is on the right side of the production, then add its left variable to v_ii
 		setV = stepIIAdvanced( setV, word, grammar );
 		// l loop of the described algorithm

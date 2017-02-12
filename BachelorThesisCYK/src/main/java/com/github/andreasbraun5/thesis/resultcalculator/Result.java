@@ -45,13 +45,13 @@ public class Result {
 		long tempTime = totalTime - minutes * 60 * 1000;
 		long seconds = TimeUnit.MILLISECONDS.toSeconds( tempTime );
 		return "\n\nResult{" +
-				"\ncountGeneratedGrammars= " + countGeneratedGrammarsPerWord * countDifferentWords +
-				"\ncountGeneratedGrammarsPerWord= " + countGeneratedGrammarsPerWord +
-				"\ncountDifferentWords= " + countDifferentWords +
-				"\ntotalTime= " + totalTime + "ms" +
-				"\ntotalTime= " + minutes + "min " + seconds + "sec" +
-				"\ngeneratorType= " + this.generatorType +
-				"\ngrammarGeneratorSettings" + grammarGeneratorSettings +
+				"\n		countGeneratedGrammars= " + countGeneratedGrammarsPerWord * countDifferentWords +
+				"\n		countGeneratedGrammarsPerWord= " + countGeneratedGrammarsPerWord +
+				"\n		countDifferentWords= " + countDifferentWords +
+				"\n		totalTime= " + totalTime + "ms" +
+				"\n		totalTime= " + minutes + "min " + seconds + "sec" +
+				"\n		generatorType= " + this.generatorType +
+				grammarGeneratorSettings +
 				SuccessRates.toString() +
 				"\n}";
 	}

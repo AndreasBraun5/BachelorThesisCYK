@@ -58,11 +58,11 @@ public class SuccessRates {
 				successRatesExamConstraints.getSuccessRateExamConstraints() +
 				"\n" +
 				"\n			-->	SUCCESSRATE=" + successRate +
-				"\ntrueCount=" + trueCount +
-				"\nfalseCount=" + falseCount +
+				"\n		trueCount=" + trueCount +
+				"\n		falseCount=" + falseCount +
 				"\n			-->	SUCCESSRATEPRODUCIBILITY=" + successRateProducibility +
-				"\ntrueProducibilityCount=" + trueProducibilityCount +
-				"\nfalseProducibilityCount=" + falseProducibilityCount +
+				"\n		trueProducibilityCount=" + trueProducibilityCount +
+				"\n		falseProducibilityCount=" + falseProducibilityCount +
 				successRatesGrammarRestrictions.toString() +
 				successRatesExamConstraints.toString() +
 				"\n}";
