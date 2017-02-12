@@ -47,7 +47,6 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 	@Override
 	protected GrammarWrapper distributeCompoundVariables(GrammarWrapper grammarWrapper) {
 		Grammar grammar = grammarWrapper.getGrammar();
-		GrammarProperties grammarProperties = generatorGrammarSettings.getGrammarProperties();
 		List<Terminal> word = grammarWrapper.getWord();
 		int wordSize = word.size();
 		// The stepII now needs to be done first. Usage of CYK.calculateSetVAdvanced equivalent to CYK.stepIIAdvanced.
@@ -61,17 +60,10 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 		// setV[i][j - 1] = upper left
 		// Visited indexes are as following: 01->12->23->34; 02->13->24; 03->14; 04; with wordSize = 5;
 		Set<VariableCompound> tempVarCompSet = new HashSet<>();
-		for ( int k = 0;
-				k < wordSize &&
-						setVAdvanced[0][grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord() - 1]
-								.isEmpty();
-				k++ ) { // row
+		//int wordSize = grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord();
+		for ( int k = 0; k < wordSize && setVAdvanced[0][wordSize - 1].isEmpty(); k++ ) { // row
 			int i = k;
-			for ( int j = i + 1;
-					j < wordSize &&
-							setVAdvanced[0][grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord() - 1]
-									.isEmpty();
-					j++ ) { // column
+			for ( int j = i + 1; j < wordSize && setVAdvanced[0][wordSize - 1].isEmpty(); j++ ) { // column
 				tempVarCompSet.clear();
 				// if one, the left or right cell is empty, then break.
 				if ( setVAdvanced[i][j - 1].size() != 0 && setVAdvanced[i + 1][j].size() != 0 ) {

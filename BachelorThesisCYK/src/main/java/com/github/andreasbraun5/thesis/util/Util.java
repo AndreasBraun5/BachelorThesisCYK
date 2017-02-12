@@ -22,6 +22,7 @@ import com.github.andreasbraun5.thesis.resultcalculator.Result;
 
 /**
  * Created by Andreas Braun on 05.01.2017.
+ * https://github.com/AndreasBraun5/
  */
 public abstract class Util {
 	/**

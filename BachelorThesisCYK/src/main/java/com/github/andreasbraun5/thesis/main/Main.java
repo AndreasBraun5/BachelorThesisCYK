@@ -58,8 +58,8 @@ public class Main {
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
 		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
-		int countGeneratedGrammarsPerWord = 15;
-		int countDifferentWords = 10;
+		int countGeneratedGrammarsPerWord = 150;
+		int countDifferentWords = 100;
 		// this boundary is relevant so that the JVM doesn't run out of memory on my computer while calculating one Result.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );
