@@ -37,27 +37,27 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 	protected GrammarWrapper distributeTerminals(GrammarWrapper grammarWrapper) {
 		return distributeDiceRollRightHandSideElementsBias(
 				grammarWrapper,
-				this.generatorGrammarSettings.grammarProperties.terminals,
-				this.generatorGrammarSettings.getMinValueTerminalsAreAddedTo(),
-				this.generatorGrammarSettings.getMaxValueTerminalsAreAddedTo(),
-				this.generatorGrammarSettings.getFavouritism()
+				this.grammarGeneratorSettings.grammarProperties.terminals,
+				this.grammarGeneratorSettings.getMinValueTerminalsAreAddedTo(),
+				this.grammarGeneratorSettings.getMaxValueTerminalsAreAddedTo(),
+				this.grammarGeneratorSettings.getFavouritism()
 		);
 	}
 
 	@Override
 	protected GrammarWrapper distributeCompoundVariables(GrammarWrapper grammarWrapper) {
 		Set<VariableCompound> varTupel = new HashSet<>();
-		for ( Variable var1 : this.generatorGrammarSettings.grammarProperties.variables ) {
-			for ( Variable var2 : this.generatorGrammarSettings.grammarProperties.variables ) {
+		for ( Variable var1 : this.grammarGeneratorSettings.grammarProperties.variables ) {
+			for ( Variable var2 : this.grammarGeneratorSettings.grammarProperties.variables ) {
 				varTupel.add( new VariableCompound( var1, var2 ) );
 			}
 		}
 		return distributeDiceRollRightHandSideElementsBias(
 				grammarWrapper,
 				varTupel,
-				this.generatorGrammarSettings.getMinValueCompoundVariablesAreAddedTo(),
-				this.generatorGrammarSettings.getMaxValueCompoundVariablesAreAddedTo(),
-				this.generatorGrammarSettings.getFavouritism()
+				this.grammarGeneratorSettings.getMinValueCompoundVariablesAreAddedTo(),
+				this.grammarGeneratorSettings.getMaxValueCompoundVariablesAreAddedTo(),
+				this.grammarGeneratorSettings.getFavouritism()
 		);
 	}
 
@@ -67,7 +67,7 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 			int minCountElementDistributedTo,
 			int maxCountElementDistributedTo,
 			int favouritism[]) {
-		List<Variable> tempVariables2 = new ArrayList<>( this.generatorGrammarSettings.grammarProperties.variables );
+		List<Variable> tempVariables2 = new ArrayList<>( this.grammarGeneratorSettings.grammarProperties.variables );
 		Map<Variable, Integer> favouritismToVariable = new HashMap<>();
 		{
 			// Mapping the favouritism randomly to the variables. Pick one random variable and add the first favouritism to it.

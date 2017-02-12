@@ -51,7 +51,7 @@ public class ResultCalculator {
 	}
 
 	public Result buildResultFromGenerator(GrammarGenerator grammarGenerator) {
-		GrammarProperties tempGrammarProperties = grammarGenerator.getGeneratorGrammarSettings().getGrammarProperties();
+		GrammarProperties tempGrammarProperties = grammarGenerator.getGrammarGeneratorSettings().getGrammarProperties();
 		long startTime = System.currentTimeMillis();
 		String tempWord;
 		Grammar grammar;
@@ -79,7 +79,7 @@ public class ResultCalculator {
 								grammar,
 								tempWord,
 								tempSetV,
-								grammarGenerator.getGeneratorGrammarSettings()
+								grammarGenerator.getGrammarGeneratorSettings()
 						) );
 			}
 		}
@@ -90,7 +90,7 @@ public class ResultCalculator {
 		return new Result(
 				countOfGrammarsToGeneratePerWord,
 				countDifferentWords,
-				grammarGenerator.getGeneratorGrammarSettings(),
+				grammarGenerator.getGrammarGeneratorSettings(),
 				totalTime,
 				grammarGenerator.getGeneratorType(),
 				allResultSamples

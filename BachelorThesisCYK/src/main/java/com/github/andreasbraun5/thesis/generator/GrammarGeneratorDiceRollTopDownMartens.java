@@ -8,7 +8,6 @@ import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
@@ -37,10 +36,10 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 	protected GrammarWrapper distributeTerminals(GrammarWrapper grammarWrapper) {
 		return distributeDiceRollRightHandSideElements(
 				grammarWrapper,
-				generatorGrammarSettings.grammarProperties.terminals,
-				generatorGrammarSettings.getMinValueTerminalsAreAddedTo(),
-				generatorGrammarSettings.getMaxValueTerminalsAreAddedTo(),
-				new ArrayList<>( generatorGrammarSettings.grammarProperties.variables )
+				grammarGeneratorSettings.grammarProperties.terminals,
+				grammarGeneratorSettings.getMinValueTerminalsAreAddedTo(),
+				grammarGeneratorSettings.getMaxValueTerminalsAreAddedTo(),
+				new ArrayList<>( grammarGeneratorSettings.grammarProperties.variables )
 		);
 	}
 
@@ -53,14 +52,13 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 		// But like this stepIIAdvanced can stay private.
 		Set<VariableKWrapper>[][] setVAdvanced = CYK.calculateSetVAdvanced( grammar, word );
 		// Keep in mind that the setV matrix is a upper right matrix. But the description of how the algorithm works
-		// is done, as if the setV pyramid points downwards (reflection on the diagonal)
+		// is done, as if the setV pyramid points downwards (reflection on the diagonal + rotation to the left).
 		// Regarding one cell, its upper left cell and its upper right cell are looked at.
 		// setV[i][j] = down
 		// setV[i + 1][j] = upper right
 		// setV[i][j - 1] = upper left
 		// Visited indexes are as following: 01->12->23->34; 02->13->24; 03->14; 04; with wordSize = 5;
 		Set<VariableCompound> tempVarCompSet = new HashSet<>();
-		//int wordSize = grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord();
 		for ( int k = 0; k < wordSize && setVAdvanced[0][wordSize - 1].isEmpty(); k++ ) { // row
 			int i = k;
 			for ( int j = i + 1; j < wordSize && setVAdvanced[0][wordSize - 1].isEmpty(); j++ ) { // column
@@ -87,9 +85,9 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 							grammarWrapper = distributeDiceRollRightHandSideElements(
 									grammarWrapper,
 									varCompSet,
-									generatorGrammarSettings.getMinValueCompoundVariablesAreAddedTo(),
-									generatorGrammarSettings.getMaxValueCompoundVariablesAreAddedTo(),
-									new ArrayList<>( generatorGrammarSettings.grammarProperties.variables )
+									grammarGeneratorSettings.getMinValueCompoundVariablesAreAddedTo(),
+									grammarGeneratorSettings.getMaxValueCompoundVariablesAreAddedTo(),
+									new ArrayList<>( grammarGeneratorSettings.grammarProperties.variables )
 							);
 						}
 						catch (GrammarRuntimeException ignored) {

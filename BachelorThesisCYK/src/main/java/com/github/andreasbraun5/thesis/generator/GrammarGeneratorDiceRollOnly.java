@@ -35,27 +35,27 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGeneratorDiceRoll<Gramm
 	protected GrammarWrapper distributeTerminals(GrammarWrapper grammarWrapper) {
 		return distributeDiceRollRightHandSideElements(
 				grammarWrapper,
-				generatorGrammarSettings.grammarProperties.terminals,
-				generatorGrammarSettings.getMinValueTerminalsAreAddedTo(),
-				generatorGrammarSettings.getMaxValueTerminalsAreAddedTo(),
-				new ArrayList<>( generatorGrammarSettings.grammarProperties.variables )
+				grammarGeneratorSettings.grammarProperties.terminals,
+				grammarGeneratorSettings.getMinValueTerminalsAreAddedTo(),
+				grammarGeneratorSettings.getMaxValueTerminalsAreAddedTo(),
+				new ArrayList<>( grammarGeneratorSettings.grammarProperties.variables )
 		);
 	}
 
 	@Override
 	protected GrammarWrapper distributeCompoundVariables(GrammarWrapper grammarWrapper) {
 		Set<VariableCompound> varTupel = new HashSet<>();
-		for ( Variable var1 : generatorGrammarSettings.grammarProperties.variables ) {
-			for ( Variable var2 : generatorGrammarSettings.grammarProperties.variables ) {
+		for ( Variable var1 : grammarGeneratorSettings.grammarProperties.variables ) {
+			for ( Variable var2 : grammarGeneratorSettings.grammarProperties.variables ) {
 				varTupel.add( new VariableCompound( var1, var2 ) );
 			}
 		}
 		return super.distributeDiceRollRightHandSideElements(
 				grammarWrapper,
 				varTupel,
-				generatorGrammarSettings.getMinValueCompoundVariablesAreAddedTo(),
-				generatorGrammarSettings.getMaxValueCompoundVariablesAreAddedTo(),
-				new ArrayList<>( generatorGrammarSettings.grammarProperties.variables )
+				grammarGeneratorSettings.getMinValueCompoundVariablesAreAddedTo(),
+				grammarGeneratorSettings.getMaxValueCompoundVariablesAreAddedTo(),
+				new ArrayList<>( grammarGeneratorSettings.grammarProperties.variables )
 		);
 	}
 

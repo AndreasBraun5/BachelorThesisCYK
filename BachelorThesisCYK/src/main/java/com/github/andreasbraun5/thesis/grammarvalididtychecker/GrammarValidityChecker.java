@@ -105,7 +105,7 @@ public class GrammarValidityChecker {
 		Map<Variable, List<Production>> prodMap = grammar.getProductionsMap();
 		int rightCellCombinationsForced = 0;
 		// Keep in mind that the setV matrix is a upper right matrix. But descriptions of how the algorithm works
-		// is done, as if the setV pyramid points downwards (reflection on the diagonal).
+		// is done, as if the setV pyramid points downwards (reflection on the diagonal + rotation to the left).
 		// Regarding one cell, its upper left cell and its upper right cell are looked at.
 		// setV[i][j] = down
 		// setV[i + 1][j] = upper right

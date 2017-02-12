@@ -15,11 +15,11 @@ import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 public abstract class GrammarGenerator<T extends GrammarGeneratorSettings> {
 
 	protected String generatorType;
-	protected T generatorGrammarSettings;
+	protected T grammarGeneratorSettings;
 
 	// Needed for testing purposes, fixed seed possible.
-	public GrammarGenerator(T generatorGrammarSettings) {
-		this.generatorGrammarSettings = generatorGrammarSettings;
+	public GrammarGenerator(T grammarGeneratorSettings) {
+		this.grammarGeneratorSettings = grammarGeneratorSettings;
 	}
 
 	/**
@@ -28,7 +28,7 @@ public abstract class GrammarGenerator<T extends GrammarGeneratorSettings> {
 	 */
 	public GrammarWrapper generateGrammarWrapper(GrammarWrapper grammarWrapper) {
 		// Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
-		Grammar grammar = new Grammar( generatorGrammarSettings.getGrammarProperties().variableStart );
+		Grammar grammar = new Grammar( grammarGeneratorSettings.getGrammarProperties().variableStart );
 		grammarWrapper.setGrammar( grammar );
 		grammarWrapper = distributeTerminals( grammarWrapper );
 		grammarWrapper = distributeCompoundVariables( grammarWrapper );
@@ -43,7 +43,7 @@ public abstract class GrammarGenerator<T extends GrammarGeneratorSettings> {
 		return generatorType;
 	}
 
-	public T getGeneratorGrammarSettings() {
-		return generatorGrammarSettings;
+	public T getGrammarGeneratorSettings() {
+		return grammarGeneratorSettings;
 	}
 }

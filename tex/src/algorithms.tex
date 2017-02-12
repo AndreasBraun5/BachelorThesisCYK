@@ -1,14 +1,86 @@
 % !TeX spellcheck = en_GB
 
 \section{Algorithms}\label{algorithms}
- Algorithm description here.
+Algorithm descriptions here.
+
+\noindent RightHandSideElements (rhse) are terminals like "a, b, ..." and \\
+compound variables like "AB, AC, ...".
+
+\noindent LeftHandSideElements (lhse) are variables like "A, B, ...".
 
 \lstset{language=java}
-\begin{lstlisting}[frame=htrbl, caption={GeneratorGrammarDiceRollTopDownMartens}, label={lst:GeneratorGrammarDiceRollTopDownMartens}]
-Input: 
-Output: 
+\begin{lstlisting}[frame=htrbl, caption={distributeDiceRollRightHandSideElements}, 
+label={lst:distributeDiceRollRightHandSideElements}]
+Algorithm: distributeDiceRollRightHandSideElements
+Input: grammar, setRhse, minCount, maxCount, listVariables;
+Output: grammar;
 
-
+for(RightHandSideElement rhse : setRightHandSideElements){
+	// countWillBeAdded is between [minCount, maxCount]. 
+	countWillBeAdded = diceRoll();
+	while(listVariables.size() > countWillBeAdded){
+		Remove one variable of listVariables via dice roll;
+	}
+	for(Variable var : listVariables){
+		grammar.addProduction "var --> rhse";
+	}
+}
+return grammar;
 \end{lstlisting}
 
+\lstset{language=java}
+\begin{lstlisting}[frame=htrbl, caption={CYK.calculateSetVAdvanced}, 
+label={lst:CYK.calculateSetVAdvanced}]
+Algorithm: CYK.calculateSetVAdvanced
+Input: grammar, word;
+Output: Set<VariableK>[][] cYKMatrix;
+
+Set<VariableK>[][] cYKMatrix = new Set<VariableK>[wordSize][wordSize];
+cYKMatrix = calculateCYKMatrix;
+return cYKMatrix;
+\end{lstlisting}
+
+\pagebreak
+
+\lstset{language=java}
+\begin{lstlisting}[frame=htrbl,caption={GeneratorGrammarDiceRollTopDownMartens}, 
+label={lst:GeneratorGrammarDiceRollTopDownMartens}]
+Algorithm: GeneratorGrammarDiceRollTopDownMartens
+Input: word, settings;
+Output: grammar;
+Note: Keep in mind that the setV matrix is a upper right matrix. But the
+description of how the algorithm works is done, as if the setV pyramid 
+points downwards (reflection on the diagonal + rotation to the left).
+Regarding one cell, its upper left cell and its upper right cell 
+are looked at. setV[i][j] = down cell. setV[i + 1][j] = upper right cell
+setV[i][j - 1] = upper left cell. With wordSize = 5, the Visited indexes 
+are as following: [01->12->23->34; 02->13->24; 03->14; 04;]
+
+Grammar grammar = new Grammar();
+// Distribute the terminals.
+grammar = distributeDiceRollRightHandSideElements(
+	grammar, settingsTerminals, minCountTerminals, 
+	maxCountTerminals, settingsListVariables
+);
+// Distribute the compound variables.
+Set<VariableKWrapper>[][] setVAdvanced;
+// Fill the diagonal of the matrix with:
+setVAdvanced = CYK.calculateSetVAdvanced( grammar, word );
+
+for(Cell cellToBeVisited : setVAdvanced){
+	setVariableCompound = calculate all the possible tupels of 
+		({varLeft}, {varRight});
+	for(VariableCompound varComp : setVariableCompound){
+		// Because of dice rolling anyways and lots of grammars 
+		// being generated, no varComp is added if the production
+		// already exists.
+		grammar = distributeDiceRollRightHandSideElements(
+			grammar, varComp, minCountVarComp, 
+			maxCountVarComp, settingsListVariables
+		);
+		setVAdvanced = CYK.calculateSetVAdvanced( grammar, word );
+	}
+}
+return grammar;
+\end{lstlisting}
 \pagebreak
