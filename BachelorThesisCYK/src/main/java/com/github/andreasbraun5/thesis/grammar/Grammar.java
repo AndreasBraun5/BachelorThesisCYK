@@ -21,7 +21,10 @@ script of TI1 as one "line" of productionsMap like "A --> a | A | AB".
 
 /**
  * A Grammar must at least have its variableStart defined. By default its "S".
+ * grammar.addProduction( new Production( new Variable( "D"), new Terminal(""))); AND
+ * grammar.addProduction( new Production( new Variable( "D"), new Variable(""))); possible.
  */
+//TODO: Think about it!!!!!!!!!!!!!!!!!!!!!!!!!!!
 public class Grammar {
 
 	// As stated above. Key=A, Value: A-->a and A-->B and A--> AB
@@ -85,7 +88,7 @@ public class Grammar {
 		this.productionsMap.put( variable, productions );
 	}
 
-	public void removeAllProductions(){
+	public void removeAllProductions() {
 		this.productionsMap.clear();
 	}
 

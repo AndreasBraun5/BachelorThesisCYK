@@ -22,13 +22,11 @@ public class Main {
 	// TODO Note: all checks are done on the simpleSetV
 
 	// TODO Implement: CYK tree
-	// TODO Test: rightCellCombinationsForced
-	// TODO Test: checksumOfProductions
-	// TODO Test: removeUselessProductions
-	// TODO Test: checkMaxSumOfVarsInPyramid
+	// TODO: How to show that the Checks and the Algorithms work as expected? With the tests.
+
 	// TODO DONE?: Implement Wim's algorithm from meeting 6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// TODO DONE?: Only keep producing and reachable rhse's in the grammar. Also see script in TI.
-	// TODO: How to show that the checks and the Algorithms work as expected?
+	// TODO: Show Wim's algorithm works here
+	// TODO DONE?: Only keep useful rhse's in the grammar. Also see script in TI.
 	//
 	// TODO: See [Duda, Pattern Classification] chapter 8.5 Recognition with strings. In more Detail:
 	//			8.5.2 Edit Distance(p. 418): Definition of similarity or difference between two strings. Deletion,
@@ -58,8 +56,8 @@ public class Main {
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
 		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
-		int countGeneratedGrammarsPerWord = 150;
-		int countDifferentWords = 100;
+		int countGeneratedGrammarsPerWord = 15;
+		int countDifferentWords = 10;
 		// this boundary is relevant so that the JVM doesn't run out of memory on my computer while calculating one Result.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );

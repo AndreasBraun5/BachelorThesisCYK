@@ -86,7 +86,6 @@ public abstract class Util {
 		}
 	}
 
-	// TODO Test: removeUselessProductions
 	// Its structure is very similar to stepIIAdvanced and calculateSetVAdvanced.
 	public static Grammar removeUselessProductions(
 			Grammar grammar,

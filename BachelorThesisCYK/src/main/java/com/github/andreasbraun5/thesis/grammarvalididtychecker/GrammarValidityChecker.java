@@ -27,7 +27,9 @@ public class GrammarValidityChecker {
 	/**
 	 * general restrictions fulfilled, regarding the grammar. Not exam relevant.
 	 */
+	/*
 	public static boolean checkGrammarRestrictions(
+	 /*
 			GrammarProperties grammarProperties,
 			Set<VariableKWrapper>[][] setV) {
 		return checkMaxNumberOfVarsPerCell(
@@ -35,6 +37,7 @@ public class GrammarValidityChecker {
 				grammarProperties.grammarPropertiesGrammarRestrictions.getMaxNumberOfVarsPerCell()
 		);
 	}
+	*/
 
 	/**
 	 * True if the starting symbol is contained at the bottom of the pyramid.
@@ -48,23 +51,23 @@ public class GrammarValidityChecker {
 	}
 
 	/**
-	 * True if numberOfVarsPerCell is smaller than maxNumberOfVarsPerCell.
+	 * True if numberOfVarsPerCell is smaller than maxNumberOfVarsPerCell. Does not ignore cells after the diagonal.
 	 */
 	public static boolean checkMaxNumberOfVarsPerCell(Set<VariableKWrapper>[][] setV, int maxNumberOfVarsPerCell) {
 		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
 		if ( maxNumberOfVarsPerCell == 0 ) {
 			throw new GrammarPropertiesRuntimeException( "maxNumberOfVarsPerCell is zero." );
 		}
-		int numberOfVarsPerCell = 0;
+		int tempMaxNumberOfVarsPerCell = 0;
 		int wordLength = tempSetV[0].length;
 		for ( int i = 0; i < wordLength; i++ ) {
 			for ( int j = 0; j < wordLength; j++ ) {
-				if ( tempSetV[i][j].size() > numberOfVarsPerCell ) {
-					numberOfVarsPerCell = tempSetV[i][j].size();
+				if ( tempSetV[i][j].size() > tempMaxNumberOfVarsPerCell ) {
+					tempMaxNumberOfVarsPerCell = tempSetV[i][j].size();
 				}
 			}
 		}
-		return numberOfVarsPerCell <= maxNumberOfVarsPerCell;
+		return tempMaxNumberOfVarsPerCell <= maxNumberOfVarsPerCell;
 	}
 
 	/**
@@ -89,10 +92,9 @@ public class GrammarValidityChecker {
 	}*/
 
 	/**
-	 * True if more than one "rightCellCombination" is forced. Exam relevant restriction.
-	 * The upper two rows of the pyramid aren't checked.
+	 * True if more than minCountRightCellCombinationsForced "rightCellCombination" are forced.
+	 * Exam relevant restriction. The upper two rows of the pyramid aren't checked.
 	 * Starting from from the upper right index of the matrix setV[0][wL-1] towards the diagonal.
-	 * // TODO Test: checkRightCellCombinationForced
 	 */
 	public static RightCellCombinationsForcedWrapper checkRightCellCombinationForced(
 			Set<VariableKWrapper>[][] setV, int minCountRightCellCombinationsForced, Grammar grammar) {
@@ -136,6 +138,7 @@ public class GrammarValidityChecker {
 							// regarding an empty cell down
 							if ( varDownProdList == null ) {
 								isRightCellCombinationForced = false;
+								// TODO Martin: Ask for break;
 								break;
 							}
 							for ( Production prod : varDownProdList ) {
@@ -164,15 +167,15 @@ public class GrammarValidityChecker {
 				setMarkedRightCellCombinationForced( markedRightCellCombinationForced );
 	}
 
-	// TODO Test: checksumOfProductions
 	public static boolean checkSumOfProductions(Grammar grammar, int maxSumOfProductions) {
+		int a = grammar.getProductionsAsList().size();
+		boolean b = grammar.getProductionsAsList().size() <= maxSumOfProductions;
 		return grammar.getProductionsAsList().size() <= maxSumOfProductions;
 	}
 
 	/**
-	 * checkMaxSumOfVarsInPyramid is tested only on the setV simple.
+	 * checkMaxSumOfVarsInPyramid is tested only on the setV simple. Does not ignore cells after the diagonal.
 	 */
-	// TODO Test: checkMaxSumOfVarsInPyramid
 	public static boolean checkMaxSumOfVarsInPyramid(Set<VariableKWrapper>[][] setV, int maxSumOfVarsInPyramid) {
 		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
 		// put all vars of the matrix into one list and use its length.

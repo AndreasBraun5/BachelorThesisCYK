@@ -10,14 +10,17 @@ import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
+import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.parser.CYK;
+import com.github.andreasbraun5.thesis.util.Util;
 
 /**
  * Created by Andreas Braun on 11.02.2017.
  * https://github.com/AndreasBraun5/
  */
+// TODO: Is it really Top Down?
 public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDiceRoll<GrammarGeneratorSettingsDiceRoll> {
 
 	public GrammarGeneratorDiceRollTopDownMartens(
@@ -94,6 +97,7 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 						}
 						// Each time something is changed recalculate the setVAdvanced. The entire set is recalculated.
 						setVAdvanced = CYK.calculateSetVAdvanced( grammarWrapper.getGrammar(), word );
+						// TODO: Show Wim's algorithm works here
 						/*
 						Set<Variable>[][] setVSimple = Util.getVarsFromSetDoubleArray( setVAdvanced );
 						System.out.print( grammarWrapper.getGrammar() );

@@ -49,7 +49,7 @@ public class SuccessRates {
 	public String toString() {
 		return "\nSuccessRates{" +
 
-				"\nSUCCESSRATEOVERVIEW:" +
+				"\nSUCCESSRATEOVERVIEW{" +
 				"\n			-->	SUCCESSRATE=" + successRate +
 				"\n			-->	SUCCESSRATEPRODUCIBILITY=" + successRateProducibility +
 				"\n			-->	SUCCESSRATEGRAMMARRESTRICTIONS=" +
@@ -63,6 +63,7 @@ public class SuccessRates {
 				"\n			-->	SUCCESSRATEPRODUCIBILITY=" + successRateProducibility +
 				"\n		trueProducibilityCount=" + trueProducibilityCount +
 				"\n		falseProducibilityCount=" + falseProducibilityCount +
+				"\n}" +
 				successRatesGrammarRestrictions.toString() +
 				successRatesExamConstraints.toString() +
 				"\n}";

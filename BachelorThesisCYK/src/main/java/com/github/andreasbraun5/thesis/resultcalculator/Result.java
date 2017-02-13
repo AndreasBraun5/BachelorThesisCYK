@@ -44,7 +44,7 @@ public class Result {
 		long minutes = TimeUnit.MILLISECONDS.toMinutes( totalTime );
 		long tempTime = totalTime - minutes * 60 * 1000;
 		long seconds = TimeUnit.MILLISECONDS.toSeconds( tempTime );
-		return "\n\nResult{" +
+		return "Result{" +
 				"\n		countGeneratedGrammars= " + countGeneratedGrammarsPerWord * countDifferentWords +
 				"\n		countGeneratedGrammarsPerWord= " + countGeneratedGrammarsPerWord +
 				"\n		countDifferentWords= " + countDifferentWords +

@@ -6,23 +6,28 @@ Algorithm descriptions here.
 \noindent RightHandSideElements (rhse) are terminals like "a, b, ..." and \\
 compound variables like "AB, AC, ...".
 
-\noindent LeftHandSideElements (lhse) are variables like "A, B, ...".
+\noindent LeftHandSideElements (lhse) are variables like "A, B, ...". \\
+
+\noindent setVAdvanced = Set<VariableKWrapper>[][] setV \\
+\noindent setVSimple = Set<Variable>[][] setV
 
 \lstset{language=java}
 \begin{lstlisting}[frame=htrbl, caption={distributeDiceRollRightHandSideElements}, 
 label={lst:distributeDiceRollRightHandSideElements}]
 Algorithm: distributeDiceRollRightHandSideElements
-Input: grammar, setRhse, minCount, maxCount, listVariables;
+Input: grammar, setRhse, minCount, maxCount, listVars;
 Output: grammar;
 
-for(RightHandSideElement rhse : setRightHandSideElements){
+for(RightHandSideElement rhse : setRhse){
 	// countWillBeAdded is between [minCount, maxCount]. 
 	countWillBeAdded = diceRoll();
-	while(listVariables.size() > countWillBeAdded){
-		Remove one variable of listVariables via dice roll;
+	while(listVars.size() > countWillBeAdded){
+		Remove one variable of listVars via dice roll;
 	}
-	for(Variable var : listVariables){
-		grammar.addProduction "var --> rhse";
+	for(Variable varLeft : listVars){
+		// An exception is thrown if the production 
+		// already exists.
+		grammar.addProduction "varLeft --> rhse";
 	}
 }
 return grammar;
@@ -53,20 +58,18 @@ description of how the algorithm works is done, as if the setV pyramid
 points downwards (reflection on the diagonal + rotation to the left).
 Regarding one cell, its upper left cell and its upper right cell 
 are looked at. setV[i][j] = down cell. setV[i + 1][j] = upper right cell
-setV[i][j - 1] = upper left cell. With wordSize = 5, the Visited indexes 
+setV[i][j - 1] = upper left cell. With wordSize = 5, the visited indexes 
 are as following: [01->12->23->34; 02->13->24; 03->14; 04;]
 
 Grammar grammar = new Grammar();
-// Distribute the terminals.
+// Part1: Distribute the terminals.
 grammar = distributeDiceRollRightHandSideElements(
 	grammar, settingsTerminals, minCountTerminals, 
-	maxCountTerminals, settingsListVariables
-);
-// Distribute the compound variables.
+	maxCountTerminals, settingsListVariables);
+// Part2: Distribute the compound variables.
 Set<VariableKWrapper>[][] setVAdvanced;
 // Fill the diagonal of the matrix with:
 setVAdvanced = CYK.calculateSetVAdvanced( grammar, word );
-
 for(Cell cellToBeVisited : setVAdvanced){
 	setVariableCompound = calculate all the possible tupels of 
 		({varLeft}, {varRight});
@@ -76,11 +79,212 @@ for(Cell cellToBeVisited : setVAdvanced){
 		// already exists.
 		grammar = distributeDiceRollRightHandSideElements(
 			grammar, varComp, minCountVarComp, 
-			maxCountVarComp, settingsListVariables
-		);
+			maxCountVarComp, settingsListVariables);
 		setVAdvanced = CYK.calculateSetVAdvanced( grammar, word );
 	}
 }
 return grammar;
 \end{lstlisting}
+\pagebreak
+
+\lstset{language=java}
+\begin{lstlisting}[frame=htrbl,caption={GeneratorGrammarDiceRollOnly}, 
+label={lst:GeneratorGrammarDiceRollOnly}]
+Algorithm: GeneratorGrammarDiceRollOnly
+Input: settings;
+Output: grammar;
+Note: A lot of productions are generated, that later on are not needed
+for parsing the specific word.
+
+Grammar grammar = new Grammar();
+// Part1: Distribute the terminals.
+grammar = distributeDiceRollRightHandSideElements(
+	grammar, settingsTerminals, minCountTerminals, 
+	maxCountTerminals, settingsListVariables);
+// Part2: Distribute the compound variables.
+Set<Variables> vars = settings.getVariables();
+Set<VariablesCompound> setVarComp;
+setVarComp = calculate all the possible tupels of ({vars}, {vars});
+grammar = distributeDiceRollRightHandSideElements(
+	grammar, settingsTerminals, minCountVariableCompound, 
+	maxCountVariableCompound, setVarComp);
+return grammar
+\end{lstlisting}
+
+\pagebreak
+
+\lstset{language=java}
+\begin{lstlisting}[frame=htrbl,caption={GeneratorGrammarDiceRollOnlyBias}, 
+label={lst:GeneratorGrammarDiceRollOnlyBias}]
+Algorithm: GeneratorGrammarDiceRollOnlyBias
+Input: settings;
+Output: grammar;
+Note: A lot of productions are generated, that later on are not needed
+for parsing the specific word.
+
+Grammar grammar = new Grammar();
+// Distribute the terminals.
+grammar = distributeDiceRollRightHandSideElementsBias(
+	grammar, settingsTerminals, settingsMinCountTerminals, 
+	settingsMCountTerminals, settingsListVars, settingsFavouritism);
+
+// Distribute the compound variables.
+Set<VariablesCompound> setVarComp;
+setVarComp = calculate all the possible tupels of ({vars}, {vars});
+grammar = distributeDiceRollRightHandSideElementsBias(
+	grammar, varComp, settingsMinCountVars,
+	settingsMaxCountVars, settingsListVars, settingsFavouritism);
+return grammar;
+\end{lstlisting}
+
+\lstset{language=java}
+\begin{lstlisting}[frame=htrbl,caption={distributeDiceRollRightHandSideElementsBias}, 
+label={lst:distributeDiceRollRightHandSideElementsBias}]
+Algorithm: distributeDiceRollRightHandSideElementsBias
+Input: grammar, setRhse, minCount, maxCount, listVars, favouritismList;
+Output: grammar;
+Note: Because of dice rolling anyways and lots of grammars being 
+generated, no rhse is added if the production already exists.
+
+// Calculate the bloated varSet.
+Set<Variable> varsBloated;
+for(Variables varTemp :  settings.getVariables()){
+	tempFavour = randomly pick favouritism[i];
+	varsBloated.add({tempFavour times varTemp});
+	favouritism.remove(tempFavour);
+}
+// Because of dice rolling anyways and lot of grammars being generated, 
+// just no rhse is added if the production already exists.
+grammar = distributeDiceRollRightHandSideElements( grammar,
+	varsBloated, minCount, maxCount, listVars );
+return grammar;
+\end{lstlisting}
+
+\pagebreak
+\noindent Description of the checks here. \\
+\noindent All test of the GrammarValidityChecker class are based on the simple setV matrix. \\
+
+\noindent  isValid = isWordProducible \&\& isExamConstraints \&\& isGrammarRestrictions\\
+
+\noindent  isWordProducible = CYK.algorithmAdvanced()\\
+
+\noindent  isExamConstraints = isRightCellCombinationsForced \&\& isMaxSumOfProductionsCount \&\& isMaxSumOfVarsInPyramidCount \&\& countRightCellCombinationsForced \\
+
+\noindent isGrammarRestrictions = isSizeOfWordCount \&\& isMaxNumberOfVarsPerCellCount \\
+
+\lstset{language=java}
+\begin{lstlisting}[frame=htrbl, caption={checksumOfProductions}, 
+label={lst:checksumOfProductions}]
+Algorithm: checksumOfProductions
+Input: grammar, maxSumOfProduction;
+Output: isSumOfProductions;
+
+return grammar.getProductionsAsList().size() <= maxSumOfProductions; 
+\end{lstlisting}
+
+\lstset{language=java}
+\begin{lstlisting}[frame=htrbl, caption={checkMaxNumberOfVarsPerCell}, 
+label={lst:checkMaxNumberOfVarsPerCell}]
+Algorithm: checkMaxNumberOfVarsPerCell
+Input: setVSimple, maxNumberOfVarsPerCell;
+Output: isMaxNumberOfVarsPerCell;
+Note: Checking for maxNumberOfVarsPerCell <= zero isn't allowed;
+
+int tempMaxNumberOfVarsPerCell = 0;
+int wordLength = tempSetV[0].length;
+for ( int i = 0; i < wordLength; i++ ) {
+	for ( int j = 0; j < wordLength; j++ ) {
+		if ( tempSetV[i][j].size() > numberOfVarsPerCell ) {
+			numberOfVarsPerCell = tempSetV[i][j].size();
+		}
+	}
+}
+return tempMaxNumberOfVarsPerCell <= maxNumberOfVarsPerCell;
+\end{lstlisting}
+
+\pagebreak
+
+\lstset{language=java}
+\begin{lstlisting}[frame=htrbl, caption={checkMaxSumOfVarsInPyramid}, 
+label={lst:checkMaxSumOfVarsInPyramid}]
+Algorithm: checkMaxSumOfVarsInPyramid
+Input: setVSimple, maxSumOfVarsInPyramid;
+Output: isMaxSumOfVarsInPyramid;
+
+// put all vars of the matrix into one list and use its length.
+List<Varaible> allVarsList = new ArrayList<>();
+for ( int i = 0; i < setVSimple.length; i++ ) {
+	for ( int j = 0; j < setVSimple.length; j++ ) {
+		tempVars.addAll( setVSimple[i][j] );
+	}
+}
+return allVarsList.size() <= maxSumOfVarsInPyramid; 
+\end{lstlisting}
+
+\pagebreak
+
+\lstset{language=java}
+\begin{lstlisting}[frame=htrbl, caption={rightCellCombinationsForced}, 
+label={lst:rightCellCombinationsForced}]
+Algorithm: rightCellCombinationsForced
+Input: setVSimple, minCountForced, grammar;
+Output: isForced, countForced, setVSimpleVarsThatForce;
+Note: Keep in mind that the setV matrix is a upper right matrix. But the
+description of how the algorithm works is done, as if the setV pyramid 
+points downwards (reflection on the diagonal + rotation to the left).
+Regarding one cell, its upper left cell and its upper right cell 
+are looked at. setV[i][j] = down cell. setV[i + 1][j] = upper right cell
+setV[i][j - 1] = upper left cell.
+
+int countForced = 0;
+Set<Variable>[][] setVMarkedVarsThatForce;
+for(Cell cell : setVSimple){
+	// Trivial cases that would fulfil the restrictions each time. 
+	Ignore the upper two rows of the pyramid; 
+	isRightCellCombinationForced = true;
+	if(!upperLeftCell.isEmpty() && !upperRightCell.isEmpty()) {
+		break;
+	}
+	setVariableCompound = calculate all the possible tupels of 
+		({varLeft}, {varRight});
+	for(Variable var : cellToBeVisited) {
+		varDownProdList = grammar.getProdList(varDown);
+		for(VariableCompound varComp : setVariableCompound) {
+			for(Production prod : varDownProdList){
+				if(prod.getRhse() == varComp) {
+					isForced = false;
+				}
+			}
+		}
+		if(isRightCellCombinationForced) {
+			rightCellCombinationsForced++;
+			// Cell has index i and j.
+			setVMarkedVarsThatForce[i][j].add(var)
+		}
+	}
+}
+boolean isForced = countForced >= minCountRightCellCombinationsForced;
+return isForced, countForced, setVMarkedVarsThatForce;
+\end{lstlisting}
+
+\pagebreak
+
+\lstset{language=java}
+\begin{lstlisting}[frame=htrbl, caption={Util.removeUselessProductions}, 
+label={lst:Util.removeUselessProductions}]
+Algorithm: Util.removeUselessProductions
+Input: grammar, setVSimple, word
+Output: grammar
+Note: Very similar to the calculateSetVAdvanced algorithm. Additionally
+to storing the k, it is also saved, which production have been used. 
+All productions that haven't been need are removed, from the grammar.
+
+Set<Production> allProductions = grammar.getProductions();
+Set<Production> onlyUsefulProductions;
+onlyUsefulProductions = calculate useful productions with the input of
+	grammar, setVSimple and word ;
+grammar.remove(allProductions);
+return grammar.add(onlyUsefulProductions);
+\end{lstlisting}
+
 \pagebreak
