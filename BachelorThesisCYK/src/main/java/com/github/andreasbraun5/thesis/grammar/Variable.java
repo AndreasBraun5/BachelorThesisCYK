@@ -5,7 +5,7 @@ package com.github.andreasbraun5.thesis.grammar;
  */
 public class Variable implements RightHandSideElement, LeftHandSideElement {
 
-	protected String name;
+	private String name;
 
 	public Variable(String name) {
 		this.name = name;
@@ -38,6 +38,11 @@ public class Variable implements RightHandSideElement, LeftHandSideElement {
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public Variable getVariable() {
+		return this;
 	}
 
 }

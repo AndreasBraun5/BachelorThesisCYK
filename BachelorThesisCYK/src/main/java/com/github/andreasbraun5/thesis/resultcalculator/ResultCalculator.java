@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException;
 import com.github.andreasbraun5.thesis.generator.GrammarGenerator;
@@ -12,8 +11,8 @@ import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
-import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.parser.CYK;
+import com.github.andreasbraun5.thesis.util.SetVMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 
 /**
@@ -55,7 +54,7 @@ public class ResultCalculator {
 		long startTime = System.currentTimeMillis();
 		String tempWord;
 		Grammar grammar;
-		Set<VariableKWrapper>[][] tempSetV;
+		SetVMatrix tempSetV;
 		// allResultSamples.size() not always equals countDifferentWords because of duplicate words.
 		Map<String, List<ResultSample>> allResultSamples = new HashMap<>();
 		for ( int i = 0; i < countDifferentWords; i++ ) {

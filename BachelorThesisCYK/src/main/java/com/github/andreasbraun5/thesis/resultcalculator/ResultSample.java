@@ -1,14 +1,12 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
-import java.util.Set;
-
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesExamConstraints;
 import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesGrammarRestrictions;
-import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.RightCellCombinationsForcedWrapper;
+import com.github.andreasbraun5.thesis.util.SetVMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 
 /**
@@ -19,7 +17,7 @@ public class ResultSample {
 
 	private Grammar grammar;
 	private String word;
-	private Set<VariableKWrapper>[][] setV;
+	private SetVMatrix setVMatrix;
 
 	// This stays here
 	private boolean isValid;
@@ -32,18 +30,18 @@ public class ResultSample {
 	public ResultSample(
 			Grammar grammar,
 			String word,
-			Set<VariableKWrapper>[][] setV,
+			SetVMatrix setVMatrix,
 			GrammarGeneratorSettings grammarGeneratorSettings
 	) {
 		this.grammar = grammar;
 		this.word = word;
-		this.setV = setV;
+		this.setVMatrix = setVMatrix;
 		this.isWordProducible = GrammarValidityChecker.
-				checkProducibilityCYK( setV, grammar, grammarGeneratorSettings.getGrammarProperties() );
+				checkProducibilityCYK( setVMatrix, grammar, grammarGeneratorSettings.getGrammarProperties() );
 
 		GrammarPropertiesExamConstraints tempExamConstraints = grammarGeneratorSettings.getGrammarProperties().
 				grammarPropertiesExamConstraints;
-		this.resultSampleExamConstraints.setMaxVarsPerCell( Util.getMaxVarPerCellForSetV( setV ) );
+		this.resultSampleExamConstraints.setMaxVarsPerCell( Util.getMaxVarPerCellForSetV( setVMatrix ) );
 		this.resultSampleExamConstraints.setMaxSumOfProductionsCount(
 				GrammarValidityChecker.checkSumOfProductions(
 						grammar,
@@ -51,12 +49,12 @@ public class ResultSample {
 				) );
 		this.resultSampleExamConstraints.setMaxSumOfVarsInPyramidCount(
 				GrammarValidityChecker.checkMaxSumOfVarsInPyramid(
-						setV,
+						setVMatrix,
 						tempExamConstraints.getMaxSumOfVarsInPyramid()
 				) );
 		RightCellCombinationsForcedWrapper rightCellCombinationsForcedWrapper =
 				GrammarValidityChecker.checkRightCellCombinationForced(
-						setV,
+						setVMatrix,
 						tempExamConstraints.getMinRightCellCombinationsForced(),
 						grammar
 				);
@@ -76,7 +74,7 @@ public class ResultSample {
 				grammarPropertiesGrammarRestrictions;
 		this.resultSampleGrammarRestrictions.setMaxNumberOfVarsPerCellCount(
 				GrammarValidityChecker.checkMaxNumberOfVarsPerCell(
-						setV,
+						setVMatrix,
 						tempGrammarRestrictions.getMaxNumberOfVarsPerCell()
 				) );
 
@@ -97,11 +95,11 @@ public class ResultSample {
 		return "ResultSample{" +
 				"\ngrammar=" + grammar +
 				"\nword='" + word + '\'' +
-				"\nsetV=" + Util.getSetVVariableAsStringForPrintingAsLowerTriangularMatrix(
-				Util.getVarsFromSetDoubleArray( setV ), "setV" ) +
-				Util.getSetVVariableAsStringForPrintingAsLowerTriangularMatrix(
-						resultSampleExamConstraints.getMarkedRightCellCombinationForced(),
-						"\nmarkedRightCellCombinationForced=" ) +
+				"\nsetV=" + SetVMatrix.buildEmptySetVMatrixWrapper( word.length() )
+				.setSetV( setVMatrix.getSimpleMatrix() )
+				.getStringToPrintAsLowerTriangularMatrix() +
+				"\nmarkedRightCellCombinationForced=" + resultSampleExamConstraints.getMarkedRightCellCombinationForced()
+				.getStringToPrintAsLowerTriangularMatrix() +
 				"\nisValid=" + isValid +
 				"\nisWordProducible=" + isWordProducible +
 				"\nmaxVarsPerCellSetV=" + resultSampleExamConstraints.getMaxVarsPerCell() +
@@ -119,8 +117,8 @@ public class ResultSample {
 		return word;
 	}
 
-	public Set<VariableKWrapper>[][] getSetV() {
-		return setV;
+	public SetVMatrix getSetV() {
+		return setVMatrix;
 	}
 
 	public ResultSampleExamConstraints getResultSampleExamConstraints() {

@@ -9,11 +9,12 @@ import java.util.Set;
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
-import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.parser.CYK;
+import com.github.andreasbraun5.thesis.util.SetVMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 
 /**
@@ -43,18 +44,18 @@ public class GrammarValidityChecker {
 	 * True if the starting symbol is contained at the bottom of the pyramid.
 	 */
 	public static boolean checkProducibilityCYK(
-			Set<VariableKWrapper>[][] setV,
+			SetVMatrix setVMatrix,
 			Grammar grammar,
 			GrammarProperties grammarProperties) {
-		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
+		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix( );
 		return CYK.algorithmAdvanced( tempSetV, grammar, grammarProperties );
 	}
 
 	/**
 	 * True if numberOfVarsPerCell is smaller than maxNumberOfVarsPerCell. Does not ignore cells after the diagonal.
 	 */
-	public static boolean checkMaxNumberOfVarsPerCell(Set<VariableKWrapper>[][] setV, int maxNumberOfVarsPerCell) {
-		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
+	public static boolean checkMaxNumberOfVarsPerCell(SetVMatrix setVMatrix, int maxNumberOfVarsPerCell) {
+		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		if ( maxNumberOfVarsPerCell == 0 ) {
 			throw new GrammarPropertiesRuntimeException( "maxNumberOfVarsPerCell is zero." );
 		}
@@ -97,12 +98,10 @@ public class GrammarValidityChecker {
 	 * Starting from from the upper right index of the matrix setV[0][wL-1] towards the diagonal.
 	 */
 	public static RightCellCombinationsForcedWrapper checkRightCellCombinationForced(
-			Set<VariableKWrapper>[][] setV, int minCountRightCellCombinationsForced, Grammar grammar) {
-
-		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
-
+			SetVMatrix setVMatrix, int minCountRightCellCombinationsForced, Grammar grammar) {
+		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		int wordLength = tempSetV[0].length;
-		Set<Variable>[][] markedRightCellCombinationForced = Util.getInitialisedHashSetArray( wordLength );
+		Set<LeftHandSideElement>[][] markedRightCellCombinationForced = Util.getInitialisedHashSetArray( wordLength );
 
 		Map<Variable, List<Production>> prodMap = grammar.getProductionsMap();
 		int rightCellCombinationsForced = 0;
@@ -161,10 +160,12 @@ public class GrammarValidityChecker {
 				}
 			}
 		}
+		SetVMatrix setVMatrixMarked = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength ).setSetV(
+				markedRightCellCombinationForced );
 		return RightCellCombinationsForcedWrapper.buildRightCellCombinationsForcedWrapper().
 				setCountRightCellCombinationForced( rightCellCombinationsForced ).
 				setRightCellCombinationForced( rightCellCombinationsForced >= minCountRightCellCombinationsForced ).
-				setMarkedRightCellCombinationForced( markedRightCellCombinationForced );
+				setMarkedRightCellCombinationForced( setVMatrixMarked );
 	}
 
 	public static boolean checkSumOfProductions(Grammar grammar, int maxSumOfProductions) {
@@ -176,8 +177,8 @@ public class GrammarValidityChecker {
 	/**
 	 * checkMaxSumOfVarsInPyramid is tested only on the setV simple. Does not ignore cells after the diagonal.
 	 */
-	public static boolean checkMaxSumOfVarsInPyramid(Set<VariableKWrapper>[][] setV, int maxSumOfVarsInPyramid) {
-		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
+	public static boolean checkMaxSumOfVarsInPyramid(SetVMatrix setVMatrix, int maxSumOfVarsInPyramid) {
+		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		// put all vars of the matrix into one list and use its length.
 		List<Variable> tempVars = new ArrayList<>();
 		for ( int i = 0; i < tempSetV.length; i++ ) {

@@ -39,6 +39,8 @@ public class Result {
 		this.SuccessRates = new SuccessRates( allResultSamples );
 	}
 
+
+
 	@Override
 	public String toString() {
 		long minutes = TimeUnit.MILLISECONDS.toMinutes( totalTime );

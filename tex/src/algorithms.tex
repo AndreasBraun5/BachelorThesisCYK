@@ -6,11 +6,78 @@ Algorithm descriptions here.
 \noindent RightHandSideElements (rhse) are terminals like "a, b, ..." and \\
 compound variables like "AB, AC, ...".
 
-\noindent LeftHandSideElements (lhse) are variables like "A, B, ...". \\
+\noindent LeftHandSideElements (lhse) are variables like "A, B, ...".\\
 
-\noindent setVAdvanced = Set<VariableKWrapper>[][] setV \\
-\noindent setVSimple = Set<Variable>[][] setV
+\noindent Analogue to the script: \\
+grammar $G=(V,\Sigma , S, P)$.\\
+$V$ is a finite set of variables. \\
+$\Sigma$ is an alphabet. \\
+$S$ is the starting symbol and $S\ \epsilon\ V$. \\
+$P$ is a finite set of rules: $P\ \subseteq\ V \times\ (V \cup\ \Sigma)^{*}$. \\ 
+$LHSE$ is finite set of left hand side elements: $LHSE = V$.\\
+$RHSE$ is finite set of right hand side elements: $RHSE = (V \cup\ \Sigma)^{*}$.\\
+So $P$ finite set of rules: $P\ \subseteq\ LHSE \times\ RHSE$. \\
+Multisets allow duplicate elements. Notation of a multiset is done via the index b: $multiset_b$\\
+pyramid is a data structure where $cell_{i,j} = \{v\ |\ v\ \epsilon\ V\}$. If initialised for each $cell_{i,j}$ holds $cell_{i,j} = \emptyset $, which is named $empty\ pyramid$. $cell_{i+1,j} = cell\ down;$ $cell_{i,j} = upper\ left\ cell;\ cell_{i+1,j+1} = upper\ right\ cell;  $
 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{abb/DataStructurePyramid}
+\end{figure}
+
+
+ 
+ \frame{
+ 	\begin{algorithm}[H] %or another one check
+ 		\caption{GeneratorGrammarDiceRollTopDownMartens}
+ 		\label{GeneratorGrammarDiceRollTopDownMartens}
+ 		\SetAlgoLined
+ 		\KwIn{ $word\ \epsilon\ \Sigma^{*},\ V,\ \Sigma,\ S,\ P = \emptyset,\ minCount\Sigma,\ maxCount\Sigma,\ $ $ minCountVarComp,\ maxCountVarComp $ }
+ 		\KwOut{$G$}
+ 		
+ 		$G=(V,\Sigma , S, P)$\;
+ 		$G = distributeDiceRollRhse(G,\ \Sigma,\ minCount\Sigma,\ maxCount\Sigma ) $\;
+ 		$pyramid = CYK.calculatePyramid(G, word)$\;
+ 		\ForEach{$cell_{i+1,j}\ in\ pyramid\ \wedge\ i>0$}{
+ 			$varComp = \{XY\ |\ X\ \epsilon\ cell_{i,j}\ \wedge\ Y\ \epsilon\ cell_{i+1,j+1} \}$\;
+ 			\ForEach{vc in varComp}{
+ 				\While{$cell_{wordLength+1,0} = \emptyset$}{
+ 					$distributeDiceRollRhse(G,\ vc,\ minCountVarComp,\ $ $maxCountVarComp ) $\;
+ 					$pyramid = CYK.calculatePyramid(G, word)$\;	
+ 				}
+ 			}
+ 		}
+ 		\Return $G$\;
+ 		\footnotetext{Line 4: Fills the i=0 row of the pyramid.
+ 		}
+ 	\end{algorithm}
+ }
+\\
+\\
+
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{distributeDiceRollRhse}
+		\label{distributeDiceRollRhse}
+		\SetAlgoLined
+		\KwIn{ $G,\ rhse \subseteq\ RHSE,\ 0\leq minCount\leq maxCount\leq \mid G.V\mid$}
+		\KwOut{$G$}
+		\ForEach {rhse}{
+			$countAddTo$ = dice roll a number $\epsilon\ [minCount, maxCount]$\;
+			$varsToAddTo = \{ lhse \mid lhse\ \epsilon\ LHSE\ \wedge\  |varsToAddTo|=\ $ $=countAddTo\ \wedge\ lhse's\ picked\ via\ dice\ roll    \}$\;
+			\ForEach{var in varsToAddTo}{
+				$G.P = G.P\ \cup\ \{ "var\longrightarrow rhse" \} $\;	
+			}
+		}
+		\Return $G$;
+	\end{algorithm}
+}
+
+ \pagebreak 
+ Check right cell combination forced.
+ \pagebreak
+ 
 \lstset{language=java}
 \begin{lstlisting}[frame=htrbl, caption={distributeDiceRollRightHandSideElements}, 
 label={lst:distributeDiceRollRightHandSideElements}]
@@ -32,6 +99,45 @@ for(RightHandSideElement rhse : setRhse){
 }
 return grammar;
 \end{lstlisting}
+
+
+\lstset{}
+\begin{lstlisting}[frame=htrbl, caption={distributeDiceRollRightHandSideElementsShort}, 
+label={lst:distributeDiceRollRightHandSideElementsShort}]
+Algorithm: distributeDiceRollRightHandSideElements
+Input: grammar G, setRhse, minCount, maxCount, setGrammarVars;
+Output: grammar;
+
+foreach rhse in setRhse { 
+	countWillBeAdded = dice roll a number within [minCount, maxCount];
+	setVarsToAddRhse = {}dice roll countWillbeAdded to times vars from 	
+		setGrammarVars that get the rhse added to;
+	foreach var in setVarsToAddRhse {
+		add production "var --> rhse" to grammar;
+	}
+}
+return grammar;
+\end{lstlisting}
+
+\frame{
+\begin{algorithm}[H] %or another one check
+	\caption{distributeDiceRollRhse}
+	\label{distributeDiceRollRhse}
+	\SetAlgoLined
+	\KwIn{ $G,\ rhse \subseteq\ RHSE,\ 0\leq minCount\leq maxCount\leq \mid G.V\mid$}
+	\KwOut{$G$}
+	\ForEach {rhse}{
+		$countAddTo$ = dice roll a number $\epsilon\ [minCount, maxCount]$\;
+		$varsToAddTo = \{ lhse \mid lhse\ \epsilon\ LHSE\ \wedge\  |varsToAddTo|=\ $ $=countAddTo\ \wedge\ lhse's\ picked\ via\ dice\ roll    \}$\;
+		\ForEach{var in varsToAddTo}{
+			$G.P = G.P\ \cup\ \{ "var\longrightarrow rhse" \} $\;	
+		}
+	}
+\Return $G$;
+\end{algorithm}
+}
+
+\pagebreak
 
 \lstset{language=java}
 \begin{lstlisting}[frame=htrbl, caption={CYK.calculateSetVAdvanced}, 
@@ -84,7 +190,35 @@ for(Cell cellToBeVisited : setVAdvanced){
 	}
 }
 return grammar;
+// Forgot the while cell not empty do this from line 21 to line 33;
 \end{lstlisting}
+
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{GeneratorGrammarDiceRollTopDownMartens}
+		\label{GeneratorGrammarDiceRollTopDownMartens}
+		\SetAlgoLined
+		\KwIn{ $word\ \epsilon\ \Sigma^{*},\ V,\ \Sigma,\ S,\ P = \emptyset,\ minCount\Sigma,\ maxCount\Sigma,\ $ $ minCountVarComp,\ maxCountVarComp $ }
+		\KwOut{$G$}
+		
+		$G=(V,\Sigma , S, P)$\;
+		$G = distributeDiceRollRhse(G,\ \Sigma,\ minCount\Sigma,\ maxCount\Sigma ) $\;
+		$pyramid = CYK.calculatePyramid(G, word)$\;
+		\ForEach{$cell_{i+1,j}\ in\ pyramid\ \wedge\ i>0$}{
+			$varComp = \{XY\ |\ X\ \epsilon\ cell_{i,j}\ \wedge\ Y\ \epsilon\ cell_{i+1,j+1} \}$\;
+			\ForEach{vc in varComp}{
+				\While{$cell_{wordLength+1,0} = \emptyset$}{
+				$distributeDiceRollRhse(G,\ vc,\ minCountVarComp,\ $ $maxCountVarComp ) $\;
+				$pyramid = CYK.calculatePyramid(G, word)$\;	
+				}
+			}
+		}
+		\Return $G$\;
+		\footnotetext{Line 4: Fills the i=0 row of the pyramid.
+	}
+	\end{algorithm}
+}
+
 \pagebreak
 
 \lstset{language=java}
@@ -137,6 +271,8 @@ grammar = distributeDiceRollRightHandSideElementsBias(
 return grammar;
 \end{lstlisting}
 
+\pagebreak
+
 \lstset{language=java}
 \begin{lstlisting}[frame=htrbl,caption={distributeDiceRollRightHandSideElementsBias}, 
 label={lst:distributeDiceRollRightHandSideElementsBias}]
@@ -147,7 +283,7 @@ Note: Because of dice rolling anyways and lots of grammars being
 generated, no rhse is added if the production already exists.
 
 // Calculate the bloated varSet.
-Set<Variable> varsBloated;
+List<Variable> varsBloated;
 for(Variables varTemp :  settings.getVariables()){
 	tempFavour = randomly pick favouritism[i];
 	varsBloated.add({tempFavour times varTemp});
@@ -159,6 +295,28 @@ grammar = distributeDiceRollRightHandSideElements( grammar,
 	varsBloated, minCount, maxCount, listVars );
 return grammar;
 \end{lstlisting}
+
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{distributeDiceRollRightHandSideElementsBias}
+		\label{distributeDiceRollRightHandSideElementsBias}
+		\SetAlgoLined
+		\KwIn{ $G,\ rhse \subseteq\ RHSE,\ 0\leq minCount\leq maxCount\leq\ \mid G.V\mid,\ favouritism = \{x\ |\ x\ \epsilon\ \mathrm{N}\ \wedge\ |favouritism| = |G.V| \}$}
+		\KwOut{$G$}
+		
+		$favour = \{(v,\ f )\ |\ v\ \epsilon\ V \wedge\ f\ \epsilon\ favouritism\  \wedge\ tupel\ are\ created\ via\ dice\ roll \}$\;
+		$varsBloated_b = \emptyset $\;
+		\ForEach{fav in favour}{
+			$varsBloated_b = varsBloated_b\ \biguplus\ \{ v^{f} \}$\;
+		}
+		\Return $distributeDiceRollRhse(
+		G ,\ MISTAKEHEREvarsBloated_b,\ minCount,\ maxCount\ )$\;
+		
+		Still working on. One more Pprameter needed for distributeDiceRollRighthandSideElement. Parameter V that defines the variables the rhse are added to. OR make this algorithm independent.
+		\footnotetext{Line 6: Note that $varsBloated_b$ is a multiset, but should actually be a set. Exceptions causing a duplicate production to
+		the grammar are not relevant because G.P is a set. }
+	\end{algorithm}
+}
 
 \pagebreak
 \noindent Description of the checks here. \\
@@ -182,6 +340,7 @@ Output: isSumOfProductions;
 return grammar.getProductionsAsList().size() <= maxSumOfProductions; 
 \end{lstlisting}
 
+\pagebreak
 \lstset{language=java}
 \begin{lstlisting}[frame=htrbl, caption={checkMaxNumberOfVarsPerCell}, 
 label={lst:checkMaxNumberOfVarsPerCell}]
@@ -266,6 +425,46 @@ for(Cell cell : setVSimple){
 boolean isForced = countForced >= minCountRightCellCombinationsForced;
 return isForced, countForced, setVMarkedVarsThatForce;
 \end{lstlisting}
+
+\pagebreak
+
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{checkRightCellCombinationForced}
+		\label{checkRightCellCombinationForced}
+		\SetAlgoLined
+		\KwIn{$ pyramid,\ G,\ minCountForced $ }
+		\KwOut{$G$}
+		$countForced = 0$\;
+		$isForced = true$\;
+		$varsThatForce = empty\ pyramid$\;
+		\ForEach{$cell_{i+1,j}\ in\ pyramid\ \wedge\ i>1 $}{
+			$varComp = \{XY\ |\ X\ \epsilon\ cell_{i,j}\ \wedge\ Y\ \epsilon\ cell_{i+1,j+1} \}$\;
+			
+			
+			
+			$ $\;
+		}
+		\Return $isForced,\ countForced,\ varsThatForce$\;
+		\footnotetext{Line 3: $i>1 \rightarrow$ the upper two rows aren't included, because they would produce trivial cases that fulfil the restriction always. 
+		}
+	\end{algorithm}
+}
+\\
+\\
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{checkRightCellCombination}
+		\label{checkRightCellCombination}
+		\SetAlgoLined
+		\KwIn{$ cellDown\subseteq V \,\ cellLeft\subseteq V,\ cellRight\subseteq V,\ G.P $ }
+		\KwOut{$isForced,\ varsThatForce\subseteq V$}
+		$isForced = true$\;
+		$varsThatForce = \emptyset$\;
+		$varComp = \{XY\ |\ X\ \epsilon\ cell_{i,j}\ \wedge\ Y\ \epsilon\ cell_{i+1,j+1} \}$\;
+		\Return $isForced,\ varsThatForce$\;
+	\end{algorithm}
+}
 
 \pagebreak
 

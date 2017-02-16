@@ -1,8 +1,6 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
-import java.util.Set;
-
-import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.util.SetVMatrix;
 
 /**
  * Created by Andreas Braun on 09.02.2017.
@@ -16,7 +14,7 @@ public class ResultSampleExamConstraints {
 	private boolean isMaxSumOfVarsInPyramidCount;
 	private int maxVarsPerCell;
 	private int countRightCellCombinationsForced;
-	private Set<Variable>[][] markedRightCellCombinationForced;
+	private SetVMatrix markedRightCellCombinationForced;
 
 
 	public static ResultSampleExamConstraints buildResultSampleExamConstraints() {
@@ -77,11 +75,11 @@ public class ResultSampleExamConstraints {
 		return this;
 	}
 
-	public Set<Variable>[][] getMarkedRightCellCombinationForced() {
+	public SetVMatrix getMarkedRightCellCombinationForced() {
 		return markedRightCellCombinationForced;
 	}
 
-	public ResultSampleExamConstraints setMarkedRightCellCombinationForced(Set<Variable>[][] markedRightCellCombinationForced) {
+	public ResultSampleExamConstraints setMarkedRightCellCombinationForced(SetVMatrix markedRightCellCombinationForced) {
 		this.markedRightCellCombinationForced = markedRightCellCombinationForced;
 		return this;
 	}

@@ -1,18 +1,21 @@
 package com.github.andreasbraun5.thesis.grammar;
 
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.RightCellCombinationsForcedWrapper;
+
 /**
  * Created by Andreas Braun on 24.01.2017.
  * https://github.com/AndreasBraun5/
  * The VariableKWrapper class is need for the calculation of the setV for the advancedCYK algorithm. The index k of the
  * loop is additionally stored to the Variable.
  */
-public class VariableKWrapper extends Variable {
+public class VariableKWrapper implements LeftHandSideElement, RightHandSideElement {
 
+	private String name;
 	private Variable variable;
 	private int k;
 
 	public VariableKWrapper(Variable variable, int k) {
-		super(variable.toString() + k);
+		this.name = variable.toString() +  k;
 		this.variable = variable;
 		this.k = k;
 	}

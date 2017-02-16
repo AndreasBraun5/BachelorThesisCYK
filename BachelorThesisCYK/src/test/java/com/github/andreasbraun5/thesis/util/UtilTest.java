@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -50,7 +51,8 @@ public class UtilTest {
         String word = "01110100";
 		// @formatter:on
 		int wordLength = word.length();
-		Set<VariableKWrapper>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+		Set<LeftHandSideElement>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+		SetVMatrix setVMatrix = SetVMatrix.buildEmptySetVMatrixWrapper( setVTemp.length ).setSetV( setVTemp );
 
 		//reconstructing example matrix from scriptTI1
 		setVTemp[0][0].add( new VariableKWrapper( new Variable( "A" ), 1 ) );
@@ -113,11 +115,12 @@ public class UtilTest {
 		setVTemp[7][7].add( new VariableKWrapper( new Variable( "A" ), 8 ) );
 		setVTemp[7][7].add( new VariableKWrapper( new Variable( "N" ), 8 ) );
 		System.out.println( grammar );
-		System.out.println(word);
-		Set<Variable>[][] setVSimple = Util.getVarsFromSetDoubleArray( setVTemp );
-		System.out.println( Util.getSetVVariableAsStringForPrintingAsLowerTriangularMatrix( setVSimple, "setV" ) );
-		System.out.println("Useless productions are" + useless1 + useless2 + "\n");
-		Util.removeUselessProductions( grammar, setVTemp, Util.stringToTerminalList( word ) );
+		System.out.println( word );
+		Set<Variable>[][] setVSimple = setVMatrix.getSimpleMatrix();
+		SetVMatrix setVSimpleWrapper = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength ).setSetV( setVSimple );
+		System.out.println( setVSimpleWrapper.getStringToPrintAsLowerTriangularMatrix() );
+		System.out.println( "Useless productions are" + useless1 + useless2 + "\n" );
+		Util.removeUselessProductions( grammar, setVMatrix, Util.stringToTerminalList( word ) );
 		System.out.println( grammar );
 		Assert.assertTrue(
 				"There should be only 15 productions left.",

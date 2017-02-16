@@ -13,6 +13,7 @@ import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
+import com.github.andreasbraun5.thesis.util.SetVMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 
 /**
@@ -33,9 +34,10 @@ public class CYK {
 	 */
 	// Think about deleting this.
 	public static boolean algorithmSimple(Grammar grammar, List<Terminal> word) {
-		Set<VariableKWrapper>[][] setV = calculateSetVAdvanced( grammar, word );
+		SetVMatrix setVMatrix = calculateSetVAdvanced( grammar, word );
 		int wordLength = word.size();
-		return Util.getVarsFromSet( setV[0][wordLength - 1] ).contains( grammar.getVariableStart() );
+		return Util.varKSetToVarSet( setVMatrix.getSetV()[0][wordLength - 1] )
+				.contains( grammar.getVariableStart() );
 	}
 
 	public static boolean algorithmSimple(
@@ -47,12 +49,13 @@ public class CYK {
 	}
 
 	public static boolean algorithmAdvanced(Grammar grammar, List<Terminal> word) {
-		Set<VariableKWrapper>[][] setV = calculateSetVAdvanced( grammar, word );
+		SetVMatrix setVMatrix = calculateSetVAdvanced( grammar, word );
 
 		int wordLength = word.size();
-		return Util.getVarsFromSet( setV[0][wordLength - 1] ).contains( grammar.getVariableStart() );
+		return Util.varKSetToVarSet( setVMatrix.getSetV()[0][wordLength - 1] )
+				.contains( grammar.getVariableStart() );
 	}
-	/* TODO Martin: Both methods have the same erasure.
+	/* // TODO Martin: Both methods have the same erasure.
 	public static boolean algorithmAdvanced(
 			Set<VariableKWrapper>[][] setV,
 			Grammar grammar,
@@ -100,7 +103,7 @@ public class CYK {
 	 * Calculating the set needed for the cyk algorithm.
 	 */
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	public static Set<VariableKWrapper>[][] calculateSetVAdvanced(Grammar grammar, List<Terminal> word) {
+	public static SetVMatrix calculateSetVAdvanced(Grammar grammar, List<Terminal> word) {
 		int wordLength = word.size();
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
 		Set<VariableKWrapper>[][] setV = Util.getInitialisedHashSetArray( wordLength );
@@ -118,8 +121,8 @@ public class CYK {
 					// If the substring X can be concatenated with the substring Y and substring Z, whereas Y and Z
 					// must be element of its specified subsets, then add the element X to setV[i][i+l]
 					Set<Variable> tempSetX = new HashSet<>();
-					Set<Variable> tempSetY = Util.getVarsFromSet( setV[i][k] );
-					Set<Variable> tempSetZ = Util.getVarsFromSet( setV[k + 1][i + l] );
+					Set<Variable> tempSetY = Util.varKSetToVarSet( setV[i][k] );
+					Set<Variable> tempSetZ = Util.varKSetToVarSet( setV[k + 1][i + l] );
 					Set<VariableCompound> tempSetYZ = new HashSet<>();
 					// All possible concatenations of the variables yz are constructed. And so its substrings, which
 					// they are able to generate
@@ -149,6 +152,6 @@ public class CYK {
 				}
 			}
 		}
-		return setV;
+		return SetVMatrix.buildEmptySetVMatrixWrapper( setV.length ).setSetV( setV );
 	}
 }

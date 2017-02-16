@@ -20,9 +20,13 @@ public class Main {
 	// TODO Note: Maybe use the fraction of CountVars and countTerminals.
 	// TODO Note: Maybe incorporate in rightCellCombinations forced, that more than * different vars are forcing.
 	// TODO Note: all checks are done on the simpleSetV
+	// TODO Note: Tree package Latex: http://tex.stackexchange.com/questions/5447/how-can-i-draw-simple-trees-in-latex
+	// TODO Note: C:\GitHub\BachelorThesis\BachelorThesisCYK>mvn clean install    --> .jar
 
-	// TODO Implement: CYK tree
+	// TODO Implement: CYK tree in Combination with latex picture creation.
 	// TODO: How to show that the Checks and the Algorithms work as expected? With the tests.
+	// TODO: Algorithm Duda Prepare
+	// TODO: Prepare Overview First!!
 
 	// TODO DONE?: Implement Wim's algorithm from meeting 6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// TODO: Show Wim's algorithm works here

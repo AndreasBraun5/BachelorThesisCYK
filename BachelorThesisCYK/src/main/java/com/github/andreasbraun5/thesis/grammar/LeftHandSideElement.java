@@ -7,4 +7,6 @@ public interface LeftHandSideElement {
 
 	String getName();
 
+	Variable getVariable();
+
 }

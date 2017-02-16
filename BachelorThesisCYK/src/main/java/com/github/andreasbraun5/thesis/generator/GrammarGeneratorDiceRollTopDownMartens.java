@@ -10,11 +10,10 @@ import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
-import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.parser.CYK;
-import com.github.andreasbraun5.thesis.util.Util;
+import com.github.andreasbraun5.thesis.util.SetVMatrix;
 
 /**
  * Created by Andreas Braun on 11.02.2017.
@@ -53,7 +52,8 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 		int wordSize = word.size();
 		// The stepII now needs to be done first. Usage of CYK.calculateSetVAdvanced equivalent to CYK.stepIIAdvanced.
 		// But like this stepIIAdvanced can stay private.
-		Set<VariableKWrapper>[][] setVAdvanced = CYK.calculateSetVAdvanced( grammar, word );
+		SetVMatrix setVMatrix = CYK.calculateSetVAdvanced( grammar, word );
+		Set<VariableKWrapper>[][] setVAdvanced = setVMatrix.getSetV();
 		// Keep in mind that the setV matrix is a upper right matrix. But the description of how the algorithm works
 		// is done, as if the setV pyramid points downwards (reflection on the diagonal + rotation to the left).
 		// Regarding one cell, its upper left cell and its upper right cell are looked at.
@@ -96,7 +96,7 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 						catch (GrammarRuntimeException ignored) {
 						}
 						// Each time something is changed recalculate the setVAdvanced. The entire set is recalculated.
-						setVAdvanced = CYK.calculateSetVAdvanced( grammarWrapper.getGrammar(), word );
+						setVAdvanced = CYK.calculateSetVAdvanced( grammarWrapper.getGrammar(), word ).getSetV();
 						// TODO: Show Wim's algorithm works here
 						/*
 						Set<Variable>[][] setVSimple = Util.getVarsFromSetDoubleArray( setVAdvanced );

@@ -6,6 +6,20 @@
 % Grafiken aus PNG Dateien einbinden
 \usepackage{graphicx}
 
+%for psuedo code
+\usepackage[linesnumbered, ruled]{algorithm2e} 
+%
+\newcommand{\nosemic}{\SetEndCharOfAlgoLine{\relax}}% Drop semi-colon ;
+\newcommand{\dosemic}{\SetEndCharOfAlgoLine{\string;}}% Reinstate
+\newcommand{\pushline}{\Indp}% Indent
+\newcommand{\popline}{\Indm\dosemic}% Undent
+%\stackMath
+%\[\def\stacktype{L}\setstackgap{L}{.4ex}
+%x\mathrel{\stackon{\cup}{\scriptscriptstyle+}}y
+%\mathrel{\stackon{\cup}{\scriptscriptstyle-}}z
+%\]
+%
+
 % Eurozeichen einbinden
 \usepackage[right]{eurosym}
 

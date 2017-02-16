@@ -37,7 +37,7 @@ public abstract class Util {
 	/**
 	 *
 	 */
-	public static <T extends LeftHandSideElement> Set<T>[][] getInitialisedHashSetArray(int wordLength){
+	public static <T extends LeftHandSideElement> Set<T>[][] getInitialisedHashSetArray(int wordLength) {
 		@SuppressWarnings("unchecked")
 		Set<T>[][] setVTemp = new Set[wordLength][wordLength];
 		for ( int i = 0; i < wordLength; i++ ) {
@@ -52,8 +52,8 @@ public abstract class Util {
 	 * Counting the stored elements in each entry of the setV matrix and looking for the max count.
 	 */
 	// TODO ???: duplicate maxVarPerCell
-	public static int getMaxVarPerCellForSetV(Set<VariableKWrapper>[][] setV) {
-		Set<Variable>[][] tempSetV = Util.getVarsFromSetDoubleArray( setV );
+	public static int getMaxVarPerCellForSetV(SetVMatrix setVMatrix) {
+		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		int numberOfVarsPerCell = 0;
 		int temp = tempSetV.length;
 		for ( int i = 0; i < temp; i++ ) {
@@ -89,9 +89,10 @@ public abstract class Util {
 	// Its structure is very similar to stepIIAdvanced and calculateSetVAdvanced.
 	public static Grammar removeUselessProductions(
 			Grammar grammar,
-			Set<VariableKWrapper>[][] setV,
+			SetVMatrix setVMatrix,
 			List<Terminal> word) {
-		int wordLength = setV.length;
+		Set<LeftHandSideElement>[][] setV = setVMatrix.getSetV();
+		int wordLength = setVMatrix.getSetV().length;
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
 		Set<Production> onlyUsefulProductions = new HashSet<>();
 		// Similar to stepIIAdvanced
@@ -125,8 +126,8 @@ public abstract class Util {
 					// If the substring X can be concatenated with the substring Y and substring Z, whereas Y and Z
 					// must be element of its specified subsets, then add the element X to setV[i][i+l]
 					Set<Variable> tempSetX = new HashSet<>();
-					Set<Variable> tempSetY = Util.getVarsFromSet( setV[i][k] );
-					Set<Variable> tempSetZ = Util.getVarsFromSet( setV[k + 1][i + l] );
+					Set<Variable> tempSetY = Util.varKSetToVarSet( setV[i][k] );
+					Set<Variable> tempSetZ = Util.varKSetToVarSet( setV[k + 1][i + l] );
 					Set<VariableCompound> tempSetYZ = new HashSet<>();
 					// All possible concatenations of the variables yz are constructed. And so its substrings, which
 					// they are able to generate
@@ -165,37 +166,6 @@ public abstract class Util {
 	}
 
 	/**
-	 * Set<VariableKWrapper> --> Set<Variable>
-	 */
-	public static Set<Variable> getVarsFromSet(Set<VariableKWrapper> setVWrapper) {
-		Set<Variable> setVVariable = new HashSet<>();
-		for ( VariableKWrapper variableKWrapper : setVWrapper ) {
-			setVVariable.add( variableKWrapper.getVariable() );
-		}
-		return setVVariable;
-	}
-
-	/**
-	 * Set<VariableKWrapper>[][] --> Set<Variable>[][]
-	 */
-	public static Set<Variable>[][] getVarsFromSetDoubleArray(Set<VariableKWrapper>[][] setVWrapper) {
-		int length = setVWrapper.length;
-		@SuppressWarnings("unchecked")
-		Set<Variable>[][] setVVariable = new Set[length][length];
-		for ( int i = 0; i < length; i++ ) {
-			for ( int j = 0; j < length; j++ ) {
-				setVVariable[i][j] = new HashSet<>(); // this generates a set with size = 0
-			}
-		}
-		for ( int i = 0; i < length; i++ ) {
-			for ( int j = 0; j < length; j++ ) {
-				setVVariable[i][j] = getVarsFromSet( setVWrapper[i][j] );
-			}
-		}
-		return setVVariable;
-	}
-
-	/**
 	 * Converting a String word into a List<Terminal> word.
 	 */
 	public static List<Terminal> stringToTerminalList(String word) {
@@ -206,91 +176,15 @@ public abstract class Util {
 		return wordAsTerminalList;
 	}
 
-
 	/**
-	 * Method to get the setV as a String for printing purposes.
-	 * The setV pyramid points downwards (reflection on the diagonal).
+	 * Set<VariableKWrapper> --> Set<Variable>
 	 */
-	@SuppressWarnings("Duplicates")
-	public static String getSetVVariableKAsStringForPrintingAsLowerTriangularMatrix(
-			Set<VariableKWrapper>[][] setV,
-			String setName) {
-		StringBuilder stringBuilder = new StringBuilder( setName ).append( "\n" );
-		int wordLength = setV.length;
-		int maxLen = 0;
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				maxLen = Math.max( maxLen, setV[j][i].toString().length() );
-			}
+	public static <T extends LeftHandSideElement>  Set<Variable> varKSetToVarSet (Set<T> varKWrapper) {
+		Set<Variable> setVVariable = new HashSet<>();
+		for ( LeftHandSideElement variableKWrapper : varKWrapper ) {
+			setVVariable.add( variableKWrapper.getVariable() );
 		}
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				stringBuilder.append( uniformStringMaker( setV[j][i].toString(), maxLen ) );
-			}
-			stringBuilder.append( "\n" );
-		}
-		return stringBuilder.toString();
-	}
-
-	/**
-	 * Method to get the setV as a String for printing purposes.
-	 * The setV pyramid points downwards (reflection on the diagonal).
-	 */
-	@SuppressWarnings("Duplicates")
-	public static String getSetVVariableAsStringForPrintingAsLowerTriangularMatrix(
-			Set<Variable>[][] setV,
-			String setName) {
-		StringBuilder stringBuilder = new StringBuilder( setName ).append( "\n" );
-		int wordLength = setV.length;
-		int maxLen = 0;
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				maxLen = Math.max( maxLen, setV[j][i].toString().length() );
-			}
-		}
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				stringBuilder.append( uniformStringMaker( setV[j][i].toString(), maxLen ) );
-			}
-			stringBuilder.append( "\n" );
-		}
-		return stringBuilder.toString();
-	}
-
-	/**
-	 * Method to get the setV as a String for printing purposes.
-	 */
-	@SuppressWarnings("Duplicates")
-	public static String getSetVVariableAsStringForPrintingAsUpperTriangularMatrix(
-			Set<Variable>[][] setV,
-			String setName) {
-		StringBuilder stringBuilder = new StringBuilder( setName ).append( "\n" );
-		int wordLength = setV.length;
-		int maxLen = 0;
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				maxLen = Math.max( maxLen, setV[i][j].toString().length() );
-			}
-		}
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				stringBuilder.append( uniformStringMaker( setV[i][j].toString(), maxLen ) );
-			}
-			stringBuilder.append( "\n" );
-		}
-		return stringBuilder.toString();
-	}
-
-	// TODO Note: Maybe add methods that set<Variable>[][] --> List<Variable> and the same for VariableKWrapper.
-
-	/**
-	 * helper method used by printSetVAsLowerTriangularMatrix
-	 */
-	private static String uniformStringMaker(String str, int length) {
-		StringBuilder builder = new StringBuilder( str );
-		for ( int i = str.length(); i < length; ++i ) {
-			builder.append( " " );
-		}
-		return builder.toString();
+		return setVVariable;
 	}
 }
+
