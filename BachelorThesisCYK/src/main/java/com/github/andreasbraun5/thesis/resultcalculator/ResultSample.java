@@ -5,7 +5,7 @@ import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesExamConstraints;
 import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesGrammarRestrictions;
 import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
+import com.github.andreasbraun5.thesis.grammar.VariableK;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.RightCellCombinationsForcedWrapper;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
@@ -19,7 +19,7 @@ public class ResultSample {
 
 	private Grammar grammar;
 	private String word;
-	private SetVMatrix<VariableKWrapper> setVMatrix;
+	private SetVMatrix<VariableK> setVMatrix;
 
 	// This stays here
 	private boolean isValid;
@@ -32,7 +32,7 @@ public class ResultSample {
 	public ResultSample(
 			Grammar grammar,
 			String word,
-			SetVMatrix<VariableKWrapper> setVMatrix,
+			SetVMatrix<VariableK> setVMatrix,
 			GrammarGeneratorSettings grammarGeneratorSettings
 	) {
 		this.grammar = grammar;
@@ -119,7 +119,7 @@ public class ResultSample {
 		return word;
 	}
 
-	public SetVMatrix<VariableKWrapper> getSetV() {
+	public SetVMatrix<VariableK> getSetV() {
 		return setVMatrix;
 	}
 

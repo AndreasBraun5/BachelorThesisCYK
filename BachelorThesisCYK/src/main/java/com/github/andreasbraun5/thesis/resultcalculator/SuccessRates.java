@@ -9,20 +9,21 @@ import java.util.Map;
  */
 public class SuccessRates {
 
-	private int trueCount;
-	private int falseCount;
-	private double successRate;
+	private int countGeneratedGrammars = 0;
 
-	private int trueProducibilityCount;
-	private int falseProducibilityCount;
-	private double successRateProducibility;
+	private int trueCount = 0;
+	private int falseCount = 0;
+	private double successRate = 0.0;
 
-	private SuccessRatesGrammarRestrictions successRatesGrammarRestrictions;
-	private SuccessRatesExamConstraints successRatesExamConstraints;
+	private int trueProducibilityCount = 0;
+	private int falseProducibilityCount = 0;
+	private double successRateProducibility = 0.0;
 
-	public SuccessRates(Map<String, List<ResultSample>> allResultSamples) {
-		int countGeneratedGrammars = 0;
-		for ( Map.Entry<String, List<ResultSample>> entry : allResultSamples.entrySet() ) {
+	private SuccessRatesGrammarRestrictions successRatesGrammarRestrictions = new SuccessRatesGrammarRestrictions();
+	private SuccessRatesExamConstraints successRatesExamConstraints = new SuccessRatesExamConstraints();
+
+	public SuccessRates updateSuccessRates(Map<String, List<ResultSample>> chunkResultSamples) {
+		for ( Map.Entry<String, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
 				if ( resultSample.isWordProducible() ) {
@@ -41,8 +42,9 @@ public class SuccessRates {
 		}
 		successRate = (double) trueCount / countGeneratedGrammars;
 		successRateProducibility = (double) trueProducibilityCount / countGeneratedGrammars;
-		successRatesExamConstraints = new SuccessRatesExamConstraints( allResultSamples );
-		successRatesGrammarRestrictions = new SuccessRatesGrammarRestrictions( allResultSamples );
+		successRatesExamConstraints.updateSuccessRatesExamConstraints( chunkResultSamples );
+		successRatesGrammarRestrictions.updateSuccessRatesGrammarRestrictions( chunkResultSamples );
+		return this;
 	}
 
 	@Override

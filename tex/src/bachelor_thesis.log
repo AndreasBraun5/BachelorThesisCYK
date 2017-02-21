@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  17 FEB 2017 08:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  21 FEB 2017 12:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1130,7 +1130,7 @@ File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 ] (./1_introduction.tex) [9]
 (./2_overview_of_technologies.tex) [10] (./algorithms.tex
-Underfull \hbox (badness 10000) in paragraph at lines 4--20
+Underfull \hbox (badness 10000) in paragraph at lines 4--21
 
  []
 
@@ -1138,93 +1138,93 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--20
 File: abb/DataStructurePyramid.png Graphic file (type png)
 
 <use abb/DataStructurePyramid.png>
-Package pdftex.def Info: abb/DataStructurePyramid.png used on input line 24.
+Package pdftex.def Info: abb/DataStructurePyramid.png used on input line 25.
 (pdftex.def)             Requested size: 308.71106pt x 238.62596pt.
  [11 <./abb/DataStructurePyramid.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 75.
+(Font)              <10> on input line 76.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 75.
+(Font)              <7> on input line 76.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 75.
+(Font)              <5> on input line 76.
 
-Overfull \hbox (15.66374pt too wide) in paragraph at lines 47--76
+Overfull \hbox (15.66374pt too wide) in paragraph at lines 48--77
 [][]
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 47--76
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 48--77
 [] 
  []
 
 [12]
-Overfull \hbox (15.66374pt too wide) in paragraph at lines 100--102
+Overfull \hbox (15.66374pt too wide) in paragraph at lines 101--103
 [][]
  []
 
 [13]
-Overfull \hbox (15.66374pt too wide) in paragraph at lines 125--126
+Overfull \hbox (15.66374pt too wide) in paragraph at lines 126--127
 [][] 
  []
 
 [14]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 131.
+nput line 132.
 
-Overfull \hbox (2.98679pt too wide) in paragraph at lines 160--161
+Overfull \hbox (2.98679pt too wide) in paragraph at lines 161--162
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (2.98679pt too wide) in paragraph at lines 161--162
+Overfull \hbox (2.98679pt too wide) in paragraph at lines 162--163
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [15]
-Overfull \hbox (2.98679pt too wide) in paragraph at lines 217--218
+Overfull \hbox (2.98679pt too wide) in paragraph at lines 218--219
 [][][][][][][][][][][][][][][][][][][][] 
  []
 
 [16] [17] [18]
-Overfull \hbox (42.76837pt too wide) in paragraph at lines 321--321
+Overfull \hbox (42.76837pt too wide) in paragraph at lines 322--322
 \OML/lmm/m/it/12 distributeDiceRollRhse\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 G;  MI
 STAKEHEREvarsBloated[];  minCount;  maxCount \OT1/lmr/m/n/12 )$\T1/lmr/m/n/12 ;
  
  []
 
 
-Overfull \hbox (15.66374pt too wide) in paragraph at lines 321--322
+Overfull \hbox (15.66374pt too wide) in paragraph at lines 322--323
 [][] 
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 324--326
+Underfull \hbox (badness 10000) in paragraph at lines 325--327
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 327--328
+Underfull \hbox (badness 10000) in paragraph at lines 328--329
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--330
+Underfull \hbox (badness 10000) in paragraph at lines 330--331
 
  []
 
 
-Overfull \hbox (15.3946pt too wide) in paragraph at lines 331--332
+Overfull \hbox (15.3946pt too wide) in paragraph at lines 332--333
 \T1/lmr/m/n/12 isExamConstraints = is-Right-Cell-Com-bi-na-tions-Forced && is-M
 ax-SumOf-Pro-duc-tion-sCount
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--332
+Underfull \hbox (badness 10000) in paragraph at lines 332--333
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 333--334
+Underfull \hbox (badness 10000) in paragraph at lines 334--335
 
  []
 
@@ -1322,7 +1322,7 @@ fb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/201
 type1/public/lm/lmtt10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lm
 tt12.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10
 .pfb>
-Output written on bachelor_thesis.pdf (34 pages, 505042 bytes).
+Output written on bachelor_thesis.pdf (34 pages, 505170 bytes).
 PDF statistics:
  653 PDF objects out of 1000 (max. 8388607)
  586 compressed objects within 6 object streams

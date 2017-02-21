@@ -22,7 +22,7 @@ public class ResultCalculatorTest {
 	public void testGeneratorGrammarDiceRollOnly() {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "ResultCalculatorTest buildResultFromGenerator:" );
+		System.out.println( "ResultCalculatorTest buildResultWithGenerator:" );
 		GrammarProperties grammarProperties = Main.generateGrammarPropertiesForTesting();
 		GrammarGeneratorSettingsDiceRoll generatorGrammarDiceRollSettings =
 				new GrammarGeneratorSettingsDiceRoll( grammarProperties );
@@ -38,7 +38,7 @@ public class ResultCalculatorTest {
 		ResultCalculator resultCalculator1 = ResultCalculator.buildResultCalculator().
 				setCountDifferentWords( countDifferentWords ).
 				setCountOfGrammarsToGeneratePerWord( countGeneratedGrammarsPerWord );
-		Result test1DiceRollResult = resultCalculator1.buildResultFromGenerator(
+		Result test1DiceRollResult = resultCalculator1.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollOnly( generatorGrammarDiceRollSettings )
 		);
 		List<ResultSample> representativeResultSamples = test1DiceRollResult.getRepresentativeResultSamples()

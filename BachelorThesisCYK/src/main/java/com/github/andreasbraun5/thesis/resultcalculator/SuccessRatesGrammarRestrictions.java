@@ -9,21 +9,22 @@ import java.util.Map;
  */
 public class SuccessRatesGrammarRestrictions {
 
-	private int trueGrammarRestrictionsCount;
-	private int falseGrammarRestrictionsCount;
-	private double successRateGrammarRestrictions;
+	private int countGeneratedGrammars = 0;
 
-	private int trueSizeOfWordCount;
-	private int falseSizeOfWordCount;
-	private double successRateSizeOfWord;
+	private int trueGrammarRestrictionsCount = 0;
+	private int falseGrammarRestrictionsCount = 0;
+	private double successRateGrammarRestrictions = 0.0;
 
-	private int trueMaxNumberOfVarsPerCellCount;
-	private int falseMaxNumberOfVarsPerCellCount;
-	private double successRateMaxNumberOfVarsPerCell;
+	private int trueSizeOfWordCount = 0;
+	private int falseSizeOfWordCount = 0;
+	private double successRateSizeOfWord = 0.0;
 
-	public SuccessRatesGrammarRestrictions(Map<String, List<ResultSample>> allResultSamples) {
-		int countGeneratedGrammars = 0;
-		for ( Map.Entry<String, List<ResultSample>> entry : allResultSamples.entrySet() ) {
+	private int trueMaxNumberOfVarsPerCellCount = 0;
+	private int falseMaxNumberOfVarsPerCellCount = 0;
+	private double successRateMaxNumberOfVarsPerCell = 0.0;
+
+	public SuccessRatesGrammarRestrictions updateSuccessRatesGrammarRestrictions(Map<String, List<ResultSample>> chunkResultSamples) {
+		for ( Map.Entry<String, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
 				ResultSampleGrammarRestrictions tempResultSampleGrammarRestrictions =
@@ -53,6 +54,7 @@ public class SuccessRatesGrammarRestrictions {
 			successRateSizeOfWord = (double) trueSizeOfWordCount / countGeneratedGrammars;
 			successRateMaxNumberOfVarsPerCell = (double) trueMaxNumberOfVarsPerCellCount / countGeneratedGrammars;
 		}
+		return this;
 	}
 
 	public int getTrueGrammarRestrictionsCount() {

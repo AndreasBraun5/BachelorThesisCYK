@@ -6,7 +6,7 @@ import java.util.Set;
 import com.github.andreasbraun5.thesis.exception.SetVMatrixRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
+import com.github.andreasbraun5.thesis.grammar.VariableK;
 
 /**
  * Created by Andreas Braun on 14.02.2017.
@@ -66,7 +66,7 @@ public class SetVMatrix<T extends LeftHandSideElement> {
 		StringBuilder stringBuilder = new StringBuilder( name ).append( "\n" );
 		int wordLength = setV.length;
 		int maxLen = 0;
-		if ( setV[0][0] instanceof VariableKWrapper || setV[0][0] instanceof Variable ) {
+		if ( setV[0][0] instanceof VariableK || setV[0][0] instanceof Variable ) {
 			for ( int i = 0; i < wordLength; i++ ) {
 				for ( int j = 0; j < wordLength; j++ ) {
 					maxLen = Math.max( maxLen, setV[i][j].toString().length() );
@@ -106,7 +106,7 @@ public class SetVMatrix<T extends LeftHandSideElement> {
 	}
 
 	/**
-	 * Set<VariableKWrapper>[][] --> Set<Variable>[][]
+	 * Set<VariableK>[][] --> Set<Variable>[][]
 	 */
 	public Set<Variable>[][] getSimpleMatrix() {
 		int length = setV.length;

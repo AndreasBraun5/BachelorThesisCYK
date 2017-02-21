@@ -17,7 +17,7 @@ import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
-import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
+import com.github.andreasbraun5.thesis.grammar.VariableK;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 
 /**
@@ -52,7 +52,7 @@ public abstract class Util {
 	 * Counting the stored elements in each entry of the setV matrix and looking for the max count.
 	 */
 	// TODO ???: duplicate maxVarPerCell
-	public static int getMaxVarPerCellForSetV(SetVMatrix<VariableKWrapper> setVMatrix) {
+	public static int getMaxVarPerCellForSetV(SetVMatrix<VariableK> setVMatrix) {
 		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		int numberOfVarsPerCell = 0;
 		int temp = tempSetV.length;
@@ -89,9 +89,9 @@ public abstract class Util {
 	// Its structure is very similar to stepIIAdvanced and calculateSetVAdvanced.
 	public static Grammar removeUselessProductions(
 			Grammar grammar,
-			SetVMatrix<VariableKWrapper> setVMatrix,
+			SetVMatrix<VariableK> setVMatrix,
 			List<Terminal> word) {
-		Set<VariableKWrapper>[][] setV = setVMatrix.getSetV();
+		Set<VariableK>[][] setV = setVMatrix.getSetV();
 		int wordLength = setVMatrix.getSetV().length;
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
 		Set<Production> onlyUsefulProductions = new HashSet<>();
@@ -102,7 +102,7 @@ public abstract class Util {
 			// Get all productions that have the same leftHandSide variable. This is done for all unique variables.
 			// So all production in general are taken into account.
 			for ( Map.Entry<Variable, List<Production>> entry : grammar.getProductionsMap().entrySet() ) {
-				VariableKWrapper var = new VariableKWrapper( entry.getKey(), i );
+				VariableK var = new VariableK( entry.getKey(), i );
 				List<Production> prods = entry.getValue();
 				// Check if there is one rightHandSideElement that equals the observed terminal.
 				for ( Production prod : prods ) {
@@ -153,7 +153,7 @@ public abstract class Util {
 					}
 					for ( Variable var : tempSetX ) {
 						// ( k + 1) because of index range of k  because of i.
-						setV[i][i + l].add( new VariableKWrapper( var, ( k + 1 ) ) );
+						setV[i][i + l].add( new VariableK( var, ( k + 1 ) ) );
 					}
 				}
 			}
@@ -177,7 +177,7 @@ public abstract class Util {
 	}
 
 	/**
-	 * Set<VariableKWrapper> --> Set<Variable>
+	 * Set<VariableK> --> Set<Variable>
 	 */
 	public static <T extends LeftHandSideElement>  Set<Variable> varKSetToVarSet (Set<T> varKWrapper) {
 		Set<Variable> setVVariable = new HashSet<>();

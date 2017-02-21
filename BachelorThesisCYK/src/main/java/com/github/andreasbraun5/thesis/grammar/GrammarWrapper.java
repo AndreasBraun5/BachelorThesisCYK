@@ -29,7 +29,8 @@ public class GrammarWrapper {
 	}
 
 	public List<Terminal> getWord() {
-		if ( word == null ) { // TODO Note: empty word not possible then if here: || word.size() == 0){
+		// TODO Note: empty word not possible then if here: || word.size() == 0){
+		if ( word == null ) {
 			throw new GrammarWrapperRuntimeException( "GrammarWrapper: Word is not defined." );
 		}
 		return word;

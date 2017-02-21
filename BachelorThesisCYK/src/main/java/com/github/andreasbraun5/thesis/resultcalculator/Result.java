@@ -16,30 +16,37 @@ public class Result {
 	private int countGeneratedGrammarsPerWord;
 	private int countDifferentWords;
 	private GrammarGeneratorSettings grammarGeneratorSettings;
-	private long totalTime;
+	private long totalTime = 0;
 	private String generatorType;
-	private RepresentativeResultSamples RepresentativeResultSamples;
-	private SuccessRates SuccessRates;
+	private RepresentativeResultSamples representativeResultSamples;
+	private SuccessRates successRates = new SuccessRates();
 
-	public Result(
+	public static Result buildResult() {
+		return new Result();
+	}
+
+	public Result initResult(
 			int countGeneratedGrammarsPerWord,
 			int countDifferentWords,
 			GrammarGeneratorSettings grammarGeneratorSettings,
-			long totalTime,
 			String generatorType,
-			Map<String, List<ResultSample>> allResultSamples
-	) {
+			Map<String, List<ResultSample>> chunkResultSamples) {
 		this.countGeneratedGrammarsPerWord = countGeneratedGrammarsPerWord;
 		this.countDifferentWords = countDifferentWords;
 		this.grammarGeneratorSettings = grammarGeneratorSettings;
 		this.generatorType = generatorType;
-		this.totalTime = totalTime;
-
-		RepresentativeResultSamples = new RepresentativeResultSamples( allResultSamples );
-		this.SuccessRates = new SuccessRates( allResultSamples );
+		representativeResultSamples = new RepresentativeResultSamples( chunkResultSamples );
+		this.successRates = successRates.updateSuccessRates( chunkResultSamples );
+		return this;
 	}
 
-
+	public Result addChunk(
+			long chunkTime,
+			Map<String, List<ResultSample>> chunkResultSamples) {
+		this.totalTime += chunkTime;
+		this.successRates = successRates.updateSuccessRates( chunkResultSamples );
+		return this;
+	}
 
 	@Override
 	public String toString() {
@@ -54,7 +61,7 @@ public class Result {
 				"\n		totalTime= " + minutes + "min " + seconds + "sec" +
 				"\n		generatorType= " + this.generatorType +
 				grammarGeneratorSettings +
-				SuccessRates.toString() +
+				successRates.toString() +
 				"\n}";
 	}
 
@@ -71,11 +78,11 @@ public class Result {
 	}
 
 	public RepresentativeResultSamples getRepresentativeResultSamples() {
-		return RepresentativeResultSamples;
+		return representativeResultSamples;
 	}
 
 	public SuccessRates getSuccessRates() {
-		return SuccessRates;
+		return successRates;
 	}
 
 	public GrammarGeneratorSettings getGeneratorGrammarDiceRollSettings() {

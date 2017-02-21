@@ -9,25 +9,26 @@ import java.util.Map;
  */
 public class SuccessRatesExamConstraints {
 
-	private int trueExamConstraints;
-	private int falseExamConstraints;
-	private double successRateExamConstraints;
+	private int countGeneratedGrammars = 0;
 
-	private int trueRightCellCombinationsForcedCount;
-	private int falseRightCellCombinationsForcedCount;
-	private double successRateRightCellCombinationsForced;
+	private int trueExamConstraints = 0;
+	private int falseExamConstraints = 0;
+	private double successRateExamConstraints = 0.0;
 
-	private int trueMaxSumOfProductionsCount;
-	private int falseMaxSumOfProductionsCount;
-	private double successRateMaxSumOfProductions;
+	private int trueRightCellCombinationsForcedCount = 0;
+	private int falseRightCellCombinationsForcedCount = 0;
+	private double successRateRightCellCombinationsForced = 0.0;
 
-	private int trueMaxSumOfVarsInPyramidCount;
-	private int falseMaxSumOfVarsInPyramidCount;
-	private double successRateMaxSumOfVarsInPyramid;
+	private int trueMaxSumOfProductionsCount = 0;
+	private int falseMaxSumOfProductionsCount = 0;
+	private double successRateMaxSumOfProductions = 0.0;
 
-	public SuccessRatesExamConstraints(Map<String, List<ResultSample>> allResultSamples) {
-		int countGeneratedGrammars = 0;
-		for ( Map.Entry<String, List<ResultSample>> entry : allResultSamples.entrySet() ) {
+	private int trueMaxSumOfVarsInPyramidCount = 0;
+	private int falseMaxSumOfVarsInPyramidCount = 0;
+	private double successRateMaxSumOfVarsInPyramid = 0.0;
+
+	public SuccessRatesExamConstraints updateSuccessRatesExamConstraints(Map<String, List<ResultSample>> chunkResultSamples) {
+		for ( Map.Entry<String, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
 				ResultSampleExamConstraints tempResultSampleExamConstraints =
@@ -66,6 +67,7 @@ public class SuccessRatesExamConstraints {
 			successRateMaxSumOfProductions = (double) trueMaxSumOfProductionsCount / countGeneratedGrammars;
 			successRateMaxSumOfVarsInPyramid = (double) trueMaxSumOfVarsInPyramidCount / countGeneratedGrammars;
 		}
+		return this;
 	}
 
 	public int getTrueExamConstraints() {

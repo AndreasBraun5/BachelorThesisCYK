@@ -12,7 +12,7 @@ import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
-import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
+import com.github.andreasbraun5.thesis.grammar.VariableK;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
 
@@ -53,16 +53,16 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 		int wordSize = word.size();
 		// The stepII now needs to be done first. Usage of CYK.calculateSetVAdvanced equivalent to CYK.stepIIAdvanced.
 		// But like this stepIIAdvanced can stay private.
-		SetVMatrix<VariableKWrapper> setVMatrix = CYK.calculateSetVAdvanced( grammar, word );
-		Set<VariableKWrapper>[][] setVAdvanced = setVMatrix.getSetV();
-		// /*
-		SetVMatrix<Variable> steppIIPrint = SetVMatrix.buildEmptySetVMatrixWrapper( wordSize, Variable.class ).setSetV(
+		SetVMatrix<VariableK> setVMatrix = CYK.calculateSetVAdvanced( grammar, word );
+		Set<VariableK>[][] setVAdvanced = setVMatrix.getSetV();
+		 /*
+		SetVMatrix<Variable> stepIIPrint = SetVMatrix.buildEmptySetVMatrixWrapper( wordSize, Variable.class ).setSetV(
 				setVMatrix.getSimpleMatrix() );
 		System.out.print( "\n" + grammarWrapper.getGrammar() );
 		System.out.print( word );
 		System.out.println( "\nStepII:" );
-		System.out.print( steppIIPrint.getStringToPrintAsLowerTriangularMatrix() );
-		// */
+		System.out.print( stepIIPrint.getStringToPrintAsLowerTriangularMatrix() );
+		 */
 		// Keep in mind that the setV matrix is a upper right matrix. But the description of how the algorithm works
 		// is done, as if the setV pyramid points downwards (reflection on the diagonal + rotation to the left).
 		// Regarding one cell, its upper left cell and its upper right cell are looked at.
@@ -79,18 +79,18 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 				if ( setVAdvanced[i][j - 1].size() != 0 && setVAdvanced[i + 1][j].size() != 0 ) {
 					// make all tuples of left and right --> tempVariablesCompound = tuples of type
 					// ({varLeft}, {varRight}) --> all possible compoundVariables
-					for ( VariableKWrapper varLeft : setVAdvanced[i][j - 1] ) {
-						for ( VariableKWrapper varRight : setVAdvanced[i + 1][j] ) {
+					for ( VariableK varLeft : setVAdvanced[i][j - 1] ) {
+						for ( VariableK varRight : setVAdvanced[i + 1][j] ) {
 							tempVarCompSet.add( new VariableCompound(
-									varLeft.getVariable(),
-									varRight.getVariable()
-							) );
+														varLeft.getVariable(),
+														varRight.getVariable()
+												)
+							);
 						}
 					}
-					// TODO Martin: how to prevent forgetting to write grammarWrapper =
-					for ( VariableCompound varcomp : tempVarCompSet ) {
+					for ( VariableCompound varComp : tempVarCompSet ) {
 						Set<VariableCompound> varCompSet = new HashSet<>();
-						varCompSet.add( varcomp );
+						varCompSet.add( varComp );
 						// Because of dice rolling and a large amount of generated grammars, the actually to be added
 						// variable will just be ignored.
 						try {
@@ -105,8 +105,7 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 						catch (GrammarRuntimeException ignored) {
 						}
 						// Each time something is changed recalculate the setVAdvanced. The entire set is recalculated.
-						// TODO: Show Wim's algorithm works here
-						// /*
+						 /*
 						System.out.print( "\n" + grammarWrapper.getGrammar() );
 						System.out.print( word );
 						SetVMatrix<Variable> simpleBefore = SetVMatrix.buildEmptySetVMatrixWrapper(
@@ -116,8 +115,11 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 										   .getSimpleMatrix() );
 						System.out.println( "\nBefore:" );
 						System.out.print( simpleBefore.getStringToPrintAsLowerTriangularMatrix() );
+						 */
+						// Each time something is changed recalculate the setVAdvanced. The entire set is recalculated.
 						setVAdvanced = CYK.calculateSetVAdvanced( grammarWrapper.getGrammar(), word ).getSetV();
 						setVMatrix.setSetV( setVAdvanced );
+						 /*
 						SetVMatrix<Variable> simpleAfter = SetVMatrix.buildEmptySetVMatrixWrapper(
 								wordSize,
 								Variable.class
@@ -125,19 +127,7 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 								.setSetV( setVMatrix.getSimpleMatrix() );
 						System.out.println( "\nAfter:" );
 						System.out.print( simpleAfter.getStringToPrintAsLowerTriangularMatrix() );
-						// */
-						/*
-						Set<Variable>[][] setVSimple = Util.getVarsFromSetDoubleArray( setVAdvanced );
-						System.out.print( grammarWrapper.getGrammar() );
-						System.out.println( Util.getSetVVariableKAsStringForPrintingAsLowerTriangularMatrix(
-								setVAdvanced,
-								"setVKBefore"
-						) );
-						System.out.println( Util.getSetVVariableAsStringForPrintingAsLowerTriangularMatrix(
-								setVSimple,
-								"setVKBefore"
-						) );
-						*/
+						 */
 						int debugInt = 0;
 
 					}

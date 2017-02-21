@@ -25,12 +25,10 @@ public class Main {
 	// TODO Note: C:\GitHub\BachelorThesis\BachelorThesisCYK>mvn clean install    --> .jar
 	//
 	// TODO Implement: CYK tree in Combination with latex picture creation.
-	// TODO: How to show that the Checks and the Algorithms work as expected? With the tests.
-	// TODO: Algorithm Duda Prepare
-	// TODO: Prepare Overview First!!
+	// TODO: Algorithm Duda Prepare, but maybe this isn't wanted
 	// TODO: Wrapper class for examConstraintsResults to store the actual count of productions and the count of vars in the matrix. Output in txt pending.
-	//
 	// TODO: Implement pyramid vs methods: getRight, getLeft, getUpperRight, getUpperLeft, ... methods in SetVMatrix. Possible to check indices. Legacy code still works.
+	// TODO: Don´t create a Result batch wise. Use smaller chunk sizes that are added to the Result, over again.
 	//
 	// TODO DONE?: Implement Wim's algorithm from meeting 6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// TODO: Wim's algorithm output rethink because of too many times not adding a production.
@@ -64,25 +62,27 @@ public class Main {
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
 		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
-		int countGeneratedGrammarsPerWord = 150;
-		int countDifferentWords = 100;
+		int countGeneratedGrammarsPerWord = 1500;
+		int countDifferentWords = 1000;
 		// this boundary is relevant so that the JVM doesn't run out of memory on my computer while calculating one Result.
+		/*
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );
 		}
+		*/
 		ResultCalculator resultCalculator = ResultCalculator.buildResultCalculator().
 				setCountDifferentWords( countDifferentWords ).
 				setCountOfGrammarsToGeneratePerWord( countGeneratedGrammarsPerWord );
 
 		/*GrammarProperties grammarProperties1 = generateGrammarPropertiesForTesting();
 		GrammarGeneratorSettingsDiceRoll settings1 = new GrammarGeneratorSettingsDiceRoll( grammarProperties1 );
-		Result result1 = resultCalculator.buildResultFromGenerator(
+		Result result1 = resultCalculator.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollOnly( settings1 ) );
 
 		GrammarProperties grammarProperties2 = generateGrammarPropertiesForTesting();
 		grammarProperties2.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell( 2 );
 		GrammarGeneratorSettingsDiceRoll settings2 = new GrammarGeneratorSettingsDiceRoll( grammarProperties2 );
-		Result result2 = resultCalculator.buildResultFromGenerator(
+		Result result2 = resultCalculator.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollOnly( settings2 ) );
 
 
@@ -90,7 +90,7 @@ public class Main {
 		GrammarGeneratorSettingsDiceRoll settings3 = new GrammarGeneratorSettingsDiceRoll( grammarProperties3 );
 		settings3.setMaxValueCompoundVariablesAreAddedTo( 2 );
 		settings3.setMaxValueTerminalsAreAddedTo( 2 );
-		Result result3 = resultCalculator.buildResultFromGenerator(
+		Result result3 = resultCalculator.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollOnly( settings3 ) );
 
 		GrammarProperties grammarProperties4 = generateGrammarPropertiesForTesting();
@@ -99,7 +99,7 @@ public class Main {
 		settings4.setMaxValueCompoundVariablesAreAddedTo( 2 );
 		int[] favouritism = { 4, 2, 1, 1 };
 		settings4.setFavouritism( favouritism );
-		Result result4 = resultCalculator.buildResultFromGenerator(
+		Result result4 = resultCalculator.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollOnlyBias( settings4 ) );
 
 		GrammarProperties grammarProperties5 = generateGrammarPropertiesForTesting();
@@ -107,18 +107,9 @@ public class Main {
 		GrammarGeneratorSettingsDiceRoll settings5 = new GrammarGeneratorSettingsDiceRoll( grammarProperties5 );
 		settings5.setMaxValueTerminalsAreAddedTo( 2 );
 		settings5.setMaxValueCompoundVariablesAreAddedTo( 2 );
-		Result result5 = resultCalculator.buildResultFromGenerator(
+		Result result5 = resultCalculator.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollOnly( settings5 ) );
 		*/
-
-		GrammarProperties grammarProperties7 = generateGrammarPropertiesForTesting();
-		GrammarGeneratorSettingsDiceRoll settings7 =
-				new GrammarGeneratorSettingsDiceRoll( grammarProperties7 );
-		settings7.setMaxValueTerminalsAreAddedTo( 1 );
-		settings7.setMinValueTerminalsAreAddedTo( 1 );
-		settings7.setMaxValueCompoundVariablesAreAddedTo( 2 );
-		Result result7 = resultCalculator.buildResultFromGenerator(
-				new GrammarGeneratorDiceRollTopDownMartens( settings7 ) );
 
 		GrammarProperties grammarProperties6 = generateGrammarPropertiesForTesting();
 		GrammarGeneratorSettingsDiceRoll settings6 =
@@ -126,8 +117,18 @@ public class Main {
 		settings6.setMaxValueTerminalsAreAddedTo( 1 );
 		settings6.setMinValueTerminalsAreAddedTo( 1 );
 		settings6.setMaxValueCompoundVariablesAreAddedTo( 2 );
-		Result result6 = resultCalculator.buildResultFromGenerator(
+		Result result6 = resultCalculator.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollOnly( settings6 ) );
+
+		/*
+		GrammarProperties grammarProperties7 = generateGrammarPropertiesForTesting();
+		GrammarGeneratorSettingsDiceRoll settings7 =
+				new GrammarGeneratorSettingsDiceRoll( grammarProperties7 );
+		settings7.setMaxValueTerminalsAreAddedTo( 1 );
+		settings7.setMinValueTerminalsAreAddedTo( 1 );
+		settings7.setMaxValueCompoundVariablesAreAddedTo( 2 );
+		Result result7 = resultCalculator.buildResultWithGenerator(
+				new GrammarGeneratorDiceRollTopDownMartens( settings7 ) );
 
 		GrammarProperties grammarProperties8 = generateGrammarPropertiesForTesting();
 		GrammarGeneratorSettingsDiceRoll settings8 =
@@ -135,7 +136,7 @@ public class Main {
 		settings8.setMaxValueTerminalsAreAddedTo( 2 );
 		settings8.setMinValueTerminalsAreAddedTo( 1 );
 		settings8.setMaxValueCompoundVariablesAreAddedTo( 2 );
-		Result result8 = resultCalculator.buildResultFromGenerator(
+		Result result8 = resultCalculator.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollOnly( settings8 ) );
 
 		GrammarProperties grammarProperties9 = generateGrammarPropertiesForTesting();
@@ -144,7 +145,7 @@ public class Main {
 		settings9.setMaxValueTerminalsAreAddedTo( 2 );
 		settings9.setMinValueTerminalsAreAddedTo( 1 );
 		settings9.setMaxValueCompoundVariablesAreAddedTo( 2 );
-		Result result9 = resultCalculator.buildResultFromGenerator(
+		Result result9 = resultCalculator.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollTopDownMartens( settings9 ) );
 
 		GrammarProperties grammarProperties10 = generateGrammarPropertiesForTesting();
@@ -154,7 +155,7 @@ public class Main {
 		settings10.setMinValueTerminalsAreAddedTo( 1 );
 		settings10.setMaxValueCompoundVariablesAreAddedTo( 2 );
 		settings10.getGrammarProperties().grammarPropertiesExamConstraints.setMinRightCellCombinationsForced( 5 );
-		Result result10 = resultCalculator.buildResultFromGenerator(
+		Result result10 = resultCalculator.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollOnly( settings10 ) );
 
 		GrammarProperties grammarProperties11 = generateGrammarPropertiesForTesting();
@@ -164,7 +165,7 @@ public class Main {
 		settings11.setMinValueTerminalsAreAddedTo( 1 );
 		settings11.setMaxValueCompoundVariablesAreAddedTo( 2 );
 		settings11.getGrammarProperties().grammarPropertiesExamConstraints.setMinRightCellCombinationsForced( 5 );
-		Result result11 = resultCalculator.buildResultFromGenerator(
+		Result result11 = resultCalculator.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollTopDownMartens( settings11 ) );
 		/**
 		 * 	Storing all the results in a txt.
@@ -174,12 +175,12 @@ public class Main {
 						  //result3,
 						  //result4,
 						  //result5,
-						  result6,
-						  result7,
-						  result8,
-						  result9,
-						  result10,
-						  result11
+						  result6
+						  //result7,
+						  //result8,
+						  //result9,
+						  //result10,
+						  //result11
 		);
 	}
 

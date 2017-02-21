@@ -12,7 +12,7 @@ import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
-import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
+import com.github.andreasbraun5.thesis.grammar.VariableK;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 
@@ -57,7 +57,7 @@ public class CYK {
 	}
 	/* // TODO Martin: Both methods have the same erasure.
 	public static boolean algorithmAdvanced(
-			Set<VariableKWrapper>[][] setV,
+			Set<VariableK>[][] setV,
 			Grammar grammar,
 			GrammarProperties grammarProperties) {
 		return Util.getVarsFromSet( setV[0][grammarProperties.sizeOfWord - 1] ).contains( grammar.getVariableStart() );
@@ -76,8 +76,8 @@ public class CYK {
 	 * will be added to setV[i][i]
 	 */
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	private static Set<VariableKWrapper>[][] stepIIAdvanced(
-			Set<VariableKWrapper>[][] setV, List<Terminal> word, Grammar grammar) {
+	private static Set<VariableK>[][] stepIIAdvanced(
+			Set<VariableK>[][] setV, List<Terminal> word, Grammar grammar) {
 		int wordLength = word.size();
 		// TODO Martin: How to prevent writing CYK.stepIIAdvanced instead of setV = CYK.stepIIAdvanced?
 		// Look at each terminal of the word
@@ -86,7 +86,7 @@ public class CYK {
 			// Get all productions that have the same leftHandSide variable. This is done for all unique variables.
 			// So all production in general are taken into account.
 			for ( Map.Entry<Variable, List<Production>> entry : grammar.getProductionsMap().entrySet() ) {
-				VariableKWrapper var = new VariableKWrapper( entry.getKey(), i );
+				VariableK var = new VariableK( entry.getKey(), i );
 				List<Production> prods = entry.getValue();
 				// Check if there is one rightHandSideElement that equals the observed terminal.
 				for ( Production prod : prods ) {
@@ -103,10 +103,10 @@ public class CYK {
 	 * Calculating the set needed for the cyk algorithm.
 	 */
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	public static SetVMatrix<VariableKWrapper> calculateSetVAdvanced(Grammar grammar, List<Terminal> word) {
+	public static SetVMatrix<VariableK> calculateSetVAdvanced(Grammar grammar, List<Terminal> word) {
 		int wordLength = word.size();
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
-		Set<VariableKWrapper>[][] setV = Util.getInitialisedHashSetArray( wordLength );
+		Set<VariableK>[][] setV = Util.getInitialisedHashSetArray( wordLength );
 		// Check whether the terminal is on the right side of the production, then add its left variable to v_ii
 		setV = stepIIAdvanced( setV, word, grammar );
 		// l loop of the described algorithm
@@ -147,11 +147,11 @@ public class CYK {
 					}
 					for ( Variable var : tempSetX ) {
 						// ( k + 1) because of index range of k  because of i.
-						setV[i][i + l].add( new VariableKWrapper( var, ( k + 1 ) ) );
+						setV[i][i + l].add( new VariableK( var, ( k + 1 ) ) );
 					}
 				}
 			}
 		}
-		return SetVMatrix.buildEmptySetVMatrixWrapper( setV.length, VariableKWrapper.class ).setSetV( setV );
+		return SetVMatrix.buildEmptySetVMatrixWrapper( setV.length, VariableK.class ).setSetV( setV );
 	}
 }

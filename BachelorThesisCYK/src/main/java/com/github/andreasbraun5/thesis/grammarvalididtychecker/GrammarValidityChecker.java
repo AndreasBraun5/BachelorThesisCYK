@@ -12,7 +12,7 @@ import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
-import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
+import com.github.andreasbraun5.thesis.grammar.VariableK;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
@@ -32,7 +32,7 @@ public class GrammarValidityChecker {
 	public static boolean checkGrammarRestrictions(
 	 /*
 			GrammarProperties grammarProperties,
-			Set<VariableKWrapper>[][] setV) {
+			Set<VariableK>[][] setV) {
 		return checkMaxNumberOfVarsPerCell(
 				setV,
 				grammarProperties.grammarPropertiesGrammarRestrictions.getMaxNumberOfVarsPerCell()
@@ -44,7 +44,7 @@ public class GrammarValidityChecker {
 	 * True if the starting symbol is contained at the bottom of the pyramid.
 	 */
 	public static boolean checkProducibilityCYK(
-			SetVMatrix<VariableKWrapper> setVMatrix,
+			SetVMatrix<VariableK> setVMatrix,
 			Grammar grammar,
 			GrammarProperties grammarProperties) {
 		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
@@ -55,7 +55,7 @@ public class GrammarValidityChecker {
 	 * True if numberOfVarsPerCell is smaller than maxNumberOfVarsPerCell. Does not ignore cells after the diagonal.
 	 */
 	public static boolean checkMaxNumberOfVarsPerCell(
-			SetVMatrix<VariableKWrapper> setVMatrix,
+			SetVMatrix<VariableK> setVMatrix,
 			int maxNumberOfVarsPerCell) {
 		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		if ( maxNumberOfVarsPerCell == 0 ) {
@@ -80,7 +80,7 @@ public class GrammarValidityChecker {
 	 */ // TODO delete: not needed any more.
 	/*
 	public static GrammarPropertiesExamConstraints checkExamConstraints(
-			Set<VariableKWrapper>[][] setV,
+			Set<VariableK>[][] setV,
 			Grammar grammar,
 			GrammarProperties grammarProperties
 	) {
@@ -100,7 +100,7 @@ public class GrammarValidityChecker {
 	 * Starting from from the upper right index of the matrix setV[0][wL-1] towards the diagonal.
 	 */
 	public static RightCellCombinationsForcedWrapper checkRightCellCombinationForced(
-			SetVMatrix<VariableKWrapper> setVMatrix, int minCountRightCellCombinationsForced, Grammar grammar) {
+			SetVMatrix<VariableK> setVMatrix, int minCountRightCellCombinationsForced, Grammar grammar) {
 		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		int wordLength = tempSetV[0].length;
 		Set<Variable>[][] markedRightCellCombinationForced = Util.getInitialisedHashSetArray( wordLength );
@@ -179,7 +179,7 @@ public class GrammarValidityChecker {
 	 * checkMaxSumOfVarsInPyramid is tested only on the setV simple. Does not ignore cells after the diagonal.
 	 */
 	public static boolean checkMaxSumOfVarsInPyramid(
-			SetVMatrix<VariableKWrapper> setVMatrix,
+			SetVMatrix<VariableK> setVMatrix,
 			int maxSumOfVarsInPyramid) {
 		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		// put all vars of the matrix into one list and use its length.
