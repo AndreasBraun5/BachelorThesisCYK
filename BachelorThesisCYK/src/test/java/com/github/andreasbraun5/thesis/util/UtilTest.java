@@ -127,7 +127,7 @@ public class UtilTest {
 		System.out.println( grammar );
 		Assert.assertTrue(
 				"There should be only 15 productions left.",
-				GrammarValidityChecker.checkSumOfProductions( grammar, 15 )
+				GrammarValidityChecker.checkSumOfProductions( grammar, 15 ).isSumOfProductions()
 		);
 		System.out.println( "UtilTest: removeUselessProductions was successful" );
 	}

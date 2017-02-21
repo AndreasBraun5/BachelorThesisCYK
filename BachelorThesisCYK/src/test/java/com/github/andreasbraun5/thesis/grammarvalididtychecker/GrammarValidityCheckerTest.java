@@ -73,7 +73,7 @@ public class GrammarValidityCheckerTest {
 		SetVMatrix<Variable> setVMatrixSimple = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength, Variable.class )
 				.setSetV( setVSimple );
 		System.out.println( setVMatrixSimple.getStringToPrintAsLowerTriangularMatrix() );
-		Assert.assertTrue( "", GrammarValidityChecker.checkMaxNumberOfVarsPerCell( setVMatrix, 4 ) );
+		Assert.assertTrue( "", GrammarValidityChecker.checkMaxNumberOfVarsPerCell( setVMatrix, 4 ).isMaxNumberOfVarsPerCell() );
 		System.out.println( "GrammarValidityCheckerTest: checkMaxSumOfVarsInPyramid was successful." +
 									"\nMaxSumOfVarsInPyramid is four." );
 
@@ -98,7 +98,7 @@ public class GrammarValidityCheckerTest {
 
 		Assert.assertTrue(
 				"The count of productions should be 8.",
-				GrammarValidityChecker.checkSumOfProductions( grammar, 8 )
+				GrammarValidityChecker.checkSumOfProductions( grammar, 8 ).isSumOfProductions()
 		);
 		System.out.println( grammar );
 		System.out.println( "The count of productions should be maximum of 8." );
@@ -254,11 +254,11 @@ public class GrammarValidityCheckerTest {
 		SetVMatrix<Variable> setVMatrixSimple = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength, Variable.class )
 				.setSetV( setVSimple );
 		System.out.println( setVMatrixSimple.getStringToPrintAsLowerTriangularMatrix() );
-		RightCellCombinationsForcedWrapper rightCellCombinationsForcedWrapper =
+		CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationsForcedResultWrapper =
 				GrammarValidityChecker.checkRightCellCombinationForced( setVMatrix, 3, grammar );
 		System.out.println( grammar );
-		System.out.println( "CountForced: " + rightCellCombinationsForcedWrapper.getCountRightCellCombinationForced() );
-		System.out.println( rightCellCombinationsForcedWrapper.getMarkedRightCellCombinationForced()
+		System.out.println( "CountForced: " + checkRightCellCombinationsForcedResultWrapper.getCountRightCellCombinationForced() );
+		System.out.println( checkRightCellCombinationsForcedResultWrapper.getMarkedRightCellCombinationForced()
 									.getStringToPrintAsLowerTriangularMatrix() );
 	}
 }

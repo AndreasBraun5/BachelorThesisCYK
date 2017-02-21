@@ -12,14 +12,10 @@ public class ResultSampleExamConstraints {
 	private boolean isRightCellCombinationsForced;
 	private boolean isMaxSumOfProductionsCount;
 	private boolean isMaxSumOfVarsInPyramidCount;
-	private int maxVarsPerCell;
 	private int countRightCellCombinationsForced;
+	private int maxSumOfVarsInPyramid;
+	private int maxSumOfProductions;
 	private SetVMatrix markedRightCellCombinationForced;
-
-
-	public static ResultSampleExamConstraints buildResultSampleExamConstraints() {
-		return new ResultSampleExamConstraints();
-	}
 
 	public boolean isExamConstraints() {
 		return isExamConstraints;
@@ -27,6 +23,24 @@ public class ResultSampleExamConstraints {
 
 	public ResultSampleExamConstraints setExamConstraints(boolean examConstraints) {
 		isExamConstraints = examConstraints;
+		return this;
+	}
+
+	public int getMaxSumOfProductions() {
+		return maxSumOfProductions;
+	}
+
+	public ResultSampleExamConstraints setMaxSumOfProductions(int maxSumOfProductions) {
+		this.maxSumOfProductions = maxSumOfProductions;
+		return this;
+	}
+
+	public int getMaxSumOfVarsInPyramid() {
+		return maxSumOfVarsInPyramid;
+	}
+
+	public ResultSampleExamConstraints setMaxSumOfVarsInPyramid(int maxSumOfVarsInPyramid) {
+		this.maxSumOfVarsInPyramid = maxSumOfVarsInPyramid;
 		return this;
 	}
 
@@ -57,15 +71,6 @@ public class ResultSampleExamConstraints {
 		return this;
 	}
 
-	public int getMaxVarsPerCell() {
-		return maxVarsPerCell;
-	}
-
-	public ResultSampleExamConstraints setMaxVarsPerCell(int maxVarsPerCell) {
-		this.maxVarsPerCell = maxVarsPerCell;
-		return this;
-	}
-
 	public int getCountRightCellCombinationsForced() {
 		return countRightCellCombinationsForced;
 	}
@@ -91,9 +96,6 @@ public class ResultSampleExamConstraints {
 				"\n		isRightCellCombinationsForced=" + isRightCellCombinationsForced +
 				"\n		isMaxSumOfProductionsCount=" + isMaxSumOfProductionsCount +
 				"\n		isMaxSumOfVarsInPyramidCount=" + isMaxSumOfVarsInPyramidCount +
-				"\n		countRightCellCombinationsForced=" + countRightCellCombinationsForced +
-				"\n		countRightCellCombinationsForced=" + countRightCellCombinationsForced +
-				"\n		countRightCellCombinationsForced=" + countRightCellCombinationsForced +
 				"\n}";
 	}
 }

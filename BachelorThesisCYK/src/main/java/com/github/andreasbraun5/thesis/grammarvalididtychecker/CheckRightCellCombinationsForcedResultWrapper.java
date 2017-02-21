@@ -6,21 +6,21 @@ import com.github.andreasbraun5.thesis.util.SetVMatrix;
  * Created by Andreas Braun on 10.02.2017.
  * https://github.com/AndreasBraun5/
  */
-public class RightCellCombinationsForcedWrapper {
+public class CheckRightCellCombinationsForcedResultWrapper {
 
 	private boolean isRightCellCombinationForced;
 	private int countRightCellCombinationForced;
 	private SetVMatrix markedRightCellCombinationForced;
 
-	public static RightCellCombinationsForcedWrapper buildRightCellCombinationsForcedWrapper() {
-		return new RightCellCombinationsForcedWrapper();
+	public static CheckRightCellCombinationsForcedResultWrapper buildRightCellCombinationsForcedWrapper() {
+		return new CheckRightCellCombinationsForcedResultWrapper();
 	}
 
 	public boolean isRightCellCombinationForced() {
 		return isRightCellCombinationForced;
 	}
 
-	public RightCellCombinationsForcedWrapper setRightCellCombinationForced(boolean rightCellCombinationForced) {
+	public CheckRightCellCombinationsForcedResultWrapper setRightCellCombinationForced(boolean rightCellCombinationForced) {
 		isRightCellCombinationForced = rightCellCombinationForced;
 		return this;
 	}
@@ -29,7 +29,7 @@ public class RightCellCombinationsForcedWrapper {
 		return countRightCellCombinationForced;
 	}
 
-	public RightCellCombinationsForcedWrapper setCountRightCellCombinationForced(int countRightCellCombinationForced) {
+	public CheckRightCellCombinationsForcedResultWrapper setCountRightCellCombinationForced(int countRightCellCombinationForced) {
 		this.countRightCellCombinationForced = countRightCellCombinationForced;
 		return this;
 	}
@@ -38,7 +38,7 @@ public class RightCellCombinationsForcedWrapper {
 		return markedRightCellCombinationForced;
 	}
 
-	public RightCellCombinationsForcedWrapper setMarkedRightCellCombinationForced(SetVMatrix markedRightCellCombinationForced) {
+	public CheckRightCellCombinationsForcedResultWrapper setMarkedRightCellCombinationForced(SetVMatrix markedRightCellCombinationForced) {
 		this.markedRightCellCombinationForced = markedRightCellCombinationForced;
 		return this;
 	}

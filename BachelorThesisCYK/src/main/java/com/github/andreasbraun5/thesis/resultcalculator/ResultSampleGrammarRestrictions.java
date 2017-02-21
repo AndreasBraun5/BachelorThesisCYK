@@ -9,9 +9,14 @@ public class ResultSampleGrammarRestrictions {
 	private boolean isRestrictions;
 	private boolean isSizeOfWordCount;
 	private boolean isMaxNumberOfVarsPerCellCount;
+	private int maxNumberOfVarsPerCellCount;
 
-	public static ResultSampleGrammarRestrictions buildResultSampleGrammarRestrictions(){
-		return new ResultSampleGrammarRestrictions();
+	public boolean isRestrictions() {
+		return isRestrictions;
+	}
+
+	public int getMaxNumberOfVarsPerCellCount() {
+		return maxNumberOfVarsPerCellCount;
 	}
 
 	public boolean isGrammarRestrictions() {
@@ -38,6 +43,11 @@ public class ResultSampleGrammarRestrictions {
 
 	public ResultSampleGrammarRestrictions setMaxNumberOfVarsPerCellCount(boolean maxNumberOfVarsPerCellCount) {
 		isMaxNumberOfVarsPerCellCount = maxNumberOfVarsPerCellCount;
+		return this;
+	}
+
+	public ResultSampleGrammarRestrictions setMaxNumberOfVarsPerCellCount(int maxNumberOfVarsPerCellCount) {
+		this.maxNumberOfVarsPerCellCount = maxNumberOfVarsPerCellCount;
 		return this;
 	}
 

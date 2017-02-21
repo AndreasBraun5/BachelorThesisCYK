@@ -6,10 +6,12 @@ import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesExamConstraints;
 import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesGrammarRestrictions;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableK;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckMaxNumberOfVarsPerCellResultWrapper;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckMaxSumOfVarsInPyramidResultWrapper;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckRightCellCombinationsForcedResultWrapper;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckSumOfProductionsResultWrapper;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.RightCellCombinationsForcedWrapper;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
-import com.github.andreasbraun5.thesis.util.Util;
 
 /**
  * Created by Andreas Braun on 25.01.2017.
@@ -25,7 +27,6 @@ public class ResultSample {
 	private boolean isValid;
 	private boolean isWordProducible;
 
-	//TODO Martin: Remove new here and use builder pattern
 	private ResultSampleExamConstraints resultSampleExamConstraints = new ResultSampleExamConstraints();
 	private ResultSampleGrammarRestrictions resultSampleGrammarRestrictions = new ResultSampleGrammarRestrictions();
 
@@ -35,61 +36,73 @@ public class ResultSample {
 			SetVMatrix<VariableK> setVMatrix,
 			GrammarGeneratorSettings grammarGeneratorSettings
 	) {
+		GrammarPropertiesGrammarRestrictions tempGrammarRestrictions = grammarGeneratorSettings.getGrammarProperties().
+				grammarPropertiesGrammarRestrictions;
+		GrammarPropertiesExamConstraints tempExamConstraints = grammarGeneratorSettings.getGrammarProperties().
+				grammarPropertiesExamConstraints;
 		this.grammar = grammar;
 		this.word = word;
 		this.setVMatrix = setVMatrix;
 		this.isWordProducible = GrammarValidityChecker.
 				checkProducibilityCYK( setVMatrix, grammar, grammarGeneratorSettings.getGrammarProperties() );
 
-		GrammarPropertiesExamConstraints tempExamConstraints = grammarGeneratorSettings.getGrammarProperties().
-				grammarPropertiesExamConstraints;
-		this.resultSampleExamConstraints.setMaxVarsPerCell( Util.getMaxVarPerCellForSetV( setVMatrix ) );
-		this.resultSampleExamConstraints.setMaxSumOfProductionsCount(
-				GrammarValidityChecker.checkSumOfProductions(
-						grammar,
-						tempExamConstraints.getMaxSumOfProductions()
-				) );
+
+		// CheckMaxNumberOfVarsPerCellResultWrapper
+		CheckMaxNumberOfVarsPerCellResultWrapper maxNumberOfVarsPerCellResultWrapper = GrammarValidityChecker.
+				checkMaxNumberOfVarsPerCell( setVMatrix, tempGrammarRestrictions.getMaxNumberOfVarsPerCell() );
+		this.resultSampleGrammarRestrictions.setMaxNumberOfVarsPerCellCount(
+				maxNumberOfVarsPerCellResultWrapper.isMaxNumberOfVarsPerCell() );
+		this.resultSampleGrammarRestrictions.setMaxNumberOfVarsPerCellCount(
+				maxNumberOfVarsPerCellResultWrapper.getMaxNumberOfVarsPerCell() );
+
+		// CheckMaxSumOfVarsInPyramidResultWrapper
+		CheckMaxSumOfVarsInPyramidResultWrapper checkMaxSumOfVarsInPyramidResultWrapper = GrammarValidityChecker.
+				checkMaxSumOfVarsInPyramid( setVMatrix, tempExamConstraints.getMaxSumOfVarsInPyramid() );
 		this.resultSampleExamConstraints.setMaxSumOfVarsInPyramidCount(
-				GrammarValidityChecker.checkMaxSumOfVarsInPyramid(
-						setVMatrix,
-						tempExamConstraints.getMaxSumOfVarsInPyramid()
-				) );
-		RightCellCombinationsForcedWrapper rightCellCombinationsForcedWrapper =
+				checkMaxSumOfVarsInPyramidResultWrapper.isMaxSumOfVarsInPyramid() );
+		this.resultSampleExamConstraints.setMaxSumOfVarsInPyramid(
+				checkMaxSumOfVarsInPyramidResultWrapper.getMaxSumOfVarsInPyramid() );
+
+		// CheckRightCellCombinationsForcedResultWrapper
+		CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationsForcedResultWrapper =
 				GrammarValidityChecker.checkRightCellCombinationForced(
 						setVMatrix,
 						tempExamConstraints.getMinRightCellCombinationsForced(),
 						grammar
 				);
-		this.resultSampleExamConstraints.setRightCellCombinationsForced( rightCellCombinationsForcedWrapper.
+		this.resultSampleExamConstraints.setRightCellCombinationsForced( checkRightCellCombinationsForcedResultWrapper.
 				isRightCellCombinationForced() );
-		this.resultSampleExamConstraints.setCountRightCellCombinationsForced( rightCellCombinationsForcedWrapper.
-				getCountRightCellCombinationForced() );
-		this.resultSampleExamConstraints.setMarkedRightCellCombinationForced( rightCellCombinationsForcedWrapper.
-				getMarkedRightCellCombinationForced()
+		this.resultSampleExamConstraints.setCountRightCellCombinationsForced(
+				checkRightCellCombinationsForcedResultWrapper
+						.getCountRightCellCombinationForced() );
+		this.resultSampleExamConstraints.setMarkedRightCellCombinationForced(
+				checkRightCellCombinationsForcedResultWrapper
+						.getMarkedRightCellCombinationForced()
 		);
+
+		// CheckSumOfProductionsResultWrapper
+		CheckSumOfProductionsResultWrapper checkSumOfProductionsResultWrapper = GrammarValidityChecker.
+				checkSumOfProductions( grammar, tempExamConstraints.getMaxSumOfProductions() );
+		this.resultSampleExamConstraints.setMaxSumOfProductionsCount(
+				checkSumOfProductionsResultWrapper.isSumOfProductions() );
+		this.resultSampleExamConstraints.setMaxSumOfProductions(
+				checkSumOfProductionsResultWrapper.getMaxSumOfProductions() );
+
+
 		this.resultSampleExamConstraints.setExamConstraints(
 				resultSampleExamConstraints.isMaxSumOfProductionsCount() &&
 						resultSampleExamConstraints.isMaxSumOfVarsInPyramidCount() &&
-						resultSampleExamConstraints.isRightCellCombinationsForced()
-		);
-		GrammarPropertiesGrammarRestrictions tempGrammarRestrictions = grammarGeneratorSettings.getGrammarProperties().
-				grammarPropertiesGrammarRestrictions;
-		this.resultSampleGrammarRestrictions.setMaxNumberOfVarsPerCellCount(
-				GrammarValidityChecker.checkMaxNumberOfVarsPerCell(
-						setVMatrix,
-						tempGrammarRestrictions.getMaxNumberOfVarsPerCell()
-				) );
-
+						resultSampleExamConstraints.isRightCellCombinationsForced() );
 		// TODO Note: Up till now isSizeOfWordCount is always true...
 		this.resultSampleGrammarRestrictions.setSizeOfWordCount( true );
-
 		this.resultSampleGrammarRestrictions.setRestrictions(
 				resultSampleGrammarRestrictions.isMaxNumberOfVarsPerCellCount() &&
 						resultSampleGrammarRestrictions.isSizeOfWordCount() );
-
 		this.isValid = resultSampleExamConstraints.isExamConstraints() &&
 				resultSampleGrammarRestrictions.isGrammarRestrictions() &&
 				isWordProducible;
+
+
 	}
 
 	@Override
@@ -102,10 +115,12 @@ public class ResultSample {
 				.getStringToPrintAsLowerTriangularMatrix() +
 				"\nmarkedRightCellCombinationForced=" + resultSampleExamConstraints.getMarkedRightCellCombinationForced()
 				.getStringToPrintAsLowerTriangularMatrix() +
-				"\nisValid=" + isValid +
+				"\nmaxVarsPerCellSetV=" + resultSampleGrammarRestrictions.getMaxNumberOfVarsPerCellCount() +
+				"\nmaxSumOfVarsInPyramid=" + resultSampleExamConstraints.getMaxSumOfVarsInPyramid() +
+				"\ncountRightCellCombinationForced=" + resultSampleExamConstraints.getCountRightCellCombinationsForced() +
+				"\nmaxSumOfProductions=" + resultSampleExamConstraints.getMaxSumOfProductions() +
+				"\n\nisValid=" + isValid +
 				"\nisWordProducible=" + isWordProducible +
-				"\nmaxVarsPerCellSetV=" + resultSampleExamConstraints.getMaxVarsPerCell() +
-				"\ncountRightCellCombinationsForced=" + resultSampleExamConstraints.getCountRightCellCombinationsForced() +
 				resultSampleExamConstraints.toString() +
 				resultSampleGrammarRestrictions.toString() +
 				"\n}";

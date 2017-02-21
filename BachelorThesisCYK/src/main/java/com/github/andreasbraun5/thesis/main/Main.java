@@ -28,7 +28,6 @@ public class Main {
 	// TODO: Algorithm Duda Prepare, but maybe this isn't wanted
 	// TODO: Wrapper class for examConstraintsResults to store the actual count of productions and the count of vars in the matrix. Output in txt pending.
 	// TODO: Implement pyramid vs methods: getRight, getLeft, getUpperRight, getUpperLeft, ... methods in SetVMatrix. Possible to check indices. Legacy code still works.
-	// TODO: Don´t create a Result batch wise. Use smaller chunk sizes that are added to the Result, over again.
 	//
 	// TODO DONE?: Implement Wim's algorithm from meeting 6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// TODO: Wim's algorithm output rethink because of too many times not adding a production.
@@ -62,8 +61,8 @@ public class Main {
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
 		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
-		int countGeneratedGrammarsPerWord = 1500;
-		int countDifferentWords = 1000;
+		int countGeneratedGrammarsPerWord = 15;
+		int countDifferentWords = 100;
 		// this boundary is relevant so that the JVM doesn't run out of memory on my computer while calculating one Result.
 		/*
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
@@ -120,7 +119,7 @@ public class Main {
 		Result result6 = resultCalculator.buildResultWithGenerator(
 				new GrammarGeneratorDiceRollOnly( settings6 ) );
 
-		/*
+
 		GrammarProperties grammarProperties7 = generateGrammarPropertiesForTesting();
 		GrammarGeneratorSettingsDiceRoll settings7 =
 				new GrammarGeneratorSettingsDiceRoll( grammarProperties7 );
@@ -175,12 +174,12 @@ public class Main {
 						  //result3,
 						  //result4,
 						  //result5,
-						  result6
-						  //result7,
-						  //result8,
-						  //result9,
-						  //result10,
-						  //result11
+						  result6,
+						  result7,
+						  result8,
+						  result9,
+						  result10,
+						  result11
 		);
 	}
 

@@ -48,10 +48,12 @@ public abstract class Util {
 		return setVTemp;
 	}
 
+	/*
 	/**
 	 * Counting the stored elements in each entry of the setV matrix and looking for the max count.
 	 */
 	// TODO ???: duplicate maxVarPerCell
+	/*
 	public static int getMaxVarPerCellForSetV(SetVMatrix<VariableK> setVMatrix) {
 		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		int numberOfVarsPerCell = 0;
@@ -65,7 +67,7 @@ public abstract class Util {
 		}
 		return numberOfVarsPerCell;
 	}
-
+	*/
 	/**
 	 * Storing the result output in a text file.
 	 */

@@ -54,7 +54,7 @@ public class GrammarValidityChecker {
 	/**
 	 * True if numberOfVarsPerCell is smaller than maxNumberOfVarsPerCell. Does not ignore cells after the diagonal.
 	 */
-	public static boolean checkMaxNumberOfVarsPerCell(
+	public static CheckMaxNumberOfVarsPerCellResultWrapper checkMaxNumberOfVarsPerCell(
 			SetVMatrix<VariableK> setVMatrix,
 			int maxNumberOfVarsPerCell) {
 		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
@@ -70,7 +70,9 @@ public class GrammarValidityChecker {
 				}
 			}
 		}
-		return tempMaxNumberOfVarsPerCell <= maxNumberOfVarsPerCell;
+		return CheckMaxNumberOfVarsPerCellResultWrapper.buildCheckMaxNumberOfVarsPerCellResultWrapper().
+				setMaxNumberOfVarsPerCell( tempMaxNumberOfVarsPerCell ).
+				setMaxNumberOfVarsPerCell( tempMaxNumberOfVarsPerCell <= maxNumberOfVarsPerCell );
 	}
 
 	/**
@@ -99,7 +101,7 @@ public class GrammarValidityChecker {
 	 * Exam relevant restriction. The upper two rows of the pyramid aren't checked.
 	 * Starting from from the upper right index of the matrix setV[0][wL-1] towards the diagonal.
 	 */
-	public static RightCellCombinationsForcedWrapper checkRightCellCombinationForced(
+	public static CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationForced(
 			SetVMatrix<VariableK> setVMatrix, int minCountRightCellCombinationsForced, Grammar grammar) {
 		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		int wordLength = tempSetV[0].length;
@@ -165,22 +167,25 @@ public class GrammarValidityChecker {
 		SetVMatrix<Variable> setVMatrixMarked = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength, Variable.class )
 				.setSetV(
 						markedRightCellCombinationForced );
-		return RightCellCombinationsForcedWrapper.buildRightCellCombinationsForcedWrapper().
+		return CheckRightCellCombinationsForcedResultWrapper.buildRightCellCombinationsForcedWrapper().
 				setCountRightCellCombinationForced( rightCellCombinationsForced ).
 				setRightCellCombinationForced( rightCellCombinationsForced >= minCountRightCellCombinationsForced ).
 				setMarkedRightCellCombinationForced( setVMatrixMarked );
 	}
 
-	public static boolean checkSumOfProductions(Grammar grammar, int maxSumOfProductions) {
-		return grammar.getProductionsAsList().size() <= maxSumOfProductions;
+	public static CheckSumOfProductionsResultWrapper checkSumOfProductions(Grammar grammar, int maxSumOfProductions) {
+		return CheckSumOfProductionsResultWrapper.builCheckSumOfProductionsResultWrapper().
+				setMaxSumOfProductions( grammar.getProductionsAsList().size() ).
+				setSumOfProductions( grammar.getProductionsAsList().size() <= maxSumOfProductions );
 	}
 
 	/**
 	 * checkMaxSumOfVarsInPyramid is tested only on the setV simple. Does not ignore cells after the diagonal.
 	 */
-	public static boolean checkMaxSumOfVarsInPyramid(
+	public static CheckMaxSumOfVarsInPyramidResultWrapper checkMaxSumOfVarsInPyramid(
 			SetVMatrix<VariableK> setVMatrix,
 			int maxSumOfVarsInPyramid) {
+
 		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		// put all vars of the matrix into one list and use its length.
 		List<Variable> tempVars = new ArrayList<>();
@@ -189,6 +194,8 @@ public class GrammarValidityChecker {
 				tempVars.addAll( tempSetV[i][j] );
 			}
 		}
-		return tempVars.size() <= maxSumOfVarsInPyramid;
+		return CheckMaxSumOfVarsInPyramidResultWrapper.buildCheckMaxSumOfVarsInPyramidResultWrapper().
+				setMaxSumOfVarsInPyramid( tempVars.size() ).
+				setMaxSumOfVarsInPyramid( tempVars.size() <= maxSumOfVarsInPyramid );
 	}
 }
