@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -51,8 +50,12 @@ public class UtilTest {
         String word = "01110100";
 		// @formatter:on
 		int wordLength = word.length();
-		Set<LeftHandSideElement>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
-		SetVMatrix setVMatrix = SetVMatrix.buildEmptySetVMatrixWrapper( setVTemp.length ).setSetV( setVTemp );
+		Set<VariableKWrapper>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+		SetVMatrix<VariableKWrapper> setVMatrix = SetVMatrix.buildEmptySetVMatrixWrapper(
+				setVTemp.length,
+				VariableKWrapper.class
+		)
+				.setSetV( setVTemp );
 
 		//reconstructing example matrix from scriptTI1
 		setVTemp[0][0].add( new VariableKWrapper( new Variable( "A" ), 1 ) );
@@ -117,7 +120,7 @@ public class UtilTest {
 		System.out.println( grammar );
 		System.out.println( word );
 		Set<Variable>[][] setVSimple = setVMatrix.getSimpleMatrix();
-		SetVMatrix setVSimpleWrapper = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength ).setSetV( setVSimple );
+		SetVMatrix<Variable> setVSimpleWrapper = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength, Variable.class ).setSetV( setVSimple );
 		System.out.println( setVSimpleWrapper.getStringToPrintAsLowerTriangularMatrix() );
 		System.out.println( "Useless productions are" + useless1 + useless2 + "\n" );
 		Util.removeUselessProductions( grammar, setVMatrix, Util.stringToTerminalList( word ) );

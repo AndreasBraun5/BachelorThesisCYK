@@ -17,15 +17,22 @@ public class SetVMatrix<T extends LeftHandSideElement> {
 	private Set<T>[][] setV;
 	private String name = "setV";
 
-	public static <T extends LeftHandSideElement> SetVMatrix buildEmptySetVMatrixWrapper(int wordLength) {
+	/**
+	 * The compiler is responsible for guaranteeing type safety. At runtime all generics are of type object (type
+	 * erasure). The static generic parameter S is different to the class generic parameter T.
+	 * Because of the static context of this method an object of type object is generated. At runtime there is no
+	 * chance to know of what actual type the static S is. An compiler hint "clazz" is needed to specify the type of
+	 * the static S. With this the compiler is able to guarantee the type safety between S and T.
+	 */
+	public static <S extends LeftHandSideElement> SetVMatrix<S> buildEmptySetVMatrixWrapper(int wordLength, Class<S> clazz) {
 		@SuppressWarnings("unchecked")
-		Set<T>[][] setVTemp = new Set[wordLength][wordLength];
+		Set<S>[][] setVTemp = new Set[wordLength][wordLength];
 		for ( int i = 0; i < wordLength; i++ ) {
 			for ( int j = 0; j < wordLength; j++ ) {
 				setVTemp[i][j] = new HashSet<>();
 			}
 		}
-		return new SetVMatrix<T>().setSetV( setVTemp );
+		return new SetVMatrix<S>().setSetV( setVTemp );
 	}
 	/**
 	 * Method to get the setV as a String for printing purposes.
@@ -82,7 +89,7 @@ public class SetVMatrix<T extends LeftHandSideElement> {
 		return setV;
 	}
 
-	public SetVMatrix setSetV(Set<T>[][] setV) {
+	public SetVMatrix<T> setSetV(Set<T>[][] setV) {
 		this.setV = setV;
 		return this;
 	}

@@ -14,6 +14,7 @@ import com.github.andreasbraun5.thesis.grammar.VariableStart;
 
 /**
  * Created by Andreas Braun on 06.01.2017.
+ * https://github.com/AndreasBraun5/
  */
 public class GrammarGeneratorDiceRollOnlyTest {
 

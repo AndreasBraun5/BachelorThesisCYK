@@ -2,6 +2,7 @@ package com.github.andreasbraun5.thesis.grammar;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
+ * https://github.com/AndreasBraun5/
  */
 
 public class Production {
@@ -25,12 +26,7 @@ public class Production {
 	Calling isElementAtRightHandSide checks whether one specific production already exists
 	 */
 	public boolean isElementAtRightHandSide(RightHandSideElement rightHandSideElement) {
-		if ( this.rightHandSideElement == null ) {
-			return false;
-		}
-		else {
-			return this.rightHandSideElement.equals( rightHandSideElement );
-		}
+		return this.rightHandSideElement != null && this.rightHandSideElement.equals( rightHandSideElement );
 	}
 
 	@Override

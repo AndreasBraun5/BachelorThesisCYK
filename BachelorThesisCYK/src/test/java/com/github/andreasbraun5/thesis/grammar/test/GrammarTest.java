@@ -14,6 +14,7 @@ import com.github.andreasbraun5.thesis.grammar.VariableStart;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
+ * https://github.com/AndreasBraun5/
  */
 public class GrammarTest {
 
@@ -43,7 +44,7 @@ public class GrammarTest {
         System.out.println("ResultCalculator Grammar: addProduction");
         Grammar grammar = new Grammar(new VariableStart("S"));
         System.out.println("Count of productions that should be added: " + 5);
-        System.out.println("An GrammarRuntimeException is to be excepted. Because of duplicate production A-->a");;
+        System.out.println("An GrammarRuntimeException is to be excepted. Because of duplicate production A-->a");
         grammar.addProduction(
                 new Production(new Variable("A"), new Terminal("a")),
                 new Production(new Variable("A"), new Terminal("a")),

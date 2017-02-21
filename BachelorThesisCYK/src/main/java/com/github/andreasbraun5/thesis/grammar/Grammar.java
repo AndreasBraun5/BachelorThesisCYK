@@ -9,10 +9,11 @@ import java.util.Map;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
-
 /**
  * Created by Andreas Braun on 20.12.2016.
+ * https://github.com/AndreasBraun5/
  */
+
 /*
 In the class Grammar one entry of productionsMap represents not only one production exclusively, more specific it contains
 all summed up productions of one variable. Key=A, Value: A-->a and A-->B and A--> AB. Is represented analogue to the

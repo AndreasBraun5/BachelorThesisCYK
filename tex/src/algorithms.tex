@@ -1,13 +1,6 @@
 % !TeX spellcheck = en_GB
 
 \section{Algorithms}\label{algorithms}
-Algorithm descriptions here.
-
-\noindent RightHandSideElements (rhse) are terminals like "a, b, ..." and \\
-compound variables like "AB, AC, ...".
-
-\noindent LeftHandSideElements (lhse) are variables like "A, B, ...".\\
-
 \noindent Analogue to the script: \\
 grammar $G=(V,\Sigma , S, P)$.\\
 $V$ is a finite set of variables. \\
@@ -16,9 +9,14 @@ $S$ is the starting symbol and $S\ \epsilon\ V$. \\
 $P$ is a finite set of rules: $P\ \subseteq\ V \times\ (V \cup\ \Sigma)^{*}$. \\ 
 $LHSE$ is finite set of left hand side elements: $LHSE = V$.\\
 $RHSE$ is finite set of right hand side elements: $RHSE = (V \cup\ \Sigma)^{*}$.\\
-So $P$ finite set of rules: $P\ \subseteq\ LHSE \times\ RHSE$. \\
+$G.P.RHSE$ allows access to $RHSE$.\\
+Variables that are of type set begin with a upper case letter.\\
+$p.rhse$ allows access to the one specific $rhse$ of the specific production $p$.\\
+So $P$ is a finite set of rules: $P\ \subseteq\ LHSE \times\ RHSE$. \\
 Multisets allow duplicate elements. Notation of a multiset is done via the index b: $multiset_b$\\
-pyramid is a data structure where $cell_{i,j} = \{v\ |\ v\ \epsilon\ V\}$. If initialised for each $cell_{i,j}$ holds $cell_{i,j} = \emptyset $, which is named $empty\ pyramid$. $cell_{i+1,j} = cell\ down;$ $cell_{i,j} = upper\ left\ cell;\ cell_{i+1,j+1} = upper\ right\ cell;  $
+pyramid is a structure where one $cell_{i,j}$ holds a set  $Cell_{i,j} = \{v\ |\ v\ \epsilon\ V\}$. If initialised each $cell_{i,j}$ holds $Cell_{i,j} = \emptyset $, which is named $empty\ pyramid$. $cell_{i+1,j} = cellDown;$ $cell_{i,j} = cellUpperLeft;\ cell_{i+1,j+1} = cellUpperRight;  $ \\
+RHSEs are terminals like "a, b, ..." and compound variables like "AB, AC, ...". \\
+LHSEs are variables like "A, B, ...".\\
 
 
 \begin{figure}[h]
@@ -26,57 +24,107 @@ pyramid is a data structure where $cell_{i,j} = \{v\ |\ v\ \epsilon\ V\}$. If in
 	\includegraphics[width=0.7\textwidth]{abb/DataStructurePyramid}
 \end{figure}
 
-
+ \pagebreak 
  
- \frame{
- 	\begin{algorithm}[H] %or another one check
- 		\caption{GeneratorGrammarDiceRollTopDownMartens}
- 		\label{GeneratorGrammarDiceRollTopDownMartens}
- 		\SetAlgoLined
- 		\KwIn{ $word\ \epsilon\ \Sigma^{*},\ V,\ \Sigma,\ S,\ P = \emptyset,\ minCount\Sigma,\ maxCount\Sigma,\ $ $ minCountVarComp,\ maxCountVarComp $ }
- 		\KwOut{$G$}
- 		
- 		$G=(V,\Sigma , S, P)$\;
- 		$G = distributeDiceRollRhse(G,\ \Sigma,\ minCount\Sigma,\ maxCount\Sigma ) $\;
- 		$pyramid = CYK.calculatePyramid(G, word)$\;
- 		\ForEach{$cell_{i+1,j}\ in\ pyramid\ \wedge\ i>0$}{
- 			$varComp = \{XY\ |\ X\ \epsilon\ cell_{i,j}\ \wedge\ Y\ \epsilon\ cell_{i+1,j+1} \}$\;
- 			\ForEach{vc in varComp}{
- 				\While{$cell_{wordLength+1,0} = \emptyset$}{
- 					$distributeDiceRollRhse(G,\ vc,\ minCountVarComp,\ $ $maxCountVarComp ) $\;
- 					$pyramid = CYK.calculatePyramid(G, word)$\;	
- 				}
- 			}
- 		}
- 		\Return $G$\;
- 		\footnotetext{Line 4: Fills the i=0 row of the pyramid.
- 		}
- 	\end{algorithm}
- }
-\\
-\\
-
 \frame{
 	\begin{algorithm}[H] %or another one check
-		\caption{distributeDiceRollRhse}
-		\label{distributeDiceRollRhse}
+		\caption{distributeRhseRandomly}
+		\label{distributeRhseRandomly}
 		\SetAlgoLined
-		\KwIn{ $G,\ rhse \subseteq\ RHSE,\ 0\leq minCount\leq maxCount\leq \mid G.V\mid$}
-		\KwOut{$G$}
-		\ForEach {rhse}{
-			$countAddTo$ = dice roll a number $\epsilon\ [minCount, maxCount]$\;
-			$varsToAddTo = \{ lhse \mid lhse\ \epsilon\ LHSE\ \wedge\  |varsToAddTo|=\ $ $=countAddTo\ \wedge\ lhse's\ picked\ via\ dice\ roll    \}$\;
-			\ForEach{var in varsToAddTo}{
+		\KwIn{ $G,\ Rhse \subseteq\ RHSE,\ 0\leq minCount\leq maxCount\leq \mid G.V\mid$}
+		\KwOut{$Grammar\ G\ with\ randomly\ distributed\ Rhse's.$}
+		\ForEach {$rhse\ in\ Rhse$}{
+			$addCount$ = $random(minCount, maxCount)$\;
+			$VarsToAddTo = randomSubSet(addCount,\ LHSE)$\;
+			
+		
+			\ForEach{var in VarsToAddTo}{
 				$G.P = G.P\ \cup\ \{ "var\longrightarrow rhse" \} $\;	
 			}
 		}
 		\Return $G$;
 	\end{algorithm}
 }
+.\\
+.\\
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{GeneratorGrammarDiceRollMartens}
+		\label{GeneratorGrammarDiceRollMartens}
+		\SetAlgoLined
+		\KwIn{ $word \in \Sigma^{*},\ V,\ \Sigma,\ S,\ P = \emptyset,\ minCount\Sigma,\ maxCount\Sigma,\ $ $ minCountVarComp,\ maxCountVarComp $ }
+		\KwOut{$G$}
+		
+		$G=(V,\Sigma , S, P)$\;
+		$G = distributeRhseRandomly(G,\ \Sigma,\ minCount\Sigma,\ maxCount\Sigma ) $\;
+		$pyramid = CYK.calculatePyramid(G,\ word)$\;
+		\ForEach{$cell_{i+1,j}\ in\ pyramid\ \wedge\ i>0$}{
+			$VarComp = \{XY\ |\ X \in cellUpperLeft\ \wedge\ Y \in cellUpperRight \}$\;
+			\ForEach{$vc\ in\ VarComp$}{
+				\While{$cell_{wordLength+1,0} = \emptyset$}{
+					$distributeRhseRandomly(G,\ vc,\ minCountVarComp,\ $ $maxCountVarComp ) $\;
+					$pyramid = CYK.calculatePyramid(G,\ word)$\;	
+				}
+			}
+		}
+		\Return $G$\;
+		\footnotetext{Line 3: Fills the i=0 row of the pyramid.\\
+			\noindent Line 4: = foreach cellDown, but skipping the first row of the pyramid.
+		}
+	\end{algorithm}
+}
 
  \pagebreak 
- Check right cell combination forced.
- \pagebreak
+ 
+ 
+\frame{
+ 	\begin{algorithm}[H] %or another one check
+ 		\caption{checkRightCellCombination}
+ 		\label{checkRightCellCombination}
+ 		\SetAlgoLined
+ 		\KwIn{$ cellDown\subseteq V \,\ cellUpperLeft\subseteq V,\ cellUpperRight\subseteq V,\ G.P $ }
+ 		\KwOut{$varsThatForce\subseteq V$}
+ 		$isForced = false$\;
+ 		$VarsThatForce = \emptyset$\;
+ 		$VarComp = \{XY\ |\ X \in cellUpperLeft\ \wedge\ Y \in cellUpperRight \}$\;
+ 		\ForEach{$v\ in\ cellDown$}{
+ 			$VProd = \{p\ |\ p \in G.P\ \wedge\ p.lhse = v \}$\;
+ 			$VRhse = \{vRhse\ |\ vRhse \in VProd.RHSE \} $\;
+ 			\If{$VarComp \nsubseteq VRhse$}{
+ 				$isForced = true$\;
+ 				$VarsThatForce = VarsThatForce\ \cup\ v$\;
+ 			}			
+ 		}
+ 		\Return $VarsThatForce$\;
+ 	\end{algorithm}
+}
+\pagebreak
+
+
+\frame{
+ 	\begin{algorithm}[H] %or another one check
+ 		\caption{checkRightCellCombinationForced}
+ 		\label{checkRightCellCombinationForced}
+ 		\SetAlgoLined
+ 		\KwIn{$ pyramid,\ G,\ minCountForced $ }
+ 		\KwOut{$G$}
+ 		$countForced = 0$\;
+ 		$isForced = true$\;
+ 		$varsThatForce = empty\ pyramid$\;
+ 		\ForEach{$cell_{i+1,j}\ in\ pyramid\ \wedge\ i>1 $}{
+ 			$varComp = \{XY\ |\ X\ \epsilon\ Cell_{i,j}\ \wedge\ Y\ \epsilon\ Cell_{i+1,j+1} \}$\;
+ 			
+ 			
+ 			
+ 			$ $\;
+ 		}
+ 		\Return $isForced,\ countForced,\ varsThatForce$\;
+ 		\footnotetext{Line 3: $i>1 \rightarrow$ the upper two rows aren't included, because they would produce trivial cases that fulfil the restriction always. 
+ 		}
+ 	\end{algorithm}
+}
+ 
+\pagebreak
  
 \lstset{language=java}
 \begin{lstlisting}[frame=htrbl, caption={distributeDiceRollRightHandSideElements}, 
@@ -118,26 +166,6 @@ foreach rhse in setRhse {
 }
 return grammar;
 \end{lstlisting}
-
-\frame{
-\begin{algorithm}[H] %or another one check
-	\caption{distributeDiceRollRhse}
-	\label{distributeDiceRollRhse}
-	\SetAlgoLined
-	\KwIn{ $G,\ rhse \subseteq\ RHSE,\ 0\leq minCount\leq maxCount\leq \mid G.V\mid$}
-	\KwOut{$G$}
-	\ForEach {rhse}{
-		$countAddTo$ = dice roll a number $\epsilon\ [minCount, maxCount]$\;
-		$varsToAddTo = \{ lhse \mid lhse\ \epsilon\ LHSE\ \wedge\  |varsToAddTo|=\ $ $=countAddTo\ \wedge\ lhse's\ picked\ via\ dice\ roll    \}$\;
-		\ForEach{var in varsToAddTo}{
-			$G.P = G.P\ \cup\ \{ "var\longrightarrow rhse" \} $\;	
-		}
-	}
-\Return $G$;
-\end{algorithm}
-}
-
-\pagebreak
 
 \lstset{language=java}
 \begin{lstlisting}[frame=htrbl, caption={CYK.calculateSetVAdvanced}, 
@@ -192,32 +220,6 @@ for(Cell cellToBeVisited : setVAdvanced){
 return grammar;
 // Forgot the while cell not empty do this from line 21 to line 33;
 \end{lstlisting}
-
-\frame{
-	\begin{algorithm}[H] %or another one check
-		\caption{GeneratorGrammarDiceRollTopDownMartens}
-		\label{GeneratorGrammarDiceRollTopDownMartens}
-		\SetAlgoLined
-		\KwIn{ $word\ \epsilon\ \Sigma^{*},\ V,\ \Sigma,\ S,\ P = \emptyset,\ minCount\Sigma,\ maxCount\Sigma,\ $ $ minCountVarComp,\ maxCountVarComp $ }
-		\KwOut{$G$}
-		
-		$G=(V,\Sigma , S, P)$\;
-		$G = distributeDiceRollRhse(G,\ \Sigma,\ minCount\Sigma,\ maxCount\Sigma ) $\;
-		$pyramid = CYK.calculatePyramid(G, word)$\;
-		\ForEach{$cell_{i+1,j}\ in\ pyramid\ \wedge\ i>0$}{
-			$varComp = \{XY\ |\ X\ \epsilon\ cell_{i,j}\ \wedge\ Y\ \epsilon\ cell_{i+1,j+1} \}$\;
-			\ForEach{vc in varComp}{
-				\While{$cell_{wordLength+1,0} = \emptyset$}{
-				$distributeDiceRollRhse(G,\ vc,\ minCountVarComp,\ $ $maxCountVarComp ) $\;
-				$pyramid = CYK.calculatePyramid(G, word)$\;	
-				}
-			}
-		}
-		\Return $G$\;
-		\footnotetext{Line 4: Fills the i=0 row of the pyramid.
-	}
-	\end{algorithm}
-}
 
 \pagebreak
 
@@ -425,46 +427,6 @@ for(Cell cell : setVSimple){
 boolean isForced = countForced >= minCountRightCellCombinationsForced;
 return isForced, countForced, setVMarkedVarsThatForce;
 \end{lstlisting}
-
-\pagebreak
-
-\frame{
-	\begin{algorithm}[H] %or another one check
-		\caption{checkRightCellCombinationForced}
-		\label{checkRightCellCombinationForced}
-		\SetAlgoLined
-		\KwIn{$ pyramid,\ G,\ minCountForced $ }
-		\KwOut{$G$}
-		$countForced = 0$\;
-		$isForced = true$\;
-		$varsThatForce = empty\ pyramid$\;
-		\ForEach{$cell_{i+1,j}\ in\ pyramid\ \wedge\ i>1 $}{
-			$varComp = \{XY\ |\ X\ \epsilon\ cell_{i,j}\ \wedge\ Y\ \epsilon\ cell_{i+1,j+1} \}$\;
-			
-			
-			
-			$ $\;
-		}
-		\Return $isForced,\ countForced,\ varsThatForce$\;
-		\footnotetext{Line 3: $i>1 \rightarrow$ the upper two rows aren't included, because they would produce trivial cases that fulfil the restriction always. 
-		}
-	\end{algorithm}
-}
-\\
-\\
-\frame{
-	\begin{algorithm}[H] %or another one check
-		\caption{checkRightCellCombination}
-		\label{checkRightCellCombination}
-		\SetAlgoLined
-		\KwIn{$ cellDown\subseteq V \,\ cellLeft\subseteq V,\ cellRight\subseteq V,\ G.P $ }
-		\KwOut{$isForced,\ varsThatForce\subseteq V$}
-		$isForced = true$\;
-		$varsThatForce = \emptyset$\;
-		$varComp = \{XY\ |\ X\ \epsilon\ cell_{i,j}\ \wedge\ Y\ \epsilon\ cell_{i+1,j+1} \}$\;
-		\Return $isForced,\ varsThatForce$\;
-	\end{algorithm}
-}
 
 \pagebreak
 

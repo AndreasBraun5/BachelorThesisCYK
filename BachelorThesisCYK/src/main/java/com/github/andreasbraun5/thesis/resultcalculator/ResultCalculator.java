@@ -11,6 +11,7 @@ import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
+import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
@@ -54,7 +55,7 @@ public class ResultCalculator {
 		long startTime = System.currentTimeMillis();
 		String tempWord;
 		Grammar grammar;
-		SetVMatrix tempSetV;
+		SetVMatrix<VariableKWrapper> tempSetV;
 		// allResultSamples.size() not always equals countDifferentWords because of duplicate words.
 		Map<String, List<ResultSample>> allResultSamples = new HashMap<>();
 		for ( int i = 0; i < countDifferentWords; i++ ) {

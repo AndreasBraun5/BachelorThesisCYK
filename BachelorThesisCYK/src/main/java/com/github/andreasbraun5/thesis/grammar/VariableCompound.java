@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by Andreas Braun on 08.01.2017.
+ * https://github.com/AndreasBraun5/
  */
 public class VariableCompound implements RightHandSideElement {
 

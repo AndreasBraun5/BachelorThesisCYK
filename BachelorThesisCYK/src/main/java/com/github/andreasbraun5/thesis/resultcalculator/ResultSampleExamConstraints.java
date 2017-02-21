@@ -92,6 +92,8 @@ public class ResultSampleExamConstraints {
 				"\n		isMaxSumOfProductionsCount=" + isMaxSumOfProductionsCount +
 				"\n		isMaxSumOfVarsInPyramidCount=" + isMaxSumOfVarsInPyramidCount +
 				"\n		countRightCellCombinationsForced=" + countRightCellCombinationsForced +
+				"\n		countRightCellCombinationsForced=" + countRightCellCombinationsForced +
+				"\n		countRightCellCombinationsForced=" + countRightCellCombinationsForced +
 				"\n}";
 	}
 }

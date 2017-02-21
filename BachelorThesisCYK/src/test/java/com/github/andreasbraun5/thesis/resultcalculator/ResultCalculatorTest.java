@@ -14,6 +14,7 @@ import com.github.andreasbraun5.thesis.main.Main;
 
 /**
  * Created by Andreas Braun on 19.01.2017.
+ * https://github.com/AndreasBraun5/
  */
 public class ResultCalculatorTest {
 

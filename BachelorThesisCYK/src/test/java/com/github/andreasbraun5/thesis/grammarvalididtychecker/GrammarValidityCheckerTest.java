@@ -63,15 +63,17 @@ public class GrammarValidityCheckerTest {
 
 		setVTemp[7][7].add( new VariableKWrapper( new Variable( "B" ), 8 ) );
 
-		// TODO: generics here
-		SetVMatrix<VariableKWrapper> setVMatrix = SetVMatrix.<VariableKWrapper>buildEmptySetVMatrixWrapper( wordLength )
+		SetVMatrix<VariableKWrapper> setVMatrix = SetVMatrix.buildEmptySetVMatrixWrapper(
+				wordLength,
+				VariableKWrapper.class
+		)
 				.setSetV( setVTemp );
 		System.out.println( setVMatrix.getStringToPrintAsLowerTriangularMatrix() );
 		Set<Variable>[][] setVSimple = setVMatrix.getSimpleMatrix();
-		SetVMatrix<Variable> setVMatrixSimple = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength )
+		SetVMatrix<Variable> setVMatrixSimple = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength, Variable.class )
 				.setSetV( setVSimple );
 		System.out.println( setVMatrixSimple.getStringToPrintAsLowerTriangularMatrix() );
-		Assert.assertTrue( "", GrammarValidityChecker.checkMaxNumberOfVarsPerCell( setVMatrixSimple, 4 ) );
+		Assert.assertTrue( "", GrammarValidityChecker.checkMaxNumberOfVarsPerCell( setVMatrix, 4 ) );
 		System.out.println( "GrammarValidityCheckerTest: checkMaxSumOfVarsInPyramid was successful." +
 									"\nMaxSumOfVarsInPyramid is four." );
 
@@ -137,11 +139,15 @@ public class GrammarValidityCheckerTest {
 		setVTemp[5][5].add( new VariableKWrapper( new Variable( "A" ), 6 ) );
 		setVTemp[5][5].add( new VariableKWrapper( new Variable( "C" ), 6 ) );
 
-		SetVMatrix<VariableKWrapper> setVMatrix = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength )
+		SetVMatrix<VariableKWrapper> setVMatrix = SetVMatrix.buildEmptySetVMatrixWrapper(
+				wordLength,
+				VariableKWrapper.class
+		)
 				.setSetV( setVTemp );
 		System.out.println( setVMatrix.getStringToPrintAsLowerTriangularMatrix() );
 		Set<Variable>[][] setVSimple = setVMatrix.getSimpleMatrix();
-		SetVMatrix setVMatrixSimple = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength ).setSetV( setVSimple );
+		SetVMatrix setVMatrixSimple = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength, Variable.class ).setSetV(
+				setVSimple );
 		System.out.println( setVMatrixSimple.getStringToPrintAsLowerTriangularMatrix() );
 		System.out.println( "GrammarValidityCheckerTest: checkMaxSumOfVarsInPyramid was successful." +
 									"\nMaxSumOfVarsInPyramid is 12." );
@@ -238,11 +244,15 @@ public class GrammarValidityCheckerTest {
 		setVTemp[7][7].add( new VariableKWrapper( new Variable( "N" ), 8 ) );
 
 
-		SetVMatrix<VariableKWrapper> setVMatrix = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength )
+		SetVMatrix<VariableKWrapper> setVMatrix = SetVMatrix.buildEmptySetVMatrixWrapper(
+				wordLength,
+				VariableKWrapper.class
+		)
 				.setSetV( setVTemp );
 		System.out.println( setVMatrix.getStringToPrintAsLowerTriangularMatrix() );
 		Set<Variable>[][] setVSimple = setVMatrix.getSimpleMatrix();
-		SetVMatrix setVMatrixSimple = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength ).setSetV( setVSimple );
+		SetVMatrix<Variable> setVMatrixSimple = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength, Variable.class )
+				.setSetV( setVSimple );
 		System.out.println( setVMatrixSimple.getStringToPrintAsLowerTriangularMatrix() );
 		RightCellCombinationsForcedWrapper rightCellCombinationsForcedWrapper =
 				GrammarValidityChecker.checkRightCellCombinationForced( setVMatrix, 3, grammar );

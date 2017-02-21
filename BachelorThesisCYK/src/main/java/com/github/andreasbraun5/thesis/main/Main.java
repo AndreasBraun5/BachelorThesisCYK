@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollTopDownMartens;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettingsDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
@@ -22,14 +23,17 @@ public class Main {
 	// TODO Note: all checks are done on the simpleSetV
 	// TODO Note: Tree package Latex: http://tex.stackexchange.com/questions/5447/how-can-i-draw-simple-trees-in-latex
 	// TODO Note: C:\GitHub\BachelorThesis\BachelorThesisCYK>mvn clean install    --> .jar
-
+	//
 	// TODO Implement: CYK tree in Combination with latex picture creation.
 	// TODO: How to show that the Checks and the Algorithms work as expected? With the tests.
 	// TODO: Algorithm Duda Prepare
 	// TODO: Prepare Overview First!!
-
+	// TODO: Wrapper class for examConstraintsResults to store the actual count of productions and the count of vars in the matrix. Output in txt pending.
+	//
+	// TODO: Implement pyramid vs methods: getRight, getLeft, getUpperRight, getUpperLeft, ... methods in SetVMatrix. Possible to check indices. Legacy code still works.
+	//
 	// TODO DONE?: Implement Wim's algorithm from meeting 6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// TODO: Show Wim's algorithm works here
+	// TODO: Wim's algorithm output rethink because of too many times not adding a production.
 	// TODO DONE?: Only keep useful rhse's in the grammar. Also see script in TI.
 	//
 	// TODO: See [Duda, Pattern Classification] chapter 8.5 Recognition with strings. In more Detail:
@@ -60,8 +64,8 @@ public class Main {
 		 * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
 		 */
 		// It is recommended to use a high countDifferentWords. Word independent results are achieved.
-		int countGeneratedGrammarsPerWord = 15;
-		int countDifferentWords = 10;
+		int countGeneratedGrammarsPerWord = 150;
+		int countDifferentWords = 100;
 		// this boundary is relevant so that the JVM doesn't run out of memory on my computer while calculating one Result.
 		if ( ( countGeneratedGrammarsPerWord * countDifferentWords ) > 70000 ) {
 			throw new GrammarSettingRuntimeException( "Too many grammars would be generated. [ N !< 70000 ]" );
@@ -106,6 +110,16 @@ public class Main {
 		Result result5 = resultCalculator.buildResultFromGenerator(
 				new GrammarGeneratorDiceRollOnly( settings5 ) );
 		*/
+
+		GrammarProperties grammarProperties7 = generateGrammarPropertiesForTesting();
+		GrammarGeneratorSettingsDiceRoll settings7 =
+				new GrammarGeneratorSettingsDiceRoll( grammarProperties7 );
+		settings7.setMaxValueTerminalsAreAddedTo( 1 );
+		settings7.setMinValueTerminalsAreAddedTo( 1 );
+		settings7.setMaxValueCompoundVariablesAreAddedTo( 2 );
+		Result result7 = resultCalculator.buildResultFromGenerator(
+				new GrammarGeneratorDiceRollTopDownMartens( settings7 ) );
+
 		GrammarProperties grammarProperties6 = generateGrammarPropertiesForTesting();
 		GrammarGeneratorSettingsDiceRoll settings6 =
 				new GrammarGeneratorSettingsDiceRoll( grammarProperties6 );
@@ -113,7 +127,45 @@ public class Main {
 		settings6.setMinValueTerminalsAreAddedTo( 1 );
 		settings6.setMaxValueCompoundVariablesAreAddedTo( 2 );
 		Result result6 = resultCalculator.buildResultFromGenerator(
-				new GrammarGeneratorDiceRollTopDownMartens( settings6 ) );
+				new GrammarGeneratorDiceRollOnly( settings6 ) );
+
+		GrammarProperties grammarProperties8 = generateGrammarPropertiesForTesting();
+		GrammarGeneratorSettingsDiceRoll settings8 =
+				new GrammarGeneratorSettingsDiceRoll( grammarProperties8 );
+		settings8.setMaxValueTerminalsAreAddedTo( 2 );
+		settings8.setMinValueTerminalsAreAddedTo( 1 );
+		settings8.setMaxValueCompoundVariablesAreAddedTo( 2 );
+		Result result8 = resultCalculator.buildResultFromGenerator(
+				new GrammarGeneratorDiceRollOnly( settings8 ) );
+
+		GrammarProperties grammarProperties9 = generateGrammarPropertiesForTesting();
+		GrammarGeneratorSettingsDiceRoll settings9 =
+				new GrammarGeneratorSettingsDiceRoll( grammarProperties9 );
+		settings9.setMaxValueTerminalsAreAddedTo( 2 );
+		settings9.setMinValueTerminalsAreAddedTo( 1 );
+		settings9.setMaxValueCompoundVariablesAreAddedTo( 2 );
+		Result result9 = resultCalculator.buildResultFromGenerator(
+				new GrammarGeneratorDiceRollTopDownMartens( settings9 ) );
+
+		GrammarProperties grammarProperties10 = generateGrammarPropertiesForTesting();
+		GrammarGeneratorSettingsDiceRoll settings10 =
+				new GrammarGeneratorSettingsDiceRoll( grammarProperties10 );
+		settings10.setMaxValueTerminalsAreAddedTo( 2 );
+		settings10.setMinValueTerminalsAreAddedTo( 1 );
+		settings10.setMaxValueCompoundVariablesAreAddedTo( 2 );
+		settings10.getGrammarProperties().grammarPropertiesExamConstraints.setMinRightCellCombinationsForced( 5 );
+		Result result10 = resultCalculator.buildResultFromGenerator(
+				new GrammarGeneratorDiceRollOnly( settings10 ) );
+
+		GrammarProperties grammarProperties11 = generateGrammarPropertiesForTesting();
+		GrammarGeneratorSettingsDiceRoll settings11 =
+				new GrammarGeneratorSettingsDiceRoll( grammarProperties11 );
+		settings11.setMaxValueTerminalsAreAddedTo( 2 );
+		settings11.setMinValueTerminalsAreAddedTo( 1 );
+		settings11.setMaxValueCompoundVariablesAreAddedTo( 2 );
+		settings11.getGrammarProperties().grammarPropertiesExamConstraints.setMinRightCellCombinationsForced( 5 );
+		Result result11 = resultCalculator.buildResultFromGenerator(
+				new GrammarGeneratorDiceRollTopDownMartens( settings11 ) );
 		/**
 		 * 	Storing all the results in a txt.
 		 */
@@ -122,7 +174,12 @@ public class Main {
 						  //result3,
 						  //result4,
 						  //result5,
-						  result6
+						  result6,
+						  result7,
+						  result8,
+						  result9,
+						  result10,
+						  result11
 		);
 	}
 

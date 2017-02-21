@@ -1,8 +1,8 @@
 \contentsline {section}{\numberline {1}Introduction}{9}{section.1}
 \contentsline {section}{\numberline {2}Technology Overview}{10}{section.2}
 \contentsline {section}{\numberline {3}Algorithms}{11}{section.3}
-\contentsline {section}{\numberline {4}Course of Action}{28}{section.4}
-\contentsline {section}{Used software}{30}{section.4}
-\contentsline {section}{Listings}{32}{section*.6}
-\contentsline {section}{Tables}{34}{section*.7}
-\contentsline {section}{References}{36}{section*.8}
+\contentsline {section}{\numberline {4}Course of Action}{25}{section.4}
+\contentsline {section}{Used software}{27}{section.4}
+\contentsline {section}{Listings}{29}{section*.6}
+\contentsline {section}{Tables}{31}{section*.7}
+\contentsline {section}{References}{33}{section*.8}

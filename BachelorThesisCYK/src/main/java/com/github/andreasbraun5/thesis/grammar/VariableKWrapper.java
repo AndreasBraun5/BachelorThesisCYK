@@ -1,7 +1,5 @@
 package com.github.andreasbraun5.thesis.grammar;
 
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.RightCellCombinationsForcedWrapper;
-
 /**
  * Created by Andreas Braun on 24.01.2017.
  * https://github.com/AndreasBraun5/

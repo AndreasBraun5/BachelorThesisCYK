@@ -52,7 +52,7 @@ public abstract class Util {
 	 * Counting the stored elements in each entry of the setV matrix and looking for the max count.
 	 */
 	// TODO ???: duplicate maxVarPerCell
-	public static int getMaxVarPerCellForSetV(SetVMatrix setVMatrix) {
+	public static int getMaxVarPerCellForSetV(SetVMatrix<VariableKWrapper> setVMatrix) {
 		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
 		int numberOfVarsPerCell = 0;
 		int temp = tempSetV.length;
@@ -89,9 +89,9 @@ public abstract class Util {
 	// Its structure is very similar to stepIIAdvanced and calculateSetVAdvanced.
 	public static Grammar removeUselessProductions(
 			Grammar grammar,
-			SetVMatrix setVMatrix,
+			SetVMatrix<VariableKWrapper> setVMatrix,
 			List<Terminal> word) {
-		Set<LeftHandSideElement>[][] setV = setVMatrix.getSetV();
+		Set<VariableKWrapper>[][] setV = setVMatrix.getSetV();
 		int wordLength = setVMatrix.getSetV().length;
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
 		Set<Production> onlyUsefulProductions = new HashSet<>();

@@ -71,7 +71,7 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 		Map<Variable, Integer> favouritismToVariable = new HashMap<>();
 		{
 			// Mapping the favouritism randomly to the variables. Pick one random variable and add the first favouritism to it.
-			int indexVar = 0;
+			int indexVar;
 			for ( int i = 0; i < favouritism.length; i++ ) {
 				indexVar = random.nextInt( tempVariables2.size() );
 				favouritismToVariable.put(

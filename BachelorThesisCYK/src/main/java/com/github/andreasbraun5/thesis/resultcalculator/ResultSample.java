@@ -4,6 +4,8 @@ import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesExamConstraints;
 import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesGrammarRestrictions;
+import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableKWrapper;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.RightCellCombinationsForcedWrapper;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
@@ -17,7 +19,7 @@ public class ResultSample {
 
 	private Grammar grammar;
 	private String word;
-	private SetVMatrix setVMatrix;
+	private SetVMatrix<VariableKWrapper> setVMatrix;
 
 	// This stays here
 	private boolean isValid;
@@ -30,7 +32,7 @@ public class ResultSample {
 	public ResultSample(
 			Grammar grammar,
 			String word,
-			SetVMatrix setVMatrix,
+			SetVMatrix<VariableKWrapper> setVMatrix,
 			GrammarGeneratorSettings grammarGeneratorSettings
 	) {
 		this.grammar = grammar;
@@ -95,7 +97,7 @@ public class ResultSample {
 		return "ResultSample{" +
 				"\ngrammar=" + grammar +
 				"\nword='" + word + '\'' +
-				"\nsetV=" + SetVMatrix.buildEmptySetVMatrixWrapper( word.length() )
+				"\nsetV=" + SetVMatrix.buildEmptySetVMatrixWrapper( word.length(), Variable.class )
 				.setSetV( setVMatrix.getSimpleMatrix() )
 				.getStringToPrintAsLowerTriangularMatrix() +
 				"\nmarkedRightCellCombinationForced=" + resultSampleExamConstraints.getMarkedRightCellCombinationForced()
@@ -117,7 +119,7 @@ public class ResultSample {
 		return word;
 	}
 
-	public SetVMatrix getSetV() {
+	public SetVMatrix<VariableKWrapper> getSetV() {
 		return setVMatrix;
 	}
 

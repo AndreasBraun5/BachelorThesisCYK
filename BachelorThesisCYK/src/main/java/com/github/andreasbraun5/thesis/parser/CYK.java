@@ -103,7 +103,7 @@ public class CYK {
 	 * Calculating the set needed for the cyk algorithm.
 	 */
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	public static SetVMatrix calculateSetVAdvanced(Grammar grammar, List<Terminal> word) {
+	public static SetVMatrix<VariableKWrapper> calculateSetVAdvanced(Grammar grammar, List<Terminal> word) {
 		int wordLength = word.size();
 		Map<Variable, List<Production>> productions = grammar.getProductionsMap();
 		Set<VariableKWrapper>[][] setV = Util.getInitialisedHashSetArray( wordLength );
@@ -152,6 +152,6 @@ public class CYK {
 				}
 			}
 		}
-		return SetVMatrix.buildEmptySetVMatrixWrapper( setV.length ).setSetV( setV );
+		return SetVMatrix.buildEmptySetVMatrixWrapper( setV.length, VariableKWrapper.class ).setSetV( setV );
 	}
 }
