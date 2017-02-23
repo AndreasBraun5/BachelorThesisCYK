@@ -154,4 +154,46 @@ public class CYK {
 		}
 		return SetVMatrix.buildEmptySetVMatrixWrapper( setV.length, VariableK.class ).setSetV( setV );
 	}
+
+
+	public static Set<VariableK>[][] calculateSubSetForCell(
+			Set<VariableK>[][] setV,
+			Map<Variable, List<Production>> productions,
+			int l,
+			int i,
+			int k) {
+		// tempSetX contains the newly to be added variables, regarding the "X-->YZ" rule.
+		// If the substring X can be concatenated with the substring Y and substring Z, whereas Y and Z
+		// must be element of its specified subsets, then add the element X to setV[i][i+l]
+		Set<Variable> tempSetX = new HashSet<>();
+		Set<Variable> tempSetY = Util.varKSetToVarSet( setV[i][k] );
+		Set<Variable> tempSetZ = Util.varKSetToVarSet( setV[k + 1][i + l] );
+		Set<VariableCompound> tempSetYZ = new HashSet<>();
+		// All possible concatenations of the variables yz are constructed. And so its substrings, which
+		// they are able to generate
+		for ( Variable y : tempSetY ) {
+			for ( Variable z : tempSetZ ) {
+				@SuppressWarnings("SuspiciousNameCombination")
+				VariableCompound tempVariable = new VariableCompound( y, z );
+				tempSetYZ.add( tempVariable );
+			}
+		}
+		// Looking at all productions of the grammar, it is checked if there is one rightHandSideElement that
+		// equals any of the concatenated variables tempSetYZ. If yes, the LeftHandSideElement or more
+		// specific the variable of the production is added to the tempSetX. All according to the "X-->YZ" rule.
+		for ( List<Production> tempProductions : productions.values() ) {
+			for ( Production tempProduction : tempProductions ) {
+				for ( VariableCompound yz : tempSetYZ ) {
+					if ( tempProduction.isElementAtRightHandSide( yz ) ) {
+						tempSetX.add( tempProduction.getLeftHandSideElement() );
+					}
+				}
+			}
+		}
+		for ( Variable var : tempSetX ) {
+			// ( k + 1) because of index range of k  because of i.
+			setV[i][i + l].add( new VariableK( var, ( k + 1 ) ) );
+		}
+		return setV;
+	}
 }

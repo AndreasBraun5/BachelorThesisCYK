@@ -26,12 +26,12 @@ public class Main {
 	//
 	// TODO Implement: CYK tree in Combination with latex picture creation.
 	// TODO: Algorithm Duda Prepare, but maybe this isn't wanted
-	// TODO: Wrapper class for examConstraintsResults to store the actual count of productions and the count of vars in the matrix. Output in txt pending.
 	// TODO: Implement pyramid vs methods: getRight, getLeft, getUpperRight, getUpperLeft, ... methods in SetVMatrix. Possible to check indices. Legacy code still works.
+	// TODO: Outsource calculateSubsetForCell from CYK algorithm. Implicit testing possible and reuse.
+	// TODO: Comparator needed for the stored samples in the .txt file.
 	//
 	// TODO DONE?: Implement Wim's algorithm from meeting 6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// TODO: Wim's algorithm output rethink because of too many times not adding a production.
-	// TODO DONE?: Only keep useful rhse's in the grammar. Also see script in TI.
 	//
 	// TODO: See [Duda, Pattern Classification] chapter 8.5 Recognition with strings. In more Detail:
 	//			8.5.2 Edit Distance(p. 418): Definition of similarity or difference between two strings. Deletion,

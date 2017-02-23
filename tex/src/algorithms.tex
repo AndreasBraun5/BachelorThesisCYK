@@ -2,52 +2,85 @@
 
 \section{Algorithms}\label{algorithms}
 \noindent Analogue to the script: \\
-grammar $G=(V,\Sigma , S, P)$.\\
+grammar $G=(V,\ \Sigma,\ S,\ P)$.\\
 $V$ is a finite set of variables. \\
 $\Sigma$ is an alphabet. \\
-$S$ is the starting symbol and $S\ \epsilon\ V$. \\
-$P$ is a finite set of rules: $P\ \subseteq\ V \times\ (V \cup\ \Sigma)^{*}$. \\ 
-LHSE and RHSE are sets that shouldn't be defined. It is possible to have context free grammars(cfgs) with other kind of combinations.\\
-$LHSE$ is finite set of left hand side elements: $LHSE = V$.\\
-$RHSE$ is finite set of right hand side elements: $RHSE = (V \cup\ \Sigma)^{*}$.\\
-$G.P.RHSE$ allows access to $RHSE$.\\
-Variables that are of type set begin with a upper case letter.\\
-$p.rhse$ allows access to the one specific $rhse$ of the specific production $p$.\\
-So $P$ is a finite set of rules: $P\ \subseteq\ LHSE \times\ RHSE$. \\
-Multisets allow duplicate elements. Notation of a multiset is done via the index b: $multiset_b$\\
-pyramid is a structure where one $cell_{i,j}$ holds a set  $Cell_{i,j} = \{v\ |\ v\ \epsilon\ V\}$. If initialised each $cell_{i,j}$ holds $Cell_{i,j} = \emptyset $, which is named $empty\ pyramid$. $cell_{i+1,j} = cellDown;$ $cell_{i,j} = cellUpperLeft;\ cell_{i+1,j+1} = cellUpperRight;  $ \\
-RHSEs are terminals like "a, b, ..." and compound variables like "AB, AC, ...". \\
-LHSEs are variables like "A, B, ...".\\
+$S$ is the starting symbol and $S \in V$. \\
+$P$ is a finite set of rules: $P \subseteq V \times (V \cup \Sigma)^{*}$.\\ 
+$G$ is in CNF and therefore it holds, more specifically:  $P\ \subseteq\ V \times\ (V^{2} \cup \Sigma)$. Think about if it is ok. \\
+$Vs$ are Variables like "A, B, ...".\\
+$(V \cup\ \Sigma)^{*}$ are terminals like "a, b, ..." and compound variables like "AB, BS, AC, ...". \\
+$i,j \in \mathbb{N};\ [i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}_{\geq 0}$. $word \in \Sigma^* $ \\
+$Pyramid :=\{ cell_{i,j}\ |\ i \in \mathbb{N}_{\geq 0},\  j \in [0,\ j_{max}-i],\ i_{max} = j_{max} = |word|-1\}$.\\
+$cell_{i,j} = \{Cell_{i,j}\ |\ Cell_{i,j} \subseteq V\}$. If each $cell_{i,j}=\emptyset$ then it is called $EmptyPyramid$.\\
+Note that regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLeft$ and $cell_{i-1,j+1} = cellUpperRight$  \\
+Multisets allow duplicate elements. Notation of a multiset is done via the index b, that stands for bag: $multiset_b$\\
 
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\textwidth]{abb/DataStructurePyramid}
 \end{figure}
-
  \pagebreak 
- 
+\noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
-		\caption{distributeRhseRandomly}
-		\label{distributeRhseRandomly}
+		\caption{distributeRhse}
+		\label{distributeRhse}
 		\SetAlgoLined
-		\KwIn{ $G,\ Rhse \subseteq\ RHSE,\ 0\leq minCount\leq maxCount\leq \mid G.V\mid$}
-		\KwOut{$Grammar\ G\ with\ randomly\ distributed\ Rhse's.$}
-		\ForEach {$rhse\ in\ Rhse$}{
-			$addCount$ = $random(minCount, maxCount)$\;
-			$VarsToAddTo = randomSubSet(addCount,\ LHSE)$\;
-			
-		
-			\ForEach{var in VarsToAddTo}{
-				$G.P = G.P\ \cup\ \{ "var\longrightarrow rhse" \} $\;	
-			}
+		\KwIn{ $G,\ Rhse \subseteq\ (V^{2} \cup \Sigma),\ i,\ j$}
+		\KwOut{$Grammar\ G\ with\ uniform\ randomly\ distributed\ Rhse's.$}
+		\ForEach {$rhse \in Rhse$}{
+			$choose\ n\ uniform\ randomly\ in\ [i, j]$\;
+			$choose\ V_{add} := uniform\ random\ subset\ of\ size\ n\ from\ V$\;
+			$G.P = G.P\ \cup\ \{ "v\longrightarrow rhse"\ |\ v \in V_{add} \} $\;	
 		}
 		\Return $G$;
 	\end{algorithm}
 }
-.\\
-.\\
+\\
+\\
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{calculateSubsetForCell}
+		\label{calculateSubsetForCell}
+		\SetAlgoLined
+		\KwIn{$Pyramid,\ cell_ {i,j} $}
+		\KwOut{$V_{i,j} \subseteq V^2$}
+		$V_{i,j} = \emptyset $\;
+		\For{$m:=i-1 \to 0$}{
+			$V_{i,j} = V_{i,j} \cup \{X\ |\ X\longrightarrow YZ,\ Y \in V_{m,j},\ Z \in V_{i-m-1,m+j+1} \}$\;
+		}
+		
+		\Return $V_{i,j}$;
+		\end{algorithm}
+}
+\noindent
+\\
+\\
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{checkForceCombinationForCell}
+		\label{checkRightCellCombination}
+		\SetAlgoLined
+		\KwIn{$ cell_{i,j}\subseteq V^2 \, cell_{i-1,j}\subseteq V^2,\ cell_{i-1,j+1} \subseteq V^2,\ G.P $ }
+		\KwOut{$varsForcing\subseteq V$}
+		$varsForcing = \emptyset$\;
+		$varComp = \{XY\ |\ X \in cell_{i-1,j}\ \wedge\ Y \in cell_{i-1,j+1} \}$\;
+		\ForEach{$v \in cellDown$}{
+			$prods = \{p\ |\ v \in G.P.V \}$\;
+			$rhses = \{rhse\ |\ rhse \in prods.(V^{2} \cup \Sigma) \} $\;
+			\If{$varComp \nsubseteq rhses$}{
+				$varsForcing = varsForcing\ \cup\ v$\;
+			}			
+		}
+		\Return $varsForcing$\;
+		\footnotetext{Input: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLeft$ and $cell_{i-1,j+1} = cellUpperRight$
+		}
+	\end{algorithm}
+}
+\\
+\\
 \frame{
 	\begin{algorithm}[H] %or another one check
 		\caption{GeneratorGrammarDiceRollMartens}
@@ -57,116 +90,72 @@ LHSEs are variables like "A, B, ...".\\
 		\KwOut{$G$}
 		
 		$G=(V,\Sigma , S, P)$\;
-		$G = distributeRhseRandomly(G,\ \Sigma,\ minCount\Sigma,\ maxCount\Sigma ) $\;
-		$pyramid = CYK.calculatePyramid(G,\ word)$\;
-		\ForEach{$cell_{i+1,j}\ in\ pyramid\ \wedge\ i>0$}{
-			$VarComp = \{XY\ |\ X \in cellUpperLeft\ \wedge\ Y \in cellUpperRight \}$\;
-			\ForEach{$vc\ in\ VarComp$}{
-				\While{$cell_{wordLength+1,0} = \emptyset$}{
-					$distributeRhseRandomly(G,\ vc,\ minCountVarComp,\ $ $maxCountVarComp ) $\;
-					$pyramid = CYK.calculatePyramid(G,\ word)$\;	
+		$G = distributeRhse(G,\ \Sigma,\ minCount\Sigma,\ maxCount\Sigma ) $\;
+		$Pyramid = CYK.calculatePyramid(G,\ word)$\;
+		\For{$i:=1\ \to\ i_{max}$}{
+			\For{$j:=0\ \to\ j_{max}-i$}{
+				$sub = calculateSubsetForCell(Pyramid,\ i,\ j)$\;
+				\ForEach{$vc \in sub$}{
+					\While{$cell_{i_{max},0} = \emptyset$}{
+						$distributeRhse(G,\ vc,\ minCountVarComp,\ $ $maxCountVarComp ) $\;
+						$Pyramid = CYK.calculatePyramid(G,\ word)$\;	
+					}
 				}
 			}
 		}
 		\Return $G$\;
-		\footnotetext{Line 3: Fills the i=0 row of the pyramid.\\
-			\noindent Line 4: = foreach cellDown, but skipping the first row of the pyramid.
+		\footnotetext{
+		\noindent Line 3: Fills the i=0 row of the pyramid.
+			
+		\noindent line 5: Instead of going from left to right, choose $j$ uniform randomly with the restrictions that one cell is only visited one time.
+		
+		\noindent Note: The algorithm tends to finish already within $i = 1$ loop.
 		}
 	\end{algorithm}
 }
-
- \pagebreak 
- 
- 
+\noindent
 \frame{
- 	\begin{algorithm}[H] %or another one check
- 		\caption{checkRightCellCombination}
- 		\label{checkRightCellCombination}
- 		\SetAlgoLined
- 		\KwIn{$ cellDown\subseteq V \,\ cellUpperLeft\subseteq V,\ cellUpperRight\subseteq V,\ G.P $ }
- 		\KwOut{$varsThatForce\subseteq V$}
- 		$isForced = false$\;
- 		$VarsThatForce = \emptyset$\;
- 		$VarComp = \{XY\ |\ X \in cellUpperLeft\ \wedge\ Y \in cellUpperRight \}$\;
- 		\ForEach{$v\ in\ cellDown$}{
- 			$VProd = \{p\ |\ p \in G.P\ \wedge\ p.lhse = v \}$\;
- 			$VRhse = \{vRhse\ |\ vRhse \in VProd.RHSE \} $\;
- 			\If{$VarComp \nsubseteq VRhse$}{
- 				$isForced = true$\;
- 				$VarsThatForce = VarsThatForce\ \cup\ v$\;
- 			}			
- 		}
- 		\Return $VarsThatForce$\;
- 	\end{algorithm}
+	\begin{algorithm}[H] %or another one check
+		\caption{GeneratorGrammarDiceRollMartens2}
+		\label{GeneratorGrammarDiceRollMartens2}
+		\SetAlgoLined
+		\KwIn{ $word \in \Sigma^{*},\ V,\ \Sigma,\ S,\ P = \emptyset,\ minCount\Sigma,\ maxCount\Sigma,\ $ $ minCountVarComp,\ maxCountVarComp $ }
+		\KwOut{$G$}
+		$G=(V,\Sigma , S, P)$\;
+		$G = distributeRhse(G,\ \Sigma,\ minCount\Sigma,\ maxCount\Sigma ) $\;
+		$Pyramid = CYK.calculatePyramid(G,\ word)$\;
+		$sub = \emptyset$\;
+		\For{$i:=1\ \to\ i_{max}$}{
+			%$choose\ j\ uniform\ randomly\ in\ [0,\ j_{max}-i]  $\;
+			\For{$j:=0\ \to\ j_{max}-i$}{
+				$sub = sub \cup \{(A,i)\ |\ A \in calculateSubsetForCell(Pyramid,\ i,\ j) \}$\;
+			}
+			$sub_b = \{B\ | \ B \in sub,\ sub_b\ models\ i$-$dependent\ priority\ mechanism \} $\;
+			\While{$cell_{i_{max},0} = \emptyset \ \wedge\ threshold_i = false $}{
+				$choose\ one\ vc\ uniform\ randomly \in sub_b$\;
+				$distributeRhse(G,\ vc,\ minCountVarComp,\ $ $maxCountVarComp ) $\;
+				$Pyramid = CYK.calculatePyramid(G,\ word)$\;
+				$evaluate\ and\ update\ threshold_i$\;	
+			}
+		}
+		\Return $G$\;
+		\footnotetext{
+			\noindent Line 3: Fills the i=0 row of the pyramid.
+			
+			\noindent Line 7: $(AB,1), (AB,2), (BC,3) ... \in sub$ $\rightarrow$ multiple occurrences of $AB$ are allowed. This considers "more important" compound variables. 
+			
+			\noindent Line 11: One vc can be chosen several times.
+			
+			\noindent Note: Threshold: Linear or log function $f(i)$?
+			
+			\noindent Note: Priority mechanism: In line $i+1$ the $k = \{(A,l)\ |\ (A,l) \in sub,\ l=i  \}$ are preferred over the\\ $m = \{(A,n)\ |\ (A,n) \in sub,\ n < i  \}$. In what way are they preferred? Using some kind of factor to weight the $i$ of $(A,i)$.
+		}
+	\end{algorithm}
 }
-\pagebreak
+\pagebreak 
 
 
-\frame{
- 	\begin{algorithm}[H] %or another one check
- 		\caption{checkRightCellCombinationForced}
- 		\label{checkRightCellCombinationForced}
- 		\SetAlgoLined
- 		\KwIn{$ pyramid,\ G,\ minCountForced $ }
- 		\KwOut{$G$}
- 		$countForced = 0$\;
- 		$isForced = true$\;
- 		$varsThatForce = empty\ pyramid$\;
- 		\ForEach{$cell_{i+1,j}\ in\ pyramid\ \wedge\ i>1 $}{
- 			$varComp = \{XY\ |\ X\ \epsilon\ Cell_{i,j}\ \wedge\ Y\ \epsilon\ Cell_{i+1,j+1} \}$\;
- 			
- 			
- 			
- 			$ $\;
- 		}
- 		\Return $isForced,\ countForced,\ varsThatForce$\;
- 		\footnotetext{Line 3: $i>1 \rightarrow$ the upper two rows aren't included, because they would produce trivial cases that fulfil the restriction always. 
- 		}
- 	\end{algorithm}
-}
- 
-\pagebreak
- 
-\lstset{language=java}
-\begin{lstlisting}[frame=htrbl, caption={distributeDiceRollRightHandSideElements}, 
-label={lst:distributeDiceRollRightHandSideElements}]
-Algorithm: distributeDiceRollRightHandSideElements
-Input: grammar, setRhse, minCount, maxCount, listVars;
-Output: grammar;
 
-for(RightHandSideElement rhse : setRhse){
-	// countWillBeAdded is between [minCount, maxCount]. 
-	countWillBeAdded = diceRoll();
-	while(listVars.size() > countWillBeAdded){
-		Remove one variable of listVars via dice roll;
-	}
-	for(Variable varLeft : listVars){
-		// An exception is thrown if the production 
-		// already exists.
-		grammar.addProduction "varLeft --> rhse";
-	}
-}
-return grammar;
-\end{lstlisting}
-
-
-\lstset{}
-\begin{lstlisting}[frame=htrbl, caption={distributeDiceRollRightHandSideElementsShort}, 
-label={lst:distributeDiceRollRightHandSideElementsShort}]
-Algorithm: distributeDiceRollRightHandSideElements
-Input: grammar G, setRhse, minCount, maxCount, setGrammarVars;
-Output: grammar;
-
-foreach rhse in setRhse { 
-	countWillBeAdded = dice roll a number within [minCount, maxCount];
-	setVarsToAddRhse = {}dice roll countWillbeAdded to times vars from 	
-		setGrammarVars that get the rhse added to;
-	foreach var in setVarsToAddRhse {
-		add production "var --> rhse" to grammar;
-	}
-}
-return grammar;
-\end{lstlisting}
 
 \lstset{language=java}
 \begin{lstlisting}[frame=htrbl, caption={CYK.calculateSetVAdvanced}, 
@@ -182,47 +171,6 @@ return cYKMatrix;
 
 \pagebreak
 
-\lstset{language=java}
-\begin{lstlisting}[frame=htrbl,caption={GeneratorGrammarDiceRollTopDownMartens}, 
-label={lst:GeneratorGrammarDiceRollTopDownMartens}]
-Algorithm: GeneratorGrammarDiceRollTopDownMartens
-Input: word, settings;
-Output: grammar;
-Note: Keep in mind that the setV matrix is a upper right matrix. But the
-description of how the algorithm works is done, as if the setV pyramid 
-points downwards (reflection on the diagonal + rotation to the left).
-Regarding one cell, its upper left cell and its upper right cell 
-are looked at. setV[i][j] = down cell. setV[i + 1][j] = upper right cell
-setV[i][j - 1] = upper left cell. With wordSize = 5, the visited indexes 
-are as following: [01->12->23->34; 02->13->24; 03->14; 04;]
-
-Grammar grammar = new Grammar();
-// Part1: Distribute the terminals.
-grammar = distributeDiceRollRightHandSideElements(
-	grammar, settingsTerminals, minCountTerminals, 
-	maxCountTerminals, settingsListVariables);
-// Part2: Distribute the compound variables.
-Set<VariableKWrapper>[][] setVAdvanced;
-// Fill the diagonal of the matrix with:
-setVAdvanced = CYK.calculateSetVAdvanced( grammar, word );
-for(Cell cellToBeVisited : setVAdvanced){
-	setVariableCompound = calculate all the possible tupels of 
-		({varLeft}, {varRight});
-	for(VariableCompound varComp : setVariableCompound){
-		// Because of dice rolling anyways and lots of grammars 
-		// being generated, no varComp is added if the production
-		// already exists.
-		grammar = distributeDiceRollRightHandSideElements(
-			grammar, varComp, minCountVarComp, 
-			maxCountVarComp, settingsListVariables);
-		setVAdvanced = CYK.calculateSetVAdvanced( grammar, word );
-	}
-}
-return grammar;
-// Forgot the while cell not empty do this from line 21 to line 33;
-\end{lstlisting}
-
-\pagebreak
 
 \lstset{language=java}
 \begin{lstlisting}[frame=htrbl,caption={GeneratorGrammarDiceRollOnly}, 
