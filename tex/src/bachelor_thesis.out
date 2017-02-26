@@ -1,8 +1,14 @@
 \BOOKMARK [1][-]{section.1}{1 Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{2 Technology Overview}{}% 2
-\BOOKMARK [1][-]{section.3}{3 Algorithms}{}% 3
-\BOOKMARK [1][-]{section.4}{4 Course of Action}{}% 4
-\BOOKMARK [1][-]{section.4}{Used software}{}% 5
-\BOOKMARK [1][-]{section*.6}{Listings}{}% 6
-\BOOKMARK [1][-]{section*.7}{Tables}{}% 7
-\BOOKMARK [1][-]{section*.8}{References}{}% 8
+\BOOKMARK [2][-]{subsection.1.1}{1.1 Forward Problem vs. Backward Problem}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{1.2 Parsing: Bottom-Up vs Top-Down}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{1.3 Scope of this thesis}{section.1}% 4
+\BOOKMARK [1][-]{section.2}{2 Scoring Model}{}% 5
+\BOOKMARK [2][-]{subsection.2.1}{2.1 \366alkjfds}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.2}{2.2 \366aslfajdsl}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{3 Algorithms}{}% 8
+\BOOKMARK [1][-]{section.4}{4 Implementation}{}% 9
+\BOOKMARK [1][-]{section.5}{5 Notes}{}% 10
+\BOOKMARK [1][-]{section.5}{Used software}{}% 11
+\BOOKMARK [1][-]{section*.6}{Listings}{}% 12
+\BOOKMARK [1][-]{section*.7}{Tables}{}% 13
+\BOOKMARK [1][-]{section*.8}{References}{}% 14

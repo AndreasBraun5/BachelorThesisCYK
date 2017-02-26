@@ -2,4 +2,40 @@
 
 \section{Introduction}\label{Introduction}
 
+\noindent Let there be a gramar $G=(V,\ \Sigma,\ S,\ P)$ in chomsky normal form (CNF).\\
+$V$ is a finite set of variables. \\
+$\Sigma$ is an alphabet. \\
+$S$ is the starting symbol and $S \in V$. \\
+$P$ is a finite set of rules: $P \subseteq V \times (V \cup \Sigma)^{*}$. $G$ is in CNF and therefore, more specifically, it holds:  $P\ \subseteq\ V \times (V^{2} \cup \Sigma)$.\\
+
+\noindent $Vs$ are Variables like "A, B, ...".\\
+$(V^2 \cup\ \Sigma)^{*}$ are terminals like "a, b, ..." and compound variables like "AB, BS, AC, ...". \\
+
+\noindent Let there be a word $w \in \Sigma^*$, a language $L(G)$ and a grammar $G$ in CNF. \\
+
+\subsection{Forward Problem vs. Backward Problem}
+
+\noindent\textbf{Forward Problem ($G \xrightarrow[]{derivation} w$):}\\
+Informal definition: "Forming a derivation from a root node to a final sentence."  [Duda 8.6.3 page 426]\\
+Input: Grammar $G$ in CNF.\\
+Output: Derivation $d$ that shows implicitly $w \subseteq L$.\\
+
+\noindent\textbf{Backward Problem = Parsing ($w\overset{?}{\subseteq}L(G)$):}\\
+Informal definition: "Given a particular $w$, find a derivation in $G$ that leads to $w$. This process, called parsing, is virtually always much more difficult than forming a derivation."  [Duda 8.6.3 page 426]\\
+Input: $w$ and a grammar $G$ in CNF.\\
+Output: $w \subseteq L(G) \Longrightarrow$ derivation $d$.\\
+
+\subsection{Parsing: Bottom-Up vs Top-Down}
+
+\noindent\textbf{Bottom-Up:} Bottom-Up parsing is "the general method used in the Cocke-Younger-Kasami(CYK) algorithm, which fills a parse table from the "bottom up"." (Bottom up means starting from the leaves.) [Duda 8.6.3 page 426]\\
+
+\noindent\textbf{Top-Down:} "Top-Down parsing starts with the root node and successively applies productions from $P$, with the goal of finding a derivation of the test sentence $w$. Because it is rare indeed that the sentence is derived in the first production attempted, it is necessary to specify some criteria to guide the choice of which rewrite rule to apply. Such criteria could include beginning the parse at the first (left) character in the sentence (i.e., finding a small set of rewrite rules that yield the first character), then iteratively expanding the production to derive subsequent characters, or instead starting at the last (right) character in the sentence." [Duda 8.6.3 page 428]\\
+
+\subsection{Scope of this thesis}
+
+The starting point of this thesis was to get a command line interface (CLI) tool to automatically generate $exercises = (grammar,\ word,\ parse\ table,\ derivation\ tree)$, which are used to test if the students have understood the way of working of the CYK algorithm. A scoring model is used to evaluate the generated exercises regarding their usability in an exam.\\
+
+\noindent This alone doesn't meet the requirements for being an adequate topic for a bachelor thesis.
+Therefore the task of finding a clever algorithm to get exercises with a high chance of being usable as an exam exercise was added.\\
+
 \pagebreak

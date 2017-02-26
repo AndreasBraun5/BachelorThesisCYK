@@ -1,8 +1,14 @@
 \contentsline {section}{\numberline {1}Introduction}{9}{section.1}
-\contentsline {section}{\numberline {2}Technology Overview}{10}{section.2}
-\contentsline {section}{\numberline {3}Algorithms}{11}{section.3}
-\contentsline {section}{\numberline {4}Course of Action}{24}{section.4}
-\contentsline {section}{Used software}{26}{section.4}
-\contentsline {section}{Listings}{28}{section*.6}
-\contentsline {section}{Tables}{30}{section*.7}
-\contentsline {section}{References}{32}{section*.8}
+\contentsline {subsection}{\numberline {1.1}Forward Problem vs. Backward Problem}{9}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Parsing: Bottom-Up vs Top-Down}{9}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Scope of this thesis}{10}{subsection.1.3}
+\contentsline {section}{\numberline {2}Scoring Model}{11}{section.2}
+\contentsline {subsection}{\numberline {2.1}\IeC {\"o}alkjfds}{11}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}\IeC {\"o}aslfajdsl}{11}{subsection.2.2}
+\contentsline {section}{\numberline {3}Algorithms}{12}{section.3}
+\contentsline {section}{\numberline {4}Implementation}{27}{section.4}
+\contentsline {section}{\numberline {5}Notes}{28}{section.5}
+\contentsline {section}{Used software}{30}{section.5}
+\contentsline {section}{Listings}{32}{section*.6}
+\contentsline {section}{Tables}{34}{section*.7}
+\contentsline {section}{References}{36}{section*.8}

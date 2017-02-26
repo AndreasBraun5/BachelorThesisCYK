@@ -1,21 +1,14 @@
 % !TeX spellcheck = en_GB
 
 \section{Algorithms}\label{algorithms}
-\noindent Analogue to the script: \\
-grammar $G=(V,\ \Sigma,\ S,\ P)$.\\
-$V$ is a finite set of variables. \\
-$\Sigma$ is an alphabet. \\
-$S$ is the starting symbol and $S \in V$. \\
-$P$ is a finite set of rules: $P \subseteq V \times (V \cup \Sigma)^{*}$.\\ 
-$G$ is in CNF and therefore it holds, more specifically:  $P\ \subseteq\ V \times\ (V^{2} \cup \Sigma)$. Think about if it is ok. \\
-$Vs$ are Variables like "A, B, ...".\\
-$(V \cup\ \Sigma)^{*}$ are terminals like "a, b, ..." and compound variables like "AB, BS, AC, ...". \\
-$i,j \in \mathbb{N};\ [i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}_{\geq 0}$. $word \in \Sigma^* $ \\
-$Pyramid :=\{ cell_{i,j}\ |\ i \in \mathbb{N}_{\geq 0},\  j \in [0,\ j_{max}-i],\ i_{max} = j_{max} = |word|-1\}$.\\
-$cell_{i,j} = \{Cell_{i,j}\ |\ Cell_{i,j} \subseteq V\}$. If each $cell_{i,j}=\emptyset$ then it is called $EmptyPyramid$.\\
-Note that regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLeft$ and $cell_{i-1,j+1} = cellUpperRight$  \\
-Multisets allow duplicate elements. Notation of a multiset is done via the index b, that stands for bag: $multiset_b$\\
+\noindent Define $[i,\ j]$: \\
+$[i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}_{\geq 0}$.\\
 
+\noindent Define $Pyramid$:\\
+$Pyramid :=\{ cell_{i,j}\ |\ i \in \mathbb{N}_{\geq 0},\  j \in [0,\ j_{max}-i],\ i_{max} = j_{max} = |word|-1\}$.\\
+$cell_{i,j} = \{c\ |\ c \subseteq V\}$.\\
+$EmptyPyramid \Leftrightarrow \forall i\ \forall j\ cell_{i,j}=\emptyset$.\\
+Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLeft$ and $cell_{i-1,j+1} = cellUpperRight$  \\
 
 \begin{figure}[h]
 	\centering
@@ -25,16 +18,15 @@ Multisets allow duplicate elements. Notation of a multiset is done via the index
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
-		\caption{distributeRhse}
-		\label{distributeRhse}
+		\caption{distributeRhse2}
+		\label{distributeRhse2}
 		\SetAlgoLined
-		\KwIn{ $G,\ Rhse \subseteq\ (V^{2} \cup \Sigma),\ i,\ j$}
-		\KwOut{$Grammar\ G\ with\ uniform\ randomly\ distributed\ Rhse's.$}
-		\ForEach {$rhse \in Rhse$}{
-			$choose\ n\ uniform\ randomly\ in\ [i, j]$\;
-			$choose\ V_{add} := uniform\ random\ subset\ of\ size\ n\ from\ V$\;
-			$G.P = G.P\ \cup\ \{ "v\longrightarrow rhse"\ |\ v \in V_{add} \} $\;	
-		}
+		\KwIn{ $Rhse \subseteq\ (V^{2} \cup \Sigma),\ i \in  \mathbb{N},\ j \in  \mathbb{N}$}
+		\KwOut{$Grammar\ G\ in\ CNF\ with\ uniform\ randomly\ distributed\ Rhse's.$}
+		$choose\ n\ uniform\ randomly\ in\ [i, j]$\;
+		$choose\ V_{add} := uniform\ random\ subset\ of\ size\ n\ from\ V$\;
+		$P = P \cup \{ "v \longrightarrow rhse"\ |\ v \in V_{add},\ rhse \in Rhse \} $\;	
+		
 		\Return $G$;
 	\end{algorithm}
 }
@@ -45,7 +37,7 @@ Multisets allow duplicate elements. Notation of a multiset is done via the index
 		\caption{calculateSubsetForCell}
 		\label{calculateSubsetForCell}
 		\SetAlgoLined
-		\KwIn{$Pyramid,\ cell_ {i,j} $}
+		\KwIn{$cell_ {i,j} \in pyramid $}
 		\KwOut{$V_{i,j} \subseteq V^2$}
 		$V_{i,j} = \emptyset $\;
 		\For{$m:=i-1 \to 0$}{
@@ -63,15 +55,15 @@ Multisets allow duplicate elements. Notation of a multiset is done via the index
 		\caption{checkForceCombinationForCell}
 		\label{checkRightCellCombination}
 		\SetAlgoLined
-		\KwIn{$ cell_{i,j}\subseteq V^2 \, cell_{i-1,j}\subseteq V^2,\ cell_{i-1,j+1} \subseteq V^2,\ G.P $ }
-		\KwOut{$varsForcing\subseteq V$}
-		$varsForcing = \emptyset$\;
+		\KwIn{$ cell_{i,j}\subseteq V,\ cell_{i-1,j}\subseteq V,\ cell_{i-1,j+1} \subseteq V,\ P \subseteq V \times (V^{2} \cup \Sigma) $ }
+		\KwOut{$varsForcing \subseteq V$}
+		$varsForcing \subseteq V = \emptyset$\;
 		$varComp = \{XY\ |\ X \in cell_{i-1,j}\ \wedge\ Y \in cell_{i-1,j+1} \}$\;
-		\ForEach{$v \in cellDown$}{
-			$prods = \{p\ |\ v \in G.P.V \}$\;
-			$rhses = \{rhse\ |\ rhse \in prods.(V^{2} \cup \Sigma) \} $\;
+		\ForEach{$v \in cell_{i,j}$}{
+			$prods = \{p\ |\ p \subseteq P,\ v\ is\ left\ in\ p \}$\;
+			$rhses = \{rhse\ |\ rhse\ is\ right\ in\ p \in prods\} $\;
 			\If{$varComp \nsubseteq rhses$}{
-				$varsForcing = varsForcing\ \cup\ v$\;
+				$varsForcing = varsForcing \cup v$\;
 			}			
 		}
 		\Return $varsForcing$\;
@@ -81,10 +73,97 @@ Multisets allow duplicate elements. Notation of a multiset is done via the index
 }
 \\
 \\
+\pagebreak
+
+\noindent Things like the $G=(V,\Sigma , S, P)$ can be assumed as known.\\
+$P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\ \{v\ |\ v \in V \} \}$ which equals $distributeRhse$ method.\\
+\noindent Bias is only allowed top vs down regarding the pyramid. Not left or right bias.\\
+
 \frame{
 	\begin{algorithm}[H] %or another one check
 		\caption{GeneratorGrammarDiceRollMartens}
 		\label{GeneratorGrammarDiceRollMartens}
+		\SetAlgoLined
+		\KwIn{ $Word\ w \in \Sigma^{*},\ P \subseteq V \times (V^{2} \cup \Sigma) = \emptyset,\ $ }
+		\KwOut{$Grammar\ G\ in\ CNF$}
+		
+		$P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ over\ \{v\ |\ v \in V \} \} $\;
+		$pyramid = CYK(G,\ w)$\;
+		\For{$i:=1\ \textbf{to}\ i_{max}$}{
+			$J \subseteq \mathbb{N} = \emptyset $\;
+			$cellSet \subseteq V^2= \emptyset$\;
+			\While{$|J| < j_{max}-i$}{
+				$choose\ one\ j \notin J\ uniform\ randomly\ in\ [0, j_{max}-i] $\;
+				$J = J \cup j$\;
+				$cellSet = calculateSubsetForCell(pyramid,\ i,\ j)$\;
+				$P = P \cup \{distribute\ \{vc\ |\ vc \in cellSet \}\ $$over\ \{v\ |\ v \in V \} \} $\;
+				$pyramid = CYK(G,\ w)$\;	
+				$evaluate\ stopping\ criteria\ regarding\ the\ pyramid$\;
+				\If{$stopping\ criteria = true$}{
+					\Return $G$\;
+				}
+			}
+		}
+		\Return $G$\;
+		\footnotetext{
+			\noindent Line 2: Fills the i=0 row of the pyramid.
+			
+			\noindent Line 4: Instead of going from left to right, choose $j$ uniform randomly with the restrictions that one cell is only visited one time.
+			
+			\noindent Note: Maybe modify algorithm to also work with the threshold.
+		}
+	\end{algorithm}
+}
+
+\pagebreak
+
+\noindent
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{GeneratorGrammarDiceRollMartens2}
+		\label{GeneratorGrammarDiceRollMartens2}
+		\SetAlgoLined
+		\KwIn{ $Word\ w \in \Sigma^{*},\ P \subseteq V \times (V^{2} \cup \Sigma) = \emptyset,\ $ }
+		\KwOut{$Grammar\ G\ in\ CNF$}
+		$P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ over\ \{v\ |\ v \in V \} \} $\;
+		$pyramid = CYK(G,\ word)$\;
+%		$rowSet \subseteq V^2 \times \mathbb{N}  = \emptyset$\;
+		\For{$i:=1\ \to\ i_{max}$}{
+			%$choose\ j\ uniform\ randomly\ in\ [0,\ j_{max}-i]  $\;
+			\For{$j:=0\ \to\ j_{max}-i$}{
+				$rowSet = rowSet \cup \{(XY,i)\ |\ X,Y \in V,\ $ $XY \in calculateSubsetForCell(Pyramid,\ i,\ j) \}$\;
+			}
+			\While{$threshold_i = false $}{
+				$choose\ one\ vc \in rowSet\ with\ priority,\ depending\ on\ i,\ $ $ uniform\ randomly$\;
+				$P = P \cup \{distribute\ \{vc\ |\ vc \in cellSet \}\ $$over\ \{v\ |\ v \in V \} \} $\;
+				$pyramid = CYK(G,\ w)$\;
+				$evaluate\ and\ update\ threshold_i,\ regarding\ line\ i$\;
+				$evaluate\ stopping\ criteria,\ regarding\ the\ pyramid$\;
+				\If{$stopping\ criteria = true$}{
+					\Return $G$\;
+				}	
+			}
+		}
+		\Return $G$\;
+		\footnotetext{
+			\noindent Line 2: Fills the i=0 row of the pyramid.
+			
+			\noindent Line 6: $(AB,1), (AB,2), (BC,3) ... \in sub$ $\rightarrow$ multiple occurrences of $AB$ are allowed. This considers "more important" compound variables. 
+			
+			\noindent Line 9: One vc can be chosen several times.
+			
+			\noindent Note: Threshold: Linear or log function $f(i)$?
+			
+			\noindent Note: Priority mechanism: In line $i+1$ the $k = \{(A,l)\ |\ (A,l) \in sub,\ l=i  \}$ are preferred over the\\ $m = \{(A,n)\ |\ (A,n) \in sub,\ n < i  \}$. In what way are they preferred? Using some kind of factor to weight the $i$ of $(A,i)$.
+		}
+	\end{algorithm}
+}
+\pagebreak 
+
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{GeneratorGrammarDiceRollMartensFeb24}
+		\label{GeneratorGrammarDiceRollMartensFeb24}
 		\SetAlgoLined
 		\KwIn{ $word \in \Sigma^{*},\ V,\ \Sigma,\ S,\ P = \emptyset,\ minCount\Sigma,\ maxCount\Sigma,\ $ $ minCountVarComp,\ maxCountVarComp $ }
 		\KwOut{$G$}
@@ -96,28 +175,32 @@ Multisets allow duplicate elements. Notation of a multiset is done via the index
 			\For{$j:=0\ \to\ j_{max}-i$}{
 				$sub = calculateSubsetForCell(Pyramid,\ i,\ j)$\;
 				\ForEach{$vc \in sub$}{
-					\While{$cell_{i_{max},0} = \emptyset$}{
-						$distributeRhse(G,\ vc,\ minCountVarComp,\ $ $maxCountVarComp ) $\;
-						$Pyramid = CYK.calculatePyramid(G,\ word)$\;	
+					$distributeRhse(G,\ vc,\ minCountVarComp,\ $ $maxCountVarComp ) $\;
+					$Pyramid = CYK.calculatePyramid(G,\ word)$\;	
+					$Evaluate\ stopping\ criteria$\;
+					\If{$stopping\ criteria = true$}{
+						\Return $G$\;
 					}
 				}
 			}
 		}
-		\Return $G$\;
+		\Return $G$\; \label{lst:line:return}
 		\footnotetext{
-		\noindent Line 3: Fills the i=0 row of the pyramid.
+			\noindent Line 3: Fills the i=0 row of the pyramid.
 			
-		\noindent line 5: Instead of going from left to right, choose $j$ uniform randomly with the restrictions that one cell is only visited one time.
-		
-		\noindent Note: The algorithm tends to finish already within $i = 1$ loop.
+			\noindent line 5: Instead of going from left to right, choose $j$ uniform randomly with the restrictions that one cell is only visited one time.
+			
+			\noindent Note: The algorithm tends to finish already within $i = 1$ loop.
 		}
 	\end{algorithm}
 }
+\pagebreak
+
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
-		\caption{GeneratorGrammarDiceRollMartens2}
-		\label{GeneratorGrammarDiceRollMartens2}
+		\caption{GeneratorGrammarDiceRollMartens2Feb24}
+		\label{GeneratorGrammarDiceRollMartens2Feb24}
 		\SetAlgoLined
 		\KwIn{ $word \in \Sigma^{*},\ V,\ \Sigma,\ S,\ P = \emptyset,\ minCount\Sigma,\ maxCount\Sigma,\ $ $ minCountVarComp,\ maxCountVarComp $ }
 		\KwOut{$G$}
@@ -153,7 +236,6 @@ Multisets allow duplicate elements. Notation of a multiset is done via the index
 	\end{algorithm}
 }
 \pagebreak 
-
 
 
 
