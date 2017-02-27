@@ -1,10 +1,26 @@
 % !TeX spellcheck = en_GB
 
-\section{Scoring Model}
+\section{Simple Scoring Model}
 
+\noindent Short preface to the rationale about the scoring model. 
 
-\subsection{öalkjfds}
+\subsection{Elimination Criteria and Selection Criteria}
 
-\subsection{öaslfajdsl}
+\noindent Success rates: 
+Producibility: $w \subseteq L(G)$\\
+Grammar restricitons: $n=|w|$, maxNumberOfVarsPerCell; \textbf{Delete SuccessRatesGrammarRestrictions class. Move maxNumberOfVarsPerCell to exam restrictions class and use $n$ only as parameter.} \\
+Exam restrictions: rightCellCombinationsForcedCount, maxSumOfProductions, maxSumOfVarsInPyramid\\
+
+\noindent Picture of used scoring model without weights here. 
+
+\subsection{Weighting of the criteria}
+
+\noindent Picture of the final used scoring model with weights here. 
+
+\subsection{Direct Ranking vs. Preference Analysis vs. ...}
+
+What method is used to compare the results out of the scoring model.
+
+ 
 
 \pagebreak

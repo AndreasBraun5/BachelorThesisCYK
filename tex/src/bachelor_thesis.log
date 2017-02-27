@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  26 FEB 2017 20:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  27 FEB 2017 19:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1144,7 +1144,7 @@ LaTeX Info: Redefining \nameref on input line 148.
 \openout2 = `latex_settings/deckblatt.aux'.
 
 (./latex_settings/deckblatt.tex
-<abb/logo1.png, id=59, 536.0025pt x 165.61874pt>
+<abb/logo1.png, id=127, 536.0025pt x 165.61874pt>
 File: abb/logo1.png Graphic file (type png)
  <use abb/logo1.png>
 Package pdftex.def Info: abb/logo1.png used on input line 22.
@@ -1262,131 +1262,150 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--40
 
  []
 
-) [10] (./scoring_model.tex) [11] (./algorithms.tex
-Underfull \hbox (badness 10000) in paragraph at lines 4--6
+) [10] (./scoring_model.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--13
+
+ []
+
+) [11] (./algorithms.tex
+Underfull \hbox (badness 10000) in paragraph at lines 7--9
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--12
+Underfull \hbox (badness 10000) in paragraph at lines 10--15
 
  []
 
-<abb/DataStructurePyramid.png, id=136, 484.05844pt x 374.14781pt>
+<abb/DataStructurePyramid.png, id=222, 484.05844pt x 374.14781pt>
 File: abb/DataStructurePyramid.png Graphic file (type png)
 
 <use abb/DataStructurePyramid.png>
-Package pdftex.def Info: abb/DataStructurePyramid.png used on input line 15.
+Package pdftex.def Info: abb/DataStructurePyramid.png used on input line 18.
 (pdftex.def)             Requested size: 308.71106pt x 238.62596pt.
  [12 <./abb/DataStructurePyramid.png>]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 73.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 73.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 73.
-
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 18--77
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 25--57
 [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18--77
+Underfull \hbox (badness 10000) in paragraph at lines 25--57
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 18--77
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 25--57
 [] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 18--77
-
- []
-
-
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 18--77
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 18--77
-
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 78--81
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
 
  []
 
 
-Overfull \hbox (15.66374pt too wide) in paragraph at lines 116--117
-[][] 
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 63--98
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--98
+
+ []
+
+
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 63--98
+[] 
  []
 
 [14]
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 120--162
-[]
+Underfull \hbox (badness 10000) in paragraph at lines 101--104
+
+ []
+
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 140.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 140.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 140.
+
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 105--141
+[] 
  []
 
 [15]
-Overfull \hbox (15.66374pt too wide) in paragraph at lines 196--198
-[][]
- []
-
-[16]
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 199--239
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 144--186
 []
  []
 
-[17]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 244.
- [18] [19] [20]
-Overfull \hbox (42.76837pt too wide) in paragraph at lines 352--352
-\OML/lmm/m/it/12 distributeDiceRollRhse\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 G;  MI
-STAKEHEREvarsBloated[];  minCount;  maxCount \OT1/lmr/m/n/12 )$\T1/lmr/m/n/12 ;
- 
- []
-
-
-Overfull \hbox (15.66374pt too wide) in paragraph at lines 352--353
-[][] 
- []
-
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 355--357
+[16] [17]
+Underfull \hbox (badness 10000) in paragraph at lines 192--194
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--359
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--361
+Underfull \hbox (badness 10000) in paragraph at lines 197--198
 
  []
 
 
-Overfull \hbox (15.3946pt too wide) in paragraph at lines 362--363
+Overfull \hbox (15.3946pt too wide) in paragraph at lines 199--200
 \T1/lmr/m/n/12 isExamConstraints = is-Right-Cell-Com-bi-na-tions-Forced && is-M
 ax-SumOf-Pro-duc-tion-sCount
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 362--363
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 364--365
+Underfull \hbox (badness 10000) in paragraph at lines 201--241
 
  []
 
-[22] [23] [24] [25]) [26] (./implementation.tex) [27] (./notes.tex
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--241
+
+ []
+
+
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 201--241
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--241
+
+ []
+
+
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 201--241
+[] 
+ []
+
+[18]
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 244--286
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--286
+
+ []
+
+
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 244--286
+[] 
+ []
+
+) [19] (./implementation.tex) [20] (./notes.tex
 Underfull \hbox (badness 10000) in paragraph at lines 5--8
 
  []
@@ -1421,7 +1440,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--27
 
  []
 
-[28]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 30--31
 
  []
@@ -1436,57 +1455,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 35--36
 
  []
 
-) [29] (./used_software.tex [30
+) [22] (./used_software.tex [23
 
-]) [31] (./appendix/listings.tex [32]) [33]
-(./appendix/tables.tex [34]) [35] (./bibliography.tex) [36]
+]) [24] (./appendix/listings.tex [25]) [26]
+(./appendix/tables.tex [27]) [28] (./bibliography.tex) [29]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 310.
- [37]
+ [30]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 310.
 
 (./bachelor_thesis.aux (./latex_settings/deckblatt.aux) (./abstract.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 310.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 310.
 Package rerunfilecheck Info: File `bachelor_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 403FF7ED3933E7C375F238290C024244;799.
+(rerunfilecheck)             Checksum: BF024F7684DE93CCA1B5404A9E60653A;2371.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 310.
  ) 
 Here is how much of TeX's memory you used:
- 16285 strings out of 493109
- 243973 string characters out of 6138588
- 445269 words of memory out of 5000000
- 19085 multiletter control sequences out of 15000+600000
- 101826 words of font info for 70 fonts, out of 8000000 for 9000
+ 15632 strings out of 493109
+ 236714 string characters out of 6138588
+ 417269 words of memory out of 5000000
+ 18586 multiletter control sequences out of 15000+600000
+ 91261 words of font info for 66 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 76i,24n,114p,763b,1230s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 76i,23n,114p,763b,591s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2014/tex
-mf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/texlive/2014/texmf-dist/fonts/enc/
-dvips/lm/lm-mathit.enc}{c:/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
-}{c:/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}<c:/texlive/2014/
-texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2014/texmf-dist/fonts/t
-ype1/public/lm/lmbx12.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmb
-x8.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/texliv
-e/2014/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2014/texmf-dist/
-fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public
-/lm/lmmi12.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/
-texlive/2014/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2014/texmf-
-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2014/texmf-dist/fonts/type1/pu
-blic/lm/lmr10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmr12.pfb><
-c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2014/tex
-mf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2014/texmf-dist/fonts/type1/
-public/lm/lmr7.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmr8.pfb><
-c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2014/te
-xmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2014/texmf-dist/fonts/typ
-e1/public/lm/lmssbx10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lms
-y10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive
-/2014/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2014/texmf-dist/fo
-nts/type1/public/lm/lmtt10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/l
-m/lmtt12.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
-bm10.pfb>
-Output written on bachelor_thesis.pdf (37 pages, 560985 bytes).
+mf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2014/texmf-dist/fonts/enc/dvip
+s/lm/lm-mathsy.enc}{c:/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
+}<c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2014/
+texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/texlive/2014/texmf-dist/fonts/ty
+pe1/public/lm/lmbxi10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmm
+i10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texliv
+e/2014/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2014/texmf-dist/f
+onts/type1/public/lm/lmmi8.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/l
+m/lmr10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/tex
+live/2014/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2014/texmf-dis
+t/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public
+/lm/lmr8.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:
+/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2014/texm
+f-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2014/texmf-dist/fonts/type1/
+public/lm/lmsy8.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmtt12.pf
+b><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on bachelor_thesis.pdf (30 pages, 425325 bytes).
 PDF statistics:
- 700 PDF objects out of 1000 (max. 8388607)
- 625 compressed objects within 7 object streams
- 327 named destinations out of 1000 (max. 500000)
- 123 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 530 PDF objects out of 1000 (max. 8388607)
+ 471 compressed objects within 5 object streams
+ 177 named destinations out of 1000 (max. 500000)
+ 259 words of extra memory for PDF output out of 10000 (max. 10000000)
 
