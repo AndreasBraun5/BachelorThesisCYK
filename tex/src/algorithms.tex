@@ -38,7 +38,7 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 \pagebreak
 
 \subsubsection{Algorithm: GeneratorGrammarDiceRollOnly}
-\noindent Very naive way of generating grammars. This is intended to be our starting point for our algorithms we find. Each found algorithm must have a higher score that this algorithm or otherwise it would be worse than simple dice rolling. \\
+\noindent Very naive way of generating grammars. This is intended to be the starting point for our algorithms we find. Each found algorithm must have a higher score that this algorithm or otherwise it would be worse than simple dice rolling. \\
 
 \noindent
 \frame{
@@ -77,9 +77,9 @@ $P = P \setminus \{p\ |\ p \subseteq P,\ vc\ is\ right\ in\ p,\ \forall i\ \fora
 }
 
 \pagebreak
-\subsubsection{Algorithm: BottomUp GeneratorGrammarDiceRollMartens1}
+\subsubsection{Algorithm: BottomUp GeneratorGrammarDiceRollMartens}
 \noindent Things like the $G=(V,\Sigma , S, P)$ can be assumed as known.\\
-$P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\ \{v\ |\ v \in V \} \}$ which equals $distributeRhse$ method.\\
+$P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\ \{v\ |\ v \in V \} \}$ which equals the $distributeRhse$ module.\\
 \noindent Bias is only allowed top vs down regarding the pyramid. No left or right bias intended yet.\\
 
 \noindent
@@ -119,8 +119,6 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 	\end{algorithm}
 }
 
-\pagebreak
-\subsubsection{Algorithm: BottomUp GeneratorGrammarDiceRollMartens2}
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
@@ -163,8 +161,29 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 	\end{algorithm}
 }
 \pagebreak 
-\subsubsection{Algorithm: TopDown From node to leaves}
-\subsubsection{Algorithm: How often cells are used for subset calculations}
+\subsubsection{Algorithm: Idea 1, TopDown From node to leaves}
+
+\noindent
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{GeneratorGrammarDiceRollMartens2}
+		\label{GeneratorGrammarDiceRollMartens2}
+		\SetAlgoLined
+		\KwIn{ $Word\ w \in \Sigma^{*},\ P \subseteq V \times (V^{2} \cup \Sigma) = \emptyset,\ $ }
+		\KwOut{$Grammar\ G\ in\ CNF$}
+		$you\ are\ in\ cell_{i,j}$\;
+		$choose\ one\ m\ uniform\ randomly\ in\ [0, j_{max}-i] $\;
+		$index\ j\ determines\ the\ size\ of\ the\ both\ substring$\;
+		$ $\;
+		\Return $G$\;
+		\footnotetext{
+			\noindent Line xx: ...
+		}
+	\end{algorithm}
+}
+
+
+\subsubsection{Algorithm: Idea 2, How often cells are used for subset calculations}
 
 \pagebreak
 
