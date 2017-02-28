@@ -2,7 +2,7 @@
 
 \section{Algorithms}\label{algorithms}
 
-\subsection{Help Data Structure Pyramid and others}
+\subsection{Help Data Structure Pyramid and Others}
 
 \noindent Define $[i,\ j]$: \\
 $[i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}_{\geq 0}$.\\
@@ -21,43 +21,23 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 \pagebreak
 \subsection{Exam Exercise Generating Algorithms}
 
-\subsubsection{Sub Procedures}
-\noindent
-\frame{
-	\begin{algorithm}[H] %or another one check
-		\caption{distributeRhse2}
-		\label{distributeRhse2}
-		\SetAlgoLined
-		\KwIn{ $Rhse \subseteq\ (V^{2} \cup \Sigma),\ i \in  \mathbb{N},\ j \in  \mathbb{N}$}
-		\KwOut{$Grammar\ G\ in\ CNF\ with\ uniform\ randomly\ distributed\ Rhse's.$}
-		$choose\ n\ uniform\ randomly\ in\ [i, j]$\;
-		$choose\ V_{add} := uniform\ random\ subset\ of\ size\ n\ from\ V$\;
-		$P = P \cup \{ "v \longrightarrow rhse"\ |\ v \in V_{add},\ rhse \in Rhse \} $\;	
-		
-		\Return $G$;
-	\end{algorithm}
-}
-\\
-\\
-\frame{
-	\begin{algorithm}[H] %or another one check
-		\caption{calculateSubsetForCell}
-		\label{calculateSubsetForCell}
-		\SetAlgoLined
-		\KwIn{$cell_ {i,j} \in pyramid $}
-		\KwOut{$V_{i,j} \subseteq V^2$}
-		$V_{i,j} = \emptyset $\;
-		\For{$m:=i-1 \to 0$}{
-			$V_{i,j} = V_{i,j} \cup \{X\ |\ X\longrightarrow YZ,\ Y \in V_{m,j},\ Z \in V_{i-m-1,m+j+1} \}$\;
-		}
-		
-		\Return $V_{i,j}$;
-	\end{algorithm}
-}
+\pagebreak
+
+\subsubsection{Algorithm: AlgorithmName}
+
+\paragraph{Basic Idea}
+
+\paragraph{Tweak Idea 1 for Algorithm}
+
+\paragraph{Tweak Idea 2 for Algorithm}
+
+\paragraph{Finished Algorithm}
+
+
 
 \pagebreak
 
-\subsubsection{Alg: GeneratorGrammarDiceRollOnly}
+\subsubsection{Algorithm: GeneratorGrammarDiceRollOnly}
 \noindent Very naive way of generating grammars. This is intended to be our starting point for our algorithms we find. Each found algorithm must have a higher score that this algorithm or otherwise it would be worse than simple dice rolling. \\
 
 \noindent
@@ -97,7 +77,7 @@ $P = P \setminus \{p\ |\ p \subseteq P,\ vc\ is\ right\ in\ p,\ \forall i\ \fora
 }
 
 \pagebreak
-\subsubsection{Alg: BottomUp GeneratorGrammarDiceRollMartens1}
+\subsubsection{Algorithm: BottomUp GeneratorGrammarDiceRollMartens1}
 \noindent Things like the $G=(V,\Sigma , S, P)$ can be assumed as known.\\
 $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\ \{v\ |\ v \in V \} \}$ which equals $distributeRhse$ method.\\
 \noindent Bias is only allowed top vs down regarding the pyramid. No left or right bias intended yet.\\
@@ -140,7 +120,7 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 }
 
 \pagebreak
-\subsubsection{Alg: BottomUp GeneratorGrammarDiceRollMartens2}
+\subsubsection{Algorithm: BottomUp GeneratorGrammarDiceRollMartens2}
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
@@ -183,8 +163,48 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 	\end{algorithm}
 }
 \pagebreak 
-\subsubsection{Alg: TopDown From node to leaves}
-\subsubsection{Alg: How often cells are used for subset calculations}
+\subsubsection{Algorithm: TopDown From node to leaves}
+\subsubsection{Algorithm: How often cells are used for subset calculations}
+
+\pagebreak
+
+\subsubsection{Tweaking Sub Procedures in more detail}
+Maybe don't keep this so that the Algorithms can be read without flipping pages.\\
+
+\noindent
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{distributeRhse2}
+		\label{distributeRhse2}
+		\SetAlgoLined
+		\KwIn{ $Rhse \subseteq\ (V^{2} \cup \Sigma),\ i \in  \mathbb{N},\ j \in  \mathbb{N}$}
+		\KwOut{$Grammar\ G\ in\ CNF\ with\ uniform\ randomly\ distributed\ Rhse's.$}
+		$choose\ n\ uniform\ randomly\ in\ [i, j]$\;
+		$choose\ V_{add} := uniform\ random\ subset\ of\ size\ n\ from\ V$\;
+		$P = P \cup \{ "v \longrightarrow rhse"\ |\ v \in V_{add},\ rhse \in Rhse \} $\;	
+		
+		\Return $G$;
+	\end{algorithm}
+}
+Algorithm \ref{distributeRhse2} isn't needed anymore for the descriptions of the basic idea of the algorithm. It will be a module later on while tweaking the algorithms.
+\\
+\\
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{calculateSubsetForCell}
+		\label{calculateSubsetForCell}
+		\SetAlgoLined
+		\KwIn{$cell_ {i,j} \in pyramid $}
+		\KwOut{$V_{i,j} \subseteq V^2$}
+		$V_{i,j} = \emptyset $\;
+		\For{$m:=i-1 \to 0$}{
+			$V_{i,j} = V_{i,j} \cup \{X\ |\ X\longrightarrow YZ,\ Y \in V_{m,j},\ Z \in V_{i-m-1,m+j+1} \}$\;
+		}
+		
+		\Return $V_{i,j}$;
+	\end{algorithm}
+}
+Algorithm \ref{calculateSubsetForCell} describes the magic of the CKY-algorithm. It shows what cells are taken into account while filling one cell of the parse table.
 
 \pagebreak
 
@@ -223,6 +243,7 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 		}
 	\end{algorithm}
 }
+Algorithm \ref{checkRightCellPerCombination} is a check that needs to be explained.
 \\
 \\
 \frame{
@@ -238,6 +259,7 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 		\Return $true$\;
 	\end{algorithm}
 }
+Algorithm \ref{checksumOfProductions} can be explained via the Output of the algorithm alone.
 
 \pagebreak
 
@@ -260,6 +282,7 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 		\Return $true$\;
 	\end{algorithm}
 }
+Algorithm \ref{checkMaxNumberOfVarsPerCell} can be explained via the Output of the algorithm alone.
 \\
 \\
 \noindent
@@ -283,5 +306,6 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 		\Return $true$\;
 	\end{algorithm}
 }
+Algorithm \ref{checkMaxSumOfVarsInPyramid} could possible be explained via a simple mathematical statement like the algorithms \ref{checksumOfProductions} and \ref{checkMaxNumberOfVarsPerCell}.
 
 \pagebreak

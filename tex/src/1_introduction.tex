@@ -7,11 +7,14 @@ $V$ is a finite set of variables. \\
 $\Sigma$ is an alphabet. \\
 $S$ is the starting symbol and $S \in V$. \\
 $P$ is a finite set of rules: $P \subseteq V \times (V \cup \Sigma)^{*}$. $G$ is in CNF and therefore, more specifically, it holds:  $P\ \subseteq\ V \times (V^{2} \cup \Sigma)$.\\
+ 
+\noindent For simplification the default definitions hold:
+\begin{itemize}
+	\item $V = \{A, B, ...\}$
+	\item $(V^2 \cup\ \Sigma)^{*}=\{a, b, ...\} \cup \{AB, BS, AC, ... \}$
+\end{itemize}
 
-\noindent $Vs$ are Variables like "A, B, ...".\\
-$(V^2 \cup\ \Sigma)^{*}$ are terminals like "a, b, ..." and compound variables like "AB, BS, AC, ...". \\
-
-\noindent Let there be a word $w \in \Sigma^*$, a language $L(G)$ and a grammar $G$ in CNF. \\
+\noindent Let there be a word $w \in \Sigma^*$, a language $L(G)$ and a grammar $G$ in CNF. 
 
 \subsection{Forward Problem vs. Backward Problem}
 
