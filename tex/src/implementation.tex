@@ -5,15 +5,14 @@
 \subsection{Short Requirements Specification}
 Use Cases i $\longrightarrow$ "Lastenheft".\\
 Input and Output parameter identification.\\
-Here is described what the finished tool must and can do.\\
+Here is described what the finished tool must and can do.
 
 \subsubsection{Exam Exercises}
 An exam exercise consists out of a grammar, a word, a parsing table and a derivation tree. Creating a exam exercises must be possible. Therefore it is needed:
 \begin{itemize}
-	\item Selection of a possible exam exercise out of high scoring samples.
-	\item Modifying of a possible exam exercise: Changing the grammar, changing the word, ?changing the pyramid (I think no, because of the strong interconnection between the grammar and the parsing table it is already covered through being able to change the grammar)?.
-	\item Creation of a examExerciseInfo.txt file, that stores and updates pre calculated information for one sample while being modified. 
-	\item Printable version of the finished exam exercise: grammar.png, parsingTable.png and derivationTable.png. Also the latex code that has been used for generating the .png-files should be stored for further modifications.
+	\item Selection of a possible exam exercise out of high scoring samples $\longrightarrow$ calculateSamples.jar [Input parameter: countOfNewSamples (better scoring samples in exchange for longer computation time)], which upon execution fills samples.txt with new high scoring samples, together with its actual scoring model parameters. Out of this samples one can be selected manually that is used for an exam exercise.
+	\item Modifying of a exam exercise candidate: Changing the grammar and changing the word. [?changing the pyramid (I think no, because of the strong interconnection between the grammar and the parsing table it is already covered through being able to change the grammar)?] $\longrightarrow$ calculateExamExercise.jar [Input parameter: examExercise.txt], that updates pre defined information for one sample upon execution.
+	\item Predefined Information: It is a printable version of the finished exam exercise like grammar.png, parsingTable.png and derivationTable.png together with its latex code, that was used for its creation - modification later one possible. Also it is examExerciseInfo.txt, that has the information about its actual scoring model parameters. 
 \end{itemize}
 
 \subsubsection{Fun With CNF's and CYK}

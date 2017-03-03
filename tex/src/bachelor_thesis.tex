@@ -19,11 +19,17 @@
 %\mathrel{\stackon{\cup}{\scriptscriptstyle-}}z
 %\]
 %
+% Incompatibility with ctable, both implement package transparency
+% http://tex.stackexchange.com/questions/253401/tikz-and-ctable-incompatibility-gives-error-when-printing
+\usepackage{tikz}
+% \circled is used for circling chars
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
 % Eurozeichen einbinden
 \usepackage[right]{eurosym}
 
-\usepackage{ctable}
+% Incompatibility tikz, both implement package transparency
+%\usepackage{ctable}
 
 % Umlaute unter UTF8 nutzen
 \usepackage[utf8]{inputenc}
@@ -74,7 +80,7 @@
 %\pagestyle{headings}
 
 % erzeugt Inhaltsverzeichnis mit Querverweisen zu den Kapiteln (PDF Version)
-\usepackage[bookmarksnumbered,pdftitle={\titleDocument},hyperfootnotes=false]{hyperref} 
+\usepackage[bookmarksnumbered,pdftitle={\titleDocument},hyperfootnotes=false,hidelinks]{hyperref} 
 %\hypersetup{colorlinks, citecolor=red, linkcolor=blue, urlcolor=black}
 %\hypersetup{colorlinks, citecolor=black, linkcolor= black, urlcolor=black}
 

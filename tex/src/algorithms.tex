@@ -24,6 +24,10 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 \pagebreak
 
 \subsubsection{Algorithm: AlgorithmName}
+\noindent Things like the $G=(V,\Sigma , S, P)$ can be assumed as known.\\
+$P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\ \{v\ |\ v \in V \} \}$ which equals the $distributeRhse$ module.\\
+\noindent Bias is only allowed top vs down regarding the pyramid. No left or right bias intended yet.\\
+\circled{A}, \circled{B}, ... represent exchangeable algorithm modules. 
 
 \paragraph{Basic Idea}
 
@@ -38,25 +42,40 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 \pagebreak
 
 \subsubsection{Algorithm: GeneratorGrammarDiceRollOnly}
-\noindent Very naive way of generating grammars. This is intended to be the starting point for our algorithms we find. Each found algorithm must have a higher score that this algorithm or otherwise it would be worse than simple dice rolling. \\
+\noindent Very naive way of generating grammars. This is intended to be the starting point for our algorithms we find. Each found algorithm must have a higher score than this algorithm or otherwise it would be worse than simple dice rolling and then removing the useless productions.\\
 
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
-\caption{GeneratorGrammarDiceRollOnly}
-\label{GeneratorGrammarDiceRollOnly}
-\SetAlgoLined
-\KwIn{ $Word\ w \in \Sigma^{*},\ P \subseteq V \times (V^{2} \cup \Sigma) = \emptyset,\ $ }
-\KwOut{$Grammar\ G\ in\ CNF$}
-
-$P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ over\ \{v\ |\ v \in V \} \} $\;
-$P = P \cup \{distribute\ \{vc\ |\ vc \in V^2 \}\ $$over\ \{v\ |\ v \in V \} \} $\;
-$P = P \setminus \{p\ |\ p \subseteq P,\ vc\ is\ right\ in\ p,\ \forall i\ \forall j\ vc \notin cell_{i,j}\ of\ the\ pyramid \} $\;
-\Return $G$\;
+		\caption{GeneratorGrammarDiceRollOnly}
+		\label{GeneratorGrammarDiceRollOnly}
+		\SetAlgoLined
+		\KwIn{ $Word\ w \in \Sigma^{*}$ }
+		\KwOut{$ P \subseteq V \times (V^{2} \cup \Sigma)$}
+		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $ \circled{A} \;
+		$P = P \cup \{distribute\ vc \in V^2\ over\ V \}$ \circled{B} \;
+		$P = P \setminus \{p\ |\ p \subseteq P,\ vc\ is\ right\ in\ p,\ \forall i\ \forall j\ vc \notin cell_{i,j}\ of\ the\ pyramid \}\label{useless} $\;
+		\Return $P$\;
+		\footnotetext{
+			\noindent Line \ref{useless}: Removes all useless production.
+		}
 	\end{algorithm}
 }
-\\
-\\
+Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in CNF? CNF does only have useful variables [TI script Def. 8.3 page 210] vs. $P \subseteq V \times (V^{2} \cup \Sigma)$\\
+%\frame{
+%	\begin{algorithm}[H] %or another one check
+%		\caption{GeneratorGrammarDiceRollOnly}
+%		\label{GeneratorGrammarDiceRollOnly}
+%		\SetAlgoLined
+%		\KwIn{ $Word\ w \in \Sigma^{*},\ P \subseteq V \times (V^{2} \cup \%Sigma) = \emptyset,\ $ }
+%		\KwOut{$Grammar\ G\ in\ CNF$}
+%		
+%		$P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ over\ \{v\ |\ v% \in V \} \} $\;
+%		$P = P \cup \{distribute\ \{vc\ |\ vc \in V^2 \}\ $$over\ \{v\ |\ v \in V \} \} $\;
+%		$P = P \setminus \{p\ |\ p \subseteq P,\ vc\ is\ right\ in\ p,\ \forall i\ \forall j\ vc \notin cell_{i,j}\ of\ the\ pyramid \} $\;
+%		\Return $G$\;
+%	\end{algorithm}
+%}
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
@@ -78,41 +97,37 @@ $P = P \setminus \{p\ |\ p \subseteq P,\ vc\ is\ right\ in\ p,\ \forall i\ \fora
 
 \pagebreak
 \subsubsection{Algorithm: BottomUp GeneratorGrammarDiceRollMartens}
-\noindent Things like the $G=(V,\Sigma , S, P)$ can be assumed as known.\\
-$P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\ \{v\ |\ v \in V \} \}$ which equals the $distributeRhse$ module.\\
-\noindent Bias is only allowed top vs down regarding the pyramid. No left or right bias intended yet.\\
-
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
 		\caption{GeneratorGrammarDiceRollMartens}
 		\label{GeneratorGrammarDiceRollMartens}
 		\SetAlgoLined
-		\KwIn{ $Word\ w \in \Sigma^{*},\ P \subseteq V \times (V^{2} \cup \Sigma) = \emptyset,\ $ }
-		\KwOut{$Grammar\ G\ in\ CNF$}
+		\KwIn{ $Word\ w \in \Sigma^{*}$ }
+		\KwOut{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		
-		$P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ over\ \{v\ |\ v \in V \} \} $\;
-		$pyramid = CYK(G,\ w)$\;
+		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $ \circled{A} \;
+		$pyramid = CYK(G,\ w)$\label{stepii}\;
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
-			$J \subseteq \mathbb{N} = \emptyset $\;
-			$cellSet \subseteq V^2= \emptyset$\;
+			$J \subseteq \mathbb{N}$\;
+			$cellSet \subseteq V^2$\;
 			\While{$|J| < j_{max}-i$}{
-				$choose\ one\ j \notin J\ uniform\ randomly\ in\ [0, j_{max}-i] $\;
+				$choose\ one\ j \notin J\ uniform\ randomly\ in\ [0, j_{max}-i] $ \label{chooseJ} \;
 				$J = J \cup j$\;
 				$cellSet = calculateSubsetForCell(pyramid,\ i,\ j)$\;
-				$P = P \cup \{distribute\ \{vc\ |\ vc \in cellSet \}\ $$over\ \{v\ |\ v \in V \} \} $\;
+				$P = P \cup \{distribute\ vc \in cellSet\ over\ V \}$  \circled{B} \;
 				$pyramid = CYK(G,\ w)$\;	
-				$evaluate\ stopping\ criteria\ regarding\ the\ pyramid$\;
+				$evaluate\ stopping\ criteria\ regarding\ the\ pyramid$  \circled{C} \;
 				\If{$stopping\ criteria = true$}{
-					\Return $G$\;
+					\Return $P$\;
 				}
 			}
 		}
-		\Return $G$\;
+		\Return $P$\;
 		\footnotetext{
-			\noindent Line 2: Fills the i=0 row of the pyramid.
+			\noindent Line \ref{stepii}: Fills the i=0 row of the pyramid.
 			
-			\noindent Line 4: Instead of going from left to right, choose $j$ uniform randomly with the restrictions that one cell is only visited one time.
+			\noindent Line \ref{chooseJ}: Instead of going from left to right, choose $j$ uniform randomly with the restrictions that one cell is only visited one time.
 			
 			\noindent Note: Maybe modify algorithm to also work with the threshold.
 		}
@@ -125,38 +140,37 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 		\caption{GeneratorGrammarDiceRollMartens2}
 		\label{GeneratorGrammarDiceRollMartens2}
 		\SetAlgoLined
-		\KwIn{ $Word\ w \in \Sigma^{*},\ P \subseteq V \times (V^{2} \cup \Sigma) = \emptyset,\ $ }
-		\KwOut{$Grammar\ G\ in\ CNF$}
-		$P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ over\ \{v\ |\ v \in V \} \} $\;
-		$pyramid = CYK(G,\ word)$\;
-		%		$rowSet \subseteq V^2 \times \mathbb{N}  = \emptyset$\;
+		\KwIn{ $Word\ w \in \Sigma^{*}$ }
+		\KwOut{$P \subseteq V \times (V^{2} \cup \Sigma)$}
+		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $ \circled{A} \;
+		$pyramid = CYK(G,\ word)$ \label{stepii}\;
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
 			%$choose\ j\ uniform\ randomly\ in\ [0,\ j_{max}-i]  $\;
 			\For{$j:=0\ \textbf{to}\ j_{max}-i$}{
-				$rowSet = rowSet \cup \{(XY,i)\ |\ X,Y \in V,\ $ $XY \in calculateSubsetForCell(Pyramid,\ i,\ j) \}$\;
+				$rowSet = rowSet \cup \{(XY,i)\ |\ X,Y \in V,\ $ $XY \in calculateSubsetForCell(Pyramid,\ i,\ j) \}$\label{rowSet}\;
 			}
 			\While{$threshold_i = false $}{
-				$choose\ one\ vc \in rowSet\ with\ priority,\ depending\ on\ i,\ $ $ uniform\ randomly$\;
-				$P = P \cup \{distribute\ \{vc\ |\ vc \in cellSet \}\ $$over\ \{v\ |\ v \in V \} \} $\;
+				$choose\ one\ vc \in rowSet\ with\ priority,\ depending\ on\ i,\ $ $ uniform\ randomly$\label{chooseVc} \circled{D} \;
+				$P = P \cup \{distribute\ vc \in rowSet\ over\ V\} $ \circled{B} \;
 				$pyramid = CYK(G,\ w)$\;
-				$evaluate\ and\ update\ threshold_i,\ regarding\ line\ i$\;
-				$evaluate\ stopping\ criteria,\ regarding\ the\ pyramid$\;
+				$evaluate\ and\ update\ threshold_i,\ regarding\ line\ i$\label{threshold}\;
+				$evaluate\ stopping\ criteria,\ regarding\ the\ pyramid$ \circled{C} \;
 				\If{$stopping\ criteria = true$}{
-					\Return $G$\;
+					\Return $P$\;
 				}	
 			}
 		}
-		\Return $G$\;
+		\Return $P$\;
 		\footnotetext{
-			\noindent Line 2: Fills the i=0 row of the pyramid.
+			\noindent Line \ref{stepii}: Fills the i=0 row of the pyramid.
 			
-			\noindent Line 6: $(AB,1), (AB,2), (BC,3) ... \in sub$ $\rightarrow$ multiple occurrences of $AB$ are allowed. This considers "more important" compound variables. 
+			\noindent Line \ref{rowSet}: $(AB,1), (AB,2), (BC,3) ... \in sub$ $\rightarrow$ multiple occurrences of $AB$ are allowed. This considers "more important" compound variables. 
 			
-			\noindent Line 9: One vc can be chosen several times.
+			\noindent Line \ref{chooseVc}: One vc can be chosen several times.
 			
-			\noindent Note: Threshold: Linear or log function $f(i)$?
+			\noindent Note Line \ref{chooseVc}: Priority mechanism: In line $i+1$ the $k = \{(A,l)\ |\ (A,l) \in sub,\ l=i  \}$ are preferred over the\\ $m = \{(A,n)\ |\ (A,n) \in sub,\ n < i  \}$. In what way are they preferred? Using some kind of factor to weight the $i$ of $(A,i)$.
 			
-			\noindent Note: Priority mechanism: In line $i+1$ the $k = \{(A,l)\ |\ (A,l) \in sub,\ l=i  \}$ are preferred over the\\ $m = \{(A,n)\ |\ (A,n) \in sub,\ n < i  \}$. In what way are they preferred? Using some kind of factor to weight the $i$ of $(A,i)$.
+			\noindent Note Line \ref{threshold}: Threshold, Linear or log function $f(i)$?
 		}
 	\end{algorithm}
 }
@@ -166,22 +180,29 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
-		\caption{GeneratorGrammarDiceRollMartens2}
-		\label{GeneratorGrammarDiceRollMartens2}
+		\caption{Idea1}
+		\label{Idea1}
 		\SetAlgoLined
-		\KwIn{ $Word\ w \in \Sigma^{*},\ P \subseteq V \times (V^{2} \cup \Sigma) = \emptyset,\ $ }
-		\KwOut{$Grammar\ G\ in\ CNF$}
-		$you\ are\ in\ cell_{i,j}$\;
-		$choose\ one\ m\ uniform\ randomly\ in\ [0, j_{max}-i] $\;
-		$index\ j\ determines\ the\ size\ of\ the\ both\ substring$\;
-		$ $\;
+		\KwIn{ $Word\ w \in \Sigma^{*},\ i,j \in \mathbb{N},\ \forall j\ cell_{0,j} \neq \emptyset $ }
+		\KwOut{$P \subseteq V \times (V^{2} \cup \Sigma$}
+		\If{$i=1$}{
+			\Return $cell_{i,j}$\;
+		}
+		$choose\ one\ m\ uniform\ randomly\ in\ [m_{min},\ m_{max}] \longrightarrow cellLeft\ and\ cellRight$\label{max}\;
+		$A = Idea1(w, P, cellLeft)$\label{cells}\;
+		$B = Idea1(w, P, cellRight)$\;
+		$VC = uniform\ random\ subset\ of\ size\ [min,\ max]\ from\ \{vc\ |\ v \in A\ \wedge\ c \in B\}$\;
+		$P = P \cup \{distribute\ vc \in VC\ over\ V \} \} $  \circled{A}  \;
 		\Return $G$\;
 		\footnotetext{
-			\noindent Line xx: ...
+			\noindent Line \ref{max}: If one would be at $cell_{2, 2}$ you choose from $[2,1]$, which isn't allowed.
+			
+			\noindent Line \ref{cells} $\longrightarrow\ new\ cells:\ cell_{m, j}\ and\ cell_{i-m, m+j+1}\ See\ Alg.\ subSetCalc\ with\ k \in [i-1;0]\ [Y \in V_{k,j},\ Z \in V_{i-k-1,k+j+1}] $
 		}
 	\end{algorithm}
 }
 
+\pagebreak
 
 \subsubsection{Algorithm: Idea 2, How often cells are used for subset calculations}
 
@@ -216,11 +237,11 @@ Algorithm \ref{distributeRhse2} isn't needed anymore for the descriptions of the
 		\KwIn{$cell_ {i,j} \in pyramid $}
 		\KwOut{$V_{i,j} \subseteq V^2$}
 		$V_{i,j} = \emptyset $\;
-		\For{$m:=i-1 \to 0$}{
-			$V_{i,j} = V_{i,j} \cup \{X\ |\ X\longrightarrow YZ,\ Y \in V_{m,j},\ Z \in V_{i-m-1,m+j+1} \}$\;
+		\For{$k:=i-1 \to 0$}{
+			$V_{i,j} = V_{i,j} \cup \{X\ |\ X\longrightarrow YZ,\ Y \in V_{k,j},\ Z \in V_{i-k-1,k+j+1} \}$\;
 		}
 		
-		\Return $V_{i,j}$;
+		\Return $V_{i,j}$\;
 	\end{algorithm}
 }
 Algorithm \ref{calculateSubsetForCell} describes the magic of the CKY-algorithm. It shows what cells are taken into account while filling one cell of the parse table.
@@ -248,7 +269,7 @@ Algorithm \ref{calculateSubsetForCell} describes the magic of the CKY-algorithm.
 		\SetAlgoLined
 		\KwIn{$ cell_{i,j}\subseteq V,\ cell_{i-1,j}\subseteq V,\ cell_{i-1,j+1} \subseteq V,\ P \subseteq V \times (V^{2} \cup \Sigma) $ }
 		\KwOut{$varsForcing \subseteq V$}
-		$varsForcing \subseteq V = \emptyset$\;
+		$varsForcing \subseteq V$\;
 		$varComp = \{XY\ |\ X \in cell_{i-1,j}\ \wedge\ Y \in cell_{i-1,j+1} \}$\;
 		\ForEach{$v \in cell_{i,j}$}{
 			$prods = \{p\ |\ p \subseteq P,\ v\ is\ left\ in\ p \}$\;
