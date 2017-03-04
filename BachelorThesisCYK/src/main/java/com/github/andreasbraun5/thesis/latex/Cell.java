@@ -2,9 +2,12 @@ package com.github.andreasbraun5.thesis.latex;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.CellRuntimeException;
+import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.VariableK;
+import com.github.andreasbraun5.thesis.util.SetVMatrix;
 
 /**
  * Created by Andreas Braun on 04.03.2017.
@@ -12,28 +15,31 @@ import com.github.andreasbraun5.thesis.grammar.VariableK;
  */
 public class Cell {
 	// No more than 5 variables in one Cell are allowed.
-	private List<VariableK> vars = new ArrayList<>();
+	private List<LeftHandSideElement> vars = new ArrayList<>();
 	// center(x,y) coordinates will later on be used to position the variables in the cell using left, above, right,
 	// below and center
 	public double centerX = 0.0;
 	public double centerY = 0.0;
-	private String centerName = "center_" + centerX + "_" + centerY;
+	public double i = 0;
+	public double j = 0;
+	private String centerName = "";
 
-	public Cell(int centerX, int centerY) {
-		this.centerX = centerX;
-		this.centerY = centerY;
+	public Cell( int i, int j) {
+		this.i=i;
+		this.j=j;
+		centerName = "center" + i + "" + j;
 	}
 
-	public List<VariableK> getVars() {
+	public List<LeftHandSideElement> getVars() {
 		return vars;
 	}
 
-	public Cell addVar(VariableK... vars) {
-		for ( VariableK var : vars ) {
+	public <T extends LeftHandSideElement> Cell addVar(Set<T> set) {
+		for ( T var : set ) {
 			if ( this.vars.size() >= 5 ) {
 				throw new CellRuntimeException( "There are more than 5 Variables in the pyramid cell, coordinates: " +
-														centerX + ", " +
-														centerY );
+														i + ", " +
+														j );
 			}
 			this.vars.add( var );
 		}
@@ -49,24 +55,14 @@ public class Cell {
 		\node [below] at (center) {\fontsize{5}{12}\selectfont{D4}};
 		\node [] at (center) {\fontsize{5}{12}\selectfont{E5}};
 		*/
-		if ( vars.size() <= 1 ) {
-			str.append( "\\node [] at (" + centerName + "){\\fontsize{5}{12}\\selectfont{" + vars.get( 1 )
-					.toString() + "}};\n" );
+		if ( vars.size() > 5 ) {
+			throw new CellRuntimeException( "There are more than 5 Variables in the pyramid cell, coordinates: " +
+													i + ", " +
+													j );
 		}
-		if ( vars.size() <= 2 ) {
-			str.append( "\\node [] at (" + centerName + "){\\fontsize{5}{12}\\selectfont{" + vars.get( 2 )
-					.toString() + "}};\n" );
-		}
-		if ( vars.size() <= 3 ) {
-			str.append( "\\node [] at (" + centerName + "){\\fontsize{5}{12}\\selectfont{" + vars.get( 3 )
-					.toString() + "}};\n" );
-		}
-		if ( vars.size() <= 4 ) {
-			str.append( "\\node [] at (" + centerName + "){\\fontsize{5}{12}\\selectfont{" + vars.get( 4 )
-					.toString() + "}};\n" );
-		}
-		if ( vars.size() <= 5 ) {
-			str.append( "\\node [] at (" + centerName + "){\\fontsize{5}{12}\\selectfont{" + vars.get( 5 )
+		String[] pos = { "", "left", "right", "above", "below" };
+		for ( int i = 0; i < vars.size(); i++ ) {
+			str.append( "\\node [" + pos[i] + "] at (" + centerName + ") {\\fontsize{5}{12}\\selectfont{" + vars.get( i )
 					.toString() + "}};\n" );
 		}
 		return str.toString();

@@ -7,6 +7,7 @@ import com.github.andreasbraun5.thesis.exception.SetVMatrixRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableK;
+import com.github.andreasbraun5.thesis.latex.Pyramid;
 
 /**
  * Created by Andreas Braun on 14.02.2017.
@@ -24,7 +25,9 @@ public class SetVMatrix<T extends LeftHandSideElement> {
 	 * chance to know of what actual type the static S is. An compiler hint "clazz" is needed to specify the type of
 	 * the static S. With this the compiler is able to guarantee the type safety between S and T.
 	 */
-	public static <S extends LeftHandSideElement> SetVMatrix<S> buildEmptySetVMatrixWrapper(int wordLength, Class<S> clazz) {
+	public static <S extends LeftHandSideElement> SetVMatrix<S> buildEmptySetVMatrixWrapper(
+			int wordLength,
+			Class<S> clazz) {
 		@SuppressWarnings("unchecked")
 		Set<S>[][] setVTemp = new Set[wordLength][wordLength];
 		for ( int i = 0; i < wordLength; i++ ) {
@@ -34,6 +37,7 @@ public class SetVMatrix<T extends LeftHandSideElement> {
 		}
 		return new SetVMatrix<S>().setSetV( setVTemp );
 	}
+
 	/**
 	 * Method to get the setV as a String for printing purposes.
 	 * The setV pyramid points downwards (reflection on the diagonal).
@@ -56,6 +60,18 @@ public class SetVMatrix<T extends LeftHandSideElement> {
 		}
 		return stringBuilder.toString();
 
+	}
+
+	public Pyramid getPyramid() {
+		int wordLength = setV[1].length;
+		Pyramid pyramid = new Pyramid( wordLength );
+		for ( int i = 0; i < wordLength; i++ ) {
+			for ( int j = 0; j < wordLength-i; j++ ) {
+				pyramid.cells.get( i ).get( j ).addVar( setV[j][i] );
+			}
+
+		}
+		return pyramid;
 	}
 
 	/**

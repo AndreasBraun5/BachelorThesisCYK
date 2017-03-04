@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  4 MAR 2017 17:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  4 MAR 2017 21:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1554,124 +1554,124 @@ Package pdftex.def Info: abb/DataStructurePyramid.png used on input line 18.
 (pdftex.def)             Requested size: 308.71106pt x 238.62596pt.
  [9 <./abb/DataStructurePyramid.png>]
 [10] [11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
+Underfull \hbox (badness 10000) in paragraph at lines 210--211
 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 188.
+(Font)              <10> on input line 228.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 188.
+(Font)              <7> on input line 228.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 188.
+(Font)              <5> on input line 228.
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 172--222
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 212--262
 []
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 172--222
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 212--262
 [] 
  []
 
 [13]
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 225--261
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 265--301
 [] 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 262--303
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 302--343
 []
  []
 
 [14] [15]
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 305--330
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 345--370
 []
  []
 
 [16] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 344--345
+Underfull \hbox (badness 10000) in paragraph at lines 384--385
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 346--380
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 386--420
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--380
+Underfull \hbox (badness 10000) in paragraph at lines 386--420
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 346--380
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 386--420
 []
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 384--386
+Underfull \hbox (badness 10000) in paragraph at lines 424--426
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 387--388
+Underfull \hbox (badness 10000) in paragraph at lines 427--428
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 389--390
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
 
  []
 
 
-Overfull \hbox (15.3946pt too wide) in paragraph at lines 391--392
+Overfull \hbox (15.3946pt too wide) in paragraph at lines 431--432
 \T1/lmr/m/n/12 isExamConstraints = is-Right-Cell-Com-bi-na-tions-Forced && is-M
 ax-SumOf-Pro-duc-tion-sCount
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 391--392
+Underfull \hbox (badness 10000) in paragraph at lines 431--432
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 393--435
+Underfull \hbox (badness 10000) in paragraph at lines 433--475
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 393--435
+Underfull \hbox (badness 10000) in paragraph at lines 433--475
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 393--435
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 433--475
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 393--435
+Underfull \hbox (badness 10000) in paragraph at lines 433--475
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 393--435
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 433--475
 []
  []
 
 [19]
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 438--482
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 478--522
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 438--482
+Underfull \hbox (badness 10000) in paragraph at lines 478--522
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 438--482
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 478--522
 []
  []
 
@@ -1749,10 +1749,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 323.
  ) 
 Here is how much of TeX's memory you used:
- 27465 strings out of 493109
- 511285 string characters out of 6138588
- 690186 words of memory out of 5000000
- 30163 multiletter control sequences out of 15000+600000
+ 27600 strings out of 493109
+ 513724 string characters out of 6138588
+ 692186 words of memory out of 5000000
+ 30298 multiletter control sequences out of 15000+600000
  94242 words of font info for 67 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  76i,23n,114p,763b,957s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1774,7 +1774,7 @@ dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/p
 ublic/lm/lmsy7.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
 <c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2014/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on bachelor_thesis.pdf (30 pages, 466104 bytes).
+Output written on bachelor_thesis.pdf (30 pages, 466292 bytes).
 PDF statistics:
  603 PDF objects out of 1000 (max. 8388607)
  542 compressed objects within 6 object streams

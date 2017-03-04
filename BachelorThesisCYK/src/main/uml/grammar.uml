@@ -3,39 +3,39 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="363.5178571428571" y="89.0">com.github.andreasbraun5.thesis.grammar.VariableCompound</node>
-    <node x="264.5178571428571" y="89.0">com.github.andreasbraun5.thesis.grammar.Terminal</node>
+    <node x="240.10714285714283" y="89.0">com.github.andreasbraun5.thesis.grammar.VariableCompound</node>
+    <node x="395.10714285714283" y="89.0">com.github.andreasbraun5.thesis.grammar.Terminal</node>
     <node x="0.0" y="242.0">com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest</node>
-    <node x="142.625" y="168.0">com.github.andreasbraun5.thesis.grammar.VariableStart</node>
-    <node x="23.23214285714286" y="0.0">com.github.andreasbraun5.thesis.grammar.LeftHandSideElement</node>
+    <node x="5.375" y="0.0">com.github.andreasbraun5.thesis.grammar.LeftHandSideElement</node>
+    <node x="0.0" y="168.0">com.github.andreasbraun5.thesis.grammar.VariableStart</node>
     <node x="158.0" y="316.0">com.github.andreasbraun5.thesis.grammar.test.GrammarTest</node>
     <node x="0.0" y="316.0">com.github.andreasbraun5.thesis.grammar.test.ProductionTest</node>
-    <node x="154.625" y="89.0">com.github.andreasbraun5.thesis.grammar.Variable</node>
+    <node x="12.0" y="89.0">com.github.andreasbraun5.thesis.grammar.Variable</node>
     <node x="202.0" y="242.0">com.github.andreasbraun5.thesis.grammar.GrammarProperties</node>
-    <node x="189.23214285714286" y="0.0">com.github.andreasbraun5.thesis.grammar.RightHandSideElement</node>
+    <node x="176.73214285714283" y="0.0">com.github.andreasbraun5.thesis.grammar.RightHandSideElement</node>
     <node x="0.0" y="390.0">com.github.andreasbraun5.thesis.grammar.Production</node>
-    <node x="0.0" y="89.0">com.github.andreasbraun5.thesis.grammar.VariableKWrapper</node>
     <node x="136.0" y="390.0">com.github.andreasbraun5.thesis.grammar.Grammar</node>
+    <node x="136.85714285714283" y="89.0">com.github.andreasbraun5.thesis.grammar.VariableK</node>
   </nodes>
   <notes />
   <edges>
     <edge source="com.github.andreasbraun5.thesis.grammar.Variable" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
-      <point x="18.499999999999986" y="-14.5" />
-      <point x="210.125" y="69.0" />
-      <point x="246.98214285714286" y="69.0" />
-      <point x="-19.25" y="14.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.VariableKWrapper" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
-      <point x="31.5" y="-14.5" />
-      <point x="94.5" y="59.0" />
-      <point x="208.48214285714286" y="59.0" />
+      <point x="18.5" y="-14.5" />
+      <point x="67.5" y="59.0" />
+      <point x="195.98214285714283" y="59.0" />
       <point x="-57.75" y="14.5" />
     </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.VariableK" target="com.github.andreasbraun5.thesis.grammar.LeftHandSideElement">
+      <point x="-20.25" y="-14.5" />
+      <point x="157.10714285714283" y="49.0" />
+      <point x="114.875" y="49.0" />
+      <point x="36.5" y="14.5" />
+    </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.VariableCompound" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
-      <point x="0.0" y="-14.5" />
-      <point x="431.0178571428571" y="69.0" />
-      <point x="323.9821428571429" y="69.0" />
-      <point x="57.75" y="14.5" />
+      <point x="2.8421709430404007E-14" y="-14.5" />
+      <point x="307.6071428571429" y="69.0" />
+      <point x="272.98214285714283" y="69.0" />
+      <point x="19.25" y="14.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.VariableStart" target="com.github.andreasbraun5.thesis.grammar.Variable">
       <point x="0.0" y="-14.5" />
@@ -43,27 +43,25 @@
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.Terminal" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
       <point x="0.0" y="-14.5" />
-      <point x="304.0178571428571" y="69.0" />
-      <point x="285.4821428571429" y="69.0" />
-      <point x="19.25" y="14.5" />
+      <point x="434.60714285714283" y="59.0" />
+      <point x="311.48214285714283" y="59.0" />
+      <point x="57.75" y="14.5" />
     </edge>
     <edge source="com.github.andreasbraun5.thesis.grammar.Variable" target="com.github.andreasbraun5.thesis.grammar.LeftHandSideElement">
-      <point x="-18.500000000000014" y="-14.5" />
-      <point x="173.125" y="49.0" />
-      <point x="132.73214285714286" y="49.0" />
-      <point x="36.5" y="14.5" />
-    </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.VariableKWrapper" target="com.github.andreasbraun5.thesis.grammar.LeftHandSideElement">
-      <point x="-31.5" y="-14.5" />
-      <point x="31.5" y="69.0" />
-      <point x="59.73214285714286" y="69.0" />
+      <point x="-18.5" y="-14.5" />
+      <point x="30.5" y="69.0" />
+      <point x="41.875" y="69.0" />
       <point x="-36.5" y="14.5" />
     </edge>
+    <edge source="com.github.andreasbraun5.thesis.grammar.VariableK" target="com.github.andreasbraun5.thesis.grammar.RightHandSideElement">
+      <point x="20.25" y="-14.5" />
+      <point x="197.60714285714283" y="69.0" />
+      <point x="234.48214285714283" y="69.0" />
+      <point x="-19.25" y="14.5" />
+    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="249.5" y="209.5" />
-  <SelectedNodes>
-    <node>com.github.andreasbraun5.thesis.grammar.RightHandSideElement</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="1.0" x="237.5" y="209.5" />
+  <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

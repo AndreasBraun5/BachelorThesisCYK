@@ -34,12 +34,6 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 		
 		\draw [thick, red] (2,-1) circle [radius=0.1];
 		\draw [thick, black] (2,-0.5) circle [radius=0.01];
-		\coordinate (center) at (2, -0.5);
-		\node [left] at (center) {\fontsize{5}{12}\selectfont{A1}};
-		\node [above] at (center) {\fontsize{5}{12}\selectfont{B2}};
-		\node [right] at (center) {\fontsize{5}{12}\selectfont{C3}};
-		\node [below] at (center) {\fontsize{5}{12}\selectfont{D4}};
-		\node [] at (center) {\fontsize{5}{12}\selectfont{E5}};
 		
 		\foreach \i in {0,...,6} {
 			\coordinate (\i) at (\i,0);
@@ -78,6 +72,52 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 		\foreach \i/\j/\k in {0/1/b,1/2/b,2/3/a,3/4/c,4/5/b,5/6/c} {
 			\node[yshift=.7cm] at ($(\i)!.5!(\j)$) {$\k$};
 		}
+	
+	\coordinate (center00) at (0.5,0.0);
+	\node [] at (center00) {\fontsize{5}{12}\selectfont{A1}};
+	\node [left] at (center00) {\fontsize{5}{12}\selectfont{B1}};
+	\coordinate (center01) at (1.5,-0.433);
+	\coordinate (center02) at (2.5,-0.433);
+	\coordinate (center03) at (3.5,-0.433);
+	\coordinate (center04) at (4.5,-0.433);
+	\coordinate (center05) at (5.5,-0.433);
+	\coordinate (center10) at (1.0,-0.866);
+	\node [] at (center10) {\fontsize{5}{12}\selectfont{S1}};
+	\node [left] at (center10) {\fontsize{5}{12}\selectfont{B1}};
+	\coordinate (center11) at (2.0,-0.866);
+	\node [] at (center11) {\fontsize{5}{12}\selectfont{B2}};
+	\node [left] at (center11) {\fontsize{5}{12}\selectfont{A2}};
+	\coordinate (center12) at (3.0,-0.866);
+	\coordinate (center13) at (4.0,-0.866);
+	\coordinate (center14) at (5.0,-0.866);
+	\coordinate (center20) at (1.5,-1.299);
+	\coordinate (center21) at (2.5,-1.299);
+	\node [] at (center21) {\fontsize{5}{12}\selectfont{S2}};
+	\coordinate (center22) at (3.5,-1.299);
+	\node [] at (center22) {\fontsize{5}{12}\selectfont{A3}};
+	\coordinate (center23) at (4.5,-1.299);
+	\coordinate (center30) at (2.0,-1.732);
+	\node [] at (center30) {\fontsize{5}{12}\selectfont{A1}};
+	\node [left] at (center30) {\fontsize{5}{12}\selectfont{A2}};
+	\node [right] at (center30) {\fontsize{5}{12}\selectfont{S1}};
+	\node [above] at (center30) {\fontsize{5}{12}\selectfont{C1}};
+	\coordinate (center31) at (3.0,-1.732);
+	\node [] at (center31) {\fontsize{5}{12}\selectfont{A2}};
+	\node [left] at (center31) {\fontsize{5}{12}\selectfont{C2}};
+	\node [right] at (center31) {\fontsize{5}{12}\selectfont{S2}};
+	\coordinate (center32) at (4.0,-1.732);
+	\node [] at (center32) {\fontsize{5}{12}\selectfont{S3}};
+	\node [left] at (center32) {\fontsize{5}{12}\selectfont{C3}};
+	\coordinate (center40) at (2.5,-2.165);
+	\node [] at (center40) {\fontsize{5}{12}\selectfont{S4}};
+	\coordinate (center41) at (3.5,-2.165);
+	\node [] at (center41) {\fontsize{5}{12}\selectfont{S4}};
+	\coordinate (center50) at (3.0,-2.598);
+	\node [] at (center50) {\fontsize{5}{12}\selectfont{A1}};
+	\node [left] at (center50) {\fontsize{5}{12}\selectfont{S4}};
+	\node [right] at (center50) {\fontsize{5}{12}\selectfont{C4}};
+	\node [above] at (center50) {\fontsize{5}{12}\selectfont{S1}};
+	\node [below] at (center50) {\fontsize{5}{12}\selectfont{C1}};
 		\end{tikzpicture}
 	}
 \end{center}
