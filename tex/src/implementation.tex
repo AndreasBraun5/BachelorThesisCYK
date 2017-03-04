@@ -5,7 +5,14 @@
 \subsection{Short Requirements Specification}
 Use Cases i $\longrightarrow$ "Lastenheft".\\
 Input and Output parameter identification.\\
-Here is described what the finished tool must and can do.
+Here is described what the finished tool must and can do.\\
+
+\noindent Generating the latex code and storing it in .tex-file. Then converting the .tex-file to .pdf-file via:\\
+Runtime rt = Runtime.getRuntime();\\
+Process pr = rt.exec("pdflatex mydoc.tex");\\
+Process pr = rt.exec("pdflatex mydoc.tex");\\
+Process pr = rt.exec("pdflatex mydoc.tex");\\
+The triple invocation of LaTeX is to ensure that all references have been properly resolved and any page layout changes due to inserting the references have been accounted for. [http://www.arakhne.org/autolatex/]
 
 \subsubsection{Exam Exercises}
 An exam exercise consists out of a grammar, a word, a parsing table and a derivation tree. Creating a exam exercises must be possible. Therefore it is needed:

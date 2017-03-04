@@ -17,6 +17,131 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 	\centering
 	\includegraphics[width=0.7\textwidth]{abb/DataStructurePyramid}
 \end{figure}
+\pagebreak
+\begin{center}
+	\resizebox{0.9\linewidth}{!}{
+		\begin{tikzpicture}[baseline]
+		% Outer hull
+		\coordinate (top) at (3,-3);
+		\draw [thick, orange] (top) circle [radius=0.1];
+		\draw[help lines] (-1,1) grid (6,-3);
+		\draw [brown, ultra thick] (0,0) circle [radius=0.1];
+		%\coordinate (top) at (2.5,-2.5);
+		\draw [->, thick] (-0.5,1) -- (0.5,1);
+		\node [above] at (0, 1) {i};
+		\draw [->, thick] (-0.5,1) -- (-0.5,-0.0);
+		\node [left] at (-0.5,0.5) {j};
+		
+		\draw [thick, red] (2,-1) circle [radius=0.1];
+		\draw [thick, black] (2,-0.5) circle [radius=0.01];
+		\coordinate (center) at (2, -0.5);
+		\node [left] at (center) {\fontsize{5}{12}\selectfont{A1}};
+		\node [above] at (center) {\fontsize{5}{12}\selectfont{B2}};
+		\node [right] at (center) {\fontsize{5}{12}\selectfont{C3}};
+		\node [below] at (center) {\fontsize{5}{12}\selectfont{D4}};
+		\node [] at (center) {\fontsize{5}{12}\selectfont{E5}};
+		
+		\foreach \i in {0,...,6} {
+			\coordinate (\i) at (\i,0);
+			\draw [thick] (\i,0) circle [radius=0.2];
+		}
+		
+		% Draw the left and right line of the pyramid pointing downwards
+		\draw (0) -- (top) -- (6);
+		
+		% Grid lines direction top-left to down-right
+		\foreach \coord/\i in {right1/.17,right2/.34,right3/.5,right4/.68,right5/.85} {
+			\coordinate (\coord) at ($(top)!\i!(6)$);
+			\draw [thick, blue] (\i,0) circle [radius=0.1];
+		}
+		\foreach \i/\coord in {1/right1,2/right2,3/right3,4/right4,5/right5}{
+			\draw (\i) -- (\coord);
+			\draw [thick, blue] (\i,0) circle [radius=0.1];
+		}
+		
+		% Grid lines direction top-right to down-left
+		\foreach \coord/\i in {left1/.17,left2/.34,left3/.5,left4/.68,left5/.85} {
+			\coordinate (\coord) at ($(0)!\i!(top)$);
+			\draw [thick, red] (\i,0) circle [radius=0.05];
+		}
+		\foreach \i/\coord in {1/left1,2/left2,3/left3,4/left4,5/left5} {
+			\draw (\i) -- (\coord);
+			\draw [thick, red] (\i,0) circle [radius=0.05];
+		}
+		
+		% Small lines at the top
+		\foreach \i in {0,...,6} {
+			\draw (\i) -- ($(\i)+(0,.5)$);
+		}
+		
+		% The string
+		\foreach \i/\j/\k in {0/1/b,1/2/b,2/3/a,3/4/c,4/5/b,5/6/c} {
+			\node[yshift=.7cm] at ($(\i)!.5!(\j)$) {$\k$};
+		}
+		\end{tikzpicture}
+	}
+\end{center}
+
+\begin{center}
+	\resizebox{.6\linewidth}{!}{
+		\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=2cm,
+		semithick]%,initial text={}]
+		\tikzstyle{every state}=[fill=white,draw=black,text=black]
+		
+		\node     (I)            {$S1$};
+		\node				(I') [below left of=I] {};
+		\node (B) [left of=I']  {$A1$};
+		\node (B1) [below of=B] {$c$};
+		\node (C) [below right  of=I]       {$B6$};
+		\node (D) [below right of=C]  {$B7$};
+		\node (D2) [below left of=C]  {$C4$};
+		\node (E) [below right of=D]  {$B8$};
+		\node (F1) [below of=E]  {$b$};
+		\node (E1) [below of=D]  {$C7$};
+		\node (E3) [below of=D2]  {$C5$};
+		\node (E2) [below left of=D2]  {$A2$};
+		\node (F) [below  of=E1]  {$c$};
+		\node (F3) [below of=E3]  {$A5$};
+		\node (G1) [below  of=F3]  {$a$};
+		\node (F2) [below right of=E3]  {$C6$};
+		\node (G2) [below  of=F2]  {$c$};
+		\node (H1) [below of=E2]  {$A3$};
+		\node (H2) [below left of=E2]  {$B2$};
+		\node (H3) [below left of=H2]  {$b$};
+		\node (J1) [below of=H1]  {$A4$};
+		\node (K1) [below of=J1]  {$a$};
+		\node (J2) [below left of=H1]  {$B3$};
+		\node (K3) [below of=J2]  {$b$};
+		
+		\path 
+		(I) edge   node {$ $}   (B)
+		(I) edge   node {$ $}   (C)
+		(B) edge   node {$ $}   (B1)
+		(C) edge   node {$ $}   (D)
+		(D) edge   node {$ $}   (E)
+		(C) edge   node {$ $}   (D2)
+		(D2) edge   node {$ $}   (E3)
+		(D) edge   node {$ $}   (E1)
+		(D2) edge   node {$ $}   (E2)
+		(E1) edge   node {$ $}   (F)
+		(E) edge   node {$ $}   (F1)
+		(E3) edge   node {$ $}   (F3)
+		(E3) edge   node {$ $}   (F2)
+		(F2) edge   node {$ $}   (G2)
+		(F3) edge   node {$ $}   (G1)
+		(E2) edge   node {$ $}   (H2)
+		(E2) edge   node {$ $}   (H1)
+		(H2) edge   node {$ $}   (H3)
+		(H1) edge   node {$ $}   (J2)
+		(H1) edge   node {$ $}   (J1)
+		(J1) edge   node {$ $}   (K1)
+		(J2) edge   node {$ $}   (K3)
+		;
+		
+		\end{tikzpicture}
+	}
+	
+\end{center}
 
 \pagebreak
 \subsection{Exam Exercise Generating Algorithms}
@@ -52,8 +177,8 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 		\SetAlgoLined
 		\KwIn{ $Word\ w \in \Sigma^{*}$ }
 		\KwOut{$ P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $ \circled{A} \;
-		$P = P \cup \{distribute\ vc \in V^2\ over\ V \}$ \circled{B} \;
+		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $; \circled{A} \\
+		$P = P \cup \{distribute\ vc \in V^2\ over\ V \}$; \circled{B} \\
 		$P = P \setminus \{p\ |\ p \subseteq P,\ vc\ is\ right\ in\ p,\ \forall i\ \forall j\ vc \notin cell_{i,j}\ of\ the\ pyramid \}\label{useless} $\;
 		\Return $P$\;
 		\footnotetext{
@@ -106,7 +231,7 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 		\KwIn{ $Word\ w \in \Sigma^{*}$ }
 		\KwOut{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		
-		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $ \circled{A} \;
+		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $; \circled{A} \\
 		$pyramid = CYK(G,\ w)$\label{stepii}\;
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
 			$J \subseteq \mathbb{N}$\;
@@ -115,9 +240,9 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 				$choose\ one\ j \notin J\ uniform\ randomly\ in\ [0, j_{max}-i] $ \label{chooseJ} \;
 				$J = J \cup j$\;
 				$cellSet = calculateSubsetForCell(pyramid,\ i,\ j)$\;
-				$P = P \cup \{distribute\ vc \in cellSet\ over\ V \}$  \circled{B} \;
+				$P = P \cup \{distribute\ vc \in cellSet\ over\ V \}$;  \circled{B} \\
 				$pyramid = CYK(G,\ w)$\;	
-				$evaluate\ stopping\ criteria\ regarding\ the\ pyramid$  \circled{C} \;
+				$evaluate\ stopping\ criteria\ regarding\ the\ pyramid$;  \circled{C} \\
 				\If{$stopping\ criteria = true$}{
 					\Return $P$\;
 				}
@@ -142,7 +267,7 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 		\SetAlgoLined
 		\KwIn{ $Word\ w \in \Sigma^{*}$ }
 		\KwOut{$P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $ \circled{A} \;
+		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $; \circled{A}  \\
 		$pyramid = CYK(G,\ word)$ \label{stepii}\;
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
 			%$choose\ j\ uniform\ randomly\ in\ [0,\ j_{max}-i]  $\;
@@ -150,11 +275,11 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 				$rowSet = rowSet \cup \{(XY,i)\ |\ X,Y \in V,\ $ $XY \in calculateSubsetForCell(Pyramid,\ i,\ j) \}$\label{rowSet}\;
 			}
 			\While{$threshold_i = false $}{
-				$choose\ one\ vc \in rowSet\ with\ priority,\ depending\ on\ i,\ $ $ uniform\ randomly$\label{chooseVc} \circled{D} \;
-				$P = P \cup \{distribute\ vc \in rowSet\ over\ V\} $ \circled{B} \;
+				$choose\ one\ vc \in rowSet\ with\ priority,\ depending\ on\ i,\ $ $ uniform\ randomly$;\label{chooseVc} \circled{D}  \\
+				$P = P \cup \{distribute\ vc \in rowSet\ over\ V\} $; \circled{B}  \\
 				$pyramid = CYK(G,\ w)$\;
 				$evaluate\ and\ update\ threshold_i,\ regarding\ line\ i$\label{threshold}\;
-				$evaluate\ stopping\ criteria,\ regarding\ the\ pyramid$ \circled{C} \;
+				$evaluate\ stopping\ criteria,\ regarding\ the\ pyramid$; \circled{C} \\
 				\If{$stopping\ criteria = true$}{
 					\Return $P$\;
 				}	
@@ -184,23 +309,30 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 		\label{Idea1}
 		\SetAlgoLined
 		\KwIn{ $Word\ w \in \Sigma^{*},\ i,j \in \mathbb{N},\ \forall j\ cell_{0,j} \neq \emptyset $ }
-		\KwOut{$P \subseteq V \times (V^{2} \cup \Sigma$}
-		\If{$i=1$}{
+		\KwOut{$P \subseteq V \times (V^{2} \cup \Sigma)\ or\ cell_{i,j} \subseteq V$}
+		\If{$i=0$}{
 			\Return $cell_{i,j}$\;
 		}
-		$choose\ one\ m\ uniform\ randomly\ in\ [m_{min},\ m_{max}] \longrightarrow cellLeft\ and\ cellRight$\label{max}\;
-		$A = Idea1(w, P, cellLeft)$\label{cells}\;
-		$B = Idea1(w, P, cellRight)$\;
-		$VC = uniform\ random\ subset\ of\ size\ [min,\ max]\ from\ \{vc\ |\ v \in A\ \wedge\ c \in B\}$\;
-		$P = P \cup \{distribute\ vc \in VC\ over\ V \} \} $  \circled{A}  \;
-		\Return $G$\;
+		$choose\ one\ m\ uniform\ randomly\ in\ [j,\ j+i-1]$\label{max}\label{boundsM}\;
+		$A = Idea1(w,\ P,\ m,\ j)$\label{cells}\;
+		$B = Idea1(w,\ P,\ (i-m),\ (m+j+1))$\;
+		$VC = uniform\ random\ subset\ [of\ size\ ?x?]\ from\ \{vc\ |\ v \in A\ \wedge\ c \in B\}$\;
+		$P = P \cup \{distribute\ vc \in VC\ over\ V \} $; \circled{A}  \\
+		\Return $P$\;
 		\footnotetext{
-			\noindent Line \ref{max}: If one would be at $cell_{2, 2}$ you choose from $[2,1]$, which isn't allowed.
+			\noindent Line \ref{boundsM}: $m_{min}=j$ equals the shift in the word and $m_{max}=j+i-1$ [height of the triangle $h(i)$] that equals exactly the size of the following inspected sub string.
 			
 			\noindent Line \ref{cells} $\longrightarrow\ new\ cells:\ cell_{m, j}\ and\ cell_{i-m, m+j+1}\ See\ Alg.\ subSetCalc\ with\ k \in [i-1;0]\ [Y \in V_{k,j},\ Z \in V_{i-k-1,k+j+1}] $
 		}
 	\end{algorithm}
 }
+Algorithm \ref{Idea1} uniform randomly generates a predefined structure of the derivation tree. You always update the pyramid after adding one production to the grammar. Now there are two options to fill the parse table:
+\begin{enumerate}
+	\item Bottom Up: The parse table is filled relatively evenly. All information regarding the upper cells are available and can be used. Similar to the CYK Algorithm approach.
+	\item Top Down: The parse table is filled quiet unevenly. You don't have all information available. Think about adding a production for the node cell: You can add a production so that its producing cells fill the node cell, but you don't know what actually would be the best to fill in these producing cells because they themselves aren't looked at yet. This problem is kept until the last depth of the recursion, where the cells in row $i=0$ are taken into account. Only starting there you know what variables actually produce the terminals.\\
+	Maybe solution: For the Top Down approach, don't assume that the terminals are already distributed over the V. Distribute the terminals over the variables in an ideal way that fits your already generated productions best.
+\end{enumerate}
+The stopping criteria would be, that each marked $cell_{i,j} \neq \emptyset$ and it must be possible to get from $cell_{m, j}$ and $cell_{i-m, m+j+1}$ to $cell_{i,j}$ through applying one of the production rules.
 
 \pagebreak
 
