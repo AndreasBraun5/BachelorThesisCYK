@@ -53,7 +53,7 @@ public class Cell {
 		\node [above] at (center) {\fontsize{5}{12}\selectfont{B2}};
 		\node [right] at (center) {\fontsize{5}{12}\selectfont{C3}};
 		\node [below] at (center) {\fontsize{5}{12}\selectfont{D4}};
-		\node [] at (center) {\fontsize{5}{12}\selectfont{E5}};
+		\node [center] at (center) {\fontsize{5}{12}\selectfont{E5}};
 		*/
 		if ( vars.size() > 5 ) {
 			throw new CellRuntimeException( "There are more than 5 Variables in the pyramid cell, coordinates: " +
@@ -78,7 +78,7 @@ public class Cell {
 		\node [above] at (center) {\fontsize{5}{12}\selectfont{B2}};
 		\node [right] at (center) {\fontsize{5}{12}\selectfont{C3}};
 		\node [below] at (center) {\fontsize{5}{12}\selectfont{D4}};
-		\node [] at (center) {\fontsize{5}{12}\selectfont{E5}};
+		\node [center] at (center) {\fontsize{5}{12}\selectfont{E5}};
 		*/
 		str.append( "\\coordinate (" + centerName + ") at (" + centerX + "," + centerY + ");\n" );
 		str.append( drawTheVars() );

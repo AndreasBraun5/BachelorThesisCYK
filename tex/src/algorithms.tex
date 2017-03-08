@@ -21,103 +21,117 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 \begin{center}
 	\resizebox{0.9\linewidth}{!}{
 		\begin{tikzpicture}[baseline]
-		% Outer hull
-		\coordinate (top) at (3,-3);
-		\draw [thick, orange] (top) circle [radius=0.1];
-		\draw[help lines] (-1,1) grid (6,-3);
-		\draw [brown, ultra thick] (0,0) circle [radius=0.1];
-		%\coordinate (top) at (2.5,-2.5);
-		\draw [->, thick] (-0.5,1) -- (0.5,1);
-		\node [above] at (0, 1) {i};
-		\draw [->, thick] (-0.5,1) -- (-0.5,-0.0);
-		\node [left] at (-0.5,0.5) {j};
 		
-		\draw [thick, red] (2,-1) circle [radius=0.1];
-		\draw [thick, black] (2,-0.5) circle [radius=0.01];
-		
+		%Outer hull
+		\coordinate (tip) at (3,-3);
 		\foreach \i in {0,...,6} {
 			\coordinate (\i) at (\i,0);
-			\draw [thick] (\i,0) circle [radius=0.2];
 		}
-		
-		% Draw the left and right line of the pyramid pointing downwards
-		\draw (0) -- (top) -- (6);
-		
-		% Grid lines direction top-left to down-right
-		\foreach \coord/\i in {right1/.17,right2/.34,right3/.5,right4/.68,right5/.85} {
-			\coordinate (\coord) at ($(top)!\i!(6)$);
-			\draw [thick, blue] (\i,0) circle [radius=0.1];
-		}
-		\foreach \i/\coord in {1/right1,2/right2,3/right3,4/right4,5/right5}{
-			\draw (\i) -- (\coord);
-			\draw [thick, blue] (\i,0) circle [radius=0.1];
-		}
-		
-		% Grid lines direction top-right to down-left
-		\foreach \coord/\i in {left1/.17,left2/.34,left3/.5,left4/.68,left5/.85} {
-			\coordinate (\coord) at ($(0)!\i!(top)$);
-			\draw [thick, red] (\i,0) circle [radius=0.05];
-		}
-		\foreach \i/\coord in {1/left1,2/left2,3/left3,4/left4,5/left5} {
-			\draw (\i) -- (\coord);
-			\draw [thick, red] (\i,0) circle [radius=0.05];
-		}
-		
-		% Small lines at the top
-		\foreach \i in {0,...,6} {
-			\draw (\i) -- ($(\i)+(0,.5)$);
-		}
-		
-		% The string
-		\foreach \i/\j/\k in {0/1/b,1/2/b,2/3/a,3/4/c,4/5/b,5/6/c} {
-			\node[yshift=.7cm] at ($(\i)!.5!(\j)$) {$\k$};
-		}
-	
-	\coordinate (center00) at (0.5,0.0);
-	\node [] at (center00) {\fontsize{5}{12}\selectfont{A1}};
-	\node [left] at (center00) {\fontsize{5}{12}\selectfont{B1}};
-	\coordinate (center01) at (1.5,-0.433);
-	\coordinate (center02) at (2.5,-0.433);
-	\coordinate (center03) at (3.5,-0.433);
-	\coordinate (center04) at (4.5,-0.433);
-	\coordinate (center05) at (5.5,-0.433);
-	\coordinate (center10) at (1.0,-0.866);
-	\node [] at (center10) {\fontsize{5}{12}\selectfont{S1}};
-	\node [left] at (center10) {\fontsize{5}{12}\selectfont{B1}};
-	\coordinate (center11) at (2.0,-0.866);
-	\node [] at (center11) {\fontsize{5}{12}\selectfont{B2}};
-	\node [left] at (center11) {\fontsize{5}{12}\selectfont{A2}};
-	\coordinate (center12) at (3.0,-0.866);
-	\coordinate (center13) at (4.0,-0.866);
-	\coordinate (center14) at (5.0,-0.866);
-	\coordinate (center20) at (1.5,-1.299);
-	\coordinate (center21) at (2.5,-1.299);
-	\node [] at (center21) {\fontsize{5}{12}\selectfont{S2}};
-	\coordinate (center22) at (3.5,-1.299);
-	\node [] at (center22) {\fontsize{5}{12}\selectfont{A3}};
-	\coordinate (center23) at (4.5,-1.299);
-	\coordinate (center30) at (2.0,-1.732);
-	\node [] at (center30) {\fontsize{5}{12}\selectfont{A1}};
-	\node [left] at (center30) {\fontsize{5}{12}\selectfont{A2}};
-	\node [right] at (center30) {\fontsize{5}{12}\selectfont{S1}};
-	\node [above] at (center30) {\fontsize{5}{12}\selectfont{C1}};
-	\coordinate (center31) at (3.0,-1.732);
-	\node [] at (center31) {\fontsize{5}{12}\selectfont{A2}};
-	\node [left] at (center31) {\fontsize{5}{12}\selectfont{C2}};
-	\node [right] at (center31) {\fontsize{5}{12}\selectfont{S2}};
-	\coordinate (center32) at (4.0,-1.732);
-	\node [] at (center32) {\fontsize{5}{12}\selectfont{S3}};
-	\node [left] at (center32) {\fontsize{5}{12}\selectfont{C3}};
-	\coordinate (center40) at (2.5,-2.165);
-	\node [] at (center40) {\fontsize{5}{12}\selectfont{S4}};
-	\coordinate (center41) at (3.5,-2.165);
-	\node [] at (center41) {\fontsize{5}{12}\selectfont{S4}};
-	\coordinate (center50) at (3.0,-2.598);
-	\node [] at (center50) {\fontsize{5}{12}\selectfont{A1}};
-	\node [left] at (center50) {\fontsize{5}{12}\selectfont{S4}};
-	\node [right] at (center50) {\fontsize{5}{12}\selectfont{C4}};
-	\node [above] at (center50) {\fontsize{5}{12}\selectfont{S1}};
-	\node [below] at (center50) {\fontsize{5}{12}\selectfont{C1}};
+		%Draw the left and right line of the pyramid pointing downwards
+		\draw (0) -- (tip) -- (6);
+		%Grid lines direction down-left to top-right
+		\coordinate (dl1) at (0.5,-0.5);
+		\coordinate (dl2) at (1.0,-1.0);
+		\coordinate (dl3) at (1.5,-1.5);
+		\coordinate (dl4) at (2.0,-2.0);
+		\coordinate (dl5) at (2.5,-2.5);
+		\draw (dl1) -- (1,0);
+		\draw (dl2) -- (2,0);
+		\draw (dl3) -- (3,0);
+		\draw (dl4) -- (4,0);
+		\draw (dl5) -- (5,0);
+		%Grid lines direction down-right to top-left
+		\coordinate (dr1) at (3.5,-2.5);
+		\coordinate (dr2) at (4.0,-2.0);
+		\coordinate (dr3) at (4.5,-1.5);
+		\coordinate (dr4) at (5.0,-1.0);
+		\coordinate (dr5) at (5.5,-0.5);
+		\draw (dr1) -- (1,0);
+		\draw (dr2) -- (2,0);
+		\draw (dr3) -- (3,0);
+		\draw (dr4) -- (4,0);
+		\draw (dr5) -- (5,0);
+		%Small lines at the top
+		\coordinate (top0) at (0.0,0.0);
+		\coordinate (top1) at (1.0,0.0);
+		\coordinate (top2) at (2.0,0.0);
+		\coordinate (top3) at (3.0,0.0);
+		\coordinate (top4) at (4.0,0.0);
+		\coordinate (top5) at (5.0,0.0);
+		\coordinate (top6) at (6.0,0.0);
+		\coordinate (topUpper0) at (0.0,0.6);
+		\coordinate (topUpper1) at (1.0,0.6);
+		\coordinate (topUpper2) at (2.0,0.6);
+		\coordinate (topUpper3) at (3.0,0.6);
+		\coordinate (topUpper4) at (4.0,0.6);
+		\coordinate (topUpper5) at (5.0,0.6);
+		\coordinate (topUpper6) at (6.0,0.6);
+		\draw [thick] (top0) -- (topUpper0);
+		\draw [thick] (top1) -- (topUpper1);
+		\draw [thick] (top2) -- (topUpper2);
+		\draw [thick] (top3) -- (topUpper3);
+		\draw [thick] (top4) -- (topUpper4);
+		\draw [thick] (top5) -- (topUpper5);
+		\draw [thick] (top6) -- (topUpper6);
+		%The string
+		\coordinate (w0) at (0.5,0.6);
+		\coordinate (w1) at (1.5,0.6);
+		\coordinate (w2) at (2.5,0.6);
+		\coordinate (w3) at (3.5,0.6);
+		\coordinate (w4) at (4.5,0.6);
+		\coordinate (w5) at (5.5,0.6);
+		\node [] at (w0) {b};
+		\node [] at (w1) {b};
+		\node [] at (w2) {a};
+		\node [] at (w3) {c};
+		\node [] at (w4) {b};
+		\node [] at (w5) {c};
+		% Variables in the cells
+		\coordinate (center00) at (0.5,0.0);
+		\node [] at (center00) {\fontsize{5}{12}\selectfont{A1}};
+		\node [left] at (center00) {\fontsize{5}{12}\selectfont{B1}};
+		\coordinate (center01) at (1.5,0.0);
+		\coordinate (center02) at (2.5,0.0);
+		\coordinate (center03) at (3.5,0.0);
+		\coordinate (center04) at (4.5,0.0);
+		\coordinate (center05) at (5.5,0.0);
+		\coordinate (center10) at (1.0,-0.5);
+		\node [] at (center10) {\fontsize{5}{12}\selectfont{S1}};
+		\node [left] at (center10) {\fontsize{5}{12}\selectfont{B1}};
+		\coordinate (center11) at (2.0,-0.5);
+		\node [] at (center11) {\fontsize{5}{12}\selectfont{B2}};
+		\node [left] at (center11) {\fontsize{5}{12}\selectfont{A2}};
+		\coordinate (center12) at (3.0,-0.5);
+		\coordinate (center13) at (4.0,-0.5);
+		\coordinate (center14) at (5.0,-0.5);
+		\coordinate (center20) at (1.5,-1.0);
+		\coordinate (center21) at (2.5,-1.0);
+		\node [] at (center21) {\fontsize{5}{12}\selectfont{S2}};
+		\coordinate (center22) at (3.5,-1.0);
+		\node [] at (center22) {\fontsize{5}{12}\selectfont{A3}};
+		\coordinate (center23) at (4.5,-1.0);
+		\coordinate (center30) at (2.0,-1.5);
+		\node [] at (center30) {\fontsize{5}{12}\selectfont{A1}};
+		\node [left] at (center30) {\fontsize{5}{12}\selectfont{A2}};
+		\node [right] at (center30) {\fontsize{5}{12}\selectfont{S1}};
+		\node [above] at (center30) {\fontsize{5}{12}\selectfont{C1}};
+		\coordinate (center31) at (3.0,-1.5);
+		\node [] at (center31) {\fontsize{5}{12}\selectfont{A2}};
+		\node [left] at (center31) {\fontsize{5}{12}\selectfont{C2}};
+		\node [right] at (center31) {\fontsize{5}{12}\selectfont{S2}};
+		\coordinate (center32) at (4.0,-1.5);
+		\node [] at (center32) {\fontsize{5}{12}\selectfont{S3}};
+		\node [left] at (center32) {\fontsize{5}{12}\selectfont{C3}};
+		\coordinate (center40) at (2.5,-2.0);
+		\node [] at (center40) {\fontsize{5}{12}\selectfont{S4}};
+		\coordinate (center41) at (3.5,-2.0);
+		\node [] at (center41) {\fontsize{5}{12}\selectfont{S4}};
+		\coordinate (center50) at (3.0,-2.5);
+		\node [] at (center50) {\fontsize{5}{12}\selectfont{A1}};
+		\node [left] at (center50) {\fontsize{5}{12}\selectfont{S4}};
+		\node [right] at (center50) {\fontsize{5}{12}\selectfont{C4}};
+		\node [above] at (center50) {\fontsize{5}{12}\selectfont{S1}};
+		\node [below] at (center50) {\fontsize{5}{12}\selectfont{C1}};
 		\end{tikzpicture}
 	}
 \end{center}
@@ -186,6 +200,56 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 \pagebreak
 \subsection{Exam Exercise Generating Algorithms}
 
+\pagebreak
+\begin{center}
+	\resizebox{0.9\linewidth}{!}{
+		\begin{tikzpicture}[baseline]
+		% Outer hull
+		\coordinate (top) at (3,-3);
+		\draw[help lines] (-1,1) grid (6,-3);
+		%\coordinate (top) at (2.5,-2.5);
+		\draw [->, thick] (-0.5,1) -- (0.5,1);
+		\node [above] at (0, 1) {i};
+		\draw [->, thick] (-0.5,1) -- (-0.5,-0.0);
+		\node [left] at (-0.5,0.5) {j};
+		
+		
+		
+		\foreach \i in {0,...,6} {
+			\coordinate (\i) at (\i,0);
+		}
+		
+		% Draw the left and right line of the pyramid pointing downwards
+		\draw (0) -- (top) -- (6);
+		
+		% Grid lines direction top-left to down-right
+		\foreach \coord/\i in {right1/.17,right2/.34,right3/.5,right4/.68,right5/.85} {
+			\coordinate (\coord) at ($(top)!\i!(6)$);
+		}
+		\foreach \i/\coord in {1/right1,2/right2,3/right3,4/right4,5/right5}{
+			\draw (\i) -- (\coord);
+		}
+		
+		% Grid lines direction top-right to down-left
+		\foreach \coord/\i in {left1/.17,left2/.34,left3/.5,left4/.68,left5/.85} {
+			\coordinate (\coord) at ($(0)!\i!(top)$);
+		}
+		\foreach \i/\coord in {1/left1,2/left2,3/left3,4/left4,5/left5} {
+			\draw (\i) -- (\coord);
+		}
+		
+		% Small lines at the top
+		\foreach \i in {0,...,6} {
+			\draw (\i) -- ($(\i)+(0,.5)$);
+		}
+		
+		% The string
+		\foreach \i/\j/\k in {0/1/b,1/2/b,2/3/a,3/4/c,4/5/b,5/6/c} {
+			\node[yshift=.7cm] at ($(\i)!.5!(\j)$) {$\k$};
+		}
+		\end{tikzpicture}
+	}
+\end{center}
 \pagebreak
 
 \subsubsection{Algorithm: AlgorithmName}

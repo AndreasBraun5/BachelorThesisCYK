@@ -29,6 +29,7 @@ public class Main {
 	// TODO: Implement pyramid vs methods: getRight, getLeft, getUpperRight, getUpperLeft, ... methods in SetVMatrix. Possible to check indices. Legacy code still works.
 	// TODO: Outsource calculateSubsetForCell from CYK algorithm. Implicit testing possible and reuse.
 	// TODO: Comparator needed for the stored samples in the .txt file.
+	// TODO: More than 5 cells in TikzPicture Cell
 	//
 	// TODO DONE?: Implement Wim's algorithm from meeting 6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// TODO: Wim's algorithm output rethink because of too many times not adding a production.

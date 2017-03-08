@@ -1,6 +1,5 @@
 package com.github.andreasbraun5.thesis.latex;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
@@ -11,37 +10,20 @@ import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 
+import static org.junit.Assert.*;
+
 /**
- * Created by Andreas Braun on 04.03.2017.
+ * Created by Andreas Braun on 08.03.2017.
  * https://github.com/AndreasBraun5/
  */
-public class CellTest {
+public class CenteredTikzPictureTest {
 
 	@Test
 	public void toStringTest() throws Exception {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "CellTest: Generating LaTeX code for the cells." );
-		Cell cell = new Cell( 2, 2 );
-		cell.centerX = 2;
-		cell.centerY = -0.5;
-		Set<VariableK> setvk = new HashSet<>();
-		setvk.add( new VariableK( new Variable( "A" ), 1 ) );
-		setvk.add( new VariableK( new Variable( "B" ), 2 ) );
-		setvk.add( new VariableK( new Variable( "C" ), 3 ) );
-		setvk.add( new VariableK( new Variable( "D" ), 4 ) );
-		setvk.add( new VariableK( new Variable( "E" ), 5 ) );
-		cell.addVar( setvk );
-		System.out.println( cell );
+		System.out.println( "CenteredTikzPictureTest: Generating LaTeX code for TikzPicture." );
 
-	}
-
-
-	@Test
-	public void toStringTest2() throws Exception {
-		System.out.println( "" );
-		System.out.println( "############################" );
-		System.out.println( "CellTest: Generating LaTeX code for the cells." );
 		int wordLength = 6;
 
 		Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
@@ -94,7 +76,14 @@ public class CellTest {
 		System.out.print( setVMatrixSolution.getStringToPrintAsLowerTriangularMatrix() );
 		Pyramid pyramid = setVMatrixSolution.getPyramid();
 		pyramid.word = "bbacbc".toCharArray();
+
+		CenteredTikzPicture tikz = new CenteredTikzPicture();
+		System.out.println(tikz.beginToString());
 		System.out.print( pyramid );
+		System.out.println(tikz.endToString());
+
+
 	}
+
 
 }
