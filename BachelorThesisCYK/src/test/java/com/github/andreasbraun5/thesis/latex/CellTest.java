@@ -93,7 +93,7 @@ public class CellTest {
 		).setSetV( setVTemp );
 		System.out.print( setVMatrixSolution.getStringToPrintAsLowerTriangularMatrix() );
 		Pyramid pyramid = setVMatrixSolution.getPyramid();
-		pyramid.word = "bbacbc".toCharArray();
+		pyramid.word = new String[] {"b", "b", "a", "c", "b", "c"};
 		System.out.print( pyramid );
 	}
 

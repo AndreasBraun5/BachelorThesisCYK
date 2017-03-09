@@ -10,8 +10,6 @@ import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Andreas Braun on 08.03.2017.
  * https://github.com/AndreasBraun5/
@@ -75,8 +73,7 @@ public class CenteredTikzPictureTest {
 		).setSetV( setVTemp );
 		System.out.print( setVMatrixSolution.getStringToPrintAsLowerTriangularMatrix() );
 		Pyramid pyramid = setVMatrixSolution.getPyramid();
-		pyramid.word = "bbacbc".toCharArray();
-
+		pyramid.word = new String[] {"b", "b", "a", "c", "b", "c"};
 		CenteredTikzPicture tikz = new CenteredTikzPicture();
 		System.out.println(tikz.beginToString());
 		System.out.print( pyramid );

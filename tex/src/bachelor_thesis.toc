@@ -9,29 +9,29 @@
 \contentsline {subsection}{\numberline {2.3}Direct Ranking vs. Preference Analysis vs. ...}{8}{subsection.2.3}
 \contentsline {section}{\numberline {3}Algorithms}{9}{section.3}
 \contentsline {subsection}{\numberline {3.1}Help Data Structure Pyramid and Others}{9}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Exam Exercise Generating Algorithms}{11}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Algorithm: AlgorithmName}{13}{subsubsection.3.2.1}
-\contentsline {paragraph}{\numberline {3.2.1.1}Basic Idea}{13}{paragraph.3.2.1.1}
-\contentsline {paragraph}{\numberline {3.2.1.2}Tweak Idea 1 for Algorithm}{13}{paragraph.3.2.1.2}
-\contentsline {paragraph}{\numberline {3.2.1.3}Tweak Idea 2 for Algorithm}{13}{paragraph.3.2.1.3}
+\contentsline {subsection}{\numberline {3.2}Exam Exercise Generating Algorithms}{12}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Algorithm: AlgorithmName}{14}{subsubsection.3.2.1}
+\contentsline {paragraph}{\numberline {3.2.1.1}Basic Idea}{14}{paragraph.3.2.1.1}
+\contentsline {paragraph}{\numberline {3.2.1.2}Tweak Idea 1 for Algorithm}{14}{paragraph.3.2.1.2}
+\contentsline {paragraph}{\numberline {3.2.1.3}Tweak Idea 2 for Algorithm}{14}{paragraph.3.2.1.3}
 \contentsline {paragraph}{\numberline {3.2.1.4}Finished Algorithm}{14}{paragraph.3.2.1.4}
-\contentsline {subsubsection}{\numberline {3.2.2}Algorithm: GeneratorGrammarDiceRollOnly}{14}{subsubsection.3.2.2}
-\contentsline {subsubsection}{\numberline {3.2.3}Algorithm: BottomUp GeneratorGrammarDiceRollMartens}{15}{subsubsection.3.2.3}
-\contentsline {subsubsection}{\numberline {3.2.4}Algorithm: Idea 1, TopDown From node to leaves}{17}{subsubsection.3.2.4}
-\contentsline {subsubsection}{\numberline {3.2.5}Algorithm: Idea 2, How often cells are used for subset calculations}{18}{subsubsection.3.2.5}
-\contentsline {subsubsection}{\numberline {3.2.6}Tweaking Sub Procedures in more detail}{19}{subsubsection.3.2.6}
-\contentsline {subsection}{\numberline {3.3}Criteria Checking Procedures}{20}{subsection.3.3}
-\contentsline {section}{\numberline {4}CLI Tool}{22}{section.4}
-\contentsline {subsection}{\numberline {4.1}Short Requirements Specification}{22}{subsection.4.1}
-\contentsline {subsubsection}{\numberline {4.1.1}Exam Exercises}{22}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}Fun With CNF's and CYK}{23}{subsubsection.4.1.2}
-\contentsline {subsection}{\numberline {4.2}Overview - UML}{24}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}UML: More Detail 1}{24}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}UML: More Detail 2}{24}{subsubsection.4.2.2}
-\contentsline {subsection}{\numberline {4.3}User Interaction}{25}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}Use Case 1}{25}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}Use Case i}{25}{subsubsection.4.3.2}
-\contentsline {section}{\numberline {5}Notes}{26}{section.5}
-\contentsline {section}{Used software}{28}{section.5}
-\contentsline {section}{Algorithms}{29}{section*.6}
-\contentsline {section}{References}{30}{section*.7}
+\contentsline {subsubsection}{\numberline {3.2.2}Algorithm: GeneratorGrammarDiceRollOnly}{15}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Algorithm: BottomUp GeneratorGrammarDiceRollMartens}{17}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}Algorithm: Idea 1, TopDown From node to leaves}{20}{subsubsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.5}Algorithm: Idea 2, How often cells are used for subset calculations}{22}{subsubsection.3.2.5}
+\contentsline {subsubsection}{\numberline {3.2.6}Tweaking Sub Procedures in more detail}{23}{subsubsection.3.2.6}
+\contentsline {subsection}{\numberline {3.3}Criteria Checking Procedures}{24}{subsection.3.3}
+\contentsline {section}{\numberline {4}CLI Tool}{26}{section.4}
+\contentsline {subsection}{\numberline {4.1}Short Requirements Specification}{26}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Exam Exercises}{26}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Fun With CNF's and CYK}{27}{subsubsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2}Overview - UML}{28}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}UML: More Detail 1}{28}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}UML: More Detail 2}{28}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}User Interaction}{29}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Use Case 1}{29}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Use Case i}{29}{subsubsection.4.3.2}
+\contentsline {section}{\numberline {5}Notes}{30}{section.5}
+\contentsline {section}{Used software}{32}{section.5}
+\contentsline {section}{Algorithms}{33}{section*.7}
+\contentsline {section}{References}{34}{section*.8}

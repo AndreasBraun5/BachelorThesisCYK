@@ -23,6 +23,7 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 		\begin{tikzpicture}[baseline]
 		
 		%Outer hull
+		%Tip of the pyramid
 		\coordinate (tip) at (3,-3);
 		\foreach \i in {0,...,6} {
 			\coordinate (\i) at (\i,0);
@@ -135,7 +136,7 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 		\end{tikzpicture}
 	}
 \end{center}
-
+\pagebreak
 \begin{center}
 	\resizebox{.6\linewidth}{!}{
 		\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=2cm,
@@ -256,7 +257,7 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 \noindent Things like the $G=(V,\Sigma , S, P)$ can be assumed as known.\\
 $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\ \{v\ |\ v \in V \} \}$ which equals the $distributeRhse$ module.\\
 \noindent Bias is only allowed top vs down regarding the pyramid. No left or right bias intended yet.\\
-\circled{A}, \circled{B}, ... represent exchangeable algorithm modules. 
+\circled{A}, \circled{B}, ... represent exchangeable algorithm modules. Make hyperrefs für \circled{A}
 
 \paragraph{Basic Idea}
 
@@ -265,11 +266,8 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 \paragraph{Tweak Idea 2 for Algorithm}
 
 \paragraph{Finished Algorithm}
-
-
-
+break
 \pagebreak
-
 \subsubsection{Algorithm: GeneratorGrammarDiceRollOnly}
 \noindent Very naive way of generating grammars. This is intended to be the starting point for our algorithms we find. Each found algorithm must have a higher score than this algorithm or otherwise it would be worse than simple dice rolling and then removing the useless productions.\\
 
@@ -281,8 +279,8 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 		\SetAlgoLined
 		\KwIn{ $Word\ w \in \Sigma^{*}$ }
 		\KwOut{$ P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $; \circled{A} \\
-		$P = P \cup \{distribute\ vc \in V^2\ over\ V \}$; \circled{B} \\
+		$P = \{distribute\ \Sigma\ over\ V \} $; \circled{A} \\
+		$P = P \cup \{distribute\ V^2\ over\ V \}$; \circled{B} \\
 		$P = P \setminus \{p\ |\ p \subseteq P,\ vc\ is\ right\ in\ p,\ \forall i\ \forall j\ vc \notin cell_{i,j}\ of\ the\ pyramid \}\label{useless} $\;
 		\Return $P$\;
 		\footnotetext{
@@ -305,6 +303,8 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 %		\Return $G$\;
 %	\end{algorithm}
 %}
+\pagebreak
+ 
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
@@ -335,7 +335,7 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 		\KwIn{ $Word\ w \in \Sigma^{*}$ }
 		\KwOut{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		
-		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $; \circled{A} \\
+		$P = \{distribute\ \Sigma\ over\ V \} $; \circled{A} \\
 		$pyramid = CYK(G,\ w)$\label{stepii}\;
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
 			$J \subseteq \mathbb{N}$\;
@@ -344,10 +344,9 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 				$choose\ one\ j \notin J\ uniform\ randomly\ in\ [0, j_{max}-i] $ \label{chooseJ} \;
 				$J = J \cup j$\;
 				$cellSet = calculateSubsetForCell(pyramid,\ i,\ j)$\;
-				$P = P \cup \{distribute\ vc \in cellSet\ over\ V \}$;  \circled{B} \\
+				$P = P \cup \{distribute\ cellSet \subseteq V^2\ over\ V \}$;  \circled{B} \\
 				$pyramid = CYK(G,\ w)$\;	
-				$evaluate\ stopping\ criteria\ regarding\ the\ pyramid$;  \circled{C} \\
-				\If{$stopping\ criteria = true$}{
+				\If{$stopping\ criteria~met$~\circled{C}}{
 					\Return $P$\;
 				}
 			}
@@ -362,6 +361,7 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 		}
 	\end{algorithm}
 }
+Stopping criteria regarding the entire pyramid.\\
 
 \noindent
 \frame{
@@ -371,20 +371,18 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 		\SetAlgoLined
 		\KwIn{ $Word\ w \in \Sigma^{*}$ }
 		\KwOut{$P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$P = \{distribute\ \sigma \in \Sigma\ over\ V \} $; \circled{A}  \\
+		$P = \{distribute\ \Sigma\ over\ V \} $; \circled{A}  \\
 		$pyramid = CYK(G,\ word)$ \label{stepii}\;
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
 			%$choose\ j\ uniform\ randomly\ in\ [0,\ j_{max}-i]  $\;
 			\For{$j:=0\ \textbf{to}\ j_{max}-i$}{
 				$rowSet = rowSet \cup \{(XY,i)\ |\ X,Y \in V,\ $ $XY \in calculateSubsetForCell(Pyramid,\ i,\ j) \}$\label{rowSet}\;
 			}
-			\While{$threshold_i = false $}{
-				$choose\ one\ vc \in rowSet\ with\ priority,\ depending\ on\ i,\ $ $ uniform\ randomly$;\label{chooseVc} \circled{D}  \\
-				$P = P \cup \{distribute\ vc \in rowSet\ over\ V\} $; \circled{B}  \\
+			\While{$threshold_i\ not\ reached $}{
+				$choose\ one\ vc \subseteq V^2\ out\ of\ rowSet\ with\ priority,\ depending\ on\ i,\ $ $ uniform\ randomly$;\label{chooseVc} \circled{D}  \\
+				$P = P \cup \{distribute\ vc\ over\ V\} $; \circled{B}  \\
 				$pyramid = CYK(G,\ w)$\;
-				$evaluate\ and\ update\ threshold_i,\ regarding\ line\ i$\label{threshold}\;
-				$evaluate\ stopping\ criteria,\ regarding\ the\ pyramid$; \circled{C} \\
-				\If{$stopping\ criteria = true$}{
+				\If{$stopping\ criteria~met$~\circled{C}}{
 					\Return $P$\;
 				}	
 			}
@@ -398,45 +396,82 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 			\noindent Line \ref{chooseVc}: One vc can be chosen several times.
 			
 			\noindent Note Line \ref{chooseVc}: Priority mechanism: In line $i+1$ the $k = \{(A,l)\ |\ (A,l) \in sub,\ l=i  \}$ are preferred over the\\ $m = \{(A,n)\ |\ (A,n) \in sub,\ n < i  \}$. In what way are they preferred? Using some kind of factor to weight the $i$ of $(A,i)$.
-			
-			\noindent Note Line \ref{threshold}: Threshold, Linear or log function $f(i)$?
 		}
 	\end{algorithm}
 }
-\pagebreak 
+thresholdi is regarding a line.  Threshold, Linear or log function $f(i)$?
+
+$P = P \cup \{distribute\ vc \in rowSet\ over\ V\} $; \circled{B}  vs.\\
+$P = P \cup \{distribute\ rowSet \subseteq V^2 over\ V\} $; \circled{B}  \\
+
+(AB,3) and (AB,1) -> (AB,1)
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{abb/D_Wim2}
+\end{figure}
+break 
+\clearpage
+\newpage 
+
+
 \subsubsection{Algorithm: Idea 1, TopDown From node to leaves}
 
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
-		\caption{Idea1}
-		\label{Idea1}
+		\caption{Idea1Part1}
+		\label{Idea1part1}
 		\SetAlgoLined
-		\KwIn{ $Word\ w \in \Sigma^{*},\ i,j \in \mathbb{N},\ \forall j\ cell_{0,j} \neq \emptyset $ }
-		\KwOut{$P \subseteq V \times (V^{2} \cup \Sigma)\ or\ cell_{i,j} \subseteq V$}
+		\KwIn{ $Word\ w \in \Sigma^{*},\ i,j \in \mathbb{N}$ }
+		\KwOut{$(P \subseteq V \times (V^{2} \cup \Sigma),\ cell_{i,j} \subseteq V)$}
 		\If{$i=0$}{
-			\Return $cell_{i,j}$\;
+			\Return $(P,\ cell_{i,j})$\;
 		}
-		$choose\ one\ m\ uniform\ randomly\ in\ [j,\ j+i-1]$\label{max}\label{boundsM}\;
-		$A = Idea1(w,\ P,\ m,\ j)$\label{cells}\;
-		$B = Idea1(w,\ P,\ (i-m),\ (m+j+1))$\;
-		$VC = uniform\ random\ subset\ [of\ size\ ?x?]\ from\ \{vc\ |\ v \in A\ \wedge\ c \in B\}$\;
-		$P = P \cup \{distribute\ vc \in VC\ over\ V \} $; \circled{A}  \\
-		\Return $P$\;
+		\If{$stopping\ criteria~met$~\circled{C}}{
+			\Return $(P,\ cell)$\;
+		}	
+		$choose\ one\ m\ uniform\ randomly\ in\ [m_{min},\ m_{max}]$\label{boundsM}\;
+		$(A,\ cell_a) = Idea1(w,\ m,\ j)$\label{A}\;
+		$(B,\ cell_b) = Idea1(w,\ (i-m),\ (m+j+1))$\label{B}\;
+		$VC = uniform\ random\ subset\ from\ \{vc\ |\ v \in A\ \wedge\ c \in B\}$\;
+		$P = P \cup \{distribute\ VC \subseteq V^2\ over\ V \} $; \circled{A}  \\
+		\Return $(P,\ cell)$\;
 		\footnotetext{
-			\noindent Line \ref{boundsM}: $m_{min}=j$ equals the shift in the word and $m_{max}=j+i-1$ [height of the triangle $h(i)$] that equals exactly the size of the following inspected sub string.
+			\noindent Line \ref{boundsM}: $m_{min}=j$ equals the shift in the word and $m_{max}=j+i-1$ [height of the triangle $h(i)$] that equals exactly the size of the following inspected sub string.\\
+			$choose\ one\ m\ uniform\ randomly\ in\ [j,\ j+i-1]$\;
 			
-			\noindent Line \ref{cells} $\longrightarrow\ new\ cells:\ cell_{m, j}\ and\ cell_{i-m, m+j+1}\ See\ Alg.\ subSetCalc\ with\ k \in [i-1;0]\ [Y \in V_{k,j},\ Z \in V_{i-k-1,k+j+1}] $
+			\noindent Line \ref{A}: $(A,\ cell_a) = Idea1(w,\ m,\ j)$
+			
+			\noindent Line \ref{B}: $(B,\ cell_b) = Idea1(w,\ (i-m),\ (m+j+1))$
+			
+			\noindent Line \ref{B} $\longrightarrow\ new\ cells:\ cell_{m, j}\ and\ cell_{i-m, m+j+1}\ See\ Alg.\ subSetCalc\ with\ k \in [i-1;0]\ [Y \in V_{k,j},\ Z \in V_{i-k-1,k+j+1}] $
 		}
 	\end{algorithm}
 }
-Algorithm \ref{Idea1} uniform randomly generates a predefined structure of the derivation tree. You always update the pyramid after adding one production to the grammar. Now there are two options to fill the parse table:
+\\
+\\
+\noindent
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{Idea1Part2}
+		\label{Idea1part2}
+		\SetAlgoLined
+		\KwIn{ $Word\ w \in \Sigma^{*}$}
+		\KwOut{$P \subseteq V \times (V^{2} \cup \Sigma)$}
+		$P = \{distribute\ \Sigma\ over\ V \} $; \circled{A}  \\
+		$(P_t,\ cell) = Idea1Part1(w,\ i_{max},\ 0)$\;
+		$P = P \cup P_t$\;
+		\Return $P$\;
+	\end{algorithm}
+}
+The stopping criteria would be, that each marked $cell_{i,j} \neq \emptyset$ and it must be possible to get from $cell_{m, j}$ and $cell_{i-m, m+j+1}$ to $cell_{i,j}$ through applying one of the production rules.\\
+Algorithm \ref{Idea1} Idea1 uniform randomly generates a predefined structure of the derivation tree. You always update the pyramid after adding one production to the grammar. Now there are two options to fill the parse table:
 \begin{enumerate}
 	\item Bottom Up: The parse table is filled relatively evenly. All information regarding the upper cells are available and can be used. Similar to the CYK Algorithm approach.
 	\item Top Down: The parse table is filled quiet unevenly. You don't have all information available. Think about adding a production for the node cell: You can add a production so that its producing cells fill the node cell, but you don't know what actually would be the best to fill in these producing cells because they themselves aren't looked at yet. This problem is kept until the last depth of the recursion, where the cells in row $i=0$ are taken into account. Only starting there you know what variables actually produce the terminals.\\
 	Maybe solution: For the Top Down approach, don't assume that the terminals are already distributed over the V. Distribute the terminals over the variables in an ideal way that fits your already generated productions best.
 \end{enumerate}
-The stopping criteria would be, that each marked $cell_{i,j} \neq \emptyset$ and it must be possible to get from $cell_{m, j}$ and $cell_{i-m, m+j+1}$ to $cell_{i,j}$ through applying one of the production rules.
 
 \pagebreak
 
@@ -446,7 +481,7 @@ The stopping criteria would be, that each marked $cell_{i,j} \neq \emptyset$ and
 
 \subsubsection{Tweaking Sub Procedures in more detail}
 Maybe don't keep this so that the Algorithms can be read without flipping pages.\\
-
+$\circled{A}, \circled{B}, ...$\\
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check

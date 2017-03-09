@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  8 MAR 2017 18:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  9 MAR 2017 13:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1532,7 +1532,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--45
  []
 
 ) [7] (./scoring_model.tex
-Underfull \hbox (badness 10000) in paragraph at lines 9--13
+Underfull \hbox (badness 10000) in paragraph at lines 10--14
 
  []
 
@@ -1553,134 +1553,164 @@ File: abb/DataStructurePyramid.png Graphic file (type png)
 Package pdftex.def Info: abb/DataStructurePyramid.png used on input line 18.
 (pdftex.def)             Requested size: 308.71106pt x 238.62596pt.
  [9 <./abb/DataStructurePyramid.png>]
-[10] [11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 274--275
+[10] [11] [12] [13] [14]
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 292.
+(Font)              <10> on input line 290.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 292.
+(Font)              <7> on input line 290.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 292.
+(Font)              <5> on input line 290.
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 276--326
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 274--307
 []
  []
 
-
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 276--326
+[15]
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 308--326
 [] 
  []
 
-[14]
+[16]
 Overfull \hbox (3.91661pt too wide) in paragraph at lines 329--365
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 329--365
+
+ []
+
+
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 366--403
+[]
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 404--406
+
+ []
+
+<abb/D_Wim2.jpg, id=332, 1604.99625pt x 1204.5pt>
+File: abb/D_Wim2.jpg Graphic file (type jpg)
+ <use abb/D_Wim2.jpg>
+Package pdftex.def Info: abb/D_Wim2.jpg used on input line 411.
+(pdftex.def)             Requested size: 308.71106pt x 231.66939pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[18] [19 <./abb/D_Wim2.jpg>]
+
+LaTeX Warning: Reference `Idea1' on page 20 undefined on input line 469.
+
+
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 420--470
 [] 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 366--407
+Underfull \hbox (badness 10000) in paragraph at lines 420--470
+
+ []
+
+
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 420--470
 []
  []
 
-[15] [16]
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 409--434
-[]
- []
+[20
 
-[17] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 448--449
-
- []
-
-
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 450--484
+] [21] [22]
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 483--519
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 450--484
+Underfull \hbox (badness 10000) in paragraph at lines 483--519
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 450--484
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 483--519
 []
  []
 
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 488--490
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 523--525
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 491--492
+Underfull \hbox (badness 10000) in paragraph at lines 526--527
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 493--494
+Underfull \hbox (badness 10000) in paragraph at lines 528--529
 
  []
 
 
-Overfull \hbox (15.3946pt too wide) in paragraph at lines 495--496
+Overfull \hbox (15.3946pt too wide) in paragraph at lines 530--531
 \T1/lmr/m/n/12 isExamConstraints = is-Right-Cell-Com-bi-na-tions-Forced && is-M
 ax-SumOf-Pro-duc-tion-sCount
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 495--496
+Underfull \hbox (badness 10000) in paragraph at lines 530--531
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 497--539
+Underfull \hbox (badness 10000) in paragraph at lines 532--574
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 497--539
+Underfull \hbox (badness 10000) in paragraph at lines 532--574
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 497--539
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 532--574
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 497--539
+Underfull \hbox (badness 10000) in paragraph at lines 532--574
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 497--539
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 532--574
 []
  []
 
-[20]
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 542--586
+[24]
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 577--621
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 542--586
+Underfull \hbox (badness 10000) in paragraph at lines 577--621
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 542--586
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 577--621
 []
  []
 
-) [21] (./implementation.tex
+) [25] (./implementation.tex
 Underfull \hbox (badness 10000) in paragraph at lines 6--9
 
  []
 
-[22] [23] [24]) [25] (./notes.tex
+[26] [27] [28]) [29] (./notes.tex
 Underfull \hbox (badness 10000) in paragraph at lines 5--8
 
  []
@@ -1715,7 +1745,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--27
 
  []
 
-[26]
+[30]
 Underfull \hbox (badness 10000) in paragraph at lines 30--31
 
  []
@@ -1730,10 +1760,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 35--36
 
  []
 
-) [27] (./used_software.tex) [28
+) [31] (./used_software.tex) [32
 
-] (./appendix/algorithms.tex) [29]
-(./bibliography.tex) [30] [31]
+] (./appendix/algorithms.tex) [33]
+(./bibliography.tex) [34] [35]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 323.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 323.
  (./bachelor_thesis.aux
@@ -1741,7 +1771,10 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 323.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 323.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 323.
 Package rerunfilecheck Info: File `bachelor_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: DFB1D0D7356A943E5ADAF535BB6DCAE4;2948.
+(rerunfilecheck)             Checksum: B88725C1016FE7C99E5244B6F69CD6D8;2948.
+
+
+LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1749,13 +1782,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 323.
  ) 
 Here is how much of TeX's memory you used:
- 27779 strings out of 493109
- 516257 string characters out of 6138588
- 691186 words of memory out of 5000000
- 30476 multiletter control sequences out of 15000+600000
+ 27797 strings out of 493109
+ 516472 string characters out of 6138588
+ 685186 words of memory out of 5000000
+ 30481 multiletter control sequences out of 15000+600000
  94242 words of font info for 67 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 76i,23n,114p,763b,957s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 76i,23n,114p,763b,1005s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2014/tex
 mf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2014/texmf-dist/fonts/enc/dvip
 s/lm/lm-mathsy.enc}{c:/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
@@ -1769,15 +1802,16 @@ m/lmr10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/tex
 live/2014/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2014/texmf-dis
 t/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public
 /lm/lmr7.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/tex
-live/2014/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2014/texmf-
-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/p
-ublic/lm/lmsy7.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-<c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2014/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on bachelor_thesis.pdf (31 pages, 465025 bytes).
+live/2014/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2014/texmf-di
+st/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/p
+ublic/lm/lmsy10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy7.pfb
+><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2014/t
+exmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2014/texmf-dist/fonts/ty
+pe1/public/amsfonts/symbols/msbm10.pfb>
+Output written on bachelor_thesis.pdf (35 pages, 603816 bytes).
 PDF statistics:
- 608 PDF objects out of 1000 (max. 8388607)
- 546 compressed objects within 6 object streams
- 196 named destinations out of 1000 (max. 500000)
- 319 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 638 PDF objects out of 1000 (max. 8388607)
+ 570 compressed objects within 6 object streams
+ 207 named destinations out of 1000 (max. 500000)
+ 324 words of extra memory for PDF output out of 10000 (max. 10000000)
 

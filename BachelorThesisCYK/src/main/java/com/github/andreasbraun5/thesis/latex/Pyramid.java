@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Pyramid {
 	public ArrayList<ArrayList<Cell>> cells;
-	public char[] word;
+	public String[] word;
 
 	// Initialising the pyramid with the given indexes.
 	public Pyramid(int pyramidSize) {
@@ -45,7 +45,7 @@ public class Pyramid {
 		StringBuilder str = new StringBuilder();
 		int n = this.cells.size();
 		// \coordinate (top) at (3,-3);
-		str.append( "%Outer hull\n\\coordinate (tip) at (" + n / 2 + "," + -n / 2 + ");\n" );
+		str.append( "%Outer hull\n%Tip of the pyramid\n\\coordinate (tip) at (" + n / 2 + "," + -n / 2 + ");\n" );
 		//	\foreach \i in {0,...,6} {
 		//		\coordinate (\i) at (\i,0);
 		//	}
