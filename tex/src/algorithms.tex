@@ -282,18 +282,21 @@ break
 		\caption{GeneratorGrammarDiceRollOnly}
 		\label{GeneratorGrammarDiceRollOnly}
 		\SetAlgoLined
-		\KwIn{ $Word\ w \in \Sigma^{*}$ }
-		\KwOut{$ P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$P = \{distribute\ \Sigma\ over\ V \} $; \circled{A} \\
-		$P = P \cup \{distribute\ V^2\ over\ V \}$; \circled{B} \\
-		$P = P \setminus \{p\ |\ p \subseteq P,\ vc\ is\ right\ in\ p,\ \forall i\ \forall j\ vc \notin cell_{i,j}\ of\ the\ pyramid \}\label{useless} $\;
+		\KwIn{Word $w \in \Sigma^{*}$ }
+		\KwOut{Set of productions $P$}
+		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
+		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\
+		$P = P \cup Distribute(V^2,\ V)$;  \circled{B}\\
+		$P = P \setminus \{p\ |\ p \subseteq P,\ v\ is\ left\ in\ p,\ \forall_i\ \forall_j\ v \notin cell_{i,j}\ of\ the\ pyramid \}$\label{useless}\;
 		\Return $P$\;
 		\footnotetext{
-			\noindent Line \ref{useless}: Removes all useless production.
+			\noindent Line \ref{useless}: Removes all useless productions. But unreachable productions still possible.
 		}
 	\end{algorithm}
-}
-Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in CNF? CNF does only have useful variables [TI script Def. 8.3 page 210] vs. $P \subseteq V \times (V^{2} \cup \Sigma)$\\
+}\\
+
+\noindent Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in CNF? CNF does only have useful variables [TI script Def. 8.3 page 210] vs. $P \subseteq V \times (V^{2} \cup \Sigma)$.\\
+\noindent More of a problem is that the set $P$ is not necessarily in CNF. It is possible that there are unreachable variables -- from the starting variable.
 %\frame{
 %	\begin{algorithm}[H] %or another one check
 %		\caption{GeneratorGrammarDiceRollOnly}
@@ -343,7 +346,7 @@ Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in 
 		$P = \{distribute\ \Sigma\ over\ V \} $; \circled{A} \\
 		$pyramid = CYK(G,\ w)$\label{stepii}\;
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
-			$J \subseteq \mathbb{N}$\;
+			$J \subseteq \mathbb{N}$; \tcp{$will be used to compute \partial x$}
 			$cellSet \subseteq V^2$\;
 			\While{$|J| < j_{max}-i$}{
 				$choose\ one\ j \notin J\ uniform\ randomly\ in\ [0, j_{max}-i] $ \label{chooseJ} \;

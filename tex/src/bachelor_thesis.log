@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  16 MAR 2017 13:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.5.7)  16 MAR 2017 15:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -958,7 +958,7 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \c@LT@chunks=\count126
 \LT@p@ftn=\toks31
 )
-Class scrartcl Info: longtable captions redefined on input line 51.
+Class scrartcl Info: longtable captions redefined on input line 53.
 
 (c:/texlive/2014/texmf-dist/tex/latex/tools/afterpage.sty
 Package: afterpage 2014/10/28 v1.08 After-Page Package (DPC)
@@ -1218,7 +1218,7 @@ Class scrartcl Warning: Usage of package `fancyhdr' together
 (scrartcl)              I'd suggest to use 
 (scrartcl)              package `scrlayer-scrpage'.
 (scrartcl)              Nevertheless, using requested
-(scrartcl)              package `fancyhdr' on input line 90.
+(scrartcl)              package `fancyhdr' on input line 92.
 
 (c:/texlive/2014/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip83
@@ -1299,23 +1299,23 @@ LaTeX Warning: Label `stepii' multiply defined.
 )
 \openout1 = `bachelor_thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 155.
-LaTeX Font Info:    ... okay on input line 155.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 155.
-LaTeX Font Info:    ... okay on input line 155.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 155.
-LaTeX Font Info:    ... okay on input line 155.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 155.
-LaTeX Font Info:    ... okay on input line 155.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 155.
-LaTeX Font Info:    ... okay on input line 155.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 155.
-LaTeX Font Info:    ... okay on input line 155.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 155.
-LaTeX Font Info:    ... okay on input line 155.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 155.
-LaTeX Font Info:    ... okay on input line 155.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 155.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 157.
  (c:/texlive/2014/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1394,7 +1394,7 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box80
-Package hyperref Info: Link coloring OFF on input line 155.
+Package hyperref Info: Link coloring OFF on input line 157.
 (c:/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -1403,9 +1403,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count169
 )
-LaTeX Info: Redefining \ref on input line 155.
-LaTeX Info: Redefining \pageref on input line 155.
-LaTeX Info: Redefining \nameref on input line 155.
+LaTeX Info: Redefining \ref on input line 157.
+LaTeX Info: Redefining \pageref on input line 157.
+LaTeX Info: Redefining \nameref on input line 157.
 
 (./bachelor_thesis.out) (./bachelor_thesis.out)
 \@outlinefile=\write7
@@ -1562,43 +1562,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 277--278
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 295.
+(Font)              <10.95> on input line 296.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 295.
+(Font)              <10> on input line 296.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 296.
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 279--312
-[]
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 279--297
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--297
+
  []
 
 [15]
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 313--331
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 316--334
 [] 
  []
 
 [16]
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 334--370
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 337--373
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 334--370
+Underfull \hbox (badness 10000) in paragraph at lines 337--373
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 371--408
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 374--411
 []
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 409--411
+Underfull \hbox (badness 10000) in paragraph at lines 412--414
 
  []
 
-<abb/D_Wim2.jpg, id=334, 1604.99625pt x 1204.5pt>
+<abb/D_Wim2.jpg, id=337, 1604.99625pt x 1204.5pt>
 File: abb/D_Wim2.jpg Graphic file (type jpg)
  <use abb/D_Wim2.jpg>
-Package pdftex.def Info: abb/D_Wim2.jpg used on input line 416.
+Package pdftex.def Info: abb/D_Wim2.jpg used on input line 419.
 (pdftex.def)             Requested size: 308.71106pt x 231.66939pt.
 
 
@@ -1606,103 +1613,103 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [18] [19 <./abb/D_Wim2.jpg>]
 
-LaTeX Warning: Reference `Idea1' on page 20 undefined on input line 474.
+LaTeX Warning: Reference `Idea1' on page 20 undefined on input line 477.
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 425--475
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 428--478
 [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 425--475
+Underfull \hbox (badness 10000) in paragraph at lines 428--478
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 425--475
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 428--478
 []
  []
 
 [20
 
 ] [21] [22]
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 488--524
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 491--527
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 488--524
+Underfull \hbox (badness 10000) in paragraph at lines 491--527
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 488--524
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 491--527
 []
  []
 
 [23]
-Underfull \hbox (badness 10000) in paragraph at lines 528--530
+Underfull \hbox (badness 10000) in paragraph at lines 531--533
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 531--532
+Underfull \hbox (badness 10000) in paragraph at lines 534--535
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 533--534
+Underfull \hbox (badness 10000) in paragraph at lines 536--537
 
  []
 
 
-Overfull \hbox (15.3946pt too wide) in paragraph at lines 535--536
+Overfull \hbox (15.3946pt too wide) in paragraph at lines 538--539
 \T1/lmr/m/n/12 isExamConstraints = is-Right-Cell-Com-bi-na-tions-Forced && is-M
 ax-SumOf-Pro-duc-tion-sCount
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 535--536
+Underfull \hbox (badness 10000) in paragraph at lines 538--539
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--579
+Underfull \hbox (badness 10000) in paragraph at lines 540--582
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--579
+Underfull \hbox (badness 10000) in paragraph at lines 540--582
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 537--579
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 540--582
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--579
+Underfull \hbox (badness 10000) in paragraph at lines 540--582
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 537--579
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 540--582
 []
  []
 
 [24]
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 582--626
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 585--629
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 582--626
+Underfull \hbox (badness 10000) in paragraph at lines 585--629
 
  []
 
 
-Overfull \hbox (3.91661pt too wide) in paragraph at lines 582--626
+Overfull \hbox (3.91661pt too wide) in paragraph at lines 585--629
 []
  []
 
@@ -1765,12 +1772,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 35--36
 
 ] (./appendix/algorithms.tex) [33]
 (./bibliography.tex) [34] [35]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 323.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 323.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 325.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 325.
  (./bachelor_thesis.aux
 (./latex_settings/deckblatt.aux) (./abstract.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 323.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 323.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 325.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 325.
 Package rerunfilecheck Info: File `bachelor_thesis.out' has not changed.
 (rerunfilecheck)             Checksum: B88725C1016FE7C99E5244B6F69CD6D8;2948.
 
@@ -1780,14 +1787,14 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 323.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 325.
  ) 
 Here is how much of TeX's memory you used:
- 27798 strings out of 493109
- 516482 string characters out of 6138588
- 685186 words of memory out of 5000000
- 30482 multiletter control sequences out of 15000+600000
- 94242 words of font info for 67 fonts, out of 8000000 for 9000
+ 27810 strings out of 493109
+ 516656 string characters out of 6138588
+ 685213 words of memory out of 5000000
+ 30492 multiletter control sequences out of 15000+600000
+ 101564 words of font info for 74 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  76i,23n,114p,763b,1003s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2014/tex
@@ -1808,12 +1815,13 @@ t/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2014/texmf-dist/fonts/type1/publ
 ic/lm/lmssbx10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy10.pfb
 ><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2014/t
 exmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2014/texmf-dist/fonts/typ
-e1/public/lm/lmtt12.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts
-/symbols/msbm10.pfb>
-Output written on bachelor_thesis.pdf (35 pages, 607636 bytes).
+e1/public/lm/lmtt10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/lm/lmtt1
+2.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pf
+b>
+Output written on bachelor_thesis.pdf (35 pages, 611800 bytes).
 PDF statistics:
- 644 PDF objects out of 1000 (max. 8388607)
- 575 compressed objects within 6 object streams
- 207 named destinations out of 1000 (max. 500000)
+ 649 PDF objects out of 1000 (max. 8388607)
+ 579 compressed objects within 6 object streams
+ 208 named destinations out of 1000 (max. 500000)
  324 words of extra memory for PDF output out of 10000 (max. 10000000)
 
