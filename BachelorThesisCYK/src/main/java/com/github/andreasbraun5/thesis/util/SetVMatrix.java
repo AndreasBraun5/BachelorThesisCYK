@@ -66,8 +66,8 @@ public class SetVMatrix<T extends LeftHandSideElement> {
 		int wordLength = setV[1].length;
 		Pyramid pyramid = new Pyramid( wordLength );
 		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength-i; j++ ) {
-				pyramid.cells.get( i ).get( j ).addVar( setV[j][i] );
+			for ( int j = 0; j < wordLength - i; j++ ) {
+				pyramid.cells.get( i ).get( j ).addVar( setV[j][i+j] );
 			}
 
 		}

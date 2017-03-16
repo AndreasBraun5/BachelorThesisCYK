@@ -6,6 +6,8 @@ import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.CellRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
+import com.github.andreasbraun5.thesis.grammar.VariableK;
+import com.github.andreasbraun5.thesis.util.Util;
 
 /**
  * Created by Andreas Braun on 04.03.2017.
@@ -41,21 +43,48 @@ public class Cell {
 
 	private String drawTheVars() {
 		StringBuilder str = new StringBuilder();
-		/*
-		\node [left] at (center) {\fontsize{5}{12}\selectfont{A1}};
-		\node [above] at (center) {\fontsize{5}{12}\selectfont{B2}};
-		\node [right] at (center) {\fontsize{5}{12}\selectfont{C3}};
-		\node [below] at (center) {\fontsize{5}{12}\selectfont{D4}};
-		\node [] at (center) {\fontsize{5}{12}\selectfont{E5}};
-		*/
 		if ( vars.size() > 5 ) {
 			throw new CellRuntimeException( "There are more than 5 Variables in the pyramid cell, coordinates: " +
 													i + ", " + j );
 		}
-		String[] pos = { "", "left", "right", "above", "below" };
-		for ( int i = 0; i < vars.size(); i++ ) {
-			str.append( "\\node [" + pos[i] + "] at (" + centerName + ") {\\fontsize{5}{12}\\selectfont{" + vars.get( i )
-					.toString() + "}};\n" );
+		if ( vars.get( 0 ) instanceof VariableK ) {
+			ArrayList<VariableK> varK = new ArrayList<>( Util.filter( vars, VariableK.class ) );
+			int k = 0;
+			str.append( "\\node [] at (" + centerName + ") {\\myfontvars{" );
+			for ( int i = k; i < 3 && i < varK.size(); i++ ) {
+				str.append( varK.get( i ).getVariable() + "$_" + varK.get( i ).getK() + "$" );
+			}
+			str.append( "}};\n" );
+			k = 3;
+			if ( vars.size() > k ) {
+				str.append( "\\node [above] at (" + centerName + ") {\\myfontvars{" + varK.get( k )
+						.getVariable() + "$_" + varK.get( k ).getK() + "$}};\n" );
+			}
+			k = 4;
+			if ( vars.size() > k ) {
+				str.append( "\\node [below] at (" + centerName + ") {\\myfontvars{" + varK.get( k )
+						.getVariable() + "$_" + varK.get( k ).getK() + "$}};\n" );
+			}
+
+		}
+		else {
+			int k = 0;
+			str.append( "\\node [] at (" + centerName + ") {\\myfontvars{~" );
+			for ( int i = k; i < 3 && i < vars.size(); i++ ) {
+				str.append( "$" + vars.get( i ).toString() + "$~" );
+			}
+			str.append( "}};\n" );
+			k = 3;
+			if ( vars.size() > k ) {
+				str.append( "\\node [above] at (" + centerName + ") {\\myfontvars{" + vars.get( k )
+									+ "$_" + vars.get( k ) + "$}};\n" );
+			}
+			k = 4;
+			if ( vars.size() > k ) {
+				str.append( "\\node [below] at (" + centerName + ") {\\myfontvars{" + vars.get( k )
+									+ "$_" + vars.get( k ) + "$}};\n" );
+			}
+
 		}
 		return str.toString();
 	}
@@ -64,8 +93,18 @@ public class Cell {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-		str.append( "\\coordinate (" + centerName + ") at (" + centerX + "," + centerY + ");\n" );
-		str.append( drawTheVars() );
+		if ( vars.size() > 0 ) {
+			str.append( "%cell" + (int) i + "" + (int) j + "\n" );
+			str.append( "\\coordinate (" + centerName + ") at (" + centerX + "," + centerY + ");\n" );
+			str.append( "\\node [below=0.18cm] at (" + centerName + ") {\\myfontnumbering{$(" + (int) i + "" + (int) j + ")$}};\n" );
+			str.append( drawTheVars() );
+		}
+		else {
+			str.append( "%cell" + (int) i + "" + (int) j + "\n" );
+			str.append( "\\coordinate (" + centerName + ") at (" + centerX + "," + centerY + ");\n" );
+			str.append( "\\node [below=0.18cm] at (" + centerName + ") {\\myfontnumbering{$(" + (int) i + "" + (int) j + ")$}};\n" );
+			str.append( "" );
+		}
 		return str.toString();
 	}
 }

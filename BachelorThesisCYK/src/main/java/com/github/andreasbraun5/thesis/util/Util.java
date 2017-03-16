@@ -9,7 +9,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import com.github.andreasbraun5.thesis.exception.FileRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Production;
@@ -76,7 +78,9 @@ public abstract class Util {
 		for ( int i = 0; i < result.length; i++ ) {
 			try {
 				File file = new File( "./" + "Test" + i + ".txt" );
-				file.getParentFile().mkdirs();
+				if(file.mkdir()){
+					throw new FileRuntimeException( "Output directory was not created.");
+				}
 				PrintWriter out = new PrintWriter( file );
 				out.println( result[i] );
 				out.println( result[i].getRepresentativeResultSamples().toString() );
@@ -187,6 +191,10 @@ public abstract class Util {
 			setVVariable.add( variableKWrapper.getVariable() );
 		}
 		return setVVariable;
+	}
+
+	public static <I, O extends I> List<O> filter(List<I> in, Class<O> clazz) {
+		return in.stream().filter(i -> clazz.equals(i.getClass())).map(i -> (O) i).collect( Collectors.toList());
 	}
 }
 

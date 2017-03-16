@@ -78,8 +78,6 @@ public class CenteredTikzPictureTest {
 		System.out.println(tikz.beginToString());
 		System.out.print( pyramid );
 		System.out.println(tikz.endToString());
-
-
 	}
 
 

@@ -33,17 +33,22 @@ public class Pyramid {
 					this.cells.get( i ).get( j ).centerY = tempCenterY;
 					continue;
 				}
-				// centerX = centerX from left + 1.0 // 0.5 = i*sin(30°)
 				this.cells.get( i ).get( j ).centerX = this.cells.get( i ).get( j - 1 ).centerX + 1.0;
 				this.cells.get( i ).get( j ).centerY = tempCenterY;
 			}
-			tempCenterY = tempCenterY - 0.5; // sqrt(1-(sin 30°)^2)
+			tempCenterY = tempCenterY - 0.5;
 		}
 	}
 
 	private String drawPyramidStructure() {
 		StringBuilder str = new StringBuilder();
 		int n = this.cells.size();
+		str.append( "\\newcommand{\\myfontvars}[1]{\n" +
+							"\\fontsize{4.9}{12}\\selectfont{#1}\n" +
+							"}" );
+		str.append( "\\newcommand{\\myfontnumbering}[1]{\n" +
+							"\\fontsize{2.5}{12}\\selectfont{#1}\n" +
+							"}" );
 		// \coordinate (top) at (3,-3);
 		str.append( "%Outer hull\n%Tip of the pyramid\n\\coordinate (tip) at (" + n / 2 + "," + -n / 2 + ");\n" );
 		//	\foreach \i in {0,...,6} {
@@ -83,7 +88,7 @@ public class Pyramid {
 		}
 		//	% Small lines at the top
 		//	\draw (\i) -- (\i+());
-		str.append( "%Small lines at the top\n");
+		str.append( "%Small lines at the top\n" );
 		{
 			for ( int i = 0; i <= n; i++ ) {
 				str.append( "\\coordinate (top" + i + ") at (" + ( -0.5 + 0.5 + i ) + ",0.0);\n" );
@@ -96,7 +101,7 @@ public class Pyramid {
 		}
 		{
 			for ( int i = 0; i <= n; i++ ) {
-				str.append( "\\draw [thick] (top" + i + ") -- (topUpper" + i + ");\n" );
+				str.append( "\\draw (top" + i + ") -- (topUpper" + i + ");\n" );
 			}
 		}
 		//	% The string

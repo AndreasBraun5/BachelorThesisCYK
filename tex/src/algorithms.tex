@@ -13,6 +13,10 @@ $cell_{i,j} = \{c\ |\ c \subseteq V\}$.\\
 $EmptyPyramid \Leftrightarrow \forall i\ \forall j\ cell_{i,j}=\emptyset$.\\
 Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLeft$ and $cell_{i-1,j+1} = cellUpperRight$  \\
 
+\newcommand{\boxpyramid}[1]{
+\fontsize{5}{12}\selectfont{#1}
+}
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\textwidth]{abb/DataStructurePyramid}
@@ -89,8 +93,9 @@ Regarding one $cell_{i,j}$: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLe
 		\node [] at (w5) {c};
 		% Variables in the cells
 		\coordinate (center00) at (0.5,0.0);
-		\node [] at (center00) {\fontsize{5}{12}\selectfont{A1}};
-		\node [left] at (center00) {\fontsize{5}{12}\selectfont{B1}};
+		%\node [align=center] at (center00) {\fontsize{5}{12}\selectfont{$A_1, B_1,C_2$}};
+		\node [align=center] at (center00) {\boxpyramid{$A_1, B_1,C_2$}};
+		%\node [left] at (center00) {\fontsize{5}{12}\selectfont{B1}};
 		\coordinate (center01) at (1.5,0.0);
 		\coordinate (center02) at (2.5,0.0);
 		\coordinate (center03) at (3.5,0.0);

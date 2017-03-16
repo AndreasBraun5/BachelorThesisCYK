@@ -9,7 +9,7 @@ public class CenteredTikzPicture {
 	public String beginToString(){
 		StringBuilder str = new StringBuilder( "" );
 		str.append( "\\begin{center}\n" +
-							"\\resizebox{0.9\\linewidth}{!}{\n" +
+							"\\resizebox{\\linewidth}{!}{\n" +
 							"\\begin{tikzpicture}[baseline]\n");
 		return str.toString();
 	}

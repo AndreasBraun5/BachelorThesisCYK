@@ -13,7 +13,7 @@ public class VariableK implements LeftHandSideElement, RightHandSideElement {
 	private int k;
 
 	public VariableK(Variable variable, int k) {
-		this.name = variable.toString() +  k;
+		this.name = variable.toString() + k;
 		this.variable = variable;
 		this.k = k;
 	}
@@ -52,8 +52,12 @@ public class VariableK implements LeftHandSideElement, RightHandSideElement {
 		return variable;
 	}
 
+	public int getK() {
+		return k;
+	}
+
 	@Override
 	public String toString() {
-		return variable.toString() + k ;
+		return variable.toString() + k;
 	}
 }
