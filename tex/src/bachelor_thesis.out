@@ -17,21 +17,22 @@
 \BOOKMARK [4][-]{paragraph.3.2.1.4}{3.2.1.4 Finished Algorithm}{subsubsection.3.2.1}% 17
 \BOOKMARK [3][-]{subsubsection.3.2.2}{3.2.2 Algorithm: GeneratorGrammarDiceRollOnly}{subsection.3.2}% 18
 \BOOKMARK [3][-]{subsubsection.3.2.3}{3.2.3 Algorithm: BottomUp GeneratorGrammarDiceRollMartens}{subsection.3.2}% 19
-\BOOKMARK [3][-]{subsubsection.3.2.4}{3.2.4 Algorithm: Idea 1, TopDown From node to leaves}{subsection.3.2}% 20
+\BOOKMARK [3][-]{subsubsection.3.2.4}{3.2.4 Algorithm: SplitThenFill \(Idea 1\)}{subsection.3.2}% 20
 \BOOKMARK [3][-]{subsubsection.3.2.5}{3.2.5 Algorithm: Idea 2, How often cells are used for subset calculations}{subsection.3.2}% 21
-\BOOKMARK [3][-]{subsubsection.3.2.6}{3.2.6 Tweaking Sub Procedures in more detail}{subsection.3.2}% 22
-\BOOKMARK [2][-]{subsection.3.3}{3.3 Criteria Checking Procedures}{section.3}% 23
-\BOOKMARK [1][-]{section.4}{4 CLI Tool}{}% 24
-\BOOKMARK [2][-]{subsection.4.1}{4.1 Short Requirements Specification}{section.4}% 25
-\BOOKMARK [3][-]{subsubsection.4.1.1}{4.1.1 Exam Exercises}{subsection.4.1}% 26
-\BOOKMARK [3][-]{subsubsection.4.1.2}{4.1.2 Fun With CNF's and CYK}{subsection.4.1}% 27
-\BOOKMARK [2][-]{subsection.4.2}{4.2 Overview - UML}{section.4}% 28
-\BOOKMARK [3][-]{subsubsection.4.2.1}{4.2.1 UML: More Detail 1}{subsection.4.2}% 29
-\BOOKMARK [3][-]{subsubsection.4.2.2}{4.2.2 UML: More Detail 2}{subsection.4.2}% 30
-\BOOKMARK [2][-]{subsection.4.3}{4.3 User Interaction}{section.4}% 31
-\BOOKMARK [3][-]{subsubsection.4.3.1}{4.3.1 Use Case 1}{subsection.4.3}% 32
-\BOOKMARK [3][-]{subsubsection.4.3.2}{4.3.2 Use Case i}{subsection.4.3}% 33
-\BOOKMARK [1][-]{section.5}{5 Notes}{}% 34
-\BOOKMARK [1][-]{section.5}{Used software}{}% 35
-\BOOKMARK [1][-]{section*.7}{Algorithms}{}% 36
-\BOOKMARK [1][-]{section*.8}{References}{}% 37
+\BOOKMARK [3][-]{subsubsection.3.2.6}{3.2.6 Algorithm: SplitAndFill}{subsection.3.2}% 22
+\BOOKMARK [3][-]{subsubsection.3.2.7}{3.2.7 Tweaking Sub Procedures in more detail}{subsection.3.2}% 23
+\BOOKMARK [2][-]{subsection.3.3}{3.3 Criteria Checking Procedures}{section.3}% 24
+\BOOKMARK [1][-]{section.4}{4 CLI Tool}{}% 25
+\BOOKMARK [2][-]{subsection.4.1}{4.1 Short Requirements Specification}{section.4}% 26
+\BOOKMARK [3][-]{subsubsection.4.1.1}{4.1.1 Exam Exercises}{subsection.4.1}% 27
+\BOOKMARK [3][-]{subsubsection.4.1.2}{4.1.2 Fun With CNF's and CYK}{subsection.4.1}% 28
+\BOOKMARK [2][-]{subsection.4.2}{4.2 Overview - UML}{section.4}% 29
+\BOOKMARK [3][-]{subsubsection.4.2.1}{4.2.1 UML: More Detail 1}{subsection.4.2}% 30
+\BOOKMARK [3][-]{subsubsection.4.2.2}{4.2.2 UML: More Detail 2}{subsection.4.2}% 31
+\BOOKMARK [2][-]{subsection.4.3}{4.3 User Interaction}{section.4}% 32
+\BOOKMARK [3][-]{subsubsection.4.3.1}{4.3.1 Use Case 1}{subsection.4.3}% 33
+\BOOKMARK [3][-]{subsubsection.4.3.2}{4.3.2 Use Case i}{subsection.4.3}% 34
+\BOOKMARK [1][-]{section.5}{5 Notes}{}% 35
+\BOOKMARK [1][-]{section.5}{Used software}{}% 36
+\BOOKMARK [1][-]{section*.6}{Algorithms}{}% 37
+\BOOKMARK [1][-]{section*.7}{References}{}% 38

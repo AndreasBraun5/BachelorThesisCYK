@@ -26,7 +26,7 @@ public class WriteToTexFileTest {
 	public void TexFileTest() throws Exception {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "WriteToTexFileTest: Generating latex code directory structure." );
+		System.out.println( "WriteToTexFileTest: Generating latex code into the directory structure." );
 
 		int wordLength = 6;
 
