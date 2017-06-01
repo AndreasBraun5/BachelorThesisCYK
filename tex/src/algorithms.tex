@@ -372,16 +372,15 @@ break
 		\KwOut{Set of productions $P$}
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		$P = Distribute(\Sigma,\ V)$; \circled{A} \label{stepii}  \\		
-		$Sol = \emptyset$;~~\tcp{$Sol \subseteq \{(P_{Sol},~Cell_{i,j})~|~P_{Sol} \subseteq P \wedge Cell_{i,j} \in Pyramid\}$} \label{cell}	
+		$Sol = \emptyset$;~~\tcp{$Sol \subseteq \{(P_{Sol},~Cell_{i,j})~|~P_{Sol} \subseteq P \wedge Cell_{i,j} \in Pyramid\}$} \label{cell}
 		$Sol = SplitThenFill(P,\ w,\ i_{max},\ 0)$\;
-		$P = P \cup P_{Sol}$\; \label{tip}
-		\Return $P$\;
+		\Return $P_{Sol}$\;
 		\footnotetext{
-			\noindent Line \ref{stepii}: Fills the i=0 row of the pyramid.
-		
-			\noindent Line \ref{cell}: $Cell_{i,j} \subseteq V \wedge Cell_{i,j} \in Pyramid$. The pyramid represents the upper part of the upper triangular matrix of the CYK. Reflection at the diagonal of the matrix and rotation of -45 degrees.
+			\noindent Line \ref{stepii}: Fills the i=0 row of the pyramid.	
+					
+			\noindent Line \ref{cell?}: $Cell_{i,j} \subseteq V \wedge Cell_{i,j} \in Pyramid$. The pyramid represents the upper part of the upper triangular matrix of the CYK. Reflection at the diagonal of the matrix and rotation of -45 degrees.
 			
-			\noindent Line \ref{tip}: Starting recursively from the tip of the pyramid.
+			\noindent Line \ref{tip2}: Starting recursively from the tip of the pyramid.
 		}
 	\end{algorithm}
 }

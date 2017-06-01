@@ -2,6 +2,7 @@ package com.github.andreasbraun5.thesis.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -77,11 +78,22 @@ public abstract class Util {
 			Result... result) {
 		for ( int i = 0; i < result.length; i++ ) {
 			try {
-				File file = new File( "./" + "Test" + i + ".txt" );
+				File dir = new File("tmp");
+				// TODO: how to handle properly?
+				dir.mkdirs();
+				File testi = new File(dir, "Test" + i + ".txt");
+				try {
+					testi.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				/* old code....
+				File file = new File( "" + "Test" + i + ".txt" );
 				if(file.mkdir()){
 					throw new FileRuntimeException( "Output directory was not created.");
 				}
-				PrintWriter out = new PrintWriter( file );
+				*/
+				PrintWriter out = new PrintWriter( testi );
 				out.println( result[i] );
 				out.println( result[i].getRepresentativeResultSamples().toString() );
 				out.close();

@@ -1,4 +1,4 @@
-\contentsline {section}{Abstract}{5}{section*.4}
+\contentsline {section}{Abstract}{5}{section*.3}
 \contentsline {section}{\numberline {1}Introduction}{6}{section.1}
 \contentsline {subsection}{\numberline {1.1}Forward Problem vs. Backward Problem}{6}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Parsing: Bottom-Up vs Top-Down}{6}{subsection.1.2}
@@ -34,5 +34,5 @@
 \contentsline {subsubsection}{\numberline {4.3.2}Use Case i}{27}{subsubsection.4.3.2}
 \contentsline {section}{\numberline {5}Notes}{28}{section.5}
 \contentsline {section}{Used software}{30}{section.5}
-\contentsline {section}{Algorithms}{31}{section*.6}
-\contentsline {section}{References}{32}{section*.7}
+\contentsline {section}{Algorithms}{31}{section*.4}
+\contentsline {section}{References}{32}{section*.5}
