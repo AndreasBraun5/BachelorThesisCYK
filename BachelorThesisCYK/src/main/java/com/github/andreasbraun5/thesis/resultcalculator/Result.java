@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
+import com.github.andreasbraun5.thesis.generator._GrammarGeneratorSettings;
 
 /**
  * Created by Andreas Braun on 17.01.2017.
@@ -15,7 +16,7 @@ import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 public class Result {
 	private int countGeneratedGrammarsPerWord;
 	private int countDifferentWords;
-	private GrammarGeneratorSettings grammarGeneratorSettings;
+	private _GrammarGeneratorSettings grammarGeneratorSettings;
 	private long totalTime = 0;
 	private String generatorType;
 	private RepresentativeResultSamples representativeResultSamples;
@@ -28,7 +29,7 @@ public class Result {
 	public Result initResult(
 			int countGeneratedGrammarsPerWord,
 			int countDifferentWords,
-			GrammarGeneratorSettings grammarGeneratorSettings,
+			_GrammarGeneratorSettings grammarGeneratorSettings,
 			String generatorType,
 			Map<String, List<ResultSample>> chunkResultSamples) {
 		this.countGeneratedGrammarsPerWord = countGeneratedGrammarsPerWord;
@@ -85,7 +86,7 @@ public class Result {
 		return successRates;
 	}
 
-	public GrammarGeneratorSettings getGeneratorGrammarDiceRollSettings() {
+	public _GrammarGeneratorSettings getGeneratorGrammarDiceRollSettings() {
 		return grammarGeneratorSettings;
 	}
 }

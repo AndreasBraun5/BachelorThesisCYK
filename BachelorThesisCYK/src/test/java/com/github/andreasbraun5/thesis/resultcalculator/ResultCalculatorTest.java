@@ -2,6 +2,8 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 
 import java.util.List;
 
+import com.github.andreasbraun5.thesis.generator._GrammarGeneratorDiceRollOnly;
+import com.github.andreasbraun5.thesis.generator._GrammarGeneratorSettings;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -24,8 +26,8 @@ public class ResultCalculatorTest {
 		System.out.println( "############################" );
 		System.out.println( "ResultCalculatorTest buildResultWithGenerator:" );
 		GrammarProperties grammarProperties = Main.generateGrammarPropertiesForTesting();
-		GrammarGeneratorSettingsDiceRoll generatorGrammarDiceRollSettings =
-				new GrammarGeneratorSettingsDiceRoll( grammarProperties );
+		_GrammarGeneratorSettings generatorGrammarDiceRollSettings =
+				new _GrammarGeneratorSettings( grammarProperties );
 		grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord( 10 ); // All TestResults will be based on this sizeOfWord.
 		grammarProperties.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell( 2 );
 
@@ -39,7 +41,7 @@ public class ResultCalculatorTest {
 				setCountDifferentWords( countDifferentWords ).
 				setCountOfGrammarsToGeneratePerWord( countGeneratedGrammarsPerWord );
 		Result test1DiceRollResult = resultCalculator1.buildResultWithGenerator(
-				new GrammarGeneratorDiceRollOnly( generatorGrammarDiceRollSettings )
+				new _GrammarGeneratorDiceRollOnly( generatorGrammarDiceRollSettings )
 		);
 		List<ResultSample> representativeResultSamples = test1DiceRollResult.getRepresentativeResultSamples()
 				.getTestGrammarRepresentativeExamples();

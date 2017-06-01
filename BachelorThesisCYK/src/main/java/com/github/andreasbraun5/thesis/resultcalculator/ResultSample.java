@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
+import com.github.andreasbraun5.thesis.generator._GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesExamConstraints;
 import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesGrammarRestrictions;
@@ -34,17 +35,17 @@ public class ResultSample {
 			Grammar grammar,
 			String word,
 			SetVMatrix<VariableK> setVMatrix,
-			GrammarGeneratorSettings grammarGeneratorSettings
+			_GrammarGeneratorSettings grammarGeneratorSettings
 	) {
-		GrammarPropertiesGrammarRestrictions tempGrammarRestrictions = grammarGeneratorSettings.getGrammarProperties().
+		GrammarPropertiesGrammarRestrictions tempGrammarRestrictions = grammarGeneratorSettings.grammarProperties.
 				grammarPropertiesGrammarRestrictions;
-		GrammarPropertiesExamConstraints tempExamConstraints = grammarGeneratorSettings.getGrammarProperties().
+		GrammarPropertiesExamConstraints tempExamConstraints = grammarGeneratorSettings.grammarProperties.
 				grammarPropertiesExamConstraints;
 		this.grammar = grammar;
 		this.word = word;
 		this.setVMatrix = setVMatrix;
 		this.isWordProducible = GrammarValidityChecker.
-				checkProducibilityCYK( setVMatrix, grammar, grammarGeneratorSettings.getGrammarProperties() );
+				checkProducibilityCYK( setVMatrix, grammar, grammarGeneratorSettings.grammarProperties );
 
 
 		// CheckMaxNumberOfVarsPerCellResultWrapper

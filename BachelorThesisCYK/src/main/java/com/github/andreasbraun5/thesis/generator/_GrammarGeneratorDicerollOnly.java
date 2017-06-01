@@ -13,10 +13,10 @@ import java.util.Set;
 /**
  * Created by AndreasBraun on 01.06.2017.
  */
-public class _GrammarGeneratorDicerollOnly extends _GrammarGenerator {
+public class _GrammarGeneratorDiceRollOnly extends _GrammarGenerator {
 
 
-    public _GrammarGeneratorDicerollOnly(_GrammarGeneratorSettings grammarGeneratorSettings) {
+    public _GrammarGeneratorDiceRollOnly(_GrammarGeneratorSettings grammarGeneratorSettings) {
         super(grammarGeneratorSettings);
         this.generatorType = "DICEROLLONLY";
     }
@@ -29,6 +29,7 @@ public class _GrammarGeneratorDicerollOnly extends _GrammarGenerator {
      */
     public GrammarWordWrapper generateGrammarWordWrapper(GrammarWordWrapper grammarWordWrapper) {
         // Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
+        // TODO: simplify
         Grammar grammar = new Grammar( grammarGeneratorSettings.grammarProperties.variableStart );
         grammarWordWrapper.setGrammar( grammar );
         grammarWordWrapper = _GrammarGeneratorUtil.distributeTerminals(

@@ -23,14 +23,17 @@ public class _GrammarGeneratorDiceRollTopDown extends _GrammarGenerator {
 
     @Override
     public GrammarWordWrapper generateGrammarWordWrapper(GrammarWordWrapper grammarWordWrapper) {
+        // Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
+        // TODO: simplify
+        Grammar grammar = new Grammar( grammarGeneratorSettings.grammarProperties.variableStart );
+        grammarWordWrapper.setGrammar( grammar );
         grammarWordWrapper = _GrammarGeneratorUtil.distributeTerminals(
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.terminals),
                 grammarWordWrapper,
                 grammarGeneratorSettings,
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.variables )
         );
-
-        Grammar grammar = grammarWordWrapper.getGrammar();
+        //Grammar grammar = grammarWordWrapper.getGrammar();
         List<Terminal> word = grammarWordWrapper.getWord();
         int wordSize = word.size();
         // The stepII now needs to be done first. Usage of CYK.calculateSetVAdvanced equivalent to CYK.stepIIAdvanced.

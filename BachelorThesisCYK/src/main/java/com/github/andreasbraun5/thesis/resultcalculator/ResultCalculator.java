@@ -8,6 +8,7 @@ import java.util.Map;
 import com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException;
 import com.github.andreasbraun5.thesis.generator.GrammarGenerator;
 import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
+import com.github.andreasbraun5.thesis.generator._GrammarGenerator;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.GrammarWordWrapper;
@@ -24,7 +25,7 @@ public class ResultCalculator {
 
 	private int countOfGrammarsToGeneratePerWord;
 	private int countDifferentWords;
-	private final int CHUNK_SIZE = 1000;
+	private final int CHUNK_SIZE = 100;
 
 	/*public ResultCalculator(int countDifferentWords, int countOfGrammarsToGeneratePerWord) {
 		this.countOfGrammarsToGeneratePerWord = countOfGrammarsToGeneratePerWord;
@@ -51,12 +52,12 @@ public class ResultCalculator {
 		return this;
 	}
 
-	public Result buildResultWithGenerator(GrammarGenerator grammarGenerator) {
+	public Result buildResultWithGenerator(_GrammarGenerator grammarGenerator) {
 		Result result = Result.buildResult();
 		int generatedGrammars = 0;
 		boolean init = false;
 		long chunkTimeInterval;
-		Map<String, List<ResultSample>> chunkResults = new HashMap<>();
+		Map<String, List<ResultSample>> chunkResults;
 		while ( generatedGrammars <= countOfGrammarsToGeneratePerWord * countDifferentWords ) {
 			long startTime = System.currentTimeMillis();
 			chunkResults = createChunkResults( grammarGenerator );
@@ -85,8 +86,8 @@ public class ResultCalculator {
 	/**
 	 * Adds the next chunk of the result to the already existing result.
 	 */
-	private Map<String, List<ResultSample>> createChunkResults(GrammarGenerator grammarGenerator) {
-		GrammarProperties tempGrammarProperties = grammarGenerator.getGrammarGeneratorSettings().getGrammarProperties();
+	private Map<String, List<ResultSample>> createChunkResults(_GrammarGenerator grammarGenerator) {
+		GrammarProperties tempGrammarProperties = grammarGenerator.getGrammarGeneratorSettings().grammarProperties;
 		String tempWord;
 		Grammar grammar;
 		SetVMatrix<VariableK> tempSetV;
@@ -105,7 +106,7 @@ public class ResultCalculator {
 				// Regarding the specified testMethod of grammarGenerator the correct grammar is generated.
 				GrammarWordWrapper grammarWordWrapper = GrammarWordWrapper.buildGrammarWrapper().setWord(
 						Util.stringToTerminalList( tempWord ) );
-				grammarWordWrapper = grammarGenerator.generateGrammarWrapper(grammarWordWrapper);
+				grammarWordWrapper = grammarGenerator.generateGrammarWordWrapper(grammarWordWrapper);
 				grammar = grammarWordWrapper.getGrammar();
 				tempSetV = CYK.calculateSetVAdvanced( grammar, Util.stringToTerminalList( tempWord ) );
 				Util.removeUselessProductions( grammar, tempSetV, Util.stringToTerminalList( tempWord ) );
