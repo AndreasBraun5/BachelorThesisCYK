@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
+import com.github.andreasbraun5.thesis.grammar.GrammarWordWrapper;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 
@@ -32,9 +32,9 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGeneratorDiceRoll<Gramm
 	}
 
 	@Override
-	protected GrammarWrapper distributeTerminals(GrammarWrapper grammarWrapper) {
+	protected GrammarWordWrapper distributeTerminals(GrammarWordWrapper grammarWordWrapper) {
 		return distributeDiceRollRightHandSideElements(
-				grammarWrapper,
+				grammarWordWrapper,
 				grammarGeneratorSettings.grammarProperties.terminals,
 				grammarGeneratorSettings.getMinValueTerminalsAreAddedTo(),
 				grammarGeneratorSettings.getMaxValueTerminalsAreAddedTo(),
@@ -43,7 +43,7 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGeneratorDiceRoll<Gramm
 	}
 
 	@Override
-	protected GrammarWrapper distributeCompoundVariables(GrammarWrapper grammarWrapper) {
+	protected GrammarWordWrapper distributeCompoundVariables(GrammarWordWrapper grammarWordWrapper) {
 		Set<VariableCompound> varTupel = new HashSet<>();
 		for ( Variable var1 : grammarGeneratorSettings.grammarProperties.variables ) {
 			for ( Variable var2 : grammarGeneratorSettings.grammarProperties.variables ) {
@@ -51,7 +51,7 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGeneratorDiceRoll<Gramm
 			}
 		}
 		return super.distributeDiceRollRightHandSideElements(
-				grammarWrapper,
+				grammarWordWrapper,
 				varTupel,
 				grammarGeneratorSettings.getMinValueCompoundVariablesAreAddedTo(),
 				grammarGeneratorSettings.getMaxValueCompoundVariablesAreAddedTo(),

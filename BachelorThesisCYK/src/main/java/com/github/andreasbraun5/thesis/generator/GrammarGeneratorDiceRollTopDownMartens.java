@@ -7,12 +7,8 @@ import java.util.Random;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
-import com.github.andreasbraun5.thesis.grammar.Terminal;
-import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.grammar.VariableCompound;
-import com.github.andreasbraun5.thesis.grammar.VariableK;
+import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.grammar.GrammarWordWrapper;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
 
@@ -36,9 +32,9 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 	}
 
 	@Override
-	protected GrammarWrapper distributeTerminals(GrammarWrapper grammarWrapper) {
+	protected GrammarWordWrapper distributeTerminals(GrammarWordWrapper grammarWordWrapper) {
 		return distributeDiceRollRightHandSideElements(
-				grammarWrapper,
+				grammarWordWrapper,
 				grammarGeneratorSettings.grammarProperties.terminals,
 				grammarGeneratorSettings.getMinValueTerminalsAreAddedTo(),
 				grammarGeneratorSettings.getMaxValueTerminalsAreAddedTo(),
@@ -48,9 +44,9 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 
 	@SuppressWarnings("Duplicates")
 	@Override
-	protected GrammarWrapper distributeCompoundVariables(GrammarWrapper grammarWrapper) {
-		Grammar grammar = grammarWrapper.getGrammar();
-		List<Terminal> word = grammarWrapper.getWord();
+	protected GrammarWordWrapper distributeCompoundVariables(GrammarWordWrapper grammarWordWrapper) {
+		Grammar grammar = grammarWordWrapper.getGrammar();
+		List<Terminal> word = grammarWordWrapper.getWord();
 		int wordSize = word.size();
 		// The stepII now needs to be done first. Usage of CYK.calculateSetVAdvanced equivalent to CYK.stepIIAdvanced.
 		// But like this stepIIAdvanced can stay private.
@@ -59,7 +55,7 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 		///*
 		SetVMatrix<Variable> stepIIPrint = SetVMatrix.buildEmptySetVMatrixWrapper( wordSize, Variable.class ).setSetV(
 				setVMatrix.getSimpleMatrix() );
-		System.out.print( "\n" + grammarWrapper.getGrammar() );
+		System.out.print( "\n" + grammarWordWrapper.getGrammar() );
 		System.out.print( word );
 		System.out.println( "\nStepII:" );
 		System.out.print( stepIIPrint.getStringToPrintAsLowerTriangularMatrix() );
@@ -95,8 +91,8 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 						// Because of dice rolling and a large amount of generated grammars, the actually to be added
 						// variable will just be ignored.
 						try {
-							grammarWrapper = distributeDiceRollRightHandSideElements(
-									grammarWrapper,
+							grammarWordWrapper = distributeDiceRollRightHandSideElements(
+									grammarWordWrapper,
 									varCompSet,
 									grammarGeneratorSettings.getMinValueCompoundVariablesAreAddedTo(),
 									grammarGeneratorSettings.getMaxValueCompoundVariablesAreAddedTo(),
@@ -107,7 +103,7 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 						}
 						// Each time something is changed recalculate the setVAdvanced. The entire set is recalculated.
 						///*
-						System.out.print( "\n" + grammarWrapper.getGrammar() );
+						System.out.print( "\n" + grammarWordWrapper.getGrammar() );
 						System.out.println("\nsetV" + j + i);
 						//System.out.println("varsLeft: " + setVAdvanced[i][j - 1]);
 						//System.out.println("varsRight: " + setVAdvanced[i + 1][j]);
@@ -124,7 +120,7 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 						System.out.print( simpleBefore.getStringToPrintAsLowerTriangularMatrix() );
 						//*/
 						// Each time something is changed recalculate the setVAdvanced. The entire set is recalculated.
-						setVAdvanced = CYK.calculateSetVAdvanced( grammarWrapper.getGrammar(), word ).getSetV();
+						setVAdvanced = CYK.calculateSetVAdvanced( grammarWordWrapper.getGrammar(), word ).getSetV();
 						setVMatrix.setSetV( setVAdvanced );
 						///*
 						SetVMatrix<Variable> simpleAfter = SetVMatrix.buildEmptySetVMatrixWrapper(
@@ -142,14 +138,14 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 				i++;
 			}
 		}
-		return grammarWrapper.setGrammar( grammar );
+		return grammarWordWrapper.setGrammar( grammar );
 	}
 
 
 	@SuppressWarnings("Duplicates")
-	protected GrammarWrapper distributeCompoundVariables2(GrammarWrapper grammarWrapper) {
-		Grammar grammar = grammarWrapper.getGrammar();
-		List<Terminal> word = grammarWrapper.getWord();
+	protected GrammarWordWrapper distributeCompoundVariables2(GrammarWordWrapper grammarWordWrapper) {
+		Grammar grammar = grammarWordWrapper.getGrammar();
+		List<Terminal> word = grammarWordWrapper.getWord();
 		int wordSize = word.size();
 		// The stepII now needs to be done first. Usage of CYK.calculateSetVAdvanced equivalent to CYK.stepIIAdvanced.
 		// But like this stepIIAdvanced can stay private.
@@ -158,7 +154,7 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 		/*
 		SetVMatrix<Variable> stepIIPrint = SetVMatrix.buildEmptySetVMatrixWrapper( wordSize, Variable.class ).setSetV(
 				setVMatrix.getSimpleMatrix() );
-		System.out.print( "\n" + grammarWrapper.getGrammar() );
+		System.out.print( "\n" + grammarWordWrapper.getGrammar() );
 		System.out.print( word );
 		System.out.println( "\nStepII:" );
 		System.out.print( stepIIPrint.getStringToPrintAsLowerTriangularMatrix() );
@@ -195,8 +191,8 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 						// variable will just be ignored.
 						System.out.println(tempVarCompSet);
 						try {
-							grammarWrapper = distributeDiceRollRightHandSideElements(
-									grammarWrapper,
+							grammarWordWrapper = distributeDiceRollRightHandSideElements(
+									grammarWordWrapper,
 									varCompSet,
 									grammarGeneratorSettings.getMinValueCompoundVariablesAreAddedTo(),
 									grammarGeneratorSettings.getMaxValueCompoundVariablesAreAddedTo(),
@@ -207,7 +203,7 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 						}
 						// Each time something is changed recalculate the setVAdvanced. The entire set is recalculated.
 						/*
-						System.out.print( "\n" + grammarWrapper.getGrammar() );
+						System.out.print( "\n" + grammarWordWrapper.getGrammar() );
 						System.out.print( word );
 						SetVMatrix<Variable> simpleBefore = SetVMatrix.buildEmptySetVMatrixWrapper(
 								wordSize,
@@ -218,7 +214,7 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 						System.out.print( simpleBefore.getStringToPrintAsLowerTriangularMatrix() );
 						*/
 						// Each time something is changed recalculate the setVAdvanced. The entire set is recalculated.
-						setVAdvanced = CYK.calculateSetVAdvanced( grammarWrapper.getGrammar(), word ).getSetV();
+						setVAdvanced = CYK.calculateSetVAdvanced( grammarWordWrapper.getGrammar(), word ).getSetV();
 						setVMatrix.setSetV( setVAdvanced );
 						 /*
 						SetVMatrix<Variable> simpleAfter = SetVMatrix.buildEmptySetVMatrixWrapper(
@@ -236,7 +232,7 @@ public class GrammarGeneratorDiceRollTopDownMartens extends GrammarGeneratorDice
 				i++;
 			}
 		}
-		return grammarWrapper.setGrammar( grammar );
+		return grammarWordWrapper.setGrammar( grammar );
 	}
 
 }

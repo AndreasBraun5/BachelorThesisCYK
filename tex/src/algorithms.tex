@@ -264,6 +264,8 @@ break
 	\end{algorithm}
 }\\
 
+\noindent Remove line 4 because this has nothing to do with the algorithm and write it into another procedure. In the code this is done only at the ResultCalculator.createChunkResult
+
 \noindent Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in CNF? CNF does only have useful variables [TI script Def. 8.3 page 210] vs. $P \subseteq V \times (V^{2} \cup \Sigma)$.\\
 \noindent More of a problem is that the set $P$ is not necessarily in CNF. It is possible that there are unreachable variables -- from the starting variable.
 \pagebreak
@@ -504,25 +506,27 @@ $\circled{A}, \circled{B}, ...$\\
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
-		\caption{distributeRhse2}
-		\label{distributeRhse2}
+		\caption{Distribute}
+		\label{Distribute}
 		\SetAlgoLined
-		\KwIn{ $Rhse \subseteq\ (V^{2} \cup \Sigma),\ i \in  \mathbb{N},\ j \in  \mathbb{N}$}
-		\KwOut{$Grammar\ G\ in\ CNF\ with\ uniform\ randomly\ distributed\ Rhse's.$}
-		$choose\ n\ uniform\ randomly\ in\ [i, j]$\;
-		$choose\ V_{add} := uniform\ random\ subset\ of\ size\ n\ from\ V$\;
-		$P = P \cup \{ "v \longrightarrow rhse"\ |\ v \in V_{add},\ rhse \in Rhse \} $\;	
-		
-		\Return $G$;
+		\KwIn{ $Rhse \subseteq\ (V^{2} \cup \Sigma),\ V$}
+		\KwOut{Set of productions $P$}
+		$i \in  \mathbb{N},\ j \in  \mathbb{N}$\;
+		\ForEach{$rhse \in Rhse$}{
+			$choose\ n\ uniform\ randomly\ in\ [i, j]$\;
+			$V_{add} := uniform\ random\ subset\ of\ size\ n\ from\ V$\;
+			$P = P \cup \{ (v, rhse)\ |\ v \in V_{add},\ rhse \in Rhse \} $\;	
+		}
+		\Return $P$;
 	\end{algorithm}
 }
-Algorithm \ref{distributeRhse2} isn't needed anymore for the descriptions of the basic idea of the algorithm. It will be a module later on while tweaking the algorithms.
+Algorithm \ref{Distribute} isn't needed anymore for the descriptions of the basic idea of the algorithm. It will be a module later on while tweaking the algorithms.
 \\
 \\
 \frame{
 	\begin{algorithm}[H] %or another one check
-		\caption{calculateSubsetForCell}
-		\label{calculateSubsetForCell}
+		\caption{CalculateSubsetForCell}
+		\label{CalculateSubsetForCell}
 		\SetAlgoLined
 		\KwIn{$cell_ {i,j} \in pyramid $}
 		\KwOut{$V_{i,j} \subseteq V^2$}

@@ -5,11 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
-import com.github.andreasbraun5.thesis.grammar.Production;
-import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
-import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.grammar.GrammarWordWrapper;
 
 /**
  * Created by Andreas Braun on 24.01.2017.
@@ -33,23 +30,23 @@ public abstract class GrammarGeneratorDiceRoll<T extends GrammarGeneratorSetting
 	}
 
 	@Override
-	protected abstract GrammarWrapper distributeTerminals(GrammarWrapper grammarWrapper);
+	protected abstract GrammarWordWrapper distributeTerminals(GrammarWordWrapper grammarWordWrapper);
 
 	@Override
-	protected abstract GrammarWrapper distributeCompoundVariables(GrammarWrapper grammarWrapper);
+	protected abstract GrammarWordWrapper distributeCompoundVariables(GrammarWordWrapper grammarWordWrapper);
 
 	/**
 	 * @param minCountElementDistributedTo: If you want to distribute the terminals to at least one rightHandSide then
 	 * this value is 1.
 	 * Dice roll for every rhse how often it is added and to which vars in the grammar it is added.
 	 */
-	protected GrammarWrapper distributeDiceRollRightHandSideElements(
-			GrammarWrapper grammarWrapper,
+	protected GrammarWordWrapper distributeDiceRollRightHandSideElements(
+			GrammarWordWrapper grammarWordWrapper,
 			Set<? extends RightHandSideElement> rightHandSideElements,
 			int minCountElementDistributedTo,
 			int maxCountElementDistributedTo,
 			List<Variable> variablesWeighted) {
-		Grammar grammar = grammarWrapper.getGrammar();
+		Grammar grammar = grammarWordWrapper.getGrammar();
 		for ( RightHandSideElement tempRhse : rightHandSideElements ) {
 			// countOfLeftSideRhseWillBeAdded is element of the interval [minCountElementDistributedTo, maxCountElementDistributedTo]
 			int countOfLeftSideRhseWillBeAdded = random.nextInt( maxCountElementDistributedTo ) + minCountElementDistributedTo;
@@ -63,8 +60,8 @@ public abstract class GrammarGeneratorDiceRoll<T extends GrammarGeneratorSetting
 				grammar.addProduction( new Production( var, tempRhse ) );
 			}
 		}
-		grammarWrapper.setGrammar( grammar );
-		return grammarWrapper;
+		grammarWordWrapper.setGrammar( grammar );
+		return grammarWordWrapper;
 	}
 
 

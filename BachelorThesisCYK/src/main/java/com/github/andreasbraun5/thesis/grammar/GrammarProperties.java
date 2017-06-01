@@ -8,6 +8,7 @@ import java.util.Set;
 /**
  * Created by Andreas Braun on 20.12.2016.
  * https://github.com/AndreasBraun5/
+ * GrammarProperties only contains the absolute minimum information about the grammar.
  */
 public class GrammarProperties {
 

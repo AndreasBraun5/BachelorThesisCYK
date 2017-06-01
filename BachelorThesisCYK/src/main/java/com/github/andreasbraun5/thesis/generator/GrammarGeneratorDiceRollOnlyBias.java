@@ -10,7 +10,7 @@ import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
+import com.github.andreasbraun5.thesis.grammar.GrammarWordWrapper;
 import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -34,9 +34,9 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 	}
 
 	@Override
-	protected GrammarWrapper distributeTerminals(GrammarWrapper grammarWrapper) {
+	protected GrammarWordWrapper distributeTerminals(GrammarWordWrapper grammarWordWrapper) {
 		return distributeDiceRollRightHandSideElementsBias(
-				grammarWrapper,
+				grammarWordWrapper,
 				this.grammarGeneratorSettings.grammarProperties.terminals,
 				this.grammarGeneratorSettings.getMinValueTerminalsAreAddedTo(),
 				this.grammarGeneratorSettings.getMaxValueTerminalsAreAddedTo(),
@@ -45,7 +45,7 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 	}
 
 	@Override
-	protected GrammarWrapper distributeCompoundVariables(GrammarWrapper grammarWrapper) {
+	protected GrammarWordWrapper distributeCompoundVariables(GrammarWordWrapper grammarWordWrapper) {
 		Set<VariableCompound> varTupel = new HashSet<>();
 		for ( Variable var1 : this.grammarGeneratorSettings.grammarProperties.variables ) {
 			for ( Variable var2 : this.grammarGeneratorSettings.grammarProperties.variables ) {
@@ -53,7 +53,7 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 			}
 		}
 		return distributeDiceRollRightHandSideElementsBias(
-				grammarWrapper,
+				grammarWordWrapper,
 				varTupel,
 				this.grammarGeneratorSettings.getMinValueCompoundVariablesAreAddedTo(),
 				this.grammarGeneratorSettings.getMaxValueCompoundVariablesAreAddedTo(),
@@ -61,8 +61,8 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 		);
 	}
 
-	private GrammarWrapper distributeDiceRollRightHandSideElementsBias(
-			GrammarWrapper grammarWrapper,
+	private GrammarWordWrapper distributeDiceRollRightHandSideElementsBias(
+			GrammarWordWrapper grammarWordWrapper,
 			Set<? extends RightHandSideElement> rightHandSideElements,
 			int minCountElementDistributedTo,
 			int maxCountElementDistributedTo,
@@ -89,7 +89,7 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 			}
 		}
 		return distributeDiceRollRightHandSideElements(
-				grammarWrapper,
+				grammarWordWrapper,
 				rightHandSideElements,
 				minCountElementDistributedTo,
 				maxCountElementDistributedTo,
@@ -98,13 +98,13 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 	}
 
 	@Override
-	protected GrammarWrapper distributeDiceRollRightHandSideElements(
-			GrammarWrapper grammarWrapper,
+	protected GrammarWordWrapper distributeDiceRollRightHandSideElements(
+			GrammarWordWrapper grammarWordWrapper,
 			Set<? extends RightHandSideElement> rightHandSideElements,
 			int minCountElementDistributedTo,
 			int maxCountElementDistributedTo,
 			List<Variable> variablesWeighted) {
-		Grammar grammar = grammarWrapper.getGrammar();
+		Grammar grammar = grammarWordWrapper.getGrammar();
 		for ( RightHandSideElement tempRhse : rightHandSideElements ) {
 			// countOfLeftSideRhseWillBeAdded is element of the interval [minCountElementDistributedTo, maxCountElementDistributedTo]
 			int countOfLeftSideRhseWillBeAdded = random.nextInt( maxCountElementDistributedTo ) + minCountElementDistributedTo;
@@ -126,8 +126,8 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 				}
 			}
 		}
-		grammarWrapper.setGrammar( grammar );
-		return grammarWrapper;
+		grammarWordWrapper.setGrammar( grammar );
+		return grammarWordWrapper;
 	}
 }
 

@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
-import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
+import com.github.andreasbraun5.thesis.grammar.GrammarWordWrapper;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
@@ -23,7 +23,7 @@ public class GrammarGeneratorDiceRollOnlyTest {
 		// TODO: This test is kinda senseless
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "ResultCalculator GrammarGeneratorDiceRollOnly: generateGrammarWrapper" );
+		System.out.println( "ResultCalculator GrammarGeneratorDiceRollOnly: generateGrammarWordWrapper" );
 		Set<Variable> variables = new HashSet<>();
 		variables.add( new Variable( "A" ) );
 		variables.add( new Variable( "B" ) );
@@ -44,10 +44,10 @@ public class GrammarGeneratorDiceRollOnlyTest {
 				grammarProperties );
 		GrammarGeneratorDiceRollOnly generatorGrammarDiceRollOnly = new GrammarGeneratorDiceRollOnly(
 				generatorGrammarDiceRollSettings );
-		GrammarWrapper grammarWrapper = GrammarWrapper.buildGrammarWrapper();
-		grammarWrapper = generatorGrammarDiceRollOnly.generateGrammarWrapper(grammarWrapper);
-		System.out.println( grammarWrapper.getGrammar() );
-		GrammarProperties grammarProperties2 = GrammarProperties.generatePartOfGrammarPropertiesFromGrammar( grammarWrapper.getGrammar() );
+		GrammarWordWrapper grammarWordWrapper = GrammarWordWrapper.buildGrammarWrapper();
+		grammarWordWrapper = generatorGrammarDiceRollOnly.generateGrammarWrapper(grammarWordWrapper);
+		System.out.println( grammarWordWrapper.getGrammar() );
+		GrammarProperties grammarProperties2 = GrammarProperties.generatePartOfGrammarPropertiesFromGrammar( grammarWordWrapper.getGrammar() );
 		Assert.assertEquals(
 				"terminals size is not the same",
 				grammarProperties.terminals.size(),

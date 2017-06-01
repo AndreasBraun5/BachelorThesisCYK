@@ -10,7 +10,7 @@ import com.github.andreasbraun5.thesis.generator.GrammarGenerator;
 import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
-import com.github.andreasbraun5.thesis.grammar.GrammarWrapper;
+import com.github.andreasbraun5.thesis.grammar.GrammarWordWrapper;
 import com.github.andreasbraun5.thesis.grammar.VariableK;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
@@ -103,10 +103,10 @@ public class ResultCalculator {
 			chunkResultSamples.put( tempWord, new ArrayList<>() );
 			for ( int j = 0; j < countOfGrammarsToGeneratePerWord && countSamplesGenerated < CHUNK_SIZE; j++ ) {
 				// Regarding the specified testMethod of grammarGenerator the correct grammar is generated.
-				GrammarWrapper grammarWrapper = GrammarWrapper.buildGrammarWrapper().setWord(
+				GrammarWordWrapper grammarWordWrapper = GrammarWordWrapper.buildGrammarWrapper().setWord(
 						Util.stringToTerminalList( tempWord ) );
-				grammarWrapper = grammarGenerator.generateGrammarWrapper( grammarWrapper );
-				grammar = grammarWrapper.getGrammar();
+				grammarWordWrapper = grammarGenerator.generateGrammarWrapper(grammarWordWrapper);
+				grammar = grammarWordWrapper.getGrammar();
 				tempSetV = CYK.calculateSetVAdvanced( grammar, Util.stringToTerminalList( tempWord ) );
 				Util.removeUselessProductions( grammar, tempSetV, Util.stringToTerminalList( tempWord ) );
 				chunkResultSamples.get( tempWord ).add(
