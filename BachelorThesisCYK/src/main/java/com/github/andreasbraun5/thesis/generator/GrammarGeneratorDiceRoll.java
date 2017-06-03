@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.grammar.*;
-import com.github.andreasbraun5.thesis.grammar.GrammarWordWrapper;
+import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
 
 /**
  * Created by Andreas Braun on 24.01.2017.
@@ -30,23 +30,23 @@ public abstract class GrammarGeneratorDiceRoll<T extends GrammarGeneratorSetting
 	}
 
 	@Override
-	protected abstract GrammarWordWrapper distributeTerminals(GrammarWordWrapper grammarWordWrapper);
+	protected abstract GrammarWordMatrixWrapper distributeTerminals(GrammarWordMatrixWrapper grammarWordMatrixWrapper);
 
 	@Override
-	protected abstract GrammarWordWrapper distributeCompoundVariables(GrammarWordWrapper grammarWordWrapper);
+	protected abstract GrammarWordMatrixWrapper distributeCompoundVariables(GrammarWordMatrixWrapper grammarWordMatrixWrapper);
 
 	/**
 	 * @param minCountElementDistributedTo: If you want to distribute the terminals to at least one rightHandSide then
 	 * this value is 1.
 	 * Dice roll for every rhse how often it is added and to which vars in the grammar it is added.
 	 */
-	protected GrammarWordWrapper distributeDiceRollRightHandSideElements(
-			GrammarWordWrapper grammarWordWrapper,
+	protected GrammarWordMatrixWrapper distributeDiceRollRightHandSideElements(
+			GrammarWordMatrixWrapper grammarWordMatrixWrapper,
 			Set<? extends RightHandSideElement> rightHandSideElements,
 			int minCountElementDistributedTo,
 			int maxCountElementDistributedTo,
 			List<Variable> variablesWeighted) {
-		Grammar grammar = grammarWordWrapper.getGrammar();
+		Grammar grammar = grammarWordMatrixWrapper.getGrammar();
 		for ( RightHandSideElement tempRhse : rightHandSideElements ) {
 			// countOfLeftSideRhseWillBeAdded is element of the interval [minCountElementDistributedTo, maxCountElementDistributedTo]
 			int countOfLeftSideRhseWillBeAdded = random.nextInt( maxCountElementDistributedTo ) + minCountElementDistributedTo;
@@ -60,8 +60,8 @@ public abstract class GrammarGeneratorDiceRoll<T extends GrammarGeneratorSetting
 				grammar.addProduction( new Production( var, tempRhse ) );
 			}
 		}
-		grammarWordWrapper.setGrammar( grammar );
-		return grammarWordWrapper;
+		grammarWordMatrixWrapper.setGrammar( grammar );
+		return grammarWordMatrixWrapper;
 	}
 
 

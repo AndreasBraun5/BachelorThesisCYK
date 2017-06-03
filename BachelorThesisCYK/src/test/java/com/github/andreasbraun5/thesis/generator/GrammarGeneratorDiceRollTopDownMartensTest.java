@@ -1,6 +1,6 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import com.github.andreasbraun5.thesis.grammar.GrammarWordWrapper;
+import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
 import org.junit.Test;
 
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
@@ -16,7 +16,7 @@ public class GrammarGeneratorDiceRollTopDownMartensTest {
 	public void distributeTerminals() throws Exception {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "GrammarGeneratorDiceRollTopDownMartensTest: generateGrammarWordWrapper" );
+		System.out.println( "GrammarGeneratorDiceRollTopDownMartensTest: generateGrammarWordMatrixWrapper" );
 		GrammarProperties grammarProperties = Main.generateGrammarPropertiesForTesting();
 		System.out.println( grammarProperties );
 
@@ -28,9 +28,9 @@ public class GrammarGeneratorDiceRollTopDownMartensTest {
 
 		GrammarGeneratorDiceRollTopDownMartens generatorDiceRollTopDownMartens =
 				new GrammarGeneratorDiceRollTopDownMartens( generatorGrammarDiceRollSettings );
-		GrammarWordWrapper grammarWordWrapper = GrammarWordWrapper.buildGrammarWrapper();
-		grammarWordWrapper.setWord( WordGeneratorDiceRoll.generateWordAsTerminalList( grammarProperties ) );
-		generatorDiceRollTopDownMartens.generateGrammarWrapper(grammarWordWrapper);
+		GrammarWordMatrixWrapper grammarWordMatrixWrapper = GrammarWordMatrixWrapper.buildGrammarWordMatrixWrapper();
+		grammarWordMatrixWrapper.setWord( WordGeneratorDiceRoll.generateWordAsTerminalList( grammarProperties ) );
+		generatorDiceRollTopDownMartens.generateGrammarWrapper(grammarWordMatrixWrapper);
 	}
 
 }

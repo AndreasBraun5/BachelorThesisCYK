@@ -1,6 +1,8 @@
 package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.util.SetVMatrix;
+import com.github.andreasbraun5.thesis.util.Util;
 
 import java.util.*;
 
@@ -16,13 +18,13 @@ public class _GrammarGeneratorUtil {
      * Dice roll for every rhse how often it is added and to which vars in the grammar it is added.
      * Equals the Distribute standard method.
      */
-    private static GrammarWordWrapper distributeDiceRollRightHandSideElements(
-            GrammarWordWrapper grammarWordWrapper,
+    private static GrammarWordMatrixWrapper distributeDiceRollRightHandSideElements(
+            GrammarWordMatrixWrapper grammarWordMatrixWrapper,
             List<? extends RightHandSideElement> rightHandSideElements,
             int minCountElementDistributedTo,
             int maxCountElementDistributedTo,
             List<Variable> variablesWeighted) {
-        Grammar grammar = grammarWordWrapper.getGrammar();
+        Grammar grammar = grammarWordMatrixWrapper.getGrammar();
         for (RightHandSideElement tempRhse : rightHandSideElements) {
             // countOfLeftSideRhseWillBeAdded is element of the interval [minCountElementDistributedTo, maxCountElementDistributedTo]
             int countOfLeftSideRhseWillBeAdded = random.nextInt(maxCountElementDistributedTo) + minCountElementDistributedTo;
@@ -36,21 +38,21 @@ public class _GrammarGeneratorUtil {
                 grammar.addProduction(new Production(var, tempRhse));
             }
         }
-        grammarWordWrapper.setGrammar(grammar);
-        return grammarWordWrapper;
+        grammarWordMatrixWrapper.setGrammar(grammar);
+        return grammarWordMatrixWrapper;
     }
 
     /**
      * Equals the circled A Method.
-     * grammarWordWrapper only needed for its contained Grammar here.
+     * grammarWordMatrixWrapper only needed for its contained Grammar here.
      */
-    public static GrammarWordWrapper distributeTerminals(
+    public static GrammarWordMatrixWrapper distributeTerminals(
             List<Terminal> terminals,
-            GrammarWordWrapper grammarWordWrapper,
+            GrammarWordMatrixWrapper grammarWordMatrixWrapper,
             _GrammarGeneratorSettings grammarGeneratorSettings,
             List<Variable> variablesWeighted) {
         return distributeDiceRollRightHandSideElements(
-                grammarWordWrapper,
+                grammarWordMatrixWrapper,
                 terminals,
                 grammarGeneratorSettings.getMinValueTerminalsAreAddedTo(),
                 grammarGeneratorSettings.getMaxValueTerminalsAreAddedTo(),
@@ -60,19 +62,101 @@ public class _GrammarGeneratorUtil {
 
     /**
      * Equals the circled B Method.
-     * grammarWordWrapper only needed for its contained Grammar here.
+     * grammarWordMatrixWrapper only needed for its contained Grammar here.
      */
-    public static GrammarWordWrapper distributeCompoundVariables(
+    public static GrammarWordMatrixWrapper distributeCompoundVariables(
             List<VariableCompound> varComp,
-            GrammarWordWrapper grammarWordWrapper,
+            GrammarWordMatrixWrapper grammarWordMatrixWrapper,
             _GrammarGeneratorSettings grammarGeneratorSettings,
             List<Variable> variablesWeighted) {
         return distributeDiceRollRightHandSideElements(
-                grammarWordWrapper,
+                grammarWordMatrixWrapper,
                 varComp,
                 grammarGeneratorSettings.getMinValueCompoundVariablesAreAddedTo(),
                 grammarGeneratorSettings.getMaxValueCompoundVariablesAreAddedTo(),
                 variablesWeighted
         );
     }
+
+    // Its structure is very similar to stepIIAdvanced and calculateSetVAdvanced.
+    public static GrammarWordMatrixWrapper removeUselessProductions(
+            GrammarWordMatrixWrapper grammarWordMatrixWrapper) {
+        Grammar grammar = grammarWordMatrixWrapper.getGrammar();
+        List<Terminal> word = grammarWordMatrixWrapper.getWord();
+        SetVMatrix<VariableK> setVMatrix = grammarWordMatrixWrapper.getSetV();
+        Set<VariableK>[][] setV = setVMatrix.getSetV();
+        int wordLength = setVMatrix.getSetV().length;
+        Map<Variable, List<Production>> productions = grammar.getProductionsMap();
+        Set<Production> onlyUsefulProductions = new HashSet<>();
+        // Similar to stepIIAdvanced
+        // Look at each terminal of the word
+        for ( int i = 1; i <= wordLength; i++ ) {
+            RightHandSideElement tempTerminal = word.get( i - 1 );
+            // Get all productions that have the same leftHandSide variable. This is done for all unique variables.
+            // So all production in general are taken into account.
+            for ( Map.Entry<Variable, List<Production>> entry : grammar.getProductionsMap().entrySet() ) {
+                VariableK var = new VariableK( entry.getKey(), i );
+                List<Production> prods = entry.getValue();
+                // Check if there is one rightHandSideElement that equals the observed terminal.
+                for ( Production prod : prods ) {
+                    if ( prod.isElementAtRightHandSide( tempTerminal ) ) {
+                        setV[i - 1][i - 1].add( var );
+                        // This here was added.
+                        onlyUsefulProductions.add( prod );
+                    }
+                }
+            }
+        }
+        // Similar to calculateSetVAdvanced
+        for ( int l = 1; l <= wordLength - 1; l++ ) {
+            // i loop of the described algorithm.
+            // Needs to be 1 <= i <= n-1-l, because of index starting from 0 for an array.
+            for ( int i = 0; i <= wordLength - l - 1; i++ ) {
+                // k loop of the described algorithm
+                // Needs to be i <= k <= i+l, because of index starting from 0 for i already.
+                for ( int k = i; k < i + l; k++ ) {
+                    // tempSetX contains the newly to be added variables, regarding the "X-->YZ" rule.
+                    // If the substring X can be concatenated with the substring Y and substring Z, whereas Y and Z
+                    // must be element of its specified subsets, then add the element X to setV[i][i+l]
+                    Set<Variable> tempSetX = new HashSet<>();
+                    Set<Variable> tempSetY = Util.varKSetToVarSet( setV[i][k] );
+                    Set<Variable> tempSetZ = Util.varKSetToVarSet( setV[k + 1][i + l] );
+                    Set<VariableCompound> tempSetYZ = new HashSet<>();
+                    // All possible concatenations of the variables yz are constructed. And so its substrings, which
+                    // they are able to generate
+                    for ( Variable y : tempSetY ) {
+                        for ( Variable z : tempSetZ ) {
+                            @SuppressWarnings("SuspiciousNameCombination")
+                            VariableCompound tempVariable = new VariableCompound( y, z );
+                            tempSetYZ.add( tempVariable );
+                        }
+                    }
+                    // Looking at all productions of the grammar, it is checked if there is one rightHandSideElement that
+                    // equals any of the concatenated variables tempSetYZ. If yes, the LeftHandSideElement or more
+                    // specific the variable of the production is added to the tempSetX. All according to the "X-->YZ" rule.
+                    for ( List<Production> tempProductions : productions.values() ) {
+                        for ( Production tempProduction : tempProductions ) {
+                            for ( VariableCompound yz : tempSetYZ ) {
+                                if ( tempProduction.isElementAtRightHandSide( yz ) ) {
+                                    // This here is changed.
+                                    onlyUsefulProductions.add( tempProduction );
+                                }
+                            }
+                        }
+                    }
+                    for ( Variable var : tempSetX ) {
+                        // ( k + 1) because of index range of k  because of i.
+                        setV[i][i + l].add( new VariableK( var, ( k + 1 ) ) );
+                    }
+                }
+            }
+        }
+        grammar.removeAllProductions();
+        Production[] productionsArray = new Production[onlyUsefulProductions.size()];
+        onlyUsefulProductions.toArray( productionsArray );
+        grammar.addProduction( productionsArray );
+        grammarWordMatrixWrapper.setGrammar(grammar);
+        return grammarWordMatrixWrapper;
+    }
+
 }

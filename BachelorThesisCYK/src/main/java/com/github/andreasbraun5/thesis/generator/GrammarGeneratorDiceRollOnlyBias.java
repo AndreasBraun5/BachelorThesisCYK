@@ -9,12 +9,8 @@ import java.util.Random;
 import java.util.Set;
 
 import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.GrammarWordWrapper;
-import com.github.andreasbraun5.thesis.grammar.Production;
-import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
-import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.grammar.VariableCompound;
+import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
 
 /**
  * Created by Andreas Braun on 24.01.2017.
@@ -34,9 +30,9 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 	}
 
 	@Override
-	protected GrammarWordWrapper distributeTerminals(GrammarWordWrapper grammarWordWrapper) {
+	protected GrammarWordMatrixWrapper distributeTerminals(GrammarWordMatrixWrapper grammarWordMatrixWrapper) {
 		return distributeDiceRollRightHandSideElementsBias(
-				grammarWordWrapper,
+                grammarWordMatrixWrapper,
 				this.grammarGeneratorSettings.grammarProperties.terminals,
 				this.grammarGeneratorSettings.getMinValueTerminalsAreAddedTo(),
 				this.grammarGeneratorSettings.getMaxValueTerminalsAreAddedTo(),
@@ -45,7 +41,7 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 	}
 
 	@Override
-	protected GrammarWordWrapper distributeCompoundVariables(GrammarWordWrapper grammarWordWrapper) {
+	protected GrammarWordMatrixWrapper distributeCompoundVariables(GrammarWordMatrixWrapper grammarWordMatrixWrapper) {
 		Set<VariableCompound> varTupel = new HashSet<>();
 		for ( Variable var1 : this.grammarGeneratorSettings.grammarProperties.variables ) {
 			for ( Variable var2 : this.grammarGeneratorSettings.grammarProperties.variables ) {
@@ -53,7 +49,7 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 			}
 		}
 		return distributeDiceRollRightHandSideElementsBias(
-				grammarWordWrapper,
+                grammarWordMatrixWrapper,
 				varTupel,
 				this.grammarGeneratorSettings.getMinValueCompoundVariablesAreAddedTo(),
 				this.grammarGeneratorSettings.getMaxValueCompoundVariablesAreAddedTo(),
@@ -61,8 +57,8 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 		);
 	}
 
-	private GrammarWordWrapper distributeDiceRollRightHandSideElementsBias(
-			GrammarWordWrapper grammarWordWrapper,
+	private GrammarWordMatrixWrapper distributeDiceRollRightHandSideElementsBias(
+			GrammarWordMatrixWrapper grammarWordMatrixWrapper,
 			Set<? extends RightHandSideElement> rightHandSideElements,
 			int minCountElementDistributedTo,
 			int maxCountElementDistributedTo,
@@ -89,7 +85,7 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 			}
 		}
 		return distributeDiceRollRightHandSideElements(
-				grammarWordWrapper,
+                grammarWordMatrixWrapper,
 				rightHandSideElements,
 				minCountElementDistributedTo,
 				maxCountElementDistributedTo,
@@ -98,13 +94,13 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 	}
 
 	@Override
-	protected GrammarWordWrapper distributeDiceRollRightHandSideElements(
-			GrammarWordWrapper grammarWordWrapper,
+	protected GrammarWordMatrixWrapper distributeDiceRollRightHandSideElements(
+			GrammarWordMatrixWrapper grammarWordMatrixWrapper,
 			Set<? extends RightHandSideElement> rightHandSideElements,
 			int minCountElementDistributedTo,
 			int maxCountElementDistributedTo,
 			List<Variable> variablesWeighted) {
-		Grammar grammar = grammarWordWrapper.getGrammar();
+		Grammar grammar = grammarWordMatrixWrapper.getGrammar();
 		for ( RightHandSideElement tempRhse : rightHandSideElements ) {
 			// countOfLeftSideRhseWillBeAdded is element of the interval [minCountElementDistributedTo, maxCountElementDistributedTo]
 			int countOfLeftSideRhseWillBeAdded = random.nextInt( maxCountElementDistributedTo ) + minCountElementDistributedTo;
@@ -126,8 +122,8 @@ public class GrammarGeneratorDiceRollOnlyBias extends GrammarGeneratorDiceRoll<G
 				}
 			}
 		}
-		grammarWordWrapper.setGrammar( grammar );
-		return grammarWordWrapper;
+		grammarWordMatrixWrapper.setGrammar( grammar );
+		return grammarWordMatrixWrapper;
 	}
 }
 
