@@ -1,14 +1,8 @@
 package com.github.andreasbraun5.thesis.grammar;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
+
+import java.util.*;
 /**
  * Created by Andreas Braun on 20.12.2016.
  * https://github.com/AndreasBraun5/

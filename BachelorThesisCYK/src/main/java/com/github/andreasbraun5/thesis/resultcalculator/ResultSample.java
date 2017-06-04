@@ -1,17 +1,8 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
-import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.generator._GrammarGeneratorSettings;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesExamConstraints;
-import com.github.andreasbraun5.thesis.grammar.GrammarPropertiesGrammarRestrictions;
-import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.grammar.VariableK;
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckMaxNumberOfVarsPerCellResultWrapper;
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckMaxSumOfVarsInPyramidResultWrapper;
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckRightCellCombinationsForcedResultWrapper;
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckSumOfProductionsResultWrapper;
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
+import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.*;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
 
 /**
@@ -32,18 +23,16 @@ public class ResultSample {
 	private ResultSampleGrammarRestrictions resultSampleGrammarRestrictions = new ResultSampleGrammarRestrictions();
 
 	public ResultSample(
-			Grammar grammar,
-			String word,
-			SetVMatrix<VariableK> setVMatrix,
+			GrammarWordMatrixWrapper grammarWordMatrixWrapper,
 			_GrammarGeneratorSettings grammarGeneratorSettings
 	) {
 		GrammarPropertiesGrammarRestrictions tempGrammarRestrictions = grammarGeneratorSettings.grammarProperties.
 				grammarPropertiesGrammarRestrictions;
 		GrammarPropertiesExamConstraints tempExamConstraints = grammarGeneratorSettings.grammarProperties.
 				grammarPropertiesExamConstraints;
-		this.grammar = grammar;
-		this.word = word;
-		this.setVMatrix = setVMatrix;
+		this.grammar = grammarWordMatrixWrapper.getGrammar();
+		this.word = grammarWordMatrixWrapper.getWord().toString();
+		this.setVMatrix = grammarWordMatrixWrapper.getSetV();
 		this.isWordProducible = GrammarValidityChecker.
 				checkProducibilityCYK( setVMatrix, grammar, grammarGeneratorSettings.grammarProperties );
 

@@ -1,12 +1,11 @@
 package com.github.andreasbraun5.thesis.generator;
 
+import com.github.andreasbraun5.thesis.grammar.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-
-import com.github.andreasbraun5.thesis.grammar.*;
-import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
 
 /**
  * Created by Andreas Braun on 24.01.2017.

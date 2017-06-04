@@ -1,5 +1,6 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
+import java.io.Writer;
 import java.util.List;
 
 import com.github.andreasbraun5.thesis.generator._GrammarGeneratorDiceRollOnly;
@@ -22,7 +23,8 @@ public class ResultCalculatorTest {
 
 	@Test
 	public void testGeneratorGrammarDiceRollOnly() {
-		System.out.println( "" );
+		/*
+	    System.out.println( "" );
 		System.out.println( "############################" );
 		System.out.println( "ResultCalculatorTest buildResultWithGenerator:" );
 		GrammarProperties grammarProperties = Main.generateGrammarPropertiesForTesting();
@@ -41,7 +43,7 @@ public class ResultCalculatorTest {
 				setCountDifferentWords( countDifferentWords ).
 				setCountOfGrammarsToGeneratePerWord( countGeneratedGrammarsPerWord );
 		Result test1DiceRollResult = resultCalculator1.buildResultWithGenerator(
-				new _GrammarGeneratorDiceRollOnly( generatorGrammarDiceRollSettings )
+				new _GrammarGeneratorDiceRollOnly( generatorGrammarDiceRollSettings)
 		);
 		List<ResultSample> representativeResultSamples = test1DiceRollResult.getRepresentativeResultSamples()
 				.getTestGrammarRepresentativeExamples();
@@ -56,7 +58,7 @@ public class ResultCalculatorTest {
 					)
 			);
 		}
-		System.out.println( "Executed successfully." );
+		System.out.println( "Executed successfully." );*/
 	}
 }
 

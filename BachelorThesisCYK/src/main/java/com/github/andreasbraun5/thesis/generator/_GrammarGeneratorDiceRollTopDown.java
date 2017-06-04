@@ -2,6 +2,7 @@ package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
 
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by AndreasBraun on 01.06.2017.
@@ -17,14 +20,17 @@ import java.util.Set;
 public class _GrammarGeneratorDiceRollTopDown extends _GrammarGenerator {
 
     public _GrammarGeneratorDiceRollTopDown(_GrammarGeneratorSettings grammarGeneratorSettings) {
-        super(grammarGeneratorSettings);
-        this.generatorType = "DICEROLLTOPDOWN";
+        super("DICEROLLTOPDOWN", grammarGeneratorSettings);
     }
 
     @Override
-    public GrammarWordMatrixWrapper generateGrammarWordMatrixWrapper(GrammarWordMatrixWrapper grammarWordMatrixWrapper) {
+    public GrammarWordMatrixWrapper generateGrammarWordMatrixWrapper(
+            GrammarWordMatrixWrapper grammarWordMatrixWrapper,
+            WorkLog workLog) {
         // Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
         // TODO: simplify
+        workLog.log("##################################################################################");
+        workLog.log("START LOGGING TOPDOWN");
         Grammar grammar = new Grammar(grammarGeneratorSettings.grammarProperties.variableStart);
         grammarWordMatrixWrapper.setGrammar(grammar);
         grammarWordMatrixWrapper = _GrammarGeneratorUtil.distributeTerminals(

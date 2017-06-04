@@ -1,16 +1,22 @@
 package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
+import com.github.andreasbraun5.thesis.mylogger.WorkLog;
+import com.sun.glass.ui.Window;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by AndreasBraun on 01.06.2017.
  */
 public abstract class _GrammarGenerator {
 
-    protected String generatorType;
+    protected final String generatorType;
     protected _GrammarGeneratorSettings grammarGeneratorSettings;
 
-    public _GrammarGenerator(_GrammarGeneratorSettings grammarGeneratorSettings) {
+    public _GrammarGenerator(String generatorType, _GrammarGeneratorSettings grammarGeneratorSettings) {
+        this.generatorType = generatorType;
         this.grammarGeneratorSettings = grammarGeneratorSettings;
     }
 
@@ -19,16 +25,11 @@ public abstract class _GrammarGenerator {
      *  for the specific generator method.
      *  Here the specific implementation of each algorithm is written.
      */
-    public abstract GrammarWordMatrixWrapper generateGrammarWordMatrixWrapper(GrammarWordMatrixWrapper grammarWordMatrixWrapper);
+    public abstract GrammarWordMatrixWrapper generateGrammarWordMatrixWrapper(GrammarWordMatrixWrapper grammarWordMatrixWrapper, WorkLog workLog);
 
     public String getGeneratorType() {
         return generatorType;
     }
-
-    public void setGeneratorType(String generatorType) {
-        this.generatorType = generatorType;
-    }
-
 
     public _GrammarGeneratorSettings getGrammarGeneratorSettings() {
         return grammarGeneratorSettings;

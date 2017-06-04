@@ -1,15 +1,15 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
 import com.github.andreasbraun5.thesis.exception.WordRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.util.Util;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * Created by Andreas Braun on 20.12.2016.

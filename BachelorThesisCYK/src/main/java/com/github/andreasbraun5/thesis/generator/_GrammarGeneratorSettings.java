@@ -11,6 +11,7 @@ import java.util.Arrays;
 public class _GrammarGeneratorSettings {
 
     //TODO: store here which circled method A,B,C and D are to be called.
+    public final String name;
     public final GrammarProperties grammarProperties; //
     private int minValueCompoundVariablesAreAddedTo; // default is 0
     private int minValueTerminalsAreAddedTo; // default is 1
@@ -22,7 +23,8 @@ public class _GrammarGeneratorSettings {
     // the ones you want to weight negatively.
     private int[] favouritism; // default is one for each --> same weighting
 
-    public _GrammarGeneratorSettings(GrammarProperties grammarProperties) {
+    public _GrammarGeneratorSettings(GrammarProperties grammarProperties, String name) {
+        this.name = name;
         this.grammarProperties = grammarProperties;
         minValueTerminalsAreAddedTo = 1;
         minValueCompoundVariablesAreAddedTo = 0;

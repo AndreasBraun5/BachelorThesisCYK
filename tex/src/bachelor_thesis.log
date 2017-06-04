@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  1 JUN 2017 13:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  4 JUN 2017 23:23
 entering extended mode
 **./bachelor_thesis.tex
 (bachelor_thesis.tex
@@ -1669,30 +1669,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 248--266
 
  []
 
+
+Overfull \hbox (8.67882pt too wide) in paragraph at lines 267--268
+\T1/lmr/m/n/12 other pro-ce-dure. In the code this is done only at the Re-sult-
+Cal-cu-la-tor.createChunkResult. 
+ []
+
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 272--311
+Underfull \hbox (badness 10000) in paragraph at lines 274--313
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--311
+Underfull \hbox (badness 10000) in paragraph at lines 274--313
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--311
+Underfull \hbox (badness 10000) in paragraph at lines 274--313
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 350--352
+Underfull \hbox (badness 10000) in paragraph at lines 352--354
 
  []
 
 <abb/D_Wim2.jpg, id=308, 1604.99625pt x 1204.5pt>
 File: abb/D_Wim2.jpg Graphic file (type jpg)
  <use abb/D_Wim2.jpg>
-Package pdftex.def Info: abb/D_Wim2.jpg used on input line 357.
+Package pdftex.def Info: abb/D_Wim2.jpg used on input line 359.
 (pdftex.def)             Requested size: 308.71106pt x 231.66939pt.
 
 
@@ -1700,53 +1706,48 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [14] [15 <./abb/D_Wim2.jpg>]
 
-LaTeX Warning: Reference `cell?' on page 16 undefined on input line 386.
+LaTeX Warning: Reference `cell?' on page 16 undefined on input line 388.
 
 
-LaTeX Warning: Reference `tip2' on page 16 undefined on input line 386.
+LaTeX Warning: Reference `tip2' on page 16 undefined on input line 388.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 365--388
+Underfull \hbox (badness 10000) in paragraph at lines 367--390
 
  []
 
 
-LaTeX Warning: Reference `Idea1' on page 16 undefined on input line 425.
+LaTeX Warning: Reference `Idea1' on page 16 undefined on input line 427.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 389--426
+Underfull \hbox (badness 10000) in paragraph at lines 391--428
 
  []
 
 [16
 
 ] [17] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 439--463
+Underfull \hbox (badness 10000) in paragraph at lines 441--465
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 464--498
+Underfull \hbox (badness 10000) in paragraph at lines 466--500
 
  []
 
 [19] [20]
 
 LaTeX Warning: Reference `calculateSubsetForCell' on page 21 undefined on input
- line 539.
+ line 541.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 502--540
+Underfull \hbox (badness 10000) in paragraph at lines 504--542
 
  []
 
 [21]
-Underfull \hbox (badness 10000) in paragraph at lines 544--546
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 547--548
+Underfull \hbox (badness 10000) in paragraph at lines 546--548
 
  []
 
@@ -1756,33 +1757,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 549--550
  []
 
 
-Overfull \hbox (15.3946pt too wide) in paragraph at lines 551--552
-\T1/lmr/m/n/12 isExamConstraints = is-Right-Cell-Com-bi-na-tions-Forced && is-M
-ax-SumOf-Pro-duc-tion-sCount
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 551--552
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 553--595
+Overfull \hbox (15.3946pt too wide) in paragraph at lines 553--554
+\T1/lmr/m/n/12 isExamConstraints = is-Right-Cell-Com-bi-na-tions-Forced && is-M
+ax-SumOf-Pro-duc-tion-sCount
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 553--554
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 553--595
+Underfull \hbox (badness 10000) in paragraph at lines 555--597
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 553--595
+Underfull \hbox (badness 10000) in paragraph at lines 555--597
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 555--597
 
  []
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 598--642
+Underfull \hbox (badness 10000) in paragraph at lines 600--644
 
  []
 
@@ -1895,7 +1901,7 @@ blic/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb
 /MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/public/lm/lmtt12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
 fonts/symbols/msbm10.pfb>
-Output written on bachelor_thesis.pdf (33 pages, 606823 bytes).
+Output written on bachelor_thesis.pdf (33 pages, 606970 bytes).
 PDF statistics:
  678 PDF objects out of 1000 (max. 8388607)
  237 named destinations out of 1000 (max. 500000)

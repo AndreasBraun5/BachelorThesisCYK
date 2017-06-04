@@ -1,9 +1,9 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import java.util.Arrays;
-
 import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
+
+import java.util.Arrays;
 
 /**
  * Created by Andreas Braun on 15.01.2017.

@@ -1,21 +1,12 @@
 package com.github.andreasbraun5.thesis.grammarvalididtychecker;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
-import com.github.andreasbraun5.thesis.grammar.Production;
-import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.grammar.VariableCompound;
-import com.github.andreasbraun5.thesis.grammar.VariableK;
+import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
+
+import java.util.*;
 
 /**
  * Created by Andreas Braun on 05.01.2017.

@@ -1,9 +1,9 @@
 package com.github.andreasbraun5.thesis.grammar;
 
-import java.util.List;
-
 import com.github.andreasbraun5.thesis.exception.GrammarWrapperRuntimeException;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
+
+import java.util.List;
 
 /**
  * Created by Andreas Braun on 11.02.2017.

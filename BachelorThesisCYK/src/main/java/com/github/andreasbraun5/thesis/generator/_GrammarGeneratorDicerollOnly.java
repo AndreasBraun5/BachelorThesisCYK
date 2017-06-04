@@ -4,22 +4,21 @@ import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
+import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
-import com.github.andreasbraun5.thesis.util.Util;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.*;
 
 /**
  * Created by AndreasBraun on 01.06.2017.
  */
 public class _GrammarGeneratorDiceRollOnly extends _GrammarGenerator {
 
-
     public _GrammarGeneratorDiceRollOnly(_GrammarGeneratorSettings grammarGeneratorSettings) {
-        super(grammarGeneratorSettings);
-        this.generatorType = "DICEROLLONLY";
+        super("DICEROLLONLY", grammarGeneratorSettings);
     }
 
     @Override
@@ -28,17 +27,27 @@ public class _GrammarGeneratorDiceRollOnly extends _GrammarGenerator {
      *  for the specific generator method.
      *  Here the specific implementation of each algorithm is written.
      */
-    public GrammarWordMatrixWrapper generateGrammarWordMatrixWrapper(GrammarWordMatrixWrapper grammarWordMatrixWrapper) {
+    public GrammarWordMatrixWrapper generateGrammarWordMatrixWrapper(
+            GrammarWordMatrixWrapper grammarWordMatrixWrapper,
+            WorkLog workLog
+            ) {
+        workLog.log("#########################################################################################################");
+        workLog.log("START of Logging of GrammarGeneratorDiceRollOnly.");
         // Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
         // TODO: simplify
         Grammar grammar = new Grammar(grammarGeneratorSettings.grammarProperties.variableStart);
         grammarWordMatrixWrapper.setGrammar(grammar);
+        workLog.log(grammarGeneratorSettings.toString());
+        workLog.log( grammarWordMatrixWrapper.getGrammar().toString());
+        workLog.log(grammarWordMatrixWrapper.getWord().toString());
         grammarWordMatrixWrapper = _GrammarGeneratorUtil.distributeTerminals(
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.terminals),
                 grammarWordMatrixWrapper,
                 grammarGeneratorSettings,
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.variables)
         );
+        workLog.log(grammarWordMatrixWrapper.getGrammar().toString());
+        // Generating all possible compound variables
         Set<VariableCompound> varComp = new HashSet<>();
         for (Variable var1 : grammarGeneratorSettings.grammarProperties.variables) {
             for (Variable var2 : grammarGeneratorSettings.grammarProperties.variables) {
@@ -51,8 +60,12 @@ public class _GrammarGeneratorDiceRollOnly extends _GrammarGenerator {
                 grammarGeneratorSettings,
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.variables)
         );
+        workLog.log(grammarWordMatrixWrapper.getGrammar().toString());
         grammarWordMatrixWrapper.setSetV(CYK.calculateSetVAdvanced(grammar, grammarWordMatrixWrapper.getWord()));
         grammarWordMatrixWrapper = _GrammarGeneratorUtil.removeUselessProductions(grammarWordMatrixWrapper);
+        workLog.log(grammarWordMatrixWrapper.getGrammar().toString());
+        workLog.log("END of Logging of GrammarGeneratorDiceRollOnly.");
+        workLog.log("#########################################################################################################");
         return grammarWordMatrixWrapper;
     }
 }

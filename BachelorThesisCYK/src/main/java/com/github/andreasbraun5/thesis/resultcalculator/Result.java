@@ -1,11 +1,10 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
+import com.github.andreasbraun5.thesis.generator._GrammarGeneratorSettings;
+
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
-import com.github.andreasbraun5.thesis.generator._GrammarGeneratorSettings;
 
 /**
  * Created by Andreas Braun on 17.01.2017.
@@ -14,6 +13,7 @@ import com.github.andreasbraun5.thesis.generator._GrammarGeneratorSettings;
  * word[2] has sampleGrammars from 2 to 20 ...
  */
 public class Result {
+    public final String name;
 	private int countGeneratedGrammarsPerWord;
 	private int countDifferentWords;
 	private _GrammarGeneratorSettings grammarGeneratorSettings;
@@ -22,9 +22,13 @@ public class Result {
 	private RepresentativeResultSamples representativeResultSamples;
 	private SuccessRates successRates = new SuccessRates();
 
-	public static Result buildResult() {
-		return new Result();
+	public static Result buildResult(String name) {
+		return new Result(name);
 	}
+
+	private Result(String name){
+	    this.name = name;
+    }
 
 	public Result initResult(
 			int countGeneratedGrammarsPerWord,

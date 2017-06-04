@@ -1,13 +1,13 @@
 package com.github.andreasbraun5.thesis.generator;
 
+import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
+import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableCompound;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-
-import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
-import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 
 /**
  * Created by Andreas Braun on 21.12.2016.

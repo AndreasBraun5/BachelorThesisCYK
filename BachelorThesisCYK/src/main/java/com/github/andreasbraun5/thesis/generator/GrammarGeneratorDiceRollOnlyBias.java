@@ -1,16 +1,9 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-
 import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.*;
-import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
+
+import java.util.*;
 
 /**
  * Created by Andreas Braun on 24.01.2017.

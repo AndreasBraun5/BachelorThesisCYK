@@ -1,10 +1,6 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Andreas Braun on 19.01.2017.

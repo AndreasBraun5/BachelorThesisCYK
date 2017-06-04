@@ -1,13 +1,13 @@
 package com.github.andreasbraun5.thesis.latex;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import com.github.andreasbraun5.thesis.exception.CellRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.VariableK;
 import com.github.andreasbraun5.thesis.util.Util;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Andreas Braun on 04.03.2017.

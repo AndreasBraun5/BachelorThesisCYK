@@ -1,13 +1,13 @@
 package com.github.andreasbraun5.thesis.util;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.github.andreasbraun5.thesis.exception.SetVMatrixRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableK;
 import com.github.andreasbraun5.thesis.latex.Pyramid;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Andreas Braun on 14.02.2017.
