@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * Created by AndreasBraun on 01.06.2017.
  */
-public class _GrammarGeneratorSettings {
+public class GrammarGeneratorSettings {
 
     //TODO: store here which circled method A,B,C and D are to be called.
     public final String name;
@@ -23,7 +23,7 @@ public class _GrammarGeneratorSettings {
     // the ones you want to weight negatively.
     private int[] favouritism; // default is one for each --> same weighting
 
-    public _GrammarGeneratorSettings(GrammarProperties grammarProperties, String name) {
+    public GrammarGeneratorSettings(GrammarProperties grammarProperties, String name) {
         this.name = name;
         this.grammarProperties = grammarProperties;
         minValueTerminalsAreAddedTo = 1;

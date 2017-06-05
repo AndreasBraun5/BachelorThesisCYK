@@ -14,9 +14,9 @@ import java.util.Set;
 /**
  * Created by AndreasBraun on 01.06.2017.
  */
-public class _GrammarGeneratorDiceRollOnly extends _GrammarGenerator {
+public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
 
-    public _GrammarGeneratorDiceRollOnly(_GrammarGeneratorSettings grammarGeneratorSettings) {
+    public GrammarGeneratorDiceRollOnly(GrammarGeneratorSettings grammarGeneratorSettings) {
         super("DICEROLLONLY", grammarGeneratorSettings);
     }
 
@@ -38,7 +38,7 @@ public class _GrammarGeneratorDiceRollOnly extends _GrammarGenerator {
         grammarWordMatrixWrapper.setGrammar(grammar);
         workLog.log("Used word:");
         workLog.log(grammarWordMatrixWrapper.getWord().toString());
-        grammarWordMatrixWrapper = _GrammarGeneratorUtil.distributeTerminals(
+        grammarWordMatrixWrapper = GrammarGeneratorUtil.distributeTerminals(
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.terminals),
                 grammarWordMatrixWrapper,
                 grammarGeneratorSettings,
@@ -53,7 +53,7 @@ public class _GrammarGeneratorDiceRollOnly extends _GrammarGenerator {
                 varComp.add(new VariableCompound(var1, var2));
             }
         }
-        grammarWordMatrixWrapper = _GrammarGeneratorUtil.distributeCompoundVariables(
+        grammarWordMatrixWrapper = GrammarGeneratorUtil.distributeCompoundVariables(
                 new ArrayList<>(varComp),
                 grammarWordMatrixWrapper,
                 grammarGeneratorSettings,
@@ -63,7 +63,7 @@ public class _GrammarGeneratorDiceRollOnly extends _GrammarGenerator {
         workLog.log(grammarWordMatrixWrapper.getGrammar().toString());
         grammarWordMatrixWrapper.setSetV(CYK.calculateSetVAdvanced(grammar, grammarWordMatrixWrapper.getWord()));
         workLog.log("After removing useless productions:");
-        grammarWordMatrixWrapper = _GrammarGeneratorUtil.removeUselessProductions(grammarWordMatrixWrapper);
+        grammarWordMatrixWrapper = GrammarGeneratorUtil.removeUselessProductions(grammarWordMatrixWrapper);
         workLog.log(grammarWordMatrixWrapper.getGrammar().toString());
         workLog.log("END of Logging of GrammarGeneratorDiceRollOnly.");
         workLog.log("#########################################################################################################");

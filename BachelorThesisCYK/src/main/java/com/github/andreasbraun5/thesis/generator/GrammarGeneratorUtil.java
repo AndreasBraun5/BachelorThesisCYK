@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * Created by AndreasBraun on 01.06.2017.
  */
-public class _GrammarGeneratorUtil {
+public class GrammarGeneratorUtil {
 
     private static final Random random = new Random();
 
@@ -49,7 +49,7 @@ public class _GrammarGeneratorUtil {
     public static GrammarWordMatrixWrapper distributeTerminals(
             List<Terminal> terminals,
             GrammarWordMatrixWrapper grammarWordMatrixWrapper,
-            _GrammarGeneratorSettings grammarGeneratorSettings,
+            GrammarGeneratorSettings grammarGeneratorSettings,
             List<Variable> variablesWeighted) {
         return distributeDiceRollRightHandSideElements(
                 grammarWordMatrixWrapper,
@@ -67,7 +67,7 @@ public class _GrammarGeneratorUtil {
     public static GrammarWordMatrixWrapper distributeCompoundVariables(
             List<VariableCompound> varComp,
             GrammarWordMatrixWrapper grammarWordMatrixWrapper,
-            _GrammarGeneratorSettings grammarGeneratorSettings,
+            GrammarGeneratorSettings grammarGeneratorSettings,
             List<Variable> variablesWeighted) {
         return distributeDiceRollRightHandSideElements(
                 grammarWordMatrixWrapper,

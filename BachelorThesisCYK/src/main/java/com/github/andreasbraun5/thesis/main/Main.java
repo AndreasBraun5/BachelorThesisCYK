@@ -1,7 +1,7 @@
 package com.github.andreasbraun5.thesis.main;
 
-import com.github.andreasbraun5.thesis.generator._GrammarGeneratorDiceRollOnly;
-import com.github.andreasbraun5.thesis.generator._GrammarGeneratorSettings;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -76,26 +76,26 @@ public class Main {
         GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
 
 
-        _GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnlyWithLog = new _GrammarGeneratorSettings(
+        GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnlyWithLog = new GrammarGeneratorSettings(
                 grammarProperties, "GrammarGeneratorDiceRollOnlyWithLog.txt");
         settingsGrammarGeneratorDiceRollOnlyWithLog.setMaxValueTerminalsAreAddedTo(1);
         settingsGrammarGeneratorDiceRollOnlyWithLog.setMinValueTerminalsAreAddedTo(1);
         settingsGrammarGeneratorDiceRollOnlyWithLog.setMaxValueCompoundVariablesAreAddedTo(2);
         Result GrammarGeneratorDiceRollOnlyWithLog = resultCalculator.buildResultWithGenerator(
-                new _GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnlyWithLog),
+                new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnlyWithLog),
                 WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settingsGrammarGeneratorDiceRollOnlyWithLog.name)))
         );
         // TODO: should be done always!? How best done? Via destructor?
         Util.writeResultToTxtFile(GrammarGeneratorDiceRollOnlyWithLog);
 
 
-        _GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnlyWithoutLog = new _GrammarGeneratorSettings(
+        GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnlyWithoutLog = new GrammarGeneratorSettings(
                 grammarProperties, "GrammarGeneratorDiceRollOnlyWithoutLog.txt");
         settingsGrammarGeneratorDiceRollOnlyWithoutLog.setMaxValueTerminalsAreAddedTo(1);
         settingsGrammarGeneratorDiceRollOnlyWithoutLog.setMinValueTerminalsAreAddedTo(1);
         settingsGrammarGeneratorDiceRollOnlyWithoutLog.setMaxValueCompoundVariablesAreAddedTo(2);
         Result GrammarGeneratorDiceRollOnlyWithoutLog = resultCalculator.buildResultWithGenerator(
-                new _GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnlyWithoutLog),
+                new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnlyWithoutLog),
                 // nothing will be logged now
                 WorkLog.createFromWriter(null)
         );

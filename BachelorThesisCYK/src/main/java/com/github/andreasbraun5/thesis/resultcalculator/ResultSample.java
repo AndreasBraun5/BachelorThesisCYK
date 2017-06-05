@@ -1,6 +1,6 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
-import com.github.andreasbraun5.thesis.generator._GrammarGeneratorSettings;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.*;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
@@ -24,7 +24,7 @@ public class ResultSample {
 
 	public ResultSample(
 			GrammarWordMatrixWrapper grammarWordMatrixWrapper,
-			_GrammarGeneratorSettings grammarGeneratorSettings
+			GrammarGeneratorSettings grammarGeneratorSettings
 	) {
 		GrammarPropertiesGrammarRestrictions tempGrammarRestrictions = grammarGeneratorSettings.grammarProperties.
 				grammarPropertiesGrammarRestrictions;

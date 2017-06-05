@@ -35,9 +35,9 @@ public class GrammarGeneratorDiceRollOnlyTest {
         grammarProperties.variableStart = new VariableStart("S");
         grammarProperties.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell(3);
         System.out.println(grammarProperties);
-        _GrammarGeneratorSettings grammarGeneratorSettings = new _GrammarGeneratorSettings(
+        GrammarGeneratorSettings grammarGeneratorSettings = new GrammarGeneratorSettings(
                 grammarProperties, "GrammarGeneratorDiceRollOnlyTest");
-        _GrammarGeneratorDiceRollOnly generatorGrammarDiceRollOnly = new _GrammarGeneratorDiceRollOnly(
+        GrammarGeneratorDiceRollOnly generatorGrammarDiceRollOnly = new GrammarGeneratorDiceRollOnly(
                 grammarGeneratorSettings);
         GrammarWordMatrixWrapper grammarWordMatrixWrapper = GrammarWordMatrixWrapper.buildGrammarWordMatrixWrapper();
         grammarWordMatrixWrapper = generatorGrammarDiceRollOnly.generateGrammarWordMatrixWrapper(

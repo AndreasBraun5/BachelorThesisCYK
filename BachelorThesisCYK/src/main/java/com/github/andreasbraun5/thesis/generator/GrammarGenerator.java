@@ -6,12 +6,12 @@ import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 /**
  * Created by AndreasBraun on 01.06.2017.
  */
-public abstract class _GrammarGenerator {
+public abstract class GrammarGenerator {
 
     protected final String generatorType;
-    protected _GrammarGeneratorSettings grammarGeneratorSettings;
+    protected GrammarGeneratorSettings grammarGeneratorSettings;
 
-    public _GrammarGenerator(String generatorType, _GrammarGeneratorSettings grammarGeneratorSettings) {
+    public GrammarGenerator(String generatorType, GrammarGeneratorSettings grammarGeneratorSettings) {
         this.generatorType = generatorType;
         this.grammarGeneratorSettings = grammarGeneratorSettings;
     }
@@ -27,11 +27,11 @@ public abstract class _GrammarGenerator {
         return generatorType;
     }
 
-    public _GrammarGeneratorSettings getGrammarGeneratorSettings() {
+    public GrammarGeneratorSettings getGrammarGeneratorSettings() {
         return grammarGeneratorSettings;
     }
 
-    public void setGrammarGeneratorSettings(_GrammarGeneratorSettings grammarGeneratorSettings) {
+    public void setGrammarGeneratorSettings(GrammarGeneratorSettings grammarGeneratorSettings) {
         this.grammarGeneratorSettings = grammarGeneratorSettings;
     }
 }

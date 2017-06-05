@@ -2,7 +2,7 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 
 import com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException;
 import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
-import com.github.andreasbraun5.thesis.generator._GrammarGenerator;
+import com.github.andreasbraun5.thesis.generator.GrammarGenerator;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
@@ -48,7 +48,7 @@ public class ResultCalculator {
         return this;
     }
 
-    public Result buildResultWithGenerator(_GrammarGenerator grammarGenerator, WorkLog workLog) {
+    public Result buildResultWithGenerator(GrammarGenerator grammarGenerator, WorkLog workLog) {
         Result result = Result.buildResult(grammarGenerator.getGrammarGeneratorSettings().name);
         int generatedGrammars = 0;
         boolean init = false;
@@ -82,7 +82,7 @@ public class ResultCalculator {
      * Adds the next chunk of the result to the already existing result.
      */
     private Map<String, List<ResultSample>> createChunkResults(
-            _GrammarGenerator grammarGenerator,
+            GrammarGenerator grammarGenerator,
             WorkLog workLog) {
         GrammarProperties tempGrammarProperties = grammarGenerator.getGrammarGeneratorSettings().grammarProperties;
         // allResultSamples.size() not always equals countDifferentWords because of duplicate words.
