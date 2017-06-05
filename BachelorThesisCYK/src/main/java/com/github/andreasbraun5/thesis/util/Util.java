@@ -4,7 +4,9 @@ import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.main.ThesisDirectory;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.*;
 import java.util.stream.Collectors;
 

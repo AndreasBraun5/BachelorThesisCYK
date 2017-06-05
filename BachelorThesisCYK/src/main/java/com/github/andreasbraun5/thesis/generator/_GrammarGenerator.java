@@ -2,10 +2,6 @@ package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
-import com.sun.glass.ui.Window;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by AndreasBraun on 01.06.2017.

@@ -1,20 +1,13 @@
 package com.github.andreasbraun5.thesis.latex;
 
-import java.util.Set;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.Production;
-import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.grammar.VariableK;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
-import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.util.SetVMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
+import org.junit.Test;
+
+import java.util.Set;
 
 /**
  * Created by Andreas Braun on 14.03.2017.

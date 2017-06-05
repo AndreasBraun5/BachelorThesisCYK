@@ -9,6 +9,8 @@ import java.io.Writer;
 final class WorkLogImpl implements WorkLog {
 
     private final Writer writer;
+    private final int MAX_NUMBER_OF_BYTES_TO_WRITE = 1000000;
+    private int writtenBytes = 0;
 
     WorkLogImpl(Writer writer) {
         this.writer = writer;
@@ -16,10 +18,13 @@ final class WorkLogImpl implements WorkLog {
 
     @Override
     public void log(String message) {
-        try {
-            this.writer.append(message).append("\n");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (writtenBytes < MAX_NUMBER_OF_BYTES_TO_WRITE) {
+            try {
+                this.writer.append(message).append("\n");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            writtenBytes += message.length();
         }
     }
 

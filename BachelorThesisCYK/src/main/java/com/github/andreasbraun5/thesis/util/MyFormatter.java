@@ -2,8 +2,6 @@ package com.github.andreasbraun5.thesis.util;
 
 import sun.util.logging.LoggingSupport;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.Date;
 import java.util.logging.LogRecord;
 

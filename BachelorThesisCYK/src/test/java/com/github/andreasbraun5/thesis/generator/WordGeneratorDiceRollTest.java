@@ -1,12 +1,11 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
+import org.junit.Assert;
+import org.junit.Test;
 
 
 /**

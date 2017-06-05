@@ -1,7 +1,6 @@
 package com.github.andreasbraun5.thesis.main;
 
 import com.github.andreasbraun5.thesis.generator._GrammarGeneratorDiceRollOnly;
-import com.github.andreasbraun5.thesis.generator._GrammarGeneratorDiceRollTopDown;
 import com.github.andreasbraun5.thesis.generator._GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
@@ -55,7 +54,6 @@ public class Main {
     //				https://en.wikipedia.org/wiki/Grammar_induction
     public static void main(String[] args) throws IOException {
 
-        // TODO: insert init Method that checks that all subdirectories like logs,temp,... are created
         ThesisDirectory.initPaths();
 
         /**
@@ -78,74 +76,32 @@ public class Main {
         GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
 
 
-        _GrammarGeneratorSettings settings6 = new _GrammarGeneratorSettings(grammarProperties, "result6.txt");
-        settings6.setMaxValueTerminalsAreAddedTo(1);
-        settings6.setMinValueTerminalsAreAddedTo(1);
-        settings6.setMaxValueCompoundVariablesAreAddedTo(2);
-        Result result6 = resultCalculator.buildResultWithGenerator(
-                new _GrammarGeneratorDiceRollOnly(settings6),
-                // TODO: // if null here nothing is logged
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settings6.name)))
+        _GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnlyWithLog = new _GrammarGeneratorSettings(
+                grammarProperties, "GrammarGeneratorDiceRollOnlyWithLog.txt");
+        settingsGrammarGeneratorDiceRollOnlyWithLog.setMaxValueTerminalsAreAddedTo(1);
+        settingsGrammarGeneratorDiceRollOnlyWithLog.setMinValueTerminalsAreAddedTo(1);
+        settingsGrammarGeneratorDiceRollOnlyWithLog.setMaxValueCompoundVariablesAreAddedTo(2);
+        Result GrammarGeneratorDiceRollOnlyWithLog = resultCalculator.buildResultWithGenerator(
+                new _GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnlyWithLog),
+                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settingsGrammarGeneratorDiceRollOnlyWithLog.name)))
         );
         // TODO: should be done always!? How best done? Via destructor?
-        Util.writeResultToTxtFile(result6);
+        Util.writeResultToTxtFile(GrammarGeneratorDiceRollOnlyWithLog);
 
 
-        _GrammarGeneratorSettings settings7 = new _GrammarGeneratorSettings(grammarProperties, "result7.txt");
-        settings7.setMaxValueTerminalsAreAddedTo(1);
-        settings7.setMinValueTerminalsAreAddedTo(1);
-        settings7.setMaxValueCompoundVariablesAreAddedTo(2);
-        Result result7 = resultCalculator.buildResultWithGenerator(
-                new _GrammarGeneratorDiceRollTopDown(settings7),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settings7.name)))
+        _GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnlyWithoutLog = new _GrammarGeneratorSettings(
+                grammarProperties, "GrammarGeneratorDiceRollOnlyWithoutLog.txt");
+        settingsGrammarGeneratorDiceRollOnlyWithoutLog.setMaxValueTerminalsAreAddedTo(1);
+        settingsGrammarGeneratorDiceRollOnlyWithoutLog.setMinValueTerminalsAreAddedTo(1);
+        settingsGrammarGeneratorDiceRollOnlyWithoutLog.setMaxValueCompoundVariablesAreAddedTo(2);
+        Result GrammarGeneratorDiceRollOnlyWithoutLog = resultCalculator.buildResultWithGenerator(
+                new _GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnlyWithoutLog),
+                // nothing will be logged now
+                WorkLog.createFromWriter(null)
         );
-        Util.writeResultToTxtFile(result7);
+        // TODO: should be done always!? How best done? Via destructor?
+        Util.writeResultToTxtFile(GrammarGeneratorDiceRollOnlyWithoutLog);
 
-
-        _GrammarGeneratorSettings settings8 = new _GrammarGeneratorSettings(grammarProperties, "result8.txt");
-        settings8.setMaxValueTerminalsAreAddedTo(2);
-        settings8.setMinValueTerminalsAreAddedTo(1);
-        settings8.setMaxValueCompoundVariablesAreAddedTo(2);
-        Result result8 = resultCalculator.buildResultWithGenerator(
-                new _GrammarGeneratorDiceRollOnly(settings8),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settings8.name)))
-        );
-        Util.writeResultToTxtFile(result8);
-
-
-        _GrammarGeneratorSettings settings9 = new _GrammarGeneratorSettings(grammarProperties, "result9.txt");
-        settings9.setMaxValueTerminalsAreAddedTo(2);
-        settings9.setMinValueTerminalsAreAddedTo(1);
-        settings9.setMaxValueCompoundVariablesAreAddedTo(2);
-        Result result9 = resultCalculator.buildResultWithGenerator(
-                new _GrammarGeneratorDiceRollTopDown(settings9),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settings9.name)))
-        );
-        Util.writeResultToTxtFile(result9);
-
-
-        _GrammarGeneratorSettings settings10 = new _GrammarGeneratorSettings(grammarProperties, "result10.txt");
-        settings10.setMaxValueTerminalsAreAddedTo(2);
-        settings10.setMinValueTerminalsAreAddedTo(1);
-        settings10.setMaxValueCompoundVariablesAreAddedTo(2);
-        settings10.grammarProperties.grammarPropertiesExamConstraints.setMinRightCellCombinationsForced(5);
-        Result result10 = resultCalculator.buildResultWithGenerator(
-                new _GrammarGeneratorDiceRollOnly(settings10),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settings10.name)))
-        );
-        Util.writeResultToTxtFile(result10);
-
-
-        _GrammarGeneratorSettings settings11 = new _GrammarGeneratorSettings(grammarProperties, "result11.txt");
-        settings11.setMaxValueTerminalsAreAddedTo(2);
-        settings11.setMinValueTerminalsAreAddedTo(1);
-        settings11.setMaxValueCompoundVariablesAreAddedTo(2);
-        settings11.grammarProperties.grammarPropertiesExamConstraints.setMinRightCellCombinationsForced(5);
-        Result result11 = resultCalculator.buildResultWithGenerator(
-                new _GrammarGeneratorDiceRollTopDown(settings11),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settings11.name)))
-        );
-        Util.writeResultToTxtFile(result11);
     }
 
     public static GrammarProperties generateGrammarPropertiesForTesting() {

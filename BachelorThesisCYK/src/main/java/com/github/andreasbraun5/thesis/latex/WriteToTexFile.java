@@ -1,9 +1,7 @@
 package com.github.andreasbraun5.thesis.latex;
 
-import com.github.andreasbraun5.thesis.exception.FileRuntimeException;
 import com.github.andreasbraun5.thesis.main.ThesisDirectory;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 

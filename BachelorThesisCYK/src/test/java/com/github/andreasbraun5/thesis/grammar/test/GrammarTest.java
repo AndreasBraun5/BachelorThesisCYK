@@ -1,16 +1,11 @@
 package com.github.andreasbraun5.thesis.grammar.test;
 
-import java.util.Arrays;
-
+import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
+import com.github.andreasbraun5.thesis.grammar.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.Production;
-import com.github.andreasbraun5.thesis.grammar.Terminal;
-import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.grammar.VariableStart;
+import java.util.Arrays;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
