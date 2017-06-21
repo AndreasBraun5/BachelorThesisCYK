@@ -1,4 +1,4 @@
-package com.github.andreasbraun5.thesis.grammar;
+package com.github.andreasbraun5.thesis.grammarproperties;
 
 /**
  * Created by Andreas Braun on 08.02.2017.

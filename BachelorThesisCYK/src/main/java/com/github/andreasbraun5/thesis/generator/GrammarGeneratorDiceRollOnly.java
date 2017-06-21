@@ -1,7 +1,7 @@
 package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
@@ -21,21 +21,12 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
     }
 
     @Override
-    /**
-     *  Its goal is to generate a grammar. GrammarWordMatrixWrapper allows to additionally give more parameters, which are needed
-     *  for the specific generator method.
-     *  Here the specific implementation of each algorithm is written.
-     */
     public GrammarWordMatrixWrapper generateGrammarWordMatrixWrapper(
-            GrammarWordMatrixWrapper grammarWordMatrixWrapper,
-            WorkLog workLog
-            ) {
+            GrammarWordMatrixWrapper grammarWordMatrixWrapper, WorkLog workLog) {
         workLog.log("#########################################################################################################");
         workLog.log("START of Logging of GrammarGeneratorDiceRollOnly.");
         // Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
-        // TODO: simplify
-        Grammar grammar = new Grammar(grammarGeneratorSettings.grammarProperties.variableStart);
-        grammarWordMatrixWrapper.setGrammar(grammar);
+        grammarWordMatrixWrapper.setGrammar(new Grammar(grammarGeneratorSettings.grammarProperties.variableStart));
         workLog.log("Used word:");
         workLog.log(grammarWordMatrixWrapper.getWord().toString());
         grammarWordMatrixWrapper = GrammarGeneratorUtil.distributeTerminals(
@@ -61,7 +52,7 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
         );
         workLog.log("After distributing all possible compound variables:");
         workLog.log(grammarWordMatrixWrapper.getGrammar().toString());
-        grammarWordMatrixWrapper.setSetV(CYK.calculateSetVAdvanced(grammar, grammarWordMatrixWrapper.getWord()));
+        grammarWordMatrixWrapper.setSetV(CYK.calculateSetVAdvanced(grammarWordMatrixWrapper));
         workLog.log("After removing useless productions:");
         grammarWordMatrixWrapper = GrammarGeneratorUtil.removeUselessProductions(grammarWordMatrixWrapper);
         workLog.log(grammarWordMatrixWrapper.getGrammar().toString());

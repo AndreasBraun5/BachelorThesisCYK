@@ -1,6 +1,6 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
-import com.github.andreasbraun5.thesis.util.SetVMatrix;
+import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 
 /**
  * Created by Andreas Braun on 09.02.2017.
@@ -15,7 +15,7 @@ public class ResultSampleExamConstraints {
 	private int countRightCellCombinationsForced;
 	private int maxSumOfVarsInPyramid;
 	private int maxSumOfProductions;
-	private SetVMatrix markedRightCellCombinationForced;
+	private SetVarKMatrix markedRightCellCombinationForced;
 
 	public boolean isExamConstraints() {
 		return isExamConstraints;
@@ -80,11 +80,11 @@ public class ResultSampleExamConstraints {
 		return this;
 	}
 
-	public SetVMatrix getMarkedRightCellCombinationForced() {
+	public SetVarKMatrix getMarkedRightCellCombinationForced() {
 		return markedRightCellCombinationForced;
 	}
 
-	public ResultSampleExamConstraints setMarkedRightCellCombinationForced(SetVMatrix markedRightCellCombinationForced) {
+	public ResultSampleExamConstraints setMarkedRightCellCombinationForced(SetVarKMatrix markedRightCellCombinationForced) {
 		this.markedRightCellCombinationForced = markedRightCellCombinationForced;
 		return this;
 	}

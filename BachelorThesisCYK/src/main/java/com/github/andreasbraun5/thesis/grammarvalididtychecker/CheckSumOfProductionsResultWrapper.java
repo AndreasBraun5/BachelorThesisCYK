@@ -12,7 +12,7 @@ public class CheckSumOfProductionsResultWrapper {
 		return maxSumOfProductions;
 	}
 
-	public static CheckSumOfProductionsResultWrapper builCheckSumOfProductionsResultWrapper(){
+	public static CheckSumOfProductionsResultWrapper buildCheckSumOfProductionsResultWrapper(){
 		return new CheckSumOfProductionsResultWrapper();
 	}
 

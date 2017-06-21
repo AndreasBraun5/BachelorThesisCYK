@@ -1,9 +1,9 @@
 package com.github.andreasbraun5.thesis.latex;
 
 import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.grammar.VariableK;
+import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
-import com.github.andreasbraun5.thesis.util.SetVMatrix;
+import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 import org.junit.Test;
 
@@ -66,16 +66,16 @@ public class CenteredTikzPictureTest {
 
 		setVTemp[5][5].add( new VariableK( new Variable( "C" ), 6 ) );
 
-		SetVMatrix<VariableK> setVMatrixSolution = SetVMatrix.buildEmptySetVMatrixWrapper(
+		SetVarKMatrix<VariableK> setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(
 				wordLength,
 				VariableK.class
 		).setSetV( setVTemp );
-		System.out.print( setVMatrixSolution.getStringToPrintAsLowerTriangularMatrix() );
-		Pyramid pyramid = setVMatrixSolution.getPyramid();
-		pyramid.word = new String[] {"b", "b", "a", "c", "b", "c"};
+		System.out.print( setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix() );
+		PyramidLatex pyramidLatex = setVarKMatrixSolution.getPyramid();
+		pyramidLatex.setWord(new String[] {"b", "b", "a", "c", "b", "c"});
 		CenteredTikzPicture tikz = new CenteredTikzPicture();
 		System.out.println(tikz.beginToString());
-		System.out.print( pyramid );
+		System.out.print( pyramidLatex.pyramidToTex() );
 		System.out.println(tikz.endToString());
 	}
 

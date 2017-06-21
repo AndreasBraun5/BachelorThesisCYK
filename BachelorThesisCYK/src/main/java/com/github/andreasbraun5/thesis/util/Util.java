@@ -2,6 +2,7 @@ package com.github.andreasbraun5.thesis.util;
 
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.main.ThesisDirectory;
+import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 
 import java.io.File;
@@ -27,7 +28,7 @@ public abstract class Util {
     /**
      *
      */
-    public static <T extends LeftHandSideElement> Set<T>[][] getInitialisedHashSetArray(int wordLength) {
+    public static <T extends Object> Set<T>[][] getInitialisedHashSetArray(int wordLength, Class<T> clazz) {
         @SuppressWarnings("unchecked")
         Set<T>[][] setVTemp = new Set[wordLength][wordLength];
         for (int i = 0; i < wordLength; i++) {
@@ -44,8 +45,8 @@ public abstract class Util {
 	 */
     // TODO ???: duplicate maxVarPerCell
     /*
-    public static int getMaxVarPerCellForSetV(SetVMatrix<VariableK> setVMatrix) {
-		Set<Variable>[][] tempSetV = setVMatrix.getSimpleMatrix();
+    public static int getMaxVarPerCellForSetV(SetVarKMatrix<VariableK> setVMatrix) {
+		Set<Variable>[][] tempSetV = setVMatrix.getSimpleSetDoubleArray();
 		int numberOfVarsPerCell = 0;
 		int temp = tempSetV.length;
 		for ( int i = 0; i < temp; i++ ) {
@@ -73,7 +74,7 @@ public abstract class Util {
      * Storing the result output in a text file.
      */
     public static void writeResultToTxtFile(
-            Result result, String name)  {
+            Result result, String name) {
         File test = new File(ThesisDirectory.EXAMPLES.path, name + ".txt");
         PrintWriter out = null;
         try {
@@ -90,10 +91,10 @@ public abstract class Util {
     // Its structure is very similar to stepIIAdvanced and calculateSetVAdvanced.
     public static Grammar removeUselessProductions(
             Grammar grammar,
-            SetVMatrix<VariableK> setVMatrix,
+            SetVarKMatrix SetVarKMatrix,
             List<Terminal> word) {
-        Set<VariableK>[][] setV = setVMatrix.getSetV();
-        int wordLength = setVMatrix.getSetV().length;
+        Set<VariableK>[][] setV = SetVarKMatrix.getSetV();
+        int wordLength = SetVarKMatrix.getSetV().length;
         Map<Variable, List<Production>> productions = grammar.getProductionsMap();
         Set<Production> onlyUsefulProductions = new HashSet<>();
         // Similar to stepIIAdvanced
@@ -180,9 +181,9 @@ public abstract class Util {
     /**
      * Set<VariableK> --> Set<Variable>
      */
-    public static <T extends LeftHandSideElement> Set<Variable> varKSetToVarSet(Set<T> varKWrapper) {
+    public static Set<Variable> varKSetToVarSet(Set<VariableK> varKWrapper) {
         Set<Variable> setVVariable = new HashSet<>();
-        for (LeftHandSideElement variableKWrapper : varKWrapper) {
+        for (VariableK variableKWrapper : varKWrapper) {
             setVVariable.add(variableKWrapper.getVariable());
         }
         return setVVariable;
@@ -190,6 +191,17 @@ public abstract class Util {
 
     public static <I, O extends I> List<O> filter(List<I> in, Class<O> clazz) {
         return in.stream().filter(i -> clazz.equals(i.getClass())).map(i -> (O) i).collect(Collectors.toList());
+    }
+
+    /**
+     * helper method used by printSetVAsLowerTriangularMatrix
+     */
+    public static String uniformStringMaker(String str, int length) {
+        StringBuilder builder = new StringBuilder(str);
+        for (int i = str.length(); i < length; ++i) {
+            builder.append(" ");
+        }
+        return builder.toString();
     }
 }
 

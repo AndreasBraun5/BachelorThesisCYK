@@ -1,6 +1,9 @@
 package com.github.andreasbraun5.thesis.generator;
 
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
+import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,17 +35,19 @@ public class GrammarGeneratorDiceRollOnlyTest {
         terminals.add(new Terminal("f"));
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"));
         grammarProperties.addTerminals(terminals).addVariables(variables);
+
         grammarProperties.variableStart = new VariableStart("S");
-        grammarProperties.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell(3);
-        System.out.println(grammarProperties);
+        //grammarProperties.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell(3);
+        //System.out.println(grammarProperties);
         GrammarGeneratorSettings grammarGeneratorSettings = new GrammarGeneratorSettings(
                 grammarProperties, "GrammarGeneratorDiceRollOnlyTest");
         GrammarGeneratorDiceRollOnly generatorGrammarDiceRollOnly = new GrammarGeneratorDiceRollOnly(
                 grammarGeneratorSettings);
         GrammarWordMatrixWrapper grammarWordMatrixWrapper = GrammarWordMatrixWrapper.buildGrammarWordMatrixWrapper();
+        grammarWordMatrixWrapper.setWord(WordGeneratorDiceRoll.generateWordAsTerminalList(grammarGeneratorSettings.grammarProperties));
         grammarWordMatrixWrapper = generatorGrammarDiceRollOnly.generateGrammarWordMatrixWrapper(
                 grammarWordMatrixWrapper,
-                null
+                WorkLog.createFromWriter(null)
         );
         System.out.println(grammarWordMatrixWrapper.getGrammar());
         GrammarProperties grammarProperties2 = GrammarProperties.generatePartOfGrammarPropertiesFromGrammar(

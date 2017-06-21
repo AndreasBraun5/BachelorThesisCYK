@@ -3,8 +3,8 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 import com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException;
 import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
 import com.github.andreasbraun5.thesis.generator.GrammarGenerator;
-import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
-import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.util.Util;
 
@@ -19,8 +19,8 @@ import java.util.Map;
  */
 public class ResultCalculator {
 
-    private int countOfGrammarsToGeneratePerWord;
-    private int countDifferentWords;
+    private int countOfGrammarsToGeneratePerWord = 50;
+    private int countDifferentWords = 50;
     private final int CHUNK_SIZE = 1000;
 
 	/*public ResultCalculator(int countDifferentWords, int countOfGrammarsToGeneratePerWord) {

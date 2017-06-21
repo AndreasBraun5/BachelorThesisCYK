@@ -3,6 +3,8 @@ package com.github.andreasbraun5.thesis.grammar;
 /**
  * Created by Andreas Braun on 20.12.2016.
  * https://github.com/AndreasBraun5/
+ * The equality of a production is determined via the equality of the names of the leftHandSideElement and the name of
+ * the rightHandSideElement.
  */
 
 public class Production {

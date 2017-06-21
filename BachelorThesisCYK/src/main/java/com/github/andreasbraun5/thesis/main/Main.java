@@ -2,7 +2,7 @@ package com.github.andreasbraun5.thesis.main;
 
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
-import com.github.andreasbraun5.thesis.grammar.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
@@ -28,30 +28,10 @@ public class Main {
     //
     // TODO Implement: CYK tree in Combination with latex picture creation.
     // TODO: Algorithm Duda Prepare, but maybe this isn't wanted
-    // TODO: Implement pyramid vs methods: getRight, getLeft, getUpperRight, getUpperLeft, ... methods in SetVMatrix. Possible to check indices. Legacy code still works.
+    // TODO: Implement pyramid vs methods: getRight, getLeft, getUpperRight, getUpperLeft, ... methods in SetVarKMatrix. Possible to check indices. Legacy code still works.
     // TODO: Outsource calculateSubsetForCell from CYK algorithm. Implicit testing possible and reuse.
     // TODO: Comparator needed for the stored samples in the .txt file.
-    // TODO: More than 5 cells in TikzPicture Cell
-    //
-    // TODO DONE?: Implement Wim's algorithm from meeting 6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // TODO: Wim's algorithm output rethink because of too many times not adding a production.
-    //
-    // TODO: See [Duda, Pattern Classification] chapter 8.5 Recognition with strings. In more Detail:
-    //			8.5.2 Edit Distance(p. 418): Definition of similarity or difference between two strings. Deletion,
-    //				insertion and exchange operations with different weighting possible. In general this is used for
-    //				string matching with errors. So to say more error robust classification or recognition of spoken
-    // 				words and and hand written words.
-    // TODO: See [Duda, Pattern Classification] chapter 8.6 Grammatical Methods. In more Detail:
-    //			8.6.2 Recognition Using Grammars (p. 426): Bottom-Up Parsing = CKY, starting from the leaves;
-    // 				Top-Down, starting from root node, "with some specified criteria that guide the choice of which
-    //				rule to apply. Such criteria could include beginning the parse ...";
-    // TODO: See [Duda, Pattern Classification] chapter 8.7 Grammatical Inference. In more Detail:
-    //			8.7 "In many applications, the grammar is designed by hand. ... It is important to learn a grammar from
-    //				example sentences [ for our case this would only be the wanted or validity==true samples ]
-    // 				{ Guess of myself: So to find some kind of meta grammar that describes grammars we seek }
-    //				https://en.wikipedia.org/wiki/Grammar_induction
-    //				See algorithm 5: Grammatical Inference (Overview).
-    //				https://en.wikipedia.org/wiki/Grammar_induction
+    // TODO: More than 5 cell in TikzPicture CellLatex
     public static void main(String[] args) throws IOException {
 
         ThesisDirectory.initPaths();

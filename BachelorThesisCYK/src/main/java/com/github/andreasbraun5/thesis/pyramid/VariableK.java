@@ -1,4 +1,6 @@
-package com.github.andreasbraun5.thesis.grammar;
+package com.github.andreasbraun5.thesis.pyramid;
+
+import com.github.andreasbraun5.thesis.grammar.Variable;
 
 /**
  * Created by Andreas Braun on 24.01.2017.
@@ -6,7 +8,7 @@ package com.github.andreasbraun5.thesis.grammar;
  * The VariableK class is need for the calculation of the setV for the advancedCYK algorithm. The index k of the
  * loop is additionally stored to the Variable.
  */
-public class VariableK implements LeftHandSideElement, RightHandSideElement {
+public class VariableK implements CellElement {
 
 	private String name;
 	private Variable variable;
@@ -18,9 +20,8 @@ public class VariableK implements LeftHandSideElement, RightHandSideElement {
 		this.k = k;
 	}
 
-	@Override
 	public String getName() {
-		return name;
+        return variable.toString() + k;
 	}
 
 	@Override
@@ -48,6 +49,7 @@ public class VariableK implements LeftHandSideElement, RightHandSideElement {
 		return result;
 	}
 
+	@Override
 	public Variable getVariable() {
 		return variable;
 	}

@@ -9,5 +9,4 @@ public class VariableStart extends Variable {
 	public VariableStart(String name) {
 		super( name );
 	}
-
 }

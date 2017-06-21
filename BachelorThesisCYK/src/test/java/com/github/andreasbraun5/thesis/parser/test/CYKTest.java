@@ -1,9 +1,13 @@
 package com.github.andreasbraun5.thesis.parser.test;
 
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.parser.CYK;
-import com.github.andreasbraun5.thesis.util.SetVMatrix;
+import com.github.andreasbraun5.thesis.pyramid.CellElement;
+import com.github.andreasbraun5.thesis.pyramid.VariableK;
+import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,57 +19,59 @@ import java.util.Set;
  * https://github.com/AndreasBraun5/
  */
 public class CYKTest {
+    @Test
+    public void calculateSubSetForCell() throws Exception {
+        // TODO: Write Test here
+    }
 
-	/**
-	 * Checking the trivial case. A word like "a^sizeOfWord" and a grammar with S-->a|SS. The grammar must be
-	 * be able to generate each of the words.
-	 */
-	@Test
-	public void CYKAlwaysTrue() {
-		System.out.println( "" );
-		System.out.println( "############################" );
-		System.out.println( "ResultCalculator CYK: AlwaysTrue" );
-		// Define GrammarProperties
-		GrammarProperties grammarProperties = new GrammarProperties( new VariableStart( "S" ) )
-				.addTerminals( new Terminal( "a" ) );
-		grammarProperties.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell( 3 );
-		grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord( 10 );
-		// Generate word
-		// @formatter:off
-		String word = WordGeneratorDiceRoll.generateWordAsString( grammarProperties );
-		// Generate Grammar
-		Grammar grammar = new Grammar( new VariableStart( "S" ) );
-		grammar.addProduction(
-				new Production( new VariableStart( "S" ), new Terminal( "a" ) ),
-				new Production( new VariableStart( "S" ),
-								new VariableCompound( new VariableStart( "S" ), new VariableStart( "S" ) ) )
-		);
-		// @formatter:on
-		System.out.println( grammar );
-		// Check for integrity
-		SetVMatrix<VariableK> setVMatrix = CYK.calculateSetVAdvanced(
-				grammar,
-				Util.stringToTerminalList( word )
-		);
-		SetVMatrix<Variable> setVMatrixSimple = SetVMatrix.buildEmptySetVMatrixWrapper( word.length(), Variable.class )
-				.setSetV( setVMatrix.getSimpleMatrix() );
-		System.out.println( setVMatrixSimple.getStringToPrintAsLowerTriangularMatrix() );
-		Assert.assertEquals( "The grammar and the word aren't compatible, but should be.", true, CYK.algorithmAdvanced(
-				grammar, Util.stringToTerminalList( word ) )
-		);
-	}
+    /**
+     * Checking the trivial case. A word like "a^sizeOfWord" and a grammar with S-->a|SS. The grammar must be
+     * be able to generate each of the words.
+     */
+    @Test
+    public void CYKAlwaysTrue() {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("ResultCalculator CYK: AlwaysTrue");
+        // Define GrammarProperties
+        GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"))
+                .addTerminals(new Terminal("a"));
+        grammarProperties.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell(3);
+        grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord(10);
+        // Generate word
+        // @formatter:off
+        String word = WordGeneratorDiceRoll.generateWordAsString(grammarProperties);
+        // Generate Grammar
+        Grammar grammar = new Grammar(new VariableStart("S"));
+        grammar.addProduction(
+                new Production(new VariableStart("S"), new Terminal("a")),
+                new Production(new VariableStart("S"),
+                        new VariableCompound(new VariableStart("S"), new VariableStart("S")))
+        );
+        GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
+        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
+        // @formatter:on
+        System.out.println(grammar);
+        // Check for integrity
+        SetVarKMatrix SetVarKMatrix = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
+        System.out.println(SetVarKMatrix.getStringToPrintAsLowerTriangularMatrixSimple());
+        Assert.assertEquals("The grammar and the word aren't compatible, but should be.", true, CYK.algorithmAdvanced(
+                grammarWordMatrixWrapper, Util.stringToTerminalList(word))
+        );
+    }
 
-	@Test
-	public void CYKCalculateSetVTestWithScript() {
-		System.out.println( "" );
-		System.out.println( "############################" );
-		System.out.println( "ResultCalculator CYK: algorithmSimple with input Grammar from the TI1 script" );
-		// @formatter:off
+    /*
+    @Test
+    public void CYKCalculateSetVTestWithScript() {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("ResultCalculator CYK: algorithmSimple with input Grammar from the TI1 script");
+        // @formatter:off
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[15];
         productions[0] = new Production(new VariableStart("S"), new VariableCompound(new Variable("N"), new Variable("B")));
         productions[1] = new Production(new VariableStart("S"), new VariableCompound(new Variable("E"), new Variable("A")));
-        productions[2] = new Production(new VariableStart("S"), new Variable(""));
+        productions[2] = new Production(new VariableStart("S"), new VariableEpsilon());
         productions[3] = new Production(new Variable("S'"), new VariableCompound(new Variable("N"), new Variable("B")));
         productions[4] = new Production(new Variable("S'"), new VariableCompound(new Variable("E"), new Variable("A")));
         productions[5] = new Production(new Variable("N"), new Terminal("0"));
@@ -80,103 +86,103 @@ public class CYKTest {
         productions[14] = new Production(new Variable("D"), new VariableCompound(new Variable("B"), new Variable("B")));
         grammar.addProduction(productions);
         String word = "01110100";
-		// @formatter:on
-		SetVMatrix<VariableK> setVMatrixCalculated = CYK.calculateSetVAdvanced(
-				grammar,
-				Util.stringToTerminalList( word )
-		);
-		SetVMatrix<Variable> setVMatrixCalculatedSimple = SetVMatrix.buildEmptySetVMatrixWrapper(
-				word.length(),
-				Variable.class
-		).setSetV(
-				setVMatrixCalculated.getSimpleMatrix() );
-		System.out.println( setVMatrixCalculatedSimple.getStringToPrintAsLowerTriangularMatrix() );
+        GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
+        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
+        // @formatter:on
+        SetVarKMatrix<VariableK> setVarKMatrixCalculated = CYK.calculateSetVAdvanced(
+                grammarWordMatrixWrapper);
+        SetVarKMatrix<Variable> setVarKMatrixCalculatedSimple = SetVarKMatrix.buildEmptySetVMatrixWrapper(
+                word.length(),
+                Variable.class
+        ).setSetV(
+                setVarKMatrixCalculated.getSimpleSetDoubleArray());
+        System.out.println(setVarKMatrixCalculatedSimple.getStringToPrintAsLowerTriangularMatrix());
 
-		int wordLength = word.length();
-		Set<Variable>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+        int wordLength = word.length();
+        Set<Variable>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength);
 
-		// reconstructing example matrix from scriptTI1
-		setVTemp[0][0].add( new Variable( "A" ) );
-		setVTemp[0][0].add( new Variable( "N" ) );
-		setVTemp[0][1].add( new VariableStart( "S" ) );
-		setVTemp[0][1].add( new Variable( "S'" ) );
-		setVTemp[0][2].add( new Variable( "B" ) );
-		setVTemp[0][3].add( new Variable( "D" ) );
-		setVTemp[0][4].add( new Variable( "B" ) );
-		setVTemp[0][5].add( new Variable( "D" ) );
-		setVTemp[0][6].add( new Variable( "B" ) );
-		setVTemp[0][7].add( new VariableStart( "S" ) );
-		setVTemp[0][7].add( new Variable( "S'" ) );
+        // reconstructing example matrix from scriptTI1
+        setVTemp[0][0].add(new Variable("A"));
+        setVTemp[0][0].add(new Variable("N"));
+        setVTemp[0][1].add(new VariableStart("S"));
+        setVTemp[0][1].add(new Variable("S'"));
+        setVTemp[0][2].add(new Variable("B"));
+        setVTemp[0][3].add(new Variable("D"));
+        setVTemp[0][4].add(new Variable("B"));
+        setVTemp[0][5].add(new Variable("D"));
+        setVTemp[0][6].add(new Variable("B"));
+        setVTemp[0][7].add(new VariableStart("S"));
+        setVTemp[0][7].add(new Variable("S'"));
 
-		setVTemp[1][1].add( new Variable( "E" ) );
-		setVTemp[1][1].add( new Variable( "B" ) );
-		setVTemp[1][2].add( new Variable( "D" ) );
-		setVTemp[1][4].add( new Variable( "D" ) );
-		setVTemp[1][6].add( new Variable( "D" ) );
-		setVTemp[1][7].add( new Variable( "B" ) );
+        setVTemp[1][1].add(new Variable("E"));
+        setVTemp[1][1].add(new Variable("B"));
+        setVTemp[1][2].add(new Variable("D"));
+        setVTemp[1][4].add(new Variable("D"));
+        setVTemp[1][6].add(new Variable("D"));
+        setVTemp[1][7].add(new Variable("B"));
 
-		setVTemp[2][2].add( new Variable( "E" ) );
-		setVTemp[2][2].add( new Variable( "B" ) );
-		setVTemp[2][3].add( new Variable( "D" ) );
-		setVTemp[2][4].add( new Variable( "B" ) );
-		setVTemp[2][5].add( new Variable( "D" ) );
-		setVTemp[2][6].add( new Variable( "B" ) );
-		setVTemp[2][7].add( new VariableStart( "S" ) );
-		setVTemp[2][7].add( new Variable( "S'" ) );
+        setVTemp[2][2].add(new Variable("E"));
+        setVTemp[2][2].add(new Variable("B"));
+        setVTemp[2][3].add(new Variable("D"));
+        setVTemp[2][4].add(new Variable("B"));
+        setVTemp[2][5].add(new Variable("D"));
+        setVTemp[2][6].add(new Variable("B"));
+        setVTemp[2][7].add(new VariableStart("S"));
+        setVTemp[2][7].add(new Variable("S'"));
 
-		setVTemp[3][3].add( new Variable( "E" ) );
-		setVTemp[3][3].add( new Variable( "B" ) );
-		setVTemp[3][4].add( new VariableStart( "S" ) );
-		setVTemp[3][4].add( new Variable( "S'" ) );
-		setVTemp[3][5].add( new Variable( "B" ) );
-		setVTemp[3][6].add( new VariableStart( "S" ) );
-		setVTemp[3][6].add( new Variable( "S'" ) );
-		setVTemp[3][7].add( new Variable( "A" ) );
+        setVTemp[3][3].add(new Variable("E"));
+        setVTemp[3][3].add(new Variable("B"));
+        setVTemp[3][4].add(new VariableStart("S"));
+        setVTemp[3][4].add(new Variable("S'"));
+        setVTemp[3][5].add(new Variable("B"));
+        setVTemp[3][6].add(new VariableStart("S"));
+        setVTemp[3][6].add(new Variable("S'"));
+        setVTemp[3][7].add(new Variable("A"));
 
-		setVTemp[4][4].add( new Variable( "A" ) );
-		setVTemp[4][4].add( new Variable( "N" ) );
-		setVTemp[4][5].add( new VariableStart( "S" ) );
-		setVTemp[4][5].add( new Variable( "S'" ) );
-		setVTemp[4][6].add( new Variable( "A" ) );
-		setVTemp[4][7].add( new Variable( "C" ) );
+        setVTemp[4][4].add(new Variable("A"));
+        setVTemp[4][4].add(new Variable("N"));
+        setVTemp[4][5].add(new VariableStart("S"));
+        setVTemp[4][5].add(new Variable("S'"));
+        setVTemp[4][6].add(new Variable("A"));
+        setVTemp[4][7].add(new Variable("C"));
 
-		setVTemp[5][5].add( new Variable( "E" ) );
-		setVTemp[5][5].add( new Variable( "B" ) );
-		setVTemp[5][6].add( new VariableStart( "S" ) );
-		setVTemp[5][6].add( new Variable( "S'" ) );
-		setVTemp[5][7].add( new Variable( "A" ) );
+        setVTemp[5][5].add(new Variable("E"));
+        setVTemp[5][5].add(new Variable("B"));
+        setVTemp[5][6].add(new VariableStart("S"));
+        setVTemp[5][6].add(new Variable("S'"));
+        setVTemp[5][7].add(new Variable("A"));
 
-		setVTemp[6][6].add( new Variable( "A" ) );
-		setVTemp[6][6].add( new Variable( "N" ) );
-		setVTemp[6][7].add( new Variable( "C" ) );
+        setVTemp[6][6].add(new Variable("A"));
+        setVTemp[6][6].add(new Variable("N"));
+        setVTemp[6][7].add(new Variable("C"));
 
-		setVTemp[7][7].add( new Variable( "A" ) );
-		setVTemp[7][7].add( new Variable( "N" ) );
+        setVTemp[7][7].add(new Variable("A"));
+        setVTemp[7][7].add(new Variable("N"));
 
-		SetVMatrix<Variable> setVMatrixSolution = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength, Variable.class )
-				.setSetV( setVTemp );
-		SetVMatrix<Variable> setVMatrixSolutionSimple = SetVMatrix.buildEmptySetVMatrixWrapper(
-				wordLength,
-				Variable.class
-		).setSetV(
-				setVMatrixSolution.getSimpleMatrix() );
-		System.out.print( setVMatrixSolution.getStringToPrintAsLowerTriangularMatrix() );
-		Assert.assertTrue( checkSetVCalculated(
-				setVMatrixSolutionSimple.getSetV(),
-				setVMatrixCalculated.getSimpleMatrix(),
-				wordLength
-		) );
-		// TODO: Martin down vs up.
-		//Assert.assertTrue( checkSetVCalculated( setVTemp, setVMatrixCalculated.getSetV(), wordLength ) );
-		System.out.println( "\nSetV from script is the same as the calculated SetV." );
-	}
+        SetVarKMatrix<Variable> setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength, Variable.class)
+                .setSetV(setVTemp);
+        SetVarKMatrix<Variable> setVarKMatrixSolutionSimple = SetVarKMatrix.buildEmptySetVMatrixWrapper(
+                wordLength,
+                Variable.class
+        ).setSetV(
+                setVarKMatrixSolution.getSimpleSetDoubleArray());
+        System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
+        Assert.assertTrue(checkSetVCalculated(
+                setVarKMatrixSolutionSimple.getSetV(),
+                setVarKMatrixCalculated.getSimpleSetDoubleArray(),
+                wordLength
+        ));
+        // TODO: Martin down vs up.
+        //Assert.assertTrue( checkSetVCalculated( setVTemp, setVarKMatrixCalculated.getSetV(), wordLength ) );
+        System.out.println("\nSetV from script is the same as the calculated SetV.");
+    }
 
-	@Test
-	public void CYKCalculateSetVTestWithSS12() {
-		System.out.println( "" );
-		System.out.println( "############################" );
-		System.out.println( "ResultCalculator CYK: algorithmSimple with input Grammar from the SS12" );
-		// @formatter:off
+    @Test
+    public void CYKCalculateSetVTestWithSS12() {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("ResultCalculator CYK: algorithmSimple with input Grammar from the SS12");
+        // @formatter:off
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[9];
         productions[0] = new Production(new VariableStart("S"), new VariableCompound(new Variable("A"), new Variable("B")));
@@ -190,100 +196,99 @@ public class CYKTest {
         productions[8] = new Production(new Variable("C"), new Terminal("c"));
         grammar.addProduction(productions);
         String word = "cbbaaccb";
+        GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
+        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
         // @formatter:on
-		SetVMatrix<VariableK> setVMatrixCalculated = CYK.calculateSetVAdvanced(
-				grammar,
-				Util.stringToTerminalList( word )
-		);
-		SetVMatrix<Variable> setVMatrixCalculatedSimple = SetVMatrix.buildEmptySetVMatrixWrapper(
-				word.length(),
-				Variable.class
-		).setSetV(
-				setVMatrixCalculated.getSimpleMatrix() );
-		System.out.println( setVMatrixCalculatedSimple.getStringToPrintAsLowerTriangularMatrix() );
+        SetVarKMatrix<VariableK> setVarKMatrixCalculated = CYK.calculateSetVAdvanced(             grammarWordMatrixWrapper);
+        SetVarKMatrix<Variable> setVarKMatrixCalculatedSimple = SetVarKMatrix.buildEmptySetVMatrixWrapper(
+                word.length(),
+                Variable.class
+        ).setSetV(
+                setVarKMatrixCalculated.getSimpleSetDoubleArray());
+        System.out.println(setVarKMatrixCalculatedSimple.getStringToPrintAsLowerTriangularMatrix());
 
-		int wordLength = word.length();
-		Set<Variable>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+        int wordLength = word.length();
+        Set<Variable>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength);
 
-		// reconstructing example matrix from SS12
-		setVTemp[0][0].add( new Variable( "A" ) );
-		setVTemp[0][0].add( new Variable( "C" ) );
-		setVTemp[0][1].add( new VariableStart( "S" ) );
-		setVTemp[0][1].add( new Variable( "B" ) );
-		setVTemp[0][3].add( new Variable( "A" ) );
-		setVTemp[0][5].add( new Variable( "C" ) );
-		setVTemp[0][5].add( new VariableStart( "S" ) );
-		setVTemp[0][6].add( new Variable( "C" ) );
-		setVTemp[0][6].add( new VariableStart( "S" ) );
-		setVTemp[0][7].add( new VariableStart( "S" ) );
-		setVTemp[0][7].add( new Variable( "B" ) );
+        // reconstructing example matrix from SS12
+        setVTemp[0][0].add(new Variable("A"));
+        setVTemp[0][0].add(new Variable("C"));
+        setVTemp[0][1].add(new VariableStart("S"));
+        setVTemp[0][1].add(new Variable("B"));
+        setVTemp[0][3].add(new Variable("A"));
+        setVTemp[0][5].add(new Variable("C"));
+        setVTemp[0][5].add(new VariableStart("S"));
+        setVTemp[0][6].add(new Variable("C"));
+        setVTemp[0][6].add(new VariableStart("S"));
+        setVTemp[0][7].add(new VariableStart("S"));
+        setVTemp[0][7].add(new Variable("B"));
 
-		setVTemp[1][1].add( new Variable( "B" ) );
-		setVTemp[1][3].add( new Variable( "A" ) );
-		setVTemp[1][5].add( new Variable( "C" ) );
-		setVTemp[1][5].add( new VariableStart( "S" ) );
-		setVTemp[1][6].add( new Variable( "C" ) );
-		setVTemp[1][6].add( new VariableStart( "S" ) );
-		setVTemp[1][7].add( new Variable( "B" ) );
-		setVTemp[1][7].add( new VariableStart( "S" ) );
+        setVTemp[1][1].add(new Variable("B"));
+        setVTemp[1][3].add(new Variable("A"));
+        setVTemp[1][5].add(new Variable("C"));
+        setVTemp[1][5].add(new VariableStart("S"));
+        setVTemp[1][6].add(new Variable("C"));
+        setVTemp[1][6].add(new VariableStart("S"));
+        setVTemp[1][7].add(new Variable("B"));
+        setVTemp[1][7].add(new VariableStart("S"));
 
-		setVTemp[2][2].add( new Variable( "B" ) );
-		setVTemp[2][3].add( new Variable( "A" ) );
-		setVTemp[2][5].add( new Variable( "C" ) );
-		setVTemp[2][5].add( new VariableStart( "S" ) );
-		setVTemp[2][6].add( new Variable( "C" ) );
-		setVTemp[2][6].add( new VariableStart( "S" ) );
-		setVTemp[2][7].add( new VariableStart( "S" ) );
-		setVTemp[2][7].add( new Variable( "B" ) );
+        setVTemp[2][2].add(new Variable("B"));
+        setVTemp[2][3].add(new Variable("A"));
+        setVTemp[2][5].add(new Variable("C"));
+        setVTemp[2][5].add(new VariableStart("S"));
+        setVTemp[2][6].add(new Variable("C"));
+        setVTemp[2][6].add(new VariableStart("S"));
+        setVTemp[2][7].add(new VariableStart("S"));
+        setVTemp[2][7].add(new Variable("B"));
 
-		setVTemp[3][3].add( new Variable( "A" ) );
-		setVTemp[3][5].add( new Variable( "C" ) );
-		setVTemp[3][6].add( new Variable( "C" ) );
-		setVTemp[3][7].add( new VariableStart( "S" ) );
-		setVTemp[3][7].add( new Variable( "B" ) );
+        setVTemp[3][3].add(new Variable("A"));
+        setVTemp[3][5].add(new Variable("C"));
+        setVTemp[3][6].add(new Variable("C"));
+        setVTemp[3][7].add(new VariableStart("S"));
+        setVTemp[3][7].add(new Variable("B"));
 
-		setVTemp[4][4].add( new Variable( "A" ) );
-		setVTemp[4][5].add( new Variable( "C" ) );
-		setVTemp[4][6].add( new Variable( "C" ) );
-		setVTemp[4][7].add( new VariableStart( "S" ) );
-		setVTemp[4][7].add( new Variable( "B" ) );
+        setVTemp[4][4].add(new Variable("A"));
+        setVTemp[4][5].add(new Variable("C"));
+        setVTemp[4][6].add(new Variable("C"));
+        setVTemp[4][7].add(new VariableStart("S"));
+        setVTemp[4][7].add(new Variable("B"));
 
-		setVTemp[5][5].add( new Variable( "A" ) );
-		setVTemp[5][5].add( new Variable( "C" ) );
-		setVTemp[5][6].add( new Variable( "C" ) );
-		setVTemp[5][7].add( new VariableStart( "S" ) );
-		setVTemp[5][7].add( new Variable( "B" ) );
+        setVTemp[5][5].add(new Variable("A"));
+        setVTemp[5][5].add(new Variable("C"));
+        setVTemp[5][6].add(new Variable("C"));
+        setVTemp[5][7].add(new VariableStart("S"));
+        setVTemp[5][7].add(new Variable("B"));
 
-		setVTemp[6][6].add( new Variable( "A" ) );
-		setVTemp[6][6].add( new Variable( "C" ) );
-		setVTemp[6][7].add( new Variable( "B" ) );
-		setVTemp[6][7].add( new VariableStart( "S" ) );
+        setVTemp[6][6].add(new Variable("A"));
+        setVTemp[6][6].add(new Variable("C"));
+        setVTemp[6][7].add(new Variable("B"));
+        setVTemp[6][7].add(new VariableStart("S"));
 
-		setVTemp[7][7].add( new Variable( "B" ) );
+        setVTemp[7][7].add(new Variable("B"));
 
-		SetVMatrix<Variable> setVMatrixSolution = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength, Variable.class )
-				.setSetV( setVTemp );
-		SetVMatrix<Variable> setVMatrixSolutionSimple = SetVMatrix.buildEmptySetVMatrixWrapper(
-				wordLength,
-				Variable.class
-		).setSetV(
-				setVMatrixSolution.getSimpleMatrix() );
-		System.out.print( setVMatrixSolution.getStringToPrintAsLowerTriangularMatrix() );
-		Assert.assertTrue( checkSetVCalculated(
-				setVMatrixSolutionSimple.getSetV(),
-				setVMatrixCalculated.getSimpleMatrix(),
-				wordLength
-		) );
-		System.out.println( "\nSetV from script is the same as the calculated SetV." );
+        SetVarKMatrix<Variable> setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength, Variable.class)
+                .setSetV(setVTemp);
+        SetVarKMatrix<Variable> setVarKMatrixSolutionSimple = SetVarKMatrix.buildEmptySetVMatrixWrapper(
+                wordLength,
+                Variable.class
+        ).setSetV(
+                setVarKMatrixSolution.getSimpleSetDoubleArray());
+        System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
+        Assert.assertTrue(checkSetVCalculated(
+                setVarKMatrixSolutionSimple.getSetV(),
+                setVarKMatrixCalculated.getSimpleSetDoubleArray(),
+                wordLength
+        ));
+        System.out.println("\nSetV from script is the same as the calculated SetV.");
 
-	}
+    }
 
-	@Test
-	public void CYKCalculateSetVTestWithSS13() {
-		System.out.println( "" );
-		System.out.println( "############################" );
-		System.out.println( "ResultCalculator CYK: algorithmSimple with input Grammar from the SS13" );
-		// @formatter:off
+    @Test
+    public void CYKCalculateSetVTestWithSS13() {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("ResultCalculator CYK: algorithmSimple with input Grammar from the SS13");
+        // @formatter:off
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[10];
         productions[0] = new Production(new VariableStart("S"), new VariableCompound(new Variable("A"), new Variable("A")));
@@ -296,83 +301,83 @@ public class CYKTest {
         productions[7] = new Production(new Variable("B"), new Terminal("b"));
         productions[8] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("C")));
         productions[9] = new Production(new Variable("C"), new Terminal("c"));
-		grammar.addProduction( productions );
-		String word = "bbacbc";
-		// @formatter:on
-		SetVMatrix<VariableK> setVMatrixCalculated = CYK.calculateSetVAdvanced(
-				grammar,
-				Util.stringToTerminalList( word )
-		);
-		SetVMatrix<Variable> setVMatrixCalculatedSimple = SetVMatrix.buildEmptySetVMatrixWrapper(
-				word.length(),
-				Variable.class
-		).setSetV(
-				setVMatrixCalculated.getSimpleMatrix() );
-		System.out.println( setVMatrixCalculatedSimple.getStringToPrintAsLowerTriangularMatrix() );
-		int wordLength = word.length();
-		Set<Variable>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+        grammar.addProduction(productions);
+        String word = "bbacbc";
+        GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
+        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
+        // @formatter:on
+        SetVarKMatrix<VariableK> setVarKMatrixCalculated = CYK.calculateSetVAdvanced(                grammarWordMatrixWrapper        );
+        SetVarKMatrix<Variable> setVarKMatrixCalculatedSimple = SetVarKMatrix.buildEmptySetVMatrixWrapper(
+                word.length(),
+                Variable.class
+        ).setSetV(
+                setVarKMatrixCalculated.getSimpleSetDoubleArray());
+        System.out.println(setVarKMatrixCalculatedSimple.getStringToPrintAsLowerTriangularMatrix());
+        int wordLength = word.length();
+        Set<Variable>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength);
 
-		// reconstructing example matrix
-		setVTemp[0][0].add( new Variable( "A" ) );
-		setVTemp[0][0].add( new Variable( "B" ) );
-		setVTemp[0][1].add( new VariableStart( "S" ) );
-		setVTemp[0][1].add( new Variable( "B" ) );
-		setVTemp[0][3].add( new VariableStart( "S" ) );
-		setVTemp[0][3].add( new Variable( "C" ) );
-		setVTemp[0][3].add( new Variable( "A" ) );
-		setVTemp[0][4].add( new VariableStart( "S" ) );
-		setVTemp[0][5].add( new VariableStart( "S" ) );
-		setVTemp[0][5].add( new Variable( "C" ) );
-		setVTemp[0][5].add( new Variable( "A" ) );
+        // reconstructing example matrix
+        setVTemp[0][0].add(new Variable("A"));
+        setVTemp[0][0].add(new Variable("B"));
+        setVTemp[0][1].add(new VariableStart("S"));
+        setVTemp[0][1].add(new Variable("B"));
+        setVTemp[0][3].add(new VariableStart("S"));
+        setVTemp[0][3].add(new Variable("C"));
+        setVTemp[0][3].add(new Variable("A"));
+        setVTemp[0][4].add(new VariableStart("S"));
+        setVTemp[0][5].add(new VariableStart("S"));
+        setVTemp[0][5].add(new Variable("C"));
+        setVTemp[0][5].add(new Variable("A"));
 
-		setVTemp[1][1].add( new Variable( "A" ) );
-		setVTemp[1][1].add( new Variable( "B" ) );
-		setVTemp[1][2].add( new VariableStart( "S" ) );
-		setVTemp[1][3].add( new Variable( "C" ) );
-		setVTemp[1][3].add( new VariableStart( "S" ) );
-		setVTemp[1][3].add( new Variable( "A" ) );
-		setVTemp[1][4].add( new VariableStart( "S" ) );
-		setVTemp[1][5].add( new Variable( "C" ) );
-		setVTemp[1][5].add( new VariableStart( "S" ) );
+        setVTemp[1][1].add(new Variable("A"));
+        setVTemp[1][1].add(new Variable("B"));
+        setVTemp[1][2].add(new VariableStart("S"));
+        setVTemp[1][3].add(new Variable("C"));
+        setVTemp[1][3].add(new VariableStart("S"));
+        setVTemp[1][3].add(new Variable("A"));
+        setVTemp[1][4].add(new VariableStart("S"));
+        setVTemp[1][5].add(new Variable("C"));
+        setVTemp[1][5].add(new VariableStart("S"));
 
-		setVTemp[2][2].add( new Variable( "A" ) );
-		setVTemp[2][3].add( new VariableStart( "S" ) );
-		setVTemp[2][3].add( new Variable( "C" ) );
-		setVTemp[2][4].add( new VariableStart( "S" ) );
+        setVTemp[2][2].add(new Variable("A"));
+        setVTemp[2][3].add(new VariableStart("S"));
+        setVTemp[2][3].add(new Variable("C"));
+        setVTemp[2][4].add(new VariableStart("S"));
 
-		setVTemp[3][3].add( new Variable( "C" ) );
-		setVTemp[3][4].add( new VariableStart( "S" ) );
+        setVTemp[3][3].add(new Variable("C"));
+        setVTemp[3][4].add(new VariableStart("S"));
 
-		setVTemp[4][4].add( new Variable( "A" ) );
-		setVTemp[4][4].add( new Variable( "B" ) );
-		setVTemp[4][5].add( new Variable( "C" ) );
-		setVTemp[4][5].add( new VariableStart( "S" ) );
-		setVTemp[4][5].add( new Variable( "A" ) );
+        setVTemp[4][4].add(new Variable("A"));
+        setVTemp[4][4].add(new Variable("B"));
+        setVTemp[4][5].add(new Variable("C"));
+        setVTemp[4][5].add(new VariableStart("S"));
+        setVTemp[4][5].add(new Variable("A"));
 
-		setVTemp[5][5].add( new Variable( "C" ) );
+        setVTemp[5][5].add(new Variable("C"));
 
-		SetVMatrix<Variable> setVMatrixSolution = SetVMatrix.buildEmptySetVMatrixWrapper( wordLength, Variable.class )
-				.setSetV( setVTemp );
-		SetVMatrix<Variable> setVMatrixSolutionSimple = SetVMatrix.buildEmptySetVMatrixWrapper(
-				wordLength,
-				Variable.class
-		).setSetV(
-				setVMatrixSolution.getSimpleMatrix() );
-		System.out.print( setVMatrixSolution.getStringToPrintAsLowerTriangularMatrix() );
-		Assert.assertTrue( checkSetVCalculated(
-				setVMatrixSolutionSimple.getSetV(),
-				setVMatrixCalculated.getSimpleMatrix(),
-				wordLength
-		) );
-		System.out.println( "\nSetV from script is the same as the calculated SetV." );
-	}
+        SetVarKMatrix<Variable> setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength, Variable.class)
+                .setSetV(setVTemp);
+        SetVarKMatrix<Variable> setVarKMatrixSolutionSimple = SetVarKMatrix.buildEmptySetVMatrixWrapper(
+                wordLength,
+                Variable.class
+        ).setSetV(
+                setVarKMatrixSolution.getSimpleSetDoubleArray());
+        System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
+        Assert.assertTrue(checkSetVCalculated(
+                setVarKMatrixSolutionSimple.getSetV(),
+                setVarKMatrixCalculated.getSimpleSetDoubleArray(),
+                wordLength
+        ));
+        System.out.println("\nSetV from script is the same as the calculated SetV.");
+    }
+    */
 
-	@Test
-	public void CYKCalculateSetVariableKTestWithSS12() {
-		System.out.println( "" );
-		System.out.println( "############################" );
-		System.out.println( "ResultCalculator CYK: algorithmAdvanced with input Grammar from the SS12" );
-		// @formatter:off
+    @Test
+    public void CYKCalculateSetVariableKTestWithSS12() {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("ResultCalculator CYK: algorithmAdvanced with input Grammar from the SS12");
+        // @formatter:off
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[9];
         productions[0] = new Production(new VariableStart("S"), new VariableCompound(new Variable("A"), new Variable("B")));
@@ -386,100 +391,96 @@ public class CYKTest {
         productions[8] = new Production(new Variable("C"), new Terminal("c"));
         grammar.addProduction(productions);
         String word = "cbbaaccb";
+        GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
+        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
         // @formatter:on
-		SetVMatrix<VariableK> setVMatrixCalculated = CYK.calculateSetVAdvanced(
-				grammar,
-				Util.stringToTerminalList( word )
-		);
-		System.out.println( setVMatrixCalculated.getStringToPrintAsLowerTriangularMatrix() );
-		int wordLength = word.length();
-		Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+        SetVarKMatrix setVarKMatrixCalculated = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
+        System.out.println(setVarKMatrixCalculated.getStringToPrintAsLowerTriangularMatrix());
+        int wordLength = word.length();
+        Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 
-		// reconstructing example matrix from SS12
-		setVTemp[0][0].add( new VariableK( new Variable( "A" ), 1 ) );
-		setVTemp[0][0].add( new VariableK( new Variable( "C" ), 1 ) );
-		setVTemp[0][1].add( new VariableK( new VariableStart( "S" ), 1 ) );
-		setVTemp[0][1].add( new VariableK( new Variable( "B" ), 1 ) );
-		setVTemp[0][3].add( new VariableK( new Variable( "A" ), 2 ) );
-		setVTemp[0][5].add( new VariableK( new Variable( "C" ), 1 ) );
-		setVTemp[0][5].add( new VariableK( new Variable( "C" ), 4 ) );
-		setVTemp[0][5].add( new VariableK( new VariableStart( "S" ), 2 ) );
-		setVTemp[0][6].add( new VariableK( new Variable( "C" ), 1 ) );
-		setVTemp[0][6].add( new VariableK( new Variable( "C" ), 4 ) );
-		setVTemp[0][6].add( new VariableK( new VariableStart( "S" ), 2 ) );
-		setVTemp[0][7].add( new VariableK( new VariableStart( "S" ), 1 ) );
-		setVTemp[0][7].add( new VariableK( new VariableStart( "S" ), 4 ) );
-		setVTemp[0][7].add( new VariableK( new Variable( "B" ), 1 ) );
-		setVTemp[0][7].add( new VariableK( new Variable( "B" ), 6 ) );
-		setVTemp[0][7].add( new VariableK( new Variable( "B" ), 7 ) );
+        // reconstructing example matrix from SS12
+        setVTemp[0][0].add(new VariableK(new Variable("A"), 1));
+        setVTemp[0][0].add(new VariableK(new Variable("C"), 1));
+        setVTemp[0][1].add(new VariableK(new VariableStart("S"), 1));
+        setVTemp[0][1].add(new VariableK(new Variable("B"), 1));
+        setVTemp[0][3].add(new VariableK(new Variable("A"), 2));
+        setVTemp[0][5].add(new VariableK(new Variable("C"), 1));
+        setVTemp[0][5].add(new VariableK(new Variable("C"), 4));
+        setVTemp[0][5].add(new VariableK(new VariableStart("S"), 2));
+        setVTemp[0][6].add(new VariableK(new Variable("C"), 1));
+        setVTemp[0][6].add(new VariableK(new Variable("C"), 4));
+        setVTemp[0][6].add(new VariableK(new VariableStart("S"), 2));
+        setVTemp[0][7].add(new VariableK(new VariableStart("S"), 1));
+        setVTemp[0][7].add(new VariableK(new VariableStart("S"), 4));
+        setVTemp[0][7].add(new VariableK(new Variable("B"), 1));
+        setVTemp[0][7].add(new VariableK(new Variable("B"), 6));
+        setVTemp[0][7].add(new VariableK(new Variable("B"), 7));
 
-		setVTemp[1][1].add( new VariableK( new Variable( "B" ), 2 ) );
-		setVTemp[1][3].add( new VariableK( new Variable( "A" ), 2 ) );
-		setVTemp[1][5].add( new VariableK( new Variable( "C" ), 4 ) );
-		setVTemp[1][5].add( new VariableK( new VariableStart( "S" ), 2 ) );
-		setVTemp[1][6].add( new VariableK( new Variable( "C" ), 4 ) );
-		setVTemp[1][6].add( new VariableK( new VariableStart( "S" ), 2 ) );
-		setVTemp[1][7].add( new VariableK( new Variable( "B" ), 6 ) );
-		setVTemp[1][7].add( new VariableK( new Variable( "B" ), 7 ) );
-		setVTemp[1][7].add( new VariableK( new VariableStart( "S" ), 4 ) );
+        setVTemp[1][1].add(new VariableK(new Variable("B"), 2));
+        setVTemp[1][3].add(new VariableK(new Variable("A"), 2));
+        setVTemp[1][5].add(new VariableK(new Variable("C"), 4));
+        setVTemp[1][5].add(new VariableK(new VariableStart("S"), 2));
+        setVTemp[1][6].add(new VariableK(new Variable("C"), 4));
+        setVTemp[1][6].add(new VariableK(new VariableStart("S"), 2));
+        setVTemp[1][7].add(new VariableK(new Variable("B"), 6));
+        setVTemp[1][7].add(new VariableK(new Variable("B"), 7));
+        setVTemp[1][7].add(new VariableK(new VariableStart("S"), 4));
 
-		setVTemp[2][2].add( new VariableK( new Variable( "B" ), 3 ) );
-		setVTemp[2][3].add( new VariableK( new Variable( "A" ), 3 ) );
-		setVTemp[2][5].add( new VariableK( new Variable( "C" ), 4 ) );
-		setVTemp[2][5].add( new VariableK( new VariableStart( "S" ), 3 ) );
-		setVTemp[2][6].add( new VariableK( new Variable( "C" ), 4 ) );
-		setVTemp[2][6].add( new VariableK( new VariableStart( "S" ), 3 ) );
-		setVTemp[2][7].add( new VariableK( new VariableStart( "S" ), 4 ) );
-		setVTemp[2][7].add( new VariableK( new Variable( "B" ), 6 ) );
-		setVTemp[2][7].add( new VariableK( new Variable( "B" ), 7 ) );
+        setVTemp[2][2].add(new VariableK(new Variable("B"), 3));
+        setVTemp[2][3].add(new VariableK(new Variable("A"), 3));
+        setVTemp[2][5].add(new VariableK(new Variable("C"), 4));
+        setVTemp[2][5].add(new VariableK(new VariableStart("S"), 3));
+        setVTemp[2][6].add(new VariableK(new Variable("C"), 4));
+        setVTemp[2][6].add(new VariableK(new VariableStart("S"), 3));
+        setVTemp[2][7].add(new VariableK(new VariableStart("S"), 4));
+        setVTemp[2][7].add(new VariableK(new Variable("B"), 6));
+        setVTemp[2][7].add(new VariableK(new Variable("B"), 7));
 
-		setVTemp[3][3].add( new VariableK( new Variable( "A" ), 4 ) );
-		setVTemp[3][5].add( new VariableK( new Variable( "C" ), 4 ) );
-		setVTemp[3][6].add( new VariableK( new Variable( "C" ), 4 ) );
-		setVTemp[3][7].add( new VariableK( new VariableStart( "S" ), 4 ) );
-		setVTemp[3][7].add( new VariableK( new Variable( "B" ), 6 ) );
-		setVTemp[3][7].add( new VariableK( new Variable( "B" ), 7 ) );
+        setVTemp[3][3].add(new VariableK(new Variable("A"), 4));
+        setVTemp[3][5].add(new VariableK(new Variable("C"), 4));
+        setVTemp[3][6].add(new VariableK(new Variable("C"), 4));
+        setVTemp[3][7].add(new VariableK(new VariableStart("S"), 4));
+        setVTemp[3][7].add(new VariableK(new Variable("B"), 6));
+        setVTemp[3][7].add(new VariableK(new Variable("B"), 7));
 
-		setVTemp[4][4].add( new VariableK( new Variable( "A" ), 5 ) );
-		setVTemp[4][5].add( new VariableK( new Variable( "C" ), 5 ) );
-		setVTemp[4][6].add( new VariableK( new Variable( "C" ), 5 ) );
-		setVTemp[4][7].add( new VariableK( new VariableStart( "S" ), 5 ) );
-		setVTemp[4][7].add( new VariableK( new Variable( "B" ), 6 ) );
-		setVTemp[4][7].add( new VariableK( new Variable( "B" ), 7 ) );
+        setVTemp[4][4].add(new VariableK(new Variable("A"), 5));
+        setVTemp[4][5].add(new VariableK(new Variable("C"), 5));
+        setVTemp[4][6].add(new VariableK(new Variable("C"), 5));
+        setVTemp[4][7].add(new VariableK(new VariableStart("S"), 5));
+        setVTemp[4][7].add(new VariableK(new Variable("B"), 6));
+        setVTemp[4][7].add(new VariableK(new Variable("B"), 7));
 
-		setVTemp[5][5].add( new VariableK( new Variable( "A" ), 6 ) );
-		setVTemp[5][5].add( new VariableK( new Variable( "C" ), 6 ) );
-		setVTemp[5][6].add( new VariableK( new Variable( "C" ), 6 ) );
-		setVTemp[5][7].add( new VariableK( new VariableStart( "S" ), 6 ) );
-		setVTemp[5][7].add( new VariableK( new Variable( "B" ), 6 ) );
-		setVTemp[5][7].add( new VariableK( new Variable( "B" ), 7 ) );
+        setVTemp[5][5].add(new VariableK(new Variable("A"), 6));
+        setVTemp[5][5].add(new VariableK(new Variable("C"), 6));
+        setVTemp[5][6].add(new VariableK(new Variable("C"), 6));
+        setVTemp[5][7].add(new VariableK(new VariableStart("S"), 6));
+        setVTemp[5][7].add(new VariableK(new Variable("B"), 6));
+        setVTemp[5][7].add(new VariableK(new Variable("B"), 7));
 
-		setVTemp[6][6].add( new VariableK( new Variable( "A" ), 7 ) );
-		setVTemp[6][6].add( new VariableK( new Variable( "C" ), 7 ) );
-		setVTemp[6][7].add( new VariableK( new Variable( "B" ), 7 ) );
-		setVTemp[6][7].add( new VariableK( new VariableStart( "S" ), 7 ) );
+        setVTemp[6][6].add(new VariableK(new Variable("A"), 7));
+        setVTemp[6][6].add(new VariableK(new Variable("C"), 7));
+        setVTemp[6][7].add(new VariableK(new Variable("B"), 7));
+        setVTemp[6][7].add(new VariableK(new VariableStart("S"), 7));
 
-		setVTemp[7][7].add( new VariableK( new Variable( "B" ), 8 ) );
+        setVTemp[7][7].add(new VariableK(new Variable("B"), 8));
 
-		SetVMatrix<VariableK> setVMatrixSolution = SetVMatrix.buildEmptySetVMatrixWrapper(
-				wordLength,
-				VariableK.class
-		).setSetV( setVTemp );
-		System.out.print( setVMatrixSolution.getStringToPrintAsLowerTriangularMatrix() );
-		Assert.assertTrue( checkSetVCalculated(
-				setVMatrixSolution.getSetV(),
-				setVMatrixCalculated.getSetV(),
-				wordLength
-		) );
-		System.out.println( "\nSetV from script is the same as the calculated SetV." );
-	}
+        SetVarKMatrix setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength).setSetV(setVTemp);
+        System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
+        Assert.assertTrue(checkSetVCalculated(
+                setVarKMatrixSolution.getSetV(),
+                setVarKMatrixCalculated.getSetV(),
+                wordLength
+        ));
+        System.out.println("\nSetV from script is the same as the calculated SetV.");
+    }
 
-	@Test
-	public void CYKCalculateSetVVariableKTestWithSS13() {
-		System.out.println( "" );
-		System.out.println( "############################" );
-		System.out.println( "ResultCalculator CYK: algorithmAdvanced with input Grammar from the SS13" );
-		// @formatter:off
+    @Test
+    public void CYKCalculateSetVVariableKTestWithSS13() {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("ResultCalculator CYK: algorithmAdvanced with input Grammar from the SS13");
+        // @formatter:off
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[10];
         productions[0] = new Production(new VariableStart("S"), new VariableCompound(new Variable("A"), new Variable("A")));
@@ -492,81 +493,78 @@ public class CYKTest {
         productions[7] = new Production(new Variable("B"), new Terminal("b"));
         productions[8] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("C")));
         productions[9] = new Production(new Variable("C"), new Terminal("c"));
+        GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
         // @formatter:on
-		grammar.addProduction( productions );
-		String word = "bbacbc";
-		// @formatter:on
-		SetVMatrix<VariableK> setVMatrixCalculated = CYK.calculateSetVAdvanced(
-				grammar,
-				Util.stringToTerminalList( word )
-		);
-		System.out.println( setVMatrixCalculated.getStringToPrintAsLowerTriangularMatrix() );
-		int wordLength = word.length();
-		Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+        grammar.addProduction(productions);
+        String word = "bbacbc";
+        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
+
+        // @formatter:on
+        SetVarKMatrix setVarKMatrixCalculated = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
+        System.out.println(setVarKMatrixCalculated.getStringToPrintAsLowerTriangularMatrix());
+        int wordLength = word.length();
+        Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 
 
-		// reconstructing example matrix
-		setVTemp[0][0].add( new VariableK( new Variable( "A" ), 1 ) );
-		setVTemp[0][0].add( new VariableK( new Variable( "B" ), 1 ) );
-		setVTemp[0][1].add( new VariableK( new VariableStart( "S" ), 1 ) );
-		setVTemp[0][1].add( new VariableK( new Variable( "B" ), 1 ) );
-		setVTemp[0][3].add( new VariableK( new VariableStart( "S" ), 1 ) );
-		setVTemp[0][3].add( new VariableK( new Variable( "C" ), 1 ) );
-		setVTemp[0][3].add( new VariableK( new Variable( "A" ), 1 ) );
-		setVTemp[0][3].add( new VariableK( new Variable( "A" ), 2 ) );
-		setVTemp[0][4].add( new VariableK( new VariableStart( "S" ), 4 ) );
-		setVTemp[0][5].add( new VariableK( new VariableStart( "S" ), 1 ) );
-		setVTemp[0][5].add( new VariableK( new VariableStart( "S" ), 4 ) );
-		setVTemp[0][5].add( new VariableK( new Variable( "C" ), 1 ) );
-		setVTemp[0][5].add( new VariableK( new Variable( "C" ), 4 ) );
-		setVTemp[0][5].add( new VariableK( new Variable( "A" ), 1 ) );
+        // reconstructing example matrix
+        setVTemp[0][0].add(new VariableK(new Variable("A"), 1));
+        setVTemp[0][0].add(new VariableK(new Variable("B"), 1));
+        setVTemp[0][1].add(new VariableK(new VariableStart("S"), 1));
+        setVTemp[0][1].add(new VariableK(new Variable("B"), 1));
+        setVTemp[0][3].add(new VariableK(new VariableStart("S"), 1));
+        setVTemp[0][3].add(new VariableK(new Variable("C"), 1));
+        setVTemp[0][3].add(new VariableK(new Variable("A"), 1));
+        setVTemp[0][3].add(new VariableK(new Variable("A"), 2));
+        setVTemp[0][4].add(new VariableK(new VariableStart("S"), 4));
+        setVTemp[0][5].add(new VariableK(new VariableStart("S"), 1));
+        setVTemp[0][5].add(new VariableK(new VariableStart("S"), 4));
+        setVTemp[0][5].add(new VariableK(new Variable("C"), 1));
+        setVTemp[0][5].add(new VariableK(new Variable("C"), 4));
+        setVTemp[0][5].add(new VariableK(new Variable("A"), 1));
 
-		setVTemp[1][1].add( new VariableK( new Variable( "A" ), 2 ) );
-		setVTemp[1][1].add( new VariableK( new Variable( "B" ), 2 ) );
-		setVTemp[1][2].add( new VariableK( new VariableStart( "S" ), 2 ) );
-		setVTemp[1][3].add( new VariableK( new Variable( "C" ), 2 ) );
-		setVTemp[1][3].add( new VariableK( new VariableStart( "S" ), 2 ) );
-		setVTemp[1][3].add( new VariableK( new Variable( "A" ), 2 ) );
-		setVTemp[1][4].add( new VariableK( new VariableStart( "S" ), 4 ) );
-		setVTemp[1][5].add( new VariableK( new Variable( "C" ), 4 ) );
-		setVTemp[1][5].add( new VariableK( new VariableStart( "S" ), 4 ) );
+        setVTemp[1][1].add(new VariableK(new Variable("A"), 2));
+        setVTemp[1][1].add(new VariableK(new Variable("B"), 2));
+        setVTemp[1][2].add(new VariableK(new VariableStart("S"), 2));
+        setVTemp[1][3].add(new VariableK(new Variable("C"), 2));
+        setVTemp[1][3].add(new VariableK(new VariableStart("S"), 2));
+        setVTemp[1][3].add(new VariableK(new Variable("A"), 2));
+        setVTemp[1][4].add(new VariableK(new VariableStart("S"), 4));
+        setVTemp[1][5].add(new VariableK(new Variable("C"), 4));
+        setVTemp[1][5].add(new VariableK(new VariableStart("S"), 4));
 
-		setVTemp[2][2].add( new VariableK( new Variable( "A" ), 3 ) );
-		setVTemp[2][3].add( new VariableK( new VariableStart( "S" ), 3 ) );
-		setVTemp[2][3].add( new VariableK( new Variable( "C" ), 3 ) );
-		setVTemp[2][4].add( new VariableK( new VariableStart( "S" ), 4 ) );
+        setVTemp[2][2].add(new VariableK(new Variable("A"), 3));
+        setVTemp[2][3].add(new VariableK(new VariableStart("S"), 3));
+        setVTemp[2][3].add(new VariableK(new Variable("C"), 3));
+        setVTemp[2][4].add(new VariableK(new VariableStart("S"), 4));
 
-		setVTemp[3][3].add( new VariableK( new Variable( "C" ), 4 ) );
-		setVTemp[3][4].add( new VariableK( new VariableStart( "S" ), 4 ) );
+        setVTemp[3][3].add(new VariableK(new Variable("C"), 4));
+        setVTemp[3][4].add(new VariableK(new VariableStart("S"), 4));
 
-		setVTemp[4][4].add( new VariableK( new Variable( "A" ), 5 ) );
-		setVTemp[4][4].add( new VariableK( new Variable( "B" ), 5 ) );
-		setVTemp[4][5].add( new VariableK( new Variable( "C" ), 5 ) );
-		setVTemp[4][5].add( new VariableK( new VariableStart( "S" ), 5 ) );
-		setVTemp[4][5].add( new VariableK( new Variable( "A" ), 5 ) );
+        setVTemp[4][4].add(new VariableK(new Variable("A"), 5));
+        setVTemp[4][4].add(new VariableK(new Variable("B"), 5));
+        setVTemp[4][5].add(new VariableK(new Variable("C"), 5));
+        setVTemp[4][5].add(new VariableK(new VariableStart("S"), 5));
+        setVTemp[4][5].add(new VariableK(new Variable("A"), 5));
 
-		setVTemp[5][5].add( new VariableK( new Variable( "C" ), 6 ) );
+        setVTemp[5][5].add(new VariableK(new Variable("C"), 6));
 
-		SetVMatrix<VariableK> setVMatrixSolution = SetVMatrix.buildEmptySetVMatrixWrapper(
-				wordLength,
-				VariableK.class
-		).setSetV( setVTemp );
-		System.out.print( setVMatrixSolution.getStringToPrintAsLowerTriangularMatrix() );
-		Assert.assertTrue( checkSetVCalculated(
-				setVMatrixSolution.getSetV(),
-				setVMatrixCalculated.getSetV(),
-				wordLength
-		) );
-		System.out.println( "\nSetV from script is the same as the calculated SetV." );
-	}
+        SetVarKMatrix setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength).setSetV(setVTemp);
+        System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
+        Assert.assertTrue(checkSetVCalculated(
+                setVarKMatrixSolution.getSetV(),
+                setVarKMatrixCalculated.getSetV(),
+                wordLength
+        ));
+        System.out.println("\nSetV from script is the same as the calculated SetV.");
+    }
 
 
-	@Test
-	public void CYKCalculateSetVVariableKTestWithScript() {
-		System.out.println( "" );
-		System.out.println( "############################" );
-		System.out.println( "ResultCalculator CYK: algorithmAdvanced with input Grammar from the TI1 script" );
-		// @formatter:off
+    @Test
+    public void CYKCalculateSetVVariableKTestWithScript() {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("ResultCalculator CYK: algorithmAdvanced with input Grammar from the TI1 script");
+        // @formatter:off
         Grammar grammar = new Grammar(new VariableStart("S"));
         Production productions[] = new Production[15];
         productions[0] = new Production(new VariableStart("S"), new VariableCompound(new Variable("N"), new Variable("B")));
@@ -586,109 +584,104 @@ public class CYKTest {
         productions[14] = new Production(new Variable("D"), new VariableCompound(new Variable("B"), new Variable("B")));
         grammar.addProduction(productions);
         String word = "01110100";
-		// @formatter:on
-		// @formatter:on
-		SetVMatrix<VariableK> setVMatrixCalculated = CYK.calculateSetVAdvanced(
-				grammar,
-				Util.stringToTerminalList( word )
-		);
-		System.out.println( setVMatrixCalculated.getStringToPrintAsLowerTriangularMatrix() );
-		int wordLength = word.length();
-		Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray( wordLength );
+        GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
+        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
+        // @formatter:on
+        SetVarKMatrix setVarKMatrixCalculated = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
+        System.out.println(setVarKMatrixCalculated.getStringToPrintAsLowerTriangularMatrix());
+        int wordLength = word.length();
+        Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 
-		//reconstructing example matrix from scriptTI1
-		setVTemp[0][0].add( new VariableK( new Variable( "A" ), 1 ) );
-		setVTemp[0][0].add( new VariableK( new Variable( "N" ), 1 ) );
-		setVTemp[0][1].add( new VariableK( new VariableStart( "S" ), 1 ) );
-		setVTemp[0][1].add( new VariableK( new Variable( "S'" ), 1 ) );
-		setVTemp[0][2].add( new VariableK( new Variable( "B" ), 1 ) );
-		setVTemp[0][3].add( new VariableK( new Variable( "D" ), 3 ) );
-		setVTemp[0][4].add( new VariableK( new Variable( "B" ), 1 ) );
-		setVTemp[0][5].add( new VariableK( new Variable( "D" ), 3 ) );
-		setVTemp[0][5].add( new VariableK( new Variable( "D" ), 5 ) );
-		setVTemp[0][6].add( new VariableK( new Variable( "B" ), 1 ) );
-		setVTemp[0][7].add( new VariableK( new VariableStart( "S" ), 1 ) );
-		setVTemp[0][7].add( new VariableK( new Variable( "S'" ), 1 ) );
+        //reconstructing example matrix from scriptTI1
+        setVTemp[0][0].add(new VariableK(new Variable("A"), 1));
+        setVTemp[0][0].add(new VariableK(new Variable("N"), 1));
+        setVTemp[0][1].add(new VariableK(new VariableStart("S"), 1));
+        setVTemp[0][1].add(new VariableK(new Variable("S'"), 1));
+        setVTemp[0][2].add(new VariableK(new Variable("B"), 1));
+        setVTemp[0][3].add(new VariableK(new Variable("D"), 3));
+        setVTemp[0][4].add(new VariableK(new Variable("B"), 1));
+        setVTemp[0][5].add(new VariableK(new Variable("D"), 3));
+        setVTemp[0][5].add(new VariableK(new Variable("D"), 5));
+        setVTemp[0][6].add(new VariableK(new Variable("B"), 1));
+        setVTemp[0][7].add(new VariableK(new VariableStart("S"), 1));
+        setVTemp[0][7].add(new VariableK(new Variable("S'"), 1));
 
-		setVTemp[1][1].add( new VariableK( new Variable( "E" ), 2 ) );
-		setVTemp[1][1].add( new VariableK( new Variable( "B" ), 2 ) );
-		setVTemp[1][2].add( new VariableK( new Variable( "D" ), 2 ) );
-		setVTemp[1][4].add( new VariableK( new Variable( "D" ), 2 ) );
-		setVTemp[1][6].add( new VariableK( new Variable( "D" ), 2 ) );
-		setVTemp[1][7].add( new VariableK( new Variable( "B" ), 2 ) );
+        setVTemp[1][1].add(new VariableK(new Variable("E"), 2));
+        setVTemp[1][1].add(new VariableK(new Variable("B"), 2));
+        setVTemp[1][2].add(new VariableK(new Variable("D"), 2));
+        setVTemp[1][4].add(new VariableK(new Variable("D"), 2));
+        setVTemp[1][6].add(new VariableK(new Variable("D"), 2));
+        setVTemp[1][7].add(new VariableK(new Variable("B"), 2));
 
-		setVTemp[2][2].add( new VariableK( new Variable( "E" ), 3 ) );
-		setVTemp[2][2].add( new VariableK( new Variable( "B" ), 3 ) );
-		setVTemp[2][3].add( new VariableK( new Variable( "D" ), 3 ) );
-		setVTemp[2][4].add( new VariableK( new Variable( "B" ), 3 ) );
-		setVTemp[2][5].add( new VariableK( new Variable( "D" ), 3 ) );
-		setVTemp[2][5].add( new VariableK( new Variable( "D" ), 5 ) );
-		setVTemp[2][6].add( new VariableK( new Variable( "B" ), 3 ) );
-		setVTemp[2][7].add( new VariableK( new VariableStart( "S" ), 3 ) );
-		setVTemp[2][7].add( new VariableK( new Variable( "S'" ), 3 ) );
+        setVTemp[2][2].add(new VariableK(new Variable("E"), 3));
+        setVTemp[2][2].add(new VariableK(new Variable("B"), 3));
+        setVTemp[2][3].add(new VariableK(new Variable("D"), 3));
+        setVTemp[2][4].add(new VariableK(new Variable("B"), 3));
+        setVTemp[2][5].add(new VariableK(new Variable("D"), 3));
+        setVTemp[2][5].add(new VariableK(new Variable("D"), 5));
+        setVTemp[2][6].add(new VariableK(new Variable("B"), 3));
+        setVTemp[2][7].add(new VariableK(new VariableStart("S"), 3));
+        setVTemp[2][7].add(new VariableK(new Variable("S'"), 3));
 
-		setVTemp[3][3].add( new VariableK( new Variable( "E" ), 4 ) );
-		setVTemp[3][3].add( new VariableK( new Variable( "B" ), 4 ) );
-		setVTemp[3][4].add( new VariableK( new VariableStart( "S" ), 4 ) );
-		setVTemp[3][4].add( new VariableK( new Variable( "S'" ), 4 ) );
-		setVTemp[3][5].add( new VariableK( new Variable( "B" ), 4 ) );
-		setVTemp[3][6].add( new VariableK( new VariableStart( "S" ), 4 ) );
-		setVTemp[3][6].add( new VariableK( new Variable( "S'" ), 4 ) );
-		setVTemp[3][7].add( new VariableK( new Variable( "A" ), 4 ) );
+        setVTemp[3][3].add(new VariableK(new Variable("E"), 4));
+        setVTemp[3][3].add(new VariableK(new Variable("B"), 4));
+        setVTemp[3][4].add(new VariableK(new VariableStart("S"), 4));
+        setVTemp[3][4].add(new VariableK(new Variable("S'"), 4));
+        setVTemp[3][5].add(new VariableK(new Variable("B"), 4));
+        setVTemp[3][6].add(new VariableK(new VariableStart("S"), 4));
+        setVTemp[3][6].add(new VariableK(new Variable("S'"), 4));
+        setVTemp[3][7].add(new VariableK(new Variable("A"), 4));
 
-		setVTemp[4][4].add( new VariableK( new Variable( "A" ), 5 ) );
-		setVTemp[4][4].add( new VariableK( new Variable( "N" ), 5 ) );
-		setVTemp[4][5].add( new VariableK( new VariableStart( "S" ), 5 ) );
-		setVTemp[4][5].add( new VariableK( new Variable( "S'" ), 5 ) );
-		setVTemp[4][6].add( new VariableK( new Variable( "A" ), 5 ) );
-		setVTemp[4][7].add( new VariableK( new Variable( "C" ), 5 ) );
-		setVTemp[4][7].add( new VariableK( new Variable( "C" ), 7 ) );
+        setVTemp[4][4].add(new VariableK(new Variable("A"), 5));
+        setVTemp[4][4].add(new VariableK(new Variable("N"), 5));
+        setVTemp[4][5].add(new VariableK(new VariableStart("S"), 5));
+        setVTemp[4][5].add(new VariableK(new Variable("S'"), 5));
+        setVTemp[4][6].add(new VariableK(new Variable("A"), 5));
+        setVTemp[4][7].add(new VariableK(new Variable("C"), 5));
+        setVTemp[4][7].add(new VariableK(new Variable("C"), 7));
 
-		setVTemp[5][5].add( new VariableK( new Variable( "E" ), 6 ) );
-		setVTemp[5][5].add( new VariableK( new Variable( "B" ), 6 ) );
-		setVTemp[5][6].add( new VariableK( new VariableStart( "S" ), 6 ) );
-		setVTemp[5][6].add( new VariableK( new Variable( "S'" ), 6 ) );
-		setVTemp[5][7].add( new VariableK( new Variable( "A" ), 6 ) );
+        setVTemp[5][5].add(new VariableK(new Variable("E"), 6));
+        setVTemp[5][5].add(new VariableK(new Variable("B"), 6));
+        setVTemp[5][6].add(new VariableK(new VariableStart("S"), 6));
+        setVTemp[5][6].add(new VariableK(new Variable("S'"), 6));
+        setVTemp[5][7].add(new VariableK(new Variable("A"), 6));
 
-		setVTemp[6][6].add( new VariableK( new Variable( "A" ), 7 ) );
-		setVTemp[6][6].add( new VariableK( new Variable( "N" ), 7 ) );
-		setVTemp[6][7].add( new VariableK( new Variable( "C" ), 7 ) );
+        setVTemp[6][6].add(new VariableK(new Variable("A"), 7));
+        setVTemp[6][6].add(new VariableK(new Variable("N"), 7));
+        setVTemp[6][7].add(new VariableK(new Variable("C"), 7));
 
-		setVTemp[7][7].add( new VariableK( new Variable( "A" ), 8 ) );
-		setVTemp[7][7].add( new VariableK( new Variable( "N" ), 8 ) );
+        setVTemp[7][7].add(new VariableK(new Variable("A"), 8));
+        setVTemp[7][7].add(new VariableK(new Variable("N"), 8));
 
-		SetVMatrix<VariableK> setVMatrixSolution = SetVMatrix.buildEmptySetVMatrixWrapper(
-				wordLength,
-				VariableK.class
-		).setSetV( setVTemp );
-		System.out.print( setVMatrixSolution.getStringToPrintAsLowerTriangularMatrix() );
-		Assert.assertTrue( checkSetVCalculated(
-				setVMatrixSolution.getSetV(),
-				setVMatrixCalculated.getSetV(),
-				wordLength
-		) );
-		System.out.println( "\nSetV from script is the same as the calculated SetV." );
-	}
+        SetVarKMatrix setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength).setSetV(setVTemp);
+        System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
+        Assert.assertTrue(checkSetVCalculated(
+                setVarKMatrixSolution.getSetV(),
+                setVarKMatrixCalculated.getSetV(),
+                wordLength
+        ));
+        System.out.println("\nSetV from script is the same as the calculated SetV.");
+    }
 
-	/**
-	 * Checking the two sets for being identical.
-	 */
-	private static <T extends LeftHandSideElement> boolean checkSetVCalculated(
-			Set<T>[][] setVTemp,
-			Set<T>[][] setV,
-			int wordLength) {
-		boolean temp = true;
-		for ( int i = 0; i < wordLength; i++ ) {
-			for ( int j = 0; j < wordLength; j++ ) {
-				// TODO Martin: Why not possible? Set<T>[][] setVTemp2 = new HashSet<T>(). setVTemp.addAll(setVTemp)
-				if ( !setVTemp[i][j].containsAll( setV[i][j] ) ||
-						!setV[i][j].containsAll( setV[i][j] ) ||
-						setVTemp[i][j].size() != setV[i][j].size() ) {
-					temp = false;
-				}
-			}
-		}
-		return temp;
-	}
+    /**
+     * Checking the two sets for being identical.
+     */
+    private static <T extends CellElement> boolean checkSetVCalculated(
+            Set<T>[][] setVTemp,
+            Set<T>[][] setV,
+            int wordLength) {
+        boolean temp = true;
+        for (int i = 0; i < wordLength; i++) {
+            for (int j = 0; j < wordLength; j++) {
+                // TODO Martin: Why not possible? Set<T>[][] setVTemp2 = new HashSet<T>(). setVTemp.addAll(setVTemp)
+                if (!setVTemp[i][j].containsAll(setV[i][j]) ||
+                        !setV[i][j].containsAll(setV[i][j]) ||
+                        setVTemp[i][j].size() != setV[i][j].size()) {
+                    temp = false;
+                }
+            }
+        }
+        return temp;
+    }
 
 }

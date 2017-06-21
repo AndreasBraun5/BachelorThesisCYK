@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  4 JUN 2017 23:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  5 JUN 2017 20:28
 entering extended mode
 **./Main.tex
 (Main.tex
@@ -1374,54 +1374,54 @@ ABD: EveryShipout initializing macros
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count152
-(pyramid.tex
-LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 233.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 233.
+(scriptPyramid.tex
+LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 235.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 235.
 
  ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 233.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 235.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 233
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 235
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 233
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 235
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <2.5> on input line 233.
+(Font)              <2.5> on input line 235.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <1.74998> on input line 233.
+(Font)              <1.74998> on input line 235.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <1.25> on input line 233.
-LaTeX Font Info:    Try loading font information for U+msa on input line 233.
+(Font)              <1.25> on input line 235.
+LaTeX Font Info:    Try loading font information for U+msa on input line 235.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 233.
+LaTeX Font Info:    Try loading font information for U+msb on input line 235.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 233.
+LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 235.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.9> on input line 233.
+(Font)              <4.9> on input line 235.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <3.42998> on input line 233.
+(Font)              <3.42998> on input line 235.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <2.45> on input line 233.
+(Font)              <2.45> on input line 235.
 )
 LaTeX Font Info:    Try loading font information for T1+lmss on input line 151.
 
@@ -1437,7 +1437,7 @@ File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ### bottom level 
 Here is how much of TeX's memory you used:
  22875 strings out of 493328
- 447844 string characters out of 3139104
+ 447880 string characters out of 3139104
  647499 words of memory out of 3000000
  25959 multiletter control sequences out of 15000+200000
  46201 words of font info for 53 fonts, out of 3000000 for 9000
@@ -1447,7 +1447,7 @@ Here is how much of TeX's memory you used:
 rogram Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}<C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
 lic/lm/lmr5.pfb>
-Output written on Main.pdf (1 page, 44792 bytes).
+Output written on Main.pdf (1 page, 41944 bytes).
 PDF statistics:
  21 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

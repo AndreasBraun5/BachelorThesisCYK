@@ -1,6 +1,6 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import com.github.andreasbraun5.thesis.grammar.GrammarWordMatrixWrapper;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 
 /**

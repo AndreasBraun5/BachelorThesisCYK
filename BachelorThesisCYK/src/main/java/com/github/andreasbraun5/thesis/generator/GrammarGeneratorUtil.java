@@ -1,7 +1,9 @@
 package com.github.andreasbraun5.thesis.generator;
 
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.grammar.*;
-import com.github.andreasbraun5.thesis.util.SetVMatrix;
+import com.github.andreasbraun5.thesis.pyramid.VariableK;
+import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 
 import java.util.*;
@@ -83,9 +85,9 @@ public class GrammarGeneratorUtil {
             GrammarWordMatrixWrapper grammarWordMatrixWrapper) {
         Grammar grammar = grammarWordMatrixWrapper.getGrammar();
         List<Terminal> word = grammarWordMatrixWrapper.getWord();
-        SetVMatrix<VariableK> setVMatrix = grammarWordMatrixWrapper.getSetV();
-        Set<VariableK>[][] setV = setVMatrix.getSetV();
-        int wordLength = setVMatrix.getSetV().length;
+        SetVarKMatrix SetVarKMatrix = grammarWordMatrixWrapper.getSetV();
+        Set<VariableK>[][] setV = SetVarKMatrix.getSetV();
+        int wordLength = SetVarKMatrix.getSetV().length;
         Map<Variable, List<Production>> productions = grammar.getProductionsMap();
         Set<Production> onlyUsefulProductions = new HashSet<>();
         // Similar to stepIIAdvanced

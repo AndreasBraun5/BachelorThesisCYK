@@ -1,10 +1,12 @@
 package com.github.andreasbraun5.thesis.grammar;
 
+import com.github.andreasbraun5.thesis.pyramid.CellElement;
+
 /**
  * Created by Andreas Braun on 20.12.2016.
  * https://github.com/AndreasBraun5/
  */
-public class Variable implements RightHandSideElement, LeftHandSideElement {
+public class Variable implements LeftHandSideElement, CellElement {
 
 	private String name;
 
@@ -41,9 +43,8 @@ public class Variable implements RightHandSideElement, LeftHandSideElement {
 		return name;
 	}
 
-	@Override
-	public Variable getVariable() {
-		return this;
-	}
-
+    @Override
+    public Variable getVariable() {
+        return this;
+    }
 }

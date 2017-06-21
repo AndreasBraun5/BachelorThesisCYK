@@ -6,43 +6,35 @@
 }\newcommand{\myfontnumbering}[1]{
 \fontsize{2.5}{12}\selectfont{#1}
 }%Outer hull
-%Tip of the pyramid
-\coordinate (tip) at (4,-4);
-\foreach \i in {0,...,8} {
+%Tip of the pyramidLatex
+\coordinate (tip) at (3,-3);
+\foreach \i in {0,...,6} {
  	\coordinate (\i) at (\i,0);
 }
-%Draw the left and right line of the pyramid pointing downwards
-\draw (0) -- (tip) -- (8);
+%Draw the left and right line of the pyramidLatex pointing downwards
+\draw (0) -- (tip) -- (6);
 %Grid lines direction down-left to top-right
 \coordinate (dl1) at (0.5,-0.5);
 \coordinate (dl2) at (1.0,-1.0);
 \coordinate (dl3) at (1.5,-1.5);
 \coordinate (dl4) at (2.0,-2.0);
 \coordinate (dl5) at (2.5,-2.5);
-\coordinate (dl6) at (3.0,-3.0);
-\coordinate (dl7) at (3.5,-3.5);
 \draw (dl1) -- (1,0);
 \draw (dl2) -- (2,0);
 \draw (dl3) -- (3,0);
 \draw (dl4) -- (4,0);
 \draw (dl5) -- (5,0);
-\draw (dl6) -- (6,0);
-\draw (dl7) -- (7,0);
 %Grid lines direction down-right to top-left
-\coordinate (dr1) at (4.5,-3.5);
-\coordinate (dr2) at (5.0,-3.0);
-\coordinate (dr3) at (5.5,-2.5);
-\coordinate (dr4) at (6.0,-2.0);
-\coordinate (dr5) at (6.5,-1.5);
-\coordinate (dr6) at (7.0,-1.0);
-\coordinate (dr7) at (7.5,-0.5);
+\coordinate (dr1) at (3.5,-2.5);
+\coordinate (dr2) at (4.0,-2.0);
+\coordinate (dr3) at (4.5,-1.5);
+\coordinate (dr4) at (5.0,-1.0);
+\coordinate (dr5) at (5.5,-0.5);
 \draw (dr1) -- (1,0);
 \draw (dr2) -- (2,0);
 \draw (dr3) -- (3,0);
 \draw (dr4) -- (4,0);
 \draw (dr5) -- (5,0);
-\draw (dr6) -- (6,0);
-\draw (dr7) -- (7,0);
 %Small lines at the top
 \coordinate (top0) at (0.0,0.0);
 \coordinate (top1) at (1.0,0.0);
@@ -51,8 +43,6 @@
 \coordinate (top4) at (4.0,0.0);
 \coordinate (top5) at (5.0,0.0);
 \coordinate (top6) at (6.0,0.0);
-\coordinate (top7) at (7.0,0.0);
-\coordinate (top8) at (8.0,0.0);
 \coordinate (topUpper0) at (0.0,0.6);
 \coordinate (topUpper1) at (1.0,0.6);
 \coordinate (topUpper2) at (2.0,0.6);
@@ -60,8 +50,6 @@
 \coordinate (topUpper4) at (4.0,0.6);
 \coordinate (topUpper5) at (5.0,0.6);
 \coordinate (topUpper6) at (6.0,0.6);
-\coordinate (topUpper7) at (7.0,0.6);
-\coordinate (topUpper8) at (8.0,0.6);
 \draw (top0) -- (topUpper0);
 \draw (top1) -- (topUpper1);
 \draw (top2) -- (topUpper2);
@@ -69,8 +57,6 @@
 \draw (top4) -- (topUpper4);
 \draw (top5) -- (topUpper5);
 \draw (top6) -- (topUpper6);
-\draw (top7) -- (topUpper7);
-\draw (top8) -- (topUpper8);
 %The string
 \coordinate (w0) at (0.5,0.6);
 \coordinate (w1) at (1.5,0.6);
@@ -78,157 +64,94 @@
 \coordinate (w3) at (3.5,0.6);
 \coordinate (w4) at (4.5,0.6);
 \coordinate (w5) at (5.5,0.6);
-\coordinate (w6) at (6.5,0.6);
-\coordinate (w7) at (7.5,0.6);
-\node [] at (w0) {c};
+\node [] at (w0) {b};
 \node [] at (w1) {b};
-\node [] at (w2) {c};
-\node [] at (w3) {a};
-\node [] at (w4) {a};
+\node [] at (w2) {a};
+\node [] at (w3) {c};
+\node [] at (w4) {b};
 \node [] at (w5) {c};
-\node [] at (w6) {c};
-\node [] at (w7) {b};
 % Variables in the cells
 %cell00
 \coordinate (center00) at (0.5,0.0);
 \node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-\node [] at (center00) {\myfontvars{A$_1$C$_1$}};
+\node [] at (center00) {\myfontvars{~$A$~$B$~}};
 %cell01
 \coordinate (center01) at (1.5,0.0);
 \node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-\node [] at (center01) {\myfontvars{B$_2$}};
+\node [] at (center01) {\myfontvars{~$A$~$B$~}};
 %cell02
 \coordinate (center02) at (2.5,0.0);
 \node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-\node [] at (center02) {\myfontvars{B$_3$}};
+\node [] at (center02) {\myfontvars{~$A$~}};
 %cell03
 \coordinate (center03) at (3.5,0.0);
 \node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-\node [] at (center03) {\myfontvars{A$_4$}};
+\node [] at (center03) {\myfontvars{~$C$~}};
 %cell04
 \coordinate (center04) at (4.5,0.0);
 \node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
-\node [] at (center04) {\myfontvars{A$_5$}};
+\node [] at (center04) {\myfontvars{~$A$~$B$~}};
 %cell05
 \coordinate (center05) at (5.5,0.0);
 \node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
-\node [] at (center05) {\myfontvars{C$_6$A$_6$}};
-%cell06
-\coordinate (center06) at (6.5,0.0);
-\node [below=0.18cm] at (center06) {\myfontnumbering{$(06)$}};
-\node [] at (center06) {\myfontvars{C$_7$A$_7$}};
-%cell07
-\coordinate (center07) at (7.5,0.0);
-\node [below=0.18cm] at (center07) {\myfontnumbering{$(07)$}};
-\node [] at (center07) {\myfontvars{B$_8$}};
+\node [] at (center05) {\myfontvars{~$C$~}};
 %cell10
 \coordinate (center10) at (1.0,-0.5);
 \node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-\node [] at (center10) {\myfontvars{S$_1$B$_1$}};
+\node [] at (center10) {\myfontvars{~$B$~$S$~}};
 %cell11
 \coordinate (center11) at (2.0,-0.5);
 \node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+\node [] at (center11) {\myfontvars{~$S$~}};
 %cell12
 \coordinate (center12) at (3.0,-0.5);
 \node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-\node [] at (center12) {\myfontvars{A$_3$}};
+\node [] at (center12) {\myfontvars{~$S$~$C$~}};
 %cell13
 \coordinate (center13) at (4.0,-0.5);
 \node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
+\node [] at (center13) {\myfontvars{~$S$~}};
 %cell14
 \coordinate (center14) at (5.0,-0.5);
 \node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
-\node [] at (center14) {\myfontvars{C$_5$}};
-%cell15
-\coordinate (center15) at (6.0,-0.5);
-\node [below=0.18cm] at (center15) {\myfontnumbering{$(15)$}};
-\node [] at (center15) {\myfontvars{C$_6$}};
-%cell16
-\coordinate (center16) at (7.0,-0.5);
-\node [below=0.18cm] at (center16) {\myfontnumbering{$(16)$}};
-\node [] at (center16) {\myfontvars{S$_7$B$_7$}};
+\node [] at (center14) {\myfontvars{~$A$~$C$~$S$~}};
 %cell20
 \coordinate (center20) at (1.5,-1.0);
 \node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
 %cell21
 \coordinate (center21) at (2.5,-1.0);
 \node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-\node [] at (center21) {\myfontvars{A$_2$}};
+\node [] at (center21) {\myfontvars{~$A$~$C$~$S$~}};
 %cell22
 \coordinate (center22) at (3.5,-1.0);
 \node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
+\node [] at (center22) {\myfontvars{~$S$~}};
 %cell23
 \coordinate (center23) at (4.5,-1.0);
 \node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
-\node [] at (center23) {\myfontvars{C$_4$}};
-%cell24
-\coordinate (center24) at (5.5,-1.0);
-\node [below=0.18cm] at (center24) {\myfontnumbering{$(24)$}};
-\node [] at (center24) {\myfontvars{C$_5$}};
-%cell25
-\coordinate (center25) at (6.5,-1.0);
-\node [below=0.18cm] at (center25) {\myfontnumbering{$(25)$}};
-\node [] at (center25) {\myfontvars{S$_6$B$_6$B$_7$}};
 %cell30
 \coordinate (center30) at (2.0,-1.5);
 \node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-\node [] at (center30) {\myfontvars{A$_2$}};
+\node [] at (center30) {\myfontvars{~$A$~$S$~$C$~}};
 %cell31
 \coordinate (center31) at (3.0,-1.5);
 \node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
+\node [] at (center31) {\myfontvars{~$S$~}};
 %cell32
 \coordinate (center32) at (4.0,-1.5);
 \node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
-\node [] at (center32) {\myfontvars{S$_3$C$_4$}};
-%cell33
-\coordinate (center33) at (5.0,-1.5);
-\node [below=0.18cm] at (center33) {\myfontnumbering{$(33)$}};
-\node [] at (center33) {\myfontvars{C$_4$}};
-%cell34
-\coordinate (center34) at (6.0,-1.5);
-\node [below=0.18cm] at (center34) {\myfontnumbering{$(34)$}};
-\node [] at (center34) {\myfontvars{S$_5$B$_6$B$_7$}};
 %cell40
 \coordinate (center40) at (2.5,-2.0);
 \node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
+\node [] at (center40) {\myfontvars{~$S$~}};
 %cell41
 \coordinate (center41) at (3.5,-2.0);
 \node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
-\node [] at (center41) {\myfontvars{C$_4$S$_2$}};
-%cell42
-\coordinate (center42) at (4.5,-2.0);
-\node [below=0.18cm] at (center42) {\myfontnumbering{$(42)$}};
-\node [] at (center42) {\myfontvars{S$_3$C$_4$}};
-%cell43
-\coordinate (center43) at (5.5,-2.0);
-\node [below=0.18cm] at (center43) {\myfontnumbering{$(43)$}};
-\node [] at (center43) {\myfontvars{S$_4$B$_6$B$_7$}};
+\node [] at (center41) {\myfontvars{~$C$~$S$~}};
 %cell50
 \coordinate (center50) at (3.0,-2.5);
 \node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
-\node [] at (center50) {\myfontvars{C$_4$C$_1$S$_2$}};
-%cell51
-\coordinate (center51) at (4.0,-2.5);
-\node [below=0.18cm] at (center51) {\myfontnumbering{$(51)$}};
-\node [] at (center51) {\myfontvars{C$_4$S$_2$}};
-%cell52
-\coordinate (center52) at (5.0,-2.5);
-\node [below=0.18cm] at (center52) {\myfontnumbering{$(52)$}};
-\node [] at (center52) {\myfontvars{S$_4$B$_6$B$_7$}};
-%cell60
-\coordinate (center60) at (3.5,-3.0);
-\node [below=0.18cm] at (center60) {\myfontnumbering{$(60)$}};
-\node [] at (center60) {\myfontvars{C$_4$C$_1$S$_2$}};
-%cell61
-\coordinate (center61) at (4.5,-3.0);
-\node [below=0.18cm] at (center61) {\myfontnumbering{$(61)$}};
-\node [] at (center61) {\myfontvars{S$_4$B$_6$B$_7$}};
-%cell70
-\coordinate (center70) at (4.0,-3.5);
-\node [below=0.18cm] at (center70) {\myfontnumbering{$(70)$}};
-\node [] at (center70) {\myfontvars{S$_4$B$_6$B$_7$}};
-\node [above] at (center70) {\myfontvars{S$_1$}};
-\node [below] at (center70) {\myfontvars{B$_1$}};
+\node [] at (center50) {\myfontvars{~$A$~$S$~$C$~}};
 \end{tikzpicture}
 }
 \end{center}

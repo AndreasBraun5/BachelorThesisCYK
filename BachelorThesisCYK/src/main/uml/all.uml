@@ -24,7 +24,7 @@
     <node x="1591.0" y="825.0">com.github.andreasbraun5.thesis.grammar.test.ProductionTest</node>
     <node x="0.0" y="1293.0">com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException</node>
     <node x="771.5751511852926" y="124.0">com.github.andreasbraun5.thesis.grammar.Variable</node>
-    <node x="460.46294750846664" y="692.0">com.github.andreasbraun5.thesis.grammar.GrammarProperties</node>
+    <node x="460.46294750846664" y="692.0">GrammarProperties</node>
     <node x="0.0" y="836.0">com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException</node>
     <node x="1872.0" y="355.0">com.github.andreasbraun5.thesis.grammar.Production</node>
     <node x="3291.354166666666" y="803.0">com.github.andreasbraun5.thesis.grammar.GrammarValidityChecker</node>
@@ -33,7 +33,7 @@
   </nodes>
   <notes />
   <edges>
-    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
+    <edge source="com.github.andreasbraun5.thesis.parser.test.CYKTest" target="GrammarProperties">
       <point x="-107.625" y="-58.5" />
       <point x="2120.137796323174" y="1061.0" />
       <point x="841.9629475084666" y="1061.0" />
@@ -45,7 +45,7 @@
       <point x="3398.3541666666665" y="672.0" />
       <point x="-73.5" y="25.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.main.Main" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
+    <edge source="com.github.andreasbraun5.thesis.main.Main" target="GrammarProperties">
       <point x="69.20000000000005" y="-36.5" />
       <point x="356.9000000000001" y="1111.0" />
       <point x="514.9629475084666" y="1111.0" />
@@ -85,7 +85,7 @@
       <point x="796.6136127237542" y="295.0" />
       <point x="-83.46153846153845" y="70.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
+    <edge source="com.github.andreasbraun5.thesis.grammar.test.GrammarPropertiesTest" target="GrammarProperties">
       <point x="-34.0" y="-25.5" />
       <point x="858.387796323174" y="1071.0" />
       <point x="732.9629475084666" y="1071.0" />
@@ -193,7 +193,7 @@
       <point x="2250.875" y="582.0" />
       <point x="162.375" y="103.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.Variable">
+    <edge source="GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.Variable">
       <point x="-163.5" y="-169.5" />
       <point x="514.9629475084666" y="602.0" />
       <point x="488.0751511852926" y="602.0" />
@@ -229,13 +229,13 @@
       <point x="813.3059204160618" y="305.0" />
       <point x="-66.76923076923083" y="70.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.Terminal">
+    <edge source="GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.Terminal">
       <point x="163.5" y="-169.5" />
       <point x="841.9629475084666" y="662.0" />
       <point x="1088.9918178519592" y="662.0" />
       <point x="-49.33333333333337" y="70.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.grammar.GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
+    <edge source="GrammarProperties" target="com.github.andreasbraun5.thesis.grammar.VariableStart">
       <point x="-54.5" y="-169.5" />
       <point x="623.9629475084666" y="632.0" />
       <point x="857.0751511852926" y="632.0" />
@@ -275,7 +275,7 @@
       <point x="811.0751511852926" y="612.0" />
       <point x="-69.0" y="25.5" />
     </edge>
-    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest" target="com.github.andreasbraun5.thesis.grammar.GrammarProperties">
+    <edge source="com.github.andreasbraun5.thesis.generator.GeneratorWordDiceRollTest" target="GrammarProperties">
       <point x="25.0" y="-25.5" />
       <point x="634.387796323174" y="1111.0" />
       <point x="623.9629475084666" y="1111.0" />

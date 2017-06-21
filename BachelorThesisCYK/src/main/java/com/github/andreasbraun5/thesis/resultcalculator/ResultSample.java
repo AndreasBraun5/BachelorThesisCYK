@@ -1,9 +1,12 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarPropertiesExamConstraints;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarPropertiesGrammarRestrictions;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.*;
-import com.github.andreasbraun5.thesis.util.SetVMatrix;
+import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 
 /**
  * Created by Andreas Braun on 25.01.2017.
@@ -13,7 +16,7 @@ public class ResultSample {
 
 	private Grammar grammar;
 	private String word;
-	private SetVMatrix<VariableK> setVMatrix;
+	private SetVarKMatrix SetVarKMatrix;
 
 	// This stays here
 	private boolean isValid;
@@ -32,14 +35,14 @@ public class ResultSample {
 				grammarPropertiesExamConstraints;
 		this.grammar = grammarWordMatrixWrapper.getGrammar();
 		this.word = grammarWordMatrixWrapper.getWord().toString();
-		this.setVMatrix = grammarWordMatrixWrapper.getSetV();
+		this.SetVarKMatrix = grammarWordMatrixWrapper.getSetV();
 		this.isWordProducible = GrammarValidityChecker.
-				checkProducibilityCYK( setVMatrix, grammar, grammarGeneratorSettings.grammarProperties );
+				checkProducibilityCYK(SetVarKMatrix, grammar, grammarGeneratorSettings.grammarProperties );
 
 
 		// CheckMaxNumberOfVarsPerCellResultWrapper
 		CheckMaxNumberOfVarsPerCellResultWrapper maxNumberOfVarsPerCellResultWrapper = GrammarValidityChecker.
-				checkMaxNumberOfVarsPerCell( setVMatrix, tempGrammarRestrictions.getMaxNumberOfVarsPerCell() );
+				checkMaxNumberOfVarsPerCell(SetVarKMatrix, tempGrammarRestrictions.getMaxNumberOfVarsPerCell() );
 		this.resultSampleGrammarRestrictions.setMaxNumberOfVarsPerCellCount(
 				maxNumberOfVarsPerCellResultWrapper.isMaxNumberOfVarsPerCell() );
 		this.resultSampleGrammarRestrictions.setMaxNumberOfVarsPerCellCount(
@@ -47,7 +50,7 @@ public class ResultSample {
 
 		// CheckMaxSumOfVarsInPyramidResultWrapper
 		CheckMaxSumOfVarsInPyramidResultWrapper checkMaxSumOfVarsInPyramidResultWrapper = GrammarValidityChecker.
-				checkMaxSumOfVarsInPyramid( setVMatrix, tempExamConstraints.getMaxSumOfVarsInPyramid() );
+				checkMaxSumOfVarsInPyramid(SetVarKMatrix, tempExamConstraints.getMaxSumOfVarsInPyramid() );
 		this.resultSampleExamConstraints.setMaxSumOfVarsInPyramidCount(
 				checkMaxSumOfVarsInPyramidResultWrapper.isMaxSumOfVarsInPyramid() );
 		this.resultSampleExamConstraints.setMaxSumOfVarsInPyramid(
@@ -56,7 +59,7 @@ public class ResultSample {
 		// CheckRightCellCombinationsForcedResultWrapper
 		CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationsForcedResultWrapper =
 				GrammarValidityChecker.checkRightCellCombinationForced(
-						setVMatrix,
+                        SetVarKMatrix,
 						tempExamConstraints.getMinRightCellCombinationsForced(),
 						grammar
 				);
@@ -77,7 +80,6 @@ public class ResultSample {
 				checkSumOfProductionsResultWrapper.isSumOfProductions() );
 		this.resultSampleExamConstraints.setMaxSumOfProductions(
 				checkSumOfProductionsResultWrapper.getMaxSumOfProductions() );
-
 
 		this.resultSampleExamConstraints.setExamConstraints(
 				resultSampleExamConstraints.isMaxSumOfProductionsCount() &&
@@ -100,9 +102,7 @@ public class ResultSample {
 		return "ResultSample{" +
 				"\ngrammar=" + grammar +
 				"\nword='" + word + '\'' +
-				"\nsetV=" + SetVMatrix.buildEmptySetVMatrixWrapper( word.length(), Variable.class )
-				.setSetV( setVMatrix.getSimpleMatrix() )
-				.getStringToPrintAsLowerTriangularMatrix() +
+				"\nsetV=" + SetVarKMatrix.getStringToPrintAsLowerTriangularMatrixSimple() +
 				"\nmarkedRightCellCombinationForced=" + resultSampleExamConstraints.getMarkedRightCellCombinationForced()
 				.getStringToPrintAsLowerTriangularMatrix() +
 				"\nmaxVarsPerCellSetV=" + resultSampleGrammarRestrictions.getMaxNumberOfVarsPerCellCount() +
@@ -124,8 +124,8 @@ public class ResultSample {
 		return word;
 	}
 
-	public SetVMatrix<VariableK> getSetV() {
-		return setVMatrix;
+	public SetVarKMatrix getSetV() {
+		return SetVarKMatrix;
 	}
 
 	public ResultSampleExamConstraints getResultSampleExamConstraints() {

@@ -1,7 +1,9 @@
-package com.github.andreasbraun5.thesis.grammar;
+package com.github.andreasbraun5.thesis.grammarproperties;
 
 import com.github.andreasbraun5.thesis.exception.GrammarWrapperRuntimeException;
-import com.github.andreasbraun5.thesis.util.SetVMatrix;
+import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.Terminal;
+import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
 public class GrammarWordMatrixWrapper {
 	private Grammar grammar;
 	private List<Terminal> word;
-	private SetVMatrix<VariableK> SetV;
+	private SetVarKMatrix SetV;
 
 	public static GrammarWordMatrixWrapper buildGrammarWordMatrixWrapper() {
 		return new GrammarWordMatrixWrapper();
@@ -44,11 +46,11 @@ public class GrammarWordMatrixWrapper {
 		return this;
 	}
 
-	public SetVMatrix<VariableK> getSetV() {
+	public SetVarKMatrix getSetV() {
 		return SetV;
 	}
 
-	public void setSetV(SetVMatrix<VariableK> setV) {
+	public void setSetV(SetVarKMatrix setV) {
 		this.SetV = setV;
 	}
 }

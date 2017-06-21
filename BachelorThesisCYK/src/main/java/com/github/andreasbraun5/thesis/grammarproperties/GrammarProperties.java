@@ -1,4 +1,6 @@
-package com.github.andreasbraun5.thesis.grammar;
+package com.github.andreasbraun5.thesis.grammarproperties;
+
+import com.github.andreasbraun5.thesis.grammar.*;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -24,7 +26,6 @@ public class GrammarProperties {
 	public GrammarProperties(VariableStart varStart) {
 		this.variableStart = varStart;
 		this.variables.add( varStart );
-
 	}
 
 	public GrammarProperties(VariableStart varStart, Set<Variable> variables, Set<Terminal> terminals) {
@@ -35,8 +36,7 @@ public class GrammarProperties {
 
 	/**
 	 * Generates not all obligatory attributes of the GrammarProperties. E.g. terminal and VariableStart, but
-	 * variables is missing.
-	 * Also sets the sizeOf the Word variable.
+	 * variables is missing. Also sets the sizeOf the Word variable.
 	 */
 	public static GrammarProperties generatePartOfGrammarPropertiesFromWord(VariableStart startVariable, String word) {
 		GrammarProperties grammarProperties = new GrammarProperties( startVariable );

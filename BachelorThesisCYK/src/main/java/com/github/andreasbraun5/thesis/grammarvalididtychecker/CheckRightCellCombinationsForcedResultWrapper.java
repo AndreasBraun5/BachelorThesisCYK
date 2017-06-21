@@ -1,6 +1,6 @@
 package com.github.andreasbraun5.thesis.grammarvalididtychecker;
 
-import com.github.andreasbraun5.thesis.util.SetVMatrix;
+import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 
 /**
  * Created by Andreas Braun on 10.02.2017.
@@ -10,7 +10,7 @@ public class CheckRightCellCombinationsForcedResultWrapper {
 
 	private boolean isRightCellCombinationForced;
 	private int countRightCellCombinationForced;
-	private SetVMatrix markedRightCellCombinationForced;
+	private SetVarKMatrix markedRightCellCombinationForced;
 
 	public static CheckRightCellCombinationsForcedResultWrapper buildRightCellCombinationsForcedWrapper() {
 		return new CheckRightCellCombinationsForcedResultWrapper();
@@ -34,11 +34,11 @@ public class CheckRightCellCombinationsForcedResultWrapper {
 		return this;
 	}
 
-	public SetVMatrix getMarkedRightCellCombinationForced() {
+	public SetVarKMatrix getMarkedRightCellCombinationForced() {
 		return markedRightCellCombinationForced;
 	}
 
-	public CheckRightCellCombinationsForcedResultWrapper setMarkedRightCellCombinationForced(SetVMatrix markedRightCellCombinationForced) {
+	public CheckRightCellCombinationsForcedResultWrapper setMarkedRightCellCombinationForced(SetVarKMatrix markedRightCellCombinationForced) {
 		this.markedRightCellCombinationForced = markedRightCellCombinationForced;
 		return this;
 	}
