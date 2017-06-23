@@ -9,6 +9,7 @@ import com.github.andreasbraun5.thesis.pyramid.CellElement;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
+import com.github.andreasbraun5.thesis.util.Word;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -40,7 +41,7 @@ public class CYKTest {
         grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord(10);
         // Generate word
         // @formatter:off
-        String word = WordGeneratorDiceRoll.generateWordAsString(grammarProperties);
+        Word word = WordGeneratorDiceRoll.generateWord(grammarProperties);
         // Generate Grammar
         Grammar grammar = new Grammar(new VariableStart("S"));
         grammar.addProduction(
@@ -49,14 +50,14 @@ public class CYKTest {
                         new VariableCompound(new VariableStart("S"), new VariableStart("S")))
         );
         GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
-        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
+        grammarWordMatrixWrapper.setWord(word);
         // @formatter:on
         System.out.println(grammar);
         // Check for integrity
         SetVarKMatrix SetVarKMatrix = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
         System.out.println(SetVarKMatrix.getStringToPrintAsLowerTriangularMatrixSimple());
-        Assert.assertEquals("The grammar and the word aren't compatible, but should be.", true, CYK.algorithmAdvanced(
-                grammarWordMatrixWrapper, Util.stringToTerminalList(word))
+        Assert.assertEquals("The grammar and the word aren't compatible, but should be.",
+                true, CYK.algorithmAdvanced(grammarWordMatrixWrapper, word)
         );
     }
 
@@ -168,12 +169,12 @@ public class CYKTest {
                 setVarKMatrixSolution.getSimpleSetDoubleArray());
         System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
         Assert.assertTrue(checkSetVCalculated(
-                setVarKMatrixSolutionSimple.getSetV(),
+                setVarKMatrixSolutionSimple.getVarKMatrix(),
                 setVarKMatrixCalculated.getSimpleSetDoubleArray(),
                 wordLength
         ));
         // TODO: Martin down vs up.
-        //Assert.assertTrue( checkSetVCalculated( setVTemp, setVarKMatrixCalculated.getSetV(), wordLength ) );
+        //Assert.assertTrue( checkSetVCalculated( setVTemp, setVarKMatrixCalculated.getVarKMatrix(), wordLength ) );
         System.out.println("\nSetV from script is the same as the calculated SetV.");
     }
 
@@ -275,7 +276,7 @@ public class CYKTest {
                 setVarKMatrixSolution.getSimpleSetDoubleArray());
         System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
         Assert.assertTrue(checkSetVCalculated(
-                setVarKMatrixSolutionSimple.getSetV(),
+                setVarKMatrixSolutionSimple.getVarKMatrix(),
                 setVarKMatrixCalculated.getSimpleSetDoubleArray(),
                 wordLength
         ));
@@ -364,7 +365,7 @@ public class CYKTest {
                 setVarKMatrixSolution.getSimpleSetDoubleArray());
         System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
         Assert.assertTrue(checkSetVCalculated(
-                setVarKMatrixSolutionSimple.getSetV(),
+                setVarKMatrixSolutionSimple.getVarKMatrix(),
                 setVarKMatrixCalculated.getSimpleSetDoubleArray(),
                 wordLength
         ));
@@ -390,13 +391,13 @@ public class CYKTest {
         productions[7] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("C")));
         productions[8] = new Production(new Variable("C"), new Terminal("c"));
         grammar.addProduction(productions);
-        String word = "cbbaaccb";
+        Word word = new Word("cbbaaccb");
         GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
-        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
+        grammarWordMatrixWrapper.setWord(word);
         // @formatter:on
         SetVarKMatrix setVarKMatrixCalculated = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
         System.out.println(setVarKMatrixCalculated.getStringToPrintAsLowerTriangularMatrix());
-        int wordLength = word.length();
+        int wordLength = word.getWordLength();
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 
         // reconstructing example matrix from SS12
@@ -465,7 +466,7 @@ public class CYKTest {
 
         setVTemp[7][7].add(new VariableK(new Variable("B"), 8));
 
-        SetVarKMatrix setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength).setSetV(setVTemp);
+        SetVarKMatrix setVarKMatrixSolution = new SetVarKMatrix(wordLength, word).setSetV(setVTemp);
         System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
         Assert.assertTrue(checkSetVCalculated(
                 setVarKMatrixSolution.getSetV(),
@@ -496,13 +497,13 @@ public class CYKTest {
         GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
         // @formatter:on
         grammar.addProduction(productions);
-        String word = "bbacbc";
-        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
+        Word word = new Word("bbacbc");
+        grammarWordMatrixWrapper.setWord(word);
 
         // @formatter:on
         SetVarKMatrix setVarKMatrixCalculated = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
         System.out.println(setVarKMatrixCalculated.getStringToPrintAsLowerTriangularMatrix());
-        int wordLength = word.length();
+        int wordLength = word.getWordLength();
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 
 
@@ -548,7 +549,7 @@ public class CYKTest {
 
         setVTemp[5][5].add(new VariableK(new Variable("C"), 6));
 
-        SetVarKMatrix setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength).setSetV(setVTemp);
+        SetVarKMatrix setVarKMatrixSolution = new SetVarKMatrix(wordLength, word).setSetV(setVTemp);
         System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
         Assert.assertTrue(checkSetVCalculated(
                 setVarKMatrixSolution.getSetV(),
@@ -583,13 +584,13 @@ public class CYKTest {
         productions[13] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("A")));
         productions[14] = new Production(new Variable("D"), new VariableCompound(new Variable("B"), new Variable("B")));
         grammar.addProduction(productions);
-        String word = "01110100";
+        Word word = new Word("01110100");
         GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
-        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
+        grammarWordMatrixWrapper.setWord(word);
         // @formatter:on
         SetVarKMatrix setVarKMatrixCalculated = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
         System.out.println(setVarKMatrixCalculated.getStringToPrintAsLowerTriangularMatrix());
-        int wordLength = word.length();
+        int wordLength = word.getWordLength();
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 
         //reconstructing example matrix from scriptTI1
@@ -653,7 +654,7 @@ public class CYKTest {
         setVTemp[7][7].add(new VariableK(new Variable("A"), 8));
         setVTemp[7][7].add(new VariableK(new Variable("N"), 8));
 
-        SetVarKMatrix setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength).setSetV(setVTemp);
+        SetVarKMatrix setVarKMatrixSolution = new SetVarKMatrix(wordLength, word).setSetV(setVTemp);
         System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
         Assert.assertTrue(checkSetVCalculated(
                 setVarKMatrixSolution.getSetV(),

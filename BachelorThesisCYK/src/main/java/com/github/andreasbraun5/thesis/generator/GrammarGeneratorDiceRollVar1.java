@@ -35,7 +35,7 @@ public class GrammarGeneratorDiceRollVar1 extends GrammarGenerator {
         );
         workLog.log("After distributing the terminals:");
         workLog.log(grammarWordMatrixWrapper.getGrammar().toString());
-        int j_max = grammarWordMatrixWrapper.getWord().size();
+        int j_max = grammarWordMatrixWrapper.getWord().getWordLength();
         for (int i = 0; i < j_max; i++) {
             // start inclusive and end exclusive
             int[] intArray = IntStream.range(1, j_max + 1).toArray();

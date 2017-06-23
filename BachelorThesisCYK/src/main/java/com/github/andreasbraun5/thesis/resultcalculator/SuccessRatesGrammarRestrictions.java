@@ -1,5 +1,7 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
+import com.github.andreasbraun5.thesis.util.Word;
+
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +25,8 @@ public class SuccessRatesGrammarRestrictions {
 	private int falseMaxNumberOfVarsPerCellCount = 0;
 	private double successRateMaxNumberOfVarsPerCell = 0.0;
 
-	public SuccessRatesGrammarRestrictions updateSuccessRatesGrammarRestrictions(Map<String, List<ResultSample>> chunkResultSamples) {
-		for ( Map.Entry<String, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
+	public SuccessRatesGrammarRestrictions updateSuccessRatesGrammarRestrictions(Map<Word, List<ResultSample>> chunkResultSamples) {
+		for ( Map.Entry<Word, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
 				ResultSampleGrammarRestrictions tempResultSampleGrammarRestrictions =

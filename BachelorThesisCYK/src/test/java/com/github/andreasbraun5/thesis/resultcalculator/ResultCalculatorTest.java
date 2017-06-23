@@ -50,7 +50,7 @@ public class ResultCalculatorTest {
                     "ResultSample validity is not as expected.",
                     resultSample.isWordProducible(),
                     GrammarValidityChecker.checkProducibilityCYK(
-                            resultSample.getSetV(),
+                            resultSample.getPyramid(),
                             resultSample.getGrammar(),
                             grammarProperties
                     )

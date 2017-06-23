@@ -6,6 +6,7 @@ import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
+import com.github.andreasbraun5.thesis.util.Word;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -21,7 +22,7 @@ public class CellLatexTest {
     public void cellToTexTest() throws Exception {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("CellLatexTest: Generating LaTeX code for the cell.");
+        System.out.println("CellLatexTest: Generating LaTeX code for the cells.");
         CellLatex cellLatex = new CellLatex(2, 2);
         cellLatex.centerX = 2;
         cellLatex.centerY = -0.5;
@@ -40,7 +41,7 @@ public class CellLatexTest {
     public void cellToTexTest2() throws Exception {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("CellLatexTest: Generating LaTeX code for the cell.");
+        System.out.println("CellLatexTest: Generating LaTeX code for the cells.");
         int wordLength = 6;
 
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
@@ -86,11 +87,11 @@ public class CellLatexTest {
 
         setVTemp[5][5].add(new VariableK(new Variable("C"), 6));
 
-        SetVarKMatrix setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength).setSetV(setVTemp);
+        Word word = new Word("bbacbc");
+        SetVarKMatrix setVarKMatrixSolution = new SetVarKMatrix(wordLength, word).setSetV(setVTemp);
         System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
-        Pyramid pyramid = setVarKMatrixSolution.getPyramid();
-        PyramidLatex pyramidLatex =
-        pyramidLatex.setWord(new String[]{"b", "b", "a", "c", "b", "c"});
+        Pyramid pyramid = setVarKMatrixSolution.getAsPyramid();
+        PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
         System.out.print(pyramidLatex.pyramidToTex());
     }
 

@@ -3,12 +3,12 @@ package com.github.andreasbraun5.thesis.parser;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
-import com.github.andreasbraun5.thesis.latex.PyramidLatex;
 import com.github.andreasbraun5.thesis.pyramid.CellElement;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
+import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.HashSet;
 import java.util.List;
@@ -31,16 +31,16 @@ public class CYK {
     /**
      * Implementation of the simple Algorithm described in the script TI1. Overloaded method for simpler usage.
      */
-    public static boolean algorithmAdvanced(GrammarWordMatrixWrapper grammarWordMatrixWrapper, List<Terminal> word) {
+    public static boolean algorithmAdvanced(GrammarWordMatrixWrapper grammarWordMatrixWrapper, Word word) {
         SetVarKMatrix SetVarKMatrix = calculateSetVAdvanced(grammarWordMatrixWrapper);
-        int wordLength = word.size();
+        int wordLength = word.getWordLength();
         return Util.varKSetToVarSet(SetVarKMatrix.getSetV()[0][wordLength - 1])
                 .contains(grammarWordMatrixWrapper.getGrammar().getVariableStart());
     }
 
-    public static boolean algorithmAdvanced(Set<Variable>[][] setV, Grammar grammar, GrammarProperties grammarProperties) {
-        return setV[0][grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord() - 1].
-                contains(grammar.getVariableStart());
+    public static boolean algorithmAdvanced(Pyramid pyramid, Grammar grammar, GrammarProperties grammarProperties) {
+        int wordlength = grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord();
+        return pyramid.getCell(wordlength-1, 0).getCellElements().contains(grammar.getVariableStart());
     }
 
     /**
@@ -77,12 +77,13 @@ public class CYK {
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public static SetVarKMatrix calculateSetVAdvanced(GrammarWordMatrixWrapper grammarWordMatrixWrapper) {
         Grammar grammar = grammarWordMatrixWrapper.getGrammar();
-        List<Terminal> word = grammarWordMatrixWrapper.getWord();
-        int wordLength = word.size();
+        Word word = grammarWordMatrixWrapper.getWord();
+        List<Terminal> wordAsTerminalList = word.getTerminals();
+        int wordLength = wordAsTerminalList.size();
         Map<Variable, List<Production>> productions = grammar.getProductionsMap();
         Set<VariableK>[][] setV = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
         // Check whether the terminal is on the right side of the production, then add its left variable to v_ii
-        setV = stepIIAdvanced(setV, word, grammar);
+        setV = stepIIAdvanced(setV, wordAsTerminalList, grammar);
         // l loop of the described algorithm
         for (int l = 1; l <= wordLength - 1; l++) {
             // i loop of the described algorithm.
@@ -126,7 +127,7 @@ public class CYK {
                 }
             }
         }
-        return SetVarKMatrix.buildEmptySetVMatrixWrapper(setV.length).setSetV(setV);
+        return new SetVarKMatrix(setV.length, word).setSetV(setV);
     }
 
     // TODO: completly false?
@@ -183,10 +184,10 @@ public class CYK {
         Set<Variable> Z = new HashSet<>();
         Set<VariableCompound> YZ = new HashSet<>();
         for (int k = i - 1; i >= 0; i--) {
-            for (CellElement ce : pyramid.getCell().get(k).get(j).getCellElement()) {
+            for (CellElement ce : pyramid.getCells().get(k).get(j).getCellElements()) {
                 Y.add((ce.getVariable()));
             }
-            for (CellElement ce : pyramid.getCell().get(i - k - 1).get(k + j + 1).getCellElement()) {
+            for (CellElement ce : pyramid.getCells().get(i - k - 1).get(k + j + 1).getCellElements()) {
                 Z.add((ce.getVariable()));
             }
             for (Variable varY : Y) {

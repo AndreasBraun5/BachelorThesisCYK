@@ -4,6 +4,7 @@ import com.github.andreasbraun5.thesis.exception.GrammarWrapperRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
+import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public class GrammarWordMatrixWrapper {
 	private Grammar grammar;
-	private List<Terminal> word;
+	private Word word;
 	private SetVarKMatrix SetV;
 
 	public static GrammarWordMatrixWrapper buildGrammarWordMatrixWrapper() {
@@ -33,7 +34,7 @@ public class GrammarWordMatrixWrapper {
 		return this;
 	}
 
-	public List<Terminal> getWord() {
+	public Word getWord() {
 		// TODO Note: empty word not possible then if here: || word.size() == 0){
 		if ( word == null ) {
 			throw new GrammarWrapperRuntimeException( "GrammarWordMatrixWrapper: Word is not defined." );
@@ -41,12 +42,12 @@ public class GrammarWordMatrixWrapper {
 		return word;
 	}
 
-	public GrammarWordMatrixWrapper setWord(List<Terminal> word) {
+	public GrammarWordMatrixWrapper setWord(Word word) {
 		this.word = word;
 		return this;
 	}
 
-	public SetVarKMatrix getSetV() {
+	public SetVarKMatrix getVarKMatrix() {
 		return SetV;
 	}
 

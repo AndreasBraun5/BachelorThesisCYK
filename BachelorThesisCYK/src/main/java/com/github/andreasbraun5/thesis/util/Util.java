@@ -2,6 +2,8 @@ package com.github.andreasbraun5.thesis.util;
 
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.main.ThesisDirectory;
+import com.github.andreasbraun5.thesis.pyramid.CellElement;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 
@@ -91,16 +93,18 @@ public abstract class Util {
     // Its structure is very similar to stepIIAdvanced and calculateSetVAdvanced.
     public static Grammar removeUselessProductions(
             Grammar grammar,
-            SetVarKMatrix SetVarKMatrix,
-            List<Terminal> word) {
-        Set<VariableK>[][] setV = SetVarKMatrix.getSetV();
-        int wordLength = SetVarKMatrix.getSetV().length;
+            Pyramid pyramid,
+            Word word) {
+        List<Terminal> wordAsTerminalsList = word.getTerminals();
+        SetVarKMatrix setVarKMatrix = pyramid.getAsVarKMatrix();
+        Set<VariableK>[][] setV = setVarKMatrix.getSetV();
+        int wordLength = setVarKMatrix.getSetV().length;
         Map<Variable, List<Production>> productions = grammar.getProductionsMap();
         Set<Production> onlyUsefulProductions = new HashSet<>();
         // Similar to stepIIAdvanced
         // Look at each terminal of the word
         for (int i = 1; i <= wordLength; i++) {
-            RightHandSideElement tempTerminal = word.get(i - 1);
+            RightHandSideElement tempTerminal = wordAsTerminalsList.get(i - 1);
             // Get all productions that have the same leftHandSide variable. This is done for all unique variables.
             // So all production in general are taken into account.
             for (Map.Entry<Variable, List<Production>> entry : grammar.getProductionsMap().entrySet()) {
@@ -168,23 +172,12 @@ public abstract class Util {
     }
 
     /**
-     * Converting a String word into a List<Terminal> word.
-     */
-    public static List<Terminal> stringToTerminalList(String word) {
-        List<Terminal> wordAsTerminalList = new ArrayList<>();
-        for (int i = 0; i < word.length(); i++) {
-            wordAsTerminalList.add(new Terminal(String.valueOf(word.charAt(i))));
-        }
-        return wordAsTerminalList;
-    }
-
-    /**
      * Set<VariableK> --> Set<Variable>
      */
     public static Set<Variable> varKSetToVarSet(Set<VariableK> varKWrapper) {
         Set<Variable> setVVariable = new HashSet<>();
-        for (VariableK variableKWrapper : varKWrapper) {
-            setVVariable.add(variableKWrapper.getVariable());
+        for (CellElement cellElement : varKWrapper) {
+            setVVariable.add(cellElement.getVariable());
         }
         return setVVariable;
     }

@@ -3,6 +3,7 @@ package com.github.andreasbraun5.thesis.latex;
 import com.github.andreasbraun5.thesis.pyramid.Cell;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.Util;
+import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.ArrayList;
 
@@ -12,12 +13,12 @@ import java.util.ArrayList;
  */
 public class PyramidLatex {
     private ArrayList<ArrayList<CellLatex>> cells;
-    private String[] word;
+    private Word word;
 
     // Initialising the pyramid with the given indexes.
     public PyramidLatex(Pyramid pyramid) {
-        int pyramidSize = pyramid.getCell().size();
-        ArrayList<ArrayList<Cell>> cellPyramid = pyramid.getCell();
+        int pyramidSize = pyramid.getCells().size();
+        ArrayList<ArrayList<Cell>> cellPyramid = pyramid.getCells();
         this.word = pyramid.getWord();
         this.cells = new ArrayList<>(pyramidSize);
         {
@@ -27,7 +28,7 @@ public class PyramidLatex {
         }
         {// Cell00
             this.cells.get(0).add(new CellLatex(0, 0));
-            this.cells.get(0).get(0).getCellElement().addAll(cellPyramid.get(0).get(0).getCellElement());
+            this.cells.get(0).get(0).getCellElement().addAll(cellPyramid.get(0).get(0).getCellElements());
             this.cells.get(0).get(0).centerX = 0.5; // starting shift of cell_00
             this.cells.get(0).get(0).centerY = 0;
         }
@@ -42,12 +43,12 @@ public class PyramidLatex {
                 if (j == 0) {
                     this.cells.get(i).get(j).centerX = this.cells.get(i - 1).get(j).centerX + 0.5;
                     this.cells.get(i).get(j).centerY = tempCenterY;
-                    this.cells.get(i).get(j).getCellElement().addAll(cellPyramid.get(i).get(j).getCellElement());
+                    this.cells.get(i).get(j).getCellElement().addAll(cellPyramid.get(i).get(j).getCellElements());
                     continue;
                 }
                 this.cells.get(i).get(j).centerX = this.cells.get(i).get(j - 1).centerX + 1.0;
                 this.cells.get(i).get(j).centerY = tempCenterY;
-                this.cells.get(i).get(j).getCellElement().addAll(cellPyramid.get(i).get(j).getCellElement());
+                this.cells.get(i).get(j).getCellElement().addAll(cellPyramid.get(i).get(j).getCellElements());
             }
             tempCenterY = tempCenterY - 0.5;
         }
@@ -128,7 +129,8 @@ public class PyramidLatex {
         }
         {
             for (int i = 0; i < n; i++) {
-                str.append("\\node [] at (w" + i + ") {" + word[i] + "};\n");
+                // TODO: Check this
+                str.append("\\node [] at (w" + i + ") {" + word.getTerminals().get(i).getTerminalName()+ "};\n");
             }
         }
         return str.toString();
@@ -137,7 +139,7 @@ public class PyramidLatex {
     public String pyramidToTex() {
         StringBuilder str = new StringBuilder();
         str.append(drawPyramidStructure());
-        str.append("% Variables in the cell\n");
+        str.append("% Variables in the cells\n");
         for (int i = 0; i < cells.size(); i++) {
             for (int j = 0; j < cells.get(i).size(); j++) {
                 str.append(cells.get(i).get(j).cellToTex());

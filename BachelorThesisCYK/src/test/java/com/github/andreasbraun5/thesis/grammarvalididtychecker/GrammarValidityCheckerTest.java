@@ -1,9 +1,11 @@
 package com.github.andreasbraun5.thesis.grammarvalididtychecker;
 
 import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
+import com.github.andreasbraun5.thesis.util.Word;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,8 +23,8 @@ public class GrammarValidityCheckerTest {
         System.out.println("############################");
         System.out.println("GrammarValidityCheckerTest: checkMaxNumberOfVarsPerCell");
         System.out.println("Check to find the proper MaxSumOfVarsPerCell.");
-        String word = "01110100";
-        int wordLength = word.length();
+        Word word = new Word("01110100");
+        int wordLength = word.getWordLength();
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 
         // reconstructing example matrix from SS12
@@ -57,14 +59,10 @@ public class GrammarValidityCheckerTest {
 
         setVTemp[7][7].add(new VariableK(new Variable("B"), 8));
 
-        SetVarKMatrix setVarKMatrix = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength)
-                .setSetV(setVTemp);
+        SetVarKMatrix setVarKMatrix = new SetVarKMatrix(wordLength, word).setSetV(setVTemp);
         System.out.println(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
-        Set<Variable>[][] setVSimple = setVarKMatrix.getSimpleSetDoubleArray();
-        SetVarKMatrix setVarKMatrixSimple = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength, Variable.class)
-                .setSetV(setVSimple);
-        System.out.println(setVarKMatrixSimple.getStringToPrintAsLowerTriangularMatrix());
-        Assert.assertTrue("", GrammarValidityChecker.checkMaxNumberOfVarsPerCell(setVarKMatrix, 4).isMaxNumberOfVarsPerCell());
+        Pyramid pyramid = setVarKMatrix.getAsPyramid();
+        Assert.assertTrue("", GrammarValidityChecker.checkMaxNumberOfVarsPerCell(pyramid, 4).isMaxNumberOfVarsPerCell());
         System.out.println("GrammarValidityCheckerTest: checkMaxSumOfVarsInPyramid was successful." +
                 "\nMaxSumOfVarsInPyramid is four.");
     }
@@ -103,8 +101,8 @@ public class GrammarValidityCheckerTest {
         System.out.println("");
         System.out.println("############################");
         System.out.println("GrammarValidityCheckerTest: checkMaxSumOfVarsInPyramid");
-        String word = "01110100";
-        int wordLength = word.length();
+        Word word = new Word("01110100");
+        int wordLength = word.getWordLength();
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 
         // reconstructing example matrix from SS12
@@ -129,16 +127,13 @@ public class GrammarValidityCheckerTest {
         setVTemp[5][5].add(new VariableK(new Variable("A"), 6));
         setVTemp[5][5].add(new VariableK(new Variable("C"), 6));
 
-        SetVarKMatrix setVarKMatrix = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength)
-                .setSetV(setVTemp);
+        SetVarKMatrix setVarKMatrix = new SetVarKMatrix(wordLength, word).setSetV(setVTemp);
         System.out.println(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
-        Set<Variable>[][] setVSimple = setVarKMatrix.getSimpleSetDoubleArray();
-        SetVarKMatrix setVarKMatrixSimple = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength, Variable.class).setSetV(
-                setVSimple);
-        System.out.println(setVarKMatrixSimple.getStringToPrintAsLowerTriangularMatrix());
-        System.out.println("GrammarValidityCheckerTest: checkMaxSumOfVarsInPyramid was successful." +
-                "\nMaxSumOfVarsInPyramid is 12.");
-
+        Pyramid pyramid = setVarKMatrix.getAsPyramid();
+        System.out.println(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
+        Assert.assertTrue(
+                "GrammarValidityCheckerTest: checkMaxSumOfVarsInPyramid was successful. MaxSumOfVarsInPyramid is 12.",
+                GrammarValidityChecker.checkMaxSumOfVarsInPyramid(pyramid, 12).isMaxSumOfVarsInPyramid());
     }
 
     @Test
@@ -165,9 +160,9 @@ public class GrammarValidityCheckerTest {
         productions[13] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("A")));
         productions[14] = new Production(new Variable("D"), new VariableCompound(new Variable("B"), new Variable("B")));
         grammar.addProduction(productions);
-        String word = "01110100";
+        Word word = new Word("01110100");
+        int wordLength = word.getWordLength();
         // @formatter:on
-        int wordLength = word.length();
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
         //reconstructing example matrix from scriptTI1
         setVTemp[0][0].add(new VariableK(new Variable("A"), 1));
@@ -230,18 +225,14 @@ public class GrammarValidityCheckerTest {
         setVTemp[7][7].add(new VariableK(new Variable("A"), 8));
         setVTemp[7][7].add(new VariableK(new Variable("N"), 8));
 
-
-        SetVarKMatrix setVarKMatrix = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength).setSetV(setVTemp);
+        SetVarKMatrix setVarKMatrix = new SetVarKMatrix(wordLength, word).setSetV(setVTemp);
         System.out.println(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
-        Set<Variable>[][] setVSimple = setVarKMatrix.getSimpleSetDoubleArray();
-        SetVarKMatrix setVarKMatrixSimple = setVarKMatrix.buildEmptySetVMatrixWrapper(wordLength, Variable.class)
-                .setSetV(setVSimple);
-        System.out.println(setVarKMatrixSimple.getStringToPrintAsLowerTriangularMatrix());
+        Pyramid pyramid = setVarKMatrix.getAsPyramid();
+
         CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationsForcedResultWrapper =
-                GrammarValidityChecker.checkRightCellCombinationForced(setVarKMatrix, 3, grammar);
+                GrammarValidityChecker.checkRightCellCombinationForced(pyramid, 3, grammar);
         System.out.println(grammar);
         System.out.println("CountForced: " + checkRightCellCombinationsForcedResultWrapper.getCountRightCellCombinationForced());
-        System.out.println(checkRightCellCombinationsForcedResultWrapper.getMarkedRightCellCombinationForced()
-                .getStringToPrintAsLowerTriangularMatrix());
+        System.out.println(checkRightCellCombinationsForcedResultWrapper.getMarkedRightCellCombinationForced());
     }
 }

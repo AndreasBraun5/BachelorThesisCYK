@@ -1,5 +1,7 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
+import com.github.andreasbraun5.thesis.util.Word;
+
 import java.util.*;
 
 /**
@@ -17,13 +19,13 @@ public class RepresentativeResultSamples {
 	private static final int COUNT_OF_GRAMMARS_TO_KEEP_PER_WORD = 10;
 
 
-	public RepresentativeResultSamples(Map<String, List<ResultSample>> testGrammarSamples) {
+	public RepresentativeResultSamples(Map<Word, List<ResultSample>> testGrammarSamples) {
 		this.testGrammarRepresentativeExamples = calculateRepresentativeExamples( testGrammarSamples );
 	}
 
-	private List<ResultSample> calculateRepresentativeExamples(Map<String, List<ResultSample>> testGrammarSamples) {
+	private List<ResultSample> calculateRepresentativeExamples(Map<Word, List<ResultSample>> testGrammarSamples) {
 		List<ResultSample> tempRepresentativeResultSamples = new ArrayList<>();
-		for ( Map.Entry<String, List<ResultSample>> entry : testGrammarSamples.entrySet() ) {
+		for ( Map.Entry<Word, List<ResultSample>> entry : testGrammarSamples.entrySet() ) {
 			int tempCountValidGrammarsPerWord = 0;
 			int tempCountInvalidGrammarsPerWord = 0;
 			int tempCountGrammarsPerWord = 0;

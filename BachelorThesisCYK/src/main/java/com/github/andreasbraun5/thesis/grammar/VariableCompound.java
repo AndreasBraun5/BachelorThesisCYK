@@ -22,7 +22,7 @@ public class VariableCompound implements RightHandSideElement {
 	}
 
 	@Override
-	public String getName() {
+	public String getTerminalName() {
 		return variables.get( 0 ).toString() + variables.get( 1 ).toString();
 	}
 

@@ -7,7 +7,7 @@ package com.github.andreasbraun5.thesis.grammar;
  */
 public interface RightHandSideElement {
 
-	String getName();
+	String getTerminalName();
 	default RightHandSideElement getRightHandSideElement(){
 	    return this;
     }

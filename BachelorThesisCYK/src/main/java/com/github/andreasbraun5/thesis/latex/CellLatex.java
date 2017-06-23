@@ -16,7 +16,7 @@ import java.util.Set;
 public class CellLatex {
     // No more than 5 variables in one CellLatex are allowed.
     private List<CellElement> vars = new ArrayList<>();
-    // center(x,y) coordinates will later on be used to position the variables in the cell using left, above, right,
+    // center(x,y) coordinates will later on be used to position the variables in the cells using left, above, right,
     // below and center
     public double centerX = 0.0;
     public double centerY = 0.0;
@@ -35,7 +35,7 @@ public class CellLatex {
         for (T t : set) {
             /*
 		    if ( this.vars.size() >= 5 ) {
-				throw new CellRuntimeException( "There are more than 5 Variables in the pyramid cell, coordinates: " +
+				throw new CellRuntimeException( "There are more than 5 Variables in the pyramid cells, coordinates: " +
 														i + ", " + j );
 			}*/
             this.vars.add(t);
@@ -46,7 +46,7 @@ public class CellLatex {
     private String drawTheVars() {
         StringBuilder str = new StringBuilder();
         if (vars.size() > 5) {
-            throw new CellRuntimeException("There are more than 5 Variables in the pyramid cell, coordinates: " +
+            throw new CellRuntimeException("There are more than 5 Variables in the pyramid cells, coordinates: " +
                     i + ", " + j);
         }
         if (vars.get(0) instanceof VariableK) {
@@ -93,12 +93,12 @@ public class CellLatex {
     public String cellToTex() {
         StringBuilder str = new StringBuilder();
         if (vars.size() > 0) {
-            str.append("%cell" + (int) i + "" + (int) j + "\n");
+            str.append("%cells" + (int) i + "" + (int) j + "\n");
             str.append("\\coordinate (" + centerName + ") at (" + centerX + "," + centerY + ");\n");
             str.append("\\node [below=0.18cm] at (" + centerName + ") {\\myfontnumbering{$(" + (int) i + "" + (int) j + ")$}};\n");
             str.append(drawTheVars());
         } else {
-            str.append("%cell" + (int) i + "" + (int) j + "\n");
+            str.append("%cells" + (int) i + "" + (int) j + "\n");
             str.append("\\coordinate (" + centerName + ") at (" + centerX + "," + centerY + ");\n");
             str.append("\\node [below=0.18cm] at (" + centerName + ") {\\myfontnumbering{$(" + (int) i + "" + (int) j + ")$}};\n");
             str.append("");

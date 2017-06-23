@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
+import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.List;
 import java.util.Map;
@@ -35,7 +36,7 @@ public class Result {
 			int countDifferentWords,
 			GrammarGeneratorSettings grammarGeneratorSettings,
 			String generatorType,
-			Map<String, List<ResultSample>> chunkResultSamples) {
+			Map<Word, List<ResultSample>> chunkResultSamples) {
 		this.countGeneratedGrammarsPerWord = countGeneratedGrammarsPerWord;
 		this.countDifferentWords = countDifferentWords;
 		this.grammarGeneratorSettings = grammarGeneratorSettings;
@@ -47,7 +48,7 @@ public class Result {
 
 	public Result addChunk(
 			long chunkTime,
-			Map<String, List<ResultSample>> chunkResultSamples) {
+			Map<Word, List<ResultSample>> chunkResultSamples) {
 		this.totalTime += chunkTime;
 		this.successRates = successRates.updateSuccessRates( chunkResultSamples );
 		return this;

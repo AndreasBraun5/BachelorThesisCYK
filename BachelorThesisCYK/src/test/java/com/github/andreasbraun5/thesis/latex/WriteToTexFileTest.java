@@ -7,6 +7,7 @@ import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
+import com.github.andreasbraun5.thesis.util.Word;
 import org.junit.Test;
 
 import java.util.Set;
@@ -25,7 +26,7 @@ public class WriteToTexFileTest {
 
         int wordLength = 6;
 
-        Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength);
+        Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
         // reconstructing example matrix
         setVTemp[0][0].add(new VariableK(new Variable("A"), 1));
         setVTemp[0][0].add(new VariableK(new Variable("B"), 1));
@@ -68,15 +69,13 @@ public class WriteToTexFileTest {
 
         setVTemp[5][5].add(new VariableK(new Variable("C"), 6));
 
-        SetVarKMatrix setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength).setSetV(setVTemp);
-        SetVarKMatrix setVarKMatrixSolutionSimple = SetVarKMatrix.buildEmptySetVMatrixWrapper(
-                wordLength).setSetV(setVarKMatrixSolution.getSimpleSetDoubleArray());
-
-        Pyramid pyramid = setVarKMatrixSolutionSimple.getPyramid();
-        pyramid.setWord(new String[]{"b", "b", "a", "c", "b", "c"});
+        Word word = new Word("bbacbc");
+        SetVarKMatrix setVarKMatrixSolution = new SetVarKMatrix(wordLength, word).setSetV(setVTemp);
+        Pyramid pyramid = setVarKMatrixSolution.getAsPyramid();
         CenteredTikzPicture tikz = new CenteredTikzPicture();
+        PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
         WriteToTexFile.writeToMainTexFile("pyramidLatex");
-        WriteToTexFile.writeToTexFile("pyramidLatex", tikz.beginToString() + pyramid.pyramidToTex() + tikz.endToString());
+        WriteToTexFile.writeToTexFile("pyramidLatex", tikz.beginToString() + pyramidLatex.pyramidToTex() + tikz.endToString());
 
     }
 
@@ -88,7 +87,7 @@ public class WriteToTexFileTest {
 
         int wordLength = 8;
 
-        Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength);
+        Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
         // reconstructing example matrix from SS12
         setVTemp[0][0].add(new VariableK(new Variable("A"), 1));
         setVTemp[0][0].add(new VariableK(new Variable("C"), 1));
@@ -155,12 +154,10 @@ public class WriteToTexFileTest {
 
         setVTemp[7][7].add(new VariableK(new Variable("B"), 8));
 
-        SetVarKMatrix<VariableK> setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(
-                wordLength,
-                VariableK.class
-        ).setSetV(setVTemp);
-        PyramidLatex pyramidLatex = setVarKMatrixSolution.getPyramid();
-        pyramidLatex.setWord(new String[]{"c", "b", "c", "a", "a", "c", "c", "b"});
+        Word word = new Word("cbcaaccb");
+        SetVarKMatrix setVarKMatrixSolution = new SetVarKMatrix(wordLength, word).setSetV(setVTemp);
+        Pyramid pyramid = setVarKMatrixSolution.getAsPyramid();
+        PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
         CenteredTikzPicture tikz = new CenteredTikzPicture();
         WriteToTexFile.writeToMainTexFile("pyramidLatex");
         WriteToTexFile.writeToTexFile("pyramidLatex", tikz.beginToString() + pyramidLatex.pyramidToTex() + tikz.endToString());
@@ -191,14 +188,14 @@ public class WriteToTexFileTest {
         productions[13] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("A")));
         productions[14] = new Production(new Variable("D"), new VariableCompound(new Variable("B"), new Variable("B")));
         grammar.addProduction(productions);
-        String word = "01110100";
+        Word word = new Word("01110100");
         GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
-        grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
+        grammarWordMatrixWrapper.setWord(word);
         // @formatter:on
-        SetVarKMatrix<VariableK> setVarKMatrixCalculated = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
+        SetVarKMatrix setVarKMatrixCalculated = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
         System.out.println(setVarKMatrixCalculated.getStringToPrintAsLowerTriangularMatrix());
-        int wordLength = word.length();
-        Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength);
+        int wordLength = word.getWordLength();
+        Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 
         //reconstructing example matrix from scriptTI1
         setVTemp[0][0].add(new VariableK(new Variable("A"), 1));
@@ -261,15 +258,12 @@ public class WriteToTexFileTest {
         setVTemp[7][7].add(new VariableK(new Variable("A"), 8));
         setVTemp[7][7].add(new VariableK(new Variable("N"), 8));
 
-        SetVarKMatrix<VariableK> setVarKMatrixSolution = SetVarKMatrix.buildEmptySetVMatrixWrapper(
-                wordLength,
-                VariableK.class
-        ).setSetV(setVTemp);
+        SetVarKMatrix setVarKMatrixSolution = new SetVarKMatrix(wordLength, word).setSetV(setVTemp);
         System.out.println(setVarKMatrixSolution.getStringToPrintAsUpperTriangularMatrix());
         System.out.println(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
 
-        PyramidLatex pyramidLatex = setVarKMatrixSolution.getPyramid();
-        pyramidLatex.setWord(word);
+        Pyramid pyramid = setVarKMatrixSolution.getAsPyramid();
+        PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
         System.out.println(pyramidLatex.toString());
         CenteredTikzPicture tikz = new CenteredTikzPicture();
         WriteToTexFile.writeToMainTexFile("scriptPyramid");

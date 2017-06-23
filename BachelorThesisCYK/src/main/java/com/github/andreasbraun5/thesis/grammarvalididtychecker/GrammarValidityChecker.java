@@ -4,6 +4,8 @@ import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.parser.CYK;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
+import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 
@@ -21,20 +23,19 @@ public class GrammarValidityChecker {
      * True if the starting symbol is contained at the bottom of the pyramid.
      */
     public static boolean checkProducibilityCYK(
-            SetVarKMatrix SetVarKMatrix,
+            Pyramid pyramid,
             Grammar grammar,
             GrammarProperties grammarProperties) {
-        Set<Variable>[][] tempSetV = SetVarKMatrix.getSimpleSetDoubleArray();
-        return CYK.algorithmAdvanced(tempSetV, grammar, grammarProperties);
+        return CYK.algorithmAdvanced(pyramid, grammar, grammarProperties);
     }
 
     /**
      * True if numberOfVarsPerCell is smaller than maxNumberOfVarsPerCell. Does not ignore cell after the diagonal.
      */
     public static CheckMaxNumberOfVarsPerCellResultWrapper checkMaxNumberOfVarsPerCell(
-            SetVarKMatrix SetVarKMatrix,
+            Pyramid pyramid,
             int maxNumberOfVarsPerCell) {
-        Set<Variable>[][] tempSetV = SetVarKMatrix.getSimpleSetDoubleArray();
+        Set<Variable>[][] tempSetV = pyramid.getAsVarKMatrix().getSimpleSetDoubleArray();
         if (maxNumberOfVarsPerCell == 0) {
             throw new GrammarPropertiesRuntimeException("maxNumberOfVarsPerCell is zero.");
         }
@@ -58,16 +59,15 @@ public class GrammarValidityChecker {
      * Starting from from the upper right index of the matrix setV[0][wL-1] towards the diagonal.
      */
     public static CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationForced(
-            SetVarKMatrix SetVarKMatrix, int minCountRightCellCombinationsForced, Grammar grammar) {
-        Set<Variable>[][] tempSetV = SetVarKMatrix.getSimpleSetDoubleArray();
+            Pyramid pyramid, int minCountRightCellCombinationsForced, Grammar grammar) {
+        Set<Variable>[][] tempSetV = pyramid.getAsVarKMatrix().getSimpleSetDoubleArray();
         int wordLength = tempSetV[0].length;
-        Set<Variable>[][] markedRightCellCombinationForced = Util.getInitialisedHashSetArray(wordLength, Variable.class);
-
+        Set<VariableK>[][] markedRightCellCombinationForced = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
         Map<Variable, List<Production>> prodMap = grammar.getProductionsMap();
         int rightCellCombinationsForced = 0;
         // Keep in mind that the setV matrix is a upper right matrix. But descriptions of how the algorithm works
         // is done, as if the setV pyramid points downwards (reflection on the diagonal + rotation to the left).
-        // Regarding one cell, its upper left cell and its upper right cell are looked at.
+        // Regarding one cells, its upper left cells and its upper right cells are looked at.
         // setV[i][j] = down
         // setV[i + 1][j] = upper right
         // setV[i][j - 1] = upper left
@@ -114,18 +114,18 @@ public class GrammarValidityChecker {
                         }
                         if (isRightCellCombinationForced) {
                             rightCellCombinationsForced++;
-                            markedRightCellCombinationForced[i][j].add(new Variable(varDown.toString()));
+                            // TODO: not nice here
+                            markedRightCellCombinationForced[i][j].add(new VariableK(varDown,0));
                         }
                     }
                 }
             }
         }
-        SetVarKMatrix setVarKMatrixMarked = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength)
-                .setSetV(markedRightCellCombinationForced);
+        Pyramid pyramidMarked = SetVarKMatrix.matrixToPyramid(markedRightCellCombinationForced, pyramid.getWord());
         return CheckRightCellCombinationsForcedResultWrapper.buildRightCellCombinationsForcedWrapper().
                 setCountRightCellCombinationForced(rightCellCombinationsForced).
                 setRightCellCombinationForced(rightCellCombinationsForced >= minCountRightCellCombinationsForced).
-                setMarkedRightCellCombinationForced(setVarKMatrixMarked);
+                setMarkedRightCellCombinationForced(pyramidMarked);
     }
 
     public static CheckSumOfProductionsResultWrapper checkSumOfProductions(Grammar grammar, int maxSumOfProductions) {
@@ -138,10 +138,9 @@ public class GrammarValidityChecker {
      * checkMaxSumOfVarsInPyramid is tested only on the setV simple. Does not ignore cell after the diagonal.
      */
     public static CheckMaxSumOfVarsInPyramidResultWrapper checkMaxSumOfVarsInPyramid(
-            SetVarKMatrix SetVarKMatrix,
+            Pyramid pyramid,
             int maxSumOfVarsInPyramid) {
-
-        Set<Variable>[][] tempSetV = SetVarKMatrix.getSimpleSetDoubleArray();
+        Set<Variable>[][] tempSetV = pyramid.getAsVarKMatrix().getSimpleSetDoubleArray();
         // put all vars of the matrix into one list and use its length.
         List<Variable> tempVars = new ArrayList<>();
         for (int i = 0; i < tempSetV.length; i++) {

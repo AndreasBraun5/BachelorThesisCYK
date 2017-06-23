@@ -1,5 +1,6 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 
 /**
@@ -15,7 +16,7 @@ public class ResultSampleExamConstraints {
 	private int countRightCellCombinationsForced;
 	private int maxSumOfVarsInPyramid;
 	private int maxSumOfProductions;
-	private SetVarKMatrix markedRightCellCombinationForced;
+	private Pyramid markedRightCellCombinationForced;
 
 	public boolean isExamConstraints() {
 		return isExamConstraints;
@@ -80,11 +81,11 @@ public class ResultSampleExamConstraints {
 		return this;
 	}
 
-	public SetVarKMatrix getMarkedRightCellCombinationForced() {
+	public Pyramid getMarkedRightCellCombinationForced() {
 		return markedRightCellCombinationForced;
 	}
 
-	public ResultSampleExamConstraints setMarkedRightCellCombinationForced(SetVarKMatrix markedRightCellCombinationForced) {
+	public ResultSampleExamConstraints setMarkedRightCellCombinationForced(Pyramid markedRightCellCombinationForced) {
 		this.markedRightCellCombinationForced = markedRightCellCombinationForced;
 		return this;
 	}

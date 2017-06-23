@@ -5,6 +5,7 @@ import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
+import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.*;
 
@@ -84,8 +85,9 @@ public class GrammarGeneratorUtil {
     public static GrammarWordMatrixWrapper removeUselessProductions(
             GrammarWordMatrixWrapper grammarWordMatrixWrapper) {
         Grammar grammar = grammarWordMatrixWrapper.getGrammar();
-        List<Terminal> word = grammarWordMatrixWrapper.getWord();
-        SetVarKMatrix SetVarKMatrix = grammarWordMatrixWrapper.getSetV();
+        Word word = grammarWordMatrixWrapper.getWord();
+        List<Terminal> wordAsTerminalList = word.getTerminals();
+        SetVarKMatrix SetVarKMatrix = grammarWordMatrixWrapper.getVarKMatrix();
         Set<VariableK>[][] setV = SetVarKMatrix.getSetV();
         int wordLength = SetVarKMatrix.getSetV().length;
         Map<Variable, List<Production>> productions = grammar.getProductionsMap();
@@ -93,7 +95,7 @@ public class GrammarGeneratorUtil {
         // Similar to stepIIAdvanced
         // Look at each terminal of the word
         for ( int i = 1; i <= wordLength; i++ ) {
-            RightHandSideElement tempTerminal = word.get( i - 1 );
+            RightHandSideElement tempTerminal = wordAsTerminalList.get( i - 1 );
             // Get all productions that have the same leftHandSide variable. This is done for all unique variables.
             // So all production in general are taken into account.
             for ( Map.Entry<Variable, List<Production>> entry : grammar.getProductionsMap().entrySet() ) {

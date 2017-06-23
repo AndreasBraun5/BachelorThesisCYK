@@ -1,9 +1,10 @@
 package com.github.andreasbraun5.thesis.util;
 
 import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.latex.PyramidLatex;
+import com.github.andreasbraun5.thesis.pyramid.CellElement;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
+import javafx.scene.control.Cell;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +16,8 @@ import java.util.Set;
 public class SetVarKMatrix {
 
     private Set<VariableK>[][] setV;
-    private String name = "setV";
+    private String name = "setVarK";
+    private Word word;
 
     /**
      * The compiler is responsible for guaranteeing type safety. At runtime all generics are of type object (type
@@ -24,15 +26,16 @@ public class SetVarKMatrix {
      * chance to know of what actual type the static S is. An compiler hint "clazz" is needed to specify the type of
      * the static S. With this the compiler is able to guarantee the type safety between S and T.
      */
-    public static SetVarKMatrix buildEmptySetVMatrixWrapper(int wordLength) {
+
+    public SetVarKMatrix(int wordLength, Word word) {
         @SuppressWarnings("unchecked")
-        Set<VariableK>[][] setVTemp = new Set[wordLength][wordLength];
+        Set<CellElement>[][] setVTemp = new Set[wordLength][wordLength];
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
                 setVTemp[i][j] = new HashSet<>();
             }
         }
-        return new SetVarKMatrix().setSetV(setVTemp);
+        this.word = word;
     }
 
     /**
@@ -81,25 +84,30 @@ public class SetVarKMatrix {
         return stringBuilder.toString();
     }
 
+    public Pyramid getAsPyramid() {
+        return SetVarKMatrix.matrixToPyramid(setV, word);
+    }
+
     // TODO: think about again!! Test needed.
-    public Pyramid getPyramid() {
-        int wordLength = setV[1].length;
-        Pyramid pyramid = new Pyramid(wordLength);
-        int k = 0; // row index i of matrix
+    // static Method because it is not possible to have Set<VariableK>[][] of type Variable and some calculations are
+    // done on the simple Set<Variable>[][]
+    public static Pyramid matrixToPyramid(Set<VariableK>[][] setV, Word word) {
+        int wordLength = setV.length;
+        Pyramid pyramid = new Pyramid(wordLength, word);
         int m = 0; // column index j of matrix
         // dif between index i of matrix and index j of matrix for the first row with index 0 of the pyramid is 0,
         // in the second row with index 1 of pyramid the dif is 1. [Only renaming, you could use index i of the pyramid]
         int dif = 0;
         for (int i = 0; i < wordLength; i++) { // index i of the pyramid, row wise from top to down
-            for (int j = 0; j < wordLength - i; j++) { // index j of the pyramid, cell wise from left to right
+            int k = 0; // row index i of matrix
+            for (int j = 0; j < wordLength - i; j++) { // index j of the pyramid, cells wise from left to right
                 m = k + dif;
-                pyramid.getCell().get(i).get(j).addVar(setV[k][m]);
+                pyramid.getCell(i, j).addVar(setV[k][m]);
                 k++;
             }
             dif++; // increment the dif for each row
             k++;
         }
-        // TODO: no word is set in the pyramid.
         return pyramid;
     }
 
@@ -154,6 +162,11 @@ public class SetVarKMatrix {
         this.setV = setV;
         return this;
     }
+
+    public Word getWord() {
+        return word;
+    }
+
 
     /**
      * Set<VariableK>[][] --> Set<Variable>[][]

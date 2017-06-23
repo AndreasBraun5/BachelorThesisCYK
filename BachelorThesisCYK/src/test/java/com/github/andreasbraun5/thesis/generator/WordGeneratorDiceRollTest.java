@@ -4,6 +4,7 @@ import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
+import com.github.andreasbraun5.thesis.util.Word;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class WordGeneratorDiceRollTest {
 	public void generateWordTest() {
 		System.out.println( "" );
 		System.out.println( "############################" );
-		System.out.println( "ResultCalculator WordGeneratorDiceRoll: generateWordAsString" );
+		System.out.println( "ResultCalculator WordGeneratorDiceRoll: generateWord" );
 		GrammarProperties grammarProperties = new GrammarProperties( new VariableStart( "S" ) );
 		grammarProperties.addVariables( new Variable( "A" ), new Variable( "B" ) );
 		grammarProperties.addTerminals(
@@ -30,13 +31,13 @@ public class WordGeneratorDiceRollTest {
 		System.out.println( grammarProperties );
 		grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord( 10 );
 		for ( int i = 0; i <= 10; i++ ) {
-			String word1 = WordGeneratorDiceRoll.generateWordAsString( grammarProperties ); // GrammarRuntimeException
+			Word word1 = WordGeneratorDiceRoll.generateWord( grammarProperties ); // GrammarRuntimeException
 			System.out.println( "generated word: " + word1 );
 
 			Assert.assertEquals(
 					"grammarProperties.sizeOfWord not the same as of word1",
 					grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord(),
-					word1.length()
+					word1.getWordLength()
 			);
 		}
 

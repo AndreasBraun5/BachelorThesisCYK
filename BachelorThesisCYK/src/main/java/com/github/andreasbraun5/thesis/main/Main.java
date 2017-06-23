@@ -31,7 +31,7 @@ public class Main {
     // TODO: Implement pyramid vs methods: getRight, getLeft, getUpperRight, getUpperLeft, ... methods in SetVarKMatrix. Possible to check indices. Legacy code still works.
     // TODO: Outsource calculateSubsetForCell from CYK algorithm. Implicit testing possible and reuse.
     // TODO: Comparator needed for the stored samples in the .txt file.
-    // TODO: More than 5 cell in TikzPicture CellLatex
+    // TODO: More than 5 cells in TikzPicture CellLatex
     public static void main(String[] args) throws IOException {
 
         ThesisDirectory.initPaths();
@@ -103,7 +103,7 @@ public class Main {
          * terminals.size() should be 2.
          * Used default setting:
          * grammarPropertiesGrammarRestrictions: sizeOfWord = 10 // All TestResults will be based on words of this size
-         * grammarPropertiesGrammarRestrictions: maxNumberOfVarsPerCell = 3 // The CYK simple pyramid must contain less than 4 vars in cone cell
+         * grammarPropertiesGrammarRestrictions: maxNumberOfVarsPerCell = 3 // The CYK simple pyramid must contain less than 4 vars in cone cells
          * grammarPropertiesExamConstraints: minRightCellCombinationsForced = 1
          * grammarPropertiesExamConstraints: countSumOfProductions = 10; // approximate maximum value taken from the exam exercises
          * grammarPropertiesExamConstraints: minRightCellCombinationsForced = 1 countSumOfVarsInPyramid = 50; // approximate maximum value taken from the exam exercises

@@ -8,7 +8,7 @@ public class VariableEpsilon implements RightHandSideElement {
     private final String name = "";
 
     @Override
-    public String getName() {
+    public String getTerminalName() {
         return name;
     }
 

@@ -2,7 +2,6 @@ package com.github.andreasbraun5.thesis.util;
 
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
-import com.github.andreasbraun5.thesis.latex.PyramidLatex;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import org.junit.Assert;
@@ -43,11 +42,11 @@ public class UtilTest {
         grammar.addProduction(useless1);
         Production useless2 = new Production(new Variable("B"), new VariableCompound(new Variable("K"), new Variable("D")));
         grammar.addProduction(useless2);
-        String word = "01110100";
+        Word word = new Word("01110100");
         // @formatter:on
-        int wordLength = word.length();
+        int wordLength = word.getWordLength();
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
-        SetVarKMatrix setVarKMatrix = SetVarKMatrix.buildEmptySetVMatrixWrapper(setVTemp.length)
+        SetVarKMatrix setVarKMatrix = new SetVarKMatrix(setVTemp.length, word)
                 .setSetV(setVTemp);
 
         //reconstructing example matrix from scriptTI1
@@ -112,11 +111,8 @@ public class UtilTest {
         setVTemp[7][7].add(new VariableK(new Variable("N"), 8));
         System.out.println(grammar);
         System.out.println(word);
-        Set<Variable>[][] setVSimple = SetVarKMatrix.getSimpleSetDoubleArray();
-        SetVarKMatrix setVSimpleWrapper = SetVarKMatrix.buildEmptySetVMatrixWrapper(wordLength).setSetV(setVSimple);
-        System.out.println(setVSimpleWrapper.getStringToPrintAsLowerTriangularMatrix());
         System.out.println("Useless productions are" + useless1 + useless2 + "\n");
-        Util.removeUselessProductions(grammar, setVarKMatrix, Util.stringToTerminalList(word));
+        Util.removeUselessProductions(grammar, setVarKMatrix.getAsPyramid(), word);
         System.out.println(grammar);
         Assert.assertTrue(
                 "There should be only 15 productions left.",
@@ -127,8 +123,8 @@ public class UtilTest {
 
     @Test
     public void getPyramidTest() {
-        String word = "01110100";
-        int wordLength = word.length();
+        Word word = new Word("01110100");
+        int wordLength = word.getWordLength();
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
         //reconstructing example matrix from scriptTI1
         setVTemp[0][0].add(new VariableK(new Variable("A"), 1));
@@ -191,8 +187,8 @@ public class UtilTest {
         setVTemp[7][7].add(new VariableK(new Variable("A"), 8));
         setVTemp[7][7].add(new VariableK(new Variable("N"), 8));
 
-        SetVarKMatrix setVarKMatrix = SetVarKMatrix.buildEmptySetVMatrixWrapper(setVTemp.length).setSetV(setVTemp);
-        Pyramid pyramid = setVarKMatrix.getPyramid();
+        SetVarKMatrix setVarKMatrix = new SetVarKMatrix(setVTemp.length, word).setSetV(setVTemp);
+        Pyramid pyramid = setVarKMatrix.getAsPyramid();
         System.out.println(setVarKMatrix.getStringToPrintAsUpperTriangularMatrix());
         System.out.println(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
         System.out.println(pyramid.toString());

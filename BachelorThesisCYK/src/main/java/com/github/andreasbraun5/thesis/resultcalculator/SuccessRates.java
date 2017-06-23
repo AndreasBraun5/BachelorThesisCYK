@@ -1,5 +1,7 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
+import com.github.andreasbraun5.thesis.util.Word;
+
 import java.util.List;
 import java.util.Map;
 
@@ -22,8 +24,8 @@ public class SuccessRates {
 	private SuccessRatesGrammarRestrictions successRatesGrammarRestrictions = new SuccessRatesGrammarRestrictions();
 	private SuccessRatesExamConstraints successRatesExamConstraints = new SuccessRatesExamConstraints();
 
-	public SuccessRates updateSuccessRates(Map<String, List<ResultSample>> chunkResultSamples) {
-		for ( Map.Entry<String, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
+	public SuccessRates updateSuccessRates(Map<Word, List<ResultSample>> chunkResultSamples) {
+		for ( Map.Entry<Word, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
 				if ( resultSample.isWordProducible() ) {

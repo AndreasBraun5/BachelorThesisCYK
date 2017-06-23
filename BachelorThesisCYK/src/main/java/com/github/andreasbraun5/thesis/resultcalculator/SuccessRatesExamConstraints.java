@@ -1,5 +1,7 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
+import com.github.andreasbraun5.thesis.util.Word;
+
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +29,8 @@ public class SuccessRatesExamConstraints {
 	private int falseMaxSumOfVarsInPyramidCount = 0;
 	private double successRateMaxSumOfVarsInPyramid = 0.0;
 
-	public SuccessRatesExamConstraints updateSuccessRatesExamConstraints(Map<String, List<ResultSample>> chunkResultSamples) {
-		for ( Map.Entry<String, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
+	public SuccessRatesExamConstraints updateSuccessRatesExamConstraints(Map<Word, List<ResultSample>> chunkResultSamples) {
+		for ( Map.Entry<Word, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
 				ResultSampleExamConstraints tempResultSampleExamConstraints =
