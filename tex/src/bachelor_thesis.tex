@@ -75,6 +75,20 @@
 
 % Mathematische Symbole importieren
 \usepackage{amssymb}
+\usepackage{amsthm}
+
+%\newtheorem{Def}{Definition}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\definecolor{defColour}{HTML}{f2f2f2}
+
+\theoremstyle{definition}
+\newtheorem{Def}{Definition}%[section]
+
+\newenvironment{DefGrey}%
+{\begin{Def}\begin{mdframed}[backgroundcolor=defColour]}%
+		{\end{mdframed}\end{Def}}
+
 
 % Writing text over arrows
 \usepackage{mathtools}

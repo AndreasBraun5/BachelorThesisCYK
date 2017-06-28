@@ -4,15 +4,18 @@
 
 \subsection{Help Data Structure Pyramid and Others}
 
-\noindent Define $[i,\ j]$: \\
-$[i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}_{\geq 0}$.\\
-
-\noindent Define $Pyramid$:\\
-$Pyramid :=\{ Cell_{i,j}\ |\ i \in \mathbb{N}_{\geq 0},\  j \in [0,\ j_{max}-i],\ i_{max} = j_{max} = |word|-1\}$.\\
-$Cell_{i,j} \subseteq V$.\\
-$EmptyPyramid \Leftrightarrow \forall i\ \forall j\ Cell_{i,j}=\emptyset$.\\
-Regarding one $Cell_{i,j}$: $Cell_{i,j} = CellDown$, $Cell_{i-1,j} = CellUpperLeft$ and $Cell_{i-1,j+1} = CellUpperRight$  \\
-
+To be able to describe the way of working of the different algorithms better the help data structure $Pyramid$ will be defined. But before that let there be:
+\begin{DefGrey} \textbf{$[i, j]$} \\
+	$[i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}_{\geq 0}$.
+\end{DefGrey}
+\begin{DefGrey} \textbf{$Cell_{i,j}$} \\
+	$Cell_{i,j} \subseteq V$
+\end{DefGrey}
+\noindent With help of this $Pyramid$ can be defined as following:
+\begin{DefGrey} \textbf{$Pyramid$} \\
+$Pyramid :=\{ Cell_{i,j}\ |\ i \in [0,\ i_{max}],\  j \in [0,\ j_{max}-i],\ i_{max} = j_{max} = |word|-1\}$.
+\end{DefGrey}
+\noindent A $Pyramid$ is called $EmptyPyramid \Leftrightarrow \forall i\ \forall j\ Cell_{i,j}=\emptyset$. \noindent The following is the visual representation of the $Pyramid$:
 \newcommand{\boxpyramid}[1]{
 \fontsize{5}{12}\selectfont{#1}
 }
@@ -161,8 +164,13 @@ Regarding one $Cell_{i,j}$: $Cell_{i,j} = CellDown$, $Cell_{i-1,j} = CellUpperLe
 		\end{tikzpicture}
 	}
 \end{center}
+\begin{DefGrey} \textbf{$CellDown,~CellUpperLeft~and~CellUpperRight$} \\
+Let there be a $Cell_{i,j}$. It holds $CellDown = Cell_{i,j}$. \\
+So there are $CellUpperLeft = Cell_{i-1,j}$ and $CellUpperRight = Cell_{i-1,j+1}$.
+\end{DefGrey}
 \pagebreak
 
+Maybe don't add the $Tree$ here. It is only needed as one part of the output of an $exercise$.
 \begin{center}
 	\resizebox{.6\linewidth}{!}{
 		\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=2cm,

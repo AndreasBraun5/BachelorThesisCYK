@@ -6,56 +6,53 @@
 
 The starting point of this thesis was to get a command line interface (CLI) tool to automatically generate the 4-tuples $exercise = (grammar,\ word,\ parse\ table,\ derivation\ tree)$, which are used to test if the students have understood the way of working of the CYK algorithm.\\
 Various implementations of the Cocke-Younger-Kasami (CYK) algorithm can be found. Nevertheless none of them seemed to meet the easy to use requirements to automatically generate suitable $exercise$s, that afterwards also could be modified as wanted.\\
-This alone doesn't meet the requirements for being an adequate topic for a bachelor thesis. Therefore the task of finding a clever algorithm to get $exercise$s with a high chance of being suitable as an exam exercise was added. 
+This alone doesn't meet the requirements for being an adequate topic for a bachelor thesis. Therefore the task of finding a clever algorithm to automatically generate $exercise$s with a high chance of being suitable as an exam exercise was added. 
 
 \subsection{Grammar in Chromsky Normal Form}
-
-\noindent Let there be a grammar $G=(V,\ \Sigma,\ S,\ P)$ for which the following holds:
-\begin{itemize}
-	\item $V$ is a finite set of variables.
-	\item $\Sigma$ is an alphabet \textendash~called terminals.
-	\item $S$ is the start symbol and $S \in V$.
-	\item $P$ is a finite set of rules: $P \subseteq V \times (V \cup \Sigma)^{*}$ \textendash~called productions.
-\end{itemize}
-
+\begin{DefGrey} \textbf{Grammar}\\
+	Let there be a grammar $G=(V,\ \Sigma,\ S,\ P)$ for which the following holds:
+	\begin{itemize}
+		\item $V$ is a finite set of variables.
+		\item $\Sigma$ is an alphabet \textendash~called terminals.
+		\item $S$ is the start symbol and $S \in V$.
+		\item $P$ is a finite set of rules: $P \subseteq V \times (V \cup \Sigma)^{*}$ \textendash~called productions.
+	\end{itemize}
+\end{DefGrey}
 \noindent Further it is assumed that the productions are more restricted and it holds: $P\ \subseteq\ V \times (V^{2} \cup \Sigma)$. Additionally let there be a word $w \in \Sigma^*$ and a language $L(G)$ of the Grammar $G$. \\
 \noindent Regarding further convenience for explaining the following default values are true:
 \begin{itemize}
 	\item $V = \{A, B, ...\}$
 	\item $(V^2 \cup\ \Sigma)^{*}=\{a, b, ...\} \cup \{AB, BS, AC, ... \}$
 \end{itemize}
-\noindent Moreover in the context while talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, which again is a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further reasoning behind this example see chapter XXX "help data structure") 
-
+\noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, which again is a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further reasoning behind this example see chapter XXX "help data structure") 
+\pagebreak
 \subsection{General approaches}
 Two basic approaches, that may help finding a good algorithm are explained informally.
-
 \subsubsection{Forward Problem \& Backward Problem}
-The Forward Problem and the Backward Problem are two ways as how to determine if $w \in L(G)$. \\ 
-
-\noindent\textbf{Forward Problem ($G \xrightarrow[]{derivation} w$):}\\
-Input: Grammar $G$ in CNF.\\
-Output: Derivation $d$ that shows implicitly $w \subseteq L$.\\
-
-\noindent Informal description: It is called Forward Problem, if you are given a grammar $G$ and form a derivation from its root node to a final word $w$. The final word $w$ is always element of $L(G)$.\\
-$[$ Informal definition: "Forming a derivation from a root node to a final sentence.", Duda 8.6.3 page 426 $]$ \\
-
-\noindent\textbf{Backward Problem = Parsing ($w\overset{?}{\subseteq}L(G)$):}\\
-Input: $w$ and a grammar $G$ in CNF.\\
-Output: $w \subseteq L(G) \Longrightarrow$ derivation $d$.\\
-
-\noindent Informal description: It is called Backward Problem, if you are given a word $w$ and want to determine if it is element of $L(G)$. "This process, called parsing, is virtually always much more difficult than forming a derivation."\\
-\noindent$[$Informal definition: "Given a particular $w$, find a derivation in $G$ that leads to $w$. This process, called parsing, is virtually always much more difficult than forming a derivation.", Duda 8.6.3 page 426] $]$\\
-
-
+The Forward Problem and the Backward Problem are two ways as how to determine if $w \in L(G)$.	
+\begin{DefGrey}
+	\textbf{Forward Problem ($G \xrightarrow[]{derivation} w$)} \\
+	Input: Grammar $G$ in CNF. \\
+	Output: Derivation $d$ that shows implicitly $w \subseteq L$.
+\end{DefGrey}
+\noindent It is called Forward Problem, if you are given a grammar $G$ and form a derivation from its root node to a final word $w$. The final word $w$ is always element of $L(G)$.
+\begin{DefGrey}
+	\textbf{Backward Problem = Parsing ($w\overset{?}{\subseteq}L(G)$)}\\
+	Input: $w$ and a grammar $G$ in CNF. \\
+	Output: $w \subseteq L(G) \Longrightarrow$ derivation $d$.
+\end{DefGrey}
+\noindent It is called Backward Problem, if you are given a word $w$ and want to determine if it is element of $L(G)$. "This process, called parsing, is virtually always much more difficult than forming a derivation."
 \subsubsection{Parsing Bottom-Up \& Top-Down}
-There are again two ways in which you can classify the approach for parsing.\\
-
-\noindent\textbf{Bottom-Up:} Bottom-Up parsing means to start parsing from the leaves up to the root node.\\
-
-\noindent Informal description: "Bottom-Up parsing is the general method used in the Cocke-Younger-Kasami(CYK) algorithm, which fills a parse table from the "bottom up"."[Duda 8.6.3 page 426] \\
-
-\noindent\textbf{Top-Down:} Top-Down parsing means to start parsing from the root node down to the leaves.
-
-\noindent Informal description: "Top-Down parsing starts with the root node and successively applies productions from $P$, with the goal of finding a derivation of the test sentence $w$. Because it is rare indeed that the sentence is derived in the first production attempted, it is necessary to specify some criteria to guide the choice of which rewrite rule to apply. Such criteria could include beginning the parse at the first (left) character in the sentence (i.e., finding a small set of rewrite rules that yield the first character), then iteratively expanding the production to derive subsequent characters, or instead starting at the last (right) character in the sentence." [Duda 8.6.3 page 428]\\
+There are again two ways of how the approach of parsing can be classified.
+\begin{DefGrey}
+	\textbf{Bottom-Up} \\
+	 Bottom-Up parsing means to start parsing from the leaves up to the root node.
+\end{DefGrey}
+\noindent "Bottom-Up parsing is the general method used in the Cocke-Younger-Kasami(CYK) algorithm, which fills a parse table from the "bottom up"."[Duda 8.6.3 page 426]
+\begin{DefGrey}
+	\textbf{Top-Down} \\
+	 Top-Down parsing means to start parsing from the node down to the leaves.
+\end{DefGrey}
+\noindent Top-Down parsing means to start parsing from the node down to the leaves. "Top-Down parsing starts with the root node and successively applies productions from $P$, with the goal of finding a derivation of the test sentence $w$. Because it is rare indeed that the sentence is derived in the first production attempted, it is necessary to specify some criteria to guide the choice of which rewrite rule to apply. Such criteria could include beginning the parse at the first (left) character in the sentence (i.e., finding a small set of rewrite rules that yield the first character), then iteratively expanding the production to derive subsequent characters, or instead starting at the last (right) character in the sentence." [Duda 8.6.3 page 428]\\
 
 \pagebreak
