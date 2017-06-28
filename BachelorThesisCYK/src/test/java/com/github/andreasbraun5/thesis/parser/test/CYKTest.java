@@ -85,7 +85,7 @@ public class CYKTest {
         productions[12] = new Production(new Variable("B"), new VariableCompound(new Variable("N"), new Variable("D")));
         productions[13] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("A")));
         productions[14] = new Production(new Variable("D"), new VariableCompound(new Variable("B"), new Variable("B")));
-        grammar.addProduction(productions);
+        grammar.addProductionAsArrayNoDuplicates(productions);
         String word = "01110100";
         GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
         grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
@@ -195,7 +195,7 @@ public class CYKTest {
         productions[6] = new Production(new Variable("B"), new Terminal("b"));
         productions[7] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("C")));
         productions[8] = new Production(new Variable("C"), new Terminal("c"));
-        grammar.addProduction(productions);
+        grammar.addProductionAsArrayNoDuplicates(productions);
         String word = "cbbaaccb";
         GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
         grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));
@@ -302,7 +302,7 @@ public class CYKTest {
         productions[7] = new Production(new Variable("B"), new Terminal("b"));
         productions[8] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("C")));
         productions[9] = new Production(new Variable("C"), new Terminal("c"));
-        grammar.addProduction(productions);
+        grammar.addProductionAsArrayNoDuplicates(productions);
         String word = "bbacbc";
         GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
         grammarWordMatrixWrapper.setWord(Util.stringToTerminalList(word));

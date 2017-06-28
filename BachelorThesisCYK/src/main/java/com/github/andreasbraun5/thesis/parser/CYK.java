@@ -71,6 +71,7 @@ public class CYK {
         return setV;
     }
 
+
     /**
      * Calculating the set needed for the cyk algorithm.
      */

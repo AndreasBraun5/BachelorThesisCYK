@@ -16,22 +16,20 @@ public class ProductionTest {
     public void productionToStringTest() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("ResultCalculator Production: toString");
-
+        System.out.println("productionToStringTest:");
         Production production11 = new Production(new Variable("A"), new Terminal("a"));
         Production production22 = new Production(new Variable("B"), new Terminal("B"));
         Production production33 = new Production(new Variable("C"), new Terminal("a"));
-        System.out.print("1." + production11);
-        System.out.print("2." + production22);
-        System.out.print("3." + production33);
+        System.out.println("1." + production11);
+        System.out.println("2." + production22);
+        System.out.println("3." + production33);
     }
 
     @Test
     public void productionIsElementAtRightHandSide() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("ResultCalculator Production: isElementAtRightHandSide");
-
+        System.out.println("productionIsElementAtRightHandSide:");
         Production production11 = new Production(new Variable("A"), new Terminal("a"));
         System.out.print(production11);
         boolean temp = production11.isElementAtRightHandSide(new Terminal("a"));
