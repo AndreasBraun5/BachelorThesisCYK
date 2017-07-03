@@ -4,9 +4,9 @@ import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.parser.CYK;
-import com.github.andreasbraun5.thesis.pyramid.Pyramid;
-import com.github.andreasbraun5.thesis.pyramid.VariableK;
+import com.github.andreasbraun5.thesis.pyramid.*;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
+import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 
 import java.util.*;
@@ -35,16 +35,15 @@ public class GrammarValidityChecker {
     public static CheckMaxNumberOfVarsPerCellResultWrapper checkMaxNumberOfVarsPerCell(
             Pyramid pyramid,
             int maxNumberOfVarsPerCell) {
-        Set<Variable>[][] tempSetV = pyramid.getAsVarKMatrix().getSimpleSetDoubleArray();
+        CellSimple[][] cellsSimple = pyramid.getCellsSimple();
         if (maxNumberOfVarsPerCell == 0) {
             throw new GrammarPropertiesRuntimeException("maxNumberOfVarsPerCell is zero.");
         }
         int tempMaxNumberOfVarsPerCell = 0;
-        int wordLength = tempSetV[0].length;
-        for (int i = 0; i < wordLength; i++) {
-            for (int j = 0; j < wordLength; j++) {
-                if (tempSetV[i][j].size() > tempMaxNumberOfVarsPerCell) {
-                    tempMaxNumberOfVarsPerCell = tempSetV[i][j].size();
+        for (int i = 0; i < cellsSimple[0].length; i++) {
+            for (int j = 0; j < cellsSimple[i].length; j++) {
+                if (cellsSimple[i][j].getCellElements().size() > tempMaxNumberOfVarsPerCell) {
+                    tempMaxNumberOfVarsPerCell = cellsSimple[i][j].getCellElements().size();
                 }
             }
         }
@@ -115,17 +114,47 @@ public class GrammarValidityChecker {
                         if (isRightCellCombinationForced) {
                             rightCellCombinationsForced++;
                             // TODO: not nice here
-                            markedRightCellCombinationForced[i][j].add(new VariableK(varDown,0));
+                            markedRightCellCombinationForced[i][j].add(new VariableK(varDown, 0));
                         }
                     }
                 }
             }
         }
+
+
         Pyramid pyramidMarked = SetVarKMatrix.matrixToPyramid(markedRightCellCombinationForced, pyramid.getWord());
+
+
         return CheckRightCellCombinationsForcedResultWrapper.buildRightCellCombinationsForcedWrapper().
                 setCountRightCellCombinationForced(rightCellCombinationsForced).
                 setRightCellCombinationForced(rightCellCombinationsForced >= minCountRightCellCombinationsForced).
                 setMarkedRightCellCombinationForced(pyramidMarked);
+    }
+
+    private Set<CellSimple> checkRightCellCombinationForcedForCell(CellSimple cellDown,
+                                                                  CellSimple cellUpperLeft,
+                                                                  CellSimple cellUpperright) {
+        Set<CellSimple> varsForcing = new HashSet<>();
+        Set<VariableCompound> varComp = calculateVariablesCompound(ce);
+
+
+
+        return varsForcing;
+    }
+
+    private Set<> calculateCellCombinationsThatCanForce(Cell cell){
+
+
+    }
+
+    private Set<VariableCompound> calculateVariablesCompound(Set<Variable> xSet, Set<Variable> ySet) {
+        Set<VariableCompound> varComp = new HashSet<>();
+        for (Variable varX : xSet) {
+            for (Variable varY : ySet) {
+                varComp.add(new VariableCompound(varX, varY));
+            }
+        }
+        return varComp;
     }
 
     public static CheckSumOfProductionsResultWrapper checkSumOfProductions(Grammar grammar, int maxSumOfProductions) {
@@ -140,12 +169,12 @@ public class GrammarValidityChecker {
     public static CheckMaxSumOfVarsInPyramidResultWrapper checkMaxSumOfVarsInPyramid(
             Pyramid pyramid,
             int maxSumOfVarsInPyramid) {
-        Set<Variable>[][] tempSetV = pyramid.getAsVarKMatrix().getSimpleSetDoubleArray();
+        CellSimple[][] cellsSimple = pyramid.getCellsSimple();
         // put all vars of the matrix into one list and use its length.
         List<Variable> tempVars = new ArrayList<>();
-        for (int i = 0; i < tempSetV.length; i++) {
-            for (int j = 0; j < tempSetV.length; j++) {
-                tempVars.addAll(tempSetV[i][j]);
+        for (int i = 0; i < cellsSimple.length; i++) {
+            for (int j = 0; j < cellsSimple[i].length; j++) {
+                tempVars.addAll(cellsSimple[i][j].getCellElements());
             }
         }
         return CheckMaxSumOfVarsInPyramidResultWrapper.buildCheckMaxSumOfVarsInPyramidResultWrapper().

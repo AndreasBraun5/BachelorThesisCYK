@@ -3,7 +3,6 @@ package com.github.andreasbraun5.thesis.parser;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
-import com.github.andreasbraun5.thesis.pyramid.CellElement;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
@@ -40,7 +39,7 @@ public class CYK {
 
     public static boolean algorithmAdvanced(Pyramid pyramid, Grammar grammar, GrammarProperties grammarProperties) {
         int wordlength = grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord();
-        return pyramid.getCell(wordlength-1, 0).getCellElements().contains(grammar.getVariableStart());
+        return pyramid.getCellK(wordlength-1, 0).getCellElements().contains(grammar.getVariableStart());
     }
 
     /**
@@ -173,6 +172,7 @@ public class CYK {
         return setV;
     }
 
+    /*
     public static Set<Variable> calculateSubSetForCell(
             GrammarWordMatrixWrapper grammarWordMatrixWrapper,
             Pyramid pyramid,
@@ -184,11 +184,13 @@ public class CYK {
         Set<Variable> Y = new HashSet<>();
         Set<Variable> Z = new HashSet<>();
         Set<VariableCompound> YZ = new HashSet<>();
+        //FIXME: UMRECHUNG IST MÜLL
+        // Use Pyramid.toPyramidCoordinates(...) !!!!!
         for (int k = i - 1; i >= 0; i--) {
-            for (CellElement ce : pyramid.getCells().get(k).get(j).getCellElements()) {
+            for (CellElement ce : pyramid.getCellK(k, j).getCellElements()) {
                 Y.add((ce.getVariable()));
             }
-            for (CellElement ce : pyramid.getCells().get(i - k - 1).get(k + j + 1).getCellElements()) {
+            for (CellElement ce : pyramid.getCellK(i - k - 1,k + j + 1).getCellElements()) {
                 Z.add((ce.getVariable()));
             }
             for (Variable varY : Y) {
@@ -210,4 +212,5 @@ public class CYK {
         }
         return V;
     }
+    */
 }

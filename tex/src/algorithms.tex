@@ -564,23 +564,25 @@ Algorithm \ref{calculateSubsetForCell} describes the magic of the CKY-algorithm.
 \\
 \\
 \noindent 
+nonsense here!!!!!! \\
+
 \frame{
 	\begin{algorithm}[H] %or another one check
 		\caption{checkForceCombinationPerCell}
 		\label{checkRightCellPerCombination}
 		\SetAlgoLined
-		\KwIn{$ cell_{i,j}\subseteq V,\ cell_{i-1,j}\subseteq V,\ cell_{i-1,j+1} \subseteq V,\ P \subseteq V \times (V^{2} \cup \Sigma) $ }
+		\KwIn{$ cell_{i,j}\subseteq V,\ cellX\subseteq V,\ cellY \subseteq V,\ P \subseteq V \times (V^{2} \cup \Sigma) $ }
 		\KwOut{$varsForcing \subseteq V$}
-		$varsForcing \subseteq V$\;
-		$varComp = \{XY\ |\ X \in cell_{i-1,j}\ \wedge\ Y \in cell_{i-1,j+1} \}$\;
+		$VarsForcing \subseteq V$\;
+		$VarComp = \{xy\ |\ x \in cellX\ \wedge\ y \in cellY \}$\;
 		\ForEach{$v \in cell_{i,j}$}{
 			$prods = \{p\ |\ p \subseteq P,\ v\ is\ left\ in\ p \}$\;
 			$rhses = \{rhse\ |\ rhse\ is\ right\ in\ p \in prods\} $\;
-			\If{$varComp \nsubseteq rhses$}{
-				$varsForcing = varsForcing \cup v$\;
+			\If{$VarComp \nsubseteq rhses$}{
+				$VarsForcing = varsForcing \cup v$\;
 			}			
 		}
-		\Return $varsForcing$\;
+		\Return $VarsForcing$\;
 		\footnotetext{Input: $cell_{i,j} = cellDown$, $cell_{i-1,j} = cellUpperLeft$ and $cell_{i-1,j+1} = cellUpperRight$
 		}
 	\end{algorithm}

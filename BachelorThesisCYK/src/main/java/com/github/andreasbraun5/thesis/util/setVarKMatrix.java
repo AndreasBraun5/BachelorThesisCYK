@@ -4,7 +4,6 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.pyramid.CellElement;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
-import javafx.scene.control.Cell;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -93,7 +92,7 @@ public class SetVarKMatrix {
     // done on the simple Set<Variable>[][]
     public static Pyramid matrixToPyramid(Set<VariableK>[][] setV, Word word) {
         int wordLength = setV.length;
-        Pyramid pyramid = new Pyramid(wordLength, word);
+        Pyramid pyramid = new Pyramid(setV, word);
         int m = 0; // column index j of matrix
         // dif between index i of matrix and index j of matrix for the first row with index 0 of the pyramid is 0,
         // in the second row with index 1 of pyramid the dif is 1. [Only renaming, you could use index i of the pyramid]
@@ -102,7 +101,7 @@ public class SetVarKMatrix {
             int k = 0; // row index i of matrix
             for (int j = 0; j < wordLength - i; j++) { // index j of the pyramid, cells wise from left to right
                 m = k + dif;
-                pyramid.getCell(i, j).addVar(setV[k][m]);
+                pyramid.getCellK(i, j).addVars(setV[k][m]);
                 k++;
             }
             dif++; // increment the dif for each row
@@ -171,7 +170,7 @@ public class SetVarKMatrix {
     /**
      * Set<VariableK>[][] --> Set<Variable>[][]
      */
-    public Set<Variable>[][] getSimpleSetDoubleArray() {
+    private Set<Variable>[][] getSimpleSetDoubleArray() {
         int length = setV.length;
         Set<Variable>[][] setVVariable = Util.getInitialisedHashSetArray(length, Variable.class);
         for (int i = 0; i < length; i++) {

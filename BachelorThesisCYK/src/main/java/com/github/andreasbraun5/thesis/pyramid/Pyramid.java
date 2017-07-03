@@ -1,13 +1,10 @@
 package com.github.andreasbraun5.thesis.pyramid;
 
-import com.github.andreasbraun5.thesis.exception.CellRuntimeException;
-import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
+import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,86 +12,80 @@ import java.util.Set;
  */
 public class Pyramid {
 
-    public final ArrayList<ArrayList<Cell>> cells;
-    private Word word;
+    private final CellK[][] cells;
+    private final Word word;
 
-    // Initialising the pyramid with the given indexes.
-    public Pyramid(int pyramidSize, Word word) {
-        // Initialise the pyramid structure
-        this.cells = new ArrayList<>(pyramidSize);
-        {
-            for (int i = 0; i < pyramidSize; i++) {
-                this.cells.add(new ArrayList<>(pyramidSize - i));
-            }
-        }
-        // Initialise the pyramid cells with its indexes.
-        for (int i = 0; i < pyramidSize; i++) {
-            for (int j = 0; j < pyramidSize - i; j++) {
-                this.cells.get(i).add(new Cell(i, j));
+    public Pyramid(Set<VariableK>[][] orig, Word word) {
+        this.cells = new CellK[orig.length][orig[0].length];
+        for (int i = 0; i < orig.length; ++i) {
+            for (int j = i; j < orig[i].length; ++j) {
+                Tuple<Integer, Integer> pyramidCoordinates = toPyramidCoordinates(i, j);
+                CellK cell = new CellK(pyramidCoordinates.x, pyramidCoordinates.y);
+                orig[i][j].forEach(cell::addVar);
+                cells[pyramidCoordinates.x][pyramidCoordinates.y] = cell;
             }
         }
         this.word = word;
     }
 
-    // TODO Test this
-    public Cell getUpperRight(Cell cell) {
-        int cellUpperRightI = cell.getI() - 1;
-        int cellUpperRightJ = cell.getJ() + 1;
-        int pyramidSize = word.getWordLength();
-        if (cellUpperRightI < 0 || cellUpperRightI > pyramidSize - 1) {
-            throw new CellRuntimeException("Index i out of bounds.");
-        }
-        if (cellUpperRightJ < 0 || cellUpperRightJ > pyramidSize - cell.getI()) {
-            throw new CellRuntimeException("Index j out of bounds.");
-        }
-        return this.cells.get(cellUpperRightI).get(cellUpperRightJ);
+    // Initialising the pyramid with the given indexes.
+    public Pyramid(SetVarKMatrix setVarKMatrix) {
+        this(setVarKMatrix.getSetV(), setVarKMatrix.getWord());
     }
 
-    // TODO Test this
-    public Cell getUpperLeft(Cell cell) {
-        int cellUpperLeftI = cell.getI() - 1;
-        int cellUpperLeftJ = cell.getJ();
-        int pyramidSize = word.getWordLength();
-        if (cellUpperLeftI < 0 || cellUpperLeftI > pyramidSize - 1) {
-            throw new CellRuntimeException("Index i out of bounds.");
-        }
-        if (cellUpperLeftJ < 0 || cellUpperLeftJ > pyramidSize - cell.getI()) {
-            throw new CellRuntimeException("Index j out of bounds.");
-        }
-        return this.cells.get(cellUpperLeftI).get(cellUpperLeftJ);
+    public static Tuple<Integer, Integer> toPyramidCoordinates(int i, int j) {
+        return Tuple.of(j - i, i);
     }
 
-    // TODO Test this
+    public static Tuple<Integer, Integer> toPyramidCoordinates(Tuple<Integer, Integer> tuple) {
+        return toPyramidCoordinates(tuple.x, tuple.y);
+    }
+
+    // TODO KILL THIS!
     public SetVarKMatrix getAsVarKMatrix() {
-        int wordLength = getWord().getWordLength();
-        SetVarKMatrix setVarKMatrix = new SetVarKMatrix(wordLength, word);
-        Set<VariableK>[][] setV = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
-        int m = 0; // column index j of the pyramid
-        for (int i = 0; i < wordLength; i++) { // index i of the upper triangular matrix from top to down
-            int k = 0; // row index i of the pyramid
-            for (int j = i; j < wordLength - i; j++) { // index j of the upper triangular matrix from left to right
-                setV[i][j].addAll(this.getCell(k , m).getCellElements());
-                k++;
-            }
-            m++;
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * @return remember that there are no duplicates. A1, A2 becomes only A
+     */
+    public CellSimple[][] getCellsSimple() {
+        int length = cells.length;
+        CellSimple[][] setVVariable = new CellSimple[length][];
+        for (int i = 0; i < length; ++i) {
+            setVVariable = new CellSimple[i][cells[i].length];
         }
-        setVarKMatrix.setSetV(setV);
-        return setVarKMatrix;
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length; j++) {
+                setVVariable[i][j] = cells[i][j].getCellSimple();
+            }
+        }
+        return setVVariable;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        int pyramidSize = cells.size();
+        int pyramidSize = this.cells.length;
         int maxLen = 0;
         for (int i = 0; i < pyramidSize; i++) {
             for (int j = 0; j < pyramidSize - i; j++) {
-                maxLen = Math.max(maxLen, cells.get(i).get(j).toString().length());
+                maxLen = Math.max(maxLen, this.getCellK(i, j).toString().length());
             }
         }
+        if (maxLen % 2 == 1) {
+            maxLen = maxLen + 1;
+        }
         for (int i = 0; i < pyramidSize; i++) {
+            int emptySpace = (int) (i / 2.0) * maxLen;
+            for (int x = 0; x < emptySpace; ++x) {
+                stringBuilder.append(" ");
+            }
             for (int j = 0; j < pyramidSize - i; j++) {
-                stringBuilder.append(Util.uniformStringMaker(cells.get(i).get(j).toString(), maxLen));
+                stringBuilder.append(Util.uniformStringMaker(this.getCellK(i, j).toString(), maxLen));
+            }
+            for (int x = 0; x < emptySpace; ++x) {
+                stringBuilder.append(" ");
             }
             stringBuilder.append("\n");
         }
@@ -102,15 +93,18 @@ public class Pyramid {
     }
 
     public Word getWord() {
-        return word;
+        return this.word;
     }
 
-    public ArrayList<ArrayList<Cell>> getCells() {
+    public int getSize() {
+        return this.cells.length;
+    }
+
+    public Cell getCellK(int i, int j) {
+        return this.cells[i][j];
+    }
+
+    public CellK[][] getCellsK() {
         return cells;
     }
-
-    public Cell getCell(int i, int j) {
-        return cells.get(i).get(j);
-    }
-
 }

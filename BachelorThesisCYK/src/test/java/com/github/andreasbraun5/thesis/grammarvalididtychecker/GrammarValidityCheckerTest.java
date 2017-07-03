@@ -27,7 +27,7 @@ public class GrammarValidityCheckerTest {
         int wordLength = word.getWordLength();
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 
-        // reconstructing example matrix from SS12
+        // reconstructing example matrix from SCRIPT_SET_VARK
         setVTemp[0][7].add(new VariableK(new VariableStart("S"), 1));
         setVTemp[0][7].add(new VariableK(new VariableStart("S"), 4));
         setVTemp[0][7].add(new VariableK(new Variable("B"), 1));
@@ -105,7 +105,7 @@ public class GrammarValidityCheckerTest {
         int wordLength = word.getWordLength();
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 
-        // reconstructing example matrix from SS12
+        // reconstructing example matrix from SCRIPT_SET_VARK
         setVTemp[0][7].add(new VariableK(new VariableStart("P"), 1));
         setVTemp[0][7].add(new VariableK(new VariableStart("P"), 2));
         setVTemp[0][7].add(new VariableK(new VariableStart("P"), 3));

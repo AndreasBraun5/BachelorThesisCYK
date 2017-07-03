@@ -1,6 +1,5 @@
 package com.github.andreasbraun5.thesis.latex;
 
-import com.github.andreasbraun5.thesis.pyramid.Cell;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
@@ -17,8 +16,7 @@ public class PyramidLatex {
 
     // Initialising the pyramid with the given indexes.
     public PyramidLatex(Pyramid pyramid) {
-        int pyramidSize = pyramid.getCells().size();
-        ArrayList<ArrayList<Cell>> cellPyramid = pyramid.getCells();
+        int pyramidSize = pyramid.getSize();
         this.word = pyramid.getWord();
         this.cells = new ArrayList<>(pyramidSize);
         {
@@ -28,7 +26,7 @@ public class PyramidLatex {
         }
         {// Cell00
             this.cells.get(0).add(new CellLatex(0, 0));
-            this.cells.get(0).get(0).getCellElement().addAll(cellPyramid.get(0).get(0).getCellElements());
+            this.cells.get(0).get(0).getCellElement().addAll(pyramid.getCellK(0, 0).getCellElements());
             this.cells.get(0).get(0).centerX = 0.5; // starting shift of cell_00
             this.cells.get(0).get(0).centerY = 0;
         }
@@ -43,12 +41,12 @@ public class PyramidLatex {
                 if (j == 0) {
                     this.cells.get(i).get(j).centerX = this.cells.get(i - 1).get(j).centerX + 0.5;
                     this.cells.get(i).get(j).centerY = tempCenterY;
-                    this.cells.get(i).get(j).getCellElement().addAll(cellPyramid.get(i).get(j).getCellElements());
+                    this.cells.get(i).get(j).getCellElement().addAll(pyramid.getCellK(i, j).getCellElements());
                     continue;
                 }
                 this.cells.get(i).get(j).centerX = this.cells.get(i).get(j - 1).centerX + 1.0;
                 this.cells.get(i).get(j).centerY = tempCenterY;
-                this.cells.get(i).get(j).getCellElement().addAll(cellPyramid.get(i).get(j).getCellElements());
+                this.cells.get(i).get(j).getCellElement().addAll(pyramid.getCellK(i, j).getCellElements());
             }
             tempCenterY = tempCenterY - 0.5;
         }

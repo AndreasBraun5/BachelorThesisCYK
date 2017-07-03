@@ -88,7 +88,7 @@ public class WriteToTexFileTest {
         int wordLength = 8;
 
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
-        // reconstructing example matrix from SS12
+        // reconstructing example matrix from SCRIPT_SET_VARK
         setVTemp[0][0].add(new VariableK(new Variable("A"), 1));
         setVTemp[0][0].add(new VariableK(new Variable("C"), 1));
         setVTemp[0][1].add(new VariableK(new VariableStart("S"), 1));

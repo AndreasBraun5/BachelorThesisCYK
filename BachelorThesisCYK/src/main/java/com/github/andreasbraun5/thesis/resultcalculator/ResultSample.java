@@ -1,13 +1,14 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarPropertiesExamConstraints;
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarPropertiesGrammarRestrictions;
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
+import com.github.andreasbraun5.thesis.grammarproperties.*;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.*;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.Word;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Andreas Braun on 25.01.2017.
@@ -39,6 +40,16 @@ public class ResultSample {
         this.pyramid = grammarWordMatrixWrapper.getVarKMatrix().getAsPyramid();
         this.isWordProducible = GrammarValidityChecker.
                 checkProducibilityCYK(pyramid, grammar, grammarGeneratorSettings.grammarProperties);
+
+
+        {
+            GrammarConstraintValues constraintValues = new GrammarConstraintValues();
+            Map<String, Boolean> checkResults = new HashMap<>();
+
+            for (BooleanConstraintCheck check : BooleanConstraintCheck.getAllConstraints(true)) {
+                check.check(grammarWordMatrixWrapper, constraintValues, checkResults);
+            }
+        }
 
 
         // CheckMaxNumberOfVarsPerCellResultWrapper

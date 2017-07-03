@@ -1,5 +1,7 @@
 package com.github.andreasbraun5.thesis.pyramid;
 
+import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
+import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.util.Util;
 
 import java.util.ArrayList;
@@ -9,10 +11,9 @@ import java.util.Set;
 /**
  * Created by AndreasBraun on 21.06.2017.
  */
-public class Cell {
+public abstract class Cell <T extends CellElement> {
 
-    // A CellElement can be of type Variable, VariableStart and VariableK
-    private List<VariableK> cellElements = new ArrayList<>();
+    private List<T> cellElements = new ArrayList<>();
     private int i = 0;
     private int j = 0;
     private String centerName = "";
@@ -23,13 +24,18 @@ public class Cell {
         centerName = "cells" + i + "" + j;
     }
 
+    public Cell addVar(T var) {
+        this.cellElements.add(var);
+        return this;
+    }
+
     // A CellElement can be of type Variable, VariableStart and VariableK
-    public Cell addVar(Set<VariableK> set) {
+    public Cell addVars(Set<T> set) {
         this.cellElements.addAll(set);
         return this;
     }
 
-    public List<VariableK> getCellElements() {
+    public List<T> getCellElements() {
         return cellElements;
     }
 
@@ -45,16 +51,15 @@ public class Cell {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         int maxLen = 0;
-        for (CellElement ce : cellElements) {
-            maxLen = Math.max(maxLen, ce.toString().length());
+        for (T cell : cellElements) {
+            maxLen = Math.max(maxLen, cell.toString().length());
         }
         stringBuilder.append("[");
-        for (CellElement ce : cellElements) {
-            stringBuilder.append(Util.uniformStringMaker(ce.toString(), maxLen));
+        for (T cell : cellElements) {
+            stringBuilder.append(Util.uniformStringMaker(cell.toString(), maxLen));
             stringBuilder.append("");
         }
         stringBuilder.append("]");
         return stringBuilder.toString();
     }
-
 }

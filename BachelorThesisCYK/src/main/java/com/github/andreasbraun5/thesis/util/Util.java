@@ -7,6 +7,7 @@ import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 
+import javax.naming.ldap.UnsolicitedNotification;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -36,6 +37,17 @@ public abstract class Util {
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
                 setVTemp[i][j] = new HashSet<>();
+            }
+        }
+        return setVTemp;
+    }
+
+    public static <T extends Object> List<T>[][] getInitialisedArrayList(int wordLength, Class<T> clazz) {
+        @SuppressWarnings("unchecked")
+        List<T>[][] setVTemp = new ArrayList[wordLength][wordLength];
+        for (int i = 0; i < wordLength; i++) {
+            for (int j = 0; j < wordLength; j++) {
+                setVTemp[i][j] = new ArrayList<>();
             }
         }
         return setVTemp;
@@ -175,11 +187,7 @@ public abstract class Util {
      * Set<VariableK> --> Set<Variable>
      */
     public static Set<Variable> varKSetToVarSet(Set<VariableK> varKWrapper) {
-        Set<Variable> setVVariable = new HashSet<>();
-        for (CellElement cellElement : varKWrapper) {
-            setVVariable.add(cellElement.getVariable());
-        }
-        return setVVariable;
+        throw new UnsupportedOperationException("VarKSetToVarSet not supported anymore");
     }
 
     public static <I, O extends I> List<O> filter(List<I> in, Class<O> clazz) {

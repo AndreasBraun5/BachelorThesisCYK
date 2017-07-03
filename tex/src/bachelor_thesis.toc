@@ -24,17 +24,17 @@
 \contentsline {subsubsection}{\numberline {3.2.6}Algorithm: SplitAndFill}{19}{subsubsection.3.2.6}
 \contentsline {subsubsection}{\numberline {3.2.7}Tweaking Sub Procedures in more detail}{21}{subsubsection.3.2.7}
 \contentsline {subsection}{\numberline {3.3}Criteria Checking Procedures}{22}{subsection.3.3}
-\contentsline {section}{\numberline {4}CLI Tool}{24}{section.4}
-\contentsline {subsection}{\numberline {4.1}Short Requirements Specification}{24}{subsection.4.1}
-\contentsline {subsubsection}{\numberline {4.1.1}Exam Exercises}{24}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}Fun With CNF's and CYK}{25}{subsubsection.4.1.2}
-\contentsline {subsection}{\numberline {4.2}Overview - UML}{26}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}UML: More Detail 1}{26}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}UML: More Detail 2}{26}{subsubsection.4.2.2}
-\contentsline {subsection}{\numberline {4.3}User Interaction}{27}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}Use Case 1}{27}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}Use Case i}{27}{subsubsection.4.3.2}
-\contentsline {section}{\numberline {5}Notes}{28}{section.5}
-\contentsline {section}{Used software}{30}{section.5}
-\contentsline {section}{Algorithms}{31}{section*.4}
-\contentsline {section}{References}{32}{section*.5}
+\contentsline {section}{\numberline {4}CLI Tool}{25}{section.4}
+\contentsline {subsection}{\numberline {4.1}Short Requirements Specification}{25}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Exam Exercises}{25}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Fun With CNF's and CYK}{26}{subsubsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2}Overview - UML}{27}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}UML: More Detail 1}{27}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}UML: More Detail 2}{27}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}User Interaction}{28}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Use Case 1}{28}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Use Case i}{28}{subsubsection.4.3.2}
+\contentsline {section}{\numberline {5}Notes}{29}{section.5}
+\contentsline {section}{Used software}{31}{section.5}
+\contentsline {section}{Algorithms}{32}{section*.4}
+\contentsline {section}{References}{33}{section*.5}

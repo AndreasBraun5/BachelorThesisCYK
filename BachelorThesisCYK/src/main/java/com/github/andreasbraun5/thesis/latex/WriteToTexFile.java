@@ -13,16 +13,15 @@ public class WriteToTexFile {
     /**
      * Storing the result output in a text file.
      */
-
     public static void writeToTexFile(String filename, String data) {
         try {
             //File file = new File( "./Output/" + filename + ".tex" );
             //File file = new File( ThesisDirectory.TEX.path + filename + ".tex" );
-            PrintWriter out = new PrintWriter(ThesisDirectory.TEX.file(filename + ".tex"));
-            out.println(data);
-            out.close();
+            try(PrintWriter out = new PrintWriter(ThesisDirectory.TEX.file(filename + ".tex"))) {
+                out.print(data);
+            }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
