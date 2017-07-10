@@ -2,8 +2,9 @@ package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.*;
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
+import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,7 +22,7 @@ public class GrammarGeneratorDiceRollOnlyTest {
         // TODO: This test is kinda senseless
         System.out.println("");
         System.out.println("############################");
-        System.out.println("ResultCalculator GrammarGeneratorDiceRollOnly: generateGrammarWordMatrixWrapper");
+        System.out.println("ResultCalculator GrammarGeneratorDiceRollOnly: generateGrammarPyramidWrapper");
         Set<Variable> variables = new HashSet<>();
         variables.add(new Variable("A"));
         variables.add(new Variable("B"));
@@ -41,17 +42,19 @@ public class GrammarGeneratorDiceRollOnlyTest {
                 grammarProperties, "GrammarGeneratorDiceRollOnlyTest");
         GrammarGeneratorDiceRollOnly generatorGrammarDiceRollOnly = new GrammarGeneratorDiceRollOnly(
                 grammarGeneratorSettings);
-        GrammarWordMatrixWrapper grammarWordMatrixWrapper = GrammarWordMatrixWrapper.buildGrammarWordMatrixWrapper();
+        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper();
         // TODO: non deterministic behaviour;
-        grammarWordMatrixWrapper.setWord(WordGeneratorDiceRoll.generateWord(grammarGeneratorSettings.grammarProperties));
-        grammarWordMatrixWrapper = generatorGrammarDiceRollOnly.generateGrammarWordMatrixWrapper(
-                grammarWordMatrixWrapper,
+        grammarPyramidWrapper.setPyramid(
+                new Pyramid(WordGeneratorDiceRoll.generateWord(grammarGeneratorSettings.grammarProperties)));
+        grammarPyramidWrapper = generatorGrammarDiceRollOnly.generateGrammarPyramidWrapper(
+                grammarPyramidWrapper,
                 WorkLog.createFromWriter(null)
         );
-        System.out.println(grammarWordMatrixWrapper.getGrammar());
+        System.out.println(grammarPyramidWrapper.getGrammar());
         GrammarProperties grammarProperties2 = GrammarProperties.generatePartOfGrammarPropertiesFromGrammar(
-                grammarWordMatrixWrapper.getGrammar()
+                grammarPyramidWrapper.getGrammar()
         );
+        // TODO: non deterministic behaviour;
         Assert.assertEquals(
                 "terminals size is not the same",
                 grammarProperties.terminals.size(),

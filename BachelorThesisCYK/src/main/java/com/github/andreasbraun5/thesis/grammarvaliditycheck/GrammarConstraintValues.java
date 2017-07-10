@@ -1,8 +1,9 @@
-package com.github.andreasbraun5.thesis.grammarproperties;
+package com.github.andreasbraun5.thesis.grammarvaliditycheck;
 
 /**
  * Created by AndreasBraun on 02.07.2017.
  */
+// TODO: Delete
 public class GrammarConstraintValues {
 
     private Integer minRightCellCombinationsForced = 1; // optional, default = 1

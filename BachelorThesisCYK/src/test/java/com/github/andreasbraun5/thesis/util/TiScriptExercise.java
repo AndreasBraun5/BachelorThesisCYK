@@ -23,7 +23,7 @@ public final class TiScriptExercise {
             Production productions[] = new Production[15];
             productions[0] = new Production(new VariableStart("S"), new VariableCompound(new Variable("N"), new Variable("B")));
             productions[1] = new Production(new VariableStart("S"), new VariableCompound(new Variable("E"), new Variable("A")));
-            productions[2] = new Production(new VariableStart("S"), new Terminal(""));
+            productions[2] = new Production(new VariableStart("S"), new VariableEpsilon());
             productions[3] = new Production(new Variable("S'"), new VariableCompound(new Variable("N"), new Variable("B")));
             productions[4] = new Production(new Variable("S'"), new VariableCompound(new Variable("E"), new Variable("A")));
             productions[5] = new Production(new Variable("N"), new Terminal("0"));

@@ -2,10 +2,9 @@ package com.github.andreasbraun5.thesis.parser;
 
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.*;
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
+import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
-import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
 
@@ -30,15 +29,15 @@ public class CYK {
     /**
      * Implementation of the simple Algorithm described in the script TI1. Overloaded method for simpler usage.
      */
-    public static boolean algorithmAdvanced(GrammarWordMatrixWrapper grammarWordMatrixWrapper, Word word) {
-        SetVarKMatrix SetVarKMatrix = calculateSetVAdvanced(grammarWordMatrixWrapper);
+    public static boolean algorithmAdvanced(GrammarPyramidWrapper grammarPyramidWrapper, Word word) {
+        grammarPyramidWrapper = calculateSetVAdvanced(grammarPyramidWrapper);
         int wordLength = word.getWordLength();
-        return Util.varKSetToVarSet(SetVarKMatrix.getSetV()[0][wordLength - 1])
-                .contains(grammarWordMatrixWrapper.getGrammar().getVariableStart());
+        return grammarPyramidWrapper.getPyramid().getCellK(wordLength-1,0).getCellSimple().getCellElements().
+                contains(grammarPyramidWrapper.getGrammar().getVariableStart());
     }
 
     public static boolean algorithmAdvanced(Pyramid pyramid, Grammar grammar, GrammarProperties grammarProperties) {
-        int wordlength = grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord();
+        int wordlength = grammarProperties.grammarConstraints.sizeOfWord;
         return pyramid.getCellK(wordlength-1, 0).getCellElements().contains(grammar.getVariableStart());
     }
 
@@ -75,9 +74,9 @@ public class CYK {
      * Calculating the set needed for the cyk algorithm.
      */
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public static SetVarKMatrix calculateSetVAdvanced(GrammarWordMatrixWrapper grammarWordMatrixWrapper) {
-        Grammar grammar = grammarWordMatrixWrapper.getGrammar();
-        Word word = grammarWordMatrixWrapper.getWord();
+    public static GrammarPyramidWrapper calculateSetVAdvanced(GrammarPyramidWrapper grammarPyramidWrapper) {
+        Grammar grammar = grammarPyramidWrapper.getGrammar();
+        Word word = grammarPyramidWrapper.getPyramid().getWord();
         List<Terminal> wordAsTerminalList = word.getTerminals();
         int wordLength = wordAsTerminalList.size();
         Map<Variable, List<Production>> productions = grammar.getProductionsMap();
@@ -127,90 +126,7 @@ public class CYK {
                 }
             }
         }
-        return new SetVarKMatrix(setV.length, word).setSetV(setV);
+        grammarPyramidWrapper.getPyramid().setCells(setV);
+        return grammarPyramidWrapper;
     }
-
-    // TODO: completly false?
-    public static Set<VariableK>[][] calculateSubSetForCell(
-            GrammarWordMatrixWrapper grammarWordMatrixWrapper,
-            Set<VariableK>[][] setV,
-            int l,
-            int i,
-            int k) {
-        // tempSetX contains the newly to be added variables, regarding the "X-->YZ" rule.
-        // If the substring X can be concatenated with the substring Y and substring Z, whereas Y and Z
-        // must be element of its specified subsets, then add the element X to setV[i][i+l]
-        Set<Variable> tempSetX = new HashSet<>();
-        Set<Variable> tempSetY = Util.varKSetToVarSet(setV[i][k]);
-        Set<Variable> tempSetZ = Util.varKSetToVarSet(setV[k + 1][i + l]);
-        Set<VariableCompound> tempSetYZ = new HashSet<>();
-        // All possible concatenations of the variables yz are constructed. And so its substrings, which
-        // they are able to generate
-        for (Variable y : tempSetY) {
-            for (Variable z : tempSetZ) {
-                @SuppressWarnings("SuspiciousNameCombination")
-                VariableCompound tempVariable = new VariableCompound(y, z);
-                tempSetYZ.add(tempVariable);
-            }
-        }
-        // Looking at all productions of the grammar, it is checked if there is one rightHandSideElement that
-        // equals any of the concatenated variables tempSetYZ. If yes, the LeftHandSideElement or more
-        // specific the variable of the production is added to the tempSetX. All according to the "X-->YZ" rule.
-        for (List<Production> tempProductions : grammarWordMatrixWrapper.getGrammar().getProductionsMap().values()) {
-            for (Production tempProduction : tempProductions) {
-                for (VariableCompound yz : tempSetYZ) {
-                    if (tempProduction.isElementAtRightHandSide(yz)) {
-                        tempSetX.add(tempProduction.getLeftHandSideElement());
-                    }
-                }
-            }
-        }
-        for (Variable var : tempSetX) {
-            // ( k + 1) because of index range of k  because of i.
-            setV[i][i + l].add(new VariableK(var, (k + 1)));
-        }
-        return setV;
-    }
-
-    /*
-    public static Set<Variable> calculateSubSetForCell(
-            GrammarWordMatrixWrapper grammarWordMatrixWrapper,
-            Pyramid pyramid,
-            int i,
-            int j) {
-        List<Production> productions = grammarWordMatrixWrapper.getGrammar().getProductionsAsList();
-        Set<Variable> V = new HashSet<>();
-        Set<Variable> X = new HashSet<>();
-        Set<Variable> Y = new HashSet<>();
-        Set<Variable> Z = new HashSet<>();
-        Set<VariableCompound> YZ = new HashSet<>();
-        //FIXME: UMRECHUNG IST MÜLL
-        // Use Pyramid.toPyramidCoordinates(...) !!!!!
-        for (int k = i - 1; i >= 0; i--) {
-            for (CellElement ce : pyramid.getCellK(k, j).getCellElements()) {
-                Y.add((ce.getVariable()));
-            }
-            for (CellElement ce : pyramid.getCellK(i - k - 1,k + j + 1).getCellElements()) {
-                Z.add((ce.getVariable()));
-            }
-            for (Variable varY : Y) {
-                for (Variable varZ : Z) {
-                    YZ.add(new VariableCompound(varY, varZ));
-                }
-            }
-            for (VariableCompound varYZ : YZ) {
-                for (Production prod : productions) {
-                    if (prod.getRightHandSideElement().equals(varYZ)) {
-                        X.add(prod.getLeftHandSideElement());
-                    }
-                }
-            }
-            V.addAll(X);
-            X.clear();
-            Y.clear();
-            Z.clear();
-        }
-        return V;
-    }
-    */
 }

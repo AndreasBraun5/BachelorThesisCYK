@@ -1,8 +1,8 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
+import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 
 import java.util.*;
 import java.util.stream.IntStream;
@@ -19,23 +19,23 @@ public class GrammarGeneratorDiceRollVar1 extends GrammarGenerator {
     }
 
     @Override
-    public GrammarWordMatrixWrapper generateGrammarWordMatrixWrapper(
-            GrammarWordMatrixWrapper grammarWordMatrixWrapper, WorkLog workLog) {
+    public GrammarPyramidWrapper generateGrammarPyramidWrapper(
+            GrammarPyramidWrapper grammarPyramidWrapper, WorkLog workLog) {
         workLog.log("#########################################################################################################");
         workLog.log("START of Logging of GrammarGeneratorDiceRollOnly.");
         // Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
-        grammarWordMatrixWrapper.setGrammar(new Grammar(grammarGeneratorSettings.grammarProperties.variableStart));
+        grammarPyramidWrapper.setGrammar(new Grammar(grammarGeneratorSettings.grammarProperties.variableStart));
         workLog.log("Used word:");
-        workLog.log(grammarWordMatrixWrapper.getWord().toString());
-        grammarWordMatrixWrapper = GrammarGeneratorUtil.distributeTerminals(
+        workLog.log(grammarPyramidWrapper.getPyramid().getWord().toString());
+        grammarPyramidWrapper = GrammarGeneratorUtil.distributeTerminals(
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.terminals),
-                grammarWordMatrixWrapper,
+                grammarPyramidWrapper,
                 grammarGeneratorSettings,
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.variables)
         );
         workLog.log("After distributing the terminals:");
-        workLog.log(grammarWordMatrixWrapper.getGrammar().toString());
-        int j_max = grammarWordMatrixWrapper.getWord().getWordLength();
+        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        int j_max = grammarPyramidWrapper.getPyramid().getWord().getWordLength();
         for (int i = 0; i < j_max; i++) {
             // start inclusive and end exclusive
             int[] intArray = IntStream.range(1, j_max + 1).toArray();
@@ -54,11 +54,11 @@ public class GrammarGeneratorDiceRollVar1 extends GrammarGenerator {
             if (false) { // Insert stopping criteria here
                 workLog.log("END of Logging of GrammarGeneratorDiceRollOnly.");
                 workLog.log("#########################################################################################################");
-                return grammarWordMatrixWrapper;
+                return grammarPyramidWrapper;
             }
         }
         workLog.log("END of Logging of GrammarGeneratorDiceRollOnly.");
         workLog.log("#########################################################################################################");
-        return grammarWordMatrixWrapper;
+        return grammarPyramidWrapper;
     }
 }

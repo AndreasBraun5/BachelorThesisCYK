@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by Andreas Braun on 08.02.2017.
  * https://github.com/AndreasBraun5/
  */
-public class SuccessRatesGrammarRestrictions {
+public class SuccessRatesGrammarConstraints {
 
 	private int countGeneratedGrammars = 0;
 
@@ -25,14 +25,14 @@ public class SuccessRatesGrammarRestrictions {
 	private int falseMaxNumberOfVarsPerCellCount = 0;
 	private double successRateMaxNumberOfVarsPerCell = 0.0;
 
-	public SuccessRatesGrammarRestrictions updateSuccessRatesGrammarRestrictions(Map<Word, List<ResultSample>> chunkResultSamples) {
+	public SuccessRatesGrammarConstraints updateSuccessRatesGrammarRestrictions(Map<Word, List<ResultSample>> chunkResultSamples) {
 		for ( Map.Entry<Word, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
 				ResultSampleGrammarRestrictions tempResultSampleGrammarRestrictions =
 						resultSample.getResultSampleGrammarRestrictions();
-				boolean isSizeOfWordCount = tempResultSampleGrammarRestrictions.isSizeOfWordCount();
-				boolean isMaxNumberOfVarsPerCellCount = tempResultSampleGrammarRestrictions.isMaxNumberOfVarsPerCellCount();
+				boolean isSizeOfWordCount = tempResultSampleGrammarRestrictions.isSizeOfWordCount;
+				boolean isMaxNumberOfVarsPerCellCount = tempResultSampleGrammarRestrictions.isMaxNumberOfVarsPerCellCount;
 				if ( isSizeOfWordCount ) {
 					trueSizeOfWordCount++;
 				}
@@ -58,6 +58,21 @@ public class SuccessRatesGrammarRestrictions {
 		}
 		return this;
 	}
+
+    @Override
+    public String toString() {
+        return "\nSuccessRatesGrammarConstraints{" +
+                "\n		trueGrammarRestrictionsCount=" + trueGrammarRestrictionsCount +
+                "\n		falseGrammarRestrictionsCount=" + falseGrammarRestrictionsCount +
+                "\n			-->	SUCCESSRATEGrammarRestrictions=" + successRateGrammarRestrictions +
+                "\n		trueSizeOfWordCount=" + trueSizeOfWordCount +
+                "\n		falseSizeOfWordCount=" + falseSizeOfWordCount +
+                "\n			-->	SUCCESSRATESizeOfWord=" + successRateSizeOfWord +
+                "\n		trueMaxNumberOfVarsPerCellCount=" + trueMaxNumberOfVarsPerCellCount +
+                "\n		falseMaxNumberOfVarsPerCellCount=" + falseMaxNumberOfVarsPerCellCount +
+                "\n			-->	SUCCESSRATEMaxNumberOfVarsPerCell=" + successRateMaxNumberOfVarsPerCell +
+                "\n}";
+    }
 
 	public int getTrueGrammarRestrictionsCount() {
 		return trueGrammarRestrictionsCount;
@@ -93,20 +108,5 @@ public class SuccessRatesGrammarRestrictions {
 
 	public double getSuccessRateMaxNumberOfVarsPerCell() {
 		return successRateMaxNumberOfVarsPerCell;
-	}
-
-	@Override
-	public String toString() {
-		return "\nSuccessRatesGrammarRestrictions{" +
-				"\n		trueGrammarRestrictionsCount=" + trueGrammarRestrictionsCount +
-				"\n		falseGrammarRestrictionsCount=" + falseGrammarRestrictionsCount +
-				"\n			-->	SUCCESSRATEGrammarRestrictions=" + successRateGrammarRestrictions +
-				"\n		trueSizeOfWordCount=" + trueSizeOfWordCount +
-				"\n		falseSizeOfWordCount=" + falseSizeOfWordCount +
-				"\n			-->	SUCCESSRATESizeOfWord=" + successRateSizeOfWord +
-				"\n		trueMaxNumberOfVarsPerCellCount=" + trueMaxNumberOfVarsPerCellCount +
-				"\n		falseMaxNumberOfVarsPerCellCount=" + falseMaxNumberOfVarsPerCellCount +
-				"\n			-->	SUCCESSRATEMaxNumberOfVarsPerCell=" + successRateMaxNumberOfVarsPerCell +
-				"\n}";
 	}
 }

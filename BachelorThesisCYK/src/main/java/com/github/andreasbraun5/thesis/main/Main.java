@@ -102,14 +102,14 @@ public class Main {
          * variables.size() should be around 4, considering exam exercises.
          * terminals.size() should be 2.
          * Used default setting:
-         * grammarPropertiesGrammarRestrictions: sizeOfWord = 10 // All TestResults will be based on words of this size
-         * grammarPropertiesGrammarRestrictions: maxNumberOfVarsPerCell = 3 // The CYK simple pyramid must contain less than 4 vars in cone cells
-         * grammarPropertiesExamConstraints: minRightCellCombinationsForced = 1
-         * grammarPropertiesExamConstraints: countSumOfProductions = 10; // approximate maximum value taken from the exam exercises
-         * grammarPropertiesExamConstraints: minRightCellCombinationsForced = 1 countSumOfVarsInPyramid = 50; // approximate maximum value taken from the exam exercises
+         * grammarConstraints: sizeOfWord = 10 // All TestResults will be based on words of this size
+         * grammarConstraints: maxNumberOfVarsPerCell = 3 // The CYK simple pyramid must contain less than 4 vars in cone cells
+         * examConstraints: minRightCellCombinationsForced = 1
+         * examConstraints: countSumOfProductions = 10; // approximate maximum value taken from the exam exercises
+         * examConstraints: minRightCellCombinationsForced = 1 countSumOfVarsInPyramid = 50; // approximate maximum value taken from the exam exercises
          */
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"), variables, terminals);
-        grammarProperties.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell(3); //Set like this
+        grammarProperties.grammarConstraints.maxNumberOfVarsPerCell = 3; //Set like this
         return grammarProperties;
     }
 }

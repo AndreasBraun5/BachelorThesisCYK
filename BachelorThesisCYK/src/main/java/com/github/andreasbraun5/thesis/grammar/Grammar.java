@@ -22,6 +22,12 @@ public class Grammar {
         this.variableStart = variableStart;
     }
 
+    public Grammar(Grammar grammar){
+        this.variableStart = grammar.getVariableStart();
+        this.productionsMap = grammar.getProductionsMap();
+    }
+
+
     /**
      * You must make sure beforehand that only reasonable productions are added. No duplicates can be added and no
      * already existing production.

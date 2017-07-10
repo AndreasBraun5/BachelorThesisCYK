@@ -3,11 +3,16 @@ package com.github.andreasbraun5.thesis.grammarvalididtychecker;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckMaxNumberOfVarsPerCellResultWrapper;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckMaxSumOfVarsInPyramidResultWrapper;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckRightCellCombinationsForcedResultWrapper;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckSumOfProductionsResultWrapper;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.*;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
+import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.*;
 
@@ -17,7 +22,7 @@ import java.util.*;
  * <p>
  * All validity tests of GrammarValidityChecker are based onto the simple setV = setV<Variable>.
  */
-public class GrammarValidityChecker {
+public class GrammarValidityChecker { // implements GrammarValidityCheckerInterface{
 
     /**
      * True if the starting symbol is contained at the bottom of the pyramid.
@@ -53,109 +58,67 @@ public class GrammarValidityChecker {
     }
 
     /**
-     * True if more than minCountRightCellCombinationsForced "rightCellCombination" are forced.
-     * Exam relevant restriction. The upper two rows of the pyramid aren't checked.
-     * Starting from from the upper right index of the matrix setV[0][wL-1] towards the diagonal.
+     * Exam relevant restriction. The upper two rows of the pyramid aren't checked. For each cell of the pyramid it is
+     * checked wether it forces.
      */
     public static CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationForced(
             Pyramid pyramid, int minCountRightCellCombinationsForced, Grammar grammar) {
-        Set<Variable>[][] tempSetV = pyramid.getAsVarKMatrix().getSimpleSetDoubleArray();
-        int wordLength = tempSetV[0].length;
-        Set<VariableK>[][] markedRightCellCombinationForced = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
-        Map<Variable, List<Production>> prodMap = grammar.getProductionsMap();
         int rightCellCombinationsForced = 0;
-        // Keep in mind that the setV matrix is a upper right matrix. But descriptions of how the algorithm works
-        // is done, as if the setV pyramid points downwards (reflection on the diagonal + rotation to the left).
-        // Regarding one cells, its upper left cells and its upper right cells are looked at.
-        // setV[i][j] = down
-        // setV[i + 1][j] = upper right
-        // setV[i][j - 1] = upper left
-        for (int i = 0; i < wordLength; i++) { // row
-            // here it is restricted that the upper two rows aren't checked. Trivial cases, which would fulfill the
-            // restrictions each time.
-            for (int j = wordLength - 1; j > i + 2; j--) { // column
-                Set<VariableCompound> tempVarCompSet = new HashSet<>();
-                // if one., the left or right cell is empty, then rightCellCombinationsForced wont't be incremented.
-                if (tempSetV[i][j - 1].size() != 0 && tempSetV[i + 1][j].size() != 0) {
-                    // make all tuples of left and right --> tempVariablesCompound = tuples of type
-                    // ({varLeft}, {varRight})
-                    for (Variable varLeft : tempSetV[i][j - 1]) {
-                        for (Variable varRight : tempSetV[i + 1][j]) {
-                            tempVarCompSet.add(new VariableCompound(varLeft, varRight));
-                        }
-                    }
-                    // for each var in down check if no combination is rhse of var in its prodMap
-                    boolean isRightCellCombinationForced;
-                    for (Variable varDown : tempSetV[i][j]) {
-                        // As long as the opposite isn't found isRightCellCombinationForced is true
-                        isRightCellCombinationForced = true;
-                        // Get its map
-                        List<Production> varDownProdList = prodMap.get(varDown);
-                        // Check for each tempVarComp if it is element of the rhse of the observed variable <-> prodmap
-                        for (VariableCompound tempVarComp : tempVarCompSet) {
-                            // regarding an empty cell down
-                            if (varDownProdList == null) {
-                                isRightCellCombinationForced = false;
-                                // TODO Martin: Ask for break;
-                                break;
-                            }
-                            for (Production prod : varDownProdList) {
-                                if (prod.getRightHandSideElement().equals(tempVarComp)) {
-                                    isRightCellCombinationForced = false;
-                                }
-                                if (!isRightCellCombinationForced) {
-                                    break;
-                                }
-                            }
-                            if (!isRightCellCombinationForced) {
-                                break;
-                            }
-                        }
-                        if (isRightCellCombinationForced) {
-                            rightCellCombinationsForced++;
-                            // TODO: not nice here
-                            markedRightCellCombinationForced[i][j].add(new VariableK(varDown, 0));
-                        }
-                    }
+        Word word = pyramid.getWord();
+        Set<VariableK>[][] markedRightCellCombinationForced =
+                Util.getInitialisedHashSetArray(word.getWordLength(), VariableK.class);
+        CellK[][] cells = pyramid.getCellsK();
+        // for each cell in pyramid call checkRightCellCombinationForcedForCell
+        {
+            for (int i = 2; i < cells[0].length; i++) {
+                for (int j = 0; j < cells[i].length; j++) {
+                    CellK cellDown = cells[i][j];
+                    CellK cellRight = cells[i - 1][j];
+                    CellK cellLeft = cells[i - 1][j + 1];
+                    List<VariableK> tempVarKsThatForce =
+                            checkRightCellCombinationForcedForCell(cellDown, cellRight, cellLeft, grammar);
+                    rightCellCombinationsForced += tempVarKsThatForce.size();
+                    markedRightCellCombinationForced[i][j].addAll(tempVarKsThatForce);
                 }
             }
         }
 
-
-        Pyramid pyramidMarked = SetVarKMatrix.matrixToPyramid(markedRightCellCombinationForced, pyramid.getWord());
-
-
+        Pyramid pyramidMarked = SetVarKMatrix.matrixToPyramid(markedRightCellCombinationForced, word);
+        // returns which variables force in which cell of the pyramid, if it the restriciton is valid and how often it forces
         return CheckRightCellCombinationsForcedResultWrapper.buildRightCellCombinationsForcedWrapper().
                 setCountRightCellCombinationForced(rightCellCombinationsForced).
                 setRightCellCombinationForced(rightCellCombinationsForced >= minCountRightCellCombinationsForced).
                 setMarkedRightCellCombinationForced(pyramidMarked);
     }
 
-    private Set<CellSimple> checkRightCellCombinationForcedForCell(CellSimple cellDown,
-                                                                  CellSimple cellUpperLeft,
-                                                                  CellSimple cellUpperright) {
-        Set<CellSimple> varsForcing = new HashSet<>();
-        Set<VariableCompound> varComp = calculateVariablesCompound(ce);
 
+    /**
+     * For one cell of the pyramid is checked if it forces. It returns the variables that force.
+     */
+    private static List<VariableK> checkRightCellCombinationForcedForCell(
+            CellK cellDown, CellK cellRight, CellK cellLeft, Grammar grammar) {
+        List<VariableK> varKsThatForce = new ArrayList<>();
+        // varCompMistake compound variables aren't allowed to be an rhse of the variable of cellDown.
+        @SuppressWarnings("SuspiciousNameCombination")
+        Set<VariableCompound> varCompMistake = Util.calculateVariablesCompound(new Tuple<>(cellLeft, cellRight));
+        for (VariableK vark : cellDown.getCellElements()) {
+            List<Production> prodsForVar = grammar.getProductionsMap().get(vark.getVariable());
+            // If at least one of the varCompMistake variables is element of only rhse of the prodsForVar, then the
+            // vark does not Force
+            for (Production prod : prodsForVar) {
+                if (varCompMistake.contains(prod.getRightHandSideElement())) {
+                    // If one element is found, then the varK must not be added to varKsThatForce.
+                    break;
+                } else {
+                    varKsThatForce.add(vark);
+                }
 
-
-        return varsForcing;
-    }
-
-    private Set<> calculateCellCombinationsThatCanForce(Cell cell){
-
-
-    }
-
-    private Set<VariableCompound> calculateVariablesCompound(Set<Variable> xSet, Set<Variable> ySet) {
-        Set<VariableCompound> varComp = new HashSet<>();
-        for (Variable varX : xSet) {
-            for (Variable varY : ySet) {
-                varComp.add(new VariableCompound(varX, varY));
             }
+
         }
-        return varComp;
+        return varKsThatForce;
     }
+
 
     public static CheckSumOfProductionsResultWrapper checkSumOfProductions(Grammar grammar, int maxSumOfProductions) {
         return CheckSumOfProductionsResultWrapper.buildCheckSumOfProductionsResultWrapper().
@@ -164,7 +127,7 @@ public class GrammarValidityChecker {
     }
 
     /**
-     * checkMaxSumOfVarsInPyramid is tested only on the setV simple. Does not ignore cell after the diagonal.
+     * checkMaxSumOfVarsInPyramid is tested only on the setV simple.
      */
     public static CheckMaxSumOfVarsInPyramidResultWrapper checkMaxSumOfVarsInPyramid(
             Pyramid pyramid,

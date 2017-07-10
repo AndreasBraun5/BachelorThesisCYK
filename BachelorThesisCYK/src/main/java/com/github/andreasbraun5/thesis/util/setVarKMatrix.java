@@ -87,27 +87,8 @@ public class SetVarKMatrix {
         return SetVarKMatrix.matrixToPyramid(setV, word);
     }
 
-    // TODO: think about again!! Test needed.
-    // static Method because it is not possible to have Set<VariableK>[][] of type Variable and some calculations are
-    // done on the simple Set<Variable>[][]
     public static Pyramid matrixToPyramid(Set<VariableK>[][] setV, Word word) {
-        int wordLength = setV.length;
-        Pyramid pyramid = new Pyramid(setV, word);
-        int m = 0; // column index j of matrix
-        // dif between index i of matrix and index j of matrix for the first row with index 0 of the pyramid is 0,
-        // in the second row with index 1 of pyramid the dif is 1. [Only renaming, you could use index i of the pyramid]
-        int dif = 0;
-        for (int i = 0; i < wordLength; i++) { // index i of the pyramid, row wise from top to down
-            int k = 0; // row index i of matrix
-            for (int j = 0; j < wordLength - i; j++) { // index j of the pyramid, cells wise from left to right
-                m = k + dif;
-                pyramid.getCellK(i, j).addVars(setV[k][m]);
-                k++;
-            }
-            dif++; // increment the dif for each row
-            k++;
-        }
-        return pyramid;
+        return new Pyramid(setV, word);
     }
 
     /**
@@ -170,7 +151,7 @@ public class SetVarKMatrix {
     /**
      * Set<VariableK>[][] --> Set<Variable>[][]
      */
-    private Set<Variable>[][] getSimpleSetDoubleArray() {
+    public Set<Variable>[][] getSimpleSetDoubleArray() {
         int length = setV.length;
         Set<Variable>[][] setVVariable = Util.getInitialisedHashSetArray(length, Variable.class);
         for (int i = 0; i < length; i++) {

@@ -35,6 +35,11 @@ public abstract class Cell <T extends CellElement> {
         return this;
     }
 
+    public Cell addVars(List<T> list){
+        this.cellElements.addAll(list);
+        return this;
+    }
+
     public List<T> getCellElements() {
         return cellElements;
     }
@@ -55,11 +60,38 @@ public abstract class Cell <T extends CellElement> {
             maxLen = Math.max(maxLen, cell.toString().length());
         }
         stringBuilder.append("[");
+        int comma = 1;
         for (T cell : cellElements) {
             stringBuilder.append(Util.uniformStringMaker(cell.toString(), maxLen));
+            if (comma < cellElements.size()) {
+                stringBuilder.append(",");
+                comma++;
+            }
             stringBuilder.append("");
         }
         stringBuilder.append("]");
         return stringBuilder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cell<?> cell = (Cell<?>) o;
+
+        if (i != cell.i) return false;
+        if (j != cell.j) return false;
+        if (!cellElements.equals(cell.cellElements)) return false;
+        return centerName.equals(cell.centerName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = cellElements.hashCode();
+        result = 31 * result + i;
+        result = 31 * result + j;
+        result = 31 * result + centerName.hashCode();
+        return result;
     }
 }

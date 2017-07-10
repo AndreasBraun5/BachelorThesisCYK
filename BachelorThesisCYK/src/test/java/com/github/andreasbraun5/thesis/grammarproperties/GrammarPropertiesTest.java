@@ -5,8 +5,6 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by AndreasBraun on 28.06.2017.
  */
@@ -20,7 +18,7 @@ public class GrammarPropertiesTest {
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"));
         grammarProperties.addVariables(new Variable("A"), new Variable("B"));
         grammarProperties.addTerminals(new Terminal("a"), new Terminal("b"));
-        grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord(10);
+        grammarProperties.grammarConstraints.sizeOfWord = 10;
         System.out.println(grammarProperties);
     }
 }

@@ -1,11 +1,11 @@
 package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
+import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,22 +21,22 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
     }
 
     @Override
-    public GrammarWordMatrixWrapper generateGrammarWordMatrixWrapper(
-            GrammarWordMatrixWrapper grammarWordMatrixWrapper, WorkLog workLog) {
+    public GrammarPyramidWrapper generateGrammarPyramidWrapper(
+            GrammarPyramidWrapper grammarPyramidWrapper, WorkLog workLog) {
         workLog.log("#########################################################################################################");
         workLog.log("START of Logging of GrammarGeneratorDiceRollOnly.");
         // Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
-        grammarWordMatrixWrapper.setGrammar(new Grammar(grammarGeneratorSettings.grammarProperties.variableStart));
+        grammarPyramidWrapper.setGrammar(new Grammar(grammarGeneratorSettings.grammarProperties.variableStart));
         workLog.log("Used word:");
-        workLog.log(grammarWordMatrixWrapper.getWord().toString());
-        grammarWordMatrixWrapper = GrammarGeneratorUtil.distributeTerminals(
+        workLog.log(grammarPyramidWrapper.getPyramid().getWord().toString());
+        grammarPyramidWrapper = GrammarGeneratorUtil.distributeTerminals(
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.terminals),
-                grammarWordMatrixWrapper,
+                grammarPyramidWrapper,
                 grammarGeneratorSettings,
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.variables)
         );
         workLog.log("After distributing the terminals:");
-        workLog.log(grammarWordMatrixWrapper.getGrammar().toString());
+        workLog.log(grammarPyramidWrapper.getGrammar().toString());
         // Generating all possible compound variables
         Set<VariableCompound> varComp = new HashSet<>();
         for (Variable var1 : grammarGeneratorSettings.grammarProperties.variables) {
@@ -44,20 +44,20 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
                 varComp.add(new VariableCompound(var1, var2));
             }
         }
-        grammarWordMatrixWrapper = GrammarGeneratorUtil.distributeCompoundVariables(
+        grammarPyramidWrapper = GrammarGeneratorUtil.distributeCompoundVariables(
                 new ArrayList<>(varComp),
-                grammarWordMatrixWrapper,
+                grammarPyramidWrapper,
                 grammarGeneratorSettings,
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.variables)
         );
         workLog.log("After distributing all possible compound variables:");
-        workLog.log(grammarWordMatrixWrapper.getGrammar().toString());
-        grammarWordMatrixWrapper.setSetV(CYK.calculateSetVAdvanced(grammarWordMatrixWrapper));
+        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
         workLog.log("After removing useless productions:");
-        grammarWordMatrixWrapper = GrammarGeneratorUtil.removeUselessProductions(grammarWordMatrixWrapper);
-        workLog.log(grammarWordMatrixWrapper.getGrammar().toString());
+        grammarPyramidWrapper = GrammarGeneratorUtil.removeUselessProductions(grammarPyramidWrapper);
+        workLog.log(grammarPyramidWrapper.getGrammar().toString());
         workLog.log("END of Logging of GrammarGeneratorDiceRollOnly.");
         workLog.log("#########################################################################################################");
-        return grammarWordMatrixWrapper;
+        return grammarPyramidWrapper;
     }
 }

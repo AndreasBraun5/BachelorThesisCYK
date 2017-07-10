@@ -1,11 +1,13 @@
 package com.github.andreasbraun5.thesis.parser.test;
 
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.CellElement;
+import com.github.andreasbraun5.thesis.pyramid.CellK;
+import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -34,8 +36,8 @@ public class CYKTest {
         // Define GrammarProperties
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"))
                 .addTerminals(new Terminal("a"));
-        grammarProperties.grammarPropertiesGrammarRestrictions.setMaxNumberOfVarsPerCell(3);
-        grammarProperties.grammarPropertiesGrammarRestrictions.setSizeOfWord(10);
+        grammarProperties.grammarConstraints.maxNumberOfVarsPerCell = 3;
+        grammarProperties.grammarConstraints.sizeOfWord = 10;
         Word word = WordGeneratorDiceRoll.generateWord(grammarProperties);
         // Generate Grammar
         Grammar grammar = new Grammar(new VariableStart("S"));
@@ -43,14 +45,15 @@ public class CYKTest {
                 new Production(new VariableStart("S"),
                         new VariableCompound(new VariableStart("S"), new VariableStart("S")))
         );
-        GrammarWordMatrixWrapper grammarWordMatrixWrapper = new GrammarWordMatrixWrapper().setGrammar(grammar);
-        grammarWordMatrixWrapper.setWord(word);
+        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
+                setGrammar(grammar);
+        grammarPyramidWrapper.setPyramid(new Pyramid(word));
         System.out.println(grammar);
         // Check for integrity
-        SetVarKMatrix SetVarKMatrix = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
-        System.out.println(SetVarKMatrix.getStringToPrintAsLowerTriangularMatrixSimple());
+        grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+        System.out.println(grammarPyramidWrapper.getPyramid());
         Assert.assertEquals("The grammar and the word aren't compatible, but should be.",
-                true, CYK.algorithmAdvanced(grammarWordMatrixWrapper, word)
+                true, CYK.algorithmAdvanced(grammarPyramidWrapper, word)
         );
     }
 
@@ -62,19 +65,21 @@ public class CYKTest {
         Grammar grammar = SS12Exercise.SS12_GRAMMAR;
         Word word = SS12Exercise.SS12_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = SS12Exercise.SS12_SET_VARK;
-        GrammarWordMatrixWrapper grammarWordMatrixWrapper =
-                new GrammarWordMatrixWrapper().setGrammar(grammar);
-        grammarWordMatrixWrapper.setWord(word);
-        SetVarKMatrix setVarKMatrixCalculated = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
-        System.out.println(setVarKMatrixCalculated.getStringToPrintAsLowerTriangularMatrix());
-        int wordLength = word.getWordLength();
-        SetVarKMatrix setVarKMatrixSolution = setVarKMatrix;
-        System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
-        Assert.assertTrue(checkSetVCalculated(
-                setVarKMatrixSolution.getSetV(),
-                setVarKMatrixCalculated.getSetV(),
-                wordLength)
-        );
+        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
+                setGrammar(grammar);
+        grammarPyramidWrapper.setPyramid(new Pyramid(word));
+
+        GrammarPyramidWrapper grammarPyramidWrapperCalculated = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+
+        GrammarPyramidWrapper grammarPyramidWrapperSolution = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
+                setGrammar(grammar);
+        grammarPyramidWrapperSolution.setPyramid(setVarKMatrix.getAsPyramid());
+
+
+        System.out.println(grammarPyramidWrapperCalculated.getPyramid());
+        System.out.println(grammarPyramidWrapperSolution.getPyramid());
+        Assert.assertTrue(checkPyramidCalculated(grammarPyramidWrapperCalculated,
+                grammarPyramidWrapperSolution));
         System.out.println("\nSetV from script is the same as the calculated SetV.");
     }
 
@@ -86,19 +91,21 @@ public class CYKTest {
         Grammar grammar = SS13Exercise.SS13_GRAMMAR;
         Word word = SS13Exercise.SS13_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = SS13Exercise.SS13_SET_VARK;
-        GrammarWordMatrixWrapper grammarWordMatrixWrapper =
-                new GrammarWordMatrixWrapper().setGrammar(grammar);
-        grammarWordMatrixWrapper.setWord(word);
-        SetVarKMatrix setVarKMatrixCalculated = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
-        System.out.println(setVarKMatrixCalculated.getStringToPrintAsLowerTriangularMatrix());
-        int wordLength = word.getWordLength();
-        SetVarKMatrix setVarKMatrixSolution = setVarKMatrix;
-        System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
-        Assert.assertTrue(checkSetVCalculated(
-                setVarKMatrixSolution.getSetV(),
-                setVarKMatrixCalculated.getSetV(),
-                wordLength)
-        );
+        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
+                setGrammar(grammar);
+        grammarPyramidWrapper.setPyramid(new Pyramid(word));
+
+        GrammarPyramidWrapper grammarPyramidWrapperCalculated = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+
+        GrammarPyramidWrapper grammarPyramidWrapperSolution = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
+                setGrammar(grammar);
+        grammarPyramidWrapperSolution.setPyramid(setVarKMatrix.getAsPyramid());
+
+
+        System.out.println(grammarPyramidWrapperCalculated.getPyramid());
+        System.out.println(grammarPyramidWrapperSolution.getPyramid());
+        Assert.assertTrue(checkPyramidCalculated(grammarPyramidWrapperCalculated,
+                grammarPyramidWrapperSolution));
         System.out.println("\nSetV from script is the same as the calculated SetV.");
     }
 
@@ -111,25 +118,40 @@ public class CYKTest {
         Grammar grammar = TiScriptExercise.SCRIPT_GRAMMAR;
         Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
-        GrammarWordMatrixWrapper grammarWordMatrixWrapper =
-                new GrammarWordMatrixWrapper().setGrammar(grammar);
-        grammarWordMatrixWrapper.setWord(word);
-        SetVarKMatrix setVarKMatrixCalculated = CYK.calculateSetVAdvanced(grammarWordMatrixWrapper);
-        System.out.println(setVarKMatrixCalculated.getStringToPrintAsLowerTriangularMatrix());
-        int wordLength = word.getWordLength();
-        SetVarKMatrix setVarKMatrixSolution = setVarKMatrix;
-        System.out.print(setVarKMatrixSolution.getStringToPrintAsLowerTriangularMatrix());
-        Assert.assertTrue(checkSetVCalculated(
-                setVarKMatrixSolution.getSetV(),
-                setVarKMatrixCalculated.getSetV(),
-                wordLength)
-        );
+        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
+                setGrammar(grammar);
+        grammarPyramidWrapper.setPyramid(new Pyramid(word));
+
+        GrammarPyramidWrapper grammarPyramidWrapperCalculated = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+
+        GrammarPyramidWrapper grammarPyramidWrapperSolution = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
+                setGrammar(grammar);
+        grammarPyramidWrapperSolution.setPyramid(setVarKMatrix.getAsPyramid());
+
+
+        System.out.println(grammarPyramidWrapperCalculated.getPyramid());
+        System.out.println(grammarPyramidWrapperSolution.getPyramid());
+        Assert.assertTrue(checkPyramidCalculated(grammarPyramidWrapperCalculated,
+                grammarPyramidWrapperSolution));
         System.out.println("\nSetV from script is the same as the calculated SetV.");
     }
 
     /**
      * Checking the two sets for being identical.
      */
+    private static boolean checkPyramidCalculated(GrammarPyramidWrapper solution, GrammarPyramidWrapper calculated) {
+        boolean isCorrect = true;
+        CellK[][] solutionCells = solution.getPyramid().getCellsK();
+        CellK[][] calculatedCells = calculated.getPyramid().getCellsK();
+        for (int i = 0; i < solutionCells[1].length; i++) {
+            for (int j = 0; j < solutionCells[i].length; j++) {
+                isCorrect = solutionCells[i][j].equals(calculatedCells[i][j]);
+            }
+        }
+        return isCorrect;
+    }
+
+
     private static <T extends CellElement> boolean checkSetVCalculated(
             Set<T>[][] setVTemp,
             Set<T>[][] setV,

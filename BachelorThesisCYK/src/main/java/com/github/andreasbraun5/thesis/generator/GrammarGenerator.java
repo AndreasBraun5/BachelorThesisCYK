@@ -1,7 +1,7 @@
 package com.github.andreasbraun5.thesis.generator;
 
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarWordMatrixWrapper;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
+import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 
 /**
  * Created by AndreasBraun on 01.06.2017.
@@ -17,11 +17,11 @@ public abstract class GrammarGenerator {
     }
 
     /**
-     *  Its goal is to generate a grammar. GrammarWordMatrixWrapper allows to additionally give more parameters, which are needed
-     *  for the specific generator method.
-     *  Here the specific implementation of each algorithm is written.
+     * Its goal is to generate a grammar. GrammarPyramidWrapper allows to additionally give more parameters, which are needed
+     * for the specific generator method.
+     * Here the specific implementation of each algorithm is written.
      */
-    public abstract GrammarWordMatrixWrapper generateGrammarWordMatrixWrapper(GrammarWordMatrixWrapper grammarWordMatrixWrapper, WorkLog workLog);
+    public abstract GrammarPyramidWrapper generateGrammarPyramidWrapper(GrammarPyramidWrapper grammarPyramidWrapper, WorkLog workLog);
 
     public String getGeneratorType() {
         return generatorType;

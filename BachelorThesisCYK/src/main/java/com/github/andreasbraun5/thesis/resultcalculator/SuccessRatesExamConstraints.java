@@ -35,9 +35,9 @@ public class SuccessRatesExamConstraints {
 				countGeneratedGrammars++;
 				ResultSampleExamConstraints tempResultSampleExamConstraints =
 						resultSample.getResultSampleExamConstraints();
-				boolean isRightCellCombinationsForced = tempResultSampleExamConstraints.isRightCellCombinationsForced();
-				boolean isMaxSumOfProductionsCount = tempResultSampleExamConstraints.isMaxSumOfProductionsCount();
-				boolean isMaxSumOfVarsInPyramidCount = tempResultSampleExamConstraints.isMaxSumOfVarsInPyramidCount();
+				boolean isRightCellCombinationsForced = tempResultSampleExamConstraints.isRightCellCombinationsForced;
+				boolean isMaxSumOfProductionsCount = tempResultSampleExamConstraints.isMaxSumOfProductionsCount;
+				boolean isMaxSumOfVarsInPyramidCount = tempResultSampleExamConstraints.isMaxSumOfVarsInPyramidCount;
 
 				if ( isRightCellCombinationsForced ) {
 					trueRightCellCombinationsForcedCount++;
@@ -71,6 +71,24 @@ public class SuccessRatesExamConstraints {
 		}
 		return this;
 	}
+
+    @Override
+    public String toString() {
+        return "\nSuccessRatesExamConstraints{" +
+                "\n		trueExamConstraints=" + trueExamConstraints +
+                "\n		falseExamConstraints=" + falseExamConstraints +
+                "\n			-->	SUCCESSRATEExamConstraints=" + successRateExamConstraints +
+                "\n		trueRightCellCombinationsForcedCount=" + trueRightCellCombinationsForcedCount +
+                "\n		falseRightCellCombinationsForcedCount=" + falseRightCellCombinationsForcedCount +
+                "\n			-->	SUCCESSRATERightCellCombinationsForced=" + successRateRightCellCombinationsForced +
+                "\n		trueMaxSumOfProductionsCount=" + trueMaxSumOfProductionsCount +
+                "\n		falseMaxSumOfProductionsCount=" + falseMaxSumOfProductionsCount +
+                "\n			-->	SUCCESSRATEMaxSumOfProductions=" + successRateMaxSumOfProductions +
+                "\n		trueMaxSumOfVarsInPyramidCount=" + trueMaxSumOfVarsInPyramidCount +
+                "\n		falseMaxSumOfVarsInPyramidCount=" + falseMaxSumOfVarsInPyramidCount +
+                "\n			-->	SUCCESSRATEMaxSumOfVarsInPyramid=" + successRateMaxSumOfVarsInPyramid +
+                "\n}";
+    }
 
 	public int getTrueExamConstraints() {
 		return trueExamConstraints;
@@ -118,23 +136,5 @@ public class SuccessRatesExamConstraints {
 
 	public double getSuccessRateMaxSumOfVarsInPyramid() {
 		return successRateMaxSumOfVarsInPyramid;
-	}
-
-	@Override
-	public String toString() {
-		return "\nSuccessRatesExamConstraints{" +
-				"\n		trueExamConstraints=" + trueExamConstraints +
-				"\n		falseExamConstraints=" + falseExamConstraints +
-				"\n			-->	SUCCESSRATEExamConstraints=" + successRateExamConstraints +
-				"\n		trueRightCellCombinationsForcedCount=" + trueRightCellCombinationsForcedCount +
-				"\n		falseRightCellCombinationsForcedCount=" + falseRightCellCombinationsForcedCount +
-				"\n			-->	SUCCESSRATERightCellCombinationsForced=" + successRateRightCellCombinationsForced +
-				"\n		trueMaxSumOfProductionsCount=" + trueMaxSumOfProductionsCount +
-				"\n		falseMaxSumOfProductionsCount=" + falseMaxSumOfProductionsCount +
-				"\n			-->	SUCCESSRATEMaxSumOfProductions=" + successRateMaxSumOfProductions +
-				"\n		trueMaxSumOfVarsInPyramidCount=" + trueMaxSumOfVarsInPyramidCount +
-				"\n		falseMaxSumOfVarsInPyramidCount=" + falseMaxSumOfVarsInPyramidCount +
-				"\n			-->	SUCCESSRATEMaxSumOfVarsInPyramid=" + successRateMaxSumOfVarsInPyramid +
-				"\n}";
 	}
 }

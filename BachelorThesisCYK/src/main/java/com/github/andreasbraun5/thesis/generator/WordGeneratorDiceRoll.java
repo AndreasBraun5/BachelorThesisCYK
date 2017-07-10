@@ -4,7 +4,6 @@ import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeExcepti
 import com.github.andreasbraun5.thesis.exception.WordRuntimeException;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
-import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.ArrayList;
@@ -22,11 +21,10 @@ public class WordGeneratorDiceRoll {
      * Excludes the case where the word could be the empty word.
      */
     public static Word generateWord(GrammarProperties grammarProperties) {
-        if (grammarProperties.grammarPropertiesGrammarRestrictions.getSizeOfWord() == 0) {
+        if (grammarProperties.grammarConstraints.sizeOfWord == 0) {
             throw new GrammarPropertiesRuntimeException("The sizeOfWord is not defined.");
         }
-        return generateWord(grammarProperties.terminals, grammarProperties.grammarPropertiesGrammarRestrictions.
-                getSizeOfWord());
+        return generateWord(grammarProperties.terminals, grammarProperties.grammarConstraints.sizeOfWord);
     }
 
     /**

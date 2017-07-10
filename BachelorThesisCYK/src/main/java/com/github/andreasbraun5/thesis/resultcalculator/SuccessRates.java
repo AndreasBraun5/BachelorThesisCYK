@@ -1,6 +1,10 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
 import com.github.andreasbraun5.thesis.util.Word;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Value;
 
 import java.util.List;
 import java.util.Map;
@@ -9,6 +13,9 @@ import java.util.Map;
  * Created by Andreas Braun on 18.01.2017.
  * https://github.com/AndreasBraun5/
  */
+@Value
+@Builder
+@AllArgsConstructor
 public class SuccessRates {
 
 	private int countGeneratedGrammars = 0;
@@ -21,11 +28,11 @@ public class SuccessRates {
 	private int falseProducibilityCount = 0;
 	private double successRateProducibility = 0.0;
 
-	private SuccessRatesGrammarRestrictions successRatesGrammarRestrictions = new SuccessRatesGrammarRestrictions();
+	private SuccessRatesGrammarConstraints successRatesGrammarConstraints = new SuccessRatesGrammarConstraints();
 	private SuccessRatesExamConstraints successRatesExamConstraints = new SuccessRatesExamConstraints();
 
 	public SuccessRates updateSuccessRates(Map<Word, List<ResultSample>> chunkResultSamples) {
-		for ( Map.Entry<Word, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
+		/*for ( Map.Entry<Word, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
 				if ( resultSample.isWordProducible() ) {
@@ -45,8 +52,9 @@ public class SuccessRates {
 		successRate = (double) trueCount / countGeneratedGrammars;
 		successRateProducibility = (double) trueProducibilityCount / countGeneratedGrammars;
 		successRatesExamConstraints.updateSuccessRatesExamConstraints( chunkResultSamples );
-		successRatesGrammarRestrictions.updateSuccessRatesGrammarRestrictions( chunkResultSamples );
-		return this;
+		successRatesGrammarConstraints.updateSuccessRatesGrammarRestrictions( chunkResultSamples );
+		return this;*/
+		return null;
 	}
 
 	@Override
@@ -57,7 +65,7 @@ public class SuccessRates {
 				"\n			-->	SUCCESSRATE=" + successRate +
 				"\n			-->	SUCCESSRATEPRODUCIBILITY=" + successRateProducibility +
 				"\n			-->	SUCCESSRATEGRAMMARRESTRICTIONS=" +
-				successRatesGrammarRestrictions.getSuccessRateGrammarRestrictions() +
+				successRatesGrammarConstraints.getSuccessRateGrammarRestrictions() +
 				"\n			-->	SUCCESSRATEEXAMCONSTRAINTS=" +
 				successRatesExamConstraints.getSuccessRateExamConstraints() +
 				"\n" +
@@ -68,8 +76,44 @@ public class SuccessRates {
 				"\n		trueProducibilityCount=" + trueProducibilityCount +
 				"\n		falseProducibilityCount=" + falseProducibilityCount +
 				"\n}" +
-				successRatesGrammarRestrictions.toString() +
+				successRatesGrammarConstraints.toString() +
 				successRatesExamConstraints.toString() +
 				"\n}";
 	}
+
+    public int getCountGeneratedGrammars() {
+        return countGeneratedGrammars;
+    }
+
+    public int getTrueCount() {
+        return trueCount;
+    }
+
+    public int getFalseCount() {
+        return falseCount;
+    }
+
+    public double getSuccessRate() {
+        return successRate;
+    }
+
+    public int getTrueProducibilityCount() {
+        return trueProducibilityCount;
+    }
+
+    public int getFalseProducibilityCount() {
+        return falseProducibilityCount;
+    }
+
+    public double getSuccessRateProducibility() {
+        return successRateProducibility;
+    }
+
+    public SuccessRatesGrammarConstraints getSuccessRatesGrammarConstraints() {
+        return successRatesGrammarConstraints;
+    }
+
+    public SuccessRatesExamConstraints getSuccessRatesExamConstraints() {
+        return successRatesExamConstraints;
+    }
 }

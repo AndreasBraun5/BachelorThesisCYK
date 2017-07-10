@@ -27,4 +27,5 @@ public class CellK extends Cell<VariableK> {
         return cellSimple;
     }
 
+
 }
