@@ -30,7 +30,7 @@ public class GrammarGeneratorDiceRollVar1 extends GrammarGenerator {
         grammarPyramidWrapper.setGrammar(new Grammar(grammarGeneratorSettings.grammarProperties.variableStart));
         workLog.log("Used word:");
         workLog.log(grammarPyramidWrapper.getPyramid().getWord().toString());
-        grammarPyramidWrapper = GrammarGeneratorUtil.distributeTerminals(
+        grammarPyramidWrapper = A_DistributeTerminals.distributeTerminals(
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.terminals),
                 grammarPyramidWrapper,
                 grammarGeneratorSettings,

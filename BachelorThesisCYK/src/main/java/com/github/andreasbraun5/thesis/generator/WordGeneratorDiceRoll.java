@@ -43,7 +43,6 @@ public class WordGeneratorDiceRoll {
             randomNumber = random.nextInt(max) + min;
             randomWord.add(tempTerminals.get(randomNumber));
         }
-        // dice roll the word as long until all terminals are used.
         if (randomWord.size() > sizeOfWord) {
             throw new WordRuntimeException("randomWord.length of the " +
                     "generated word is bigger than the specified sizeOfWord of the grammar");

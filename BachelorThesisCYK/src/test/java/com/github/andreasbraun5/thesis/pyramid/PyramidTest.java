@@ -1,12 +1,9 @@
 package com.github.andreasbraun5.thesis.pyramid;
 
 import com.github.andreasbraun5.thesis.util.TestExercises;
-import com.github.andreasbraun5.thesis.util.TiScriptExercise;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import org.junit.Test;
 
-import java.lang.annotation.Target;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

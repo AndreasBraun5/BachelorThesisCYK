@@ -5,7 +5,6 @@ import com.github.andreasbraun5.thesis.grammar.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;

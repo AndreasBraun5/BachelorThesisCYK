@@ -1,6 +1,8 @@
 package com.github.andreasbraun5.thesis.grammarvalididtychecker;
 
-import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.CellSimple;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
@@ -51,7 +53,7 @@ public class GrammarValidityCheckerTest {
         CellK cellRight = pyramid.getCellK(5, 1); // contains D2
         CellK cellDown = pyramid.getCellK(4,2); // contains B3
         cellRight.addVar(new VariableK(new Variable("A"), 1)); // adding fictional var A1 to cellRight
-        cellDown.addVar(new VariableK(new Variable("D"), 1)); // adding fictional var D1 to cellDown
+        cellDown.addVar(new VariableK(new Variable("D_"), 1)); // adding fictional var D1 to cellDown
         cellDown.addVar(new VariableK(new Variable("C"), 1)); // adding fictional var D1 to cellDown
         System.out.println("cellLeft and cellRight:" + cellLeft.toString() + "             "+ cellRight.toString());
         System.out.println("cellDown:                       " + cellDown);
@@ -59,7 +61,7 @@ public class GrammarValidityCheckerTest {
         Set<VariableK> forcingVarsOfCellDown = GrammarValidityChecker.
                 checkRightCellCombinationForcedForCell(cellDown, cellRight, cellLeft, grammar);
         System.out.println(forcingVarsOfCellDown);
-        Assert.assertTrue(forcingVarsOfCellDown.contains(new VariableK(new Variable("D"), 1)));
+        Assert.assertTrue(forcingVarsOfCellDown.contains(new VariableK(new Variable("D_"), 1)));
         Assert.assertFalse(forcingVarsOfCellDown.contains(new VariableK(new Variable("B"), 3)));
         Assert.assertFalse(forcingVarsOfCellDown.contains(new VariableK(new Variable("C"), 1)));
 
@@ -158,7 +160,7 @@ public class GrammarValidityCheckerTest {
         CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationsForcedResultWrapper =
                 GrammarValidityChecker.checkRightCellCombinationForcedSimpleCells(pyramid, 3, grammar);
         System.out.println(grammar);
-        System.out.println("CountForced: " + checkRightCellCombinationsForcedResultWrapper.getCountRightCellCombinationForced());
+        System.out.println("CountForced: " + checkRightCellCombinationsForcedResultWrapper.getRightCellCombinationForcedCount());
         System.out.println(checkRightCellCombinationsForcedResultWrapper.getMarkedRightCellCombinationForced());
     }
 }

@@ -1,17 +1,16 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
-import java.util.List;
-
+import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
+import com.github.andreasbraun5.thesis.main.Main;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
-import com.github.andreasbraun5.thesis.main.Main;
+import java.util.List;
 
 /**
  * Created by Andreas Braun on 19.01.2017.
@@ -37,9 +36,9 @@ public class ResultCalculatorTest {
         if ((countGeneratedGrammarsPerWord * countDifferentWords) > 70000) {
             throw new GrammarSettingRuntimeException("Too many grammars would be generated. [ N !< 70000 ]");
         }
-        ResultCalculator resultCalculator1 = ResultCalculator.buildResultCalculator().
-                setCountDifferentWords(countDifferentWords).
-                setCountOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord);
+        ResultCalculator resultCalculator1 = ResultCalculator.builder().
+                countDifferentWords(countDifferentWords).
+                countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
         Result test1DiceRollResult = resultCalculator1.buildResultWithGenerator(
                 new GrammarGeneratorDiceRollOnly(generatorGrammarDiceRollSettings), WorkLog.createFromWriter(null)
         );

@@ -2,7 +2,6 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 
 import com.github.andreasbraun5.thesis.util.Word;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 import java.util.Map;
@@ -38,9 +37,9 @@ public class SuccessRatesExamConstraints {
 				countGeneratedGrammars++;
 				ResultSampleExamConstraints tempResultSampleExamConstraints =
 						resultSample.getResultSampleExamConstraints();
-				boolean isRightCellCombinationsForced = tempResultSampleExamConstraints.isRightCellCombinationsForced;
-				boolean isMaxSumOfProductionsCount = tempResultSampleExamConstraints.isMaxSumOfProductionsCount;
-				boolean isMaxSumOfVarsInPyramidCount = tempResultSampleExamConstraints.isMaxSumOfVarsInPyramidCount;
+				boolean isRightCellCombinationsForced = tempResultSampleExamConstraints.isRightCellCombinationsForced();
+				boolean isMaxSumOfProductionsCount = tempResultSampleExamConstraints.isMaxSumOfProductions();
+				boolean isMaxSumOfVarsInPyramidCount = tempResultSampleExamConstraints.isMaxSumOfVarsInPyramid();
 
 				if ( isRightCellCombinationsForced ) {
 					trueRightCellCombinationsForcedCount++;

@@ -29,7 +29,7 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
         grammarPyramidWrapper.setGrammar(new Grammar(grammarGeneratorSettings.grammarProperties.variableStart));
         workLog.log("Used word:");
         workLog.log(grammarPyramidWrapper.getPyramid().getWord().toString());
-        grammarPyramidWrapper = GrammarGeneratorUtil.distributeTerminals(
+        grammarPyramidWrapper = A_DistributeTerminals.distributeTerminals(
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.terminals),
                 grammarPyramidWrapper,
                 grammarGeneratorSettings,
@@ -44,7 +44,7 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
                 varComp.add(new VariableCompound(var1, var2));
             }
         }
-        grammarPyramidWrapper = GrammarGeneratorUtil.distributeCompoundVariables(
+        grammarPyramidWrapper = B_DistributeVariables.distributeCompoundVariables(
                 new ArrayList<>(varComp),
                 grammarPyramidWrapper,
                 grammarGeneratorSettings,

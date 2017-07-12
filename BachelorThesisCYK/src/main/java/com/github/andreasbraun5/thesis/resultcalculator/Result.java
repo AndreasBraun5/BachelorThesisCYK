@@ -3,7 +3,6 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.util.Word;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 import java.util.Map;

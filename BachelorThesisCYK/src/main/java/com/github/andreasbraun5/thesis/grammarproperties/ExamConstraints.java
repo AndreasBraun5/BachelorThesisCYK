@@ -15,7 +15,7 @@ public class ExamConstraints {
 	public String toString() {
 		return "\nExamConstraints{" +
 				"\n		minRightCellCombinationsForced=" + minRightCellCombinationsForced +
-				"\n		maxSumOfProductions=" + maxSumOfProductions +
+				"\n		maxSumOfProductionsCount=" + maxSumOfProductions +
 				"\n		maxSumOfVarsInPyramid=" + maxSumOfVarsInPyramid +
 				"\n}";
 	}

@@ -20,6 +20,7 @@ public class Main {
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Note: C:\GitHub\BachelorThesis\BachelorThesisCYK>mvn clean install    --> .jar
+    // TODO: Maven not working correctly.
     public static void main(String[] args) throws IOException {
 
         ThesisDirectory.initPaths();
@@ -38,9 +39,9 @@ public class Main {
         int countGeneratedGrammarsPerWord = 100;
         int countDifferentWords = 100;
 
-        ResultCalculator resultCalculator = ResultCalculator.buildResultCalculator().
-                setCountDifferentWords(countDifferentWords).
-                setCountOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord);
+        ResultCalculator resultCalculator = ResultCalculator.builder().
+                countDifferentWords(3).
+                countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
         GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
 
 

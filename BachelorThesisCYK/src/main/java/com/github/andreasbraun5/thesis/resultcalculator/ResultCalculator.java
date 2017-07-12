@@ -8,6 +8,9 @@ import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.Word;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,27 +21,22 @@ import java.util.Map;
  * Each instance of ResultCalculator should use the same countOfGrammarsToGeneratePerWord that the results are comparable.
  * countSamplesToKeep = 100 grammars and its setVs are kept for further inspection.
  */
+@Builder
+@Setter
+@Getter
 public class ResultCalculator {
 
     private int countOfGrammarsToGeneratePerWord = 50;
     private int countDifferentWords = 50;
     private final int CHUNK_SIZE = 1000;
 
-    public static ResultCalculator buildResultCalculator() {
-        return new ResultCalculator();
-    }
-
-    public ResultCalculator setCountOfGrammarsToGeneratePerWord(int countOfGrammarsToGeneratePerWord) {
-        this.countOfGrammarsToGeneratePerWord = countOfGrammarsToGeneratePerWord;
-        return this;
-    }
-
-    public ResultCalculator setCountDifferentWords(int countDifferentWords) {
+    // TODO: can't override Setter??
+    public void setCountDifferentWords(int countDifferentWords) {
         if (countDifferentWords < 5) {
             throw new TestGrammarRuntimeException("countDifferentWords must be at least 5.");
         }
         this.countDifferentWords = countDifferentWords;
-        return this;
+        return;
     }
 
     public Result buildResultWithGenerator(GrammarGenerator grammarGenerator, WorkLog workLog) {

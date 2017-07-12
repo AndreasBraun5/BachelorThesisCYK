@@ -6,10 +6,7 @@ import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Set;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 /**
  * Created by AndreasBraun on 21.06.2017.

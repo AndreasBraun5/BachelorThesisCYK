@@ -55,14 +55,14 @@ public class GrammarValidityChecker {
             }
         }
         return CheckMaxNumberOfVarsPerCellResultWrapper.builder()
-                .maxNumberOfVarsPerCell(tempMaxNumberOfVarsPerCell).
-                        isMaxNumberOfVarsPerCell(tempMaxNumberOfVarsPerCell <= maxNumberOfVarsPerCell).build();
+                .maxNumberOfVarsPerCellCount(tempMaxNumberOfVarsPerCell).
+                        maxNumberOfVarsPerCell(tempMaxNumberOfVarsPerCell <= maxNumberOfVarsPerCell).build();
     }
 
     /**
      * Exam relevant restriction. The upper two rows of the pyramid aren't checked. For each cell of the pyramid it is
      * checked whether it forces. minCountRightCellCombinationsForced is incremented dependent on unique varKs.
-     * If there is D4, D5, D6 that force, it is only the D that forces.
+     * If there is D4, D5, D6 that force, it is only the D_ that forces.
      */
     public static CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationForcedSimpleCells(
             Pyramid pyramid, int minCountRightCellCombinationsForced, Grammar grammar) {
@@ -90,8 +90,8 @@ public class GrammarValidityChecker {
         }
         // returns which variables force in which cell of the pyramid, if it the restriction is valid and how often it forces
         return CheckRightCellCombinationsForcedResultWrapper.builder().
-                countRightCellCombinationForced(rightCellCombinationsForced).
-                isRightCellCombinationForced(rightCellCombinationsForced >= minCountRightCellCombinationsForced).
+                rightCellCombinationForcedCount(rightCellCombinationsForced).
+                rightCellCombinationForced(rightCellCombinationsForced >= minCountRightCellCombinationsForced).
                 markedRightCellCombinationForced(markedRightCellCombinationForced).build();
     }
 
@@ -126,8 +126,8 @@ public class GrammarValidityChecker {
 
     public static CheckSumOfProductionsResultWrapper checkSumOfProductions(Grammar grammar, int maxSumOfProductions) {
         return CheckSumOfProductionsResultWrapper.builder().
-                maxSumOfProductions(grammar.getProductionsAsList().size()).
-                isSumOfProductions(grammar.getProductionsAsList().size() <= maxSumOfProductions).build();
+                maxSumOfProductionsCount(grammar.getProductionsAsList().size()).
+                sumOfProductions(grammar.getProductionsAsList().size() <= maxSumOfProductions).build();
     }
 
     /**
@@ -145,8 +145,8 @@ public class GrammarValidityChecker {
             }
         }
         return CheckMaxSumOfVarsInPyramidResultWrapper.builder().
-                maxSumOfVarsInPyramid(tempVars.size()).
-                isMaxSumOfVarsInPyramid(tempVars.size() <= maxSumOfVarsInPyramid).build();
+                maxSumOfVarsInPyramidCount(tempVars.size()).
+                maxSumOfVarsInPyramid(tempVars.size() <= maxSumOfVarsInPyramid).build();
     }
 
     private static CellSimple[][] getEmptyCellsSimple(int correspondingPyramidSize) {

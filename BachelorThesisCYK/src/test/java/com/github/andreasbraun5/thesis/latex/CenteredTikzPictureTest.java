@@ -1,16 +1,9 @@
 package com.github.andreasbraun5.thesis.latex;
 
-import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
-import com.github.andreasbraun5.thesis.pyramid.VariableK;
-import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.util.SS13Exercise;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
-import com.github.andreasbraun5.thesis.util.Util;
-import com.github.andreasbraun5.thesis.util.Word;
 import org.junit.Test;
-
-import java.util.Set;
 
 /**
  * Created by Andreas Braun on 08.03.2017.

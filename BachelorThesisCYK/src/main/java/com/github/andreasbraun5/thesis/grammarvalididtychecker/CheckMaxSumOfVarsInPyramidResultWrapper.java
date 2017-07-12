@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class CheckMaxSumOfVarsInPyramidResultWrapper {
-    private boolean isMaxSumOfVarsInPyramid;
-    private int maxSumOfVarsInPyramid;
+    private boolean maxSumOfVarsInPyramid;
+    private int maxSumOfVarsInPyramidCount;
 }
 

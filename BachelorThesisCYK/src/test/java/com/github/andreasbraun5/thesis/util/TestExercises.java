@@ -1,6 +1,8 @@
 package com.github.andreasbraun5.thesis.util;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import static com.github.andreasbraun5.thesis.util.SS12Exercise.SS12_SET_VARK;
 import static com.github.andreasbraun5.thesis.util.SS13Exercise.SS13_SET_VARK;

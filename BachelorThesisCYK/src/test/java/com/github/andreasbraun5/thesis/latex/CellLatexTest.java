@@ -1,14 +1,10 @@
 package com.github.andreasbraun5.thesis.latex;
 
-import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
-import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.util.SS13Exercise;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
-import com.github.andreasbraun5.thesis.util.Util;
-import com.github.andreasbraun5.thesis.util.Word;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -32,7 +28,7 @@ public class CellLatexTest {
         setvk.add(new VariableK(new Variable("A"), 1));
         setvk.add(new VariableK(new Variable("B"), 2));
         setvk.add(new VariableK(new Variable("C"), 3));
-        setvk.add(new VariableK(new Variable("D"), 4));
+        setvk.add(new VariableK(new Variable("D_"), 4));
         setvk.add(new VariableK(new Variable("E"), 5));
         cellLatex.addVar(setvk);
         System.out.println(cellLatex.cellToTex());

@@ -3,8 +3,6 @@ package com.github.andreasbraun5.thesis.generator;
 import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 
-import java.util.Arrays;
-
 /**
  * Created by AndreasBraun on 01.06.2017.
  */

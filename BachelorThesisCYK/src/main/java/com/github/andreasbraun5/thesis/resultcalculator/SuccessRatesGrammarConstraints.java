@@ -2,7 +2,6 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 
 import com.github.andreasbraun5.thesis.util.Word;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,7 @@ public class SuccessRatesGrammarConstraints {
 				countGeneratedGrammars++;
 				ResultSampleGrammarRestrictions tempResultSampleGrammarRestrictions =
 						resultSample.getResultSampleGrammarRestrictions();
-				boolean isMaxNumberOfVarsPerCellCount = tempResultSampleGrammarRestrictions.isMaxNumberOfVarsPerCellCount;
+				boolean isMaxNumberOfVarsPerCellCount = tempResultSampleGrammarRestrictions.isMaxNumberOfVarsPerCell();
 				if ( isMaxNumberOfVarsPerCellCount ) {
 					trueMaxNumberOfVarsPerCellCount++;
 				}

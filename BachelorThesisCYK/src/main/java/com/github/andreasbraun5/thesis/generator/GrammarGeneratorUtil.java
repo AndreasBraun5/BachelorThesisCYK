@@ -19,7 +19,6 @@ public class GrammarGeneratorUtil {
     private static final Random random = new Random();
 
     /**
-     * If you want to distribute the terminals to at least one rightHandSide then minCountElementDistributedTo is 1.
      * Dice roll for every rhse how often it is added and to which vars in the grammar it is added.
      * Equals the Distribute standard method.
      * variablesWeighted: allows favouritism of specific variables.
@@ -47,45 +46,6 @@ public class GrammarGeneratorUtil {
         grammarPyramidWrapper.setGrammar(grammar);
         return grammarPyramidWrapper;
     }
-
-    /**
-     * Equals the circled A Method.
-     * grammarWordMatrixWrapper only needed for its contained Grammar here.
-     * variablesWeighted: allows favouritism of specific variables.
-     */
-    static GrammarPyramidWrapper distributeTerminals(
-            List<Terminal> terminals,
-            GrammarPyramidWrapper grammarPyramidWrapper,
-            GrammarGeneratorSettings grammarGeneratorSettings,
-            List<Variable> variablesWeighted) {
-        return distributeDiceRollRightHandSideElements(
-                grammarPyramidWrapper,
-                terminals,
-                grammarGeneratorSettings.getMinValueTerminalsAreAddedTo(),
-                grammarGeneratorSettings.getMaxValueTerminalsAreAddedTo(),
-                variablesWeighted
-        );
-    }
-
-    /**
-     * Equals the circled B Method.
-     * grammarWordMatrixWrapper only needed for its contained Grammar here.
-     * variablesWeighted: allows favouritism of specific variables.
-     */
-    static GrammarPyramidWrapper distributeCompoundVariables(
-            List<VariableCompound> varComp,
-            GrammarPyramidWrapper grammarPyramidWrapper,
-            GrammarGeneratorSettings grammarGeneratorSettings,
-            List<Variable> variablesWeighted) {
-        return distributeDiceRollRightHandSideElements(
-                grammarPyramidWrapper,
-                varComp,
-                grammarGeneratorSettings.getMinValueCompoundVariablesAreAddedTo(),
-                grammarGeneratorSettings.getMaxValueCompoundVariablesAreAddedTo(),
-                variablesWeighted
-        );
-    }
-
 
     /**
      * It is expected that a valid grammar, pyramid and word are given within the grammarPyramidWrapper.

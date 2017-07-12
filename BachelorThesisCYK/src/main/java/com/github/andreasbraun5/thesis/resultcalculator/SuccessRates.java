@@ -1,7 +1,7 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
 import com.github.andreasbraun5.thesis.util.Word;
-import lombok.*;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.Map;

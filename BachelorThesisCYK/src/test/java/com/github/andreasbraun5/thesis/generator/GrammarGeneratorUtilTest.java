@@ -2,19 +2,19 @@ package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
-import com.github.andreasbraun5.thesis.pyramid.Cell;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
-import com.github.andreasbraun5.thesis.util.*;
+import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
+import com.github.andreasbraun5.thesis.util.TiScriptExercise;
+import com.github.andreasbraun5.thesis.util.Tuple;
+import com.github.andreasbraun5.thesis.util.Word;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by AndreasBraun on 07.07.2017.
@@ -99,7 +99,7 @@ public class GrammarGeneratorUtilTest {
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
         Production useless1 = new Production(new Variable("E"), new Terminal("5"));
         grammar.addProduction(useless1);
-        Production useless2 = new Production(new Variable("B"), new VariableCompound(new Variable("K"), new Variable("D")));
+        Production useless2 = new Production(new Variable("B"), new VariableCompound(new Variable("K"), new Variable("D_")));
         grammar.addProduction(useless2);
         GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
                 setGrammar(grammar);

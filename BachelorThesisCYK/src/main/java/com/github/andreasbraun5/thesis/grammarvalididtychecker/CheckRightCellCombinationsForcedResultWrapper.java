@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class CheckRightCellCombinationsForcedResultWrapper {
-	private boolean isRightCellCombinationForced;
-	private int countRightCellCombinationForced;
+	private boolean rightCellCombinationForced;
+	private int rightCellCombinationForcedCount;
 	private CellSimple[][] markedRightCellCombinationForced;
 }

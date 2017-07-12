@@ -1,10 +1,11 @@
 package com.github.andreasbraun5.thesis.latex;
 
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
-import com.github.andreasbraun5.thesis.util.*;
+import com.github.andreasbraun5.thesis.util.SS13Exercise;
+import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
+import com.github.andreasbraun5.thesis.util.TiScriptExercise;
+import com.github.andreasbraun5.thesis.util.Word;
 import org.junit.Test;
-
-import java.util.Set;
 
 /**
  * Created by Andreas Braun on 14.03.2017.
@@ -13,7 +14,7 @@ import java.util.Set;
 public class WriteToTexFileTest {
 
     @Test
-    public void TexFileTest() throws Exception {
+    public void TexFileTest() {
         System.out.println("");
         System.out.println("############################");
         System.out.println("WriteToTexFileTest: Generating latex code into the directory structure.");
@@ -28,7 +29,7 @@ public class WriteToTexFileTest {
     }
 
     @Test
-    public void TexFileTest2() throws Exception {
+    public void TexFileTest2() {
         System.out.println("");
         System.out.println("############################");
         System.out.println("WriteToTexFileTest2: Generating latex code directory structure.");
@@ -41,7 +42,7 @@ public class WriteToTexFileTest {
     }
 
     @Test
-    public void TexFileTest3() throws Exception {
+    public void TexFileTest3() {
         System.out.println("");
         System.out.println("############################");
         System.out.println("ResultCalculator CYK: algorithmAdvanced with input Grammar from the TI1 script");

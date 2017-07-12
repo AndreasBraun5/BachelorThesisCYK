@@ -12,6 +12,6 @@ import lombok.Setter;
 @Setter
 @Builder
 public class CheckSumOfProductionsResultWrapper {
-	private int maxSumOfProductions;
-	private boolean isSumOfProductions;
+	private int maxSumOfProductionsCount;
+	private boolean sumOfProductions;
 }

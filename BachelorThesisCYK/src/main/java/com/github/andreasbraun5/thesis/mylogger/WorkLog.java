@@ -13,15 +13,6 @@ public interface WorkLog {
     default void log(String message) {
     }
 
-    // writing to console possible
-    static WorkLog createFromOutputStream(OutputStream outputStream) {
-        if (outputStream != null) {
-            return createFromWriter(new OutputStreamWriter(outputStream));
-        } else {
-            return createFromWriter(null);
-        }
-    }
-
     //writing to a file
     static WorkLog createFromWriter(Writer writer) {
         if (writer != null) {

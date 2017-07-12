@@ -33,9 +33,9 @@ public final class TiScriptExercise {
             productions[9] = new Production(new Variable("A"), new VariableCompound(new Variable("E"), new Variable("C")));
             productions[10] = new Production(new Variable("B"), new Terminal("1"));
             productions[11] = new Production(new Variable("B"), new VariableCompound(new Variable("E"), new Variable("S'")));
-            productions[12] = new Production(new Variable("B"), new VariableCompound(new Variable("N"), new Variable("D")));
+            productions[12] = new Production(new Variable("B"), new VariableCompound(new Variable("N"), new Variable("D_")));
             productions[13] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("A")));
-            productions[14] = new Production(new Variable("D"), new VariableCompound(new Variable("B"), new Variable("B")));
+            productions[14] = new Production(new Variable("D_"), new VariableCompound(new Variable("B"), new Variable("B")));
             grammar.addProduction(productions);
             SCRIPT_GRAMMAR = grammar;
         }
@@ -49,27 +49,27 @@ public final class TiScriptExercise {
             setVTemp[0][1].add(new VariableK(new VariableStart("S"), 1));
             setVTemp[0][1].add(new VariableK(new Variable("S'"), 1));
             setVTemp[0][2].add(new VariableK(new Variable("B"), 1));
-            setVTemp[0][3].add(new VariableK(new Variable("D"), 3));
+            setVTemp[0][3].add(new VariableK(new Variable("D_"), 3));
             setVTemp[0][4].add(new VariableK(new Variable("B"), 1));
-            setVTemp[0][5].add(new VariableK(new Variable("D"), 3));
-            setVTemp[0][5].add(new VariableK(new Variable("D"), 5));
+            setVTemp[0][5].add(new VariableK(new Variable("D_"), 3));
+            setVTemp[0][5].add(new VariableK(new Variable("D_"), 5));
             setVTemp[0][6].add(new VariableK(new Variable("B"), 1));
             setVTemp[0][7].add(new VariableK(new VariableStart("S"), 1));
             setVTemp[0][7].add(new VariableK(new Variable("S'"), 1));
 
             setVTemp[1][1].add(new VariableK(new Variable("E"), 2));
             setVTemp[1][1].add(new VariableK(new Variable("B"), 2));
-            setVTemp[1][2].add(new VariableK(new Variable("D"), 2));
-            setVTemp[1][4].add(new VariableK(new Variable("D"), 2));
-            setVTemp[1][6].add(new VariableK(new Variable("D"), 2));
+            setVTemp[1][2].add(new VariableK(new Variable("D_"), 2));
+            setVTemp[1][4].add(new VariableK(new Variable("D_"), 2));
+            setVTemp[1][6].add(new VariableK(new Variable("D_"), 2));
             setVTemp[1][7].add(new VariableK(new Variable("B"), 2));
 
             setVTemp[2][2].add(new VariableK(new Variable("E"), 3));
             setVTemp[2][2].add(new VariableK(new Variable("B"), 3));
-            setVTemp[2][3].add(new VariableK(new Variable("D"), 3));
+            setVTemp[2][3].add(new VariableK(new Variable("D_"), 3));
             setVTemp[2][4].add(new VariableK(new Variable("B"), 3));
-            setVTemp[2][5].add(new VariableK(new Variable("D"), 3));
-            setVTemp[2][5].add(new VariableK(new Variable("D"), 5));
+            setVTemp[2][5].add(new VariableK(new Variable("D_"), 3));
+            setVTemp[2][5].add(new VariableK(new Variable("D_"), 5));
             setVTemp[2][6].add(new VariableK(new Variable("B"), 3));
             setVTemp[2][7].add(new VariableK(new VariableStart("S"), 3));
             setVTemp[2][7].add(new VariableK(new Variable("S'"), 3));
