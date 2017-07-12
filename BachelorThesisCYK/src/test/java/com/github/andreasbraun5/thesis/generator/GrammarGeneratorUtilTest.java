@@ -2,14 +2,17 @@ package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
+import com.github.andreasbraun5.thesis.pyramid.Cell;
+import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
-import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
-import com.github.andreasbraun5.thesis.util.TiScriptExercise;
-import com.github.andreasbraun5.thesis.util.Util;
-import com.github.andreasbraun5.thesis.util.Word;
+import com.github.andreasbraun5.thesis.util.*;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -17,12 +20,80 @@ import static org.junit.Assert.*;
  * Created by AndreasBraun on 07.07.2017.
  */
 public class GrammarGeneratorUtilTest {
+    @Test
+    public void usefulProductionsPerCellForVarComp() throws Exception {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("GrammarGeneratorUtilTest: usefulProductionsPerCellForVarComp");
+        Grammar grammar = new Grammar(TiScriptExercise.SCRIPT_GRAMMAR);
+        Set<VariableCompound> variableCompounds = new HashSet<>();
+        variableCompounds.add(new VariableCompound(new Variable("N"), new Variable("B")));
+        variableCompounds.add(new VariableCompound(new Variable("N"), new Variable("C")));
+        variableCompounds.add(new VariableCompound(new Variable("N"), new Variable("N")));
+        variableCompounds.add(new VariableCompound(new Variable("A"), new Variable("A")));
+        List<Production> prodList = grammar.getProductionsAsList();
+        List<Production> usefulProductions = GrammarGeneratorUtil.usefulProductionsPerCellForVarComp(
+                variableCompounds,  prodList);
+        System.out.println("Useful productions are: S-->NB, S'-->NB and C-->AA");
+        Assert.assertTrue(usefulProductions.size() == 3);
+        Assert.assertTrue(usefulProductions.contains(new Production(new VariableStart("S"),
+                new VariableCompound(new Variable("N"), new Variable("B")))));
+        Assert.assertTrue(usefulProductions.contains(new Production(new Variable("S'"),
+                new VariableCompound(new Variable("N"), new Variable("B")))));
+        Assert.assertTrue(usefulProductions.contains(new Production(new Variable("C"),
+                new VariableCompound(new Variable("A"), new Variable("A")))));
+        System.out.println("All 3 useful productions have been found.");
+        System.out.println(usefulProductions);
+
+    }
+
+    @Test
+    public void usefulProductionsPerCellForTerminals() throws Exception {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("GrammarGeneratorUtilTest: usefulProductionsPerCellForTerminals");
+        Grammar grammar = new Grammar(TiScriptExercise.SCRIPT_GRAMMAR);
+        Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
+        List<Production> usefulProductions = GrammarGeneratorUtil.usefulProductionsPerCellForTerminals(
+                word, grammar.getProductionsAsList());
+        grammar.addProduction(new Production(new Variable("E"), new Terminal("3")));
+        System.out.println(grammar);
+        System.out.println("Not useful production is: E --> 3");
+        Assert.assertTrue(usefulProductions.contains(new Production(new Variable("N"),
+                new Terminal("0"))));
+        Assert.assertTrue(usefulProductions.contains(new Production(new Variable("A"),
+                new Terminal("0"))));
+        Assert.assertTrue(usefulProductions.contains(new Production(new Variable("E"),
+                new Terminal("1"))));
+        Assert.assertTrue(usefulProductions.contains(new Production(new Variable("B"),
+                new Terminal("1"))));
+        Assert.assertTrue(usefulProductions.size() == 4);
+        System.out.println(usefulProductions);
+    }
+
+    @Test
+    public void calculatePossibleCellPairs() {
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("GrammarGeneratorUtilTest: calculatePossibleCellPairs");
+        Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
+        SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
+        Pyramid pyramid = new Pyramid(setVarKMatrix.getSetV(), word);
+        Set<Tuple<CellK, CellK>> cellPairs = GrammarGeneratorUtil.
+                calculatePossibleCellPairs(pyramid.getCellK(4, 2), pyramid);
+        System.out.println(cellPairs);
+        Assert.assertTrue(cellPairs.contains(new Tuple<>(pyramid.getCellK(3, 2), pyramid.getCellK(0, 6))));
+        Assert.assertTrue(cellPairs.contains(new Tuple<>(pyramid.getCellK(2, 2), pyramid.getCellK(1, 5))));
+        Assert.assertTrue(cellPairs.contains(new Tuple<>(pyramid.getCellK(1, 2), pyramid.getCellK(2, 4))));
+        Assert.assertTrue(cellPairs.contains(new Tuple<>(pyramid.getCellK(0, 2), pyramid.getCellK(3, 3))));
+        System.out.println("All four needed cell pairs are included.");
+    }
 
     @Test
     public void removeUselessProductions() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("UtilTest: removeUselessProductions");
+        System.out.println("GrammarGeneratorUtilTest: removeUselessProductions");
         Grammar grammar = new Grammar(TiScriptExercise.SCRIPT_GRAMMAR);
         Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
@@ -39,12 +110,12 @@ public class GrammarGeneratorUtilTest {
         GrammarGeneratorUtil.removeUselessProductions(grammarPyramidWrapper);
         System.out.println(grammar);
         Assert.assertTrue(
-                "There should be only 14 productions left.",
-                GrammarValidityChecker.checkSumOfProductions(grammar, 14).isSumOfProductions()
+                "There should be only 15 productions left.",
+                GrammarValidityChecker.checkSumOfProductions(grammar, 15).isSumOfProductions()
         );
         Assert.assertFalse(
-                "There should be more than 13 productions left.",
-                GrammarValidityChecker.checkSumOfProductions(grammar, 13).isSumOfProductions()
+                "There should be more than 14 productions left.",
+                GrammarValidityChecker.checkSumOfProductions(grammar, 14).isSumOfProductions()
         );
         System.out.println("UtilTest: removeUselessProductions was successful");
     }

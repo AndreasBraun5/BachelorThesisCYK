@@ -19,10 +19,9 @@ import java.util.*;
 /**
  * Created by Andreas Braun on 05.01.2017.
  * https://github.com/AndreasBraun5/
- * <p>
  * All validity tests of GrammarValidityChecker are based onto the simple setV = setV<Variable>.
  */
-public class GrammarValidityChecker { // implements GrammarValidityCheckerInterface{
+public class GrammarValidityChecker {
 
     /**
      * True if the starting symbol is contained at the bottom of the pyramid.
@@ -95,11 +94,10 @@ public class GrammarValidityChecker { // implements GrammarValidityCheckerInterf
     /**
      * For one cell of the pyramid is checked if it forces. It returns the variables that force.
      */
-    private static List<VariableK> checkRightCellCombinationForcedForCell(
+    static List<VariableK> checkRightCellCombinationForcedForCell(
             CellK cellDown, CellK cellRight, CellK cellLeft, Grammar grammar) {
         List<VariableK> varKsThatForce = new ArrayList<>();
         // varCompMistake compound variables aren't allowed to be an rhse of the variable of cellDown.
-        @SuppressWarnings("SuspiciousNameCombination")
         Set<VariableCompound> varCompMistake = Util.calculateVariablesCompound(new Tuple<>(cellLeft, cellRight));
         for (VariableK vark : cellDown.getCellElements()) {
             List<Production> prodsForVar = grammar.getProductionsMap().get(vark.getVariable());

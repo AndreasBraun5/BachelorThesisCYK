@@ -20,7 +20,7 @@ public class GrammarGeneratorUtil {
      * Dice roll for every rhse how often it is added and to which vars in the grammar it is added.
      * Equals the Distribute standard method.
      */
-    private static GrammarPyramidWrapper distributeDiceRollRightHandSideElements(
+    static GrammarPyramidWrapper distributeDiceRollRightHandSideElements(
             GrammarPyramidWrapper grammarPyramidWrapper,
             List<? extends RightHandSideElement> rightHandSideElements,
             int minCountElementDistributedTo,
@@ -48,7 +48,7 @@ public class GrammarGeneratorUtil {
      * Equals the circled A Method.
      * grammarWordMatrixWrapper only needed for its contained Grammar here.
      */
-    public static GrammarPyramidWrapper distributeTerminals(
+    static GrammarPyramidWrapper distributeTerminals(
             List<Terminal> terminals,
             GrammarPyramidWrapper grammarPyramidWrapper,
             GrammarGeneratorSettings grammarGeneratorSettings,
@@ -66,7 +66,7 @@ public class GrammarGeneratorUtil {
      * Equals the circled B Method.
      * grammarWordMatrixWrapper only needed for its contained Grammar here.
      */
-    public static GrammarPyramidWrapper distributeCompoundVariables(
+    static GrammarPyramidWrapper distributeCompoundVariables(
             List<VariableCompound> varComp,
             GrammarPyramidWrapper grammarPyramidWrapper,
             GrammarGeneratorSettings grammarGeneratorSettings,
@@ -83,10 +83,10 @@ public class GrammarGeneratorUtil {
 
     /**
      * It is expected that a valid grammar, pyramid and word are given within the grammarPyramidWrapper.
-     * A production is useful if it is possible to fill at least one cell of the pyramid. Always removes the epsilon
-     * rules.
+     * A production is useful if it is possible to fill at least one cell of the pyramid. The epsilon rule will be
+     * kept.
      */
-    public static GrammarPyramidWrapper removeUselessProductions(
+    static GrammarPyramidWrapper removeUselessProductions(
             GrammarPyramidWrapper grammarPyramidWrapper) {
         Grammar grammar = grammarPyramidWrapper.getGrammar();
         Pyramid pyramid = grammarPyramidWrapper.getPyramid();
@@ -94,6 +94,17 @@ public class GrammarGeneratorUtil {
         Map<Variable, List<Production>> productions = new HashMap<>(grammar.getProductionsMap());
         // Calculate usefulProductions and replace the productions contained in grammar at the end.
         Set<Production> usefulProductions = new HashSet<>();
+        {   // check for epsilon rule, that equals the empty word.
+            List<Production> prodsList = new ArrayList<>();
+            for (Variable var : productions.keySet()) {
+                prodsList.addAll(productions.get(var));
+            }
+            for (Production prod : prodsList) {
+                if (prod.getRightHandSideElement().getClass() == VariableEpsilon.class ){
+                    usefulProductions.add(prod);
+                }
+            }
+        }
         {   // check row = 0 for useful productions
             for (int j = 0; j < cells[0].length; j++) {
                 for (VariableK vark : cells[0][j].getCellElements()) {
@@ -136,7 +147,7 @@ public class GrammarGeneratorUtil {
      * elements is useful for or not. Usefulness of an production iff the rhse of the production is element of the set
      * of variablesCompounds.
      */
-    private static List<Production> usefulProductionsPerCellForVarComp(
+    static List<Production> usefulProductionsPerCellForVarComp(
             Set<VariableCompound> variableCompounds, List<Production> prods) {
         List<Production> useful = new ArrayList<>();
         for (Production prod : prods) {
@@ -147,7 +158,10 @@ public class GrammarGeneratorUtil {
         return useful;
     }
 
-    private static List<Production> usefulProductionsPerCellForTerminals(
+    /**
+     * This is used to check row = 0 for useful productions.
+     */
+    static List<Production> usefulProductionsPerCellForTerminals(
             Word word, List<Production> prods) {
         Set<Terminal> uniqueTerminals = new HashSet<>(word.getTerminals());
         List<Production> useful = new ArrayList<>();
@@ -159,7 +173,7 @@ public class GrammarGeneratorUtil {
         return useful;
     }
 
-    public static Set<Tuple<CellK, CellK>> calculatePossibleCellPairs(CellK cell, Pyramid pyramid) {
+    static Set<Tuple<CellK, CellK>> calculatePossibleCellPairs(CellK cell, Pyramid pyramid) {
         Set<Tuple<CellK, CellK>> cellTuples = new HashSet<>();
         CellK[][] cells = pyramid.getCellsK();
         int i = cell.getI();

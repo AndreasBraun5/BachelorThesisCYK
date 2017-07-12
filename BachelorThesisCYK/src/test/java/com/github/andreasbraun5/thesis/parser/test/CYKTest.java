@@ -115,7 +115,7 @@ public class CYKTest {
         System.out.println("");
         System.out.println("############################");
         System.out.println("ResultCalculator CYK: algorithmAdvanced with input Grammar from the TI1 script");
-        Grammar grammar = TiScriptExercise.SCRIPT_GRAMMAR;
+        Grammar grammar = new Grammar(TiScriptExercise.SCRIPT_GRAMMAR);
         Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
         GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
