@@ -27,10 +27,9 @@ public class CenteredTikzPictureTest {
         System.out.print(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
         Pyramid pyramid = setVarKMatrix.getAsPyramid();
         PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
-        CenteredTikzPicture tikz = new CenteredTikzPicture();
-        System.out.println(tikz.beginToString());
+        System.out.println(CenteredTikzPicture.beginToString());
         System.out.print(pyramidLatex.pyramidToTex());
-        System.out.println(tikz.endToString());
+        System.out.println(CenteredTikzPicture.endToString());
     }
 
 

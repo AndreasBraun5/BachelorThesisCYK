@@ -89,10 +89,10 @@ public class GrammarValidityChecker {
             }
         }
         // returns which variables force in which cell of the pyramid, if it the restriction is valid and how often it forces
-        return CheckRightCellCombinationsForcedResultWrapper.buildRightCellCombinationsForcedWrapper().
-                setCountRightCellCombinationForced(rightCellCombinationsForced).
-                setRightCellCombinationForced(rightCellCombinationsForced >= minCountRightCellCombinationsForced).
-                setMarkedRightCellCombinationForced(markedRightCellCombinationForced);
+        return CheckRightCellCombinationsForcedResultWrapper.builder().
+                countRightCellCombinationForced(rightCellCombinationsForced).
+                isRightCellCombinationForced(rightCellCombinationsForced >= minCountRightCellCombinationsForced).
+                markedRightCellCombinationForced(markedRightCellCombinationForced).build();
     }
 
 
@@ -125,9 +125,9 @@ public class GrammarValidityChecker {
 
 
     public static CheckSumOfProductionsResultWrapper checkSumOfProductions(Grammar grammar, int maxSumOfProductions) {
-        return CheckSumOfProductionsResultWrapper.buildCheckSumOfProductionsResultWrapper().
-                setMaxSumOfProductions(grammar.getProductionsAsList().size()).
-                setSumOfProductions(grammar.getProductionsAsList().size() <= maxSumOfProductions);
+        return CheckSumOfProductionsResultWrapper.builder().
+                maxSumOfProductions(grammar.getProductionsAsList().size()).
+                isSumOfProductions(grammar.getProductionsAsList().size() <= maxSumOfProductions).build();
     }
 
     /**
@@ -144,9 +144,9 @@ public class GrammarValidityChecker {
                 tempVars.addAll(cellsSimple[i][j].getCellElements());
             }
         }
-        return CheckMaxSumOfVarsInPyramidResultWrapper.buildCheckMaxSumOfVarsInPyramidResultWrapper().
-                setMaxSumOfVarsInPyramid(tempVars.size()).
-                setMaxSumOfVarsInPyramid(tempVars.size() <= maxSumOfVarsInPyramid);
+        return CheckMaxSumOfVarsInPyramidResultWrapper.builder().
+                maxSumOfVarsInPyramid(tempVars.size()).
+                isMaxSumOfVarsInPyramid(tempVars.size() <= maxSumOfVarsInPyramid).build();
     }
 
     private static CellSimple[][] getEmptyCellsSimple(int correspondingPyramidSize) {

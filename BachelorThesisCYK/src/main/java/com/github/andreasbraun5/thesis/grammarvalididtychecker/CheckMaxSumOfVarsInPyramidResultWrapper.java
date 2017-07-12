@@ -1,33 +1,18 @@
 package com.github.andreasbraun5.thesis.grammarvalididtychecker;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Created by Andreas Braun on 21.02.2017.
  * https://github.com/AndreasBraun5/
  */
-
+@Getter
+@Setter
+@Builder
 public class CheckMaxSumOfVarsInPyramidResultWrapper {
-	private int maxSumOfVarsInPyramid;
-	private boolean isMaxSumOfVarsInPyramid;
-
-	public static CheckMaxSumOfVarsInPyramidResultWrapper buildCheckMaxSumOfVarsInPyramidResultWrapper(){
-		return new CheckMaxSumOfVarsInPyramidResultWrapper();
-	}
-
-	public int getMaxSumOfVarsInPyramid() {
-		return maxSumOfVarsInPyramid;
-	}
-
-	public CheckMaxSumOfVarsInPyramidResultWrapper setMaxSumOfVarsInPyramid(int maxSumOfVarsInPyramid) {
-		this.maxSumOfVarsInPyramid = maxSumOfVarsInPyramid;
-		return this;
-	}
-
-	public boolean isMaxSumOfVarsInPyramid() {
-		return isMaxSumOfVarsInPyramid;
-	}
-
-	public CheckMaxSumOfVarsInPyramidResultWrapper setMaxSumOfVarsInPyramid(boolean maxSumOfVarsInPyramid) {
-		isMaxSumOfVarsInPyramid = maxSumOfVarsInPyramid;
-		return this;
-	}
+    private boolean isMaxSumOfVarsInPyramid;
+    private int maxSumOfVarsInPyramid;
 }
+

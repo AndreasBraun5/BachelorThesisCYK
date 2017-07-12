@@ -20,10 +20,10 @@ public class WriteToTexFileTest {
         Word word = SS13Exercise.SS13_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = SS13Exercise.SS13_SET_VARK;
         Pyramid pyramid = new Pyramid(setVarKMatrix.getSetV(), word);
-        CenteredTikzPicture tikz = new CenteredTikzPicture();
         PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
         WriteToTexFile.writeToMainTexFile("pyramidLatex");
-        WriteToTexFile.writeToTexFile("pyramidLatex", tikz.beginToString() + pyramidLatex.pyramidToTex() + tikz.endToString());
+        WriteToTexFile.writeToTexFile("pyramidLatex", CenteredTikzPicture.beginToString() +
+                pyramidLatex.pyramidToTex() + CenteredTikzPicture.endToString());
 
     }
 
@@ -35,9 +35,9 @@ public class WriteToTexFileTest {
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
         Pyramid pyramid = setVarKMatrix.getAsPyramid();
         PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
-        CenteredTikzPicture tikz = new CenteredTikzPicture();
         WriteToTexFile.writeToMainTexFile("pyramidLatex");
-        WriteToTexFile.writeToTexFile("pyramidLatex", tikz.beginToString() + pyramidLatex.pyramidToTex() + tikz.endToString());
+        WriteToTexFile.writeToTexFile("pyramidLatex", CenteredTikzPicture.beginToString() +
+                pyramidLatex.pyramidToTex() + CenteredTikzPicture.endToString());
     }
 
     @Test
@@ -51,9 +51,9 @@ public class WriteToTexFileTest {
         Pyramid pyramid = setVarKMatrix.getAsPyramid();
         PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
         System.out.println(pyramidLatex.toString());
-        CenteredTikzPicture tikz = new CenteredTikzPicture();
         WriteToTexFile.writeToMainTexFile("scriptPyramid");
-        WriteToTexFile.writeToTexFile("scriptPyramid", tikz.beginToString() + pyramidLatex.pyramidToTex() + tikz.endToString());
+        WriteToTexFile.writeToTexFile("scriptPyramid", CenteredTikzPicture.beginToString() +
+                pyramidLatex.pyramidToTex() + CenteredTikzPicture.endToString());
 
     }
 

@@ -12,6 +12,6 @@ import lombok.Setter;
 @Setter
 @Builder
 public class CheckMaxNumberOfVarsPerCellResultWrapper {
-	private int maxNumberOfVarsPerCell;
-	private boolean isMaxNumberOfVarsPerCell;
+    private boolean isMaxNumberOfVarsPerCell;
+    private int maxNumberOfVarsPerCell;
 }
