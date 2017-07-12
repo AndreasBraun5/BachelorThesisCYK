@@ -1,7 +1,5 @@
 package com.github.andreasbraun5.thesis.pyramid;
 
-import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
-import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.util.Util;
 
 import java.util.ArrayList;

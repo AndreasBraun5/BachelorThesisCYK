@@ -32,14 +32,7 @@ public class CellLatex {
 
     // A CellElement can be of type Variable, VariableStart and VariableK
     public <T extends CellElement> CellLatex addVar(Set<T> set) {
-        for (T t : set) {
-            /*
-		    if ( this.vars.size() >= 5 ) {
-				throw new CellRuntimeException( "There are more than 5 Variables in the pyramid cells, coordinates: " +
-														i + ", " + j );
-			}*/
-            this.vars.add(t);
-        }
+        this.vars.addAll(set);
         return this;
     }
 

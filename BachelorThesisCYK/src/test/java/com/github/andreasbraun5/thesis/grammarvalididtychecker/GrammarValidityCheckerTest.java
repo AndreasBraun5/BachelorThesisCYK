@@ -2,6 +2,7 @@ package com.github.andreasbraun5.thesis.grammarvalididtychecker;
 
 import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
+import com.github.andreasbraun5.thesis.pyramid.CellSimple;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
@@ -11,18 +12,28 @@ import com.github.andreasbraun5.thesis.util.Word;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
 import java.util.Set;
 
 /**
  * Created by Andreas Braun on 13.02.2017.
  * https://github.com/AndreasBraun5/
  */
-public class GrammarValidityCheckerTest { 
+public class GrammarValidityCheckerTest {
     @Test
     public void checkRightCellCombinationForced1() {
-        // take a known old generated grammar, reconstruct it and check for the same result.
-        // see folder C:\Users\AndreasBraun\Documents\BachelorThesis\BachelorThesisCYK\examples
+        System.out.println("");
+        System.out.println("############################");
+        System.out.println("GrammarValidityCheckerTest: checkRightCellCombinationForcedForCell");
+        Grammar grammar = new Grammar(TiScriptExercise.SCRIPT_GRAMMAR);
+        Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
+        SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
+        Pyramid pyramid = new Pyramid(setVarKMatrix.getSetV(), word);
+        CheckRightCellCombinationsForcedResultWrapper resultWrapper = GrammarValidityChecker.
+                checkRightCellCombinationForcedSimpleCells(pyramid, 3, grammar);
+        System.out.println(grammar);
+        System.out.println(pyramid);
+        CellSimple[][] cellsForcing = resultWrapper.getMarkedRightCellCombinationForced();
+        System.out.println(Pyramid.printPyramid(cellsForcing));
     }
 
     @Test
@@ -33,17 +44,28 @@ public class GrammarValidityCheckerTest {
         Grammar grammar = new Grammar(TiScriptExercise.SCRIPT_GRAMMAR);
         Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
-        // Random cells are picked from the grammar, for easier construction of the cells.
+        // Random cells are picked from the grammar, for easier construction of an CellK
         // Indexes of the cells are irrelevant for this check
         Pyramid pyramid = new Pyramid(setVarKMatrix.getSetV(), word);
-        CellK cellDown = pyramid.getCellK(4,2); // contains B3
-        CellK cellRight = pyramid.getCellK(5, 1); // contains D2
         CellK cellLeft = pyramid.getCellK(0,0); // contains N1, A1
-        // in context of the grammar add a few Variables to the cells, so that in the end some of the vars in
-        // cellDown force and some of the vars in cellDown don't force.
+        CellK cellRight = pyramid.getCellK(5, 1); // contains D2
+        CellK cellDown = pyramid.getCellK(4,2); // contains B3
+        cellRight.addVar(new VariableK(new Variable("A"), 1)); // adding fictional var A1 to cellRight
+        cellDown.addVar(new VariableK(new Variable("D"), 1)); // adding fictional var D1 to cellDown
+        cellDown.addVar(new VariableK(new Variable("C"), 1)); // adding fictional var D1 to cellDown
+        System.out.println("cellLeft and cellRight:" + cellLeft.toString() + "             "+ cellRight.toString());
+        System.out.println("cellDown:                       " + cellDown);
         System.out.println(grammar);
-        List<VariableK> forcingVars = GrammarValidityChecker.
+        Set<VariableK> forcingVarsOfCellDown = GrammarValidityChecker.
                 checkRightCellCombinationForcedForCell(cellDown, cellRight, cellLeft, grammar);
+        System.out.println(forcingVarsOfCellDown);
+        Assert.assertTrue(forcingVarsOfCellDown.contains(new VariableK(new Variable("D"), 1)));
+        Assert.assertFalse(forcingVarsOfCellDown.contains(new VariableK(new Variable("B"), 3)));
+        Assert.assertFalse(forcingVarsOfCellDown.contains(new VariableK(new Variable("C"), 1)));
+
+        System.out.println("B3 doesn't force because ND is an rhse of one of its productions.");
+        System.out.println("C1 doesn't force because AA is an rhse of one of its productions.");
+        System.out.println("D1 forces because AD, AA, ND or NA isn't an rhse of one of its productions.");
     }
 
     @Test
@@ -128,13 +150,13 @@ public class GrammarValidityCheckerTest {
     public void checkRightCellCombinationForced() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("GrammarValidityCheckerTest: checkRightCellCombinationForced");
+        System.out.println("GrammarValidityCheckerTest: checkRightCellCombinationForcedSimpleCells");
         Grammar grammar = new Grammar(TiScriptExercise.SCRIPT_GRAMMAR);
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
         System.out.println(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
         Pyramid pyramid = setVarKMatrix.getAsPyramid();
         CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationsForcedResultWrapper =
-                GrammarValidityChecker.checkRightCellCombinationForced(pyramid, 3, grammar);
+                GrammarValidityChecker.checkRightCellCombinationForcedSimpleCells(pyramid, 3, grammar);
         System.out.println(grammar);
         System.out.println("CountForced: " + checkRightCellCombinationsForcedResultWrapper.getCountRightCellCombinationForced());
         System.out.println(checkRightCellCombinationsForcedResultWrapper.getMarkedRightCellCombinationForced());

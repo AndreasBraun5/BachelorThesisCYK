@@ -19,10 +19,6 @@ import java.util.Set;
  * https://github.com/AndreasBraun5/
  */
 public class CYKTest {
-    @Test
-    public void calculateSubSetForCell() throws Exception {
-        // TODO: Write Test here
-    }
 
     /**
      * Checking the trivial case. A word like "a^sizeOfWord" and a grammar with S-->a|SS. The grammar must be
@@ -68,7 +64,6 @@ public class CYKTest {
         GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
                 setGrammar(grammar);
         grammarPyramidWrapper.setPyramid(new Pyramid(word));
-
         GrammarPyramidWrapper grammarPyramidWrapperCalculated = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
 
         GrammarPyramidWrapper grammarPyramidWrapperSolution = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
@@ -159,7 +154,6 @@ public class CYKTest {
         boolean temp = true;
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
-                // TODO Martin: Why not possible? Set<T>[][] setVTemp2 = new HashSet<T>(). setVTemp.addAll(setVTemp)
                 if (!setVTemp[i][j].containsAll(setV[i][j]) ||
                         !setV[i][j].containsAll(setV[i][j]) ||
                         setVTemp[i][j].size() != setV[i][j].size()) {

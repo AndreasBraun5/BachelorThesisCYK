@@ -4,6 +4,7 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.pyramid.CellElement;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
+import lombok.Getter;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +13,7 @@ import java.util.Set;
  * Created by Andreas Braun on 14.02.2017.
  * https://github.com/AndreasBraun5/
  */
+@Getter
 public class SetVarKMatrix {
 
     private Set<VariableK>[][] setV;
@@ -67,7 +69,7 @@ public class SetVarKMatrix {
     public String getStringToPrintAsLowerTriangularMatrixSimple() {
         StringBuilder stringBuilder = new StringBuilder(name).append("\n");
         int wordLength = setV.length;
-        Set<Variable>[][] setVVariable = getSimpleSetDoubleArray();
+        Set<Variable>[][] setVVariable = Util.getSimpleSetDoubleArray(setV);
         int maxLen = 0;
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
@@ -118,7 +120,7 @@ public class SetVarKMatrix {
     public String getStringToPrintAsUpperTriangularMatrixSimple() {
         StringBuilder stringBuilder = new StringBuilder(name).append("\n");
         int wordLength = setV.length;
-        Set<Variable>[][] setVVariable = getSimpleSetDoubleArray();
+        Set<Variable>[][] setVVariable = Util.getSimpleSetDoubleArray(setV);
         int maxLen = 0;
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
@@ -134,32 +136,9 @@ public class SetVarKMatrix {
         return stringBuilder.toString();
     }
 
-    public Set<VariableK>[][] getSetV() {
-        return setV;
-    }
-
     public SetVarKMatrix setSetV(Set<VariableK>[][] setV) {
         this.setV = setV;
         return this;
-    }
-
-    public Word getWord() {
-        return word;
-    }
-
-
-    /**
-     * Set<VariableK>[][] --> Set<Variable>[][]
-     */
-    public Set<Variable>[][] getSimpleSetDoubleArray() {
-        int length = setV.length;
-        Set<Variable>[][] setVVariable = Util.getInitialisedHashSetArray(length, Variable.class);
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < length; j++) {
-                setVVariable[i][j] = Util.varKSetToVarSet(setV[i][j]);
-            }
-        }
-        return setVVariable;
     }
 
 

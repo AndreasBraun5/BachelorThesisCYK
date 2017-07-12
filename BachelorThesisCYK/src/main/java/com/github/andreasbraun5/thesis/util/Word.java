@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.util;
 
 import com.github.andreasbraun5.thesis.grammar.Terminal;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,32 +9,28 @@ import java.util.List;
 /**
  * Created by AndreasBraun on 22.06.2017.
  */
+@Getter
 public class Word {
 
     List<Terminal> terminals;
 
 
     public Word(String wordAsString) {
-        List<Terminal> wordAsTerinalsList = new ArrayList<>();
+        List<Terminal> wordAsTerminalsList = new ArrayList<>();
         for (char c : wordAsString.toCharArray()) {
-            wordAsTerinalsList.add(new Terminal(String.valueOf(c)));
+            wordAsTerminalsList.add(new Terminal(String.valueOf(c)));
         }
-        terminals = wordAsTerinalsList;
+        terminals = wordAsTerminalsList;
     }
 
     public Word(List<Terminal> word) {
         terminals = word;
     }
 
-    public List<Terminal> getTerminals() {
-        return terminals;
-    }
-
     public int getWordLength() {
         return terminals.size();
     }
 
-    // TODO: Write Test
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

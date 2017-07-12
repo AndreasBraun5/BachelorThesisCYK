@@ -1,14 +1,15 @@
 package com.github.andreasbraun5.thesis.pyramid;
 
-import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Set;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 /**
  * Created by AndreasBraun on 21.06.2017.
@@ -160,4 +161,6 @@ public class Pyramid {
         result = 31 * result + (word != null ? word.hashCode() : 0);
         return result;
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
 import com.github.andreasbraun5.thesis.util.Word;
+import lombok.Getter;
 
 import java.util.*;
 
@@ -10,6 +11,7 @@ import java.util.*;
  * are stored.
  * It is done this ways because of the overridden method toString.
  */
+@Getter
 public class RepresentativeResultSamples {
 
 	private List<ResultSample> testGrammarRepresentativeExamples;
@@ -74,9 +76,5 @@ public class RepresentativeResultSamples {
 		}
 
 		return stringBuilder.toString();
-	}
-
-	public List<ResultSample> getTestGrammarRepresentativeExamples() {
-		return testGrammarRepresentativeExamples;
 	}
 }

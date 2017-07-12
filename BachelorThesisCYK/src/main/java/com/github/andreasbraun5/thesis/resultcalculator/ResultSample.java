@@ -1,18 +1,20 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
-import com.github.andreasbraun5.thesis.grammarproperties.*;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
-import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammarproperties.ExamConstraints;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarConstraints;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.*;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.Word;
+import lombok.Getter;
 
 /**
  * Created by Andreas Braun on 25.01.2017.
  * https://github.com/AndreasBraun5/
  */
+@Getter
 public class ResultSample {
 
     private Grammar grammar;
@@ -58,7 +60,7 @@ public class ResultSample {
 
         // CheckRightCellCombinationsForcedResultWrapper
         CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationsForcedResultWrapper =
-                GrammarValidityChecker.checkRightCellCombinationForced(
+                GrammarValidityChecker.checkRightCellCombinationForcedSimpleCells(
                         pyramid,
                         tempExamConstraints.minRightCellCombinationsForced,
                         grammar
@@ -83,11 +85,8 @@ public class ResultSample {
                         resultSampleExamConstraints.isMaxSumOfVarsInPyramidCount &&
                         resultSampleExamConstraints.isRightCellCombinationsForced
         ;
-        // TODO Note: Up till now isSizeOfWordCount is always true...
-        this.resultSampleGrammarRestrictions.isSizeOfWordCount = true;
         this.resultSampleGrammarRestrictions.isGrammarRestrictions =
-                resultSampleGrammarRestrictions.isMaxNumberOfVarsPerCellCount &&
-                        resultSampleGrammarRestrictions.isSizeOfWordCount;
+                resultSampleGrammarRestrictions.isMaxNumberOfVarsPerCellCount;
         this.isValid = resultSampleExamConstraints.isExamConstraints &&
                 resultSampleGrammarRestrictions.isGrammarRestrictions &&
                 isWordProducible;
@@ -111,33 +110,5 @@ public class ResultSample {
                 resultSampleExamConstraints.toString() +
                 resultSampleGrammarRestrictions.toString() +
                 "\n}";
-    }
-
-    public Grammar getGrammar() {
-        return grammar;
-    }
-
-    public Word getWord() {
-        return word;
-    }
-
-    public Pyramid getPyramid() {
-        return pyramid;
-    }
-
-    public ResultSampleExamConstraints getResultSampleExamConstraints() {
-        return resultSampleExamConstraints;
-    }
-
-    public ResultSampleGrammarRestrictions getResultSampleGrammarRestrictions() {
-        return resultSampleGrammarRestrictions;
-    }
-
-    public boolean isValid() {
-        return isValid;
-    }
-
-    public boolean isWordProducible() {
-        return isWordProducible;
     }
 }

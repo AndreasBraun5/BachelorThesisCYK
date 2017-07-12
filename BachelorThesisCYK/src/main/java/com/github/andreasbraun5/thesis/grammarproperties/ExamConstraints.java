@@ -1,7 +1,5 @@
 package com.github.andreasbraun5.thesis.grammarproperties;
 
-import com.github.andreasbraun5.thesis.pyramid.Pyramid;
-
 /**
  * Created by Andreas Braun on 08.02.2017.
  * https://github.com/AndreasBraun5/

@@ -15,8 +15,6 @@ public class WriteToTexFile {
      */
     public static void writeToTexFile(String filename, String data) {
         try {
-            //File file = new File( "./Output/" + filename + ".tex" );
-            //File file = new File( ThesisDirectory.TEX.path + filename + ".tex" );
             try(PrintWriter out = new PrintWriter(ThesisDirectory.TEX.file(filename + ".tex"))) {
                 out.print(data);
             }
@@ -25,7 +23,6 @@ public class WriteToTexFile {
         }
     }
 
-    // TODO: change to Thesis Directory stuff.
     public static void writeToMainTexFile(String... input) {
         StringBuilder str = new StringBuilder();
         str.append("% allgem. Dokumentenformat\n" +
@@ -188,8 +185,6 @@ public class WriteToTexFile {
                 "\\end{document}");
 
         try {
-            //File file = new File( "./Output/Main.tex" );
-            //File file = new File(ThesisDirectory.TEX.path + "Main.tex");
             PrintWriter out = new PrintWriter(ThesisDirectory.TEX.file("Main.tex"));
             out.println(str.toString());
             out.close();

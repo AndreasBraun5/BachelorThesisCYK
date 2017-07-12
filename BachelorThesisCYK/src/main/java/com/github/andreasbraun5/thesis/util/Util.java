@@ -1,14 +1,13 @@
 package com.github.andreasbraun5.thesis.util;
 
-import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.grammar.RightHandSideElement;
+import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.main.ThesisDirectory;
-import com.github.andreasbraun5.thesis.pyramid.CellElement;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
-import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 
-import javax.naming.ldap.UnsolicitedNotification;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -117,6 +116,21 @@ public abstract class Util {
             }
         }
         return varComp;
+    }
+
+
+    /**
+     * Set<VariableK>[][] --> Set<Variable>[][]
+     */
+    public static Set<Variable>[][] getSimpleSetDoubleArray(Set<VariableK>[][] setV) {
+        int length = setV.length;
+        Set<Variable>[][] setVVariable = Util.getInitialisedHashSetArray(length, Variable.class);
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length; j++) {
+                setVVariable[i][j] = Util.varKSetToVarSet(setV[i][j]);
+            }
+        }
+        return setVVariable;
     }
 }
 

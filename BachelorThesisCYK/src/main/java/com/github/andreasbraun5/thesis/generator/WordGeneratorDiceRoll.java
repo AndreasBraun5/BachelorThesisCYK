@@ -2,8 +2,8 @@ package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
 import com.github.andreasbraun5.thesis.exception.WordRuntimeException;
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class WordGeneratorDiceRoll {
 
     /**
      * Not all terminals must be included in the word.
-     */ // TODO Note: Include all terminals?
+     */
     private static Word generateWord(Set<Terminal> terminals, int sizeOfWord) {
         List<Terminal> randomWord = new ArrayList<>();
         List<Terminal> tempTerminals = new ArrayList<>();

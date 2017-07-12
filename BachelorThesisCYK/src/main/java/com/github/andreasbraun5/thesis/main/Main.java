@@ -2,10 +2,10 @@ package com.github.andreasbraun5.thesis.main;
 
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 import com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator;
@@ -19,19 +19,7 @@ import java.util.Set;
 public class Main {
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // TODO Note: The favouritism can be set for the starting variable specifically.
-    // TODO Note: Maybe use the fraction of CountVars and countTerminals.
-    // TODO Note: Maybe incorporate in rightCellCombinations forced, that more than * different vars are forcing.
-    // TODO Note: all checks are done on the simpleSetV
-    // TODO Note: Tree package Latex: http://tex.stackexchange.com/questions/5447/how-can-i-draw-simple-trees-in-latex
-    // TODO Note: C:\GitHub\BachelorThesis\BachelorThesisCYK>mvn clean install    --> .jar
-    //
-    // TODO Implement: CYK tree in Combination with latex picture creation.
-    // TODO: Algorithm Duda Prepare, but maybe this isn't wanted
-    // TODO: Implement pyramid vs methods: getRight, getLeft, getUpperRight, getUpperLeft, ... methods in SetVarKMatrix. Possible to check indices. Legacy code still works.
-    // TODO: Outsource calculateSubsetForCell from CYK algorithm. Implicit testing possible and reuse.
-    // TODO: Comparator needed for the stored samples in the .txt file.
-    // TODO: More than 5 cells in TikzPicture CellLatex
+    // Note: C:\GitHub\BachelorThesis\BachelorThesisCYK>mvn clean install    --> .jar
     public static void main(String[] args) throws IOException {
 
         ThesisDirectory.initPaths();
@@ -65,7 +53,6 @@ public class Main {
                 new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnlyWithLog),
                 WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settingsGrammarGeneratorDiceRollOnlyWithLog.name)))
         );
-        // TODO: should be done always!? How best done? Via destructor?
         Util.writeResultToTxtFile(GrammarGeneratorDiceRollOnlyWithLog);
 
 
@@ -79,7 +66,6 @@ public class Main {
                 // nothing will be logged now
                 WorkLog.createFromWriter(null)
         );
-        // TODO: should be done always!? How best done? Via destructor?
         Util.writeResultToTxtFile(GrammarGeneratorDiceRollOnlyWithoutLog);
 
     }

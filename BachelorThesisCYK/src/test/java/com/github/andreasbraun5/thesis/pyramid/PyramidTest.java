@@ -19,12 +19,6 @@ import static org.junit.Assert.assertEquals;
 public class PyramidTest {
 
     @Test
-    public void testPyramidConstructor(){
-        // The printed output of the pyramid needs to be tested.
-        assertEquals(true, false);
-    }
-
-    @Test
     public void testMatrixToPyramidCoordinates() {
         List<Tuple<Integer, Integer>> expected = Arrays.asList(
                 of(0, 0), of(0, 1), of(0, 2), of(0, 3), of(0, 4),

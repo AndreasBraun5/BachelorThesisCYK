@@ -1,7 +1,7 @@
 package com.github.andreasbraun5.thesis.parser;
 
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
@@ -49,7 +49,6 @@ public class CYK {
     private static Set<VariableK>[][] stepIIAdvanced(
             Set<VariableK>[][] setV, List<Terminal> word, Grammar grammar) {
         int wordLength = word.size();
-        // TODO Martin: How to prevent writing CYK.stepIIAdvanced instead of setV = CYK.stepIIAdvanced?
         // Look at each terminal of the word
         for (int i = 1; i <= wordLength; i++) {
             RightHandSideElement tempTerminal = word.get(i - 1);

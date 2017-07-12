@@ -1,5 +1,7 @@
 package com.github.andreasbraun5.thesis.latex;
 
+import com.github.andreasbraun5.thesis.exception.CellRuntimeException;
+import com.github.andreasbraun5.thesis.pyramid.Cell;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
@@ -16,6 +18,9 @@ public class PyramidLatex {
 
     // Initialising the pyramid with the given indexes.
     public PyramidLatex(Pyramid pyramid) {
+        if (!checkCountElementsPerCell(pyramid.getCellsK())) {
+            throw new CellRuntimeException("There are more than 5 Variables in the pyramid cells, coordinates: ");
+        }
         int pyramidSize = pyramid.getSize();
         this.word = pyramid.getWord();
         this.cells = new ArrayList<>(pyramidSize);
@@ -50,6 +55,17 @@ public class PyramidLatex {
             }
             tempCenterY = tempCenterY - 0.5;
         }
+    }
+
+    private boolean checkCountElementsPerCell(Cell[][] cells) {
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (cells[i][j].getCellElements().size() > 5) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private String drawPyramidStructure() {
@@ -127,8 +143,7 @@ public class PyramidLatex {
         }
         {
             for (int i = 0; i < n; i++) {
-                // TODO: Check this
-                str.append("\\node [] at (w" + i + ") {" + word.getTerminals().get(i).getTerminalName()+ "};\n");
+                str.append("\\node [] at (w" + i + ") {" + word.getTerminals().get(i).getTerminalName() + "};\n");
             }
         }
         return str.toString();

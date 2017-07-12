@@ -1,6 +1,8 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
 import com.github.andreasbraun5.thesis.util.Word;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Map;
@@ -9,6 +11,7 @@ import java.util.Map;
  * Created by Andreas Braun on 08.02.2017.
  * https://github.com/AndreasBraun5/
  */
+@Getter
 public class SuccessRatesExamConstraints {
 
 	private int countGeneratedGrammars = 0;
@@ -89,52 +92,4 @@ public class SuccessRatesExamConstraints {
                 "\n			-->	SUCCESSRATEMaxSumOfVarsInPyramid=" + successRateMaxSumOfVarsInPyramid +
                 "\n}";
     }
-
-	public int getTrueExamConstraints() {
-		return trueExamConstraints;
-	}
-
-	public int getFalseExamConstraints() {
-		return falseExamConstraints;
-	}
-
-	public double getSuccessRateExamConstraints() {
-		return successRateExamConstraints;
-	}
-
-	public int getTrueRightCellCombinationsForcedCount() {
-		return trueRightCellCombinationsForcedCount;
-	}
-
-	public int getFalseRightCellCombinationsForcedCount() {
-		return falseRightCellCombinationsForcedCount;
-	}
-
-	public double getSuccessRateRightCellCombinationsForced() {
-		return successRateRightCellCombinationsForced;
-	}
-
-	public int getTrueMaxSumOfProductionsCount() {
-		return trueMaxSumOfProductionsCount;
-	}
-
-	public int getFalseMaxSumOfProductionsCount() {
-		return falseMaxSumOfProductionsCount;
-	}
-
-	public double getSuccessRateMaxSumOfProductions() {
-		return successRateMaxSumOfProductions;
-	}
-
-	public int getTrueMaxSumOfVarsInPyramidCount() {
-		return trueMaxSumOfVarsInPyramidCount;
-	}
-
-	public int getFalseMaxSumOfVarsInPyramidCount() {
-		return falseMaxSumOfVarsInPyramidCount;
-	}
-
-	public double getSuccessRateMaxSumOfVarsInPyramid() {
-		return successRateMaxSumOfVarsInPyramid;
-	}
 }

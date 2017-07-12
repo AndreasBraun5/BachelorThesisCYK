@@ -1,6 +1,6 @@
 package com.github.andreasbraun5.thesis.grammarvalididtychecker;
 
-import com.github.andreasbraun5.thesis.pyramid.Pyramid;
+import com.github.andreasbraun5.thesis.pyramid.CellSimple;
 /**
  * Created by Andreas Braun on 10.02.2017.
  * https://github.com/AndreasBraun5/
@@ -9,7 +9,7 @@ public class CheckRightCellCombinationsForcedResultWrapper {
 
 	private boolean isRightCellCombinationForced;
 	private int countRightCellCombinationForced;
-	private Pyramid markedRightCellCombinationForced;
+	private CellSimple[][] markedRightCellCombinationForced;
 
 	public static CheckRightCellCombinationsForcedResultWrapper buildRightCellCombinationsForcedWrapper() {
 		return new CheckRightCellCombinationsForcedResultWrapper();
@@ -33,11 +33,11 @@ public class CheckRightCellCombinationsForcedResultWrapper {
 		return this;
 	}
 
-	public Pyramid getMarkedRightCellCombinationForced() {
+	public CellSimple[][] getMarkedRightCellCombinationForced() {
 		return markedRightCellCombinationForced;
 	}
 
-	public CheckRightCellCombinationsForcedResultWrapper setMarkedRightCellCombinationForced(Pyramid markedRightCellCombinationForced) {
+	public CheckRightCellCombinationsForcedResultWrapper setMarkedRightCellCombinationForced(CellSimple[][] markedRightCellCombinationForced) {
 		this.markedRightCellCombinationForced = markedRightCellCombinationForced;
 		return this;
 	}

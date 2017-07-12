@@ -2,6 +2,8 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.util.Word;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  * word[1] has sampleGrammars from 1 to 10 and its corresponding sampleSetVs
  * word[2] has sampleGrammars from 2 to 20 ...
  */
+@Getter
 public class Result {
     public final String name;
 	private int countGeneratedGrammarsPerWord;
@@ -69,29 +72,5 @@ public class Result {
 				grammarGeneratorSettings +
 				successRates.toString() +
 				"\n}";
-	}
-
-	public int getCountGeneratedGrammarsPerWord() {
-		return countGeneratedGrammarsPerWord;
-	}
-
-	public int getCountDifferentWords() {
-		return countDifferentWords;
-	}
-
-	public long getTotalTime() {
-		return totalTime;
-	}
-
-	public RepresentativeResultSamples getRepresentativeResultSamples() {
-		return representativeResultSamples;
-	}
-
-	public SuccessRates getSuccessRates() {
-		return successRates;
-	}
-
-	public GrammarGeneratorSettings getGeneratorGrammarDiceRollSettings() {
-		return grammarGeneratorSettings;
 	}
 }

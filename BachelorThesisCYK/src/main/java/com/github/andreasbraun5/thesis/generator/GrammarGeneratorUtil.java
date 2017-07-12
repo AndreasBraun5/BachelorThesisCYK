@@ -1,7 +1,10 @@
 package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammar.*;
-import com.github.andreasbraun5.thesis.pyramid.*;
+import com.github.andreasbraun5.thesis.pyramid.CellK;
+import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
+import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
@@ -19,6 +22,7 @@ public class GrammarGeneratorUtil {
      * If you want to distribute the terminals to at least one rightHandSide then minCountElementDistributedTo is 1.
      * Dice roll for every rhse how often it is added and to which vars in the grammar it is added.
      * Equals the Distribute standard method.
+     * variablesWeighted: allows favouritism of specific variables.
      */
     static GrammarPyramidWrapper distributeDiceRollRightHandSideElements(
             GrammarPyramidWrapper grammarPyramidWrapper,
@@ -47,6 +51,7 @@ public class GrammarGeneratorUtil {
     /**
      * Equals the circled A Method.
      * grammarWordMatrixWrapper only needed for its contained Grammar here.
+     * variablesWeighted: allows favouritism of specific variables.
      */
     static GrammarPyramidWrapper distributeTerminals(
             List<Terminal> terminals,
@@ -65,6 +70,7 @@ public class GrammarGeneratorUtil {
     /**
      * Equals the circled B Method.
      * grammarWordMatrixWrapper only needed for its contained Grammar here.
+     * variablesWeighted: allows favouritism of specific variables.
      */
     static GrammarPyramidWrapper distributeCompoundVariables(
             List<VariableCompound> varComp,

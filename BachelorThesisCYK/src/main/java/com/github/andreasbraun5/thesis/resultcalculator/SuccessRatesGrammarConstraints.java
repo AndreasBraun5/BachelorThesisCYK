@@ -1,6 +1,8 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
 import com.github.andreasbraun5.thesis.util.Word;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Map;
@@ -9,6 +11,7 @@ import java.util.Map;
  * Created by Andreas Braun on 08.02.2017.
  * https://github.com/AndreasBraun5/
  */
+@Getter
 public class SuccessRatesGrammarConstraints {
 
 	private int countGeneratedGrammars = 0;
@@ -16,10 +19,6 @@ public class SuccessRatesGrammarConstraints {
 	private int trueGrammarRestrictionsCount = 0;
 	private int falseGrammarRestrictionsCount = 0;
 	private double successRateGrammarRestrictions = 0.0;
-
-	private int trueSizeOfWordCount = 0;
-	private int falseSizeOfWordCount = 0;
-	private double successRateSizeOfWord = 0.0;
 
 	private int trueMaxNumberOfVarsPerCellCount = 0;
 	private int falseMaxNumberOfVarsPerCellCount = 0;
@@ -31,21 +30,14 @@ public class SuccessRatesGrammarConstraints {
 				countGeneratedGrammars++;
 				ResultSampleGrammarRestrictions tempResultSampleGrammarRestrictions =
 						resultSample.getResultSampleGrammarRestrictions();
-				boolean isSizeOfWordCount = tempResultSampleGrammarRestrictions.isSizeOfWordCount;
 				boolean isMaxNumberOfVarsPerCellCount = tempResultSampleGrammarRestrictions.isMaxNumberOfVarsPerCellCount;
-				if ( isSizeOfWordCount ) {
-					trueSizeOfWordCount++;
-				}
-				else {
-					falseSizeOfWordCount++;
-				}
 				if ( isMaxNumberOfVarsPerCellCount ) {
 					trueMaxNumberOfVarsPerCellCount++;
 				}
 				else {
 					falseMaxNumberOfVarsPerCellCount++;
 				}
-				if ( isMaxNumberOfVarsPerCellCount && isSizeOfWordCount ) {
+				if ( isMaxNumberOfVarsPerCellCount ) {
 					trueGrammarRestrictionsCount++;
 				}
 				else {
@@ -53,7 +45,6 @@ public class SuccessRatesGrammarConstraints {
 				}
 			}
 			successRateGrammarRestrictions = (double) trueGrammarRestrictionsCount / countGeneratedGrammars;
-			successRateSizeOfWord = (double) trueSizeOfWordCount / countGeneratedGrammars;
 			successRateMaxNumberOfVarsPerCell = (double) trueMaxNumberOfVarsPerCellCount / countGeneratedGrammars;
 		}
 		return this;
@@ -65,48 +56,9 @@ public class SuccessRatesGrammarConstraints {
                 "\n		trueGrammarRestrictionsCount=" + trueGrammarRestrictionsCount +
                 "\n		falseGrammarRestrictionsCount=" + falseGrammarRestrictionsCount +
                 "\n			-->	SUCCESSRATEGrammarRestrictions=" + successRateGrammarRestrictions +
-                "\n		trueSizeOfWordCount=" + trueSizeOfWordCount +
-                "\n		falseSizeOfWordCount=" + falseSizeOfWordCount +
-                "\n			-->	SUCCESSRATESizeOfWord=" + successRateSizeOfWord +
                 "\n		trueMaxNumberOfVarsPerCellCount=" + trueMaxNumberOfVarsPerCellCount +
                 "\n		falseMaxNumberOfVarsPerCellCount=" + falseMaxNumberOfVarsPerCellCount +
                 "\n			-->	SUCCESSRATEMaxNumberOfVarsPerCell=" + successRateMaxNumberOfVarsPerCell +
                 "\n}";
     }
-
-	public int getTrueGrammarRestrictionsCount() {
-		return trueGrammarRestrictionsCount;
-	}
-
-	public int getFalseGrammarRestrictionsCount() {
-		return falseGrammarRestrictionsCount;
-	}
-
-	public double getSuccessRateGrammarRestrictions() {
-		return successRateGrammarRestrictions;
-	}
-
-	public int getTrueSizeOfWordCount() {
-		return trueSizeOfWordCount;
-	}
-
-	public int getFalseSizeOfWordCount() {
-		return falseSizeOfWordCount;
-	}
-
-	public double getSuccessRateSizeOfWord() {
-		return successRateSizeOfWord;
-	}
-
-	public int getTrueMaxNumberOfVarsPerCellCount() {
-		return trueMaxNumberOfVarsPerCellCount;
-	}
-
-	public int getFalseMaxNumberOfVarsPerCellCount() {
-		return falseMaxNumberOfVarsPerCellCount;
-	}
-
-	public double getSuccessRateMaxNumberOfVarsPerCell() {
-		return successRateMaxNumberOfVarsPerCell;
-	}
 }
