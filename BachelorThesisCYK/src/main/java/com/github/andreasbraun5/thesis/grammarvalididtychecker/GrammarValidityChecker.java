@@ -62,7 +62,7 @@ public class GrammarValidityChecker {
     /**
      * Exam relevant restriction. The upper two rows of the pyramid aren't checked. For each cell of the pyramid it is
      * checked whether it forces. minCountRightCellCombinationsForced is incremented dependent on unique varKs.
-     * If there is D4, D5, D6 that force, it is only the D_ that forces.
+     * If there is D4, D5, D6 that force, it is only the D that forces.
      */
     public static CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationForcedSimpleCells(
             Pyramid pyramid, int minCountRightCellCombinationsForced, Grammar grammar) {

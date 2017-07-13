@@ -49,10 +49,10 @@ public class GrammarGeneratorUtil {
 
     /**
      * It is expected that a valid grammar, pyramid and word are given within the grammarPyramidWrapper.
-     * A production is useful if it is possible to fill at least one cell of the pyramid. The epsilon rule will be
-     * kept.
+     * A production is contributing if it is possible to fill at least one cell of the pyramid.
+     * Additionally the epsilon rule will be kept.
      */
-    static GrammarPyramidWrapper removeUselessProductions(
+    static GrammarPyramidWrapper onlyKeepContributingProductions(
             GrammarPyramidWrapper grammarPyramidWrapper) {
         Grammar grammar = grammarPyramidWrapper.getGrammar();
         Pyramid pyramid = grammarPyramidWrapper.getPyramid();
@@ -75,7 +75,7 @@ public class GrammarGeneratorUtil {
             for (int j = 0; j < cells[0].length; j++) {
                 for (VariableK vark : cells[0][j].getCellElements()) {
                     usefulProductions.addAll(
-                            usefulProductionsPerCellForTerminals(pyramid.getWord(), productions.get(vark.getVariable()))
+                            contributingProductionsPerCellForTerminals(pyramid.getWord(), productions.get(vark.getVariable()))
                     );
                 }
             }
@@ -95,7 +95,7 @@ public class GrammarGeneratorUtil {
                     // Now only relevant productions are checked. You could give every production too.
                     for (VariableK varK : cells[i][j].getCellElements()) {
                         usefulProductions.addAll(
-                                usefulProductionsPerCellForVarComp(variableCompounds, productions.get(varK.getVariable()))
+                                contributingProductionsPerCellForVarComp(variableCompounds, productions.get(varK.getVariable()))
                         );
                     }
                 }
@@ -113,7 +113,7 @@ public class GrammarGeneratorUtil {
      * elements is useful for or not. Usefulness of an production iff the rhse of the production is element of the set
      * of variablesCompounds.
      */
-    static List<Production> usefulProductionsPerCellForVarComp(
+    static List<Production> contributingProductionsPerCellForVarComp(
             Set<VariableCompound> variableCompounds, List<Production> prods) {
         List<Production> useful = new ArrayList<>();
         for (Production prod : prods) {
@@ -127,7 +127,7 @@ public class GrammarGeneratorUtil {
     /**
      * This is used to check row = 0 for useful productions.
      */
-    static List<Production> usefulProductionsPerCellForTerminals(
+    static List<Production> contributingProductionsPerCellForTerminals(
             Word word, List<Production> prods) {
         Set<Terminal> uniqueTerminals = new HashSet<>(word.getTerminals());
         List<Production> useful = new ArrayList<>();

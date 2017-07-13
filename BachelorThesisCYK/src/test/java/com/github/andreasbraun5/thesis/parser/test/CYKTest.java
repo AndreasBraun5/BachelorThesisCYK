@@ -41,8 +41,7 @@ public class CYKTest {
                 new Production(new VariableStart("S"),
                         new VariableCompound(new VariableStart("S"), new VariableStart("S")))
         );
-        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
-                setGrammar(grammar);
+        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder().grammar(grammar).build();
         grammarPyramidWrapper.setPyramid(new Pyramid(word));
         System.out.println(grammar);
         // Check for integrity
@@ -61,15 +60,12 @@ public class CYKTest {
         Grammar grammar = SS12Exercise.SS12_GRAMMAR;
         Word word = SS12Exercise.SS12_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = SS12Exercise.SS12_SET_VARK;
-        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
-                setGrammar(grammar);
+        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder().grammar(grammar).build();
         grammarPyramidWrapper.setPyramid(new Pyramid(word));
         GrammarPyramidWrapper grammarPyramidWrapperCalculated = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
 
-        GrammarPyramidWrapper grammarPyramidWrapperSolution = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
-                setGrammar(grammar);
+        GrammarPyramidWrapper grammarPyramidWrapperSolution = GrammarPyramidWrapper.builder().grammar(grammar).build();
         grammarPyramidWrapperSolution.setPyramid(setVarKMatrix.getAsPyramid());
-
 
         System.out.println(grammarPyramidWrapperCalculated.getPyramid());
         System.out.println(grammarPyramidWrapperSolution.getPyramid());
@@ -86,14 +82,12 @@ public class CYKTest {
         Grammar grammar = SS13Exercise.SS13_GRAMMAR;
         Word word = SS13Exercise.SS13_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = SS13Exercise.SS13_SET_VARK;
-        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
-                setGrammar(grammar);
+        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder().grammar(grammar).build();
         grammarPyramidWrapper.setPyramid(new Pyramid(word));
 
         GrammarPyramidWrapper grammarPyramidWrapperCalculated = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
 
-        GrammarPyramidWrapper grammarPyramidWrapperSolution = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
-                setGrammar(grammar);
+        GrammarPyramidWrapper grammarPyramidWrapperSolution = GrammarPyramidWrapper.builder().grammar(grammar).build();
         grammarPyramidWrapperSolution.setPyramid(setVarKMatrix.getAsPyramid());
 
 
@@ -113,16 +107,12 @@ public class CYKTest {
         Grammar grammar = new Grammar(TiScriptExercise.SCRIPT_GRAMMAR);
         Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
-        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
-                setGrammar(grammar);
+        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder().grammar(grammar).build();
         grammarPyramidWrapper.setPyramid(new Pyramid(word));
-
         GrammarPyramidWrapper grammarPyramidWrapperCalculated = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
 
-        GrammarPyramidWrapper grammarPyramidWrapperSolution = GrammarPyramidWrapper.buildGrammarPyramidWrapper().
-                setGrammar(grammar);
+        GrammarPyramidWrapper grammarPyramidWrapperSolution = GrammarPyramidWrapper.builder().grammar(grammar).build();
         grammarPyramidWrapperSolution.setPyramid(setVarKMatrix.getAsPyramid());
-
 
         System.out.println(grammarPyramidWrapperCalculated.getPyramid());
         System.out.println(grammarPyramidWrapperSolution.getPyramid());
@@ -140,6 +130,8 @@ public class CYKTest {
         CellK[][] calculatedCells = calculated.getPyramid().getCellsK();
         for (int i = 0; i < solutionCells[1].length; i++) {
             for (int j = 0; j < solutionCells[i].length; j++) {
+                CellK solutionCell = solutionCells[i][j];
+                CellK calcCell = calculatedCells[i][j];
                 isCorrect = solutionCells[i][j].equals(calculatedCells[i][j]);
             }
         }

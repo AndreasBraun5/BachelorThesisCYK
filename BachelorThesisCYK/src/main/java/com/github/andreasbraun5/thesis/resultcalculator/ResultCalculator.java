@@ -3,6 +3,7 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 import com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException;
 import com.github.andreasbraun5.thesis.generator.GrammarGenerator;
 import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
+import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
@@ -82,9 +83,9 @@ public class ResultCalculator {
         for (int i = 0; i < countDifferentWords && countSamplesGenerated < CHUNK_SIZE; i++) {
             // Generate a random word that is used to decide whether the Grammar is true or false. Generate more words
             // Make sure that 100 different words are stored into the map.
-            GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.buildGrammarPyramidWrapper();
             Word tempWord = WordGeneratorDiceRoll.generateWord(tempGrammarProperties);
-            grammarPyramidWrapper.setPyramid(new Pyramid(tempWord));
+            GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder()
+                    .pyramid(new Pyramid(tempWord)).build();
             while (chunkResultSamples.containsKey(tempWord)) {
                 tempWord = WordGeneratorDiceRoll.generateWord(tempGrammarProperties);
             }

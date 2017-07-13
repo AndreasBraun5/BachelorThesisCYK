@@ -43,8 +43,8 @@ public class SetVarKMatrix {
      * Method to get the setV as a String for printing purposes.
      * The setV pyramid points downwards (reflection on the diagonal).
      */
-    public String getStringToPrintAsLowerTriangularMatrix() {
-        StringBuilder stringBuilder = new StringBuilder(name).append("\n");
+    public static String getStringToPrintAsLowerTriangularMatrix(Set<VariableK>[][] setV) {
+        StringBuilder stringBuilder = new StringBuilder().append("\n");
         int wordLength = setV.length;
         int maxLen = 0;
         for (int i = 0; i < wordLength; i++) {
@@ -66,8 +66,8 @@ public class SetVarKMatrix {
      * Method to get the setV as a String for printing purposes.
      * The setV pyramid points downwards (reflection on the diagonal).
      */
-    public String getStringToPrintAsLowerTriangularMatrixSimple() {
-        StringBuilder stringBuilder = new StringBuilder(name).append("\n");
+    public String getStringToPrintAsLowerTriangularMatrixSimple(Set<VariableK>[][] setV) {
+        StringBuilder stringBuilder = new StringBuilder().append("\n");
         int wordLength = setV.length;
         Set<Variable>[][] setVVariable = Util.getSimpleSetDoubleArray(setV);
         int maxLen = 0;
@@ -96,8 +96,8 @@ public class SetVarKMatrix {
     /**
      * Method to get the setV as a String for printing purposes.
      */
-    public String getStringToPrintAsUpperTriangularMatrix() {
-        StringBuilder stringBuilder = new StringBuilder(name).append("\n");
+    public static String getStringToPrintAsUpperTriangularMatrix(Set<VariableK>[][] setV) {
+        StringBuilder stringBuilder = new StringBuilder().append("\n");
         int wordLength = setV.length;
         int maxLen = 0;
         for (int i = 0; i < wordLength; i++) {
@@ -117,8 +117,8 @@ public class SetVarKMatrix {
     /**
      * Method to get the setV as a String for printing purposes.
      */
-    public String getStringToPrintAsUpperTriangularMatrixSimple() {
-        StringBuilder stringBuilder = new StringBuilder(name).append("\n");
+    public static String getStringToPrintAsUpperTriangularMatrixSimple(Set<VariableK>[][] setV) {
+        StringBuilder stringBuilder = new StringBuilder().append("\n");
         int wordLength = setV.length;
         Set<Variable>[][] setVVariable = Util.getSimpleSetDoubleArray(setV);
         int maxLen = 0;

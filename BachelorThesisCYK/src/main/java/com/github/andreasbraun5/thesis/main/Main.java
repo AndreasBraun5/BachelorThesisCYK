@@ -37,10 +37,10 @@ public class Main {
          */
         // It is recommended to use a high countDifferentWords. Word independent results are achieved.
         int countGeneratedGrammarsPerWord = 100;
-        int countDifferentWords = 100;
+        int countDifferentWords = 10;
 
         ResultCalculator resultCalculator = ResultCalculator.builder().
-                countDifferentWords(3).
+                countDifferentWords(countDifferentWords).
                 countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
         GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
 

@@ -99,8 +99,8 @@ public class ResultSample {
         return "ResultSample{" +
                 "\ngrammar=" + grammar +
                 "\nword='" + word + '\'' +
-                "\nsetV=" + pyramid +
-                "\nmarkedRightCellCombinationForced=" + resultSampleExamConstraints.getMarkedRightCellCombinationForced() +
+                "\nsetV=\n" + Pyramid.printPyramid(pyramid.getCellsSimple()) +
+                "\nmarkedRightCellCombinationForced=\n" + Pyramid.printPyramid(resultSampleExamConstraints.getMarkedRightCellCombinationForced()) +
                 "\nmaxVarsPerCellSetV=" + resultSampleGrammarRestrictions.maxNumberOfVarsPerCellCount +
                 "\nmaxSumOfVarsInPyramid=" + resultSampleExamConstraints.isMaxSumOfVarsInPyramid() +
                 "\nrightCellCombinationForcedCount=" + resultSampleExamConstraints.getRightCellCombinationsForcedCount() +

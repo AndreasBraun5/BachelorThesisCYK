@@ -47,8 +47,8 @@ public class WriteToTexFileTest {
         System.out.println("############################");
         System.out.println("ResultCalculator CYK: algorithmAdvanced with input Grammar from the TI1 script");
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
-        System.out.println(setVarKMatrix.getStringToPrintAsUpperTriangularMatrix());
-        System.out.println(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
+        System.out.println(SetVarKMatrix.getStringToPrintAsUpperTriangularMatrix(setVarKMatrix.getSetV()));
+        System.out.println(SetVarKMatrix.getStringToPrintAsLowerTriangularMatrix(setVarKMatrix.getSetV()));
         Pyramid pyramid = setVarKMatrix.getAsPyramid();
         PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
         System.out.println(pyramidLatex.toString());

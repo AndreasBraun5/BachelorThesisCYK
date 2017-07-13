@@ -17,7 +17,7 @@ public class CenteredTikzPictureTest {
         System.out.println("############################");
         System.out.println("CenteredTikzPictureTest: Generating LaTeX code for TikzPicture.");
         SetVarKMatrix setVarKMatrix = SS13Exercise.SS13_SET_VARK;
-        System.out.print(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
+        System.out.print(SetVarKMatrix.getStringToPrintAsLowerTriangularMatrix(setVarKMatrix.getSetV()));
         Pyramid pyramid = setVarKMatrix.getAsPyramid();
         PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
         System.out.println(CenteredTikzPicture.beginToString());

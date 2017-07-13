@@ -6,6 +6,7 @@ import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
+import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -51,10 +52,12 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
                 new ArrayList<>(grammarGeneratorSettings.grammarProperties.variables)
         );
         workLog.log("After distributing all possible compound variables:");
+        workLog.log(grammarGeneratorSettings.grammarProperties.variables.toString());
         workLog.log(grammarPyramidWrapper.getGrammar().toString());
         grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
         workLog.log("After removing useless productions:");
-        grammarPyramidWrapper = GrammarGeneratorUtil.removeUselessProductions(grammarPyramidWrapper);
+        workLog.log(grammarPyramidWrapper.getPyramid().toString());
+        grammarPyramidWrapper = GrammarGeneratorUtil.onlyKeepContributingProductions(grammarPyramidWrapper);
         workLog.log(grammarPyramidWrapper.getGrammar().toString());
         workLog.log("END of Logging of GrammarGeneratorDiceRollOnly.");
         workLog.log("#########################################################################################################");

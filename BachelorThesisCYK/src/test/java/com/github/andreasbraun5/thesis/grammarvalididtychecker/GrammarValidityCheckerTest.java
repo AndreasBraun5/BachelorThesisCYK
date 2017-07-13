@@ -77,7 +77,7 @@ public class GrammarValidityCheckerTest {
         System.out.println("GrammarValidityCheckerTest: checkMaxNumberOfVarsPerCell");
         System.out.println("Check to find the proper MaxSumOfVarsPerCell.");
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
-        System.out.println(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
+        System.out.println(SetVarKMatrix.getStringToPrintAsLowerTriangularMatrix(setVarKMatrix.getSetV()));
         Pyramid pyramid = setVarKMatrix.getAsPyramid();
         System.out.println(pyramid.toString());
         CheckMaxNumberOfVarsPerCellResultWrapper result = GrammarValidityChecker.checkMaxNumberOfVarsPerCell(pyramid, 2);
@@ -136,9 +136,9 @@ public class GrammarValidityCheckerTest {
         setVTemp[5][5].add(new VariableK(new Variable("C"), 6));
 
         SetVarKMatrix setVarKMatrix = new SetVarKMatrix(wordLength, word).setSetV(setVTemp);
-        System.out.println(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
+        System.out.println(SetVarKMatrix.getStringToPrintAsLowerTriangularMatrix(setVarKMatrix.getSetV()));
         Pyramid pyramid = setVarKMatrix.getAsPyramid();
-        System.out.println(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
+        System.out.println(SetVarKMatrix.getStringToPrintAsLowerTriangularMatrix(setVarKMatrix.getSetV()));
         Assert.assertFalse(
                 GrammarValidityChecker.checkMaxSumOfVarsInPyramid(pyramid, 11).isMaxSumOfVarsInPyramid()
         );
@@ -155,7 +155,7 @@ public class GrammarValidityCheckerTest {
         System.out.println("GrammarValidityCheckerTest: checkRightCellCombinationForcedSimpleCells");
         Grammar grammar = new Grammar(TiScriptExercise.SCRIPT_GRAMMAR);
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
-        System.out.println(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
+        System.out.println(SetVarKMatrix.getStringToPrintAsLowerTriangularMatrix(setVarKMatrix.getSetV()));
         Pyramid pyramid = setVarKMatrix.getAsPyramid();
         CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationsForcedResultWrapper =
                 GrammarValidityChecker.checkRightCellCombinationForcedSimpleCells(pyramid, 3, grammar);

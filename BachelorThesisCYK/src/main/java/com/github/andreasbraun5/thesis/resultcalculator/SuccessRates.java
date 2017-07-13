@@ -59,7 +59,6 @@ public class SuccessRates {
                 successRatesGrammarConstraints.getSuccessRateGrammarRestrictions() +
                 "\n			-->	SUCCESSRATEEXAMCONSTRAINTS=" +
                 successRatesExamConstraints.getSuccessRateExamConstraints() +
-                "\n" +
                 "\n			-->	SUCCESSRATE=" + successRate +
                 "\n		trueCount=" + trueCount +
                 "\n		falseCount=" + falseCount +

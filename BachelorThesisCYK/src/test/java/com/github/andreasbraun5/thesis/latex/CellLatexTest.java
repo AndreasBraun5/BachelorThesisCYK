@@ -41,7 +41,7 @@ public class CellLatexTest {
         System.out.println("############################");
         System.out.println("CellLatexTest: Generating LaTeX code for the cells.");
         SetVarKMatrix setVarKMatrix = SS13Exercise.SS13_SET_VARK;
-        System.out.print(setVarKMatrix.getStringToPrintAsLowerTriangularMatrix());
+        System.out.print(SetVarKMatrix.getStringToPrintAsLowerTriangularMatrix(setVarKMatrix.getSetV()));
         Pyramid pyramid = setVarKMatrix.getAsPyramid();
         PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
         System.out.print(pyramidLatex.pyramidToTex());

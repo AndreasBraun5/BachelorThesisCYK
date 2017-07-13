@@ -265,6 +265,8 @@ break
 		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\
 		$P = P \cup Distribute(V^2,\ V)$;  \circled{B}\\
 		$P = P \setminus \{p\ |\ p=(v,\ x) \in P \wedge \nexists \ Cell \in Pyramid: \ v \in Cell \}$\label{useless}\;
+		A production is not useful iff it doesn't contribute to filling the CYK-table\;
+		$P = P \setminus \{p\ |\ p=(v,\ xy) \in P \wedge \nexists \ Cell \in Pyramid: \ v \in Cell \}$\;
 		\Return $P$\;
 		\footnotetext{
 			\noindent Line \ref{useless}: Removes all useless productions. But unreachable productions still possible.
