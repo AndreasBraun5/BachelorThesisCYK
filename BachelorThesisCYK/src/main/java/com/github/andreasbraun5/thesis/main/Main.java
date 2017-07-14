@@ -21,6 +21,13 @@ public class Main {
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Note: C:\GitHub\BachelorThesis\BachelorThesisCYK>mvn clean install    --> .jar
     // TODO: Maven not working correctly.
+    // TODO: Daten vs. Logik (Entweder Klasse oder zumindest Methoden)
+    // TODO: Factory Pattern (siehe "of" methoden usw) MARTIN: NICHT ÜBERALL BENUTZEN, nur wegen usability in Unit Tests
+    // TODO: Attribute Ableiten und nicht alles speichern, INfos nicht doppelt speichern
+    // TODO: use one constructor and various static methods that delegate to it
+    // TODO: Factory Pattern2 : Siehe ResultSample: Berechnung nicht im Konstruktor, sondern in einer Berechnenden Methode
+    // TODO: Final verwenden,
+    // TODO: Collections.unmodifiable(List|Set|Map) etc. in gettern, vll nach hinten an stellen
     public static void main(String[] args) throws IOException {
 
         ThesisDirectory.initPaths();

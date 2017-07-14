@@ -14,7 +14,7 @@ public final class SS13Exercise {
     }
 
     public static final Grammar SS13_GRAMMAR;
-    public static final Word SS13_EXAMPLE_WORD = new Word("bbacbc");
+    public static final Word SS13_EXAMPLE_WORD = Word.fromStringCharwise("bbacbc");
     public static final SetVarKMatrix SS13_SET_VARK;
 
     static {
@@ -31,7 +31,7 @@ public final class SS13Exercise {
             productions[7] = new Production(new Variable("B"), new Terminal("b"));
             productions[8] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("C")));
             productions[9] = new Production(new Variable("C"), new Terminal("c"));
-            grammar.addProduction(productions);
+            grammar.addProductions(productions);
             SS13_GRAMMAR = grammar;
         }
         {

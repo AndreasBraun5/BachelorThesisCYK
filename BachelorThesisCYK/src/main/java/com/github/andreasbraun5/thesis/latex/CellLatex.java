@@ -47,18 +47,18 @@ public class CellLatex {
             int k = 0;
             str.append("\\node [] at (" + centerName + ") {\\myfontvars{");
             for (int i = k; i < 3 && i < varK.size(); i++) {
-                str.append(varK.get(i).getVariable() + "$_" + varK.get(i).getK() + "$");
+                str.append(varK.get(i).getLhse() + "$_" + varK.get(i).getK() + "$");
             }
             str.append("}};\n");
             k = 3;
             if (vars.size() > k) {
                 str.append("\\node [above] at (" + centerName + ") {\\myfontvars{" + varK.get(k)
-                        .getVariable() + "$_" + varK.get(k).getK() + "$}};\n");
+                        .getLhse() + "$_" + varK.get(k).getK() + "$}};\n");
             }
             k = 4;
             if (vars.size() > k) {
                 str.append("\\node [below] at (" + centerName + ") {\\myfontvars{" + varK.get(k)
-                        .getVariable() + "$_" + varK.get(k).getK() + "$}};\n");
+                        .getLhse() + "$_" + varK.get(k).getK() + "$}};\n");
             }
 
         } else {
@@ -112,7 +112,7 @@ public class CellLatex {
         }
         stringBuilder.append("[");
         for (CellElement ce : vars) {
-            stringBuilder.append(Util.uniformStringMaker(ce.toString(), maxLen));
+            stringBuilder.append(Util.padWithSpaces(ce.toString(), maxLen));
             stringBuilder.append("");
         }
         stringBuilder.append("]");

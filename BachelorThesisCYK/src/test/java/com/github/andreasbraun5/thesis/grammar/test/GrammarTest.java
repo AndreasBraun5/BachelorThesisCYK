@@ -27,7 +27,7 @@ public class GrammarTest {
         // defining dummy startVariable here
         Grammar grammar1 = new Grammar(new VariableStart("S"));
         Production[] productions = {production11, production13, production22, production33};
-        grammar1.addProduction(productions);
+        grammar1.addProductions(productions);
         System.out.println(grammar1);
     }
 
@@ -42,7 +42,7 @@ public class GrammarTest {
         Grammar grammar = new Grammar(new VariableStart("S"));
         System.out.println("Count of productions that should be added: " + 5);
         System.out.println("An GrammarRuntimeException is to be excepted. Because of duplicate production A-->a");
-        grammar.addProduction(
+        grammar.addProductions(
                 new Production(new Variable("A"), new Terminal("a")),
                 new Production(new Variable("A"), new Terminal("a")),
                 new Production(new Variable("A"), new Terminal("b")),
@@ -59,7 +59,7 @@ public class GrammarTest {
         System.out.println("############################");
         System.out.println("ResultCalculator Grammar: addProductionAsSetNoDuplicates");
         Grammar grammar = new Grammar(new VariableStart("S"));
-        grammar.addProduction(new Production(new Variable("A"), new Terminal("a")));
+        grammar.addProductions(new Production(new Variable("A"), new Terminal("a")));
         Set<Production> productionSet = new HashSet<>();
         productionSet.add(new Production(new Variable("A"), new Terminal("a")));
         productionSet.add(new Production(new Variable("A"), new Terminal("b")));
@@ -70,7 +70,7 @@ public class GrammarTest {
         System.out.println("Production to be added:");
         System.out.println(productionSet);
         System.out.println("GrammarRuntimeException is expected.");
-        grammar.addProduction(productionSet);
+        grammar.addProductions(productionSet);
     }
 
     /**
@@ -91,7 +91,7 @@ public class GrammarTest {
         System.out.println(Arrays.toString(productions));
         System.out.println("Grammar before adding:");
         System.out.println(grammar);
-        grammar.addProduction(productions);
+        grammar.addProductions(productions);
         System.out.println("Grammar after adding:");
         System.out.println(grammar);
         Assert.assertEquals("productions.length was not equal to .size", productions.length, grammar.getProductionsAsList().size());

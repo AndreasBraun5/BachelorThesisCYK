@@ -2,6 +2,7 @@ package com.github.andreasbraun5.thesis.grammarproperties;
 
 import com.github.andreasbraun5.thesis.grammar.*;
 
+import java.time.temporal.ValueRange;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +27,10 @@ public class GrammarProperties {
     public GrammarProperties(VariableStart varStart) {
         this.variableStart = varStart;
         this.variables.add(varStart);
+    }
+
+    public Set<Variable> getVariables() {
+        return Collections.unmodifiableSet(variables);
     }
 
     public GrammarProperties(VariableStart varStart, Set<Variable> variables, Set<Terminal> terminals) {

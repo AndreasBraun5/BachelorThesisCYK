@@ -14,13 +14,12 @@ public class Word {
 
     List<Terminal> terminals;
 
-
-    public Word(String wordAsString) {
+    public static Word fromStringCharwise(String string) {
         List<Terminal> wordAsTerminalsList = new ArrayList<>();
-        for (char c : wordAsString.toCharArray()) {
+        for (char c : string.toCharArray()) {
             wordAsTerminalsList.add(new Terminal(String.valueOf(c)));
         }
-        terminals = wordAsTerminalsList;
+        return new Word(wordAsTerminalsList);
     }
 
     public Word(List<Terminal> word) {

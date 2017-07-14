@@ -6,6 +6,7 @@ import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 
 import java.util.ArrayList;
@@ -55,8 +56,9 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
         workLog.log(grammarGeneratorSettings.grammarProperties.variables.toString());
         workLog.log(grammarPyramidWrapper.getGrammar().toString());
         grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+        workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
         workLog.log("After removing useless productions:");
-        workLog.log(grammarPyramidWrapper.getPyramid().toString());
+        workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
         grammarPyramidWrapper = GrammarGeneratorUtil.onlyKeepContributingProductions(grammarPyramidWrapper);
         workLog.log(grammarPyramidWrapper.getGrammar().toString());
         workLog.log("END of Logging of GrammarGeneratorDiceRollOnly.");

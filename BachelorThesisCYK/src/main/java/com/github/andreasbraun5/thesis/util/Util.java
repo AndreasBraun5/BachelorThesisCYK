@@ -83,7 +83,7 @@ public abstract class Util {
      */
     public static Set<Variable> varKSetToVarSet(Set<VariableK> varKWrapper) {
         Set<Variable> variableSet = new HashSet<>();
-        varKWrapper.forEach(variableK -> variableSet.add(variableK.getVariable()));
+        varKWrapper.forEach(variableK -> variableSet.add((Variable) variableK.getLhse()));
         return variableSet;
     }
 
@@ -94,7 +94,7 @@ public abstract class Util {
     /**
      * helper method used by printSetVAsLowerTriangularMatrix
      */
-    public static String uniformStringMaker(String str, int length) {
+    public static String padWithSpaces(String str, int length) {
         StringBuilder builder = new StringBuilder(str);
         for (int i = str.length(); i < length; ++i) {
             builder.append(" ");
@@ -112,7 +112,7 @@ public abstract class Util {
         Set<VariableCompound> varComp = new HashSet<>();
         for (VariableK varX : xSet) {
             for (VariableK varY : ySet) {
-                varComp.add(new VariableCompound(varX.getVariable(), varY.getVariable()));
+                varComp.add(new VariableCompound((Variable) varX.getLhse(), (Variable) varY.getLhse()));
             }
         }
         return varComp;

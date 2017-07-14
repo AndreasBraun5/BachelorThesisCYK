@@ -51,7 +51,7 @@ public class SuccessRates {
     @Override
     public String toString() {
         return "\nSuccessRates{" +
-
+                "\n#################################################=" +
                 "\nSUCCESSRATEOVERVIEW{" +
                 "\n			-->	SUCCESSRATE=" + successRate +
                 "\n			-->	SUCCESSRATEPRODUCIBILITY=" + successRateProducibility +
@@ -59,7 +59,8 @@ public class SuccessRates {
                 successRatesGrammarConstraints.getSuccessRateGrammarRestrictions() +
                 "\n			-->	SUCCESSRATEEXAMCONSTRAINTS=" +
                 successRatesExamConstraints.getSuccessRateExamConstraints() +
-                "\n			-->	SUCCESSRATE=" + successRate +
+                "\n#################################################=" +
+                "\n\n			-->	SUCCESSRATE=" + successRate +
                 "\n		trueCount=" + trueCount +
                 "\n		falseCount=" + falseCount +
                 "\n			-->	SUCCESSRATEPRODUCIBILITY=" + successRateProducibility +

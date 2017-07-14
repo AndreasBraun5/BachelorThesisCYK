@@ -18,7 +18,6 @@ import lombok.Getter;
 public class ResultSample {
 
     private Grammar grammar;
-    private Word word;
     private Pyramid pyramid;
 
     // This stays here
@@ -30,14 +29,12 @@ public class ResultSample {
 
     public ResultSample(
             GrammarPyramidWrapper grammarPyramidWrapper,
-            GrammarGeneratorSettings grammarGeneratorSettings
-    ) {
+            GrammarGeneratorSettings grammarGeneratorSettings) {
         GrammarConstraints tempGrammarRestrictions = grammarGeneratorSettings.grammarProperties.
                 grammarConstraints;
         ExamConstraints tempExamConstraints = grammarGeneratorSettings.grammarProperties.
                 examConstraints;
         this.grammar = grammarPyramidWrapper.getGrammar();
-        this.word = grammarPyramidWrapper.getPyramid().getWord();
         this.pyramid = grammarPyramidWrapper.getPyramid();
         this.isWordProducible = GrammarValidityChecker.
                 checkProducibilityCYK(pyramid, grammar, grammarGeneratorSettings.grammarProperties);
@@ -86,22 +83,20 @@ public class ResultSample {
                         resultSampleExamConstraints.isRightCellCombinationsForced()
         );
         this.resultSampleGrammarRestrictions.setGrammarRestrictions(
-                resultSampleGrammarRestrictions.isGrammarRestrictions());
+                resultSampleGrammarRestrictions.isMaxNumberOfVarsPerCell());
         this.isValid = resultSampleExamConstraints.isExamConstraints() &&
                 resultSampleGrammarRestrictions.isGrammarRestrictions() &&
                 isWordProducible;
-
-
     }
 
     @Override
     public String toString() {
         return "ResultSample{" +
                 "\ngrammar=" + grammar +
-                "\nword='" + word + '\'' +
-                "\nsetV=\n" + Pyramid.printPyramid(pyramid.getCellsSimple()) +
+                "\nword='" + pyramid.getWord() + '\'' +
+                "\nPyramid=\n" + Pyramid.printPyramid(pyramid.getCellsSimple()) +
                 "\nmarkedRightCellCombinationForced=\n" + Pyramid.printPyramid(resultSampleExamConstraints.getMarkedRightCellCombinationForced()) +
-                "\nmaxVarsPerCellSetV=" + resultSampleGrammarRestrictions.maxNumberOfVarsPerCellCount +
+                "\nmaxNumberOfVarsPerCellCount=" + resultSampleGrammarRestrictions.maxNumberOfVarsPerCellCount +
                 "\nmaxSumOfVarsInPyramid=" + resultSampleExamConstraints.isMaxSumOfVarsInPyramid() +
                 "\nrightCellCombinationForcedCount=" + resultSampleExamConstraints.getRightCellCombinationsForcedCount() +
                 "\nmaxSumOfProductionsCount=" + resultSampleExamConstraints.getMaxSumOfProductionsCount() +

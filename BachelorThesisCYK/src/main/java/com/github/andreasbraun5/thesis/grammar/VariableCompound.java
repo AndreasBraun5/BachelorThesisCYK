@@ -1,6 +1,6 @@
 package com.github.andreasbraun5.thesis.grammar;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,45 +9,48 @@ import java.util.List;
  */
 public class VariableCompound implements RightHandSideElement {
 
-	protected List<Variable> variables;
+    private final Variable left;
+    private final Variable right;
 
-	public VariableCompound(Variable varLeft, Variable varRight) {
-		variables = new ArrayList<>();
-		variables.add( varLeft );
-		variables.add( varRight );
+	public VariableCompound(Variable left, Variable right) {
+		this.left = left;
+		this.right = right;
 	}
 
+	public static VariableCompound of(Variable left, Variable right) {
+	    return new VariableCompound(left, right);
+    }
+
 	public List<Variable> getVariables() {
-		return variables;
+		return Arrays.asList(this.left, this.right);
 	}
 
 	@Override
 	public String getTerminalName() {
-		return variables.get( 0 ).toString() + variables.get( 1 ).toString();
+		return left.toString() + right.toString();
 	}
 
 	@Override
 	public String toString() {
-		return variables.get( 0 ).toString() + variables.get( 1 ).toString();
+		return left.toString() + right.toString();
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if ( this == o ) {
-			return true;
-		}
-		if ( o == null || getClass() != o.getClass() ) {
-			return false;
-		}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-		VariableCompound that = (VariableCompound) o;
+        VariableCompound that = (VariableCompound) o;
 
-		return variables != null ? variables.equals( that.variables ) : that.variables == null;
+        if (left != null ? !left.equals(that.left) : that.left != null) return false;
+        return right != null ? right.equals(that.right) : that.right == null;
+    }
 
-	}
+    @Override
+    public int hashCode() {
+        int result = left != null ? left.hashCode() : 0;
+        result = 31 * result + (right != null ? right.hashCode() : 0);
+        return result;
+    }
 
-	@Override
-	public int hashCode() {
-		return variables != null ? variables.hashCode() : 0;
-	}
 }

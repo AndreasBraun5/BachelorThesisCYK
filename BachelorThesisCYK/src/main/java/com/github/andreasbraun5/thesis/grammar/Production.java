@@ -20,6 +20,10 @@ public class Production {
 		this.rightHandSideElement = rightHandSideElement;
 	}
 
+	public static Production of(Variable leftHandSideElement, RightHandSideElement rightHandSideElement) {
+	    return new Production(leftHandSideElement, rightHandSideElement);
+    }
+
 	public Production(Variable leftHandSideElement) {
 		this.leftHandSideElement = leftHandSideElement;
 	}

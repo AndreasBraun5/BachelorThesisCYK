@@ -31,6 +31,10 @@ public class Pyramid {
         this(setVarKMatrix.getSetV(), setVarKMatrix.getWord());
     }
 
+    public static Pyramid empty(Word word) {
+        return new Pyramid(word);
+    }
+
     public void setCells(Set<VariableK>[][] origMatrix){
         int length = origMatrix[0].length;
         // pyramid has now length times many rows
@@ -65,6 +69,7 @@ public class Pyramid {
     /**
      * @return There are no duplicates. A1, A2 becomes only A.
      */
+    @Deprecated
     public CellSimple[][] getCellsSimple() {
         int length = cells.length;
         CellSimple[][] setVVariable = new CellSimple[length][];
@@ -114,7 +119,7 @@ public class Pyramid {
                     stringBuilder.append(" ");
                 }
                 for (int j = 0; j < pyramidSize - i; j++) {
-                    stringBuilder.append(Util.uniformStringMaker(cells[i][j].toString(), maxLen));
+                    stringBuilder.append(Util.padWithSpaces(cells[i][j].toString(), maxLen));
                 }
                 for (int x = 0; x < emptySpace; ++x) {
                     stringBuilder.append(" ");

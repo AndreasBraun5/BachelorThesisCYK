@@ -12,6 +12,10 @@ public class Terminal implements RightHandSideElement {
         this.name = name;
     }
 
+    public static Terminal of(String name) {
+        return new Terminal(name);
+    }
+
     @Override
     public String toString() {
         return name;

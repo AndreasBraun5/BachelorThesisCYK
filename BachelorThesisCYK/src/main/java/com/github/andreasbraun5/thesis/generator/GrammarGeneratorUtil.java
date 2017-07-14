@@ -40,7 +40,7 @@ public class GrammarGeneratorUtil {
             }
             //Adding the element to the leftover variables
             for (Variable var : tempVar) {
-                grammar.addProduction(new Production(var, tempRhse));
+                grammar.addProductions(new Production(var, tempRhse));
             }
         }
         grammarPyramidWrapper.setGrammar(grammar);
@@ -75,7 +75,7 @@ public class GrammarGeneratorUtil {
             for (int j = 0; j < cells[0].length; j++) {
                 for (VariableK vark : cells[0][j].getCellElements()) {
                     usefulProductions.addAll(
-                            contributingProductionsPerCellForTerminals(pyramid.getWord(), productions.get(vark.getVariable()))
+                            contributingProductionsPerCellForTerminals(pyramid.getWord(), productions.get(vark.getLhse()))
                     );
                 }
             }
@@ -95,7 +95,7 @@ public class GrammarGeneratorUtil {
                     // Now only relevant productions are checked. You could give every production too.
                     for (VariableK varK : cells[i][j].getCellElements()) {
                         usefulProductions.addAll(
-                                contributingProductionsPerCellForVarComp(variableCompounds, productions.get(varK.getVariable()))
+                                contributingProductionsPerCellForVarComp(variableCompounds, productions.get(varK.getLhse()))
                         );
                     }
                 }
@@ -103,7 +103,7 @@ public class GrammarGeneratorUtil {
         }
         // replace all productions that have been in the grammar up till now.
         grammar.removeAllProductions();
-        grammar.addProduction(usefulProductions);
+        grammar.addProductions(usefulProductions);
         grammarPyramidWrapper.setGrammar(grammar);
         return grammarPyramidWrapper;
     }

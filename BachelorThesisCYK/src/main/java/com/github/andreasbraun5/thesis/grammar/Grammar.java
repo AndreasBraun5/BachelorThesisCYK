@@ -14,25 +14,35 @@ import java.util.*;
  */
 public class Grammar {
     // As stated above. Key=A, Value: A-->a and A-->B and A--> AB
-    private Map<Variable, List<Production>> productionsMap = new HashMap<>();
+    private final Map<Variable, List<Production>> productionsMap;
     // Implemented like this, because there can be only one variableStart.
     private final VariableStart variableStart;
 
     public Grammar(VariableStart variableStart) {
-        this.variableStart = variableStart;
+        this(variableStart, new HashMap<>());
     }
 
-    public Grammar(Grammar grammar){
-        this.variableStart = grammar.getVariableStart();
-        this.productionsMap = grammar.getProductionsMap();
+    public Grammar(Grammar grammar) {
+        this(grammar.variableStart, new HashMap<>(grammar.productionsMap));
     }
+
+    public Grammar(VariableStart variableStart, Map<Variable, List<Production>> productionsMap) {
+        this.variableStart = variableStart;
+        this.productionsMap = productionsMap;
+    }
+
+    public static Grammar empty(VariableStart variableStart) {
+        return new Grammar(variableStart);
+    }
+
+
 
 
     /**
      * You must make sure beforehand that only reasonable productions are added. No duplicates can be added and no
      * already existing production.
      */
-    public void addProduction(Production... production) throws GrammarRuntimeException {
+    public Grammar addProductions(Production... production) throws GrammarRuntimeException {
         int countProductionsToAdd = production.length;
         // Making production that are added unique.
         Set<Production> tempSet = new HashSet<>(Arrays.asList(production));
@@ -40,14 +50,15 @@ public class Grammar {
         if (tempSet.size() != countProductionsToAdd) {
             throw new GrammarRuntimeException("AddProduction: Duplicate production found in the production array.");
         }
-        addProduction(tempSet);
+        addProductions(tempSet);
+        return this;
     }
 
     /**
      * You must make sure beforehand that only reasonable productions are added. No duplicates can be added and no
      * already existing production.
      */
-    public void addProduction(Set<Production> productions) throws GrammarRuntimeException {
+    public Grammar addProductions(Set<Production> productions) throws GrammarRuntimeException {
         for (Production prod : productions) {
             Variable var = prod.getLeftHandSideElement();
             Set<Production> prodsSet = new HashSet<>();
@@ -59,7 +70,7 @@ public class Grammar {
             int countBefore = prodsSet.size();
             prodsSet.add(prod);
             int countAfter = prodsSet.size();
-            if (countBefore != countAfter-1) {
+            if (countBefore != countAfter - 1) {
                 throw new GrammarRuntimeException("AddProduction: No duplicate production can be added.");
             }
             List<Production> prodList = new ArrayList<>();
@@ -67,6 +78,7 @@ public class Grammar {
             // Exchange/replace the updated productionList in the map.
             productionsMap.put(var, prodList);
         }
+        return this;
     }
 
 

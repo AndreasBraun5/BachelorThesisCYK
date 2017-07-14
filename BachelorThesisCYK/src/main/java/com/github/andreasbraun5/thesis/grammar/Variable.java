@@ -14,6 +14,10 @@ public class Variable implements LeftHandSideElement, CellElement {
 		this.name = name;
 	}
 
+	public static Variable of(String name)  {
+	    return new Variable(name);
+    }
+
 	@Override
 	public boolean equals(Object o) {
 		if ( this == o ) {
@@ -44,7 +48,7 @@ public class Variable implements LeftHandSideElement, CellElement {
 	}
 
     @Override
-    public Variable getVariable() {
+    public Variable getLhse() {
         return this;
     }
 }

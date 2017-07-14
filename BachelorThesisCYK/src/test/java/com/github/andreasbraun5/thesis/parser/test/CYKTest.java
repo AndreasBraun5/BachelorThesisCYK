@@ -37,7 +37,7 @@ public class CYKTest {
         Word word = WordGeneratorDiceRoll.generateWord(grammarProperties);
         // Generate Grammar
         Grammar grammar = new Grammar(new VariableStart("S"));
-        grammar.addProduction(new Production(new VariableStart("S"), new Terminal("a")),
+        grammar.addProductions(new Production(new VariableStart("S"), new Terminal("a")),
                 new Production(new VariableStart("S"),
                         new VariableCompound(new VariableStart("S"), new VariableStart("S")))
         );

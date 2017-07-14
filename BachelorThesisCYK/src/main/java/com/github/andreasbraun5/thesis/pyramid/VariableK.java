@@ -1,6 +1,8 @@
 package com.github.andreasbraun5.thesis.pyramid;
 
+import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
 import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.sun.org.apache.bcel.internal.generic.VariableLengthInstruction;
 
 /**
  * Created by Andreas Braun on 24.01.2017.
@@ -11,7 +13,7 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 public class VariableK implements CellElement {
 
 	private String name;
-	private Variable variable;
+	private LeftHandSideElement variable;
 	private int k;
 
 	public VariableK(Variable variable, int k) {
@@ -50,7 +52,7 @@ public class VariableK implements CellElement {
 	}
 
 	@Override
-	public Variable getVariable() {
+	public LeftHandSideElement getLhse() {
 		return variable;
 	}
 

@@ -14,7 +14,7 @@ public final class TiScriptExercise {
     }
 
     public static final Grammar SCRIPT_GRAMMAR;
-    public static final Word SCRIPT_EXAMPLE_WORD = new Word("01110100");
+    public static final Word SCRIPT_EXAMPLE_WORD = Word.fromStringCharwise("01110100");
     public static final SetVarKMatrix SCRIPT_SET_VARK;
 
     static {
@@ -36,7 +36,7 @@ public final class TiScriptExercise {
             productions[12] = new Production(new Variable("B"), new VariableCompound(new Variable("N"), new Variable("D")));
             productions[13] = new Production(new Variable("C"), new VariableCompound(new Variable("A"), new Variable("A")));
             productions[14] = new Production(new Variable("D"), new VariableCompound(new Variable("B"), new Variable("B")));
-            grammar.addProduction(productions);
+            grammar.addProductions(productions);
             SCRIPT_GRAMMAR = grammar;
         }
         {

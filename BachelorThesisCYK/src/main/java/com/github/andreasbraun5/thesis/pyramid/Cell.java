@@ -3,6 +3,7 @@ package com.github.andreasbraun5.thesis.pyramid;
 import com.github.andreasbraun5.thesis.util.Util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -14,12 +15,10 @@ public abstract class Cell <T extends CellElement> {
     private List<T> cellElements = new ArrayList<>();
     private int i = 0;
     private int j = 0;
-    private String centerName = "";
 
     public Cell(int i, int j) {
         this.i = i;
         this.j = j;
-        centerName = "cells" + i + "" + j;
     }
 
     public Cell addVar(T var) {
@@ -28,7 +27,7 @@ public abstract class Cell <T extends CellElement> {
     }
 
     // A CellElement can be of type Variable, VariableStart and VariableK
-    public Cell addVars(Set<T> set) {
+    public Cell addVars(Collection<T> set) {
         this.cellElements.addAll(set);
         return this;
     }
@@ -60,7 +59,7 @@ public abstract class Cell <T extends CellElement> {
         stringBuilder.append("[");
         int comma = 1;
         for (T cell : cellElements) {
-            stringBuilder.append(Util.uniformStringMaker(cell.toString(), maxLen));
+            stringBuilder.append(Util.padWithSpaces(cell.toString(), maxLen));
             if (comma < cellElements.size()) {
                 stringBuilder.append(",");
                 comma++;
@@ -71,6 +70,7 @@ public abstract class Cell <T extends CellElement> {
         return stringBuilder.toString();
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,16 +80,15 @@ public abstract class Cell <T extends CellElement> {
 
         if (i != cell.i) return false;
         if (j != cell.j) return false;
-        if (!cellElements.equals(cell.cellElements)) return false;
-        return centerName.equals(cell.centerName);
+        return cellElements != null ? cellElements.equals(cell.cellElements) : cell.cellElements == null;
     }
 
     @Override
     public int hashCode() {
-        int result = cellElements.hashCode();
+        int result = cellElements != null ? cellElements.hashCode() : 0;
         result = 31 * result + i;
         result = 31 * result + j;
-        result = 31 * result + centerName.hashCode();
         return result;
     }
+
 }

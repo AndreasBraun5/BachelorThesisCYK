@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by Andreas Braun on 20.12.2016.
@@ -33,13 +34,21 @@ public class CYK {
     public static boolean algorithmAdvanced(GrammarPyramidWrapper grammarPyramidWrapper, Word word) {
         grammarPyramidWrapper = calculateSetVAdvanced(grammarPyramidWrapper);
         int wordLength = word.getWordLength();
-        return grammarPyramidWrapper.getPyramid().getCellK(wordLength-1,0).getCellSimple().getCellElements().
+        return grammarPyramidWrapper.getPyramid().getCellK(wordLength - 1, 0).getCellSimple().getCellElements().
                 contains(grammarPyramidWrapper.getGrammar().getVariableStart());
     }
 
     public static boolean algorithmAdvanced(Pyramid pyramid, Grammar grammar, GrammarProperties grammarProperties) {
         int wordlength = grammarProperties.grammarConstraints.sizeOfWord;
-        return pyramid.getCellK(wordlength-1, 0).getCellElements().contains(grammar.getVariableStart());
+        List<VariableK> vars =
+                pyramid.getCellK(wordlength - 1, 0).getCellElements().stream().
+                        filter(variableK -> {
+                            if (variableK.getLhse() instanceof VariableStart) {
+                                return true;
+                            } else return false;
+                        }).collect(Collectors.toList());
+        // well it works
+        return vars.size() > 0;
     }
 
     /**

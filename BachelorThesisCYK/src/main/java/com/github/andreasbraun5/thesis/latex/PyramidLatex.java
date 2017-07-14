@@ -173,7 +173,7 @@ public class PyramidLatex {
         }
         for (int i = 0; i < pyramidSize; i++) {
             for (int j = 0; j < pyramidSize - i; j++) {
-                stringBuilder.append(Util.uniformStringMaker(cells.get(i).get(j).toString(), maxLen));
+                stringBuilder.append(Util.padWithSpaces(cells.get(i).get(j).toString(), maxLen));
             }
             stringBuilder.append("\n");
         }

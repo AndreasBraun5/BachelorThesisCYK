@@ -53,7 +53,7 @@ public class GrammarValidityCheckerTest {
         CellK cellRight = pyramid.getCellK(5, 1); // contains D2
         CellK cellDown = pyramid.getCellK(4,2); // contains B3
         cellRight.addVar(new VariableK(new Variable("A"), 1)); // adding fictional var A1 to cellRight
-        cellDown.addVar(new VariableK(new Variable("D_"), 1)); // adding fictional var D1 to cellDown
+        cellDown.addVar(new VariableK(new Variable("D"), 1)); // adding fictional var D1 to cellDown
         cellDown.addVar(new VariableK(new Variable("C"), 1)); // adding fictional var D1 to cellDown
         System.out.println("cellLeft and cellRight:" + cellLeft.toString() + "             "+ cellRight.toString());
         System.out.println("cellDown:                       " + cellDown);
@@ -61,10 +61,9 @@ public class GrammarValidityCheckerTest {
         Set<VariableK> forcingVarsOfCellDown = GrammarValidityChecker.
                 checkRightCellCombinationForcedForCell(cellDown, cellRight, cellLeft, grammar);
         System.out.println(forcingVarsOfCellDown);
-        Assert.assertTrue(forcingVarsOfCellDown.contains(new VariableK(new Variable("D_"), 1)));
+        Assert.assertTrue(forcingVarsOfCellDown.contains(new VariableK(new Variable("D"), 1)));
         Assert.assertFalse(forcingVarsOfCellDown.contains(new VariableK(new Variable("B"), 3)));
         Assert.assertFalse(forcingVarsOfCellDown.contains(new VariableK(new Variable("C"), 1)));
-
         System.out.println("B3 doesn't force because ND is an rhse of one of its productions.");
         System.out.println("C1 doesn't force because AA is an rhse of one of its productions.");
         System.out.println("D1 forces because AD, AA, ND or NA isn't an rhse of one of its productions.");
@@ -109,7 +108,7 @@ public class GrammarValidityCheckerTest {
         System.out.println("");
         System.out.println("############################");
         System.out.println("GrammarValidityCheckerTest: checkMaxSumOfVarsInPyramid");
-        Word word = new Word("01110100");
+        Word word = Word.fromStringCharwise("01110100");
         int wordLength = word.getWordLength();
         Set<VariableK>[][] setVTemp = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
 

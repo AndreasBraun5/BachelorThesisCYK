@@ -56,7 +56,7 @@ public class GrammarGeneratorUtilTest {
         Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
         List<Production> usefulProductions = GrammarGeneratorUtil.contributingProductionsPerCellForTerminals(
                 word, grammar.getProductionsAsList());
-        grammar.addProduction(new Production(new Variable("E"), new Terminal("3")));
+        grammar.addProductions(new Production(new Variable("E"), new Terminal("3")));
         System.out.println(grammar);
         System.out.println("Not useful production is: E --> 3");
         Assert.assertTrue(usefulProductions.contains(new Production(new Variable("N"),
@@ -98,9 +98,9 @@ public class GrammarGeneratorUtilTest {
         Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
         Production useless1 = new Production(new Variable("E"), new Terminal("5"));
-        grammar.addProduction(useless1);
+        grammar.addProductions(useless1);
         Production useless2 = new Production(new Variable("B"), new VariableCompound(new Variable("K"), new Variable("D_")));
-        grammar.addProduction(useless2);
+        grammar.addProductions(useless2);
         GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder().grammar(grammar).build();
         grammarPyramidWrapper.setPyramid(new Pyramid(setVarKMatrix.getSetV(), word));
         System.out.println(grammar);

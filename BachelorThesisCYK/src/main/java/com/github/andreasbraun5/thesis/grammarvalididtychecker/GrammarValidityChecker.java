@@ -1,10 +1,7 @@
 package com.github.andreasbraun5.thesis.grammarvalididtychecker;
 
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.Production;
-import com.github.andreasbraun5.thesis.grammar.Variable;
-import com.github.andreasbraun5.thesis.grammar.VariableCompound;
+import com.github.andreasbraun5.thesis.grammar.*;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
@@ -14,10 +11,7 @@ import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Andreas Braun on 05.01.2017.
@@ -41,7 +35,7 @@ public class GrammarValidityChecker {
      */
     public static CheckMaxNumberOfVarsPerCellResultWrapper checkMaxNumberOfVarsPerCell(
             Pyramid pyramid,
-            int maxNumberOfVarsPerCell) {
+            int maxNumberOfVarsPerCell) { //TODO always false here
         CellSimple[][] cellsSimple = pyramid.getCellsSimple();
         if (maxNumberOfVarsPerCell == 0) {
             throw new GrammarPropertiesRuntimeException("maxNumberOfVarsPerCell is zero.");
@@ -63,6 +57,7 @@ public class GrammarValidityChecker {
      * Exam relevant restriction. The upper two rows of the pyramid aren't checked. For each cell of the pyramid it is
      * checked whether it forces. minCountRightCellCombinationsForced is incremented dependent on unique varKs.
      * If there is D4, D5, D6 that force, it is only the D that forces.
+     * TODO: Cell must not be empty.
      */
     public static CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationForcedSimpleCells(
             Pyramid pyramid, int minCountRightCellCombinationsForced, Grammar grammar) {
@@ -77,12 +72,12 @@ public class GrammarValidityChecker {
                     CellK cellLeft = cells[i - 1][j];
                     Set<VariableK> tempVarKsThatForce =
                             checkRightCellCombinationForcedForCell(cellDown, cellRight, cellLeft, grammar);
-                    rightCellCombinationsForced += tempVarKsThatForce.size();
                     // Now we still need the variableSet instead of the variableKSet
                     Set<Variable> tempVarsThatForce = new HashSet<>();
                     for (VariableK varK : tempVarKsThatForce) {
-                        tempVarsThatForce.add(varK.getVariable());
+                        tempVarsThatForce.add((Variable) varK.getLhse());
                     }
+                    rightCellCombinationsForced += tempVarsThatForce.size();
                     // This can be added now to the markedRightCellCombinationForced.
                     markedRightCellCombinationForced[i][j].addVars(tempVarsThatForce);
                 }
@@ -106,19 +101,19 @@ public class GrammarValidityChecker {
         // varCompMistake compound variables aren't allowed to be an rhse of the varK that forces of cellDown.
         Set<VariableCompound> varCompMistake = Util.calculateVariablesCompound(new Tuple<>(cellLeft, cellRight));
         for (VariableK vark : cellDown.getCellElements()) {
-            List<Production> prodsForVar = grammar.getProductionsMap().get(vark.getVariable());
+            List<Production> prodsForVar = grammar.getProductionsMap().get(vark.getLhse());
             // If at least one of the varCompMistake variables is element of only rhse of the prodsForVar, then the
             // vark does not Force
+            boolean addVar = true;
             for (Production prod : prodsForVar) {
                 if (varCompMistake.contains(prod.getRightHandSideElement())) {
                     // If one element is found, then the varK must not be added to varKsThatForce.
-                    break;
-                } else {
-                    varKsThatForce.add(vark);
+                    addVar = false;
                 }
-
             }
-
+            if (addVar) {
+                varKsThatForce.add(vark);
+            }
         }
         return varKsThatForce;
     }

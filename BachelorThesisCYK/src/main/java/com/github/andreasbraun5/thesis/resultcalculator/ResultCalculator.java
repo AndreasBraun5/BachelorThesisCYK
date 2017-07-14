@@ -84,13 +84,13 @@ public class ResultCalculator {
             // Generate a random word that is used to decide whether the Grammar is true or false. Generate more words
             // Make sure that 100 different words are stored into the map.
             Word tempWord = WordGeneratorDiceRoll.generateWord(tempGrammarProperties);
-            GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder()
-                    .pyramid(new Pyramid(tempWord)).build();
-            while (chunkResultSamples.containsKey(tempWord)) {
+            while (chunkResultSamples.containsKey(tempWord)) { // No duplicate words possible
                 tempWord = WordGeneratorDiceRoll.generateWord(tempGrammarProperties);
             }
             chunkResultSamples.put(tempWord, new ArrayList<>());
             for (int j = 0; j < countOfGrammarsToGeneratePerWord && countSamplesGenerated < CHUNK_SIZE; j++) {
+                GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder()
+                        .pyramid(new Pyramid(tempWord)).build();
                 // Regarding the specified testMethod of grammarGenerator the correct grammar is generated.
                 grammarPyramidWrapper = grammarGenerator.generateGrammarPyramidWrapper(grammarPyramidWrapper, workLog);
                 chunkResultSamples.get(tempWord).add(

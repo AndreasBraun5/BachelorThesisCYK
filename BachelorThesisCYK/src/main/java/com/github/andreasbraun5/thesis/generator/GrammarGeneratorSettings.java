@@ -10,16 +10,14 @@ public class GrammarGeneratorSettings {
 
     public final String name;
     public final GrammarProperties grammarProperties; //
-    private int minValueCompoundVariablesAreAddedTo; // default is 0
-    private int minValueTerminalsAreAddedTo; // default is 1
+    private int minValueCompoundVariablesAreAddedTo = 0; // default is 0
+    private int minValueTerminalsAreAddedTo = 1; // default is 1
     private int maxValueCompoundVariablesAreAddedTo; // default is to all variables would be possible
     private int maxValueTerminalsAreAddedTo; // default is to all variables would be possible
 
     public GrammarGeneratorSettings(GrammarProperties grammarProperties, String name) {
         this.name = name;
         this.grammarProperties = grammarProperties;
-        minValueTerminalsAreAddedTo = 1;
-        minValueCompoundVariablesAreAddedTo = 0;
         maxValueCompoundVariablesAreAddedTo = grammarProperties.variables.size();
         maxValueTerminalsAreAddedTo = grammarProperties.variables.size();
     }

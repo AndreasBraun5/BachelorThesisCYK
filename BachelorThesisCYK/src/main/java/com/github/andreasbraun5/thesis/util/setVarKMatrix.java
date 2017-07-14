@@ -54,7 +54,7 @@ public class SetVarKMatrix {
         }
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
-                stringBuilder.append(Util.uniformStringMaker(setV[j][i].toString(), maxLen));
+                stringBuilder.append(Util.padWithSpaces(setV[j][i].toString(), maxLen));
             }
             stringBuilder.append("\n");
         }
@@ -78,7 +78,7 @@ public class SetVarKMatrix {
         }
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
-                stringBuilder.append(Util.uniformStringMaker(setVVariable[j][i].toString(), maxLen));
+                stringBuilder.append(Util.padWithSpaces(setVVariable[j][i].toString(), maxLen));
             }
             stringBuilder.append("\n");
         }
@@ -107,7 +107,7 @@ public class SetVarKMatrix {
         }
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
-                stringBuilder.append(Util.uniformStringMaker(setV[i][j].toString(), maxLen));
+                stringBuilder.append(Util.padWithSpaces(setV[i][j].toString(), maxLen));
             }
             stringBuilder.append("\n");
         }
@@ -129,7 +129,7 @@ public class SetVarKMatrix {
         }
         for (int i = 0; i < wordLength; i++) {
             for (int j = 0; j < wordLength; j++) {
-                stringBuilder.append(Util.uniformStringMaker(setVVariable[i][j].toString(), maxLen));
+                stringBuilder.append(Util.padWithSpaces(setVVariable[i][j].toString(), maxLen));
             }
             stringBuilder.append("\n");
         }

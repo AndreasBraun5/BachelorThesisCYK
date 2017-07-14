@@ -2,13 +2,14 @@ package com.github.andreasbraun5.thesis.pyramid;
 
 import com.github.andreasbraun5.thesis.grammar.Variable;
 
+import java.time.temporal.ValueRange;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by AndreasBraun on 03.07.2017.
  */
-public class CellK extends Cell<VariableK> {
+public class CellK extends Cell<VariableK>  {
 
     public CellK(int i, int j) {
         super(i, j);
@@ -21,7 +22,7 @@ public class CellK extends Cell<VariableK> {
         CellSimple cellSimple = new CellSimple(this.getI(), this.getJ());
         Set<Variable> variableSet = new HashSet<>();
         for (CellElement ce : getCellElements()) {
-            variableSet.add(ce.getVariable());
+            variableSet.add((Variable) ce.getLhse());
         }
         cellSimple.addVars(variableSet);
         return cellSimple;
