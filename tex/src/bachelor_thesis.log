@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  13 JUL 2017 12:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  15 JUL 2017 23:26
 entering extended mode
 **./bachelor_thesis.tex
 (bachelor_thesis.tex
@@ -1692,6 +1692,9 @@ LaTeX Warning: Label `stepii' multiply defined.
 LaTeX Warning: Label `stepii' multiply defined.
 
 
+LaTeX Warning: Label `stepii' multiply defined.
+
+
 LaTeX Warning: Label `cell' multiply defined.
 
 
@@ -1948,48 +1951,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 254--255
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 275.
+(Font)              <10.95> on input line 276.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 275.
+(Font)              <10> on input line 276.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 275.
+(Font)              <7> on input line 276.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 275.
+(Font)              <5> on input line 276.
 
-Underfull \hbox (badness 10000) in paragraph at lines 256--276
+Underfull \hbox (badness 10000) in paragraph at lines 256--277
 
  []
 
 
-Overfull \hbox (8.67882pt too wide) in paragraph at lines 277--278
+Overfull \hbox (8.67882pt too wide) in paragraph at lines 278--279
 \T1/lmr/m/n/12 other pro-ce-dure. In the code this is done only at the Re-sult-
 Cal-cu-la-tor.createChunkResult. 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 284--323
+Underfull \hbox (badness 10000) in paragraph at lines 285--324
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 284--323
+Underfull \hbox (badness 10000) in paragraph at lines 285--324
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 284--323
+Underfull \hbox (badness 10000) in paragraph at lines 285--324
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 362--364
+Underfull \hbox (badness 10000) in paragraph at lines 363--365
 
  []
 
-<abb/D_Wim2.jpg, id=320, 1604.99625pt x 1204.5pt>
+<abb/D_Wim2.jpg, id=321, 1604.99625pt x 1204.5pt>
 File: abb/D_Wim2.jpg Graphic file (type jpg)
  <use abb/D_Wim2.jpg>
-Package pdftex.def Info: abb/D_Wim2.jpg used on input line 369.
+Package pdftex.def Info: abb/D_Wim2.jpg used on input line 370.
 (pdftex.def)             Requested size: 308.71106pt x 231.66939pt.
 
 
@@ -1997,99 +2000,99 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [14] [15 <./abb/D_Wim2.jpg>]
 
-LaTeX Warning: Reference `cell?' on page 16 undefined on input line 398.
+LaTeX Warning: Reference `cell?' on page 16 undefined on input line 399.
 
 
-LaTeX Warning: Reference `tip2' on page 16 undefined on input line 398.
+LaTeX Warning: Reference `tip2' on page 16 undefined on input line 399.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 377--400
+Underfull \hbox (badness 10000) in paragraph at lines 378--401
 
  []
 
 
-LaTeX Warning: Reference `Idea1' on page 16 undefined on input line 437.
+LaTeX Warning: Reference `Idea1' on page 16 undefined on input line 438.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 401--438
+Underfull \hbox (badness 10000) in paragraph at lines 402--439
 
  []
 
 [16
 
 ] [17] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 451--475
+Underfull \hbox (badness 10000) in paragraph at lines 452--476
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 476--510
+Underfull \hbox (badness 10000) in paragraph at lines 477--511
 
  []
 
 [19] [20]
 
 LaTeX Warning: Reference `calculateSubsetForCell' on page 21 undefined on input
- line 551.
+ line 552.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 514--552
+Underfull \hbox (badness 10000) in paragraph at lines 515--553
 
  []
 
 [21]
-Underfull \hbox (badness 10000) in paragraph at lines 556--558
+Underfull \hbox (badness 10000) in paragraph at lines 557--559
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 559--560
+Underfull \hbox (badness 10000) in paragraph at lines 560--561
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 561--562
+Underfull \hbox (badness 10000) in paragraph at lines 562--563
 
  []
 
 
-Overfull \hbox (15.3946pt too wide) in paragraph at lines 563--564
+Overfull \hbox (15.3946pt too wide) in paragraph at lines 564--565
 \T1/lmr/m/n/12 isExamConstraints = is-Right-Cell-Com-bi-na-tions-Forced && is-M
 ax-SumOf-Pro-duc-tion-sCount
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 563--564
+Underfull \hbox (badness 10000) in paragraph at lines 564--565
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 565--570
+Underfull \hbox (badness 10000) in paragraph at lines 566--571
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 565--570
+Underfull \hbox (badness 10000) in paragraph at lines 566--571
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 565--570
+Underfull \hbox (badness 10000) in paragraph at lines 566--571
 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 591--609
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 592--610
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 591--609
+Underfull \hbox (badness 10000) in paragraph at lines 592--610
 
  []
 
 [22] [23]
-Underfull \hbox (badness 10000) in paragraph at lines 612--656
+Underfull \hbox (badness 10000) in paragraph at lines 613--657
 
  []
 
@@ -2173,13 +2176,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 339.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 35914 strings out of 493328
- 694579 string characters out of 3139104
+ 35915 strings out of 493328
+ 694591 string characters out of 3139104
  896492 words of memory out of 3000000
  38589 multiletter control sequences out of 15000+200000
  643188 words of font info for 98 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
- 64i,23n,70p,10443b,24174s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,22n,70p,10443b,24172s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/P
 rogram Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2
 .9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvip
@@ -2202,9 +2205,9 @@ blic/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb
 /MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/public/lm/lmtt12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
 fonts/symbols/msbm10.pfb>
-Output written on bachelor_thesis.pdf (34 pages, 612722 bytes).
+Output written on bachelor_thesis.pdf (34 pages, 612630 bytes).
 PDF statistics:
- 695 PDF objects out of 1000 (max. 8388607)
- 242 named destinations out of 1000 (max. 500000)
+ 696 PDF objects out of 1000 (max. 8388607)
+ 243 named destinations out of 1000 (max. 500000)
  343 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -8,6 +8,7 @@ import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
+import com.sun.xml.internal.fastinfoset.util.ValueArray;
 
 import java.util.*;
 
@@ -66,7 +67,7 @@ public class GrammarGeneratorUtil {
                 prodsList.addAll(productions.get(var));
             }
             for (Production prod : prodsList) {
-                if (prod.getRightHandSideElement().getClass() == VariableEpsilon.class ){
+                if (prod.getRightHandSideElement().getClass() == VariableEpsilon.class) {
                     usefulProductions.add(prod);
                 }
             }
@@ -88,7 +89,7 @@ public class GrammarGeneratorUtil {
                     Set<VariableCompound> variableCompounds = new HashSet<>();
                     {   // for each cellPair calculate its VariablesCompound
                         for (Tuple<CellK, CellK> cellPair : cellPairs) {
-                            variableCompounds.addAll(Util.calculateVariablesCompound(cellPair));
+                            variableCompounds.addAll(Util.calculateVariablesCompoundForCellPair(cellPair));
                         }
                     }
                     // for each of the productions of the variable in the cell check if it contains one of the variableCompounds
@@ -162,6 +163,25 @@ public class GrammarGeneratorUtil {
             }
         }
         return cellTuples;
+    }
+
+
+    public static Set<VariableCompound> calculateAllVariablesCompoundForGrammar(Set<Variable> vars) {
+        Set<VariableCompound> varComp = new HashSet<>();
+        for (Variable var1 : vars) {
+            for (Variable var2 : vars) {
+                varComp.add(new VariableCompound(var1, var2));
+            }
+        }
+        return varComp;
+    }
+
+    public static Set<VariableCompound> calcuateSubSetForCell(CellK cellK, Pyramid pyramid) {
+        Set<VariableCompound> varComp = new HashSet<>();
+        for (Tuple<CellK, CellK> tuple : GrammarGeneratorUtil.calculatePossibleCellPairs(cellK, pyramid)) {
+            varComp.addAll(Util.calculateVariablesCompoundForCellPair(tuple));
+        }
+        return varComp;
     }
 
 }

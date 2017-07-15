@@ -264,6 +264,7 @@ break
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\
 		$P = P \cup Distribute(V^2,\ V)$;  \circled{B}\\
+		$Pyramid = CYK(G,\ w)$\label{stepii}\;
 		$P = P \setminus \{p\ |\ p=(v,\ x) \in P \wedge \nexists \ Cell \in Pyramid: \ v \in Cell \}$\label{useless}\;
 		A production is not useful iff it doesn't contribute to filling the CYK-table\;
 		$P = P \setminus \{p\ |\ p=(v,\ xy) \in P \wedge \nexists \ Cell \in Pyramid: \ v \in Cell \}$\;
@@ -293,11 +294,11 @@ break
 		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\
 		$Pyramid = CYK(G,\ w)$\label{stepii}\;
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
-			$J = \emptyset$;~~\tcp{$J \subseteq \mathbb{N}$}
+			$J = \{0,~...~,~j_{max} -1\}$;~~\tcp{$J \subseteq \mathbb{N}$}
 			$CellSet = \emptyset$;~~\tcp{$CellSet \subseteq V^2$}
-			\While{$|J| < j_{max}-i$}{
-				$choose\ one\ j \notin J\ uniform\ randomly\ in\ [0, j_{max}-i] $ \label{chooseJ} \;
-				$J = J \cup j$\;
+			\While{$|J|>0$}{
+				$choose\ one\ j \in J\ uniform\ randomly$\label{chooseJ}\;
+				$J = J \setminus \{j\} $\;
 				$CellSet = CalculateSubsetForCell(Pyramid,\ i,\ j)$\;
 				$P = P \cup Distribute(CellSet,\ V)$;  \circled{B}\\
 				$Pyramid = CYK(G,\ w)$\;	

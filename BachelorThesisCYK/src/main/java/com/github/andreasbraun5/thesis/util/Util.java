@@ -102,11 +102,10 @@ public abstract class Util {
         return builder.toString();
     }
 
-
     /**
      * Calculates all possible compoundVariables for the given set of CellTuples.
      */
-    public static Set<VariableCompound> calculateVariablesCompound(Tuple<CellK, CellK> cellPairThatCanForce) {
+    public static Set<VariableCompound> calculateVariablesCompoundForCellPair(Tuple<CellK, CellK> cellPairThatCanForce) {
         Set<VariableK> xSet = new HashSet<>(cellPairThatCanForce.x.getCellElements());
         Set<VariableK> ySet = new HashSet<>(cellPairThatCanForce.y.getCellElements());
         Set<VariableCompound> varComp = new HashSet<>();
@@ -117,7 +116,6 @@ public abstract class Util {
         }
         return varComp;
     }
-
 
     /**
      * Set<VariableK>[][] --> Set<Variable>[][]

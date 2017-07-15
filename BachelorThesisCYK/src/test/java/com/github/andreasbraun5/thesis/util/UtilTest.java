@@ -24,7 +24,7 @@ public class UtilTest {
         Pyramid pyramid = new Pyramid(setVarKMatrix.getSetV(), word);
         Tuple<CellK, CellK> cellPair = new Tuple<>(pyramid.getCellK(0,0), pyramid.getCellK(0,1));
         System.out.println(cellPair);
-        Set<VariableCompound> varComps = Util.calculateVariablesCompound(cellPair);
+        Set<VariableCompound> varComps = Util.calculateVariablesCompoundForCellPair(cellPair);
         Assert.assertTrue(varComps.contains(new VariableCompound(new Variable("N"), new Variable("E"))));
         Assert.assertTrue(varComps.contains(new VariableCompound(new Variable("N"), new Variable("B"))));
         Assert.assertTrue(varComps.contains(new VariableCompound(new Variable("A"), new Variable("E"))));

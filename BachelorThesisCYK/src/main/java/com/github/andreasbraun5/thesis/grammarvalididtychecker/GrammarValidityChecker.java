@@ -99,7 +99,7 @@ public class GrammarValidityChecker {
             CellK cellDown, CellK cellRight, CellK cellLeft, Grammar grammar) {
         Set<VariableK> varKsThatForce = new HashSet<>();
         // varCompMistake compound variables aren't allowed to be an rhse of the varK that forces of cellDown.
-        Set<VariableCompound> varCompMistake = Util.calculateVariablesCompound(new Tuple<>(cellLeft, cellRight));
+        Set<VariableCompound> varCompMistake = Util.calculateVariablesCompoundForCellPair(new Tuple<>(cellLeft, cellRight));
         for (VariableK vark : cellDown.getCellElements()) {
             List<Production> prodsForVar = grammar.getProductionsMap().get(vark.getLhse());
             // If at least one of the varCompMistake variables is element of only rhse of the prodsForVar, then the

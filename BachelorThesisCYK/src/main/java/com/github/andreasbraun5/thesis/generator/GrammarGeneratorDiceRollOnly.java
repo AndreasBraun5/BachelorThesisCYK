@@ -1,16 +1,19 @@
 package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
+import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -25,44 +28,59 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
     @Override
     public GrammarPyramidWrapper generateGrammarPyramidWrapper(
             GrammarPyramidWrapper grammarPyramidWrapper, WorkLog workLog) {
-        workLog.log("#########################################################################################################");
-        workLog.log("START of Logging of GrammarGeneratorDiceRollOnly.");
-        // Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
-        grammarPyramidWrapper.setGrammar(new Grammar(grammarGeneratorSettings.grammarProperties.variableStart));
-        workLog.log("Used word:");
-        workLog.log(grammarPyramidWrapper.getPyramid().getWord().toString());
-        grammarPyramidWrapper = A_DistributeTerminals.distributeTerminals(
-                new ArrayList<>(grammarGeneratorSettings.grammarProperties.terminals),
-                grammarPyramidWrapper,
-                grammarGeneratorSettings,
-                new ArrayList<>(grammarGeneratorSettings.grammarProperties.variables)
-        );
-        workLog.log("After distributing the terminals:");
-        workLog.log(grammarPyramidWrapper.getGrammar().toString());
-        // Generating all possible compound variables
-        Set<VariableCompound> varComp = new HashSet<>();
-        for (Variable var1 : grammarGeneratorSettings.grammarProperties.variables) {
-            for (Variable var2 : grammarGeneratorSettings.grammarProperties.variables) {
-                varComp.add(new VariableCompound(var1, var2));
-            }
+        {   // Start of logging
+            workLog.log("#########################################################################################################");
+            workLog.log("START of Logging of GrammarGeneratorDiceRollOnly.");
+            // Set the variableStart specifically because grammar and grammarProperties aren't interconnected.
+            grammarPyramidWrapper.setGrammar(new Grammar(grammarGeneratorSettings.grammarProperties.variableStart));
+            workLog.log("Used word:");
+            workLog.log(grammarPyramidWrapper.getPyramid().getWord().toString());
         }
-        grammarPyramidWrapper = B_DistributeVariables.distributeCompoundVariables(
-                new ArrayList<>(varComp),
-                grammarPyramidWrapper,
-                grammarGeneratorSettings,
-                new ArrayList<>(grammarGeneratorSettings.grammarProperties.variables)
-        );
-        workLog.log("After distributing all possible compound variables:");
-        workLog.log(grammarGeneratorSettings.grammarProperties.variables.toString());
-        workLog.log(grammarPyramidWrapper.getGrammar().toString());
-        grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
-        workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
-        workLog.log("After removing useless productions:");
-        workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
-        grammarPyramidWrapper = GrammarGeneratorUtil.onlyKeepContributingProductions(grammarPyramidWrapper);
-        workLog.log(grammarPyramidWrapper.getGrammar().toString());
-        workLog.log("END of Logging of GrammarGeneratorDiceRollOnly.");
-        workLog.log("#########################################################################################################");
+        Set<Terminal> terminals = grammarGeneratorSettings.grammarProperties.terminals;
+        Set<Variable> variables = grammarGeneratorSettings.grammarProperties.variables;
+        {   // Line 2: Distributing terminals
+            grammarPyramidWrapper = A_DistributeTerminals.distributeTerminals(
+                    new ArrayList<>(terminals),
+                    grammarPyramidWrapper,
+                    grammarGeneratorSettings,
+                    new ArrayList<>(variables)
+            );
+            workLog.log("Grammar after distributing the terminals:");
+            workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        }
+        {   // Line 3: Distributing compound variables
+            // Generating all possible compound variables
+            Set<VariableCompound> varComp = GrammarGeneratorUtil.
+                    calculateAllVariablesCompoundForGrammar(variables);
+            grammarPyramidWrapper = B_DistributeVariables.distributeCompoundVariables(
+                    new ArrayList<>(varComp),
+                    grammarPyramidWrapper,
+                    grammarGeneratorSettings,
+                    new ArrayList<>(variables)
+            );
+            workLog.log("Grammar after distributing all possible compound variables:");
+            workLog.log(variables.toString());
+            workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        }
+        {
+            // Line 4: Update pyramid
+            grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+            workLog.log("Pyramid before removing useless productions:");
+            workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
+        }
+        {
+            // Line 5: Removing not contributing variables
+            grammarPyramidWrapper = GrammarGeneratorUtil.onlyKeepContributingProductions(grammarPyramidWrapper);
+            workLog.log("Pyramid after removing useless productions:");
+            workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
+            workLog.log("Grammar after removing useless productions:");
+            workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        }
+        {
+            // End of logging
+            workLog.log("END of Logging of GrammarGeneratorDiceRollOnly.");
+            workLog.log("#########################################################################################################");
+        }
         return grammarPyramidWrapper;
     }
 }
