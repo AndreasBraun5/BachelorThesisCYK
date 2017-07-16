@@ -55,7 +55,7 @@ public class SuccessRates {
                 "\nSUCCESSRATEOVERVIEW{" +
                 "\n			-->	SUCCESSRATE=" + successRate +
                 "\n			-->	SUCCESSRATEPRODUCIBILITY=" + successRateProducibility +
-                "\n			-->	SUCCESSRATEGRAMMARRESTRICTIONS=" +
+                "\n			-->	SUCCESSRATEGRAMMARCONSTRAINTS=" +
                 successRatesGrammarConstraints.getSuccessRateGrammarRestrictions() +
                 "\n			-->	SUCCESSRATEEXAMCONSTRAINTS=" +
                 successRatesExamConstraints.getSuccessRateExamConstraints() +

@@ -61,12 +61,12 @@ public final class SS13Exercise {
             setVTemp[1][3].add(new VariableK(new Variable("C"), 2));
             setVTemp[1][3].add(new VariableK(new Variable("A"), 2));
             setVTemp[1][4].add(new VariableK(new VariableStart("S"), 4));
-            setVTemp[1][5].add(new VariableK(new VariableStart("S"), 4));
             setVTemp[1][5].add(new VariableK(new Variable("C"), 4));
+            setVTemp[1][5].add(new VariableK(new VariableStart("S"), 4));
 
             setVTemp[2][2].add(new VariableK(new Variable("A"), 3));
-            setVTemp[2][3].add(new VariableK(new VariableStart("S"), 3));
             setVTemp[2][3].add(new VariableK(new Variable("C"), 3));
+            setVTemp[2][3].add(new VariableK(new VariableStart("S"), 3));
             setVTemp[2][4].add(new VariableK(new VariableStart("S"), 4));
 
             setVTemp[3][3].add(new VariableK(new Variable("C"), 4));
@@ -74,8 +74,8 @@ public final class SS13Exercise {
 
             setVTemp[4][4].add(new VariableK(new Variable("A"), 5));
             setVTemp[4][4].add(new VariableK(new Variable("B"), 5));
-            setVTemp[4][5].add(new VariableK(new VariableStart("S"), 5));
             setVTemp[4][5].add(new VariableK(new Variable("C"), 5));
+            setVTemp[4][5].add(new VariableK(new VariableStart("S"), 5));
             setVTemp[4][5].add(new VariableK(new Variable("A"), 5));
 
             setVTemp[5][5].add(new VariableK(new Variable("C"), 6));

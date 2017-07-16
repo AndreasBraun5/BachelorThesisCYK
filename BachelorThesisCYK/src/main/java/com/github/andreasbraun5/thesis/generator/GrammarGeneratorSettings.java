@@ -12,14 +12,12 @@ public class GrammarGeneratorSettings {
     public final GrammarProperties grammarProperties; //
     private int minValueCompoundVariablesAreAddedTo = 0; // default is 0
     private int minValueTerminalsAreAddedTo = 1; // default is 1
-    private int maxValueCompoundVariablesAreAddedTo; // default is to all variables would be possible
-    private int maxValueTerminalsAreAddedTo; // default is to all variables would be possible
+    private int maxValueCompoundVariablesAreAddedTo = 2; // default is to all variables would be possible
+    private int maxValueTerminalsAreAddedTo = 1; // default is to all variables would be possible
 
     public GrammarGeneratorSettings(GrammarProperties grammarProperties, String name) {
         this.name = name;
         this.grammarProperties = grammarProperties;
-        maxValueCompoundVariablesAreAddedTo = grammarProperties.variables.size();
-        maxValueTerminalsAreAddedTo = grammarProperties.variables.size();
     }
 
     public int getMinValueCompoundVariablesAreAddedTo() {
@@ -27,9 +25,9 @@ public class GrammarGeneratorSettings {
     }
 
     public void setMinValueCompoundVariablesAreAddedTo(int minValueCompoundVariablesAreAddedTo) {
-        if ( minValueCompoundVariablesAreAddedTo > maxValueCompoundVariablesAreAddedTo ) {
+        if (minValueCompoundVariablesAreAddedTo > maxValueCompoundVariablesAreAddedTo) {
             throw new GrammarSettingRuntimeException(
-                    "minValueCompoundVariablesAreAddedTo is bigger than  maxValueCompoundVariablesAreAddedTo." );
+                    "minValueCompoundVariablesAreAddedTo is bigger than  maxValueCompoundVariablesAreAddedTo.");
         }
         this.minValueCompoundVariablesAreAddedTo = minValueCompoundVariablesAreAddedTo;
     }
@@ -39,12 +37,12 @@ public class GrammarGeneratorSettings {
     }
 
     public void setMinValueTerminalsAreAddedTo(int minValueTerminalsAreAddedTo) {
-        if ( minValueTerminalsAreAddedTo == 0 ) {
-            throw new GrammarSettingRuntimeException( "minValueTerminalsAreAddedTo must be at least one." );
+        if (minValueTerminalsAreAddedTo == 0) {
+            throw new GrammarSettingRuntimeException("minValueTerminalsAreAddedTo must be at least one.");
         }
-        if ( minValueTerminalsAreAddedTo > maxValueTerminalsAreAddedTo ) {
+        if (minValueTerminalsAreAddedTo > maxValueTerminalsAreAddedTo) {
             throw new GrammarSettingRuntimeException(
-                    "minValueTerminalsAreAddedTo is bigger than maxValueTerminalsAreAddedTo." );
+                    "minValueTerminalsAreAddedTo is bigger than maxValueTerminalsAreAddedTo.");
         }
 
         this.minValueTerminalsAreAddedTo = minValueTerminalsAreAddedTo;
@@ -55,9 +53,9 @@ public class GrammarGeneratorSettings {
     }
 
     public void setMaxValueCompoundVariablesAreAddedTo(int maxValueCompoundVariablesAreAddedTo) {
-        if ( maxValueCompoundVariablesAreAddedTo > grammarProperties.variables.size() ) {
+        if (maxValueCompoundVariablesAreAddedTo > grammarProperties.variables.size()) {
             throw new GrammarSettingRuntimeException(
-                    "maxValueCompoundVariablesAreAddedTo is bigger than variables.size()." );
+                    "maxValueCompoundVariablesAreAddedTo is bigger than variables.size().");
         }
         this.maxValueCompoundVariablesAreAddedTo = maxValueCompoundVariablesAreAddedTo;
     }
@@ -67,8 +65,8 @@ public class GrammarGeneratorSettings {
     }
 
     public void setMaxValueTerminalsAreAddedTo(int maxValueTerminalsAreAddedTo) {
-        if ( maxValueTerminalsAreAddedTo > grammarProperties.variables.size() ) {
-            throw new GrammarSettingRuntimeException( "maxValueTerminalsAreAddedTo is bigger than variables.size()." );
+        if (maxValueTerminalsAreAddedTo > grammarProperties.variables.size()) {
+            throw new GrammarSettingRuntimeException("maxValueTerminalsAreAddedTo is bigger than variables.size().");
         }
         this.maxValueTerminalsAreAddedTo = maxValueTerminalsAreAddedTo;
     }

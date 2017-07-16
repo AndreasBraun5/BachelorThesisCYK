@@ -36,8 +36,6 @@ public class Grammar {
     }
 
 
-
-
     /**
      * You must make sure beforehand that only reasonable productions are added. No duplicates can be added and no
      * already existing production.
@@ -67,20 +65,13 @@ public class Grammar {
                 prodsSet.addAll(this.productionsMap.get(var));
             }
             // Add the new production to prodsList.
-            int countBefore = prodsSet.size();
             prodsSet.add(prod);
-            int countAfter = prodsSet.size();
-            if (countBefore != countAfter - 1) {
-                throw new GrammarRuntimeException("AddProduction: No duplicate production can be added.");
-            }
-            List<Production> prodList = new ArrayList<>();
-            prodList.addAll(prodsSet);
+            List<Production> prodList = new ArrayList<>(prodsSet);
             // Exchange/replace the updated productionList in the map.
             productionsMap.put(var, prodList);
         }
         return this;
     }
-
 
     public void removeAllProductions() {
         this.productionsMap.clear();

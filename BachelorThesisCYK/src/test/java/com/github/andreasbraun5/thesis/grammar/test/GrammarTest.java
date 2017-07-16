@@ -32,7 +32,7 @@ public class GrammarTest {
     }
 
     /**
-     *  No duplicate productions are added. No duplicate production can be given as argument.
+     * No duplicate productions are added. No duplicate production can be given as argument.
      */
     @Test(expected = GrammarRuntimeException.class)
     public void addProductionAsArrayNoDuplicates() {
@@ -51,30 +51,7 @@ public class GrammarTest {
     }
 
     /**
-     *  No duplicate productions are added. No already existing production can be added.
-     */
-    @Test(expected = GrammarRuntimeException.class)
-    public void addProductionAsSetNoDuplicates() {
-        System.out.println("");
-        System.out.println("############################");
-        System.out.println("ResultCalculator Grammar: addProductionAsSetNoDuplicates");
-        Grammar grammar = new Grammar(new VariableStart("S"));
-        grammar.addProductions(new Production(new Variable("A"), new Terminal("a")));
-        Set<Production> productionSet = new HashSet<>();
-        productionSet.add(new Production(new Variable("A"), new Terminal("a")));
-        productionSet.add(new Production(new Variable("A"), new Terminal("b")));
-        productionSet.add(new Production(new Variable("B"), new Terminal("c")));
-        productionSet.add(new Production(new Variable("C"), new Terminal("a")));
-        System.out.println("Production A-->a already exist in the grammar.");
-        System.out.println(grammar);
-        System.out.println("Production to be added:");
-        System.out.println(productionSet);
-        System.out.println("GrammarRuntimeException is expected.");
-        grammar.addProductions(productionSet);
-    }
-
-    /**
-     *  Checking if a production actually is added.
+     * Checking if a production actually is added.
      */
     @Test
     public void addProductionActuallyAddsProductions() {

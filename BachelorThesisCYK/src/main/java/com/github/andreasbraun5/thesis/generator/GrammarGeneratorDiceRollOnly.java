@@ -63,13 +63,12 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
             workLog.log(grammarPyramidWrapper.getGrammar().toString());
         }
         {
-            // Line 4: Update pyramid
             grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
             workLog.log("Pyramid before removing useless productions:");
             workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
         }
         {
-            // Line 5: Removing not contributing variables
+            // Line 4: Removing not contributing variables
             grammarPyramidWrapper = GrammarGeneratorUtil.onlyKeepContributingProductions(grammarPyramidWrapper);
             workLog.log("Pyramid after removing useless productions:");
             workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));

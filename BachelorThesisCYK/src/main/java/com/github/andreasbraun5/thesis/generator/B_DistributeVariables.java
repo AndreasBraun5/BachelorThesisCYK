@@ -14,6 +14,7 @@ public class B_DistributeVariables {
      * Equals the circled B Method.
      * grammarWordMatrixWrapper only needed for its contained Grammar here.
      * variablesWeighted: allows favouritism of specific variables.
+     * Possible already existing productions aren't considered.
      */
     static GrammarPyramidWrapper distributeCompoundVariables(
             List<VariableCompound> varComp,

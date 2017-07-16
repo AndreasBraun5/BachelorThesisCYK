@@ -239,7 +239,10 @@ Maybe don't add the $Tree$ here. It is only needed as one part of the output of 
 \noindent Things like the $G=(V,\Sigma , S, P)$ can be assumed as known.\\
 $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\ \{v\ |\ v \in V \} \}$ which equals the $distributeRhse$ module.\\
 \noindent Bias is only allowed top vs down regarding the pyramid. No left or right bias intended yet.\\
-\circled{A}, \circled{B}, ... represent exchangeable algorithm modules. Make hyperrefs für \circled{A}
+\circled{A}, \circled{B}, ... represent exchangeable algorithm modules. Make hyperrefs für \circled{A}\\
+
+\noindent Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in CNF? CNF does only have useful variables [TI script Def. 8.3 page 210] vs. $P \subseteq V \times (V^{2} \cup \Sigma)$.\\
+\noindent More of a problem is that the set $P$ is not necessarily in CNF. It is possible that there are unreachable variables -- from the starting variable.
 
 \paragraph{Basic Idea}
 
@@ -250,36 +253,53 @@ $P = P \cup \{distribute\ \{\sigma\ |\ \sigma \in w \}\ uniform\ randomly\ over\
 \paragraph{Finished Algorithm}
 break
 \pagebreak
-\subsubsection{Algorithm: GeneratorGrammarDiceRollOnly}
-\noindent Very naive way of generating grammars. This is intended to be the starting point for our algorithms we find. Each found algorithm must have a higher score than this algorithm or otherwise it would be worse than simple dice rolling and then removing the useless productions.\\
+\subsubsection{Algorithm: DiceRollOnly}
+\paragraph{Basic Idea} \mbox{} \\
+\noindent This is a very naive way of generating grammars, which will be the starting point for our algorithms to be found. Each future algorithm must have a higher score than this algorithm or otherwise it would be worse, than simple dice rolling the distribution of terminals and compound variables with removing the not contributing productions afterwards.
+\paragraph{Algorithm} \mbox{} \\
 
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
-		\caption{GeneratorGrammarDiceRollOnly}
-		\label{GeneratorGrammarDiceRollOnly}
+		\caption{DiceRollOnly}
+		\label{DiceRollOnly}
 		\SetAlgoLined
 		\KwIn{Word $w \in \Sigma^{*}$ }
 		\KwOut{Set of productions $P$}
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\
 		$P = P \cup Distribute(V^2,\ V)$;  \circled{B}\\
-		$Pyramid = CYK(G,\ w)$\label{stepii}\;
 		$P = P \setminus \{p\ |\ p=(v,\ x) \in P \wedge \nexists \ Cell \in Pyramid: \ v \in Cell \}$\label{useless}\;
 		A production is not useful iff it doesn't contribute to filling the CYK-table\;
 		$P = P \setminus \{p\ |\ p=(v,\ xy) \in P \wedge \nexists \ Cell \in Pyramid: \ v \in Cell \}$\;
 		\Return $P$\;
-		\footnotetext{
-			\noindent Line \ref{useless}: Removes all useless productions. But unreachable productions still possible.
+		\footnotetext{ 
+			Line \ref{useless}: Removes all useless productions. But unreachable productions still possible.
 		}
 	\end{algorithm}
-}\\
+}
 
-\noindent Remove line 4 because this has nothing to do with the algorithm and write it into another procedure. In the code this is done only at the ResultCalculator.createChunkResult.
-
-\noindent Does the output $P \subseteq V \times (V^{2} \cup \Sigma)$ imply that $G$ is in CNF? CNF does only have useful variables [TI script Def. 8.3 page 210] vs. $P \subseteq V \times (V^{2} \cup \Sigma)$.\\
-\noindent More of a problem is that the set $P$ is not necessarily in CNF. It is possible that there are unreachable variables -- from the starting variable.
+\paragraph{Success Rates} \mbox{}\\
+\begin{table}[h]
+\begin{center}
+	\begin{tabular}{ | l | c |}
+		\hline
+		Success Rate Type 			& Value   						\\ \hline
+																   \hline
+		General 					& 09~\%     					\\ \hline
+		Producibility 				& 22~\% 	 					\\ \hline
+		GrammarConstraints 			& 88~\% 						\\ \hline
+		ExamConstraints 			& 54~\% 						\\ \hline
+	\end{tabular}
+	\caption{Success rates for algorithm \ref{DiceRollOnly}}
+	\label{DiceRollOnlySR}
+\end{center}
+\end{table}
+\noindent As seen in table \ref{DiceRollOnlySR} the algorithm shows a relatively low success rate for producibility. This can be explained with ... . Mention the basic connection between the successrates.
+\paragraph{Conclusion} \mbox{} \\
+\noindent Something about what can be improved in another attempt / the next attempt. Don't forget that a relatively small number of productions is already sufficient to completely fill the parsing table.
 \pagebreak
+
 
 \subsubsection{Algorithm: BottomUp GeneratorGrammarDiceRollMartens}
 \noindent

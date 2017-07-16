@@ -17,7 +17,7 @@ public enum ThesisDirectory {
     }
 
     public File file(String fileName) {
-        return new File(this.path + "/" + fileName);
+        return new File(this.path + "/" + fileName + ".txt");
     }
 
     public void initPath() {

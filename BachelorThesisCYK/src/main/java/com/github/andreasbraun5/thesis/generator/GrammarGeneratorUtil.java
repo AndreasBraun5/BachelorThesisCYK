@@ -176,7 +176,7 @@ public class GrammarGeneratorUtil {
         return varComp;
     }
 
-    public static Set<VariableCompound> calcuateSubSetForCell(CellK cellK, Pyramid pyramid) {
+    public static Set<VariableCompound> calculateSubSetForCell(CellK cellK, Pyramid pyramid) {
         Set<VariableCompound> varComp = new HashSet<>();
         for (Tuple<CellK, CellK> tuple : GrammarGeneratorUtil.calculatePossibleCellPairs(cellK, pyramid)) {
             varComp.addAll(Util.calculateVariablesCompoundForCellPair(tuple));

@@ -21,7 +21,7 @@ public class C_StoppingCriteria {
                 }
             }
         }
-        isMet = coundCellsNotEmpty / countCells >= 0.5;
+        isMet = ((double) coundCellsNotEmpty / countCells) >= 0.5;
         return isMet;
     }
 
