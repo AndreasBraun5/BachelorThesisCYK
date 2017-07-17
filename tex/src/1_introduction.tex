@@ -263,7 +263,10 @@ An generated $exercise$ contributes to the $SRP$ iff the CYK algorithm's output 
 It holds: $SRP = p / N$, whereas $p$ is the count of $exercises$ that fulfil the requirements in this case.\\
 
 \noindent\textbf{Success Rate Grammar Constraints}
-An generated $exercise$ contributes to the $SRG$ iff its grammar has got less than a certain count of productions.\\
+An generated $exercise$ contributes to the $SRG$ iff the following conditions are met:
+\begin{itemize}
+	\item grammar has got less than a certain amount of productions.
+\end{itemize}
 It holds: $SRG = g / N$, whereas $g$ is the count of $exercises$ that fulfil the requirements in this case.\\
 
 \noindent\textbf{Success Rate Word Pyramid Constraints}
