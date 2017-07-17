@@ -1,0 +1,23 @@
+% !TeX spellcheck = en_GB
+
+\section{Success Rates}
+\noindent The Success Rates ($SR$) are used to compare the algorithms accounting to their performance of the different requirements. Let $N$ be the overall count of all generated grammars of the examined algorithm.
+\subsection{Overall Success Rate}
+An generated $exercise$ contributes to the Overall Success Rate ($SR$) iff it contributes to the Success Rate Producibility ($SRP$), to the Success Rate Grammar Constraints ($SRG$) and to the Success Rate Pyramid Word Constraints ($SRPW$) at the same time.\\
+It holds: $SR = n / N$, whereas $n$ is the count of $exercises$ that fulfil the requirements in this case.
+\subsection{Success Rate Producibility}
+An generated $exercise$ contributes to the $SRP$ iff the CYK algorithm's output is true.\\
+It holds: $SRP = p / N$, whereas $p$ is the count of $exercises$ that fulfil the requirements in this case.
+\subsection{Success Rate Grammar Constraints}
+An generated $exercise$ contributes to the $SRG$ iff its grammar has got less than a certain count of productions.\\
+It holds: $SRG = g / N$, whereas $g$ is the count of $exercises$ that fulfil the requirements in this case.
+\subsection{Success Rate Word Pyramid Constraints}
+An generated $exercise$ contributes to the $SRWP$ iff the following conditions are met:
+	\begin{itemize}
+	\item A certain amount of cells force a right cell combination.
+	\item There are less than a certain amount of variables in the entire pyramid.
+	\item There are less than a certain amount of variables in each cell of the pyramid.
+\end{itemize}
+It holds: $SRWP = wp / N$, whereas $g$ is the count of $exercises$ that fulfil the requirements in this case.
+
+\pagebreak

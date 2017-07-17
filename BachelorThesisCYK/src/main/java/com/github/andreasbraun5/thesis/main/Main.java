@@ -105,7 +105,7 @@ public class Main {
          * examConstraints: minRightCellCombinationsForced = 1 countSumOfVarsInPyramid = 50; // approximate maximum value taken from the exam exercises
          */
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"), variables, terminals);
-        grammarProperties.grammarConstraints.maxNumberOfVarsPerCell = 3; //Set like this
+        grammarProperties.examConstraints.maxNumberOfVarsPerCell = 3; //Set like this
         return grammarProperties;
     }
 }

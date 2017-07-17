@@ -72,7 +72,7 @@ public class GrammarGeneratorUtil {
                 }
             }
         }
-        {   // check row = 0 for useful productions
+        {   // check row = 0 for contributing productions
             for (int j = 0; j < cells[0].length; j++) {
                 for (VariableK vark : cells[0][j].getCellElements()) {
                     usefulProductions.addAll(
@@ -110,9 +110,9 @@ public class GrammarGeneratorUtil {
     }
 
     /**
-     * Regarding all possible variableCompounds of one cell, the list of productions is checked whether one of its
-     * elements is useful for or not. Usefulness of an production iff the rhse of the production is element of the set
-     * of variablesCompounds.
+     * Regarding all possible variableCompounds of one cell in the pyramid, the list of productions is checked whether
+     * one of its elements is useful for or not. Usefulness of an production iff the rhse of the production is element
+     * of the set of variablesCompounds.
      */
     static List<Production> contributingProductionsPerCellForVarComp(
             Set<VariableCompound> variableCompounds, List<Production> prods) {

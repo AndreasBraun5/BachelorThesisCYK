@@ -19,24 +19,24 @@ public class SuccessRatesGrammarConstraints {
 	private int falseGrammarRestrictionsCount = 0;
 	private double successRateGrammarRestrictions = 0.0;
 
-	private int trueMaxNumberOfVarsPerCellCount = 0;
-	private int falseMaxNumberOfVarsPerCellCount = 0;
-	private double successRateMaxNumberOfVarsPerCell = 0.0;
+    private int trueMaxSumOfProductionsCount = 0;
+    private int falseMaxSumOfProductionsCount = 0;
+    private double successRateMaxSumOfProductions = 0.0;
 
 	public SuccessRatesGrammarConstraints updateSuccessRatesGrammarRestrictions(Map<Word, List<ResultSample>> chunkResultSamples) {
 		for ( Map.Entry<Word, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
-				ResultSampleGrammarRestrictions tempResultSampleGrammarRestrictions =
-						resultSample.getResultSampleGrammarRestrictions();
-				boolean isMaxNumberOfVarsPerCellCount = tempResultSampleGrammarRestrictions.isMaxNumberOfVarsPerCell();
-				if ( isMaxNumberOfVarsPerCellCount ) {
-					trueMaxNumberOfVarsPerCellCount++;
-				}
-				else {
-					falseMaxNumberOfVarsPerCellCount++;
-				}
-				if ( isMaxNumberOfVarsPerCellCount ) {
+				ResultSampleGrammarConstraints tempResultSampleGrammarConstraints =
+						resultSample.getResultSampleGrammarConstraints();
+                boolean isMaxSumOfProductionsCount = tempResultSampleGrammarConstraints.isMaxSumOfProductions();
+                if ( isMaxSumOfProductionsCount ) {
+                    trueMaxSumOfProductionsCount++;
+                }
+                else {
+                    falseMaxSumOfProductionsCount++;
+                }
+				if ( isMaxSumOfProductionsCount ) {
 					trueGrammarRestrictionsCount++;
 				}
 				else {
@@ -44,7 +44,7 @@ public class SuccessRatesGrammarConstraints {
 				}
 			}
 			successRateGrammarRestrictions = (double) trueGrammarRestrictionsCount / countGeneratedGrammars;
-			successRateMaxNumberOfVarsPerCell = (double) trueMaxNumberOfVarsPerCellCount / countGeneratedGrammars;
+            successRateMaxSumOfProductions = (double) trueMaxSumOfProductionsCount / countGeneratedGrammars;
 		}
 		return this;
 	}
@@ -55,9 +55,9 @@ public class SuccessRatesGrammarConstraints {
                 "\n		trueGrammarRestrictionsCount=" + trueGrammarRestrictionsCount +
                 "\n		falseGrammarRestrictionsCount=" + falseGrammarRestrictionsCount +
                 "\n			-->	SUCCESSRATEGrammarRestrictions=" + successRateGrammarRestrictions +
-                "\n		trueMaxNumberOfVarsPerCellCount=" + trueMaxNumberOfVarsPerCellCount +
-                "\n		falseMaxNumberOfVarsPerCellCount=" + falseMaxNumberOfVarsPerCellCount +
-                "\n			-->	SUCCESSRATEMaxNumberOfVarsPerCell=" + successRateMaxNumberOfVarsPerCell +
+                "\n		trueMaxSumOfProductionsCount=" + trueMaxSumOfProductionsCount +
+                "\n		falseMaxSumOfProductionsCount=" + falseMaxSumOfProductionsCount +
+                "\n			-->	SUCCESSRATEMaxSumOfProductions=" + successRateMaxSumOfProductions +
                 "\n}";
     }
 }

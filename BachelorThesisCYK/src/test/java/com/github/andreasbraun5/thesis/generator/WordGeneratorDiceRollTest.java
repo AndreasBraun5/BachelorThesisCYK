@@ -29,14 +29,14 @@ public class WordGeneratorDiceRollTest {
 				new Terminal( "d" )
 		);
 		System.out.println( grammarProperties );
-		grammarProperties.grammarConstraints.sizeOfWord = 10;
+		grammarProperties.examConstraints.sizeOfWord = 10;
 		for ( int i = 0; i <= 10; i++ ) {
 			Word word1 = WordGeneratorDiceRoll.generateWord( grammarProperties ); // GrammarRuntimeException
 			System.out.println( "generated word: " + word1 );
 
 			Assert.assertEquals(
 					"grammarProperties.sizeOfWord not the same as of word1",
-					grammarProperties.grammarConstraints.sizeOfWord,
+					grammarProperties.examConstraints.sizeOfWord,
 					word1.getWordLength()
 			);
 		}

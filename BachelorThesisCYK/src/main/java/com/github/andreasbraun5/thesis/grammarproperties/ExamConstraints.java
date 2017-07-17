@@ -8,15 +8,17 @@ public class ExamConstraints {
 
     // Exam constraints
 	public int minRightCellCombinationsForced = 1; // optional, default = 1
-    public int maxSumOfProductions = 10; // optional, default = 10
+    public int maxNumberOfVarsPerCell = 3; // optional, default = 3
+    public int sizeOfWord = 10; // optional, default = 3
     public int maxSumOfVarsInPyramid = 100; // optional, default = 50
 
 	@Override
 	public String toString() {
 		return "\nExamConstraints{" +
 				"\n		minRightCellCombinationsForced=" + minRightCellCombinationsForced +
-				"\n		maxSumOfProductionsCount=" + maxSumOfProductions +
+				"\n		maxNumberOfVarsPerCell=" + maxNumberOfVarsPerCell +
 				"\n		maxSumOfVarsInPyramid=" + maxSumOfVarsInPyramid +
-				"\n}";
+                "\n		sizeOfWord=" + sizeOfWord +
+                "\n}";
 	}
 }

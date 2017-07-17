@@ -32,8 +32,8 @@ public class CYKTest {
         // Define GrammarProperties
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"))
                 .addTerminals(new Terminal("a"));
-        grammarProperties.grammarConstraints.maxNumberOfVarsPerCell = 3;
-        grammarProperties.grammarConstraints.sizeOfWord = 10;
+        grammarProperties.examConstraints.maxNumberOfVarsPerCell = 3;
+        grammarProperties.examConstraints.sizeOfWord = 10;
         Word word = WordGeneratorDiceRoll.generateWord(grammarProperties);
         // Generate Grammar
         Grammar grammar = new Grammar(new VariableStart("S"));

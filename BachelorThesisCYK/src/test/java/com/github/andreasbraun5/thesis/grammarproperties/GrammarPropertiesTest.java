@@ -18,7 +18,7 @@ public class GrammarPropertiesTest {
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"));
         grammarProperties.addVariables(new Variable("A"), new Variable("B"));
         grammarProperties.addTerminals(new Terminal("a"), new Terminal("b"));
-        grammarProperties.grammarConstraints.sizeOfWord = 10;
+        grammarProperties.examConstraints.sizeOfWord = 10;
         System.out.println(grammarProperties);
     }
 }

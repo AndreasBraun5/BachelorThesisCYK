@@ -11,7 +11,7 @@ import java.util.Map;
  * https://github.com/AndreasBraun5/
  */
 @Getter
-public class SuccessRatesExamConstraints {
+public class SuccessRatesPyramidConstraints {
 
 	private int countGeneratedGrammars = 0;
 
@@ -23,43 +23,42 @@ public class SuccessRatesExamConstraints {
 	private int falseRightCellCombinationsForcedCount = 0;
 	private double successRateRightCellCombinationsForced = 0.0;
 
-	private int trueMaxSumOfProductionsCount = 0;
-	private int falseMaxSumOfProductionsCount = 0;
-	private double successRateMaxSumOfProductions = 0.0;
+    private int trueMaxNumberOfVarsPerCellCount = 0;
+    private int falseMaxNumberOfVarsPerCellCount = 0;
+    private double successRateMaxNumberOfVarsPerCell = 0.0;
 
 	private int trueMaxSumOfVarsInPyramidCount = 0;
 	private int falseMaxSumOfVarsInPyramidCount = 0;
 	private double successRateMaxSumOfVarsInPyramid = 0.0;
 
-	public SuccessRatesExamConstraints updateSuccessRatesExamConstraints(Map<Word, List<ResultSample>> chunkResultSamples) {
+	public SuccessRatesPyramidConstraints updateSuccessRatesExamConstraints(Map<Word, List<ResultSample>> chunkResultSamples) {
 		for ( Map.Entry<Word, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
-				ResultSampleExamConstraints tempResultSampleExamConstraints =
-						resultSample.getResultSampleExamConstraints();
-				boolean isRightCellCombinationsForced = tempResultSampleExamConstraints.isRightCellCombinationsForced();
-				boolean isMaxSumOfProductionsCount = tempResultSampleExamConstraints.isMaxSumOfProductions();
-				boolean isMaxSumOfVarsInPyramidCount = tempResultSampleExamConstraints.isMaxSumOfVarsInPyramid();
-
+				ResultSamplePyramidConstraints tempResultSamplePyramidConstraints =
+						resultSample.getResultSamplePyramidConstraints();
+				boolean isRightCellCombinationsForced = tempResultSamplePyramidConstraints.isRightCellCombinationsForced();
+                boolean isMaxNumberOfVarsPerCellCount = tempResultSamplePyramidConstraints.isMaxNumberOfVarsPerCell();
+				boolean isMaxSumOfVarsInPyramidCount = tempResultSamplePyramidConstraints.isMaxSumOfVarsInPyramid();
 				if ( isRightCellCombinationsForced ) {
 					trueRightCellCombinationsForcedCount++;
 				}
 				else {
 					falseRightCellCombinationsForcedCount++;
 				}
-				if ( isMaxSumOfProductionsCount ) {
-					trueMaxSumOfProductionsCount++;
-				}
-				else {
-					falseMaxSumOfProductionsCount++;
-				}
+                if ( isMaxNumberOfVarsPerCellCount ) {
+                    trueMaxNumberOfVarsPerCellCount++;
+                }
+                else {
+                    falseMaxNumberOfVarsPerCellCount++;
+                }
 				if ( isMaxSumOfVarsInPyramidCount ) {
 					trueMaxSumOfVarsInPyramidCount++;
 				}
 				else {
 					falseMaxSumOfVarsInPyramidCount++;
 				}
-				if ( isRightCellCombinationsForced && isMaxSumOfProductionsCount && isMaxSumOfVarsInPyramidCount ) {
+				if ( isRightCellCombinationsForced && isMaxNumberOfVarsPerCellCount && isMaxSumOfVarsInPyramidCount ) {
 					trueExamConstraints++;
 				}
 				else {
@@ -68,8 +67,8 @@ public class SuccessRatesExamConstraints {
 			}
 			successRateExamConstraints = (double) trueExamConstraints / countGeneratedGrammars;
 			successRateRightCellCombinationsForced = (double) trueRightCellCombinationsForcedCount / countGeneratedGrammars;
-			successRateMaxSumOfProductions = (double) trueMaxSumOfProductionsCount / countGeneratedGrammars;
-			successRateMaxSumOfVarsInPyramid = (double) trueMaxSumOfVarsInPyramidCount / countGeneratedGrammars;
+            successRateMaxNumberOfVarsPerCell = (double) trueMaxNumberOfVarsPerCellCount / countGeneratedGrammars;
+            successRateMaxSumOfVarsInPyramid = (double) trueMaxSumOfVarsInPyramidCount / countGeneratedGrammars;
 		}
 		return this;
 	}
@@ -83,9 +82,9 @@ public class SuccessRatesExamConstraints {
                 "\n		trueRightCellCombinationsForcedCount=" + trueRightCellCombinationsForcedCount +
                 "\n		falseRightCellCombinationsForcedCount=" + falseRightCellCombinationsForcedCount +
                 "\n			-->	SUCCESSRATERightCellCombinationsForced=" + successRateRightCellCombinationsForced +
-                "\n		trueMaxSumOfProductionsCount=" + trueMaxSumOfProductionsCount +
-                "\n		falseMaxSumOfProductionsCount=" + falseMaxSumOfProductionsCount +
-                "\n			-->	SUCCESSRATEMaxSumOfProductions=" + successRateMaxSumOfProductions +
+                "\n		trueMaxNumberOfVarsPerCellCount=" + trueMaxNumberOfVarsPerCellCount +
+                "\n		falseMaxNumberOfVarsPerCellCount=" + falseMaxNumberOfVarsPerCellCount +
+                "\n			-->	SUCCESSRATEMaxNumberOfVarsPerCell=" + successRateMaxNumberOfVarsPerCell +
                 "\n		trueMaxSumOfVarsInPyramidCount=" + trueMaxSumOfVarsInPyramidCount +
                 "\n		falseMaxSumOfVarsInPyramidCount=" + falseMaxSumOfVarsInPyramidCount +
                 "\n			-->	SUCCESSRATEMaxSumOfVarsInPyramid=" + successRateMaxSumOfVarsInPyramid +

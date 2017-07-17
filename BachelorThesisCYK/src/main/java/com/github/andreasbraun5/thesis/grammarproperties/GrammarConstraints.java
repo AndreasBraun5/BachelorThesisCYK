@@ -7,14 +7,13 @@ package com.github.andreasbraun5.thesis.grammarproperties;
 public class GrammarConstraints {
 
     // Grammar constraints
-	public int sizeOfWord = 10; // optional, default = 3
-    public int maxNumberOfVarsPerCell = 3; // optional, default = 3
+    public int maxSumOfProductions = 10; // optional, default = 10
 
-	@Override
+
+    @Override
 	public String toString() {
 		return "\nGrammarConstraints{" +
-				"\n		sizeOfWord=" + sizeOfWord +
-				"\n		maxNumberOfVarsPerCell=" + maxNumberOfVarsPerCell +
+				"\n		maxSumOfProductions=" + maxSumOfProductions +
 				"\n}";
 	}
 }

@@ -27,8 +27,8 @@ public class ResultCalculatorTest {
         GrammarProperties grammarProperties = Main.generateGrammarPropertiesForTesting();
         GrammarGeneratorSettings generatorGrammarDiceRollSettings =
                 new GrammarGeneratorSettings(grammarProperties, "testGeneratorGrammarDiceRollOnly");
-        grammarProperties.grammarConstraints.sizeOfWord = 10; // All TestResults will be based on this sizeOfWord.
-        grammarProperties.grammarConstraints.maxNumberOfVarsPerCell = 2;
+        grammarProperties.examConstraints.sizeOfWord = 10; // All TestResults will be based on this sizeOfWord.
+        grammarProperties.examConstraints.maxNumberOfVarsPerCell = 2;
 
         int countGeneratedGrammarsPerWord = 20;
         int countDifferentWords = 10;

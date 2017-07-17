@@ -5,40 +5,46 @@
 \contentsline {subsection}{\numberline {1.3}General approaches}{8}{subsection.1.3}
 \contentsline {subsubsection}{\numberline {1.3.1}Forward Problem \& Backward Problem}{8}{subsubsection.1.3.1}
 \contentsline {subsubsection}{\numberline {1.3.2}Parsing Bottom-Up \& Top-Down}{8}{subsubsection.1.3.2}
-\contentsline {section}{\numberline {2}Simple Scoring Model}{9}{section.2}
-\contentsline {subsection}{\numberline {2.1}Elimination Criteria and Selection Criteria}{9}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Weighting of the criteria}{9}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Direct Ranking vs. Preference Analysis vs. ...}{9}{subsection.2.3}
+\contentsline {section}{\numberline {2}Success Rates}{9}{section.2}
+\contentsline {subsection}{\numberline {2.1}Overall Success Rate}{9}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Success Rate Producibility}{9}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Success Rate Grammar Constraints}{9}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Success Rate Word Pyramid Constraints}{9}{subsection.2.4}
 \contentsline {section}{\numberline {3}Algorithms}{10}{section.3}
 \contentsline {subsection}{\numberline {3.1}Help Data Structure Pyramid and Others}{10}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Exam Exercise Generating Algorithms}{12}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Algorithm: AlgorithmName}{12}{subsubsection.3.2.1}
-\contentsline {paragraph}{\numberline {3.2.1.1}Basic Idea}{12}{paragraph.3.2.1.1}
-\contentsline {paragraph}{\numberline {3.2.1.2}Tweak Idea 1 for Algorithm}{12}{paragraph.3.2.1.2}
-\contentsline {paragraph}{\numberline {3.2.1.3}Tweak Idea 2 for Algorithm}{12}{paragraph.3.2.1.3}
-\contentsline {paragraph}{\numberline {3.2.1.4}Finished Algorithm}{12}{paragraph.3.2.1.4}
-\contentsline {subsubsection}{\numberline {3.2.2}Algorithm: DiceRollOnly}{13}{subsubsection.3.2.2}
-\contentsline {paragraph}{\numberline {3.2.2.1}Basic Idea}{13}{paragraph.3.2.2.1}
-\contentsline {paragraph}{\numberline {3.2.2.2}Algorithm}{13}{paragraph.3.2.2.2}
-\contentsline {paragraph}{\numberline {3.2.2.3}Success Rates}{13}{paragraph.3.2.2.3}
-\contentsline {paragraph}{\numberline {3.2.2.4}Conclusion}{13}{paragraph.3.2.2.4}
-\contentsline {subsubsection}{\numberline {3.2.3}Algorithm: BottomUp GeneratorGrammarDiceRollMartens}{14}{subsubsection.3.2.3}
-\contentsline {subsubsection}{\numberline {3.2.4}Algorithm: SplitThenFill (Idea 1)}{17}{subsubsection.3.2.4}
-\contentsline {subsubsection}{\numberline {3.2.5}Algorithm: Idea 2, How often cells are used for subset calculations}{19}{subsubsection.3.2.5}
-\contentsline {subsubsection}{\numberline {3.2.6}Algorithm: SplitAndFill}{20}{subsubsection.3.2.6}
-\contentsline {subsubsection}{\numberline {3.2.7}Tweaking Sub Procedures in more detail}{22}{subsubsection.3.2.7}
-\contentsline {subsection}{\numberline {3.3}Criteria Checking Procedures}{23}{subsection.3.3}
-\contentsline {section}{\numberline {4}CLI Tool}{26}{section.4}
-\contentsline {subsection}{\numberline {4.1}Short Requirements Specification}{26}{subsection.4.1}
-\contentsline {subsubsection}{\numberline {4.1.1}Exam Exercises}{26}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}Fun With CNF's and CYK}{27}{subsubsection.4.1.2}
-\contentsline {subsection}{\numberline {4.2}Overview - UML}{28}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}UML: More Detail 1}{28}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}UML: More Detail 2}{28}{subsubsection.4.2.2}
-\contentsline {subsection}{\numberline {4.3}User Interaction}{29}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}Use Case 1}{29}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}Use Case i}{29}{subsubsection.4.3.2}
-\contentsline {section}{\numberline {5}Notes}{30}{section.5}
-\contentsline {section}{Used software}{32}{section.5}
-\contentsline {section}{Algorithms}{33}{section*.4}
-\contentsline {section}{References}{34}{section*.5}
+\contentsline {subsection}{\numberline {3.2}Cocke-Younger-Kasami CYK}{12}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Exam Exercise Generating Algorithms}{13}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Algorithm: AlgorithmName}{13}{subsubsection.3.3.1}
+\contentsline {paragraph}{\numberline {3.3.1.1}Basic Idea}{13}{paragraph.3.3.1.1}
+\contentsline {paragraph}{\numberline {3.3.1.2}Tweak Idea 1 for Algorithm}{13}{paragraph.3.3.1.2}
+\contentsline {paragraph}{\numberline {3.3.1.3}Tweak Idea 2 for Algorithm}{13}{paragraph.3.3.1.3}
+\contentsline {paragraph}{\numberline {3.3.1.4}Finished Algorithm}{13}{paragraph.3.3.1.4}
+\contentsline {subsubsection}{\numberline {3.3.2}Algorithm: DiceRollOnly}{14}{subsubsection.3.3.2}
+\contentsline {paragraph}{\numberline {3.3.2.1}Basic Idea}{14}{paragraph.3.3.2.1}
+\contentsline {paragraph}{\numberline {3.3.2.2}Algorithm}{14}{paragraph.3.3.2.2}
+\contentsline {paragraph}{\numberline {3.3.2.3}Success Rates}{14}{paragraph.3.3.2.3}
+\contentsline {paragraph}{\numberline {3.3.2.4}Conclusion}{14}{paragraph.3.3.2.4}
+\contentsline {subsubsection}{\numberline {3.3.3}Algorithm: BottomUp GeneratorGrammarDiceRollMartens}{15}{subsubsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.4}Algorithm: SplitThenFill (Idea 1)}{18}{subsubsection.3.3.4}
+\contentsline {subsubsection}{\numberline {3.3.5}Algorithm: Idea 2, How often cells are used for subset calculations}{20}{subsubsection.3.3.5}
+\contentsline {subsubsection}{\numberline {3.3.6}Algorithm: SplitAndFill}{21}{subsubsection.3.3.6}
+\contentsline {subsubsection}{\numberline {3.3.7}Tweaking Sub Procedures in more detail}{23}{subsubsection.3.3.7}
+\contentsline {subsection}{\numberline {3.4}Criteria Checking Procedures}{24}{subsection.3.4}
+\contentsline {section}{\numberline {4}Simple Scoring Model}{27}{section.4}
+\contentsline {subsection}{\numberline {4.1}Elimination Criteria and Selection Criteria}{27}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Weighting of the criteria}{27}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Direct Ranking vs. Preference Analysis vs. ...}{27}{subsection.4.3}
+\contentsline {section}{\numberline {5}CLI Tool}{28}{section.5}
+\contentsline {subsection}{\numberline {5.1}Short Requirements Specification}{28}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}Exam Exercises}{28}{subsubsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.2}Fun With CNF's and CYK}{29}{subsubsection.5.1.2}
+\contentsline {subsection}{\numberline {5.2}Overview - UML}{30}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}UML: More Detail 1}{30}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}UML: More Detail 2}{30}{subsubsection.5.2.2}
+\contentsline {subsection}{\numberline {5.3}User Interaction}{31}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}Use Case 1}{31}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}Use Case i}{31}{subsubsection.5.3.2}
+\contentsline {section}{\numberline {6}Notes}{32}{section.6}
+\contentsline {section}{Used software}{34}{section.6}
+\contentsline {section}{Algorithms}{35}{section*.4}
+\contentsline {section}{References}{36}{section*.5}

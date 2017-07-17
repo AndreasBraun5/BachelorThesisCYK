@@ -10,23 +10,26 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-class ResultSampleExamConstraints {
+class ResultSamplePyramidConstraints {
 
     private boolean examConstraints;
     private boolean rightCellCombinationsForced;
-    private boolean maxSumOfProductions;
     private boolean maxSumOfVarsInPyramid;
+    private boolean maxNumberOfVarsPerCell;
+    int maxNumberOfVarsPerCellCount;
     private int RightCellCombinationsForcedCount;
     private int maxSumOfVarsInPyramidCount;
-    private int maxSumOfProductionsCount;
     private CellSimple[][] markedRightCellCombinationForced;
 
-	@Override
+
+
+
+    @Override
 	public String toString() {
 		return "\n\nResultSampleExamConstraints{" +
 				"\n		examConstraints=" + examConstraints +
 				"\n		rightCellCombinationsForced=" + rightCellCombinationsForced +
-				"\n		maxSumOfProductionsCount=" + maxSumOfProductions +
+				"\n		maxNumberOfVarsPerCell=" + maxNumberOfVarsPerCell +
 				"\n		maxSumOfVarsInPyramidCount=" + maxSumOfVarsInPyramid +
 				"\n}";
 	}

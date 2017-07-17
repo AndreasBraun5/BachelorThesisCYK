@@ -5,40 +5,46 @@
 \BOOKMARK [2][-]{subsection.1.3}{1.3 General approaches}{section.1}% 5
 \BOOKMARK [3][-]{subsubsection.1.3.1}{1.3.1 Forward Problem \046 Backward Problem}{subsection.1.3}% 6
 \BOOKMARK [3][-]{subsubsection.1.3.2}{1.3.2 Parsing Bottom-Up \046 Top-Down}{subsection.1.3}% 7
-\BOOKMARK [1][-]{section.2}{2 Simple Scoring Model}{}% 8
-\BOOKMARK [2][-]{subsection.2.1}{2.1 Elimination Criteria and Selection Criteria}{section.2}% 9
-\BOOKMARK [2][-]{subsection.2.2}{2.2 Weighting of the criteria}{section.2}% 10
-\BOOKMARK [2][-]{subsection.2.3}{2.3 Direct Ranking vs. Preference Analysis vs. ...}{section.2}% 11
-\BOOKMARK [1][-]{section.3}{3 Algorithms}{}% 12
-\BOOKMARK [2][-]{subsection.3.1}{3.1 Help Data Structure Pyramid and Others}{section.3}% 13
-\BOOKMARK [2][-]{subsection.3.2}{3.2 Exam Exercise Generating Algorithms}{section.3}% 14
-\BOOKMARK [3][-]{subsubsection.3.2.1}{3.2.1 Algorithm: AlgorithmName}{subsection.3.2}% 15
-\BOOKMARK [4][-]{paragraph.3.2.1.1}{3.2.1.1 Basic Idea}{subsubsection.3.2.1}% 16
-\BOOKMARK [4][-]{paragraph.3.2.1.2}{3.2.1.2 Tweak Idea 1 for Algorithm}{subsubsection.3.2.1}% 17
-\BOOKMARK [4][-]{paragraph.3.2.1.3}{3.2.1.3 Tweak Idea 2 for Algorithm}{subsubsection.3.2.1}% 18
-\BOOKMARK [4][-]{paragraph.3.2.1.4}{3.2.1.4 Finished Algorithm}{subsubsection.3.2.1}% 19
-\BOOKMARK [3][-]{subsubsection.3.2.2}{3.2.2 Algorithm: DiceRollOnly}{subsection.3.2}% 20
-\BOOKMARK [4][-]{paragraph.3.2.2.1}{3.2.2.1 Basic Idea}{subsubsection.3.2.2}% 21
-\BOOKMARK [4][-]{paragraph.3.2.2.2}{3.2.2.2 Algorithm}{subsubsection.3.2.2}% 22
-\BOOKMARK [4][-]{paragraph.3.2.2.3}{3.2.2.3 Success Rates}{subsubsection.3.2.2}% 23
-\BOOKMARK [4][-]{paragraph.3.2.2.4}{3.2.2.4 Conclusion}{subsubsection.3.2.2}% 24
-\BOOKMARK [3][-]{subsubsection.3.2.3}{3.2.3 Algorithm: BottomUp GeneratorGrammarDiceRollMartens}{subsection.3.2}% 25
-\BOOKMARK [3][-]{subsubsection.3.2.4}{3.2.4 Algorithm: SplitThenFill \(Idea 1\)}{subsection.3.2}% 26
-\BOOKMARK [3][-]{subsubsection.3.2.5}{3.2.5 Algorithm: Idea 2, How often cells are used for subset calculations}{subsection.3.2}% 27
-\BOOKMARK [3][-]{subsubsection.3.2.6}{3.2.6 Algorithm: SplitAndFill}{subsection.3.2}% 28
-\BOOKMARK [3][-]{subsubsection.3.2.7}{3.2.7 Tweaking Sub Procedures in more detail}{subsection.3.2}% 29
-\BOOKMARK [2][-]{subsection.3.3}{3.3 Criteria Checking Procedures}{section.3}% 30
-\BOOKMARK [1][-]{section.4}{4 CLI Tool}{}% 31
-\BOOKMARK [2][-]{subsection.4.1}{4.1 Short Requirements Specification}{section.4}% 32
-\BOOKMARK [3][-]{subsubsection.4.1.1}{4.1.1 Exam Exercises}{subsection.4.1}% 33
-\BOOKMARK [3][-]{subsubsection.4.1.2}{4.1.2 Fun With CNF's and CYK}{subsection.4.1}% 34
-\BOOKMARK [2][-]{subsection.4.2}{4.2 Overview - UML}{section.4}% 35
-\BOOKMARK [3][-]{subsubsection.4.2.1}{4.2.1 UML: More Detail 1}{subsection.4.2}% 36
-\BOOKMARK [3][-]{subsubsection.4.2.2}{4.2.2 UML: More Detail 2}{subsection.4.2}% 37
-\BOOKMARK [2][-]{subsection.4.3}{4.3 User Interaction}{section.4}% 38
-\BOOKMARK [3][-]{subsubsection.4.3.1}{4.3.1 Use Case 1}{subsection.4.3}% 39
-\BOOKMARK [3][-]{subsubsection.4.3.2}{4.3.2 Use Case i}{subsection.4.3}% 40
-\BOOKMARK [1][-]{section.5}{5 Notes}{}% 41
-\BOOKMARK [1][-]{section.5}{Used software}{}% 42
-\BOOKMARK [1][-]{section*.4}{Algorithms}{}% 43
-\BOOKMARK [1][-]{section*.5}{References}{}% 44
+\BOOKMARK [1][-]{section.2}{2 Success Rates}{}% 8
+\BOOKMARK [2][-]{subsection.2.1}{2.1 Overall Success Rate}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.2}{2.2 Success Rate Producibility}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.3}{2.3 Success Rate Grammar Constraints}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.4}{2.4 Success Rate Word Pyramid Constraints}{section.2}% 12
+\BOOKMARK [1][-]{section.3}{3 Algorithms}{}% 13
+\BOOKMARK [2][-]{subsection.3.1}{3.1 Help Data Structure Pyramid and Others}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.2}{3.2 Cocke-Younger-Kasami CYK}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.3}{3.3 Exam Exercise Generating Algorithms}{section.3}% 16
+\BOOKMARK [3][-]{subsubsection.3.3.1}{3.3.1 Algorithm: AlgorithmName}{subsection.3.3}% 17
+\BOOKMARK [4][-]{paragraph.3.3.1.1}{3.3.1.1 Basic Idea}{subsubsection.3.3.1}% 18
+\BOOKMARK [4][-]{paragraph.3.3.1.2}{3.3.1.2 Tweak Idea 1 for Algorithm}{subsubsection.3.3.1}% 19
+\BOOKMARK [4][-]{paragraph.3.3.1.3}{3.3.1.3 Tweak Idea 2 for Algorithm}{subsubsection.3.3.1}% 20
+\BOOKMARK [4][-]{paragraph.3.3.1.4}{3.3.1.4 Finished Algorithm}{subsubsection.3.3.1}% 21
+\BOOKMARK [3][-]{subsubsection.3.3.2}{3.3.2 Algorithm: DiceRollOnly}{subsection.3.3}% 22
+\BOOKMARK [4][-]{paragraph.3.3.2.1}{3.3.2.1 Basic Idea}{subsubsection.3.3.2}% 23
+\BOOKMARK [4][-]{paragraph.3.3.2.2}{3.3.2.2 Algorithm}{subsubsection.3.3.2}% 24
+\BOOKMARK [4][-]{paragraph.3.3.2.3}{3.3.2.3 Success Rates}{subsubsection.3.3.2}% 25
+\BOOKMARK [4][-]{paragraph.3.3.2.4}{3.3.2.4 Conclusion}{subsubsection.3.3.2}% 26
+\BOOKMARK [3][-]{subsubsection.3.3.3}{3.3.3 Algorithm: BottomUp GeneratorGrammarDiceRollMartens}{subsection.3.3}% 27
+\BOOKMARK [3][-]{subsubsection.3.3.4}{3.3.4 Algorithm: SplitThenFill \(Idea 1\)}{subsection.3.3}% 28
+\BOOKMARK [3][-]{subsubsection.3.3.5}{3.3.5 Algorithm: Idea 2, How often cells are used for subset calculations}{subsection.3.3}% 29
+\BOOKMARK [3][-]{subsubsection.3.3.6}{3.3.6 Algorithm: SplitAndFill}{subsection.3.3}% 30
+\BOOKMARK [3][-]{subsubsection.3.3.7}{3.3.7 Tweaking Sub Procedures in more detail}{subsection.3.3}% 31
+\BOOKMARK [2][-]{subsection.3.4}{3.4 Criteria Checking Procedures}{section.3}% 32
+\BOOKMARK [1][-]{section.4}{4 Simple Scoring Model}{}% 33
+\BOOKMARK [2][-]{subsection.4.1}{4.1 Elimination Criteria and Selection Criteria}{section.4}% 34
+\BOOKMARK [2][-]{subsection.4.2}{4.2 Weighting of the criteria}{section.4}% 35
+\BOOKMARK [2][-]{subsection.4.3}{4.3 Direct Ranking vs. Preference Analysis vs. ...}{section.4}% 36
+\BOOKMARK [1][-]{section.5}{5 CLI Tool}{}% 37
+\BOOKMARK [2][-]{subsection.5.1}{5.1 Short Requirements Specification}{section.5}% 38
+\BOOKMARK [3][-]{subsubsection.5.1.1}{5.1.1 Exam Exercises}{subsection.5.1}% 39
+\BOOKMARK [3][-]{subsubsection.5.1.2}{5.1.2 Fun With CNF's and CYK}{subsection.5.1}% 40
+\BOOKMARK [2][-]{subsection.5.2}{5.2 Overview - UML}{section.5}% 41
+\BOOKMARK [3][-]{subsubsection.5.2.1}{5.2.1 UML: More Detail 1}{subsection.5.2}% 42
+\BOOKMARK [3][-]{subsubsection.5.2.2}{5.2.2 UML: More Detail 2}{subsection.5.2}% 43
+\BOOKMARK [2][-]{subsection.5.3}{5.3 User Interaction}{section.5}% 44
+\BOOKMARK [3][-]{subsubsection.5.3.1}{5.3.1 Use Case 1}{subsection.5.3}% 45
+\BOOKMARK [3][-]{subsubsection.5.3.2}{5.3.2 Use Case i}{subsection.5.3}% 46
+\BOOKMARK [1][-]{section.6}{6 Notes}{}% 47
+\BOOKMARK [1][-]{section.6}{Used software}{}% 48
+\BOOKMARK [1][-]{section*.4}{Algorithms}{}% 49
+\BOOKMARK [1][-]{section*.5}{References}{}% 50

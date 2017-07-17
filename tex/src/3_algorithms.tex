@@ -233,6 +233,9 @@ Maybe don't add the $Tree$ here. It is only needed as one part of the output of 
 \end{center}
 
 \pagebreak
+\subsection{ Cocke-Younger-Kasami CYK}
+
+\pagebreak
 \subsection{Exam Exercise Generating Algorithms}
 
 \subsubsection{Algorithm: AlgorithmName}
@@ -269,12 +272,10 @@ break
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\
 		$P = P \cup Distribute(V^2,\ V)$;  \circled{B}\\
-		$P = P \setminus \{p\ |\ p=(v,\ x) \in P \wedge \nexists \ Cell \in Pyramid: \ v \in Cell \}$\label{useless}\;
-		A production is not useful iff it doesn't contribute to filling the CYK-table\;
-		$P = P \setminus \{p\ |\ p=(v,\ xy) \in P \wedge \nexists \ Cell \in Pyramid: \ v \in Cell \}$\;
+		$P = KeepContributing(P)$\; \label{contributing}
 		\Return $P$\;
 		\footnotetext{ 
-			Line \ref{useless}: Removes all useless productions. But unreachable productions still possible.
+			Line \ref{contributing}: ?Removes all production that don't contribute, but unreachable productions still possible.? $Contributing$ production iff $useful$ i.e. it appears in some derivation of some terminal string from the start symbol AND $producing$ i.e. it is needed for this parsing table.
 		}
 	\end{algorithm}
 }
@@ -285,7 +286,7 @@ break
 	\begin{tabular}{ | l | c |}
 		\hline
 		Success Rate Type 			& Value   						\\ \hline
-																   \hline
+																       \hline
 		General 					& 09~\%     					\\ \hline
 		Producibility 				& 22~\% 	 					\\ \hline
 		GrammarConstraints 			& 88~\% 						\\ \hline
@@ -295,9 +296,9 @@ break
 	\label{DiceRollOnlySR}
 \end{center}
 \end{table}
-\noindent As seen in table \ref{DiceRollOnlySR} the algorithm shows a relatively low success rate for producibility. This can be explained with ... . Mention the basic connection between the successrates.
+\noindent As seen in table \ref{DiceRollOnlySR} the algorithm shows a relatively low success rate for producibility. This can be explained with ... . Mention the basic connection between the success rates.
 \paragraph{Conclusion} \mbox{} \\
-\noindent Something about what can be improved in another attempt / the next attempt. Don't forget that a relatively small number of productions is already sufficient to completely fill the parsing table.
+\noindent Something about what can be improved in another attempt / the next attempt. Don't forget that a relatively small number of productions is already sufficient to completely fill the parsing table. Maybe remove not contributing productions in the the other algorithms too.
 \pagebreak
 
 

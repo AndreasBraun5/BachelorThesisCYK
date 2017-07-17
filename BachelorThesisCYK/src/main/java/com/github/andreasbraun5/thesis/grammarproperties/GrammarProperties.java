@@ -52,7 +52,7 @@ public class GrammarProperties {
         for (Character t : terminals) {
             grammarProperties.addTerminals(new Terminal(t.toString()));
         }
-        grammarProperties.grammarConstraints.sizeOfWord = word.length();
+        grammarProperties.examConstraints.sizeOfWord = word.length();
         return grammarProperties;
     }
 

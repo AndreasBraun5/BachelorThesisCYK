@@ -23,7 +23,7 @@ public class SuccessRates {
     private double successRateProducibility = 0.0;
 
     private SuccessRatesGrammarConstraints successRatesGrammarConstraints = new SuccessRatesGrammarConstraints();
-    private SuccessRatesExamConstraints successRatesExamConstraints = new SuccessRatesExamConstraints();
+    private SuccessRatesPyramidConstraints successRatesPyramidConstraints = new SuccessRatesPyramidConstraints();
 
     public SuccessRates updateSuccessRates(Map<Word, List<ResultSample>> chunkResultSamples) {
         for (Map.Entry<Word, List<ResultSample>> entry : chunkResultSamples.entrySet()) {
@@ -43,7 +43,7 @@ public class SuccessRates {
         }
         successRate = (double) trueCount / countGeneratedGrammars;
         successRateProducibility = (double) trueProducibilityCount / countGeneratedGrammars;
-        successRatesExamConstraints.updateSuccessRatesExamConstraints(chunkResultSamples);
+        successRatesPyramidConstraints.updateSuccessRatesExamConstraints(chunkResultSamples);
         successRatesGrammarConstraints.updateSuccessRatesGrammarRestrictions(chunkResultSamples);
         return this;
     }
@@ -58,7 +58,7 @@ public class SuccessRates {
                 "\n			-->	SUCCESSRATEGRAMMARCONSTRAINTS=" +
                 successRatesGrammarConstraints.getSuccessRateGrammarRestrictions() +
                 "\n			-->	SUCCESSRATEEXAMCONSTRAINTS=" +
-                successRatesExamConstraints.getSuccessRateExamConstraints() +
+                successRatesPyramidConstraints.getSuccessRateExamConstraints() +
                 "\n#################################################=" +
                 "\n\n			-->	SUCCESSRATE=" + successRate +
                 "\n		trueCount=" + trueCount +
@@ -68,7 +68,7 @@ public class SuccessRates {
                 "\n		falseProducibilityCount=" + falseProducibilityCount +
                 "\n}" +
                 successRatesGrammarConstraints.toString() +
-                successRatesExamConstraints.toString() +
+                successRatesPyramidConstraints.toString() +
                 "\n}";
     }
 }
