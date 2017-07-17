@@ -6,14 +6,10 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
-import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
-import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 
 /**
@@ -62,17 +58,17 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
             workLog.log(variables.toString());
             workLog.log(grammarPyramidWrapper.getGrammar().toString());
         }
-        {
+        {   // Line 4: Update the pyramid
             grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
             workLog.log("Pyramid before removing useless productions:");
             workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
         }
         {
-            // Line 4: Removing not contributing variables
-            grammarPyramidWrapper = GrammarGeneratorUtil.onlyKeepContributingProductions(grammarPyramidWrapper);
-            workLog.log("Pyramid after removing useless productions:");
+            // Line 5:  Keep contributing variables
+            grammarPyramidWrapper = GrammarGeneratorUtil.keepContributingProductions(grammarPyramidWrapper);
+            workLog.log("Pyramid after removing not contributing productions:");
             workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
-            workLog.log("Grammar after removing useless productions:");
+            workLog.log("Grammar after removing not contributing productions:");
             workLog.log(grammarPyramidWrapper.getGrammar().toString());
         }
         {

@@ -93,7 +93,7 @@ public class GrammarGeneratorUtilTest {
     public void removeUselessProductions() {
         System.out.println("");
         System.out.println("############################");
-        System.out.println("GrammarGeneratorUtilTest: onlyKeepContributingProductions");
+        System.out.println("GrammarGeneratorUtilTest: keepContributingProductions");
         Grammar grammar = new Grammar(TiScriptExercise.SCRIPT_GRAMMAR);
         Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
@@ -106,7 +106,7 @@ public class GrammarGeneratorUtilTest {
         System.out.println(grammar);
         System.out.println(word);
         System.out.println("Useless productions are" + useless1 + useless2 + "\n");
-        GrammarGeneratorUtil.onlyKeepContributingProductions(grammarPyramidWrapper);
+        GrammarGeneratorUtil.keepContributingProductions(grammarPyramidWrapper);
         System.out.println(grammar);
         Assert.assertTrue(
                 "There should be only 15 productions left.",
@@ -116,7 +116,7 @@ public class GrammarGeneratorUtilTest {
                 "There should be more than 14 productions left.",
                 GrammarValidityChecker.checkSumOfProductions(grammar, 14).isSumOfProductions()
         );
-        System.out.println("UtilTest: onlyKeepContributingProductions was successful");
+        System.out.println("UtilTest: keepContributingProductions was successful");
     }
 }
 

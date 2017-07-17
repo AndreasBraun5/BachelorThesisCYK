@@ -56,7 +56,7 @@ public class GrammarGeneratorDiceRollVar2 extends GrammarGenerator {
             workLog.log("Pyramid after distributing the terminals:");
             workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
         }
-        {   // Line 5 to 14: Iterating row wise over the pyramid.
+        {   // Line 5 to 15: Iterating row wise over the pyramid.
             int i_max = grammarPyramidWrapper.getPyramid().getWord().getWordLength() - 1;
             for (int i = 1; i < i_max; i++) {
                 {   // Line 6 + 7: Calculate the subset for each cell in the row i and add it to rowSet
@@ -91,7 +91,15 @@ public class GrammarGeneratorDiceRollVar2 extends GrammarGenerator {
                     workLog.log("Pyramid after distributing the varComp");
                     workLog.log(grammarPyramidWrapper.getGrammar().toString());
                     workLog.log(grammarPyramidWrapper.getPyramid().toString());
-                    {   // Line 13 + 14
+                    {
+                        // Line 13: Keep contributing variables
+                        grammarPyramidWrapper = GrammarGeneratorUtil.keepContributingProductions(grammarPyramidWrapper);
+                        workLog.log("Pyramid after removing not contributing productions:");
+                        workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
+                        workLog.log("Grammar after removing not contributing productions:");
+                        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+                    }
+                    {   // Line 14 + 15
                         if (C_StoppingCriteria.stoppingCriteriaMet(grammarPyramidWrapper)) {
                             // End of logging
                             workLog.log("Final grammar and pyramid");
@@ -99,7 +107,7 @@ public class GrammarGeneratorDiceRollVar2 extends GrammarGenerator {
                             workLog.log(grammarPyramidWrapper.getPyramid().toString());
                             workLog.log("END of Logging of GrammarGeneratorDiceRollVar2.");
                             workLog.log("#########################################################################################################");
-                            // Line 14
+                            // Line 15
                             return grammarPyramidWrapper;
                         }
                     }
@@ -108,7 +116,7 @@ public class GrammarGeneratorDiceRollVar2 extends GrammarGenerator {
             }
         }
         {   // End of logging
-            grammarPyramidWrapper = GrammarGeneratorUtil.onlyKeepContributingProductions(grammarPyramidWrapper);
+            grammarPyramidWrapper = GrammarGeneratorUtil.keepContributingProductions(grammarPyramidWrapper);
             workLog.log("Final grammar and pyramid");
             workLog.log(grammarPyramidWrapper.getGrammar().toString());
             workLog.log(grammarPyramidWrapper.getPyramid().toString());

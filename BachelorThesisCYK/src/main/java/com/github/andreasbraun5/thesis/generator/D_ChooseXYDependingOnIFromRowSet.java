@@ -18,7 +18,7 @@ public class D_ChooseXYDependingOnIFromRowSet {
      */
     public static VariableCompound chooseXYDependingOnIFromRowSet(Set<Tuple<VariableCompound, Integer>> rowSet) {
         List<VariableCompound> weightedVarComps = new ArrayList<>();
-        Set<Tuple<VariableCompound, Integer>> rowSetMerged = new HashSet<>();
+        Set<Tuple<VariableCompound, Integer>> rowSetCompressed = new HashSet<>();
         // Get all uniqueVarComps in rowSet
         Set<VariableCompound> uniqueVarComps = new HashSet<>();
         rowSet.forEach(varCompIntTuple -> uniqueVarComps.add(varCompIntTuple.x));
@@ -31,11 +31,11 @@ public class D_ChooseXYDependingOnIFromRowSet {
             for (Tuple<VariableCompound, Integer> tuple : sameVarComp) {
                 maxI = Math.min(tuple.y, maxI);
             }
-            rowSetMerged.add(new Tuple<>(varComp, maxI));
+            rowSetCompressed.add(new Tuple<>(varComp, maxI));
         }
         // Implement the "linear" dependency to the integer i. The higher the i out of all tuples the lower is the
         // chance for an tuple with lower i to be chosen.
-        for (Tuple<VariableCompound, Integer> tuple : rowSetMerged) {
+        for (Tuple<VariableCompound, Integer> tuple : rowSetCompressed) {
             for (int i = 0; i <= tuple.y; i++) {
                 weightedVarComps.add(tuple.x);
             }

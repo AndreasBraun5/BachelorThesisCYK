@@ -33,6 +33,11 @@
 
 % Incompatibility tikz, both implement package transparency
 %\usepackage{ctable}
+\usepackage{tabularx,booktabs}
+\renewcommand\tabularxcolumn[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{Z}[0]{>{\hsize=1.55\hsize}X}%
+\newcolumntype{s}[0]{>{\hsize=.6\hsize}X}%
+\newcolumntype{n}[0]{>{\centering\arraybackslash\hsize=1.25\hsize}X}%
 
 % Umlaute unter UTF8 nutzen
 \usepackage[utf8]{inputenc}
@@ -269,20 +274,13 @@
 % einzelne Kapitel
 \input{1_introduction}
 
-%\input{2_overview_of_technologies}
-
 \input{2_success_rates}
 
 \input{3_algorithms}
 
-\input{scoring_model}
+\input{4_scoring_model}
 
-\input{implementation}
-
-\input{notes}
-
-
-
+\input{5_implementation}
 
 \onecolumn
 % einfacher Zeilenabstand
@@ -302,11 +300,6 @@
 % \printindex
 
 \onehalfspacing
-
-\newpage
-\addcontentsline{toc}{section}{Used software}
-\fancyhead[L]{Used Software}
-\input{used_software}
 
 %\newpage
 \addcontentsline{toc}{section}{Algorithms}
