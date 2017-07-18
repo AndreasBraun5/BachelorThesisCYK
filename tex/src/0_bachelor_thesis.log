@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  18 JUL 2017 12:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  18 JUL 2017 16:49
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -2054,12 +2054,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 279--303
 
  []
 
-[21] [22]) [23] (5_implementation.tex
-Underfull \hbox (badness 10000) in paragraph at lines 40--43
-
- []
-
-[24] [25] [26] [27]) [28] (bibliography.tex) [29
+[21] [22]) [23] (5_implementation.tex [24]
+LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 216.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <4.9> on input line 216.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <3.42998> on input line 216.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <2.45> on input line 216.
+ [25] [26] [27]) [28]
+(bibliography.tex) [29
 
 ] [30]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 331.
@@ -2084,11 +2088,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 331.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 36093 strings out of 493328
- 697046 string characters out of 3139104
- 901199 words of memory out of 3000000
- 38788 multiletter control sequences out of 15000+200000
- 643188 words of font info for 98 fonts, out of 3000000 for 9000
+ 36113 strings out of 493328
+ 697362 string characters out of 3139104
+ 902199 words of memory out of 3000000
+ 38808 multiletter control sequences out of 15000+200000
+ 658166 words of font info for 114 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
  64i,22n,70p,10445b,24354s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/P
@@ -2111,9 +2115,9 @@ am Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX
 public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (30 pages, 455989 bytes).
+Output written on 0_bachelor_thesis.pdf (30 pages, 459086 bytes).
 PDF statistics:
- 659 PDF objects out of 1000 (max. 8388607)
+ 661 PDF objects out of 1000 (max. 8388607)
  219 named destinations out of 1000 (max. 500000)
  354 words of extra memory for PDF output out of 10000 (max. 10000000)
 

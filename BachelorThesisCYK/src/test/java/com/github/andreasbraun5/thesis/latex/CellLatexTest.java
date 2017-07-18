@@ -44,7 +44,7 @@ public class CellLatexTest {
         System.out.print(SetVarKMatrix.getStringToPrintAsLowerTriangularMatrix(setVarKMatrix.getSetV()));
         Pyramid pyramid = setVarKMatrix.getAsPyramid();
         PyramidLatex pyramidLatex = new PyramidLatex(pyramid);
-        System.out.print(pyramidLatex.pyramidToTex());
+        System.out.print(pyramidLatex.toTex());
     }
 
 }

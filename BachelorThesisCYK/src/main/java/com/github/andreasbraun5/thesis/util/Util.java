@@ -51,7 +51,7 @@ public abstract class Util {
     }
 
     /**
-     * Storing the result output in a text file.
+     * Storing the result output in a text fileAsTxt.
      */
     public static void writeResultToTxtFile(
             Result... result) {
@@ -61,7 +61,7 @@ public abstract class Util {
     }
 
     /**
-     * Storing the result output in a text file.
+     * Storing the result output in a text fileAsTxt.
      */
     public static void writeResultToTxtFile(
             Result result, String name) {

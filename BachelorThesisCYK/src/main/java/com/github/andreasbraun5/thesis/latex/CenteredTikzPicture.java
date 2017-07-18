@@ -6,7 +6,7 @@ package com.github.andreasbraun5.thesis.latex;
  */
 public class CenteredTikzPicture {
 
-	public static String beginToString(){
+	public static String begin(){
 		StringBuilder str = new StringBuilder( "" );
 		str.append( "\\begin{center}\n" +
 							"\\resizebox{\\linewidth}{!}{\n" +
@@ -14,7 +14,7 @@ public class CenteredTikzPicture {
 		return str.toString();
 	}
 
-	public static String endToString(){
+	public static String end(){
 		StringBuilder str = new StringBuilder( "" );
 		str.append( "\\end{tikzpicture}\n" +
 							"}\n" +

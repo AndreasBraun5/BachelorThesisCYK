@@ -149,7 +149,7 @@ public class PyramidLatex {
         return str.toString();
     }
 
-    public String pyramidToTex() {
+    public String toTex() {
         StringBuilder str = new StringBuilder();
         str.append(drawPyramidStructure());
         str.append("% Variables in the cells\n");
@@ -177,6 +177,14 @@ public class PyramidLatex {
             }
             stringBuilder.append("\n");
         }
+        return stringBuilder.toString();
+    }
+
+    public String asTikz(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(CenteredTikzPicture.begin());
+        stringBuilder.append(toTex());
+        stringBuilder.append(CenteredTikzPicture.end()) ;
         return stringBuilder.toString();
     }
 }

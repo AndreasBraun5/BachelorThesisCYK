@@ -11,13 +11,11 @@ import java.io.PrintWriter;
  */
 public class WriteToTexFile {
     /**
-     * Storing the result output in a text file.
+     * Storing the result output in a text fileAsTxt.
      */
     public static void writeToTexFile(String filename, String data) {
-        try {
-            try(PrintWriter out = new PrintWriter(ThesisDirectory.TEX.file(filename + ".tex"))) {
-                out.print(data);
-            }
+        try (PrintWriter out = new PrintWriter(ThesisDirectory.TEX.fileAsTex(filename))) {
+            out.print(data);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -184,8 +182,7 @@ public class WriteToTexFile {
                 "\n" +
                 "\\end{document}");
 
-        try {
-            PrintWriter out = new PrintWriter(ThesisDirectory.TEX.file("Main.tex"));
+        try (PrintWriter out = new PrintWriter(ThesisDirectory.TEX.fileAsTex("Main"))) {
             out.println(str.toString());
             out.close();
         } catch (FileNotFoundException e) {

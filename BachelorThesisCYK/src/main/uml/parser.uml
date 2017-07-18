@@ -6,11 +6,11 @@
     <node x="0.0" y="79.0">com.github.andreasbraun5.thesis.parser.CYK</node>
     <node x="0.0" y="329.0">com.github.andreasbraun5.thesis.parser.test.CYKTest</node>
     <node x="179.0" y="0.0">com.github.andreasbraun5.thesis.parser.Parser</node>
-    <node x="251.0" y="329.0">com.github.andreasbraun5.thesis.parser.Tree</node>
+    <node x="251.0" y="329.0">com.github.andreasbraun5.thesis.latex.TreeLatex</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="com.github.andreasbraun5.thesis.parser.CYK" target="com.github.andreasbraun5.thesis.parser.Tree">
+    <edge source="com.github.andreasbraun5.thesis.parser.CYK" target="com.github.andreasbraun5.thesis.latex.TreeLatex">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
@@ -24,7 +24,7 @@
     <node>com.github.andreasbraun5.thesis.parser.CYK</node>
     <node>com.github.andreasbraun5.thesis.parser.test.CYKTest</node>
     <node>com.github.andreasbraun5.thesis.parser.Parser</node>
-    <node>com.github.andreasbraun5.thesis.parser.Tree</node>
+    <node>com.github.andreasbraun5.thesis.latex.TreeLatex</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>

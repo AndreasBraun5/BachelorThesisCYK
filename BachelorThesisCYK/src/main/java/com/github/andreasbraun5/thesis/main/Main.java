@@ -58,7 +58,7 @@ public class Main {
                 grammarProperties, "GrammarGeneratorDiceRollVar1");
         Result resultGrammarGeneratorDiceRollVar1 = resultCalculator.buildResultWithGenerator(
                 new GrammarGeneratorDiceRollVar1(settingsGrammarGeneratorDiceRollVar1),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settingsGrammarGeneratorDiceRollVar1.name)))
+                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar1.name)))
         );
         Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollVar1);
 
@@ -66,7 +66,7 @@ public class Main {
                 grammarProperties, "GrammarGeneratorDiceRollVar2");
         Result resultGrammarGeneratorDiceRollVar2 = resultCalculator.buildResultWithGenerator(
                 new GrammarGeneratorDiceRollVar2(settingsGrammarGeneratorDiceRollVar2),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settingsGrammarGeneratorDiceRollVar2.name)))
+                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar2.name)))
         );
         Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollVar2);
 
@@ -74,7 +74,7 @@ public class Main {
                 grammarProperties, "GrammarGeneratorDiceRollOnly");
         Result resultGrammarGeneratorDiceRollOnly = resultCalculator.buildResultWithGenerator(
                 new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnly),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settingsGrammarGeneratorDiceRollOnly.name)))
+                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollOnly.name)))
         );
         Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollOnly);
     }

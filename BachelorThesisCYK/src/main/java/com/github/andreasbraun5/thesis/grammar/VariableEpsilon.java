@@ -5,7 +5,7 @@ package com.github.andreasbraun5.thesis.grammar;
  */
 public class VariableEpsilon implements RightHandSideElement {
 
-    private final String name = "";
+    private final String name = "eps";
 
     @Override
     public String getTerminalName() {

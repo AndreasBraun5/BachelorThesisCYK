@@ -9,7 +9,7 @@ public enum ThesisDirectory {
     LOGS("logs"),
     TEX("tex"),
     EXAMPLES("examples"),
-    BEST("best");
+    BEST("bestOnes");
 
     public final String path;
 
@@ -17,15 +17,19 @@ public enum ThesisDirectory {
         this.path = path;
     }
 
-    public File file(String fileName) {
+    public File fileAsTxt(String fileName) {
         return new File(this.path + "/" + fileName + ".txt");
+    }
+
+    public File fileAsTex(String fileName) {
+        return new File(this.path + "/" + fileName + ".tex");
     }
 
     public void initPath() {
         File logDir = new File(path);
         if (logDir.exists()) {
             if (logDir.isFile()) {
-                throw new RuntimeException("directory " + this.path + " was a file");
+                throw new RuntimeException("directory " + this.path + " was a fileAsTxt");
             }
         } else if (!logDir.mkdirs()) {
             throw new RuntimeException("could not create directory" + this.path);
