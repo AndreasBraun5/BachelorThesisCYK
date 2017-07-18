@@ -1,9 +1,9 @@
 package com.github.andreasbraun5.thesis.resultcalculator;
 
+import com.github.andreasbraun5.thesis.exception.ScoreMatrixRuntimeException;
 import com.github.andreasbraun5.thesis.main.ThesisDirectory;
 import com.github.andreasbraun5.thesis.score.ScoringMatrix;
 import com.github.andreasbraun5.thesis.util.Word;
-import com.sun.deploy.util.OrderedHashSet;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -18,52 +18,57 @@ import java.util.*;
 @Getter
 @Builder
 public class BestResultSamples {
-
+    public static final int COUNT_SAMPLES_TO_KEEP = 5;
     public final String name;
-    private final List<ResultSample> bestResultSamples = new ArrayList<>();
+    private final TreeMap<Double, ResultSample> bestResultSamples =
+            new TreeMap<>(Collections.reverseOrder());
 
     public void write() {
         File test = new File(ThesisDirectory.BEST.path, name + ".txt");
-        PrintWriter out = null;
-        try {
-            out = new PrintWriter(test);
+        try (PrintWriter out = new PrintWriter(test)) {
+            out.println(this.toString());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        out.println(this.toString());
-        out.close();
     }
 
+    /**
+     * Only valid samples will be added. If the score of a sample is better than at least the worst score in
+     * bestResultSamples, then it replaces one of the COUNT_SAMPLES_TO_KEEP samples.
+     */
     public void tryAdd(Map<Word, List<ResultSample>> chunkResults) {
         Set<ResultSample> samples = new HashSet<>();
-        Map<Double, ResultSample> bestSamples = new TreeMap<>();
         chunkResults.forEach((word, resultSamples) -> samples.addAll(resultSamples));
-        double minScoreNeeded = 0.0;
-        if (bestSamples.size() < 5) { //TODO ahh fuck...
-            double tempScore = ScoringMatrix.scoreResultSample(sample);
-            bestSamples.put(tempScore, sample)
-        } else {
-            samples.forEach(sample -> {
+        samples.forEach(sample -> {
+            if (sample.isValid()) {
                 double tempScore = ScoringMatrix.scoreResultSample(sample);
-                if (tempScore > minScoreNeeded) {
-
+                if (bestResultSamples.size() < COUNT_SAMPLES_TO_KEEP) {
+                    bestResultSamples.put(tempScore, sample);
+                } else if (bestResultSamples.size() == COUNT_SAMPLES_TO_KEEP) {
+                    // get key with lowest value
+                    double minScoreNeeded = bestResultSamples.lastKey();
+                    if (tempScore > minScoreNeeded) {
+                        bestResultSamples.remove(minScoreNeeded);
+                        bestResultSamples.put(tempScore, sample);
+                    }
+                } else {
+                    throw new ScoreMatrixRuntimeException("COUNT_SAMPLES_TO_KEEP criteria isn't met.");
                 }
-            });
-        }
-        // score each sample
-        // decide if score is positive
-        // save score of lowest best sample which is used to decide if adding is possible
-
+            }
+        });
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("\n\n\nBestResultSamples{");
-        for (ResultSample resultSample : this.bestResultSamples) {
-            stringBuilder.append("\n\n############################################################\n" +
-                    "############################################################")
-                    .append(resultSample.toString());
-        }
+        StringBuilder stringBuilder = new StringBuilder("BestResultSamples{");
+        bestResultSamples.forEach((aDouble, resultSample) -> {
+                    stringBuilder.
+                            append("\\n\\n############################################################\\n\" +\n" +
+                                    "\"############################################################\")\n")
+                            .append("SCORE OF SAMPLE:").append(aDouble).append("\n")
+                            .append(resultSample.toString());
+                }
+        );
         return stringBuilder.toString();
     }
 }

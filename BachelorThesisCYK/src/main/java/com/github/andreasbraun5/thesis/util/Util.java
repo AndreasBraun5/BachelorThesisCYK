@@ -66,16 +66,12 @@ public abstract class Util {
     public static void writeResultToTxtFile(
             Result result, String name) {
         File test = new File(ThesisDirectory.EXAMPLES.path, name + ".txt");
-        PrintWriter out = null;
-        try {
-            out = new PrintWriter(test);
+        try (PrintWriter out = new PrintWriter(test)) {
+            out.println(result);
+            out.println(result.getExampleResultSamples().toString());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        out.println(result);
-        out.println(result.getExampleResultSamples().toString());
-        out.close();
-
     }
 
     /**

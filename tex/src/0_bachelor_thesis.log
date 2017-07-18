@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  18 JUL 2017 11:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  18 JUL 2017 12:49
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -1866,7 +1866,7 @@ LaTeX Info: Redefining \nameref on input line 180.
 
 
 (latex_settings/deckblatt.tex
-<abb/logo1.png, id=181, 536.0025pt x 165.61874pt>
+<abb/logo1.png, id=173, 536.0025pt x 165.61874pt>
 File: abb/logo1.png Graphic file (type png)
  <use abb/logo1.png>
 Package pdftex.def Info: abb/logo1.png used on input line 22.
@@ -1935,7 +1935,7 @@ File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
  [5
 
-] [6] (1_introduction.tex
+] (1_introduction.tex
 Overfull \hbox (21.0332pt too wide) in paragraph at lines 7--10
 \T1/lmr/m/n/12 mat-i-cally gen-er-ate the 4-tuples $\OML/lmm/m/it/12 exercise \
 OT1/lmr/m/n/12 = (\OML/lmm/m/it/12 grammar;  word;  parse table;  derivation tr
@@ -1951,7 +1951,7 @@ File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 15.
- [7]
+ [6]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 33.
@@ -1969,7 +1969,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 56--57
 
  []
 
-[8]
+[7]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 61.
@@ -1989,7 +1989,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 222.
- [9] [10]
+ [8] [9]
 Underfull \hbox (badness 10000) in paragraph at lines 250--251
 
  []
@@ -2014,7 +2014,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 270--271
 
  []
 
-[11]
+[10]
 Underfull \hbox (badness 10000) in paragraph at lines 282--283
 
  []
@@ -2025,16 +2025,16 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 305.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 305.
-) [12] (2_success_rates.tex) (3_algorithms.tex [13]
+) [11] (2_success_rates.tex) (3_algorithms.tex [12]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 62.
- [14] [15] [16] [17]
-[18]
+ [13] [14] [15] [16]
+[17]
 
-LaTeX Warning: Reference `cell?' on page 19 undefined on input line 226.
+LaTeX Warning: Reference `cell?' on page 18 undefined on input line 226.
 
 
-LaTeX Warning: Reference `tip2' on page 19 undefined on input line 226.
+LaTeX Warning: Reference `tip2' on page 18 undefined on input line 226.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 205--228
@@ -2042,51 +2042,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 205--228
  []
 
 
-LaTeX Warning: Reference `Idea1' on page 19 undefined on input line 265.
+LaTeX Warning: Reference `Idea1' on page 18 undefined on input line 265.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 229--266
 
  []
 
-[19] [20] [21]
+[18] [19] [20]
 Underfull \hbox (badness 10000) in paragraph at lines 279--303
 
  []
 
-[22] [23]) [24] (5_implementation.tex
+[21] [22]) [23] (5_implementation.tex
 Underfull \hbox (badness 10000) in paragraph at lines 40--43
 
  []
 
-[25] [26] [27] [28]) [29] (appendix/algorithms.tex) [30
+[24] [25] [26] [27]) [28] (bibliography.tex) [29
 
-] (bibliography.tex)
-[31] [32]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 336.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 336.
- (0_bachelor_thesis.aux (latex_settings/deckblatt.aux) (abstract.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 336.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 336.
+] [30]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 331.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 331.
+ (0_bachelor_thesis.aux
+(latex_settings/deckblatt.aux) (abstract.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 331.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 331.
 Package rerunfilecheck Info: File `0_bachelor_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 981BB7D2C0D862144476978204CD8776;3342.
+(rerunfilecheck)             Checksum: 0C3106A59269D01CD906184A5EB7CB85;3205.
+
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 336.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 331.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 36107 strings out of 493328
- 697286 string characters out of 3139104
+ 36093 strings out of 493328
+ 697046 string characters out of 3139104
  901199 words of memory out of 3000000
- 38794 multiletter control sequences out of 15000+200000
+ 38788 multiletter control sequences out of 15000+200000
  643188 words of font info for 98 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
  64i,22n,70p,10445b,24354s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2110,9 +2111,9 @@ am Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX
 public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (32 pages, 459284 bytes).
+Output written on 0_bachelor_thesis.pdf (30 pages, 455989 bytes).
 PDF statistics:
- 679 PDF objects out of 1000 (max. 8388607)
- 223 named destinations out of 1000 (max. 500000)
- 370 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 659 PDF objects out of 1000 (max. 8388607)
+ 219 named destinations out of 1000 (max. 500000)
+ 354 words of extra memory for PDF output out of 10000 (max. 10000000)
 

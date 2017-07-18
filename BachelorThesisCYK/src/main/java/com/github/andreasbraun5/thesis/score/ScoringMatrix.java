@@ -1,6 +1,6 @@
 package com.github.andreasbraun5.thesis.score;
 
-import com.github.andreasbraun5.thesis.exception.ScoreOutOfRangeRuntimeException;
+import com.github.andreasbraun5.thesis.exception.ScoreMatrixRuntimeException;
 import com.github.andreasbraun5.thesis.resultcalculator.GrammarConstraintValues;
 import com.github.andreasbraun5.thesis.resultcalculator.PyramidConstraintValues;
 import com.github.andreasbraun5.thesis.resultcalculator.ResultSample;
@@ -41,7 +41,7 @@ public class ScoringMatrix {
         } else if (31 <= cellCombinationsForcedCount && cellCombinationsForcedCount <= 40) {
             return 10;
         } else {
-            throw new ScoreOutOfRangeRuntimeException("Value out of bound, scoring not possible.");
+            throw new ScoreMatrixRuntimeException("Value out of bound, scoring not possible.");
         }
     }
 
@@ -59,7 +59,7 @@ public class ScoringMatrix {
         } else if (31 <= sumVarsInPyramid && sumVarsInPyramid <= 40) {
             return 10;
         } else {
-            throw new ScoreOutOfRangeRuntimeException("Value out of bound, scoring not possible.");
+            throw new ScoreMatrixRuntimeException("Value out of bound, scoring not possible.");
         }
     }
 
@@ -77,7 +77,7 @@ public class ScoringMatrix {
         } else if (2 <= maxVarsPerCell && maxVarsPerCell <= 2) {
             return 10;
         } else {
-            throw new ScoreOutOfRangeRuntimeException("Value out of bound, scoring not possible.");
+            throw new ScoreMatrixRuntimeException("Value out of bound, scoring not possible.");
         }
     }
 
@@ -95,7 +95,7 @@ public class ScoringMatrix {
         } else if (7 <= sumProductions && sumProductions <= 8) {
             return 10;
         } else {
-            throw new ScoreOutOfRangeRuntimeException("Value out of bound, scoring not possible.");
+            throw new ScoreMatrixRuntimeException("Value out of bound, scoring not possible.");
         }
     }
 }
