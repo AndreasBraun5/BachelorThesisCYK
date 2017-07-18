@@ -48,10 +48,6 @@ public class wrongGrammarPyramidPairAtExamplesFile {
     public void testGrammarGeneratorDiceRollOnly() {
         GrammarGeneratorSettings grammarGeneratorSettings = new GrammarGeneratorSettings(
                 grammarProperties, "GrammarGeneratorDiceRollOnlyWithLog.txt");
-        grammarGeneratorSettings.setMaxValueTerminalsAreAddedTo(1);
-        grammarGeneratorSettings.setMinValueTerminalsAreAddedTo(1);
-        grammarGeneratorSettings.setMaxValueCompoundVariablesAreAddedTo(2);
-
         GrammarGeneratorDiceRollOnly grammarGeneratorDiceRollOnly = new GrammarGeneratorDiceRollOnly(grammarGeneratorSettings);
         grammarGeneratorDiceRollOnly.generateGrammarPyramidWrapper(pyramidWrapper, System.out::println);
     }

@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.util;
 
 import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 
 import java.util.Set;
@@ -16,6 +17,8 @@ public final class TiScriptExercise {
     public static final Grammar SCRIPT_GRAMMAR;
     public static final Word SCRIPT_EXAMPLE_WORD = Word.fromStringCharwise("01110100");
     public static final SetVarKMatrix SCRIPT_SET_VARK;
+    public static final GrammarPyramidWrapper SCRIPT_GRAMMAR_PYRAMID_WRAPPER = GrammarPyramidWrapper.builder().build();
+
 
     static {
         {
@@ -38,6 +41,7 @@ public final class TiScriptExercise {
             productions[14] = new Production(new Variable("D"), new VariableCompound(new Variable("B"), new Variable("B")));
             grammar.addProductions(productions);
             SCRIPT_GRAMMAR = grammar;
+            SCRIPT_GRAMMAR_PYRAMID_WRAPPER.setGrammar(grammar);
         }
         {
             int wordLength = SCRIPT_EXAMPLE_WORD.getWordLength();
@@ -104,6 +108,7 @@ public final class TiScriptExercise {
             setVTemp[7][7].add(new VariableK(new Variable("A"), 8));
             setVTemp[7][7].add(new VariableK(new Variable("N"), 8));
             SCRIPT_SET_VARK = new SetVarKMatrix(wordLength, SCRIPT_EXAMPLE_WORD).setSetV(setVTemp);
+            SCRIPT_GRAMMAR_PYRAMID_WRAPPER.setPyramid(SCRIPT_SET_VARK.getAsPyramid());
         }
     }
 }

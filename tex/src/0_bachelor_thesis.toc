@@ -29,16 +29,16 @@
 \contentsline {subsubsection}{\numberline {2.5.1}Algorithm: Idea 2, How often cells are used for subset calculations}{21}{subsubsection.2.5.1}
 \contentsline {subsection}{\numberline {2.6}SplitAndFill}{22}{subsection.2.6}
 \contentsline {subsection}{\numberline {2.7}Comparision of Algorithms}{24}{subsection.2.7}
-\contentsline {section}{\numberline {3}Simple Scoring Model}{25}{section.3}
-\contentsline {section}{\numberline {4}CLI Tool}{26}{section.4}
-\contentsline {subsection}{\numberline {4.1}Short Requirements Specification}{26}{subsection.4.1}
-\contentsline {subsubsection}{\numberline {4.1.1}Exam Exercises}{26}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}Fun With CNF's and CYK}{27}{subsubsection.4.1.2}
-\contentsline {subsection}{\numberline {4.2}Overview - UML}{28}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}UML: More Detail 1}{28}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}UML: More Detail 2}{28}{subsubsection.4.2.2}
-\contentsline {subsection}{\numberline {4.3}User Interaction}{29}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}Use Case 1}{29}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}Use Case i}{29}{subsubsection.4.3.2}
-\contentsline {section}{Algorithms}{30}{subsubsection.4.3.2}
+\contentsline {section}{\numberline {3}CLI Tool}{25}{section.3}
+\contentsline {subsection}{\numberline {3.1}Scoring Model}{25}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Short Requirements Specification}{25}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Exam Exercises}{26}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Fun With CNF's and CYK}{26}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}Overview - UML}{28}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}UML: More Detail 1}{28}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}UML: More Detail 2}{28}{subsubsection.3.3.2}
+\contentsline {subsection}{\numberline {3.4}User Interaction}{29}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Use Case 1}{29}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Use Case i}{29}{subsubsection.3.4.2}
+\contentsline {section}{Algorithms}{30}{subsubsection.3.4.2}
 \contentsline {section}{References}{31}{section*.4}

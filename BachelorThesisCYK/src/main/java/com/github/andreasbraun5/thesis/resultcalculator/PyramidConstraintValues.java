@@ -10,7 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-class ResultSamplePyramidConstraints {
+public class PyramidConstraintValues {
 
     private boolean examConstraints;
     private boolean rightCellCombinationsForced;

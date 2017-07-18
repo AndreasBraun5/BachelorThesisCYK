@@ -77,7 +77,6 @@ public class Main {
                 WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.file(settingsGrammarGeneratorDiceRollOnly.name)))
         );
         Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollOnly);
-
     }
 
     public static GrammarProperties generateGrammarPropertiesForTesting() {

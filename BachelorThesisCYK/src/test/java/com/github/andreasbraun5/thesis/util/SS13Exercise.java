@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.util;
 
 import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 
 import java.util.Set;
@@ -16,6 +17,8 @@ public final class SS13Exercise {
     public static final Grammar SS13_GRAMMAR;
     public static final Word SS13_EXAMPLE_WORD = Word.fromStringCharwise("bbacbc");
     public static final SetVarKMatrix SS13_SET_VARK;
+    public static final GrammarPyramidWrapper SS13_GRAMMAR_PYRAMID_WRAPPER = GrammarPyramidWrapper.builder().build();
+
 
     static {
         {
@@ -33,6 +36,7 @@ public final class SS13Exercise {
             productions[9] = new Production(new Variable("C"), new Terminal("c"));
             grammar.addProductions(productions);
             SS13_GRAMMAR = grammar;
+            SS13_GRAMMAR_PYRAMID_WRAPPER.setGrammar(grammar);
         }
         {
             int wordLength = SS13_EXAMPLE_WORD.getWordLength();
@@ -81,6 +85,7 @@ public final class SS13Exercise {
             setVTemp[5][5].add(new VariableK(new Variable("C"), 6));
 
             SS13_SET_VARK = new SetVarKMatrix(wordLength, SS13_EXAMPLE_WORD).setSetV(setVTemp);
+            SS13_GRAMMAR_PYRAMID_WRAPPER.setPyramid(SS13_SET_VARK.getAsPyramid());
         }
     }
 }

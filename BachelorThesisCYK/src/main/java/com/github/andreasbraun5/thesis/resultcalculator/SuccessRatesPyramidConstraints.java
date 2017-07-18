@@ -35,11 +35,11 @@ public class SuccessRatesPyramidConstraints {
 		for ( Map.Entry<Word, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
-				ResultSamplePyramidConstraints tempResultSamplePyramidConstraints =
-						resultSample.getResultSamplePyramidConstraints();
-				boolean isRightCellCombinationsForced = tempResultSamplePyramidConstraints.isRightCellCombinationsForced();
-                boolean isMaxNumberOfVarsPerCellCount = tempResultSamplePyramidConstraints.isMaxNumberOfVarsPerCell();
-				boolean isMaxSumOfVarsInPyramidCount = tempResultSamplePyramidConstraints.isMaxSumOfVarsInPyramid();
+				PyramidConstraintValues tempPyramidConstraintValues =
+						resultSample.getPyramidConstraintValues();
+				boolean isRightCellCombinationsForced = tempPyramidConstraintValues.isRightCellCombinationsForced();
+                boolean isMaxNumberOfVarsPerCellCount = tempPyramidConstraintValues.isMaxNumberOfVarsPerCell();
+				boolean isMaxSumOfVarsInPyramidCount = tempPyramidConstraintValues.isMaxSumOfVarsInPyramid();
 				if ( isRightCellCombinationsForced ) {
 					trueRightCellCombinationsForcedCount++;
 				}

@@ -22,7 +22,7 @@ public class Result {
 	private GrammarGeneratorSettings grammarGeneratorSettings;
 	private long totalTime = 0;
 	private String generatorType;
-	private RepresentativeResultSamples representativeResultSamples;
+	private ExampleResultSamples exampleResultSamples;
 	private SuccessRates successRates = new SuccessRates();
 
 	public static Result buildResult(String name) {
@@ -43,7 +43,7 @@ public class Result {
 		this.countDifferentWords = countDifferentWords;
 		this.grammarGeneratorSettings = grammarGeneratorSettings;
 		this.generatorType = generatorType;
-		representativeResultSamples = new RepresentativeResultSamples( chunkResultSamples );
+		exampleResultSamples = new ExampleResultSamples( chunkResultSamples );
 		this.successRates = successRates.updateSuccessRates( chunkResultSamples );
 		return this;
 	}

@@ -12,17 +12,17 @@ import java.util.*;
  * It is done this ways because of the overridden method toString.
  */
 @Getter
-public class RepresentativeResultSamples {
+public class ExampleResultSamples {
 
-	private List<ResultSample> testGrammarRepresentativeExamples;
+	private final List<ResultSample> exampleRepresentativeExamples;
 
 	private static final int COUNT_OF_VALID_GRAMMARS_TO_KEEP_PER_WORD = 5;
 	private static final int COUNT_OF_INVALID_GRAMMARS_TO_KEEP_PER_WORD = 5;
 	private static final int COUNT_OF_GRAMMARS_TO_KEEP_PER_WORD = 10;
 
 
-	public RepresentativeResultSamples(Map<Word, List<ResultSample>> testGrammarSamples) {
-		this.testGrammarRepresentativeExamples = calculateRepresentativeExamples( testGrammarSamples );
+	public ExampleResultSamples(Map<Word, List<ResultSample>> testGrammarSamples) {
+		this.exampleRepresentativeExamples = calculateRepresentativeExamples( testGrammarSamples );
 	}
 
 	private List<ResultSample> calculateRepresentativeExamples(Map<Word, List<ResultSample>> testGrammarSamples) {
@@ -69,12 +69,11 @@ public class RepresentativeResultSamples {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder( "\n\n\nRepresentativeResultSamples{" );
-		for ( ResultSample resultSample : this.testGrammarRepresentativeExamples ) {
+		for ( ResultSample resultSample : this.exampleRepresentativeExamples) {
 			stringBuilder.append( "\n\n############################################################\n" +
 										  "############################################################" )
-					.append( "\nsampleGrammars=" ).append( resultSample.toString() );
+                    .append(resultSample.toString());
 		}
-
 		return stringBuilder.toString();
 	}
 }

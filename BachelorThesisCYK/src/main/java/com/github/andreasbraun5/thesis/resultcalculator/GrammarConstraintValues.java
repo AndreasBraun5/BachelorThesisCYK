@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-class ResultSampleGrammarConstraints {
+public class GrammarConstraintValues {
 
     private boolean grammarRestrictions;
     private boolean maxSumOfProductions;

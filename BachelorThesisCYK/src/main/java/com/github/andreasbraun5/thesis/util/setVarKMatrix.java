@@ -2,6 +2,7 @@ package com.github.andreasbraun5.thesis.util;
 
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.pyramid.CellElement;
+import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import lombok.Getter;

@@ -8,7 +8,8 @@ import java.io.File;
 public enum ThesisDirectory {
     LOGS("logs"),
     TEX("tex"),
-    EXAMPLES("examples");
+    EXAMPLES("examples"),
+    BEST("best");
 
     public final String path;
 

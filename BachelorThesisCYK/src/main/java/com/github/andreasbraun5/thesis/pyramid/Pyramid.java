@@ -4,6 +4,7 @@ import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
+import lombok.Builder;
 
 import java.util.Arrays;
 import java.util.Set;

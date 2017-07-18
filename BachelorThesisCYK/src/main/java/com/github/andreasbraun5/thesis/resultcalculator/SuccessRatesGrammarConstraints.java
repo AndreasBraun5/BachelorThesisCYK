@@ -27,9 +27,9 @@ public class SuccessRatesGrammarConstraints {
 		for ( Map.Entry<Word, List<ResultSample>> entry : chunkResultSamples.entrySet() ) {
 			for ( ResultSample resultSample : entry.getValue() ) {
 				countGeneratedGrammars++;
-				ResultSampleGrammarConstraints tempResultSampleGrammarConstraints =
-						resultSample.getResultSampleGrammarConstraints();
-                boolean isMaxSumOfProductionsCount = tempResultSampleGrammarConstraints.isMaxSumOfProductions();
+				GrammarConstraintValues tempGrammarConstraintValues =
+						resultSample.getGrammarConstraintValues();
+                boolean isMaxSumOfProductionsCount = tempGrammarConstraintValues.isMaxSumOfProductions();
                 if ( isMaxSumOfProductionsCount ) {
                     trueMaxSumOfProductionsCount++;
                 }

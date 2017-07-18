@@ -73,7 +73,7 @@ public abstract class Util {
             e.printStackTrace();
         }
         out.println(result);
-        out.println(result.getRepresentativeResultSamples().toString());
+        out.println(result.getExampleResultSamples().toString());
         out.close();
 
     }

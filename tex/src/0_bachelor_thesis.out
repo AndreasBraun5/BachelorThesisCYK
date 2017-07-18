@@ -29,16 +29,16 @@
 \BOOKMARK [3][-]{subsubsection.2.5.1}{2.5.1 Algorithm: Idea 2, How often cells are used for subset calculations}{subsection.2.5}% 29
 \BOOKMARK [2][-]{subsection.2.6}{2.6 SplitAndFill}{section.2}% 30
 \BOOKMARK [2][-]{subsection.2.7}{2.7 Comparision of Algorithms}{section.2}% 31
-\BOOKMARK [1][-]{section.3}{3 Simple Scoring Model}{}% 32
-\BOOKMARK [1][-]{section.4}{4 CLI Tool}{}% 33
-\BOOKMARK [2][-]{subsection.4.1}{4.1 Short Requirements Specification}{section.4}% 34
-\BOOKMARK [3][-]{subsubsection.4.1.1}{4.1.1 Exam Exercises}{subsection.4.1}% 35
-\BOOKMARK [3][-]{subsubsection.4.1.2}{4.1.2 Fun With CNF's and CYK}{subsection.4.1}% 36
-\BOOKMARK [2][-]{subsection.4.2}{4.2 Overview - UML}{section.4}% 37
-\BOOKMARK [3][-]{subsubsection.4.2.1}{4.2.1 UML: More Detail 1}{subsection.4.2}% 38
-\BOOKMARK [3][-]{subsubsection.4.2.2}{4.2.2 UML: More Detail 2}{subsection.4.2}% 39
-\BOOKMARK [2][-]{subsection.4.3}{4.3 User Interaction}{section.4}% 40
-\BOOKMARK [3][-]{subsubsection.4.3.1}{4.3.1 Use Case 1}{subsection.4.3}% 41
-\BOOKMARK [3][-]{subsubsection.4.3.2}{4.3.2 Use Case i}{subsection.4.3}% 42
-\BOOKMARK [1][-]{subsubsection.4.3.2}{Algorithms}{}% 43
+\BOOKMARK [1][-]{section.3}{3 CLI Tool}{}% 32
+\BOOKMARK [2][-]{subsection.3.1}{3.1 Scoring Model}{section.3}% 33
+\BOOKMARK [2][-]{subsection.3.2}{3.2 Short Requirements Specification}{section.3}% 34
+\BOOKMARK [3][-]{subsubsection.3.2.1}{3.2.1 Exam Exercises}{subsection.3.2}% 35
+\BOOKMARK [3][-]{subsubsection.3.2.2}{3.2.2 Fun With CNF's and CYK}{subsection.3.2}% 36
+\BOOKMARK [2][-]{subsection.3.3}{3.3 Overview - UML}{section.3}% 37
+\BOOKMARK [3][-]{subsubsection.3.3.1}{3.3.1 UML: More Detail 1}{subsection.3.3}% 38
+\BOOKMARK [3][-]{subsubsection.3.3.2}{3.3.2 UML: More Detail 2}{subsection.3.3}% 39
+\BOOKMARK [2][-]{subsection.3.4}{3.4 User Interaction}{section.3}% 40
+\BOOKMARK [3][-]{subsubsection.3.4.1}{3.4.1 Use Case 1}{subsection.3.4}% 41
+\BOOKMARK [3][-]{subsubsection.3.4.2}{3.4.2 Use Case i}{subsection.3.4}% 42
+\BOOKMARK [1][-]{subsubsection.3.4.2}{Algorithms}{}% 43
 \BOOKMARK [1][-]{section*.4}{References}{}% 44

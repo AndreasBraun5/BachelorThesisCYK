@@ -42,6 +42,8 @@ public class ResultCalculator {
 
     public Result buildResultWithGenerator(GrammarGenerator grammarGenerator, WorkLog workLog) {
         Result result = Result.buildResult(grammarGenerator.getGrammarGeneratorSettings().name);
+        BestResultSamples best = BestResultSamples.builder().
+                name(grammarGenerator.getGrammarGeneratorSettings().name).build();
         int generatedGrammars = 0;
         boolean init = false;
         long chunkTimeInterval;
@@ -60,13 +62,16 @@ public class ResultCalculator {
                         grammarGenerator.getGeneratorType(),
                         chunkResults
                 );
+                best.tryAdd(chunkResults);
                 init = true;
             } else {
                 result.addChunk(chunkTimeInterval, chunkResults);
+                best.tryAdd(chunkResults);
             }
             generatedGrammars += CHUNK_SIZE;
         }
         System.out.println("\nFinal Tic at time: " + System.currentTimeMillis());
+        best.write();
         return result;
     }
 

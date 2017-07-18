@@ -42,8 +42,8 @@ public class ResultCalculatorTest {
         Result test1DiceRollResult = resultCalculator1.buildResultWithGenerator(
                 new GrammarGeneratorDiceRollOnly(generatorGrammarDiceRollSettings), WorkLog.createFromWriter(null)
         );
-        List<ResultSample> representativeResultSamples = test1DiceRollResult.getRepresentativeResultSamples()
-                .getTestGrammarRepresentativeExamples();
+        List<ResultSample> representativeResultSamples = test1DiceRollResult.getExampleResultSamples()
+                .getExampleRepresentativeExamples();
         for (ResultSample resultSample : representativeResultSamples) {
             Assert.assertEquals(
                     "ResultSample validity is not as expected.",
