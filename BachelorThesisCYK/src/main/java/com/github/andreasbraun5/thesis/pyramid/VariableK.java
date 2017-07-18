@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.pyramid;
 
 import com.github.andreasbraun5.thesis.grammar.LeftHandSideElement;
+import com.github.andreasbraun5.thesis.grammar.TreeElement;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.sun.org.apache.bcel.internal.generic.VariableLengthInstruction;
 
@@ -10,7 +11,7 @@ import com.sun.org.apache.bcel.internal.generic.VariableLengthInstruction;
  * The VariableK class is need for the calculation of the setV for the advancedCYK algorithm. The index k of the
  * loop is additionally stored to the Variable.
  */
-public class VariableK implements CellElement {
+public class VariableK implements CellElement, TreeElement {
 
 	private String name;
 	private LeftHandSideElement variable;

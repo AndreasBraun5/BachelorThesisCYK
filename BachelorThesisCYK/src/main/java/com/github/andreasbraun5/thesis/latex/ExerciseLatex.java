@@ -25,10 +25,10 @@ public class ExerciseLatex {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append(preamble).
-                append(grammar.toString()).
-                append(pyramid.asTikz()).
-                append(postamble);
+        str.append(preamble)
+                .append(grammar.toString())
+                .append(pyramid.asTikz())
+                .append(postamble);
         return str.toString();
     }
 }
