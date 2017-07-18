@@ -2,10 +2,7 @@ package com.github.andreasbraun5.thesis.latex;
 
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
-import com.github.andreasbraun5.thesis.util.SS13Exercise;
-import com.github.andreasbraun5.thesis.util.SetVarKMatrix;
-import com.github.andreasbraun5.thesis.util.TiScriptExercise;
-import com.github.andreasbraun5.thesis.util.Word;
+import com.github.andreasbraun5.thesis.util.*;
 import org.junit.Test;
 
 /**
@@ -19,7 +16,7 @@ public class WriteToTexFileTest {
         System.out.println("");
         System.out.println("############################");
         System.out.println("TexFileTestExercise: TexFileTestExercise");
-        GrammarPyramidWrapper wrapper = SS13Exercise.SS13_GRAMMAR_PYRAMID_WRAPPER;
+        GrammarPyramidWrapper wrapper = SS12Exercise.SS12_GRAMMAR_PYRAMID_WRAPPER;
         ExerciseLatex exerciseLatex = new ExerciseLatex(wrapper.getGrammar(), wrapper.getPyramid());
         System.out.println(exerciseLatex.toString());
         WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
