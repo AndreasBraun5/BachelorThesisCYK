@@ -13,6 +13,7 @@ public class TreeLatexTest {
         System.out.println("############################");
         System.out.println("CellLatexTest: Generating LaTeX code for the cells.");
         TreeLatex tree = SS12Exercise.SS12_TREE;
+        System.out.println(tree.toString());
 
     }
 

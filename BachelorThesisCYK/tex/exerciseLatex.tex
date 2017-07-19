@@ -1,5 +1,6 @@
 \documentclass[a4paper,12pt,headsepline]{scrartcl}
 \usepackage{tikz}
+\usepackage{tikz-qtree}
 \usepackage{fix-cm}
 \begin{document}
 \begin{center} 
@@ -240,6 +241,41 @@ $S\rightarrow AB~|~BC~~$\\
 \node [] at (center70) {\myfontvars{S$_4$B$_6$B$_7$}};
 \node [above] at (center70) {\myfontvars{S$_1$}};
 \node [below] at (center70) {\myfontvars{B$_1$}};
+\end{tikzpicture}
+}
+\end{center}
+\begin{center}
+\resizebox{\linewidth}{!}{
+\begin{tikzpicture}[baseline]
+		\tikzset{frontier/.style={distance from root=180pt}} %height of tree times 30pt
+		\tikzset{edge from parent/.style= {
+				draw,
+				edge from parent path={(\tikzparentnode.south)	-- +(0,-8pt)-| (\tikzchildnode)}
+			}
+		}
+		\Tree
+[.S1
+[.A1 c ]
+[.B6
+[.C4
+[.A2
+[.B2 b ]
+[.A3
+[.B3 b ]
+[.A4 a ]
+]
+]
+[.C5
+[.A5 a ]
+[.C6 c ]
+]
+]
+[.B7
+[.C7 c ]
+[.B8 b ]
+]
+]
+]
 \end{tikzpicture}
 }
 \end{center}

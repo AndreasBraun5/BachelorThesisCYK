@@ -136,7 +136,7 @@ public final class SS12Exercise {
             TreeLatex B7_2 = new TreeLatex("B7", C7_1, B8_1);
 
             TreeLatex A2_3 = new TreeLatex("A2", B2_1, A3_2);
-            TreeLatex C4_4 = new TreeLatex("C2", A2_3, C5_2);
+            TreeLatex C4_4 = new TreeLatex("C4", A2_3, C5_2);
             TreeLatex B6_5 = new TreeLatex("B6", C4_4, B7_2);
             TreeLatex S1_6 = new TreeLatex("S1", A1_1, B6_5);
             SS12_TREE = S1_6;

@@ -17,10 +17,9 @@ public class WriteToTexFileTest {
         System.out.println("############################");
         System.out.println("TexFileTestExercise: TexFileTestExercise");
         GrammarPyramidWrapper wrapper = SS12Exercise.SS12_GRAMMAR_PYRAMID_WRAPPER;
-        ExerciseLatex exerciseLatex = new ExerciseLatex(wrapper.getGrammar(), wrapper.getPyramid());
+        ExerciseLatex exerciseLatex = new ExerciseLatex(wrapper.getGrammar(), wrapper.getPyramid(), SS12Exercise.SS12_TREE);
         System.out.println(exerciseLatex.toString());
         WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
-
     }
 
 }

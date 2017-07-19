@@ -48,11 +48,6 @@ The triple invocation of LaTeX is to ensure that all references have been proper
 \subsubsection{Exam Exercises}
 4-tuples $exercise = (grammar,\ word,\ parse\ table,\ derivation\ tree)$ that needs to be printed.
 
-
-
-
-
-
 \begin{center} 
 	\begin{tabular}{l}$A\rightarrow a~|~c~|~BA~~$\\ 
 		$B\rightarrow b~|~CB~~$\\ 
@@ -60,6 +55,7 @@ The triple invocation of LaTeX is to ensure that all references have been proper
 		$S\rightarrow AB~|~BC~~$\\ 
 	\end{tabular} 
 \end{center}
+
 \begin{center}
 	\resizebox{\linewidth}{!}{
 		\begin{tikzpicture}[baseline]
@@ -296,6 +292,61 @@ The triple invocation of LaTeX is to ensure that all references have been proper
 \end{center}
 
 \begin{center}
+	\resizebox{0.4\linewidth}{!}{
+		\begin{tikzpicture}[baseline]
+\tikzset{frontier/.style={distance from root=180pt}} %height of tree times 30pt
+\tikzset{edge from parent/.style= {
+		draw,
+		edge from parent path={(\tikzparentnode.south)	-- +(0,-8pt)-| (\tikzchildnode)}
+	}
+}
+\Tree 
+[.S1 
+	[.A1 c ] 
+	[.B6
+		[.C4 
+			[.A2
+				[.B2 b ]
+				[.A3
+					[.B3 b ]
+					[.A4 a ]
+				]
+			]
+			[.C5 
+				[.A5 a ]
+				[.C6 c ]
+			]
+		]
+		[.B7 
+			[.C7 c ]
+			[.B8 b ]
+		]
+	] 
+]
+		\end{tikzpicture}
+}
+\end{center}
+
+\pagebreak
+\subsection{Overview - UML}
+
+
+UML-Diagramm showing the general idea of the implementation.\\
+List noteworthy used libraries here, too.\\
+Maybe some information out of the statistics tool of IntelliJ.
+
+\subsubsection{UML: More Detail 1}
+\subsubsection{UML: More Detail 2}
+
+\pagebreak
+\subsection{User Interaction}
+
+\noindent Here the specific must can do's are explained with short examples.
+\subsubsection{Use Case 1}
+\subsubsection{Use Case i}
+
+
+\begin{center}
 	\resizebox{.6\linewidth}{!}{
 		\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=2cm,
 		semithick]%,initial text={}]
@@ -355,25 +406,5 @@ The triple invocation of LaTeX is to ensure that all references have been proper
 	}
 	
 \end{center}
-
-
-\pagebreak
-\subsection{Overview - UML}
-
-
-
-UML-Diagramm showing the general idea of the implementation.\\
-List noteworthy used libraries here, too.\\
-Maybe some information out of the statistics tool of IntelliJ.
-
-\subsubsection{UML: More Detail 1}
-\subsubsection{UML: More Detail 2}
-
-\pagebreak
-\subsection{User Interaction}
-
-\noindent Here the specific must can do's are explained with short examples.
-\subsubsection{Use Case 1}
-\subsubsection{Use Case i}
 
 \pagebreak

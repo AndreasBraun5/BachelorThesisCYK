@@ -8,26 +8,30 @@ import com.github.andreasbraun5.thesis.pyramid.Pyramid;
  */
 public class ExerciseLatex {
 
-    public GrammarLatex grammar;
-    public PyramidLatex pyramid;
-    public static final String preamble = "" +
+    private GrammarLatex grammar;
+    private PyramidLatex pyramid;
+    private TreeLatex tree;
+    private static final String preamble = "" +
             "\\documentclass[a4paper,12pt,headsepline]{scrartcl}\n" +
             "\\usepackage{tikz}\n" +
+            "\\usepackage{tikz-qtree}\n" +
             "\\usepackage{fix-cm}\n" +
             "\\begin{document}\n";
-    public static final String postamble = "\\end{document}\n";
+    private static final String postamble = "\\end{document}\n";
 
-    public ExerciseLatex(Grammar grammar, Pyramid pyramid) {
+    public ExerciseLatex(Grammar grammar, Pyramid pyramid, TreeLatex treeLatex) {
         this.grammar = new GrammarLatex(grammar);
         this.pyramid = new PyramidLatex(pyramid);
+        this.tree = treeLatex;
     }
 
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append(preamble)
-                .append(grammar.toString())
-                .append(pyramid.asTikz())
+                .append(grammar)
+                .append(pyramid.toStringTex())
+                .append(tree)
                 .append(postamble);
         return str.toString();
     }

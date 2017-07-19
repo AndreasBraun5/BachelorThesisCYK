@@ -180,11 +180,27 @@ public class PyramidLatex {
         return stringBuilder.toString();
     }
 
-    public String asTikz(){
+    public static String begin() {
+        StringBuilder str = new StringBuilder("");
+        str.append("\\begin{center}\n")
+                .append("\\resizebox{\\linewidth}{!}{\n")
+                .append("\\begin{tikzpicture}[baseline]\n");
+        return str.toString();
+    }
+
+    public static String end() {
+        StringBuilder str = new StringBuilder("");
+        str.append("\\end{tikzpicture}\n")
+                .append("}\n")
+                .append("\\end{center}\n");
+        return str.toString();
+    }
+
+    public String toStringTex(){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(CenteredTikzPicture.begin());
+        stringBuilder.append(begin());
         stringBuilder.append(toTex());
-        stringBuilder.append(CenteredTikzPicture.end()) ;
+        stringBuilder.append(end()) ;
         return stringBuilder.toString();
     }
 }

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  18 JUL 2017 16:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  19 JUL 2017 13:10
 entering extended mode
 **./exerciseLatex.tex
 (exerciseLatex.tex
@@ -409,7 +409,49 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 librarytopaths.code.tex"
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\fix-cm.sty"
+(C:\Users\AndreasBraun\AppData\Roaming\MiKTeX\2.9\tex\latex\tikz-qtree\tikz-qtr
+ee.sty
+(C:\Users\AndreasBraun\AppData\Roaming\MiKTeX\2.9\tex\latex\tikz-qtree\pgftree.
+sty
+(C:\Users\AndreasBraun\AppData\Roaming\MiKTeX\2.9\tex\latex\tikz-qtree\pgfsubpi
+c.sty
+(C:\Users\AndreasBraun\AppData\Roaming\MiKTeX\2.9\tex\generic\tikz-qtree\pgfsub
+pic.tex
+\pgf@subpicminx=\dimen151
+\pgf@subpicminy=\dimen152
+\pgf@subpicmaxx=\dimen153
+\pgf@subpicmaxy=\dimen154
+))
+(C:\Users\AndreasBraun\AppData\Roaming\MiKTeX\2.9\tex\generic\tikz-qtree\pgftre
+e.tex
+\levelsep=\dimen155
+\subtreesep=\dimen156
+\smuggle@levelsep=\dimen157
+\smuggle@subtreesep=\dimen158
+\this@levelsep=\dimen159
+\this@subtreesep=\dimen160
+\pgftree@childx=\dimen161
+\pgftree@savechildx=\dimen162
+\pgftree@childy=\dimen163
+\pgftree@savechildy=\dimen164
+\pgftree@childi=\count108
+\pgftree@savechildi=\count109
+\pgftree@level=\count110
+\pgftree@depth=\dimen165
+\pgf@subpic@hbox@children=\box39
+\pgf@subpic@minx@children=\dimen166
+\pgf@subpic@miny@children=\dimen167
+\pgf@subpic@maxx@children=\dimen168
+\pgf@subpic@maxy@children=\dimen169
+\pgftree@lastchildx=\dimen170
+\pgftree@lastchildy=\dimen171
+))
+(C:\Users\AndreasBraun\AppData\Roaming\MiKTeX\2.9\tex\generic\tikz-qtree\tikz-q
+tree.tex
+\@result=\toks27
+\child@list=\toks28
+\root@node=\toks29
+)) ("C:\Program Files\MiKTeX 2.9\tex\latex\base\fix-cm.sty"
 Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.def"
@@ -417,35 +459,35 @@ File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 )) (exerciseLatex.aux)
 \openout1 = `exerciseLatex.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
 
 ABD: EveryShipout initializing macros
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count108
-\scratchdimen=\dimen151
-\scratchbox=\box39
-\nofMPsegments=\count109
-\nofMParguments=\count110
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count111
-\MPscratchDim=\dimen152
-\MPnumerator=\count112
-\makeMPintoPDFobject=\count113
-\everyMPtoPDFconversion=\toks28
+\scratchcounter=\count111
+\scratchdimen=\dimen172
+\scratchbox=\box40
+\nofMPsegments=\count112
+\nofMParguments=\count113
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count114
+\MPscratchDim=\dimen173
+\MPnumerator=\count115
+\makeMPintoPDFobject=\count116
+\everyMPtoPDFconversion=\toks31
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -492,45 +534,44 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 6.
+(Font)              <12> on input line 7.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 6.
+(Font)              <8> on input line 7.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 6.
-LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 250.
+(Font)              <6> on input line 7.
+LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 245.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <2.5> on input line 250.
+(Font)              <2.5> on input line 245.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <1.74998> on input line 250.
+(Font)              <1.74998> on input line 245.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <1.25> on input line 250.
-LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 250.
+(Font)              <1.25> on input line 245.
+LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 245.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <4.9> on input line 250.
+(Font)              <4.9> on input line 245.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <3.42998> on input line 250.
+(Font)              <3.42998> on input line 245.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <2.45> on input line 250.
+(Font)              <2.45> on input line 245.
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] (exerciseLatex.aux) ) 
+{C:/Users/AndreasBraun/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+(exerciseLatex.aux) ) 
 Here is how much of TeX's memory you used:
- 14264 strings out of 493328
- 288537 string characters out of 3139104
- 432096 words of memory out of 3000000
- 17583 multiletter control sequences out of 15000+200000
+ 14911 strings out of 493328
+ 300877 string characters out of 3139104
+ 455577 words of memory out of 3000000
+ 18213 multiletter control sequences out of 15000+200000
  11710 words of font info for 41 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,8n,60p,8843b,631s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/
-Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmsy8.pfb>
-Output written on exerciseLatex.pdf (1 page, 49256 bytes).
+ 64i,11n,73p,8843b,968s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on exerciseLatex.pdf (2 pages, 45022 bytes).
 PDF statistics:
- 29 PDF objects out of 1000 (max. 8388607)
+ 28 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
