@@ -77,7 +77,7 @@ public class GrammarGeneratorUtilTest {
         SetVarKMatrix setVarKMatrix = TiScriptExercise.SCRIPT_SET_VARK;
         Pyramid pyramid = new Pyramid(setVarKMatrix.getSetV(), word);
         Set<Tuple<CellK, CellK>> cellPairs = Util.
-                calculatePossibleCellPairs(pyramid.getCellK(4, 2), , pyramid);
+                calculatePossibleCellPairs(4, 2, pyramid);
         System.out.println(cellPairs);
         Assert.assertTrue(cellPairs.contains(new Tuple<>(pyramid.getCellK(3, 2), pyramid.getCellK(0, 6))));
         Assert.assertTrue(cellPairs.contains(new Tuple<>(pyramid.getCellK(2, 2), pyramid.getCellK(1, 5))));

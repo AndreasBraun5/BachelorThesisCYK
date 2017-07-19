@@ -1,12 +1,9 @@
 package com.github.andreasbraun5.thesis.latex;
 
-import com.github.andreasbraun5.thesis.pyramid.CellElement;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
-import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
-import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.*;
 
@@ -16,25 +13,25 @@ import java.util.*;
  */
 public class TreeLatex {
 
-    public final String x;
+    public final String name;
 
     public final TreeLatex left;
     public final TreeLatex right;
 
-    public TreeLatex(String x) {
-        this.x = x;
+    public TreeLatex(String name) {
+        this.name = name;
         this.left = null;
         this.right = null;
     }
 
-    public TreeLatex(String x, TreeLatex left) {
-        this.x = x;
+    public TreeLatex(String name, TreeLatex left) {
+        this.name = name;
         this.left = left;
         this.right = null;
     }
 
-    public TreeLatex(String x, TreeLatex left, TreeLatex right) {
-        this.x = x;
+    public TreeLatex(String name, TreeLatex left, TreeLatex right) {
+        this.name = name;
         this.left = left;
         this.right = right;
     }
@@ -48,54 +45,23 @@ public class TreeLatex {
     }
 
     public static TreeLatex generateRandomTree(Pyramid pyramid, CellK root) {
-        List<Tuple<CellK, CellK>> leftAndRights = new ArrayList<>(Util.calculatePossibleCellPairs(root, pyramid));
-        if(leftAndRights.size() == 0) {
-            return new TreeLatex(root.getCellElements().toString());
+        if (root.getI()>=2){
+            List<Tuple<CellK, CellK>> leftAndRights = new ArrayList<>(Util.calculatePossibleCellPairs(root, pyramid));
+            if(leftAndRights.size() == 0) {
+                return new TreeLatex(root.getCellElements().toString());
+            } -ä###########
+            Random random = new Random();
+            Tuple<CellK, CellK> leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
+            TreeLatex left = generateRandomTree(pyramid, leftAndRight.x);
+            TreeLatex right = generateRandomTree(pyramid, leftAndRight.y);
+
+            return new TreeLatex(root.getCellElements().toString(), left, right);
         }
-        Random random = new Random();
-        Tuple<CellK, CellK> leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
-        TreeLatex left = generateRandomTree(pyramid, leftAndRight.x);
-        TreeLatex right = generateRandomTree(pyramid, leftAndRight.y);
-        return new TreeLatex(root.getCellElements().toString(), left, right);
+        return null;
     }
 
-    public static TreeLatex generateRandomTreeFromPyramid(Pyramid pyramid) {
-
-        Word word = pyramid.getWord();
-        CellK[][] cells = pyramid.getCellsK();
-        Random random = new Random();
-        Map<String, TreeLatex> tree = new HashMap<>();
-
-        // Speichern aller zu verwendenden cellPairs bis bei leafs angekommen.
-        // Generieren des leaf node sub trees
-
-       {
-            if (hasLeaf()) {
-
-            } else if (isInnerNode()) {
-
-            }
-        }
-
-        Set<Tuple<CellK, CellK>> cellPairs = Util.calculatePossibleCellPairs(cells[word.getWordLength()][0], pyramid);
-        // chosen cellPair cells must not be empty
-        Tuple<CellK, CellK> cellPair = new ArrayList<>(cellPairs).get(random.nextInt(cellPairs.size()));
-        List<VariableK> varsOfX = cellPair.x.getCellElements();
-        List<VariableK> varsOfY = cellPair.y.getCellElements();
-        VariableK varOfX = varsOfX.get(random.nextInt(varsOfX.size()));
-        VariableK varOfY = varsOfY.get(random.nextInt(varsOfY.size()));
-
-        // pick random element from each cell, they are the new sub trees left and right
-        // do the same "recursively" until you read hasLeaf, if hasLeaf then add the rest of the tree directly.
-
-        {   // generate all leave trees
-            for (int i = 0; i < word.getWordLength(); i++) {
-                tree.put("w" + i, new TreeLatex(word.getTerminals().get(i).getTerminalName()));
-            }
-        }
-
-
-        TreeLatex w1 = new TreeLatex("c");
+    /*
+    TreeLatex w1 = new TreeLatex("c");
         TreeLatex w2 = new TreeLatex("b");
         TreeLatex w3 = new TreeLatex("b");
         TreeLatex w4 = new TreeLatex("a");
@@ -121,10 +87,7 @@ public class TreeLatex {
         TreeLatex C4_4 = new TreeLatex("C4", A2_3, C5_2);
         TreeLatex B6_5 = new TreeLatex("B6", C4_4, B7_2);
         TreeLatex S1_6 = new TreeLatex("S1", A1_1, B6_5);
-
-        return S1_6;
-    }
-
+     */
 
     private int treeSize() {
         if (hasLeaf()) {
@@ -140,14 +103,14 @@ public class TreeLatex {
         if (hasLeaf()) {
             // [.C6 c ]
             str.append("[.")
-                    .append(x)
+                    .append(name)
                     .append(" ")
-                    .append(left.x)
+                    .append(left.name)
                     .append(" ]\n");
         } else if (isInnerNode()) {
             // [.S1 ]
             str.append("[.")
-                    .append(x)
+                    .append(name)
                     .append("\n")
                     .append(left.treeToString())
                     .append("")

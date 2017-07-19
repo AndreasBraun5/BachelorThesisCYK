@@ -16,7 +16,7 @@ import java.util.Set;
 public class CellLatex {
     // No more than 5 variables in one CellLatex are allowed.
     private List<CellElement> vars = new ArrayList<>();
-    // center(x,y) coordinates will later on be used to position the variables in the cells using left, above, right,
+    // center(name,y) coordinates will later on be used to position the variables in the cells using left, above, right,
     // below and center
     public double centerX = 0.0;
     public double centerY = 0.0;

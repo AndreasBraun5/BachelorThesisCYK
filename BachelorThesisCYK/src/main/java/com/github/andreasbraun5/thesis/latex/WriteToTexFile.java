@@ -39,7 +39,7 @@ public class WriteToTexFile {
                 "\\newcommand{\\popline}{\\Indm\\dosemic}% Undent\n" +
                 "%\\stackMath\n" +
                 "%\\[\\def\\stacktype{L}\\setstackgap{L}{.4ex}\n" +
-                "%x\\mathrel{\\stackon{\\cup}{\\scriptscriptstyle+}}y\n" +
+                "%name\\mathrel{\\stackon{\\cup}{\\scriptscriptstyle+}}y\n" +
                 "%\\mathrel{\\stackon{\\cup}{\\scriptscriptstyle-}}z\n" +
                 "%\\]\n" +
                 "%\n" +

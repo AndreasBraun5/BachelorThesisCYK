@@ -38,7 +38,7 @@ public class Tuple<X,Y> {
     @Override
     public String toString() {
         return "Tuple{" +
-                "x=" + x +
+                "name=" + x +
                 ", y=" + y +
                 '}';
     }
