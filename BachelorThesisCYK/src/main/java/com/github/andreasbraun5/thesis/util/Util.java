@@ -5,6 +5,7 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.main.ThesisDirectory;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 
@@ -125,6 +126,33 @@ public abstract class Util {
             }
         }
         return setVVariable;
+    }
+
+    public static Set<Tuple<CellK, CellK>> calculatePossibleCellPairs(CellK cellK, Pyramid pyramid) {
+        return calculatePossibleCellPairs(cellK.getI(), cellK.getJ(), pyramid);
+    }
+
+    public static Set<Tuple<CellK, CellK>> calculatePossibleCellPairs(int i, int j, Pyramid pyramid) {
+        Set<Tuple<CellK, CellK>> cellTuples = new HashSet<>();
+        CellK[][] cells = pyramid.getCellsK();
+        int iLeft;      // [i-1,0]
+        int jLeft;      // equals j
+        int iRight;     // [0,i-1]
+        int jRight;     // [i+j,j+1]
+        {
+            jLeft = j;
+            iRight = 0;
+            jRight = i + j;
+            for (iLeft = i - 1; iLeft >= 0; iLeft--) {
+                CellK cellLeft = cells[iLeft][jLeft];
+                CellK cellRight = cells[iRight][jRight];
+                //noinspection SuspiciousNameCombination
+                cellTuples.add(new Tuple<>(cellLeft, cellRight));
+                iRight++;
+                jRight--;
+            }
+        }
+        return cellTuples;
     }
 }
 

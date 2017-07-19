@@ -1,5 +1,13 @@
 package com.github.andreasbraun5.thesis.latex;
 
+import com.github.andreasbraun5.thesis.pyramid.CellK;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
+import com.github.andreasbraun5.thesis.util.Tuple;
+import com.github.andreasbraun5.thesis.util.Util;
+import com.github.andreasbraun5.thesis.util.Word;
+
+import java.util.*;
+
 /**
  * Created by Andreas Braun on 21.12.2016.
  * https://github.com/AndreasBraun5/
@@ -33,21 +41,67 @@ public class TreeLatex {
         return this.left != null && this.right != null;
     }
 
-    public boolean hasLeave() {
+    public boolean hasLeaf() {
         return this.left == null || this.right == null;
     }
 
-    private int treeSize( ) {
-        if (hasLeave()) {
+    public static TreeLatex generateRandomTreeFromPyramid(Pyramid pyramid) {
+        Word word = pyramid.getWord();
+        CellK[][] cells = pyramid.getCellsK();
+        Map<String, TreeLatex> tree = new HashMap<>();
+        {   // generate all leave trees
+            for (int i = 0; i < word.getWordLength(); i++) {
+                tree.put("w" + i, new TreeLatex(word.getTerminals().get(i).getTerminalName()));
+            }
+        }
+        Set<Tuple<CellK, CellK>> cellPairs = Util.calculatePossibleCellPairs(cells[word.getWordLength()][0], pyramid);
+        Tuple<CellK, CellK> cellPair = new ArrayList<>(cellPairs).get(new Random().nextInt(cellPairs.size()));
+        // pick random element from each cell, they are the new sub trees left and right
+        // do the same "recursively" until you read hasLeaf, if hasLeaf then add the rest of the tree directly.
+
+        TreeLatex w1 = new TreeLatex("c");
+        TreeLatex w2 = new TreeLatex("b");
+        TreeLatex w3 = new TreeLatex("b");
+        TreeLatex w4 = new TreeLatex("a");
+        TreeLatex w5 = new TreeLatex("a");
+        TreeLatex w6 = new TreeLatex("c");
+        TreeLatex w7 = new TreeLatex("c");
+        TreeLatex w8 = new TreeLatex("b");
+
+        TreeLatex A1_1 = new TreeLatex("A1", w1);
+        TreeLatex B2_1 = new TreeLatex("B2", w2);
+        TreeLatex B3_1 = new TreeLatex("B3", w3);
+        TreeLatex A4_1 = new TreeLatex("A4", w4);
+        TreeLatex A5_1 = new TreeLatex("A5", w5);
+        TreeLatex C6_1 = new TreeLatex("C6", w6);
+        TreeLatex C7_1 = new TreeLatex("C7", w7);
+        TreeLatex B8_1 = new TreeLatex("B8", w8);
+
+        TreeLatex A3_2 = new TreeLatex("A3", B3_1, A4_1);
+        TreeLatex C5_2 = new TreeLatex("C5", A5_1, C6_1);
+        TreeLatex B7_2 = new TreeLatex("B7", C7_1, B8_1);
+
+        TreeLatex A2_3 = new TreeLatex("A2", B2_1, A3_2);
+        TreeLatex C4_4 = new TreeLatex("C4", A2_3, C5_2);
+        TreeLatex B6_5 = new TreeLatex("B6", C4_4, B7_2);
+        TreeLatex S1_6 = new TreeLatex("S1", A1_1, B6_5);
+
+        return S1_6;
+    }
+
+
+    private int treeSize() {
+        if (hasLeaf()) {
             return 1;
         } else if (isInnerNode()) {
-            return Math.max(this.left.treeSize(), this.right.treeSize())+1;
-        } throw new RuntimeException("This should not have happened.");
+            return Math.max(this.left.treeSize(), this.right.treeSize()) + 1;
+        }
+        throw new RuntimeException("This should not have happened.");
     }
 
     private String treeToString() {
         StringBuilder str = new StringBuilder();
-        if (hasLeave()) {
+        if (hasLeaf()) {
             // [.C6 c ]
             str.append("[.")
                     .append(x)
