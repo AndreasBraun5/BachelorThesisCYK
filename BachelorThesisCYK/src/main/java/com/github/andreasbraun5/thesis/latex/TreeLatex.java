@@ -1,5 +1,7 @@
 package com.github.andreasbraun5.thesis.latex;
 
+import com.github.andreasbraun5.thesis.grammar.VariableStart;
+import com.github.andreasbraun5.thesis.pyramid.CellElement;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
@@ -8,6 +10,7 @@ import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Andreas Braun on 21.12.2016.
@@ -55,64 +58,37 @@ public class TreeLatex {
             while (leftAndRight.x.getCellElements().size() == 0 || leftAndRight.y.getCellElements().size() == 0) {
                 leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
             }
-            System.out.println(root.getI());
-            System.out.println("left:" + leftAndRight.x.getCellElements());
-            System.out.println("right:" + leftAndRight.y.getCellElements());
             TreeLatex left = generateRandomTree(pyramid, leftAndRight.x);
             TreeLatex right = generateRandomTree(pyramid, leftAndRight.y);
-            // Pick random element from the cellElements
             List<VariableK> varsInCell = root.getCellElements();
-            return new TreeLatex(varsInCell.get(random.nextInt(varsInCell.size())).toString(), left, right);
+            // Pick random element from the cell, but
+            CellElement varK = varsInCell.get(random.nextInt(varsInCell.size()));
+            // guarantee that the start variable is picked as the top root node
+            if (root.getI() == pyramid.getCellsK().length - 1) {
+                varK = varsInCell.stream().filter(variableK ->
+                        variableK.getLhse() instanceof VariableStart).collect(Collectors.toList()).get(0);
+            }
+            return new TreeLatex(varK.toString(), left, right);
         } else if (root.getI() == 1) {
-            // TreeLatex(String name, TreeLatex left), case for hasLeaf
-            // Pick random element from the cellElements
             List<VariableK> varsInCell = root.getCellElements();
-            System.out.println(root.getI());
-            System.out.println("varsInCell:" + varsInCell);
             List<Tuple<CellK, CellK>> leftAndRights = new ArrayList<>(Util.calculatePossibleCellPairs(root, pyramid));
             Tuple<CellK, CellK> leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
             TreeLatex left = generateRandomTree(pyramid, leftAndRight.x);
             TreeLatex right = generateRandomTree(pyramid, leftAndRight.y);
+            // Pick random element from the cell
             return new TreeLatex(varsInCell.get(random.nextInt(varsInCell.size())).toString(), left, right);
         } else if (root.getI() == 0) {
             List<VariableK> varsInCell = root.getCellElements();
-            System.out.println(root.getI());
-            System.out.println("varsInCell:" + varsInCell);
             Word word = pyramid.getWord();
-            return new TreeLatex(varsInCell.get(random.nextInt(varsInCell.size())).toString(), new TreeLatex(word.getTerminals().get(root.getJ()).toString()));
+            // Add the corresponding terminal of the word
+            return new TreeLatex(
+                    varsInCell.get(random.nextInt(varsInCell.size())).toString(),
+                    new TreeLatex(word.getTerminals().get(root.getJ()).toString())
+            );
         } else {
-            throw new RuntimeException("Not allowed to.");
+            throw new RuntimeException("TreeLatex.generateRandomTree() failure.");
         }
     }
-
-    /*
-    TreeLatex w1 = new TreeLatex("c");
-        TreeLatex w2 = new TreeLatex("b");
-        TreeLatex w3 = new TreeLatex("b");
-        TreeLatex w4 = new TreeLatex("a");
-        TreeLatex w5 = new TreeLatex("a");
-        TreeLatex w6 = new TreeLatex("c");
-        TreeLatex w7 = new TreeLatex("c");
-        TreeLatex w8 = new TreeLatex("b");
-
-        TreeLatex A1_1 = new TreeLatex("A1", w1);
-        TreeLatex B2_1 = new TreeLatex("B2", w2);
-        TreeLatex B3_1 = new TreeLatex("B3", w3);
-        TreeLatex A4_1 = new TreeLatex("A4", w4);
-        TreeLatex A5_1 = new TreeLatex("A5", w5);
-        TreeLatex C6_1 = new TreeLatex("C6", w6);
-        TreeLatex C7_1 = new TreeLatex("C7", w7);
-        TreeLatex B8_1 = new TreeLatex("B8", w8);
-
-        TreeLatex A3_2 = new TreeLatex("A3", B3_1, A4_1);
-        TreeLatex C5_2 = new TreeLatex("C5", A5_1, C6_1);
-        TreeLatex B7_2 = new TreeLatex("B7", C7_1, B8_1);
-
-        TreeLatex A2_3 = new TreeLatex("A2", B2_1, A3_2);
-        TreeLatex C4_4 = new TreeLatex("C4", A2_3, C5_2);
-        TreeLatex B6_5 = new TreeLatex("B6", C4_4, B7_2);
-        TreeLatex S1_6 = new TreeLatex("S1", A1_1, B6_5);
-     */
 
     private int treeSize() {
         if (hasLeaf()) {

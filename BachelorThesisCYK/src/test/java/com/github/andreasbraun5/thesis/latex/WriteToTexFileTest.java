@@ -18,10 +18,7 @@ public class WriteToTexFileTest {
         System.out.println("############################");
         System.out.println("TexFileTestExercise: TexFileTestExercise");
         GrammarPyramidWrapper wrapper = SS12Exercise.SS12_GRAMMAR_PYRAMID_WRAPPER;
-        int wordLenght = wrapper.getPyramid().getWord().getWordLength();
-        TreeLatex treeLatex = TreeLatex.generateRandomTree(wrapper.getPyramid(), wrapper.getPyramid().getCellK(wordLenght-1, 0));
-        ExerciseLatex exerciseLatex = new ExerciseLatex(wrapper.getGrammar(), wrapper.getPyramid(), treeLatex);
-        //ExerciseLatex exerciseLatex = new ExerciseLatex(wrapper.getGrammar(), wrapper.getPyramid(), SS12Exercise.SS12_TREE);
+        ExerciseLatex exerciseLatex = new ExerciseLatex(wrapper.getGrammar(), wrapper.getPyramid());
         System.out.println(exerciseLatex.toString());
         WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
     }

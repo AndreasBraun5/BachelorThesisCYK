@@ -42,12 +42,7 @@ public class CYK {
         int wordlength = pyramid.getWord().getWordLength();
         List<VariableK> vars =
                 pyramid.getCellK(wordlength - 1, 0).getCellElements().stream().
-                        filter(variableK -> {
-                            if (variableK.getLhse() instanceof VariableStart) {
-                                return true;
-                            } else return false;
-                        }).collect(Collectors.toList());
-        // well it works
+                        filter(variableK -> variableK.getLhse() instanceof VariableStart).collect(Collectors.toList());
         return vars.size() > 0;
     }
 

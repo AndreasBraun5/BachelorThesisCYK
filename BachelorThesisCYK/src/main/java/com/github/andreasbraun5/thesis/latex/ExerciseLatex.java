@@ -19,10 +19,10 @@ public class ExerciseLatex {
             "\\begin{document}\n";
     private static final String postamble = "\\end{document}\n";
 
-    public ExerciseLatex(Grammar grammar, Pyramid pyramid, TreeLatex treeLatex) {
+    public ExerciseLatex(Grammar grammar, Pyramid pyramid) {
         this.grammar = new GrammarLatex(grammar);
         this.pyramid = new PyramidLatex(pyramid);
-        this.tree = treeLatex;
+        this.tree = TreeLatex.generateRandomTree(pyramid, pyramid.getCellK(pyramid.getCellsK().length - 1, 0));
     }
 
     @Override
