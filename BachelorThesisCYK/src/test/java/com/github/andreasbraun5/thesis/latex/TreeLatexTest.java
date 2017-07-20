@@ -1,5 +1,6 @@
 package com.github.andreasbraun5.thesis.latex;
 
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.SS12Exercise;
 import org.junit.Test;
 
@@ -12,7 +13,8 @@ public class TreeLatexTest {
         System.out.println("");
         System.out.println("############################");
         System.out.println("CellLatexTest: Generating LaTeX code for the cells.");
-        TreeLatex tree = SS12Exercise.SS12_TREE;
+        Pyramid pyramid = SS12Exercise.SS12_GRAMMAR_PYRAMID_WRAPPER.getPyramid();
+        TreeLatex tree = TreeLatex.generateRandomTree(pyramid, pyramid.getCellK(pyramid.getWord().getWordLength()-1, 0));
         System.out.println(tree.toString());
 
     }

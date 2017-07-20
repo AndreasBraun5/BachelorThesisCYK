@@ -2,8 +2,10 @@ package com.github.andreasbraun5.thesis.latex;
 
 import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
+import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
+import com.github.andreasbraun5.thesis.util.Word;
 
 import java.util.*;
 
@@ -45,19 +47,42 @@ public class TreeLatex {
     }
 
     public static TreeLatex generateRandomTree(Pyramid pyramid, CellK root) {
-        if (root.getI()>=2){
+        Random random = new Random();
+        if (root.getI() >= 2) {
             List<Tuple<CellK, CellK>> leftAndRights = new ArrayList<>(Util.calculatePossibleCellPairs(root, pyramid));
-            if(leftAndRights.size() == 0) {
-                return new TreeLatex(root.getCellElements().toString());
-            } -ä###########
-            Random random = new Random();
+            Tuple<CellK, CellK> leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
+            // Guarantee that both cells have elements in it
+            while (leftAndRight.x.getCellElements().size() == 0 || leftAndRight.y.getCellElements().size() == 0) {
+                leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
+            }
+            System.out.println(root.getI());
+            System.out.println("left:" + leftAndRight.x.getCellElements());
+            System.out.println("right:" + leftAndRight.y.getCellElements());
+            TreeLatex left = generateRandomTree(pyramid, leftAndRight.x);
+            TreeLatex right = generateRandomTree(pyramid, leftAndRight.y);
+            // Pick random element from the cellElements
+            List<VariableK> varsInCell = root.getCellElements();
+            return new TreeLatex(varsInCell.get(random.nextInt(varsInCell.size())).toString(), left, right);
+        } else if (root.getI() == 1) {
+            // TreeLatex(String name, TreeLatex left), case for hasLeaf
+            // Pick random element from the cellElements
+            List<VariableK> varsInCell = root.getCellElements();
+            System.out.println(root.getI());
+            System.out.println("varsInCell:" + varsInCell);
+            List<Tuple<CellK, CellK>> leftAndRights = new ArrayList<>(Util.calculatePossibleCellPairs(root, pyramid));
             Tuple<CellK, CellK> leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
             TreeLatex left = generateRandomTree(pyramid, leftAndRight.x);
             TreeLatex right = generateRandomTree(pyramid, leftAndRight.y);
-
-            return new TreeLatex(root.getCellElements().toString(), left, right);
+            return new TreeLatex(varsInCell.get(random.nextInt(varsInCell.size())).toString(), left, right);
+        } else if (root.getI() == 0) {
+            List<VariableK> varsInCell = root.getCellElements();
+            System.out.println(root.getI());
+            System.out.println("varsInCell:" + varsInCell);
+            Word word = pyramid.getWord();
+            return new TreeLatex(varsInCell.get(random.nextInt(varsInCell.size())).toString(), new TreeLatex(word.getTerminals().get(root.getJ()).toString()));
+        } else {
+            throw new RuntimeException("Not allowed to.");
         }
-        return null;
     }
 
     /*

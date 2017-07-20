@@ -327,6 +327,42 @@ The triple invocation of LaTeX is to ensure that all references have been proper
 }
 \end{center}
 
+\begin{center}
+	\resizebox{\linewidth}{!}{
+		\begin{tikzpicture}[baseline]
+		\tikzset{frontier/.style={distance from root=120pt}} %height of tree times 30pt
+		\tikzset{edge from parent/.style= {
+				draw,
+				edge from parent path={(\tikzparentnode.south)	-- +(0,-8pt)-| (\tikzchildnode)}
+			}
+		}
+		\Tree
+		[.S1
+		[.A2
+		[.B1
+		[.C1 c ]
+		[.B2 b ]
+		]
+		[.A3
+		[.B3 b ]
+		[.A4 a ]
+		]
+		]
+		[.S5
+		[.C5
+		[.A5 a ]
+		[.C6 c ]
+		]
+		[.B7
+		[.C7 c ]
+		[.B8 b ]
+		]
+		]
+		]
+		\end{tikzpicture}
+	}
+\end{center}
+
 \pagebreak
 \subsection{Overview - UML}
 
@@ -344,67 +380,5 @@ Maybe some information out of the statistics tool of IntelliJ.
 \noindent Here the specific must can do's are explained with short examples.
 \subsubsection{Use Case 1}
 \subsubsection{Use Case i}
-
-
-\begin{center}
-	\resizebox{.6\linewidth}{!}{
-		\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=2cm,
-		semithick]%,initial text={}]
-		\tikzstyle{every state}=[fill=white,draw=black,text=black]
-		
-		\node     (I)            {$S1$};
-		\node				(I') [below left of=I] {};
-		\node (B) [left of=I']  {$A1$};
-		\node (B1) [below of=B] {$c$};
-		\node (C) [below right  of=I]       {$B6$};
-		\node (D) [below right of=C]  {$B7$};
-		\node (D2) [below left of=C]  {$C4$};
-		\node (E) [below right of=D]  {$B8$};
-		\node (F1) [below of=E]  {$b$};
-		\node (E1) [below of=D]  {$C7$};
-		\node (E3) [below of=D2]  {$C5$};
-		\node (E2) [below left of=D2]  {$A2$};
-		\node (F) [below  of=E1]  {$c$};
-		\node (F3) [below of=E3]  {$A5$};
-		\node (G1) [below  of=F3]  {$a$};
-		\node (F2) [below right of=E3]  {$C6$};
-		\node (G2) [below  of=F2]  {$c$};
-		\node (H1) [below of=E2]  {$A3$};
-		\node (H2) [below left of=E2]  {$B2$};
-		\node (H3) [below left of=H2]  {$b$};
-		\node (J1) [below of=H1]  {$A4$};
-		\node (K1) [below of=J1]  {$a$};
-		\node (J2) [below left of=H1]  {$B3$};
-		\node (K3) [below of=J2]  {$b$};
-		
-		\path 
-		(I) edge   node {$ $}   (B)
-		(I) edge   node {$ $}   (C)
-		(B) edge   node {$ $}   (B1)
-		(C) edge   node {$ $}   (D)
-		(D) edge   node {$ $}   (E)
-		(C) edge   node {$ $}   (D2)
-		(D2) edge   node {$ $}   (E3)
-		(D) edge   node {$ $}   (E1)
-		(D2) edge   node {$ $}   (E2)
-		(E1) edge   node {$ $}   (F)
-		(E) edge   node {$ $}   (F1)
-		(E3) edge   node {$ $}   (F3)
-		(E3) edge   node {$ $}   (F2)
-		(F2) edge   node {$ $}   (G2)
-		(F3) edge   node {$ $}   (G1)
-		(E2) edge   node {$ $}   (H2)
-		(E2) edge   node {$ $}   (H1)
-		(H2) edge   node {$ $}   (H3)
-		(H1) edge   node {$ $}   (J2)
-		(H1) edge   node {$ $}   (J1)
-		(J1) edge   node {$ $}   (K1)
-		(J2) edge   node {$ $}   (K3)
-		;
-		
-		\end{tikzpicture}
-	}
-	
-\end{center}
 
 \pagebreak

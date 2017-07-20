@@ -33,10 +33,10 @@
 \contentsline {subsection}{\numberline {3.1}Scoring Model}{24}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Short Requirements Specification}{24}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Exam Exercises}{25}{subsubsection.3.2.1}
-\contentsline {subsection}{\numberline {3.3}Overview - UML}{26}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}UML: More Detail 1}{26}{subsubsection.3.3.1}
-\contentsline {subsubsection}{\numberline {3.3.2}UML: More Detail 2}{26}{subsubsection.3.3.2}
-\contentsline {subsection}{\numberline {3.4}User Interaction}{27}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Use Case 1}{27}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Use Case i}{27}{subsubsection.3.4.2}
-\contentsline {section}{References}{28}{subsubsection.3.4.2}
+\contentsline {subsection}{\numberline {3.3}Overview - UML}{27}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}UML: More Detail 1}{27}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}UML: More Detail 2}{27}{subsubsection.3.3.2}
+\contentsline {subsection}{\numberline {3.4}User Interaction}{28}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Use Case 1}{28}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Use Case i}{28}{subsubsection.3.4.2}
+\contentsline {section}{References}{29}{subsubsection.3.4.2}
