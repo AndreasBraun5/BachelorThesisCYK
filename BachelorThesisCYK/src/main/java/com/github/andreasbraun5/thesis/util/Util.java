@@ -139,9 +139,6 @@ public abstract class Util {
         int jLeft;      // equals j
         int iRight;     // [0,i-1]
         int jRight;     // [i+j,j+1]
-        if(i < 1){
-            throw new RuntimeException("You must be at least in row 1 to be able to calculate a sub set of cell pairs.");
-        }
         {
             jLeft = j;
             iRight = 0;

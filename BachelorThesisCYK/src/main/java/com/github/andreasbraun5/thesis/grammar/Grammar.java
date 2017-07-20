@@ -35,7 +35,6 @@ public class Grammar {
         return new Grammar(variableStart);
     }
 
-
     /**
      * You must make sure beforehand that only reasonable productions are added. No duplicates can be added and no
      * already existing production.
@@ -96,15 +95,13 @@ public class Grammar {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder("Grammar{" +
-                "\nvariableStart: " + variableStart +
-                "\nProductions\n");
+        StringBuilder str = new StringBuilder("\nGrammar = " +
+                "\n\nVariableStart:(" + variableStart + ")\n\n");
         for (Map.Entry<Variable, List<Production>> entry : productionsMap.entrySet()) {
-            str.append(entry.getKey());
             str.append(entry.getValue());
             str.append("\n");
         }
-        str.append("}");
+        str.append("\n");
         return str.toString();
     }
 }

@@ -47,8 +47,6 @@ public class Word {
 
     @Override
     public String toString() {
-        return "Word{" +
-                "terminals=" + terminals +
-                '}';
+        return terminals + "\n";
     }
 }

@@ -91,8 +91,8 @@ public class ResultSample {
     @Override
     public String toString() {
         return "ResultSample{" +
-                "\ngrammar=" + grammar +
-                "\nword='" + pyramid.getWord() + '\'' +
+                grammar +
+                pyramid.getWord() + "\n" +
                 "\nPyramid=\n" + Pyramid.printPyramid(pyramid.getCellsSimple()) +
                 "\nmarkedRightCellCombinationForced=\n" + Pyramid.printPyramid(pyramidConstraintValues.getMarkedRightCellCombinationForced()) +
                 "\nmaxSumOfProductionsCount=" + grammarConstraintValues.getMaxSumOfProductionsCount() +

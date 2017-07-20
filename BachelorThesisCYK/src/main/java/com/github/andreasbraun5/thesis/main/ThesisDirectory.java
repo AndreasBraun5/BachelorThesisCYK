@@ -11,7 +11,7 @@ import java.io.PrintWriter;
  */
 public enum ThesisDirectory {
     LOGS("logs"),
-    EXERCISE("exercise"),
+    EXERCISE("Exercise"),
     EXAMPLES("examples"),
     BEST("bestOnes");
 
@@ -49,7 +49,7 @@ public enum ThesisDirectory {
     public static void initBatFiles() {
         File test = new File(ThesisDirectory.EXERCISE.path, "CreateExercise.bat");
         try (PrintWriter out = new PrintWriter(test)) {
-            out.println("cd C:\\\\Users\\\\AndreasBraun\\\\Documents\\\\BachelorThesis\\\\BachelorThesisCYK\\\\exercise\\\\\n" +
+            out.println("cd C:\\\\Users\\\\AndreasBraun\\\\Documents\\\\BachelorThesis\\\\BachelorThesisCYK\\\\Exercise\\\\\n" +
                     "pdflatex.exe exerciseLatex.tex");
         } catch (FileNotFoundException e) {
             e.printStackTrace();

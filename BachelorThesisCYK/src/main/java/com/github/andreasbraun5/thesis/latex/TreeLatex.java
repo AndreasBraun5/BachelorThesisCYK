@@ -49,7 +49,7 @@ public class TreeLatex {
         return this.left == null || this.right == null;
     }
 
-    public static TreeLatex generateRandomTree(Pyramid pyramid, CellK root) {
+    public static TreeLatex generateRandomTree(Pyramid pyramid, CellK root) { // TODO here
         Random random = new Random();
         if (root.getI() >= 2) {
             List<Tuple<CellK, CellK>> leftAndRights = new ArrayList<>(Util.calculatePossibleCellPairs(root, pyramid));

@@ -12,28 +12,28 @@ public class VariableCompound implements RightHandSideElement {
     private final Variable left;
     private final Variable right;
 
-	public VariableCompound(Variable left, Variable right) {
-		this.left = left;
-		this.right = right;
-	}
-
-	public static VariableCompound of(Variable left, Variable right) {
-	    return new VariableCompound(left, right);
+    public VariableCompound(Variable left, Variable right) {
+        this.left = left;
+        this.right = right;
     }
 
-	public List<Variable> getVariables() {
-		return Arrays.asList(this.left, this.right);
-	}
+    public static VariableCompound of(Variable left, Variable right) {
+        return new VariableCompound(left, right);
+    }
 
-	@Override
-	public String getTerminalName() {
-		return left.toString() + right.toString();
-	}
+    public List<Variable> getVariables() {
+        return Arrays.asList(this.left, this.right);
+    }
 
-	@Override
-	public String toString() {
-		return left.toString() + right.toString();
-	}
+    @Override
+    public String getTerminalName() {
+        return left.toString() + right.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "(" + left.toString() + "," + right.toString() + ")";
+    }
 
     @Override
     public boolean equals(Object o) {
