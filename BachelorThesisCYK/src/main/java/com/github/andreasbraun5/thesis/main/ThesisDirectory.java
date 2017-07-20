@@ -1,13 +1,17 @@
 package com.github.andreasbraun5.thesis.main;
 
+import com.github.andreasbraun5.thesis.resultcalculator.Result;
+
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 /**
  * Created by AndreasBraun on 04.06.2017.
  */
 public enum ThesisDirectory {
     LOGS("logs"),
-    TEX("tex"),
+    EXERCISE("exercise"),
     EXAMPLES("examples"),
     BEST("bestOnes");
 
@@ -39,6 +43,16 @@ public enum ThesisDirectory {
     public static void initPaths() {
         for (ThesisDirectory dir : ThesisDirectory.values()) {
             dir.initPath();
+        }
+    }
+
+    public static void initBatFiles() {
+        File test = new File(ThesisDirectory.EXERCISE.path, "CreateExercise.bat");
+        try (PrintWriter out = new PrintWriter(test)) {
+            out.println("cd C:\\\\Users\\\\AndreasBraun\\\\Documents\\\\BachelorThesis\\\\BachelorThesisCYK\\\\exercise\\\\\n" +
+                    "pdflatex.exe exerciseLatex.tex");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

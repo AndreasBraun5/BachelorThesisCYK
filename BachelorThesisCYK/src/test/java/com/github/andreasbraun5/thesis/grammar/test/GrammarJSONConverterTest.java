@@ -1,7 +1,7 @@
 package com.github.andreasbraun5.thesis.grammar.test;
 
 import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.GrammarJSONConverter;
+import com.github.andreasbraun5.thesis.json.GrammarJSONConverter;
 import com.github.andreasbraun5.thesis.util.SS12Exercise;
 import org.junit.Test;
 

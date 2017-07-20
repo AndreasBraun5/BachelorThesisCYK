@@ -1,5 +1,6 @@
-package com.github.andreasbraun5.thesis.grammar;
+package com.github.andreasbraun5.thesis.json;
 
+import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

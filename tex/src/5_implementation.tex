@@ -294,73 +294,37 @@ The triple invocation of LaTeX is to ensure that all references have been proper
 \begin{center}
 	\resizebox{0.4\linewidth}{!}{
 		\begin{tikzpicture}[baseline]
-\tikzset{frontier/.style={distance from root=180pt}} %height of tree times 30pt
+		\tikzset{frontier/.style={distance from root=180pt}} %height of tree times 30pt
 \tikzset{edge from parent/.style= {
 		draw,
 		edge from parent path={(\tikzparentnode.south)	-- +(0,-8pt)-| (\tikzchildnode)}
 	}
 }
-\Tree 
-[.S1 
-	[.A1 c ] 
-	[.B6
-		[.C4 
-			[.A2
-				[.B2 b ]
-				[.A3
-					[.B3 b ]
-					[.A4 a ]
-				]
-			]
-			[.C5 
-				[.A5 a ]
-				[.C6 c ]
-			]
-		]
-		[.B7 
-			[.C7 c ]
-			[.B8 b ]
-		]
-	] 
+\Tree
+[.S4
+[.C1
+[.C1 c ]
+[.C4
+[.A2
+[.B2 b ]
+[.A3
+[.B3 b ]
+[.A4 a ]
+]
+]
+[.C5
+[.A5 a ]
+[.C6 c ]
+]
+]
+]
+[.S7
+[.A7 c ]
+[.B8 b ]
+]
 ]
 		\end{tikzpicture}
 }
-\end{center}
-
-\begin{center}
-	\resizebox{\linewidth}{!}{
-		\begin{tikzpicture}[baseline]
-		\tikzset{frontier/.style={distance from root=120pt}} %height of tree times 30pt
-		\tikzset{edge from parent/.style= {
-				draw,
-				edge from parent path={(\tikzparentnode.south)	-- +(0,-8pt)-| (\tikzchildnode)}
-			}
-		}
-		\Tree
-		[.S1
-		[.A2
-		[.B1
-		[.C1 c ]
-		[.B2 b ]
-		]
-		[.A3
-		[.B3 b ]
-		[.A4 a ]
-		]
-		]
-		[.S5
-		[.C5
-		[.A5 a ]
-		[.C6 c ]
-		]
-		[.B7
-		[.C7 c ]
-		[.B8 b ]
-		]
-		]
-		]
-		\end{tikzpicture}
-	}
 \end{center}
 
 \pagebreak

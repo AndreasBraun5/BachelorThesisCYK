@@ -14,7 +14,7 @@ public class WriteToTexFile {
      * Storing the result output in a text fileAsTxt.
      */
     public static void writeToTexFile(String filename, String data) {
-        try (PrintWriter out = new PrintWriter(ThesisDirectory.TEX.fileAsTex(filename))) {
+        try (PrintWriter out = new PrintWriter(ThesisDirectory.EXERCISE.fileAsTex(filename))) {
             out.print(data);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -182,7 +182,7 @@ public class WriteToTexFile {
                 "\n" +
                 "\\end{document}");
 
-        try (PrintWriter out = new PrintWriter(ThesisDirectory.TEX.fileAsTex("Main"))) {
+        try (PrintWriter out = new PrintWriter(ThesisDirectory.EXERCISE.fileAsTex("Main"))) {
             out.println(str.toString());
             out.close();
         } catch (FileNotFoundException e) {

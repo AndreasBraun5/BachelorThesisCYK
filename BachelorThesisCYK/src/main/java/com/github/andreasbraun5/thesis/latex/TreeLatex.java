@@ -69,7 +69,7 @@ public class TreeLatex {
                         variableK.getLhse() instanceof VariableStart).collect(Collectors.toList()).get(0);
             }
             return new TreeLatex(varK.toString(), left, right);
-        } else if (root.getI() == 1) {
+        } else if (root.getI() == 1) { // Case for sub tree with hasLeaf == true
             List<VariableK> varsInCell = root.getCellElements();
             List<Tuple<CellK, CellK>> leftAndRights = new ArrayList<>(Util.calculatePossibleCellPairs(root, pyramid));
             Tuple<CellK, CellK> leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
@@ -77,7 +77,7 @@ public class TreeLatex {
             TreeLatex right = generateRandomTree(pyramid, leftAndRight.y);
             // Pick random element from the cell
             return new TreeLatex(varsInCell.get(random.nextInt(varsInCell.size())).toString(), left, right);
-        } else if (root.getI() == 0) {
+        } else if (root.getI() == 0) { // Case for Terminals
             List<VariableK> varsInCell = root.getCellElements();
             Word word = pyramid.getWord();
             // Add the corresponding terminal of the word
