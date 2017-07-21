@@ -7,5 +7,5 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
  * Created by AndreasBraun on 21.06.2017.
  */
 public interface CellElement {
-    LeftHandSideElement getLhse();
+    Variable getLhse();
 }

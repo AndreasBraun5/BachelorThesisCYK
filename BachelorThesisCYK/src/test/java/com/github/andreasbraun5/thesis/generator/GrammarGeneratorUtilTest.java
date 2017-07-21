@@ -28,8 +28,8 @@ public class GrammarGeneratorUtilTest {
         variableCompounds.add(new VariableCompound(new Variable("N"), new Variable("C")));
         variableCompounds.add(new VariableCompound(new Variable("N"), new Variable("N")));
         variableCompounds.add(new VariableCompound(new Variable("A"), new Variable("A")));
-        List<Production> prodList = grammar.getProductionsAsList();
-        List<Production> usefulProductions = GrammarGeneratorUtil.contributingProductionsPerCellForVarComp(
+        Set<Production> prodList = grammar.getProductionsAsSet();
+        Set<Production> usefulProductions = GrammarGeneratorUtil.contributingProductionsPerCellForVarComp(
                 variableCompounds,  prodList);
         System.out.println("Useful productions are: S-->NB, S'-->NB and C-->AA");
         Assert.assertTrue(usefulProductions.size() == 3);
@@ -51,8 +51,8 @@ public class GrammarGeneratorUtilTest {
         System.out.println("GrammarGeneratorUtilTest: contributingProductionsPerCellForTerminals");
         Grammar grammar = new Grammar(TiScriptExercise.SCRIPT_GRAMMAR);
         Word word = TiScriptExercise.SCRIPT_EXAMPLE_WORD;
-        List<Production> usefulProductions = GrammarGeneratorUtil.contributingProductionsPerCellForTerminals(
-                word, grammar.getProductionsAsList());
+        Set<Production> usefulProductions = GrammarGeneratorUtil.contributingProductionsPerCellForTerminals(
+                word, grammar.getProductionsAsSet());
         grammar.addProductions(new Production(new Variable("E"), new Terminal("3")));
         System.out.println(grammar);
         System.out.println("Not useful production is: E --> 3");

@@ -57,7 +57,7 @@ public class GrammarGeneratorUtil {
         Grammar grammar = grammarPyramidWrapper.getGrammar();
         Pyramid pyramid = grammarPyramidWrapper.getPyramid();
         CellK[][] cells = pyramid.getCellsK();
-        Map<Variable, List<Production>> productions = new HashMap<>(grammar.getProductionsMap());
+        Map<Variable, Set<Production>> productions = new HashMap<>(grammar.getProductionsMap());
         // Calculate usefulProductions and replace the productions contained in grammar at the end.
         Set<Production> usefulProductions = new HashSet<>();
         {   // check for epsilon rule, that equals the empty word.
@@ -66,7 +66,7 @@ public class GrammarGeneratorUtil {
                 prodsList.addAll(productions.get(var));
             }
             for (Production prod : prodsList) {
-                if (prod.getRightHandSideElement().getClass() == VariableEpsilon.class) {
+                if (prod.getRightHandSideElement().getClass() == Epsilon.class) {
                     usefulProductions.add(prod);
                 }
             }
@@ -113,9 +113,9 @@ public class GrammarGeneratorUtil {
      * one of its elements is useful for or not. Usefulness of an production iff the rhse of the production is element
      * of the set of variablesCompounds.
      */
-    static List<Production> contributingProductionsPerCellForVarComp(
-            Set<VariableCompound> variableCompounds, List<Production> prods) {
-        List<Production> useful = new ArrayList<>();
+    static Set<Production> contributingProductionsPerCellForVarComp(
+            Set<VariableCompound> variableCompounds, Set<Production> prods) {
+        Set<Production> useful = new HashSet<>();
         for (Production prod : prods) {
             if (variableCompounds.contains(prod.getRightHandSideElement())) {
                 useful.add(prod);
@@ -127,10 +127,10 @@ public class GrammarGeneratorUtil {
     /**
      * This is used to check row = 0 for useful productions.
      */
-    static List<Production> contributingProductionsPerCellForTerminals(
-            Word word, List<Production> prods) {
+    static Set<Production> contributingProductionsPerCellForTerminals(
+            Word word, Set<Production> prods) {
         Set<Terminal> uniqueTerminals = new HashSet<>(word.getTerminals());
-        List<Production> useful = new ArrayList<>();
+        Set<Production> useful = new HashSet<>();
         for (Production prod : prods) {
             if (uniqueTerminals.contains(prod.getRightHandSideElement())) {
                 useful.add(prod);

@@ -1,12 +1,14 @@
 package com.github.andreasbraun5.thesis.grammar;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Created by Andreas Braun on 20.12.2016.
  * https://github.com/AndreasBraun5/
  * The equality of a production is determined via the equality of the names of the leftHandSideElement and the name of
  * the rightHandSideElement.
  */
-
+@EqualsAndHashCode
 public class Production {
 
 	private Variable leftHandSideElement;
@@ -40,35 +42,6 @@ public class Production {
 		return "{(" +
 				leftHandSideElement + ")-->" + "(" + rightHandSideElement + ")" +
 				"}";
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if ( this == o ) {
-			return true;
-		}
-		if ( o == null || getClass() != o.getClass() ) {
-			return false;
-		}
-
-		Production that = (Production) o;
-
-		if ( leftHandSideElement != null ?
-				!leftHandSideElement.equals( that.leftHandSideElement ) :
-				that.leftHandSideElement != null ) {
-			return false;
-		}
-		return rightHandSideElement != null ?
-				rightHandSideElement.equals( that.rightHandSideElement ) :
-				that.rightHandSideElement == null;
-
-	}
-
-	@Override
-	public int hashCode() {
-		int result = leftHandSideElement != null ? leftHandSideElement.hashCode() : 0;
-		result = 31 * result + ( rightHandSideElement != null ? rightHandSideElement.hashCode() : 0 );
-		return result;
 	}
 
 	public Variable getLeftHandSideElement() {

@@ -59,9 +59,9 @@ public class CYK {
             RightHandSideElement tempTerminal = word.get(i - 1);
             // Get all productions that have the same leftHandSide variable. This is done for all unique variables.
             // So all production in general are taken into account.
-            for (Map.Entry<Variable, List<Production>> entry : grammar.getProductionsMap().entrySet()) {
+            for (Map.Entry<Variable, Set<Production>> entry : grammar.getProductionsMap().entrySet()) {
                 VariableK var = new VariableK(entry.getKey(), i);
-                List<Production> prods = entry.getValue();
+                Set<Production> prods = entry.getValue();
                 // Check if there is one rightHandSideElement that equals the observed terminal.
                 for (Production prod : prods) {
                     if (prod.isElementAtRightHandSide(tempTerminal)) {
@@ -83,7 +83,7 @@ public class CYK {
         Word word = grammarPyramidWrapper.getPyramid().getWord();
         List<Terminal> wordAsTerminalList = word.getTerminals();
         int wordLength = wordAsTerminalList.size();
-        Map<Variable, List<Production>> productions = grammar.getProductionsMap();
+        Map<Variable, Set<Production>> productions = grammar.getProductionsMap();
         Set<VariableK>[][] setV = Util.getInitialisedHashSetArray(wordLength, VariableK.class);
         // Check whether the terminal is on the right side of the production, then add its left variable to v_ii
         setV = stepIIAdvanced(setV, wordAsTerminalList, grammar);
@@ -114,7 +114,7 @@ public class CYK {
                     // Looking at all productions of the grammar, it is checked if there is one rightHandSideElement that
                     // equals any of the concatenated variables tempSetYZ. If yes, the LeftHandSideElement or more
                     // specific the variable of the production is added to the tempSetX. All according to the "X-->YZ" rule.
-                    for (List<Production> tempProductions : productions.values()) {
+                    for (Set<Production> tempProductions : productions.values()) {
                         for (Production tempProduction : tempProductions) {
                             for (VariableCompound yz : tempSetYZ) {
                                 if (tempProduction.isElementAtRightHandSide(yz)) {

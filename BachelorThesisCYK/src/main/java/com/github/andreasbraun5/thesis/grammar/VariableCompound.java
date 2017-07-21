@@ -1,5 +1,7 @@
 package com.github.andreasbraun5.thesis.grammar;
 
+import lombok.EqualsAndHashCode;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import java.util.List;
  * Created by Andreas Braun on 08.01.2017.
  * https://github.com/AndreasBraun5/
  */
+@EqualsAndHashCode
 public class VariableCompound implements RightHandSideElement {
 
     private final Variable left;
@@ -32,25 +35,7 @@ public class VariableCompound implements RightHandSideElement {
 
     @Override //TODO OMG...
     public String toString() {
-        return left.toString() + "," + right.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        VariableCompound that = (VariableCompound) o;
-
-        if (left != null ? !left.equals(that.left) : that.left != null) return false;
-        return right != null ? right.equals(that.right) : that.right == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = left != null ? left.hashCode() : 0;
-        result = 31 * result + (right != null ? right.hashCode() : 0);
-        return result;
+        return left.toString() + " " + right.toString();
     }
 
 }

@@ -13,7 +13,7 @@ public class ExercisesInputReaderTest {
         System.out.println("");
         System.out.println("############################");
         System.out.println("TexFileTestExercise: TexFileTestExercise");
-        Exercise exercise = ExercisesInputReader.read();
+        //Exercise exercise = ExercisesInputReader.read();
 
     }
 

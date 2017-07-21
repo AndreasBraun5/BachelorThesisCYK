@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.grammar;
 
 import com.github.andreasbraun5.thesis.exception.GrammarRuntimeException;
+import lombok.EqualsAndHashCode;
 
 import java.util.*;
 
@@ -12,9 +13,10 @@ import java.util.*;
  * it contains all summed up productions of one variable. Key=A, Value: A-->a and A-->B and A--> AB,
  * represents, analogue to the script of TI1, one "line" of a productionsMap like "A --> a | A | AB".
  */
+@EqualsAndHashCode
 public class Grammar {
     // As stated above. Key=A, Value: A-->a and A-->B and A--> AB
-    private final Map<Variable, List<Production>> productionsMap;
+    private final Map<Variable, Set<Production>> productionsMap;
     // Implemented like this, because there can be only one variableStart.
     private final VariableStart variableStart;
 
@@ -26,7 +28,7 @@ public class Grammar {
         this(grammar.variableStart, new HashMap<>(grammar.productionsMap));
     }
 
-    public Grammar(VariableStart variableStart, Map<Variable, List<Production>> productionsMap) {
+    public Grammar(VariableStart variableStart, Map<Variable, Set<Production>> productionsMap) {
         this.variableStart = variableStart;
         this.productionsMap = productionsMap;
     }
@@ -65,9 +67,8 @@ public class Grammar {
             }
             // Add the new production to prodsList.
             prodsSet.add(prod);
-            List<Production> prodList = new ArrayList<>(prodsSet);
             // Exchange/replace the updated productionList in the map.
-            productionsMap.put(var, prodList);
+            productionsMap.put(var, prodsSet);
         }
         return this;
     }
@@ -76,7 +77,7 @@ public class Grammar {
         this.productionsMap.clear();
     }
 
-    public Map<Variable, List<Production>> getProductionsMap() {
+    public Map<Variable, Set<Production>> getProductionsMap() {
         return productionsMap;
     }
 
@@ -86,22 +87,29 @@ public class Grammar {
 
     public List<Production> getProductionsAsList() {
         List<Production> productionsList = new ArrayList<>();
-        for (Map.Entry<Variable, List<Production>> pair : productionsMap.entrySet()) {
-            List<Production> temp = pair.getValue();
+        for (Map.Entry<Variable, Set<Production>> pair : productionsMap.entrySet()) {
+            Set<Production> temp = pair.getValue();
             productionsList.addAll(temp);
         }
         return productionsList;
     }
 
+    public Set<Production> getProductionsAsSet() {
+       return new HashSet<>(getProductionsAsList());
+    }
+
+
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder("\nGrammar = " +
                 "\n\nVariableStart:(" + variableStart + ")\n\n");
-        for (Map.Entry<Variable, List<Production>> entry : productionsMap.entrySet()) {
+        for (Map.Entry<Variable, Set<Production>> entry : productionsMap.entrySet()) {
             str.append(entry.getValue());
             str.append("\n");
         }
         str.append("\n");
         return str.toString();
     }
+
+
 }

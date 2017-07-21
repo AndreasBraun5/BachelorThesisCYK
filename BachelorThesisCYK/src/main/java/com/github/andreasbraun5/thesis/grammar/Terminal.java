@@ -1,9 +1,12 @@
 package com.github.andreasbraun5.thesis.grammar;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Created by Andreas Braun on 20.12.2016.
  * https://github.com/AndreasBraun5/
  */
+@EqualsAndHashCode
 public class Terminal implements RightHandSideElement, TreeElement {
 
     private final String name;
@@ -19,25 +22,6 @@ public class Terminal implements RightHandSideElement, TreeElement {
     @Override
     public String toString() {
         return name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Terminal terminal = (Terminal) o;
-
-        return name.equals(terminal.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return name.hashCode();
     }
 
     @Override

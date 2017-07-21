@@ -11,7 +11,7 @@ import java.io.PrintWriter;
  */
 public enum ThesisDirectory {
     LOGS("logs"),
-    EXERCISE("Exercise"),
+    EXERCISE("exercise"),
     EXAMPLES("examples"),
     BEST("bestOnes");
 

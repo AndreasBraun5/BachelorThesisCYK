@@ -6,13 +6,14 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by AndreasBraun on 18.07.2017.
  */
 public class GrammarLatex {
 
-    private final Map<Variable, List<Production>> productionsMap;
+    private final Map<Variable, Set<Production>> productionsMap;
 
     public GrammarLatex(Grammar grammar) {
         this.productionsMap = grammar.getProductionsMap();

@@ -31,7 +31,18 @@ public class WriteToTexFileTest {
         System.out.println("TexFileTestExercise: TexFileTestExercise");
         ThesisDirectory.initPaths();
         ThesisDirectory.initBatFiles();
-        Exercise exercise = ExercisesInputReader.read();
+        //Exercise exercise = ExercisesInputReader.read2();
+
+        //ExerciseLatex exerciseLatex = new ExerciseLatex(exercise.getGrammar(), exercise.getPyramid());
+        //System.out.println(exerciseLatex.toString());
+        //WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
+        //String execString = "cmd /c start " + new File(ThesisDirectory.EXERCISE.path).getAbsolutePath() +
+        //        "\\CreateExercise.bat";
+        //Runtime runtime = Runtime.getRuntime();
+        //runtime.exec(execString);
+    }
+
+    /*
 
         // Same Variable Start
         System.out.println(exercise.getGrammar().getVariableStart());
@@ -68,14 +79,6 @@ public class WriteToTexFileTest {
         grammarPyramidWrapper.setGrammar(exercise.getGrammar());
         grammarPyramidWrapper.setPyramid(exercise.getPyramid());
         System.out.println(CYK.calculateSetVAdvanced(grammarPyramidWrapper).getPyramid());
-
-        ExerciseLatex exerciseLatex = new ExerciseLatex(exercise.getGrammar(), exercise.getPyramid());
-        System.out.println(exerciseLatex.toString());
-        WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
-        String execString = "cmd /c start " + new File(ThesisDirectory.EXERCISE.path).getAbsolutePath() +
-                "\\CreateExercise.bat";
-        Runtime runtime = Runtime.getRuntime();
-        runtime.exec(execString);
-    }
+     */
 
 }

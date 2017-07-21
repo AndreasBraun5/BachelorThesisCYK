@@ -25,7 +25,7 @@ public final class TiScriptExercise {
             Grammar grammar = new Grammar(new VariableStart("S"));
             Production productions[] = new Production[15];
             productions[0] = new Production(new VariableStart("S"), new VariableCompound(new Variable("N"), new Variable("B")));
-            productions[1] = new Production(new VariableStart("S"), new VariableEpsilon());
+            productions[1] = new Production(new VariableStart("S"), new Epsilon());
             productions[2] = new Production(new VariableStart("S"), new VariableCompound(new Variable("E"), new Variable("A")));
             productions[3] = new Production(new Variable("S'"), new VariableCompound(new Variable("N"), new Variable("B")));
             productions[4] = new Production(new Variable("S'"), new VariableCompound(new Variable("E"), new Variable("A")));
