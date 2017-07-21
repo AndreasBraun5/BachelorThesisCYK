@@ -90,7 +90,7 @@ public class ResultSample {
 
     @Override
     public String toString() {
-        return "ResultSample{" +
+        return "\nResultSample{" +
                 grammar +
                 pyramid.getWord() + "\n" +
                 "\nPyramid=\n" + Pyramid.printPyramid(pyramid.getCellsSimple()) +

@@ -48,8 +48,9 @@ public enum ThesisDirectory {
 
     public static void initBatFiles() {
         File test = new File(ThesisDirectory.EXERCISE.path, "CreateExercise.bat");
+        String path = new File(ThesisDirectory.EXERCISE.path).getAbsolutePath();
         try (PrintWriter out = new PrintWriter(test)) {
-            out.println("cd C:\\\\Users\\\\AndreasBraun\\\\Documents\\\\BachelorThesis\\\\BachelorThesisCYK\\\\Exercise\\\\\n" +
+            out.println("cd " + path + "\n" +
                     "pdflatex.exe exerciseLatex.tex");
         } catch (FileNotFoundException e) {
             e.printStackTrace();

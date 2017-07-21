@@ -18,7 +18,7 @@ public class Terminal implements RightHandSideElement, TreeElement {
 
     @Override
     public String toString() {
-        return "(" + name + ")";
+        return name;
     }
 
     @Override

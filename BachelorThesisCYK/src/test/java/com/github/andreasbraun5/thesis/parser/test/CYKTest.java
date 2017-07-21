@@ -69,6 +69,10 @@ public class CYKTest {
 
         System.out.println(grammarPyramidWrapperCalculated.getPyramid());
         System.out.println(grammarPyramidWrapperSolution.getPyramid());
+
+        System.out.print(grammar);
+        System.out.print(grammarPyramidWrapper.getPyramid().getWord());
+
         Assert.assertTrue(checkPyramidCalculated(grammarPyramidWrapperCalculated,
                 grammarPyramidWrapperSolution));
         System.out.println("\nSetV from script is the same as the calculated SetV.");
@@ -90,9 +94,12 @@ public class CYKTest {
         GrammarPyramidWrapper grammarPyramidWrapperSolution = GrammarPyramidWrapper.builder().grammar(grammar).build();
         grammarPyramidWrapperSolution.setPyramid(setVarKMatrix.getAsPyramid());
 
-
         System.out.println(grammarPyramidWrapperCalculated.getPyramid());
         System.out.println(grammarPyramidWrapperSolution.getPyramid());
+
+        System.out.print(grammar);
+        System.out.print(grammarPyramidWrapper.getPyramid().getWord());
+
         Assert.assertTrue(checkPyramidCalculated(grammarPyramidWrapperCalculated,
                 grammarPyramidWrapperSolution));
         System.out.println("\nSetV from script is the same as the calculated SetV.");
@@ -116,6 +123,10 @@ public class CYKTest {
 
         System.out.println(grammarPyramidWrapperCalculated.getPyramid());
         System.out.println(grammarPyramidWrapperSolution.getPyramid());
+
+        System.out.print(grammar);
+        System.out.print(grammarPyramidWrapper.getPyramid().getWord());
+
         Assert.assertTrue(checkPyramidCalculated(grammarPyramidWrapperCalculated,
                 grammarPyramidWrapperSolution));
         System.out.println("\nSetV from script is the same as the calculated SetV.");

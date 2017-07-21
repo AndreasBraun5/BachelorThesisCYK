@@ -1,11 +1,13 @@
 package com.github.andreasbraun5.thesis.exercise;
 
 import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.main.ThesisDirectory;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.Word;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,8 +26,9 @@ public class ExercisesInputReader {
     public static Exercise read() {
 
         List<String> lines = new ArrayList<>();
+        // TODO make sure it exists
+        String fileName = new File(ThesisDirectory.EXERCISE.path).getAbsolutePath() + "\\exerciseInput.txt";
 
-        String fileName = "C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\BachelorThesisCYK\\exercise\\exerciseInput.txt";
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
             stream.forEach(lines::add);
 
@@ -75,9 +78,13 @@ public class ExercisesInputReader {
                 lines.remove(0);
             }
         }
-        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder()
-                .grammar(grammar)
-                .pyramid(new Pyramid(word)).build();
+        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder().build();
+        grammarPyramidWrapper.setGrammar(grammar);
+        grammarPyramidWrapper.setPyramid(new Pyramid(word));
+
+        System.out.println(CYK.calculateSetVAdvanced(grammarPyramidWrapper).getPyramid());
+
+
         Pyramid pyramid = CYK.calculateSetVAdvanced(grammarPyramidWrapper).getPyramid();
         return Exercise.builder().grammar(grammar).word(word).pyramid(pyramid).build();
     }
@@ -98,7 +105,7 @@ public class ExercisesInputReader {
             Map<String, String> ret = findAndDeleteSubstringFromLine(prod, "(", ")");
             Variable var;
             String lhseStr = ret.get("phrase");
-            if(lhseStr.equals(variableStart.toString())){
+            if (lhseStr.equals(variableStart.toString())) {
                 var = variableStart;
             } else {
                 var = Variable.of(ret.get("phrase"));
@@ -109,8 +116,10 @@ public class ExercisesInputReader {
                 Map<String, String> ret2 = findAndDeleteSubstringFromLine(prod, "(", ")");
                 // -->(C,B)
                 String[] varComps = ret2.get("phrase").split(",");
-                String var1 = varComps[0].substring(varComps[0].length()-1);
-                String var2 = varComps[1].substring(0,1);
+                //String var1 = varComps[0].substring(varComps[0].length() - 1);
+                //String var2 = varComps[1].substring(0, 1);
+                String var1 = varComps[0];
+                String var2 = varComps[1];
                 return Production.of(var, VariableCompound.of(Variable.of(var1), Variable.of(var2)));
             } else {
                 Map<String, String> ret3 = findAndDeleteSubstringFromLine(prod, "(", ")");

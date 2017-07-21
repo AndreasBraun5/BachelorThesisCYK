@@ -30,9 +30,9 @@ public class VariableCompound implements RightHandSideElement {
         return left.toString() + right.toString();
     }
 
-    @Override
+    @Override //TODO OMG...
     public String toString() {
-        return "(" + left.toString() + "," + right.toString() + ")";
+        return left.toString() + "," + right.toString();
     }
 
     @Override

@@ -47,6 +47,10 @@ public class Word {
 
     @Override
     public String toString() {
-        return terminals + "\n";
+        StringBuilder str = new StringBuilder();
+        str.append("[");
+        terminals.forEach(terminal -> str.append("(").append(terminal).append("),"));
+        str.deleteCharAt(str.length() - 1);
+        return str.append("]").toString();
     }
 }
