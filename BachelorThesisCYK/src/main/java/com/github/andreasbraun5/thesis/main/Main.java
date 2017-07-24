@@ -3,10 +3,7 @@ package com.github.andreasbraun5.thesis.main;
 import com.github.andreasbraun5.thesis.antlr.ExerciseCompiler;
 import com.github.andreasbraun5.thesis.antlr.ExerciseStringConverter;
 import com.github.andreasbraun5.thesis.exercise.Exercise;
-import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
-import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollVar1;
-import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollVar2;
-import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
+import com.github.andreasbraun5.thesis.generator.*;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -66,15 +63,15 @@ public class Main {
              * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
              */
             // It is recommended to use a high countDifferentWords. Word independent results are achieved.
-            int countGeneratedGrammarsPerWord = 10;
-            int countDifferentWords = 10;
+            int countGeneratedGrammarsPerWord = 100;
+            int countDifferentWords = 100;
 
             ResultCalculator resultCalculator = ResultCalculator.builder().
                     countDifferentWords(countDifferentWords).
                     countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
             GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
 
-
+            /*
             GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar1 = new GrammarGeneratorSettings(
                     grammarProperties, "GrammarGeneratorDiceRollVar1");
             Result resultGrammarGeneratorDiceRollVar1 = resultCalculator.buildResultWithGenerator(
@@ -98,7 +95,14 @@ public class Main {
                     WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollOnly.name)))
             );
             Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollOnly);
-
+            */
+            GrammarGeneratorSettings settingsGrammarGeneratorSplitThenFill = new GrammarGeneratorSettings(
+                    grammarProperties, "GrammarGeneratorSplitThenFill");
+            Result resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
+                    new GrammarGeneratorSplitThenFill(settingsGrammarGeneratorSplitThenFill),
+                    WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitThenFill.name)))
+            );
+            Util.writeResultToTxtFile(resultGrammarGeneratorSplitThenFill);
 
             String exerciseStr = "start:S;\n" +
                     "rules:{\n" +
@@ -142,22 +146,20 @@ public class Main {
     }
 
     public static void runCmd(String cmd) throws IOException, ExecutionException, InterruptedException {
-        LOGGER.info( "running cmd: " + cmd );
+        LOGGER.info("running cmd: " + cmd);
 
-        final Process p = Runtime.getRuntime().exec( cmd );
-        executorService.submit( () -> {
-            BufferedReader input = new BufferedReader( new InputStreamReader( p.getInputStream() ) );
-            String line = null;
-
+        final Process p = Runtime.getRuntime().exec(cmd);
+        executorService.submit(() -> {
+            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line;
             try {
-                while ( (line = input.readLine()) != null ) {
-                    LOGGER.info( line );
+                while ((line = input.readLine()) != null) {
+                    LOGGER.info(line);
                 }
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-        } ).get();
+        }).get();
     }
 
     public static GrammarProperties generateGrammarPropertiesForTesting() {

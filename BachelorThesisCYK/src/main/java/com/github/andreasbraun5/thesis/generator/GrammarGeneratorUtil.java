@@ -52,7 +52,7 @@ public class GrammarGeneratorUtil {
      * A production is contributing if it is possible to fill at least one cell of the pyramid.
      * Additionally the epsilon rule will be kept.
      */
-    static GrammarPyramidWrapper keepContributingProductions(
+    static GrammarPyramidWrapper deleteUnnecessaryProductions(
             GrammarPyramidWrapper grammarPyramidWrapper) {
         Grammar grammar = grammarPyramidWrapper.getGrammar();
         Pyramid pyramid = grammarPyramidWrapper.getPyramid();

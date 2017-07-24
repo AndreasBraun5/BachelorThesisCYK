@@ -20,6 +20,9 @@ import java.util.stream.Collectors;
  * https://github.com/AndreasBraun5/
  */
 public abstract class Util {
+
+    private static final Random random = new Random();
+
     /**
      * Removing duplicates from a collection.
      */
@@ -154,5 +157,15 @@ public abstract class Util {
         }
         return cellTuples;
     }
+
+    public static <T> Set<T> uniformRandomSubset(Set<T> set) {
+        int subSetRandomSize = random.nextInt(set.size() + 1);
+        List<T> tempList = new ArrayList<>(set);
+        while (set.size() > subSetRandomSize) {
+            tempList.remove(random.nextInt(subSetRandomSize));
+        }
+        return new HashSet<>(tempList);
+    }
+
 }
 

@@ -53,7 +53,7 @@ rowListWeighted = add i times XY to rowListWeighted.
 		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\
 		$P = P \cup Distribute(V^2,\ V)$;  \circled{B}\\
 		$Pyramid = CYK(G,\ w)$\;	
-		$P = KeepContributing(P)$\; \label{contributing}
+		$P = DeleteUnneccessaryRules(P, w, Pyramid)$\; \label{contributing}	
 		\Return $P$\;
 		\footnotetext{ 
 			Line \ref{contributing}: ?Removes all production that don't contribute, but unreachable productions still possible.? $Contributing$ production iff $useful$ i.e. it appears in some derivation of some terminal string from the start symbol AND $producing$ i.e. it is needed for this parsing table.
@@ -103,7 +103,7 @@ This algorithm uses the Bottom-Up approach where the parsing table is filled sta
 				$CellSet = CalculateSubsetForCell(Pyramid,\ i,\ j)$\;
 				$P = P \cup Distribute(CellSet,\ V)$;  \circled{B}\\
 				$Pyramid = CYK(G,\ w)$\;
-				$P = KeepContributing(P)$\; \label{contributing}	
+				$P = DeleteUnneccessaryRules(P, w, Pyramid)$\; \label{contributing}	
 				\If{$stopping\ criteria~met$~\circled{C}}{
 					\Return $P$\;
 				}
@@ -166,7 +166,7 @@ As seen in algorithm \ref{BottomUpDiceRollVar1} a small number of productions is
 				$choose\ one~xy\ out\ of\ (XY,\ i) \in RowSet~uniform\ randomly\ with$ $probability~depending~on~i $;\label{chooseVc} \circled{D}  \\
 				$P = P \cup Distribute(xy,\ V) $; \circled{B}  \\
 				$Pyramid = CYK(G,\ w)$\;
-				$P = KeepContributing(P)$\; \label{contributing}	
+				$P = DeleteUnneccessaryRules(P, w, Pyramid)$\; \label{contributing}	
 				\If{$stopping\ criteria~met$~\circled{C}}{
 					\Return $P$\;
 				}	
@@ -212,15 +212,13 @@ As seen in algorithm \ref{BottomUpDiceRollVar1} a small number of productions is
 		\KwOut{Set of productions $P$}
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		$P = Distribute(\Sigma,\ V)$; \circled{A} \label{stepii}  \\		
-		$Sol = \emptyset$;~~\tcp{$Sol \subseteq \{(P_{Sol},~Cell_{i,j})~|~P_{Sol} \subseteq P \wedge Cell_{i,j} \in Pyramid\}$} \label{cell}
+		
+		$Sol = (P_{Sol},~Cell_{i,j})$;~~\tcp{$P_{Sol} \subseteq P~\wedge~ Cell_{i,j} \in Pyramid$} \label{cell}
+		
 		$Sol = SplitThenFill(P,\ w,\ i_{max},\ 0)$\;
 		\Return $P_{Sol}$\;
 		\footnotetext{
 			\noindent Line \ref{stepii}: Fills the i=0 row of the pyramid.	
-					
-			\noindent Line \ref{cell?}: $Cell_{i,j} \subseteq V \wedge Cell_{i,j} \in Pyramid$. The pyramid represents the upper part of the upper triangular matrix of the CYK. Reflection at the diagonal of the matrix and rotation of -45 degrees.
-			
-			\noindent Line \ref{tip2}: Starting recursively from the tip of the pyramid.
 		}
 	\end{algorithm}
 }
@@ -245,8 +243,8 @@ As seen in algorithm \ref{BottomUpDiceRollVar1} a small number of productions is
 		$(P,\ Cell_r) = SplitThenFill(P,\ w,\ (j+i-m),\ m)$\label{right}\;
 		$Pyramid = CYK(G,\ w)$\label{cyk}\;
 		\If{$Cell_{i,j} = \emptyset$}{
-			$SetVc = uniform\ random\ subset\ from\ \{vc\ |\ v \in Cell_l\ \wedge\ c \in Cell_r\}$\;
-			$P = P \cup Distribute(SetVc,\ V) $; \circled{B}  \\
+			$Vc = uniform\ random\ subset\ from\ \{vc\ |\ v \in Cell_l\ \wedge\ c \in Cell_r\}$\;
+			$P = P \cup Distribute(Vc,\ V) $; \circled{B}  \\
 		}
 		
 		\Return $(P,\ Cell_{i,j})$\;

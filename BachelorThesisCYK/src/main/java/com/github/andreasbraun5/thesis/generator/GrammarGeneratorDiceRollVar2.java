@@ -92,11 +92,11 @@ public class GrammarGeneratorDiceRollVar2 extends GrammarGenerator {
                     workLog.log(grammarPyramidWrapper.getGrammar().toString());
                     workLog.log(grammarPyramidWrapper.getPyramid().toString());
                     {
-                        // Line 13: Keep contributing variables
-                        grammarPyramidWrapper = GrammarGeneratorUtil.keepContributingProductions(grammarPyramidWrapper);
-                        workLog.log("Pyramid after removing not contributing productions:");
+                        // Line 13:  Delete unnecessary productions
+                        grammarPyramidWrapper = GrammarGeneratorUtil.deleteUnnecessaryProductions(grammarPyramidWrapper);
+                        workLog.log("Pyramid before removing unnecessary productions:");
                         workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
-                        workLog.log("Grammar after removing not contributing productions:");
+                        workLog.log("Grammar after removing unnecessary productions:");
                         workLog.log(grammarPyramidWrapper.getGrammar().toString());
                     }
                     {   // Line 14 + 15
@@ -116,7 +116,7 @@ public class GrammarGeneratorDiceRollVar2 extends GrammarGenerator {
             }
         }
         {   // End of logging
-            grammarPyramidWrapper = GrammarGeneratorUtil.keepContributingProductions(grammarPyramidWrapper);
+            grammarPyramidWrapper = GrammarGeneratorUtil.deleteUnnecessaryProductions(grammarPyramidWrapper);
             workLog.log("Final grammar and pyramid");
             workLog.log(grammarPyramidWrapper.getGrammar().toString());
             workLog.log(grammarPyramidWrapper.getPyramid().toString());
