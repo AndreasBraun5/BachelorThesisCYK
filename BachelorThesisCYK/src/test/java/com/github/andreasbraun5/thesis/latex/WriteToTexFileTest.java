@@ -30,7 +30,6 @@ public class WriteToTexFileTest {
         System.out.println("############################");
         System.out.println("TexFileTestExercise: TexFileTestExercise");
         ThesisDirectory.initPaths();
-        ThesisDirectory.initBatFiles();
         //Exercise exercise = ExercisesInputReader.read2();
 
         //ExerciseLatex exerciseLatex = new ExerciseLatex(exercise.getGrammar(), exercise.getPyramid());

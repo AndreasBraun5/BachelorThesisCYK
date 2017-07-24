@@ -16,6 +16,7 @@ public class ExerciseCompilerTest {
                 .word(TiScriptExercise.SCRIPT_EXAMPLE_WORD).build();
         ExerciseStringConverter exerciseStringConverter = new ExerciseStringConverter();
         String exerciseString = exerciseStringConverter.exerciseToString(exercise);
+        System.out.println(exerciseString);
         Exercise exerciseParsed = ExerciseCompiler.parseExercise(exerciseString);
         Assert.assertEquals(exercise, exerciseParsed);
     }

@@ -31,7 +31,7 @@ public class ExercisesInputReader {
         return exerciseStringConverter.fromString(str.toString());
     }
 
-    
+
 
 
 }

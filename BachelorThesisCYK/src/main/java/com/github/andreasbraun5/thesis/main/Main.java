@@ -1,24 +1,43 @@
 package com.github.andreasbraun5.thesis.main;
 
+import com.github.andreasbraun5.thesis.antlr.ExerciseCompiler;
+import com.github.andreasbraun5.thesis.antlr.ExerciseStringConverter;
+import com.github.andreasbraun5.thesis.exercise.Exercise;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollVar1;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollVar2;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
+import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
+import com.github.andreasbraun5.thesis.latex.ExerciseLatex;
+import com.github.andreasbraun5.thesis.latex.WriteToTexFile;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
+import com.github.andreasbraun5.thesis.parser.CYK;
+import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 import com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator;
 import com.github.andreasbraun5.thesis.util.Util;
+import org.junit.Assert;
 
+import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.Logger;
 
 public class Main {
+    static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+
+    private static ExecutorService executorService;
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Note: C:\GitHub\BachelorThesis\BachelorThesisCYK>mvn clean install    --> .jar
@@ -30,54 +49,115 @@ public class Main {
     // TODO: Factory Pattern2 : Siehe ResultSample: Berechnung nicht im Konstruktor, sondern in einer Berechnenden Methode
     // TODO: Final verwenden,
     // TODO: Collections.unmodifiable(List|Set|Map) etc. in gettern, vll nach hinten an stellen
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
 
-        ThesisDirectory.initPaths();
-        ThesisDirectory.initBatFiles();
+        executorService = Executors.newSingleThreadExecutor();
+        try {
 
-        /**
-         * 	Generating the settings for the generatorTest.
-         * 	GrammarProperties = general settings, the same for all settings of one run.
-         * 	GrammarGeneratorSettingsDiceRoll = generator specific settings.
-         */
-        /**
-         * 	N = countOfGrammarsToGenerate.
-         * 	Select the testing method.
-         * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
-         */
-        // It is recommended to use a high countDifferentWords. Word independent results are achieved.
-        int countGeneratedGrammarsPerWord = 100;
-        int countDifferentWords = 10;
+            ThesisDirectory.initPaths();
+            /**
+             * 	Generating the settings for the generatorTest.
+             * 	GrammarProperties = general settings, the same for all settings of one run.
+             * 	GrammarGeneratorSettingsDiceRoll = generator specific settings.
+             */
+            /**
+             * 	N = countOfGrammarsToGenerate.
+             * 	Select the testing method.
+             * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
+             */
+            // It is recommended to use a high countDifferentWords. Word independent results are achieved.
+            int countGeneratedGrammarsPerWord = 10;
+            int countDifferentWords = 10;
 
-        ResultCalculator resultCalculator = ResultCalculator.builder().
-                countDifferentWords(countDifferentWords).
-                countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
-        GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
+            ResultCalculator resultCalculator = ResultCalculator.builder().
+                    countDifferentWords(countDifferentWords).
+                    countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
+            GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
 
 
-        GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar1 = new GrammarGeneratorSettings(
-                grammarProperties, "GrammarGeneratorDiceRollVar1");
-        Result resultGrammarGeneratorDiceRollVar1 = resultCalculator.buildResultWithGenerator(
-                new GrammarGeneratorDiceRollVar1(settingsGrammarGeneratorDiceRollVar1),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar1.name)))
-        );
-        Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollVar1);
+            GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar1 = new GrammarGeneratorSettings(
+                    grammarProperties, "GrammarGeneratorDiceRollVar1");
+            Result resultGrammarGeneratorDiceRollVar1 = resultCalculator.buildResultWithGenerator(
+                    new GrammarGeneratorDiceRollVar1(settingsGrammarGeneratorDiceRollVar1),
+                    WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar1.name)))
+            );
+            Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollVar1);
 
-        GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar2 = new GrammarGeneratorSettings(
-                grammarProperties, "GrammarGeneratorDiceRollVar2");
-        Result resultGrammarGeneratorDiceRollVar2 = resultCalculator.buildResultWithGenerator(
-                new GrammarGeneratorDiceRollVar2(settingsGrammarGeneratorDiceRollVar2),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar2.name)))
-        );
-        Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollVar2);
+            GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar2 = new GrammarGeneratorSettings(
+                    grammarProperties, "GrammarGeneratorDiceRollVar2");
+            Result resultGrammarGeneratorDiceRollVar2 = resultCalculator.buildResultWithGenerator(
+                    new GrammarGeneratorDiceRollVar2(settingsGrammarGeneratorDiceRollVar2),
+                    WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar2.name)))
+            );
+            Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollVar2);
 
-        GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnly = new GrammarGeneratorSettings(
-                grammarProperties, "GrammarGeneratorDiceRollOnly");
-        Result resultGrammarGeneratorDiceRollOnly = resultCalculator.buildResultWithGenerator(
-                new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnly),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollOnly.name)))
-        );
-        Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollOnly);
+            GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnly = new GrammarGeneratorSettings(
+                    grammarProperties, "GrammarGeneratorDiceRollOnly");
+            Result resultGrammarGeneratorDiceRollOnly = resultCalculator.buildResultWithGenerator(
+                    new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnly),
+                    WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollOnly.name)))
+            );
+            Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollOnly);
+
+
+            String exerciseStr = "start:S;\n" +
+                    "rules:{\n" +
+                    "E -> 1\n" +
+                    "N -> 0\n" +
+                    "A -> E C\n" +
+                    "A -> N S'\n" +
+                    "A -> 0\n" +
+                    "B -> E S'\n" +
+                    "B -> N D\n" +
+                    "B -> 1\n" +
+                    "S -> eps\n" +
+                    "S -> E A\n" +
+                    "S -> N B\n" +
+                    "C -> A A\n" +
+                    "S' -> E A\n" +
+                    "S' -> N B\n" +
+                    "D -> B B\n" +
+                    "};\n" +
+                    "word: 0 1 1 1 0 1 0 0;";
+
+            ExerciseStringConverter exerciseStringConverter = new ExerciseStringConverter();
+            Exercise exercise = exerciseStringConverter.fromString(exerciseStr);
+
+            GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder().grammar(exercise.getGrammar())
+                    .pyramid(new Pyramid(exercise.getWord())).build();
+            grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+
+            ExerciseLatex exerciseLatex = new ExerciseLatex(exercise.getGrammar(), grammarPyramidWrapper.getPyramid());
+
+            WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
+
+            runCmd("pdflatex \"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
+                    "achelorThesisCYK\\exercise\\exerciseLatex.tex\" --output-directory=\"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
+                    "achelorThesisCYK\\exercise\"");
+
+
+        } finally {
+            executorService.shutdown();
+        }
+    }
+
+    public static void runCmd(String cmd) throws IOException, ExecutionException, InterruptedException {
+        LOGGER.info( "running cmd: " + cmd );
+
+        final Process p = Runtime.getRuntime().exec( cmd );
+        executorService.submit( () -> {
+            BufferedReader input = new BufferedReader( new InputStreamReader( p.getInputStream() ) );
+            String line = null;
+
+            try {
+                while ( (line = input.readLine()) != null ) {
+                    LOGGER.info( line );
+                }
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        } ).get();
     }
 
     public static GrammarProperties generateGrammarPropertiesForTesting() {
