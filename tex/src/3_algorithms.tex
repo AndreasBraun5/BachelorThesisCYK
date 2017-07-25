@@ -28,7 +28,9 @@ Sub modules are parts of the algorithms that are denoted with \circled{A}, \circ
 Algorithm \ref{Distribute} isn't needed anymore for the descriptions of the basic idea of the algorithm. It will be a module later on while tweaking the algorithms.
 
 \subsubsection{Stopping Criteria C}
-It is fulfilled if more than half of the pyramid cell are not empty.
+It is fulfilled if more than half of the pyramid cell are not empty. This is an independent criteria.
+
+Stop if any variable is in the tip cell of the pyramid. This is dependent on the count of different available variables. 
 
 \subsubsection{ChooseXYDependingOnIFromRowSet D}
 $RowSet \subseteq \{(XY,i)\ |\ X,Y \in V \wedge i \in \mathbb{N} \}$\\
@@ -272,12 +274,14 @@ This is also some kind of BottumUp approach - Bottom Up: The parse table is fill
 
 \subsection{SplitAndFill}
 \subsubsection{Basic Idea} 
+The stopping criteria will be that each cell with index i = 0 must be not empty.
 Now there is a second option to fill the parse table:
 \begin{enumerate}
 	\item Top Down: The parse table is filled quiet unevenly. You don't have all information available. Think about adding a production for the node cell: You can add a production so that its producing cells fill the node cell, but you don't know what actually would be the best to fill in these producing cells because they themselves aren't looked at yet. This problem is kept until the last depth of the recursion, where the cells in row $i=0$ are taken into account. Only starting there you know what variables actually produce the terminals.\\
 	Maybe solution: For the Top Down approach, don't assume that the terminals are already distributed over the V. Distribute the terminals over the variables in an ideal way that fits your already generated productions best.
 \end{enumerate}
 \subsubsection{Algorithm}
+\vspace{8cm}
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
@@ -287,17 +291,50 @@ Now there is a second option to fill the parse table:
 		\KwIn{Word $w \in \Sigma^{*}$}
 		\KwOut{Set of productions $P$}
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$Pyr = EmptyPyramid$ \label{emptyPyramid}\;
-		$Cell_{i_{max},0} = Cell_{i_{max},0} \cup \{S\}$;~~\tcp{$Cell_{i,j} \subseteq V \wedge Cell_{i,j} \in Pyramid$} \label{cell}
-		\;
-		$Sol = \emptyset$;~~\tcp{$Sol \subseteq \{(P_{Sol},~Pyramid)~|~P_{Sol} \subseteq P$\}} \label{cell}	
-		$Sol = SplitThenFill(Pyr,\ P,\ w,\ i_{max},\ 0)$\;
-		$P = P \cup P_{Sol}$\; \label{tip}
-		\Return $P$\;
+		$P = P \cup (S,~xy)$;~~\tcp{$xy \in V^2$}
+		$Sol = (P_{Sol},~Cell_{i,j})$;~~\tcp{$P_{Sol} \subseteq P~\wedge~ Cell_{i,j} \in Pyramid$} \label{cell}
+		$Sol = SplitAndFill(P,\ w,\ i_{max},\ 0)$\;
+		
+		\Return $P_{Sol}$\;
 		\footnotetext{
-			\noindent Line \ref{emptyPyramid}: $EmptyPyramid \Leftrightarrow \forall i\ \forall j\ Cell_{i,j}=\emptyset$
+		}
+	\end{algorithm}
+}
+
+\noindent
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{SplitAndFill}
+		\label{SplitAndFill}
+		\SetAlgoLined
+		\KwIn{$P \subseteq V \times (V^{2} \cup \Sigma),\ w \in \Sigma^{*},\ i,j \in \mathbb{N}$ }
+		\KwOut{$(P,~Cell_{i,j})$}
+		Würfeln von m\;
+		Für beide Zellen:\;
+			Checken ob i > 0\;
+				i > 0: Hinzufügen einer Var in die Zelle\;
+				i = 0: Checken ob Terminal wj schon vergeben\;
+					ja: dann nutzen der Var bzw. des lhse der Prod des wj\;
+					nein: Würfeln von Var und Hinzufügen der Prod Var --> wj\;
+		Hinzufügen der Produktion mit VarComp = (Var1, Var2) zur Variablen der aufrufenden Zelle\;
+		\If{$i=0$}{
 			
-			\noindent Line \ref{cell}: $Cell_{i,j} \subseteq V \wedge Cell_{i,j} \in Pyramid$. The pyramid represents the upper part of the upper triangular matrix of the CYK. Reflection at the diagonal of the matrix and rotation of -45 degrees.
+			\Return $(P,\ Cell_{i,j})$\label{row0}\;
+		}	
+		$choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
+		$(P,\ Cell_l) = SplitThenFill(P,\ w,\ (m-j-1),\ j)$\label{left}\;
+		$(P,\ Cell_r) = SplitThenFill(P,\ w,\ (j+i-m),\ m)$\label{right}\;
+		$Pyramid = CYK(G,\ w)$\label{cyk}\;
+		\If{$stopping\ criteria~met$~\circled{C}}{
+			\Return $(P,\ Cell_{i,j})$\;
+		}
+		\If{$Cell_{i,j} = \emptyset$}{
+			$Vc = uniform\ random\ subset\ from\ \{vc\ |\ v \in Cell_l\ \wedge\ c \in Cell_r\} ~with~|Vc| \geq 1$\;
+			$P = P \cup Distribute(Vc,\ V) $; \circled{B}  \\
+		}
+		
+		\Return $(P,\ Cell_{i,j})$\;
+		\footnotetext{
 		}
 	\end{algorithm}
 }

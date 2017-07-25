@@ -9,6 +9,7 @@ import com.github.andreasbraun5.thesis.pyramid.Pyramid;
  */
 public class C_StoppingCriteria {
 
+    /*
     public static boolean stoppingCriteriaMet(GrammarPyramidWrapper grammarPyramidWrapper) {
         boolean isMet;
         int countCells = 0;
@@ -24,6 +25,10 @@ public class C_StoppingCriteria {
         }
         isMet = ((double) coundCellsNotEmpty / countCells) >= 0.5;
         return isMet;
+    }*/
+
+    public static boolean stoppingCriteriaMet(GrammarPyramidWrapper grammarPyramidWrapper) {
+        return stoppingCriteriaMetSplitThenFill(grammarPyramidWrapper);
     }
 
     /**
