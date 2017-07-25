@@ -55,7 +55,7 @@ public class GrammarGeneratorSplitThenFill extends GrammarGenerator {
         grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
         // Line 3: Define the Sol tuple
         Tuple<GrammarPyramidWrapper, CellK> sol;
-        {   // Line 10: TODO CKY kann weggelassen werden? 
+        {   // Line 10: TODO CKY kann weggelassen werden?
             workLog.log("pyramid before line 10:");
             workLog.log(grammarPyramidWrapper.getPyramid().toString());
             grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
