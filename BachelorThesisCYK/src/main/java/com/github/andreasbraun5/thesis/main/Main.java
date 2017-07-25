@@ -98,6 +98,7 @@ public class Main {
             */
             GrammarGeneratorSettings settingsGrammarGeneratorSplitThenFill = new GrammarGeneratorSettings(
                     grammarProperties, "GrammarGeneratorSplitThenFill");
+            settingsGrammarGeneratorSplitThenFill.setMinValueCompoundVariablesAreAddedTo(1);
             Result resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
                     new GrammarGeneratorSplitThenFill(settingsGrammarGeneratorSplitThenFill),
                     WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitThenFill.name)))
@@ -135,10 +136,9 @@ public class Main {
 
             WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
 
-            runCmd("pdflatex \"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
+            /*runCmd("pdflatex \"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
                     "achelorThesisCYK\\exercise\\exerciseLatex.tex\" --output-directory=\"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
-                    "achelorThesisCYK\\exercise\"");
-
+                    "achelorThesisCYK\\exercise\"");*/
 
         } finally {
             executorService.shutdown();

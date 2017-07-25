@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  24 JUL 2017 16:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  25 JUL 2017 10:04
 entering extended mode
 **C:/Users/AndreasBraun/Documents/BachelorThesis/BachelorThesisCYK/exercise/exe
 rciseLatex.tex
@@ -564,19 +564,19 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 ciseLatex.aux) ) 
 Here is how much of TeX's memory you used:
  14913 strings out of 493328
- 301677 string characters out of 3139104
- 459076 words of memory out of 3000000
+ 301467 string characters out of 3139104
+ 454380 words of memory out of 3000000
  18213 multiletter control sequences out of 15000+200000
  11710 words of font info for 41 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,11n,78p,8915b,1032s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,11n,63p,8915b,892s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
 i12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program
  Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/M
 iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 Output written on C:\Users\AndreasBraun\Documents\BachelorThesis\BachelorThesis
-CYK\exercise\exerciseLatex.pdf (2 pages, 54480 bytes).
+CYK\exercise\exerciseLatex.pdf (2 pages, 53898 bytes).
 PDF statistics:
  32 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
