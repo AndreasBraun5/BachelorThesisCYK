@@ -8,6 +8,7 @@ import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 
@@ -28,7 +29,7 @@ public class GrammarGeneratorSplitThenFill extends GrammarGenerator {
 
     @Override
     /**
-     * Corresponding to algorithm SplitzThenFillPrep that calls the recursive algorithm SplitThenFill
+     * Corresponding to algorithm SplitThenFillPrep that calls the recursive algorithm SplitThenFill
      */
     public GrammarPyramidWrapper generateGrammarPyramidWrapper(GrammarPyramidWrapper grammarPyramidWrapper, WorkLog workLog) {
 
@@ -55,13 +56,6 @@ public class GrammarGeneratorSplitThenFill extends GrammarGenerator {
         grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
         // Line 3: Define the Sol tuple
         Tuple<GrammarPyramidWrapper, CellK> sol;
-        {   // Line 10: TODO CKY kann weggelassen werden?
-            workLog.log("pyramid before line 10:");
-            workLog.log(grammarPyramidWrapper.getPyramid().toString());
-            grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
-            workLog.log("pyramid after line 10:");
-            workLog.log(grammarPyramidWrapper.getPyramid().toString());
-        }
         {   // Line 4: recursive call of SplitThenFill
             int imax = grammarPyramidWrapper.getPyramid().getSize() - 1;
             sol = splitThenFill(grammarPyramidWrapper, imax, 0, workLog);
@@ -80,44 +74,21 @@ public class GrammarGeneratorSplitThenFill extends GrammarGenerator {
                 return new Tuple<>(grammarPyramidWrapper, cell_ij);
             }
         }
-        {   // Line 4 to 6 TODO Criteria
-            if (C_StoppingCriteria.stoppingCriteriaMet(grammarPyramidWrapper)) {
+        // Line 4:
+        int m = random.nextInt(i) + j + 1; // ( j + i + 1 - j - 1) || + j + 1
+        // Line 5 + 6:
+        Tuple<GrammarPyramidWrapper, CellK> left = splitThenFill(grammarPyramidWrapper, (m - j - 1), j, workLog);
+        Tuple<GrammarPyramidWrapper, CellK> right = splitThenFill(grammarPyramidWrapper, (j + i - m), m, workLog);
+        {   // Line 7:
+            grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+        }
+        {   // Line 8 to 10
+            if (C_StoppingCriteria.stoppingCriteriaMetSplitThenFill(grammarPyramidWrapper)) {
                 return new Tuple<>(grammarPyramidWrapper, cell_ij);
             }
         }
-        // Line 7:
-        int m = random.nextInt(i) + j + 1; // ( j + i + 1 - j - 1) || + j + 1
-        workLog.log("Chosen m: " + m);
-        // Line 8 + 9:
-        int a1 = m - j - 1;
-        int a2 = j;
-        workLog.log("call for left with:" + (m - j - 1) + " and " + j);
-        Tuple<GrammarPyramidWrapper, CellK> left = splitThenFill(grammarPyramidWrapper, (m - j - 1), j, workLog);
-        workLog.log("call for right with:" + (j + i - m) + " and " + m);
-        {   // Line 10: TODO CKY
-            workLog.log("pyramid before line 10:");
-            workLog.log(grammarPyramidWrapper.getPyramid().toString());
-            grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
-            workLog.log("pyramid after line 10:");
-            workLog.log(grammarPyramidWrapper.getPyramid().toString());
-        }
-        int b1 = j + i - m;
-        int b2 = m;
-        Tuple<GrammarPyramidWrapper, CellK> right = splitThenFill(grammarPyramidWrapper, (j + i - m), m, workLog);
-        {   // Line 10: TODO CKY
-            workLog.log("pyramid before line 10:");
-            workLog.log(grammarPyramidWrapper.getPyramid().toString());
-            grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
-            workLog.log("pyramid after line 10:");
-            workLog.log(grammarPyramidWrapper.getPyramid().toString());
-        }
         {   // Line 11 to 14:
             if (cell_ij.getCellElements().size() == 0) {
-                {   // Line 4 to 6 TODO Criteria
-                    if (C_StoppingCriteria.stoppingCriteriaMet(grammarPyramidWrapper)) {
-                        return new Tuple<>(grammarPyramidWrapper, cell_ij);
-                    }
-                }
                 // Line 12:
                 CellK cellLeft = grammarPyramidWrapper.getPyramid().getCellK(left.y.getI(), left.y.getJ());
                 CellK cellRight = grammarPyramidWrapper.getPyramid().getCellK(right.y.getI(), right.y.getJ());

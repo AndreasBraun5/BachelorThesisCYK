@@ -16,27 +16,27 @@
 \contentsline {subsection}{\numberline {2.2}DiceRollOnly}{13}{subsection.2.2}
 \contentsline {subsubsection}{\numberline {2.2.1}Basic Idea}{13}{subsubsection.2.2.1}
 \contentsline {subsubsection}{\numberline {2.2.2}Algorithm}{13}{subsubsection.2.2.2}
-\contentsline {subsubsection}{\numberline {2.2.3}Conclusion}{13}{subsubsection.2.2.3}
 \contentsline {subsection}{\numberline {2.3}BottomUpDiceRollVar1}{14}{subsection.2.3}
 \contentsline {subsubsection}{\numberline {2.3.1}Basic Idea}{14}{subsubsection.2.3.1}
 \contentsline {subsubsection}{\numberline {2.3.2}Algorithm}{14}{subsubsection.2.3.2}
-\contentsline {subsubsection}{\numberline {2.3.3}Conclusion}{15}{subsubsection.2.3.3}
 \contentsline {subsection}{\numberline {2.4}BottomUpDiceRollVar2}{16}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}Basic Idea}{16}{subsubsection.2.4.1}
 \contentsline {subsubsection}{\numberline {2.4.2}Algorithm}{16}{subsubsection.2.4.2}
-\contentsline {subsubsection}{\numberline {2.4.3}Conclusion}{17}{subsubsection.2.4.3}
 \contentsline {subsection}{\numberline {2.5}SplitThenFill (Idea 1)}{18}{subsection.2.5}
-\contentsline {subsubsection}{\numberline {2.5.1}Algorithm: Idea 2, How often cells are used for subset calculations}{20}{subsubsection.2.5.1}
-\contentsline {subsection}{\numberline {2.6}SplitAndFill}{21}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}Comparision of Algorithms}{23}{subsection.2.7}
-\contentsline {section}{\numberline {3}CLI Tool}{24}{section.3}
-\contentsline {subsection}{\numberline {3.1}Scoring Model}{24}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Short Requirements Specification}{24}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Exam Exercises}{25}{subsubsection.3.2.1}
-\contentsline {subsection}{\numberline {3.3}Overview - UML}{26}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}UML: More Detail 1}{26}{subsubsection.3.3.1}
-\contentsline {subsubsection}{\numberline {3.3.2}UML: More Detail 2}{26}{subsubsection.3.3.2}
-\contentsline {subsection}{\numberline {3.4}User Interaction}{27}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Use Case 1}{27}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Use Case i}{27}{subsubsection.3.4.2}
-\contentsline {section}{References}{28}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {2.5.1}Basic Idea}{18}{subsubsection.2.5.1}
+\contentsline {subsubsection}{\numberline {2.5.2}Algorithm}{18}{subsubsection.2.5.2}
+\contentsline {subsection}{\numberline {2.6}SplitAndFill}{20}{subsection.2.6}
+\contentsline {subsubsection}{\numberline {2.6.1}Basic Idea}{20}{subsubsection.2.6.1}
+\contentsline {subsubsection}{\numberline {2.6.2}Algorithm}{20}{subsubsection.2.6.2}
+\contentsline {subsection}{\numberline {2.7}Comparision of Algorithms}{22}{subsection.2.7}
+\contentsline {section}{\numberline {3}CLI Tool}{23}{section.3}
+\contentsline {subsection}{\numberline {3.1}Scoring Model}{23}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Short Requirements Specification}{23}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Exam Exercises}{24}{subsubsection.3.2.1}
+\contentsline {subsection}{\numberline {3.3}Overview - UML}{25}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}UML: More Detail 1}{25}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}UML: More Detail 2}{25}{subsubsection.3.3.2}
+\contentsline {subsection}{\numberline {3.4}User Interaction}{26}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Use Case 1}{26}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Use Case i}{26}{subsubsection.3.4.2}
+\contentsline {section}{References}{27}{subsubsection.3.4.2}

@@ -73,7 +73,7 @@ As seen in table \ref{DiceRollOnlySR} the algorithm shows a relatively low succe
 	\label{DiceRollOnlySR}
 \end{table}
 \noindent This can be explained with ... . 
-\subsubsection{Conclusion}
+
 \noindent Something about what can be improved in another attempt or the next attempt. 
 \pagebreak
 
@@ -134,7 +134,7 @@ This algorithm uses the Bottom-Up approach where the parsing table is filled sta
 	\label{BottomUpDiceRollVar1SR}
 \end{table}
 
-\subsubsection{Conclusion}
+
 A relatively small number of productions is already sufficient to completely fill the parsing table. This can be seen if one does take look at the log-file where the final cell that has been worked with is denoted.
 A good chosen stopping criteria allows a higher success rate.
 
@@ -198,10 +198,12 @@ As seen in algorithm \ref{BottomUpDiceRollVar1} a small number of productions is
 	\label{BottomUpDiceRollVar2SR}
 \end{table}
 
-\subsubsection{Conclusion}
-
 \pagebreak
 \subsection{SplitThenFill (Idea 1)}
+\subsubsection{Basic Idea} 
+The basic idea for this algorithm is to uniform randomly generate a predefined structure of the derivation tree that helps adding the "right" productions. You always update the pyramid after adding one production to the grammar.
+This is also some kind of BottumUp approach - Bottom Up: The parse table is filled relatively evenly. All information regarding the upper cells are available and can be used. Similar to the CYK Algorithm approach.
+\subsubsection{Algorithm}
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
@@ -212,9 +214,7 @@ As seen in algorithm \ref{BottomUpDiceRollVar1} a small number of productions is
 		\KwOut{Set of productions $P$}
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		$P = Distribute(\Sigma,\ V)$; \circled{A} \label{stepii}  \\		
-		
 		$Sol = (P_{Sol},~Cell_{i,j})$;~~\tcp{$P_{Sol} \subseteq P~\wedge~ Cell_{i,j} \in Pyramid$} \label{cell}
-		
 		$Sol = SplitThenFill(P,\ w,\ i_{max},\ 0)$\;
 		\Return $P_{Sol}$\;
 		\footnotetext{
@@ -234,46 +234,50 @@ As seen in algorithm \ref{BottomUpDiceRollVar1} a small number of productions is
 		\KwOut{$(P,~Cell_{i,j})$}
 		\If{$i=0$}{
 			\Return $(P,\ Cell_{i,j})$\label{row0}\;
-		}
-		\If{$stopping\ criteria~met$~\circled{C}}{
-			\Return $(P,\ Cell_{i,j})$\;
 		}	
 		$choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
 		$(P,\ Cell_l) = SplitThenFill(P,\ w,\ (m-j-1),\ j)$\label{left}\;
 		$(P,\ Cell_r) = SplitThenFill(P,\ w,\ (j+i-m),\ m)$\label{right}\;
 		$Pyramid = CYK(G,\ w)$\label{cyk}\;
+		\If{$stopping\ criteria~met$~\circled{C}}{
+			\Return $(P,\ Cell_{i,j})$\;
+		}
 		\If{$Cell_{i,j} = \emptyset$}{
-			$Vc = uniform\ random\ subset\ from\ \{vc\ |\ v \in Cell_l\ \wedge\ c \in Cell_r\}$\;
+			$Vc = uniform\ random\ subset\ from\ \{vc\ |\ v \in Cell_l\ \wedge\ c \in Cell_r\} ~with~|Vc| \geq 1$\;
 			$P = P \cup Distribute(Vc,\ V) $; \circled{B}  \\
 		}
 		
 		\Return $(P,\ Cell_{i,j})$\;
 		\footnotetext{
-			\noindent Line \ref{row0}: Recursion anchor that returns the up to this point modified productions $P$ and the variables in the cell with index i and j. 
-			
-			\noindent Line \ref{left} + \ref{right}: Analogous to the CYK-algorithm a cell combination $Cell_l$ and $Cell_r$ is chosen that can generate the sub string. 
-			
-			\noindent Line \ref{cyk}: A Recalculation is done at each recursive call because only the updated production set $P$ is returned recursively.
 		}
 	\end{algorithm}
 }
 \\
-\\
-The stopping criteria would be, that each marked $cell_{i,j} \neq \emptyset$ and it must be possible to get from $cell_{m, j}$ and $cell_{i-m, m+j+1}$ to $cell_{i,j}$ through applying one of the production rules.\\
-Algorithm \ref{Idea1} Idea1 uniform randomly generates a predefined structure of the derivation tree. You always update the pyramid after adding one production to the grammar. Now there are two options to fill the parse table:
-\begin{enumerate}
-	\item Bottom Up: The parse table is filled relatively evenly. All information regarding the upper cells are available and can be used. Similar to the CYK Algorithm approach.
-	\item Top Down: The parse table is filled quiet unevenly. You don't have all information available. Think about adding a production for the node cell: You can add a production so that its producing cells fill the node cell, but you don't know what actually would be the best to fill in these producing cells because they themselves aren't looked at yet. This problem is kept until the last depth of the recursion, where the cells in row $i=0$ are taken into account. Only starting there you know what variables actually produce the terminals.\\
-	Maybe solution: For the Top Down approach, don't assume that the terminals are already distributed over the V. Distribute the terminals over the variables in an ideal way that fits your already generated productions best.
-\end{enumerate}
-
-\pagebreak
-
-\subsubsection{Algorithm: Idea 2, How often cells are used for subset calculations}
-
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ | l || c |c |c |c | }
+		\hline
+		Algorithm 		& SR 	& SRP 	& SRG 	& SRWP   	\\ \hline
+		\hline
+		DiceRollOnly 	& 09~\%	& 24~\% & 87~\% & 53~\%		\\ \hline
+		BotomUpVar1 	& 13~\% & 29~\% & 99~\% & 68~\% 	\\ \hline
+		BotomUpVar2 	& 16~\% & 26~\% & 99~\% & 77~\% 	\\ \hline
+		SplitThenFill 	& 20~\% & 62~\% & 81~\% & 45~\% 	\\ \hline
+	\end{tabular}
+	\caption{Success rates for algorithm \ref{SplitThenFill}}
+	\label{SplitThenFillSR}
+\end{table}
+\noindent The stopping criteria is met if the tip of the pyramid is not empty. It is a valid approach because if this cell is not empty it means that there is a chance of being able to generate the word. To add further productions only results in a grammar that has to many productions with its pyramid having to many variables.
 \pagebreak
 
 \subsection{SplitAndFill}
+\subsubsection{Basic Idea} 
+Now there is a second option to fill the parse table:
+\begin{enumerate}
+	\item Top Down: The parse table is filled quiet unevenly. You don't have all information available. Think about adding a production for the node cell: You can add a production so that its producing cells fill the node cell, but you don't know what actually would be the best to fill in these producing cells because they themselves aren't looked at yet. This problem is kept until the last depth of the recursion, where the cells in row $i=0$ are taken into account. Only starting there you know what variables actually produce the terminals.\\
+	Maybe solution: For the Top Down approach, don't assume that the terminals are already distributed over the V. Distribute the terminals over the variables in an ideal way that fits your already generated productions best.
+\end{enumerate}
+\subsubsection{Algorithm}
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
@@ -340,11 +344,12 @@ Algorithm \ref{Idea1} Idea1 uniform randomly generates a predefined structure of
 	\centering
 	\begin{tabular}{ | l | c |c |c |c | }
 		\hline
-		Algorithm 		& SR 	& SRP 	& SRG 	& SRWP   	\\ \hline
-		\hline
-		DiceRollOnly 	& 09~\%	& 24~\% & 87~\% & 53~\%		\\ \hline
-		BotomUpVar1 	& 13~\% & 29~\% & 99~\% & 68~\% 	\\ \hline
-		BotomUpVar2 	& 16~\% & 26~\% & 99~\% & 77~\% 	\\ \hline
+Algorithm 		& SR 	& SRP 	& SRG 	& SRWP   	\\ \hline
+\hline
+DiceRollOnly 	& 09~\%	& 24~\% & 87~\% & 53~\%		\\ \hline
+BotomUpVar1 	& 13~\% & 29~\% & 99~\% & 68~\% 	\\ \hline
+BotomUpVar2 	& 16~\% & 26~\% & 99~\% & 77~\% 	\\ \hline
+BotomUpVar2 	& 20~\% & 62~\% & 81~\% & 45~\% 	\\ \hline
 	\end{tabular}
 	\caption{Comparison of the success rates of the algorithms}
 	\label{comparisonAlgorithms}

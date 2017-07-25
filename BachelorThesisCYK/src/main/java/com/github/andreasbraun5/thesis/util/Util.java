@@ -163,13 +163,16 @@ public abstract class Util {
     }
 
     public static <T> Set<T> uniformRandomSubset(Set<T> set, int minSize) {
-        int subSetRandomSize = random.nextInt(set.size() + 1 - minSize) + minSize;
-        if (set.size() == 1) {
-            return new HashSet<>(set);
+        int diff = 0;
+        if(set.size() > minSize) {
+            diff = set.size() - minSize;
         }
+        int subSetRandomSize = random.nextInt(diff + 1) + minSize;
+
         List<T> tempList = new ArrayList<>(set);
+        Collections.shuffle(tempList, random);
         while (tempList.size() > subSetRandomSize) {
-            tempList.remove(random.nextInt(subSetRandomSize));
+            tempList.remove(0);
         }
         return new HashSet<>(tempList);
     }

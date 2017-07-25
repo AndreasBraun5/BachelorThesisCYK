@@ -2,6 +2,7 @@ package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
+import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 
 /**
  * Created by AndreasBraun on 12.07.2017.
@@ -23,6 +24,15 @@ public class C_StoppingCriteria {
         }
         isMet = ((double) coundCellsNotEmpty / countCells) >= 0.5;
         return isMet;
+    }
+
+    /**
+     * True if the root of the pyramid is not emtpy.
+     */
+    public static boolean stoppingCriteriaMetSplitThenFill(GrammarPyramidWrapper grammarPyramidWrapper) {
+        Pyramid pyramid = grammarPyramidWrapper.getPyramid();
+        int size = pyramid.getSize();
+        return grammarPyramidWrapper.getPyramid().getCellK(size - 1, 0).getCellElements().size() != 0;
     }
 
 }

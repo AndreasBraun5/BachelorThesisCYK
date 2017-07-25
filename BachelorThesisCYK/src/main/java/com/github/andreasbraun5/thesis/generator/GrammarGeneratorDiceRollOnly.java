@@ -65,9 +65,9 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
         }
         {
             // Line 5:  Delete unnecessary productions
-            grammarPyramidWrapper = GrammarGeneratorUtil.deleteUnnecessaryProductions(grammarPyramidWrapper);
             workLog.log("Pyramid before removing unnecessary productions:");
             workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
+            grammarPyramidWrapper = GrammarGeneratorUtil.deleteUnnecessaryProductions(grammarPyramidWrapper);
             workLog.log("Grammar after removing unnecessary productions:");
             workLog.log(grammarPyramidWrapper.getGrammar().toString());
         }
