@@ -8,7 +8,6 @@ import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
-import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 
@@ -32,7 +31,6 @@ public class GrammarGeneratorSplitThenFill extends GrammarGenerator {
      * Corresponding to algorithm SplitThenFillPrep that calls the recursive algorithm SplitThenFill
      */
     public GrammarPyramidWrapper generateGrammarPyramidWrapper(GrammarPyramidWrapper grammarPyramidWrapper, WorkLog workLog) {
-
         {   // Start of logging
             workLog.log("#########################################################################################################");
             workLog.log("START of Logging of GrammarGeneratorSplitThenFill.");
@@ -59,6 +57,12 @@ public class GrammarGeneratorSplitThenFill extends GrammarGenerator {
         {   // Line 4: recursive call of SplitThenFill
             int imax = grammarPyramidWrapper.getPyramid().getSize() - 1;
             sol = splitThenFill(grammarPyramidWrapper, imax, 0, workLog);
+        }
+        {
+            workLog.log("Final grammar and pyramid:");
+            workLog.log(sol.x.getGrammar().toString());
+            workLog.log(sol.x.getPyramid().getWord().toString());
+            workLog.log(sol.x.getPyramid().toString());
         }
         return sol.x;
     }

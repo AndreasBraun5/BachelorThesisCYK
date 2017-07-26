@@ -20,10 +20,7 @@ import com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator;
 import com.github.andreasbraun5.thesis.util.Util;
 import org.junit.Assert;
 
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -71,7 +68,7 @@ public class Main {
                     countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
             GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
 
-
+            /*
             GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar1 = new GrammarGeneratorSettings(
                     grammarProperties, "GrammarGeneratorDiceRollVar1");
             Result resultGrammarGeneratorDiceRollVar1 = resultCalculator.buildResultWithGenerator(
@@ -96,14 +93,28 @@ public class Main {
             );
             Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollOnly);
 
+
             GrammarGeneratorSettings settingsGrammarGeneratorSplitThenFill = new GrammarGeneratorSettings(
                     grammarProperties, "GrammarGeneratorSplitThenFill");
             settingsGrammarGeneratorSplitThenFill.setMinValueCompoundVariablesAreAddedTo(1);
+            settingsGrammarGeneratorSplitThenFill.setMaxValueCompoundVariablesAreAddedTo(1);
             Result resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
                     new GrammarGeneratorSplitThenFill(settingsGrammarGeneratorSplitThenFill),
                     WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitThenFill.name)))
             );
             Util.writeResultToTxtFile(resultGrammarGeneratorSplitThenFill);
+            */
+            GrammarGeneratorSettings settingsGrammarGeneratorSplitAndFill = new GrammarGeneratorSettings(
+                    grammarProperties, "GrammarGeneratorSplitAndFill");
+            settingsGrammarGeneratorSplitAndFill.setMinValueCompoundVariablesAreAddedTo(1);
+            settingsGrammarGeneratorSplitAndFill.setMaxValueCompoundVariablesAreAddedTo(1);
+            settingsGrammarGeneratorSplitAndFill.setMinValueTerminalsAreAddedTo(1);
+            settingsGrammarGeneratorSplitAndFill.setMaxValueTerminalsAreAddedTo(1);
+            Result resultGrammarGeneratorSplitAndFill = resultCalculator.buildResultWithGenerator(
+                    new GrammarGeneratorSplitAndFill(settingsGrammarGeneratorSplitAndFill),
+                    WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitAndFill.name)))
+            );
+            Util.writeResultToTxtFile(resultGrammarGeneratorSplitAndFill);
 
             String exerciseStr = "start:S;\n" +
                     "rules:{\n" +

@@ -95,9 +95,12 @@ public class Grammar {
     }
 
     public Set<Production> getProductionsAsSet() {
-       return new HashSet<>(getProductionsAsList());
+        return new HashSet<>(getProductionsAsList());
     }
 
+    public void removeProduction(Production production) {
+        productionsMap.get(production.getLeftHandSideElement()).remove(production);
+    }
 
     @Override
     public String toString() {

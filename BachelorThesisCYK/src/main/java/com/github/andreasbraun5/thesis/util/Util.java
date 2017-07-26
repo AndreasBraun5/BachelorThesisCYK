@@ -169,7 +169,7 @@ public abstract class Util {
         }
         int subSetRandomSize = random.nextInt(diff + 1) + minSize;
 
-        List<T> tempList = new ArrayList<>(set);
+        List<T> tempList = new LinkedList<>(set);
         Collections.shuffle(tempList, random);
         while (tempList.size() > subSetRandomSize) {
             tempList.remove(0);

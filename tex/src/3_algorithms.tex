@@ -63,17 +63,7 @@ rowListWeighted = add i times XY to rowListWeighted.
 	\end{algorithm}
 }
 As seen in table \ref{DiceRollOnlySR} the algorithm shows a relatively low success rate for producibility.
-\begin{table}[H]
-\centering
-	\begin{tabular}{ | l || c |c |c |c | }
-	\hline
-	Algorithm 		& SR 	& SRP 	& SRG 	& SRWP   	\\ \hline
-	\hline
-	DiceRollOnly 	& 09~\%	& 24~\% & 87~\% & 53~\%		\\ \hline
-	\end{tabular}
-	\caption{Success rates for algorithm \ref{DiceRollOnly}}
-	\label{DiceRollOnlySR}
-\end{table}
+
 \noindent This can be explained with ... . 
 
 \noindent Something about what can be improved in another attempt or the next attempt. 
@@ -123,18 +113,6 @@ This algorithm uses the Bottom-Up approach where the parsing table is filled sta
 }
 
 
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ | l || c |c |c |c | }
-	\hline
-	Algorithm 		& SR 	& SRP 	& SRG 	& SRWP   	\\ \hline
-	\hline
-	DiceRollOnly 	& 09~\%	& 24~\% & 87~\% & 53~\%		\\ \hline
-	BotomUpVar1 	& 13~\% & 29~\% & 99~\% & 68~\% 	\\ \hline
-	\end{tabular}
-	\caption{Success rates for algorithm \ref{BottomUpDiceRollVar1}}
-	\label{BottomUpDiceRollVar1SR}
-\end{table}
 
 
 A relatively small number of productions is already sufficient to completely fill the parsing table. This can be seen if one does take look at the log-file where the final cell that has been worked with is denoted.
@@ -144,6 +122,9 @@ A good chosen stopping criteria allows a higher success rate.
 \subsection{BottomUpDiceRollVar2}
 \subsubsection{Basic Idea} 
 As seen in algorithm \ref{BottomUpDiceRollVar1} a small number of productions is sufficient to make the parsing table quite full. If an cell is nearer to the leaves its chance to be in the set of one of the calculated sub sets for a cell is higher. Therefore you could introduce a bias that favours cells with an higher index i to allow different cell combinations.
+
+Berechnung von RowSet für alles Restlichen Zellen in der Zeile!!!!!?????????!!!!!!!
+Bisher nur für alle bisher Verwendeten.
 
 \subsubsection{Algorithm}
 
@@ -186,25 +167,13 @@ As seen in algorithm \ref{BottomUpDiceRollVar1} a small number of productions is
 }
 
 
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ | l || c |c |c |c | }
-	\hline
-	Algorithm 		& SR 	& SRP 	& SRG 	& SRWP   	\\ \hline
-	\hline
-	DiceRollOnly 	& 09~\%	& 24~\% & 87~\% & 53~\%		\\ \hline
-	BotomUpVar1 	& 13~\% & 29~\% & 99~\% & 68~\% 	\\ \hline
-	BotomUpVar2 	& 16~\% & 26~\% & 99~\% & 77~\% 	\\ \hline
-	\end{tabular}
-	\caption{Success rates for algorithm \ref{BottomUpDiceRollVar2}}
-	\label{BottomUpDiceRollVar2SR}
-\end{table}
 
 \pagebreak
 \subsection{SplitThenFill (Idea 1)}
 \subsubsection{Basic Idea} 
 The basic idea for this algorithm is to uniform randomly generate a predefined structure of the derivation tree that helps adding the "right" productions. You always update the pyramid after adding one production to the grammar.
-This is also some kind of BottumUp approach - Bottom Up: The parse table is filled relatively evenly. All information regarding the upper cells are available and can be used. Similar to the CYK Algorithm approach.
+This is also some kind of BottumUp approach - Bottom Up: The parse table is filled relatively evenly. All information regarding the upper cells are available and can be used. Similar to the CYK Algorithm approach. \\
+It is important to distribute the varComp exactly to one var.
 \subsubsection{Algorithm}
 \noindent
 \frame{
@@ -254,34 +223,24 @@ This is also some kind of BottumUp approach - Bottom Up: The parse table is fill
 		}
 	\end{algorithm}
 }
-\\
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ | l || c |c |c |c | }
-		\hline
-		Algorithm 		& SR 	& SRP 	& SRG 	& SRWP   	\\ \hline
-		\hline
-		DiceRollOnly 	& 09~\%	& 24~\% & 87~\% & 53~\%		\\ \hline
-		BotomUpVar1 	& 13~\% & 29~\% & 99~\% & 68~\% 	\\ \hline
-		BotomUpVar2 	& 16~\% & 26~\% & 99~\% & 77~\% 	\\ \hline
-		SplitThenFill 	& 20~\% & 62~\% & 81~\% & 45~\% 	\\ \hline
-	\end{tabular}
-	\caption{Success rates for algorithm \ref{SplitThenFill}}
-	\label{SplitThenFillSR}
-\end{table}
+
 \noindent The stopping criteria is met if the tip of the pyramid is not empty. It is a valid approach because if this cell is not empty it means that there is a chance of being able to generate the word. To add further productions only results in a grammar that has to many productions with its pyramid having to many variables.
 \pagebreak
 
 \subsection{SplitAndFill}
 \subsubsection{Basic Idea} 
+It is dependent on the length of the word.\\
+It is important that the terminals and the varcomps are distributed to exactly one var.
 The stopping criteria will be that each cell with index i = 0 must be not empty.
 Now there is a second option to fill the parse table:
 \begin{enumerate}
 	\item Top Down: The parse table is filled quiet unevenly. You don't have all information available. Think about adding a production for the node cell: You can add a production so that its producing cells fill the node cell, but you don't know what actually would be the best to fill in these producing cells because they themselves aren't looked at yet. This problem is kept until the last depth of the recursion, where the cells in row $i=0$ are taken into account. Only starting there you know what variables actually produce the terminals.\\
 	Maybe solution: For the Top Down approach, don't assume that the terminals are already distributed over the V. Distribute the terminals over the variables in an ideal way that fits your already generated productions best.
 \end{enumerate}
+The problem is that we have as much productions as splits in the derivation tree exist. The productions count can be reduced via merging duplicate productions and via reducing the split count in the tree. \\
+Merging productions means: If there are A --> BS and C --> BS then only one Production of these two can remain.\\
+Reducing the split count in the tree is equal to generate a tree with minimal size. Minimal size is achieved via splitting the tree most evenly always.
 \subsubsection{Algorithm}
-\vspace{8cm}
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
@@ -291,10 +250,9 @@ Now there is a second option to fill the parse table:
 		\KwIn{Word $w \in \Sigma^{*}$}
 		\KwOut{Set of productions $P$}
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$P = P \cup (S,~xy)$;~~\tcp{$xy \in V^2$}
-		$Sol = (P_{Sol},~Cell_{i,j})$;~~\tcp{$P_{Sol} \subseteq P~\wedge~ Cell_{i,j} \in Pyramid$} \label{cell}
+		$Sol = (P_{Sol},~v)$;~~\tcp{$P_{Sol} \subseteq P$} \label{cell}
 		$Sol = SplitAndFill(P,\ w,\ i_{max},\ 0)$\;
-		
+		$P_{Sol}~postprocessing$\;
 		\Return $P_{Sol}$\;
 		\footnotetext{
 		}
@@ -308,71 +266,28 @@ Now there is a second option to fill the parse table:
 		\label{SplitAndFill}
 		\SetAlgoLined
 		\KwIn{$P \subseteq V \times (V^{2} \cup \Sigma),\ w \in \Sigma^{*},\ i,j \in \mathbb{N}$ }
-		\KwOut{$(P,~Cell_{i,j})$}
-		Würfeln von m\;
-		Für beide Zellen:\;
-			Checken ob i > 0\;
-				i > 0: Hinzufügen einer Var in die Zelle\;
-				i = 0: Checken ob Terminal wj schon vergeben\;
-					ja: dann nutzen der Var bzw. des lhse der Prod des wj\;
-					nein: Würfeln von Var und Hinzufügen der Prod Var --> wj\;
-		Hinzufügen der Produktion mit VarComp = (Var1, Var2) zur Variablen der aufrufenden Zelle\;
+		\KwOut{$(P,~v)$}
 		\If{$i=0$}{
-			
-			\Return $(P,\ Cell_{i,j})$\label{row0}\;
-		}	
-		$choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
-		$(P,\ Cell_l) = SplitThenFill(P,\ w,\ (m-j-1),\ j)$\label{left}\;
-		$(P,\ Cell_r) = SplitThenFill(P,\ w,\ (j+i-m),\ m)$\label{right}\;
-		$Pyramid = CYK(G,\ w)$\label{cyk}\;
-		\If{$stopping\ criteria~met$~\circled{C}}{
-			\Return $(P,\ Cell_{i,j})$\;
+			\If{$terminal~w_j~not~already~distributed$}{
+				$P = Distribute(w_j,\ V)$; \circled{A} \label{stepii}  \\		
+			}
+			\Return $(P,\ v_{lhse})$\;
 		}
-		\If{$Cell_{i,j} = \emptyset$}{
-			$Vc = uniform\ random\ subset\ from\ \{vc\ |\ v \in Cell_l\ \wedge\ c \in Cell_r\} ~with~|Vc| \geq 1$\;
-			$P = P \cup Distribute(Vc,\ V) $; \circled{B}  \\
+		$Choose~Best~Possible!!!!!~choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
+		$(P,\ v_l) = SplitThenFill(P,\ w,\ (m-j-1),\ j)$\label{left}\;
+		$(P,\ v_r) = SplitThenFill(P,\ w,\ (j+i-m),\ m)$\label{right}\;	
+		\If{$i=i_{max}$}{
+			$P = P \cup (S,~v_l v_r)$\;
+			\Return $(P,\ v)$\;
 		}
-		
-		\Return $(P,\ Cell_{i,j})$\;
+		$P = P \cup (v,~v_l v_r)$\;
+		\Return $(P,\ v)$\;
 		\footnotetext{
 		}
 	\end{algorithm}
 }
 \\
 
-\noindent
-\frame{
-	\begin{algorithm}[H] %or another one check
-		\caption{SplitAndFill}
-		\label{SplitAndFill}
-		\SetAlgoLined
-		\KwIn{$Pyramid~Pyr,\ P \subseteq V \times (V^{2} \cup \Sigma),\ w \in \Sigma^{*},\ i,j \in \mathbb{N}$ }
-		\KwOut{$(P,~Pyr)$}
-		\If{$stopping\ criteria~met$~\circled{C}}{
-			\Return $(P,\ Pyr)$\;
-		}
-		$SetAll = V \times V$\;
-		$Pyramid = CYK(G,\ w)$\label{cyk}\;
-		$choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
-		
-		\If{$(m-j-i) \neq 0$}{
-			$(P,\ Pyr) = SplitAndFill(Pyr,\ w,\ (m-j-1),\ j)$\label{left}\;	
-		} else then\\
-			~~~~~~$v = choose~one~variable~uniform~randomly~from~Cell_{i,j}$\;
-			~~~~~~$P = P \cup (v --> w_j)$\;
-		end
-		
-		\If{$(j+i-m) \neq 0$}{
-			$(P,\ Pyr) = SplitAndFill(Pyr,\ w,\ (j+i-m),\ m)$\label{right}\;
-		} else then\\
-			~~~~~~$v = choose~one~variable~uniform~randomly~from~Cell_{i,j}$\;
-			~~~~~~$P = P \cup (v --> w_j)$\;
-		end
-		\Return $(P,\ Cell_{i,j})$\;
-		\footnotetext{
-		}
-	\end{algorithm}
-}
 
 \pagebreak
 \subsection{Comparision of Algorithms}
@@ -384,9 +299,9 @@ Now there is a second option to fill the parse table:
 Algorithm 		& SR 	& SRP 	& SRG 	& SRWP   	\\ \hline
 \hline
 DiceRollOnly 	& 09~\%	& 24~\% & 87~\% & 53~\%		\\ \hline
-BotomUpVar1 	& 13~\% & 29~\% & 99~\% & 68~\% 	\\ \hline
-BotomUpVar2 	& 16~\% & 26~\% & 99~\% & 77~\% 	\\ \hline
-BotomUpVar2 	& 20~\% & 62~\% & 81~\% & 45~\% 	\\ \hline
+BotomUpVar1 	& 18~\% & 52~\% & 88~\% & 48~\% 	\\ \hline
+BotomUpVar2 	& 22~\% & 46~\% & 93~\% & 62~\% 	\\ \hline
+SplitThenFill 	& 28~\% & 39~\% & 97~\% & 80~\% 	\\ \hline
 	\end{tabular}
 	\caption{Comparison of the success rates of the algorithms}
 	\label{comparisonAlgorithms}

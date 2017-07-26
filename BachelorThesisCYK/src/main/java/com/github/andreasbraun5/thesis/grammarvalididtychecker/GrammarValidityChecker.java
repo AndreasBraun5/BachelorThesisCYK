@@ -35,7 +35,7 @@ public class GrammarValidityChecker {
      */
     public static CheckMaxNumberOfVarsPerCellResultWrapper checkMaxNumberOfVarsPerCell(
             Pyramid pyramid,
-            int maxNumberOfVarsPerCell) { //TODO always false here
+            int maxNumberOfVarsPerCell) {
         CellSimple[][] cellsSimple = pyramid.getCellsSimple();
         if (maxNumberOfVarsPerCell == 0) {
             throw new GrammarPropertiesRuntimeException("maxNumberOfVarsPerCell is zero.");
