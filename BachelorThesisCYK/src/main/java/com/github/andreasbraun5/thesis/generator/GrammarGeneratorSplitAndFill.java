@@ -78,8 +78,7 @@ public class GrammarGeneratorSplitAndFill extends GrammarGenerator {
             }
         }
         // Line 7:
-        //int m = random.nextInt(i) + (j + 1); // ((j + i) + 1     - (j - 1)) || + (j + 1)
-        int m = ((i - 1) / 2) + j + 1;
+        int m = random.nextInt(i) + (j + 1); // ((j + i) + 1     - (j - 1)) || + (j + 1)
         // Line 8 + 9:
         Tuple<GrammarPyramidWrapper, Variable> left = splitAndFill(grammarPyramidWrapper, (m - j - 1), j, workLog);
         Tuple<GrammarPyramidWrapper, Variable> right = splitAndFill(grammarPyramidWrapper, (j + i - m), m, workLog);
@@ -134,20 +133,31 @@ public class GrammarGeneratorSplitAndFill extends GrammarGenerator {
     }
 
     private GrammarPyramidWrapper postprocessing(GrammarPyramidWrapper grammarPyramidWrapper) {
-        // remove double productions
         Grammar grammar = grammarPyramidWrapper.getGrammar();
         List<Production> prodList = grammar.getProductionsAsList();
-        Set<VariableCompound> possibleVarComp = new HashSet<>();
+        Set<VariableCompound> varCompsOfRhs = new HashSet<>();
+        // Get all possible rhses
         prodList.forEach(production -> {
             if (production.getRightHandSideElement() instanceof VariableCompound) {
-                possibleVarComp.add((VariableCompound) production.getRightHandSideElement());
+                varCompsOfRhs.add((VariableCompound) production.getRightHandSideElement());
             }
         });
-        Set<Production> prodsWithVarComp = new HashSet<>();
-        possibleVarComp.forEach(variableCompound -> {
-            
+        varCompsOfRhs.forEach(variableCompound -> {
+            // Identify the productions with the same rhse
+            List<Production> prodsWithSameVarComp = new ArrayList<>();
+            prodList.forEach(production -> {
+                if (production.getRightHandSideElement().equals(variableCompound)) {
+                    prodsWithSameVarComp.add(production);
+                }
+            });
+            Collections.shuffle(prodsWithSameVarComp);
+            // Delete productions with the same rhse as long there is only one left
+            while (prodsWithSameVarComp.size() > 1) {
+                Production prod = prodsWithSameVarComp.get(0);
+                prodsWithSameVarComp.remove(0);
+                grammar.removeProduction(prod);
+            }
         });
-
         return grammarPyramidWrapper;
     }
 }

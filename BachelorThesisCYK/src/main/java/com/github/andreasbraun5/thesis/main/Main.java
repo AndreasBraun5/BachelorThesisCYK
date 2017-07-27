@@ -68,7 +68,7 @@ public class Main {
                     countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
             GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
 
-            /*
+
             GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar1 = new GrammarGeneratorSettings(
                     grammarProperties, "GrammarGeneratorDiceRollVar1");
             Result resultGrammarGeneratorDiceRollVar1 = resultCalculator.buildResultWithGenerator(
@@ -103,7 +103,7 @@ public class Main {
                     WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitThenFill.name)))
             );
             Util.writeResultToTxtFile(resultGrammarGeneratorSplitThenFill);
-            */
+
             GrammarGeneratorSettings settingsGrammarGeneratorSplitAndFill = new GrammarGeneratorSettings(
                     grammarProperties, "GrammarGeneratorSplitAndFill");
             settingsGrammarGeneratorSplitAndFill.setMinValueCompoundVariablesAreAddedTo(1);

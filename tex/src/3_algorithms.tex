@@ -252,7 +252,7 @@ Reducing the split count in the tree is equal to generate a tree with minimal si
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		$Sol = (P_{Sol},~v)$;~~\tcp{$P_{Sol} \subseteq P$} \label{cell}
 		$Sol = SplitAndFill(P,\ w,\ i_{max},\ 0)$\;
-		$P_{Sol}~postprocessing$\;
+		$Merge~productions~with~the~same~variableCompound~in~P_{Sol}$\;
 		\Return $P_{Sol}$\;
 		\footnotetext{
 		}
@@ -273,7 +273,7 @@ Reducing the split count in the tree is equal to generate a tree with minimal si
 			}
 			\Return $(P,\ v_{lhse})$\;
 		}
-		$Choose~Best~Possible!!!!!~choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
+		$choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
 		$(P,\ v_l) = SplitThenFill(P,\ w,\ (m-j-1),\ j)$\label{left}\;
 		$(P,\ v_r) = SplitThenFill(P,\ w,\ (j+i-m),\ m)$\label{right}\;	
 		\If{$i=i_{max}$}{
@@ -302,9 +302,10 @@ DiceRollOnly 	& 09~\%	& 24~\% & 87~\% & 53~\%		\\ \hline
 BotomUpVar1 	& 18~\% & 52~\% & 88~\% & 48~\% 	\\ \hline
 BotomUpVar2 	& 22~\% & 46~\% & 93~\% & 62~\% 	\\ \hline
 SplitThenFill 	& 28~\% & 39~\% & 97~\% & 80~\% 	\\ \hline
+SplitAndFill 	& 16~\% & 100~\% & 99~\% & 16~\% 	\\ \hline
 	\end{tabular}
 	\caption{Comparison of the success rates of the algorithms}
 	\label{comparisonAlgorithms}
 \end{table}
-
+Finding of ideal parameter for each algorithm.
 \pagebreak
