@@ -113,6 +113,14 @@ public class GrammarGeneratorDiceRollVar1 extends GrammarGenerator {
                         workLog.log("END of Logging of GrammarGeneratorDiceRollVar1.");
                         workLog.log("#########################################################################################################");
                         // Line 15
+                        /*
+                        grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+                        workLog.log("Grammar before postprocessing: ");
+                        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+                        grammarPyramidWrapper = GrammarGeneratorUtil.postprocessing(grammarPyramidWrapper);
+                        workLog.log("Grammar after postprocessing: ");
+                        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+                        */
                         return grammarPyramidWrapper;
                     }
                 }
@@ -126,6 +134,14 @@ public class GrammarGeneratorDiceRollVar1 extends GrammarGenerator {
             workLog.log("END of Logging of GrammarGeneratorDiceRollVar1.");
             workLog.log("#########################################################################################################");
         }
+        /*
+        grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+        workLog.log("Grammar before postprocessing: ");
+        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        grammarPyramidWrapper = GrammarGeneratorUtil.postprocessing(grammarPyramidWrapper);
+        workLog.log("Grammar after postprocessing: ");
+        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        */
         return grammarPyramidWrapper;
     }
 }

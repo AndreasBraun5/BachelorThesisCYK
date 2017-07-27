@@ -38,7 +38,7 @@ Compression of the RowSet like: (AB,3) and (AB,1) -> (AB,1) --> RowSetCompressed
 rowListWeighted = add i times XY to rowListWeighted.
 
 \pagebreak
-\subsection{DiceRollOnly}
+\subsection{DiceRollOnlyCYK}
 \subsubsection{Basic Idea}
 \noindent This is a very naive way of generating grammars, which will be the starting point for our algorithms to be found. Each future algorithm must have a higher score than this algorithm or otherwise it would be worse, than simple dice rolling the distribution of terminals and compound variables with removing the not contributing productions afterwards.
 \subsubsection{Algorithm}
@@ -46,8 +46,8 @@ rowListWeighted = add i times XY to rowListWeighted.
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
-		\caption{DiceRollOnly}
-		\label{DiceRollOnly}
+		\caption{DiceRollOnlyCYK}
+		\label{DiceRollOnlyCYK}
 		\SetAlgoLined
 		\KwIn{Word $w \in \Sigma^{*}$ }
 		\KwOut{Set of productions $P$}
@@ -169,11 +169,12 @@ Bisher nur für alle bisher Verwendeten.
 
 
 \pagebreak
-\subsection{SplitThenFill (Idea 1)}
+\subsection{SplitThenFill}
 \subsubsection{Basic Idea} 
 The basic idea for this algorithm is to uniform randomly generate a predefined structure of the derivation tree that helps adding the "right" productions. You always update the pyramid after adding one production to the grammar.
 This is also some kind of BottumUp approach - Bottom Up: The parse table is filled relatively evenly. All information regarding the upper cells are available and can be used. Similar to the CYK Algorithm approach. \\
 It is important to distribute the varComp exactly to one var.
+\pagebreak
 \subsubsection{Algorithm}
 \noindent
 \frame{
@@ -201,8 +202,9 @@ It is important to distribute the varComp exactly to one var.
 		\caption{SplitThenFill}
 		\label{SplitThenFill}
 		\SetAlgoLined
-		\KwIn{$P \subseteq V \times (V^{2} \cup \Sigma),\ w \in \Sigma^{*},\ i,j \in \mathbb{N}$ }
+		\KwIn{$P_{in} \subseteq V \times (V^{2} \cup \Sigma),\ w \in \Sigma^{*},\ i,j \in \mathbb{N}$ }
 		\KwOut{$(P,~Cell_{i,j})$}
+		$P =  P_{in}$\;
 		\If{$i=0$}{
 			\Return $(P,\ Cell_{i,j})$\label{row0}\;
 		}	
@@ -239,8 +241,8 @@ Now there is a second option to fill the parse table:
 \end{enumerate}
 The problem is that we have as much productions as splits in the derivation tree exist. The productions count can be reduced via merging duplicate productions and via reducing the split count in the tree. \\
 Merging productions means: If there are A --> BS and C --> BS then only one Production of these two can remain.\\
-Reducing the split count in the tree is equal to generate a tree with minimal size. Minimal size is achieved via splitting the tree most evenly always.
 \subsubsection{Algorithm}
+\pagebreak
 \noindent
 \frame{
 	\begin{algorithm}[H] %or another one check
@@ -265,23 +267,19 @@ Reducing the split count in the tree is equal to generate a tree with minimal si
 		\caption{SplitAndFill}
 		\label{SplitAndFill}
 		\SetAlgoLined
-		\KwIn{$P \subseteq V \times (V^{2} \cup \Sigma),\ w \in \Sigma^{*},\ i,j \in \mathbb{N}$ }
+		\KwIn{$P_{in} \subseteq V \times (V^{2} \cup \Sigma),\ w \in \Sigma^{*},\ i,j \in \mathbb{N}$ }
 		\KwOut{$(P,~v)$}
+		$P = P_{in}$\;
 		\If{$i=0$}{
-			\If{$terminal~w_j~not~already~distributed$}{
-				$P = Distribute(w_j,\ V)$; \circled{A} \label{stepii}  \\		
-			}
-			\Return $(P,\ v_{lhse})$\;
+			\Return $(P \cup (v,~ w_j),\ v_{lhse})$\;
 		}
 		$choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
-		$(P,\ v_l) = SplitThenFill(P,\ w,\ (m-j-1),\ j)$\label{left}\;
-		$(P,\ v_r) = SplitThenFill(P,\ w,\ (j+i-m),\ m)$\label{right}\;	
+		$(P,\ v_l) = SplitAndFill(P,\ w,\ (m-j-1),\ j)$\label{left}\;
+		$(P,\ v_r) = SplitAndFill(P,\ w,\ (j+i-m),\ m)$\label{right}\;	
 		\If{$i=i_{max}$}{
-			$P = P \cup (S,~v_l v_r)$\;
-			\Return $(P,\ v)$\;
+			\Return $(P \cup (S,~v_l v_r),\ v)$\;
 		}
-		$P = P \cup (v,~v_l v_r)$\;
-		\Return $(P,\ v)$\;
+		\Return $(P \cup (v,~v_l v_r),\ v)$\;
 		\footnotetext{
 		}
 	\end{algorithm}
@@ -298,11 +296,11 @@ Reducing the split count in the tree is equal to generate a tree with minimal si
 		\hline
 Algorithm 		& SR 	& SRP 	& SRG 	& SRWP   	\\ \hline
 \hline
-DiceRollOnly 	& 09~\%	& 24~\% & 87~\% & 53~\%		\\ \hline
-BotomUpVar1 	& 18~\% & 52~\% & 88~\% & 48~\% 	\\ \hline
-BotomUpVar2 	& 22~\% & 46~\% & 93~\% & 62~\% 	\\ \hline
-SplitThenFill 	& 28~\% & 39~\% & 97~\% & 80~\% 	\\ \hline
-SplitAndFill 	& 16~\% & 100~\% & 99~\% & 16~\% 	\\ \hline
+DiceRollOnly 	& 10~\%	& 24~\% & 87~\% & 53~\%		\\ \hline
+BotomUpVar1 	& 18~\% & 53~\% & 88~\% & 48~\% 	\\ \hline
+BotomUpVar2 	& 22~\% & 47~\% & 93~\% & 62~\% 	\\ \hline
+SplitThenFill 	& 26~\% & 39~\% & 96~\% & 78~\% 	\\ \hline
+SplitAndFill 	& 15~\% & 100~\% & 99~\% & 15~\% 	\\ \hline
 	\end{tabular}
 	\caption{Comparison of the success rates of the algorithms}
 	\label{comparisonAlgorithms}

@@ -158,4 +158,33 @@ public class GrammarGeneratorUtil {
         return varComp;
     }
 
+    public static GrammarPyramidWrapper postprocessing(GrammarPyramidWrapper grammarPyramidWrapper) {
+        Grammar grammar = grammarPyramidWrapper.getGrammar();
+        List<Production> prodList = grammar.getProductionsAsList();
+        Set<VariableCompound> varCompsOfRhs = new HashSet<>();
+        // Get all possible rhses
+        prodList.forEach(production -> {
+            if (production.getRightHandSideElement() instanceof VariableCompound) {
+                varCompsOfRhs.add((VariableCompound) production.getRightHandSideElement());
+            }
+        });
+        varCompsOfRhs.forEach(variableCompound -> {
+            // Identify the productions with the same rhse
+            List<Production> prodsWithSameVarComp = new ArrayList<>();
+            prodList.forEach(production -> {
+                if (production.getRightHandSideElement().equals(variableCompound)) {
+                    prodsWithSameVarComp.add(production);
+                }
+            });
+            Collections.shuffle(prodsWithSameVarComp);
+            // Delete productions with the same rhse as long there is only one left
+            while (prodsWithSameVarComp.size() > 1) {
+                Production prod = prodsWithSameVarComp.get(0);
+                prodsWithSameVarComp.remove(0);
+                grammar.removeProduction(prod);
+            }
+        });
+        return grammarPyramidWrapper;
+    }
+
 }

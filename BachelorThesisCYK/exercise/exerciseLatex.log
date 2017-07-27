@@ -1,10 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  25 JUL 2017 10:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  27 JUL 2017 17:02
 entering extended mode
-**C:/Users/AndreasBraun/Documents/BachelorThesis/BachelorThesisCYK/exercise/exe
-rciseLatex.tex
-
-(C:/Users/AndreasBraun/Documents/BachelorThesis/BachelorThesisCYK/exercise/exer
-ciseLatex.tex
+**./exerciseLatex.tex
+(exerciseLatex.tex
 LaTeX2e <2017-04-15>
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\scrartcl.cls"
@@ -459,9 +456,7 @@ Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.def"
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
-))
-(C:\Users\AndreasBraun\Documents\BachelorThesis\BachelorThesisCYK\exercise\exer
-ciseLatex.aux)
+)) (exerciseLatex.aux)
 \openout1 = `exerciseLatex.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -478,7 +473,8 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
- ABD: EveryShipout initializing macros
+
+ABD: EveryShipout initializing macros
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count111
@@ -560,23 +556,21 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 {C:/Users/AndreasBraun/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-(C:\Users\AndreasBraun\Documents\BachelorThesis\BachelorThesisCYK\exercise\exer
-ciseLatex.aux) ) 
+(exerciseLatex.aux) ) 
 Here is how much of TeX's memory you used:
- 14913 strings out of 493328
- 301467 string characters out of 3139104
- 454380 words of memory out of 3000000
+ 14911 strings out of 493328
+ 300847 string characters out of 3139104
+ 456726 words of memory out of 3000000
  18213 multiletter control sequences out of 15000+200000
  11710 words of font info for 41 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,11n,63p,8915b,892s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
-i12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><
-C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on C:\Users\AndreasBraun\Documents\BachelorThesis\BachelorThesis
-CYK\exercise\exerciseLatex.pdf (2 pages, 53898 bytes).
+ 64i,11n,73p,8843b,982s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on exerciseLatex.pdf (2 pages, 54060 bytes).
 PDF statistics:
  32 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -76,6 +76,14 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
             workLog.log("END of Logging of GrammarGeneratorDiceRollOnly.");
             workLog.log("#########################################################################################################");
         }
+        /*
+        grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+        workLog.log("Grammar before postprocessing: ");
+        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        grammarPyramidWrapper = GrammarGeneratorUtil.postprocessing(grammarPyramidWrapper);
+        workLog.log("Grammar after postprocessing: ");
+        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        */
         return grammarPyramidWrapper;
     }
 }

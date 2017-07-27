@@ -253,7 +253,7 @@ $D\rightarrow B B~~$\\
 \begin{center}
 \resizebox{\linewidth}{!}{
 \begin{tikzpicture}[baseline]
-		\tikzset{frontier/.style={distance from root=150pt}} %height of tree times 30pt
+		\tikzset{frontier/.style={distance from root=180pt}} %height of tree times 30pt
 		\tikzset{edge from parent/.style= {
 				draw,
 				edge from parent path={(\tikzparentnode.south)	-- +(0,-8pt)-| (\tikzchildnode)}
@@ -261,25 +261,25 @@ $D\rightarrow B B~~$\\
 		}
 		\Tree
 [.S1
-[.D3
-[.S1
-[.N1 0 ]
+[.S'1
+[.A1 0 ]
 [.B2 1 ]
 ]
+[.S'3
+[.B3
 [.D3
 [.B3 1 ]
 [.B4 1 ]
 ]
-]
-[.C5
+[.A5
+[.S'5
 [.A5 0 ]
-[.A6
-[.S6
-[.B6 1 ]
-[.N7 0 ]
+[.E6 1 ]
 ]
-[.N8 0 ]
+[.A7 0 ]
 ]
+]
+[.A8 0 ]
 ]
 ]
 \end{tikzpicture}

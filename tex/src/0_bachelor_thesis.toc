@@ -13,7 +13,7 @@
 \contentsline {subsubsection}{\numberline {2.1.1}Distribute A \& B}{12}{subsubsection.2.1.1}
 \contentsline {subsubsection}{\numberline {2.1.2}Stopping Criteria C}{12}{subsubsection.2.1.2}
 \contentsline {subsubsection}{\numberline {2.1.3}ChooseXYDependingOnIFromRowSet D}{12}{subsubsection.2.1.3}
-\contentsline {subsection}{\numberline {2.2}DiceRollOnly}{13}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.2}DiceRollOnlyCYK}{13}{subsection.2.2}
 \contentsline {subsubsection}{\numberline {2.2.1}Basic Idea}{13}{subsubsection.2.2.1}
 \contentsline {subsubsection}{\numberline {2.2.2}Algorithm}{13}{subsubsection.2.2.2}
 \contentsline {subsection}{\numberline {2.3}BottomUpDiceRollVar1}{14}{subsection.2.3}
@@ -22,9 +22,9 @@
 \contentsline {subsection}{\numberline {2.4}BottomUpDiceRollVar2}{15}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}Basic Idea}{15}{subsubsection.2.4.1}
 \contentsline {subsubsection}{\numberline {2.4.2}Algorithm}{15}{subsubsection.2.4.2}
-\contentsline {subsection}{\numberline {2.5}SplitThenFill (Idea 1)}{16}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.5}SplitThenFill}{16}{subsection.2.5}
 \contentsline {subsubsection}{\numberline {2.5.1}Basic Idea}{16}{subsubsection.2.5.1}
-\contentsline {subsubsection}{\numberline {2.5.2}Algorithm}{16}{subsubsection.2.5.2}
+\contentsline {subsubsection}{\numberline {2.5.2}Algorithm}{17}{subsubsection.2.5.2}
 \contentsline {subsection}{\numberline {2.6}SplitAndFill}{18}{subsection.2.6}
 \contentsline {subsubsection}{\numberline {2.6.1}Basic Idea}{18}{subsubsection.2.6.1}
 \contentsline {subsubsection}{\numberline {2.6.2}Algorithm}{18}{subsubsection.2.6.2}

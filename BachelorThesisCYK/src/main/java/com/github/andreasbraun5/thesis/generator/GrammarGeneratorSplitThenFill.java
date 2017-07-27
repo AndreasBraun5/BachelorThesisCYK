@@ -64,7 +64,16 @@ public class GrammarGeneratorSplitThenFill extends GrammarGenerator {
             workLog.log(sol.x.getPyramid().getWord().toString());
             workLog.log(sol.x.getPyramid().toString());
         }
-        return sol.x;
+        grammarPyramidWrapper = sol.x;
+        /*
+        grammarPyramidWrapper = CYK.calculateSetVAdvanced(sol.x);
+        workLog.log("Grammar before postprocessing: ");
+        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        grammarPyramidWrapper = GrammarGeneratorUtil.postprocessing(grammarPyramidWrapper);
+        workLog.log("Grammar after postprocessing: ");
+        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        */
+        return grammarPyramidWrapper;
     }
 
     private Tuple<GrammarPyramidWrapper, CellK> splitThenFill(
