@@ -18,6 +18,11 @@ import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 import com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator;
 import com.github.andreasbraun5.thesis.util.Util;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.junit.Assert;
 
 import java.io.*;
@@ -32,6 +37,7 @@ public class Main {
     static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
     private static ExecutorService executorService;
+
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Note: C:\GitHub\BachelorThesis\BachelorThesisCYK>mvn clean install    --> .jar

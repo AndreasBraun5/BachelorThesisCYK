@@ -28,6 +28,15 @@
             </plugin>
 
             <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>8.8.3</version>
+                <configuration>
+                    <mainClass>com.github.andreasbraun5.thesis.main.Thesis</mainClass>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
                 <version>${antlr.version}</version>
