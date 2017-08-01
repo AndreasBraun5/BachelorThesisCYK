@@ -7,6 +7,7 @@ import com.github.andreasbraun5.thesis.main.ThesisDirectory;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.pyramid.VariableK;
+import com.github.andreasbraun5.thesis.resultcalculator.BestResultSamples;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 
 import java.io.File;
@@ -58,9 +59,9 @@ public abstract class Util {
      * Storing the result output in a text fileAsTxt.
      */
     public static void writeResultToTxtFile(
-            Result... result) {
+            Tuple<Result, BestResultSamples>... result) {
         for (int i = 0; i < result.length; i++) {
-            Util.writeResultToTxtFile(result[i], result[i].name);
+            Util.writeResultToTxtFile(result[i], result[i].x.name);
         }
     }
 
@@ -68,11 +69,11 @@ public abstract class Util {
      * Storing the result output in a text fileAsTxt.
      */
     public static void writeResultToTxtFile(
-            Result result, String name) {
+            Tuple<Result, BestResultSamples> result, String name) {
         File test = new File(ThesisDirectory.EXAMPLES.path, name + ".txt");
         try (PrintWriter out = new PrintWriter(test)) {
             out.println(result);
-            out.println(result.getExampleResultSamples().toString());
+            out.println(result.x.getExampleResultSamples().toString());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

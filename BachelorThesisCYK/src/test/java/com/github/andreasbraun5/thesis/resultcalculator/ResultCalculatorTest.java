@@ -7,6 +7,7 @@ import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
 import com.github.andreasbraun5.thesis.main.Main;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
+import com.github.andreasbraun5.thesis.util.Tuple;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,10 +40,10 @@ public class ResultCalculatorTest {
         ResultCalculator resultCalculator1 = ResultCalculator.builder().
                 countDifferentWords(countDifferentWords).
                 countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
-        Result test1DiceRollResult = resultCalculator1.buildResultWithGenerator(
+        Tuple<Result, BestResultSamples> test1DiceRollResult = resultCalculator1.buildResultWithGenerator(
                 new GrammarGeneratorDiceRollOnly(generatorGrammarDiceRollSettings), WorkLog.createFromWriter(null)
         );
-        List<ResultSample> representativeResultSamples = test1DiceRollResult.getExampleResultSamples()
+        List<ResultSample> representativeResultSamples = test1DiceRollResult.x.getExampleResultSamples()
                 .getExampleRepresentativeExamples();
         for (ResultSample resultSample : representativeResultSamples) {
             Assert.assertEquals(

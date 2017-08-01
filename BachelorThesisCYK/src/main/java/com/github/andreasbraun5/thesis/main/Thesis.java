@@ -19,8 +19,14 @@ public class Thesis extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("CYK Instances Generator");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.sizeToScene();
+        primaryStage.setResizable(false);
+        Controller controller = new Controller();
+        controller.init();
         primaryStage.show();
     }
+
+
 }

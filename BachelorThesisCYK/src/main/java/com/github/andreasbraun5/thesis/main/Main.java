@@ -15,8 +15,10 @@ import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
+import com.github.andreasbraun5.thesis.resultcalculator.BestResultSamples;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 import com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator;
+import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -77,7 +79,7 @@ public class Main {
 
             GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar1 = new GrammarGeneratorSettings(
                     grammarProperties, "GrammarGeneratorDiceRollVar1");
-            Result resultGrammarGeneratorDiceRollVar1 = resultCalculator.buildResultWithGenerator(
+            Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollVar1 = resultCalculator.buildResultWithGenerator(
                     new GrammarGeneratorDiceRollVar1(settingsGrammarGeneratorDiceRollVar1),
                     WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar1.name)))
             );
@@ -85,7 +87,7 @@ public class Main {
 
             GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar2 = new GrammarGeneratorSettings(
                     grammarProperties, "GrammarGeneratorDiceRollVar2");
-            Result resultGrammarGeneratorDiceRollVar2 = resultCalculator.buildResultWithGenerator(
+            Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollVar2 = resultCalculator.buildResultWithGenerator(
                     new GrammarGeneratorDiceRollVar2(settingsGrammarGeneratorDiceRollVar2),
                     WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar2.name)))
             );
@@ -93,7 +95,7 @@ public class Main {
 
             GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnly = new GrammarGeneratorSettings(
                     grammarProperties, "GrammarGeneratorDiceRollOnly");
-            Result resultGrammarGeneratorDiceRollOnly = resultCalculator.buildResultWithGenerator(
+            Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollOnly = resultCalculator.buildResultWithGenerator(
                     new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnly),
                     WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollOnly.name)))
             );
@@ -104,7 +106,7 @@ public class Main {
                     grammarProperties, "GrammarGeneratorSplitThenFill");
             settingsGrammarGeneratorSplitThenFill.setMinValueCompoundVariablesAreAddedTo(1);
             settingsGrammarGeneratorSplitThenFill.setMaxValueCompoundVariablesAreAddedTo(1);
-            Result resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
+            Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
                     new GrammarGeneratorSplitThenFill(settingsGrammarGeneratorSplitThenFill),
                     WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitThenFill.name)))
             );
@@ -116,7 +118,7 @@ public class Main {
             settingsGrammarGeneratorSplitAndFill.setMaxValueCompoundVariablesAreAddedTo(1);
             settingsGrammarGeneratorSplitAndFill.setMinValueTerminalsAreAddedTo(1);
             settingsGrammarGeneratorSplitAndFill.setMaxValueTerminalsAreAddedTo(1);
-            Result resultGrammarGeneratorSplitAndFill = resultCalculator.buildResultWithGenerator(
+            Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitAndFill = resultCalculator.buildResultWithGenerator(
                     new GrammarGeneratorSplitAndFill(settingsGrammarGeneratorSplitAndFill),
                     WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitAndFill.name)))
             );

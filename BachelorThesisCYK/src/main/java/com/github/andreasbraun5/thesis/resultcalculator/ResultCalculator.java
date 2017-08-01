@@ -8,6 +8,7 @@ import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
+import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Word;
 import lombok.Builder;
 import lombok.Getter;
@@ -40,7 +41,7 @@ public class ResultCalculator {
         return;
     }
 
-    public Result buildResultWithGenerator(GrammarGenerator grammarGenerator, WorkLog workLog) {
+    public Tuple<Result, BestResultSamples> buildResultWithGenerator(GrammarGenerator grammarGenerator, WorkLog workLog) {
         Result result = Result.buildResult(grammarGenerator.getGrammarGeneratorSettings().name);
         BestResultSamples best = BestResultSamples.builder().
                 name(grammarGenerator.getGrammarGeneratorSettings().name).build();
@@ -72,7 +73,7 @@ public class ResultCalculator {
         }
         System.out.println("\nFinal Tic at time: " + System.currentTimeMillis());
         best.write();
-        return result;
+        return new Tuple<>(result, best);
     }
 
     /**
