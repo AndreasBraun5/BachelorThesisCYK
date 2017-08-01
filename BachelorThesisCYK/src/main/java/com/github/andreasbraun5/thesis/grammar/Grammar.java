@@ -105,12 +105,12 @@ public class Grammar {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder("\nGrammar = " +
-                "\n\nVariableStart:(" + variableStart + ")\n\n");
+                "\n\nstart:" + variableStart + ";\n");
+        str.append("rules:{\n");
         for (Map.Entry<Variable, Set<Production>> entry : productionsMap.entrySet()) {
-            str.append(entry.getValue());
-            str.append("\n");
+            entry.getValue().forEach(production -> str.append(production).append("\n"));
         }
-        str.append("\n");
+        str.append("};");
         return str.toString();
     }
 

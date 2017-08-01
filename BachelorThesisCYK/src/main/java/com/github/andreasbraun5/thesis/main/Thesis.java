@@ -23,8 +23,6 @@ public class Thesis extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.sizeToScene();
         primaryStage.setResizable(false);
-        Controller controller = new Controller();
-        controller.init();
         primaryStage.show();
     }
 

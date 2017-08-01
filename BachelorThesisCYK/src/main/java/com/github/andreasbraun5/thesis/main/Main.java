@@ -68,8 +68,8 @@ public class Main {
              * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
              */
             // It is recommended to use a high countDifferentWords. Word independent results are achieved.
-            int countGeneratedGrammarsPerWord = 100;
-            int countDifferentWords = 100;
+            int countGeneratedGrammarsPerWord = 10;
+            int countDifferentWords = 10;
 
             ResultCalculator resultCalculator = ResultCalculator.builder().
                     countDifferentWords(countDifferentWords).
@@ -152,12 +152,11 @@ public class Main {
             grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
 
             ExerciseLatex exerciseLatex = new ExerciseLatex(exercise.getGrammar(), grammarPyramidWrapper.getPyramid());
-
             WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
 
-            /*runCmd("pdflatex \"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
+            runCmd("pdflatex \"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
                     "achelorThesisCYK\\exercise\\exerciseLatex.tex\" --output-directory=\"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
-                    "achelorThesisCYK\\exercise\"");*/
+                    "achelorThesisCYK\\exercise\"");
 
         } finally {
             executorService.shutdown();
