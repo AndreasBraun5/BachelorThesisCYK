@@ -3,7 +3,7 @@ grammar Exercise;
 exerciseDefinition: grammarDefinition NEWLINE
                     wordDefinition NEWLINE?;
 
-grammarDefinition: varStart NEWLINE
+grammarDefinition: NEWLINE* varStart NEWLINE
                    rules;
 
 varStart: 'start:' WHITE_SPACE* nonTerminal SEMICOLON;

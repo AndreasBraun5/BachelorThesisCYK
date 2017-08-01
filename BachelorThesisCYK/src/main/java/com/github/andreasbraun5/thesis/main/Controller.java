@@ -18,25 +18,39 @@ import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import lombok.Setter;
 
 import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Controller {
+public class Controller implements Initializable{
+
+    @Setter
+    private Thesis thesis;
+
     @FXML
-    public TextArea modify = new TextArea();
+    public TextArea modify;
     @FXML
     public TextArea selectFrom;
 
     @FXML
-    public void initialise() throws IOException {
-        // thesis init paths
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            createNew(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void createNew(MouseEvent mouseEvent) throws IOException {
@@ -71,13 +85,13 @@ public class Controller {
             GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder().grammar(exercise.getGrammar())
                     .pyramid(new Pyramid(exercise.getWord())).build();
             grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
-            /*
+
             ExerciseLatex exerciseLatex = new ExerciseLatex(exercise.getGrammar(), grammarPyramidWrapper.getPyramid());
             WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
 
-            Main.runCmd("pdflatex \"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
+            Main.runCmd(executorService, "pdflatex \"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
                     "achelorThesisCYK\\exercise\\exerciseLatex.tex\" --output-directory=\"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
-                    "achelorThesisCYK\\exercise\"");*/
+                    "achelorThesisCYK\\exercise\"");
         } finally {
             executorService.shutdown();
         }

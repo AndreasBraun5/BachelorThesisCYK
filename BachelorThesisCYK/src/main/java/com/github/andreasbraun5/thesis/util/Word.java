@@ -50,8 +50,6 @@ public class Word {
         StringBuilder str = new StringBuilder();
         str.append("\nword:");
         terminals.forEach(terminal -> str.append(" ").append(terminal).append(""));
-        str.deleteCharAt(str.length() - 1);
-        str.deleteCharAt(str.length() - 1);
         return str.append(";").toString();
     }
 }

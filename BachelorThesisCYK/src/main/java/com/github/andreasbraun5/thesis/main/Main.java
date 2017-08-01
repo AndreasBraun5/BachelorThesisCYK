@@ -68,6 +68,7 @@ public class Main {
              * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
              */
             // It is recommended to use a high countDifferentWords. Word independent results are achieved.
+
             int countGeneratedGrammarsPerWord = 10;
             int countDifferentWords = 10;
 
@@ -154,7 +155,7 @@ public class Main {
             ExerciseLatex exerciseLatex = new ExerciseLatex(exercise.getGrammar(), grammarPyramidWrapper.getPyramid());
             WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
 
-            runCmd("pdflatex \"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
+            runCmd(executorService, "pdflatex \"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
                     "achelorThesisCYK\\exercise\\exerciseLatex.tex\" --output-directory=\"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
                     "achelorThesisCYK\\exercise\"");
 
@@ -163,7 +164,7 @@ public class Main {
         }
     }
 
-    public static void runCmd(String cmd) throws IOException, ExecutionException, InterruptedException {
+    public static void runCmd(ExecutorService executorService, String cmd) throws IOException, ExecutionException, InterruptedException {
         LOGGER.info("running cmd: " + cmd);
 
         final Process p = Runtime.getRuntime().exec(cmd);

@@ -85,9 +85,9 @@ public class BestResultSamples {
         StringBuilder stringBuilder = new StringBuilder("BestResultSamples{");
         bestResultSamples.forEach(resultSampleTuple -> {
                     stringBuilder.
-                            append("\\n\\n############################################################\\n\" +\n" +
-                                    "\"############################################################\")\n")
-                            .append("SCORE OF SAMPLE:").append(resultSampleTuple.x).append("\n")
+                            append("\n\n############################################################ +\n" +
+                                    "############################################################")
+                            .append("\nSCORE OF SAMPLE:").append(resultSampleTuple.x).append("\n")
                             .append(resultSampleTuple.y.toString());
                 }
         );
