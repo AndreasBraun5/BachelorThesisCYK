@@ -1,7 +1,7 @@
 grammar Exercise;
 
 exerciseDefinition: grammarDefinition NEWLINE
-                    wordDefinition NEWLINE?;
+                    wordDefinition RANDOM?;
 
 grammarDefinition: NEWLINE* varStart NEWLINE
                    rules;
@@ -44,3 +44,5 @@ CLOSE_BRACE_CURLY: '}';
 WHITE_SPACE: ' ' | '\t';
 
 NEWLINE: '\n';
+
+RANDOM: 'a'..'z' | 'A'..'Z' | '0'..'9' | '\n' | ',' | '[' | ']' | '=' | ' ' | '\t';

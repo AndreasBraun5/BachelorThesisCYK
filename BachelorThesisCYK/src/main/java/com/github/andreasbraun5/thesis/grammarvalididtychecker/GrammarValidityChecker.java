@@ -24,10 +24,8 @@ public class GrammarValidityChecker {
      * True if the starting symbol is contained at the bottom of the pyramid.
      */
     public static boolean checkProducibilityCYK(
-            Pyramid pyramid,
-            Grammar grammar,
-            GrammarProperties grammarProperties) {
-        return CYK.algorithmAdvanced(pyramid, grammar, grammarProperties);
+            Pyramid pyramid) {
+        return CYK.algorithmAdvanced(pyramid);
     }
 
     /**
@@ -36,10 +34,17 @@ public class GrammarValidityChecker {
     public static CheckMaxNumberOfVarsPerCellResultWrapper checkMaxNumberOfVarsPerCell(
             Pyramid pyramid,
             int maxNumberOfVarsPerCell) {
-        CellSimple[][] cellsSimple = pyramid.getCellsSimple();
         if (maxNumberOfVarsPerCell == 0) {
             throw new GrammarPropertiesRuntimeException("maxNumberOfVarsPerCell is zero.");
         }
+        int tempMaxNumberOfVarsPerCell = maxNumberOfVarsPerCellCount(pyramid);
+        return CheckMaxNumberOfVarsPerCellResultWrapper.builder()
+                .maxNumberOfVarsPerCellCount(tempMaxNumberOfVarsPerCell).
+                        maxNumberOfVarsPerCell(tempMaxNumberOfVarsPerCell <= maxNumberOfVarsPerCell).build();
+    }
+
+    public static int maxNumberOfVarsPerCellCount(Pyramid pyramid) {
+        CellSimple[][] cellsSimple = pyramid.getCellsSimple();
         int tempMaxNumberOfVarsPerCell = 0;
         for (int i = 0; i < cellsSimple[0].length; i++) {
             for (int j = 0; j < cellsSimple[i].length; j++) {
@@ -48,9 +53,7 @@ public class GrammarValidityChecker {
                 }
             }
         }
-        return CheckMaxNumberOfVarsPerCellResultWrapper.builder()
-                .maxNumberOfVarsPerCellCount(tempMaxNumberOfVarsPerCell).
-                        maxNumberOfVarsPerCell(tempMaxNumberOfVarsPerCell <= maxNumberOfVarsPerCell).build();
+        return tempMaxNumberOfVarsPerCell;
     }
 
     /**
@@ -61,6 +64,15 @@ public class GrammarValidityChecker {
      */
     public static CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationForcedSimpleCells(
             Pyramid pyramid, int minCountRightCellCombinationsForced, Grammar grammar) {
+        CheckRightCellCombinationsForcedResultWrapper res = checkRightCellCombinationsForcedSimpleCells(pyramid, grammar);
+        res.setRightCellCombinationForced(res.getRightCellCombinationForcedCount() >= minCountRightCellCombinationsForced);
+        // returns which variables force in which cell of the pyramid, if it the restriction is valid and how often it forces
+        return res;
+
+    }
+
+    public static CheckRightCellCombinationsForcedResultWrapper checkRightCellCombinationsForcedSimpleCells(
+            Pyramid pyramid, Grammar grammar) {
         int rightCellCombinationsForced = 0;
         CellSimple[][] markedRightCellCombinationForced = getEmptyCellsSimple(pyramid.getSize());
         CellK[][] cells = pyramid.getCellsK();
@@ -83,10 +95,8 @@ public class GrammarValidityChecker {
                 }
             }
         }
-        // returns which variables force in which cell of the pyramid, if it the restriction is valid and how often it forces
         return CheckRightCellCombinationsForcedResultWrapper.builder().
                 rightCellCombinationForcedCount(rightCellCombinationsForced).
-                rightCellCombinationForced(rightCellCombinationsForced >= minCountRightCellCombinationsForced).
                 markedRightCellCombinationForced(markedRightCellCombinationForced).build();
     }
 
@@ -131,6 +141,13 @@ public class GrammarValidityChecker {
     public static CheckMaxSumOfVarsInPyramidResultWrapper checkMaxSumOfVarsInPyramid(
             Pyramid pyramid,
             int maxSumOfVarsInPyramid) {
+        int countVars = countSumOfVarsInPyramid(pyramid);
+        return CheckMaxSumOfVarsInPyramidResultWrapper.builder().
+                maxSumOfVarsInPyramidCount(countVars).
+                maxSumOfVarsInPyramid(countVars <= maxSumOfVarsInPyramid).build();
+    }
+
+    public static int countSumOfVarsInPyramid(Pyramid pyramid) {
         CellSimple[][] cellsSimple = pyramid.getCellsSimple();
         // put all vars of the matrix into one list and use its length.
         List<Variable> tempVars = new ArrayList<>();
@@ -139,9 +156,7 @@ public class GrammarValidityChecker {
                 tempVars.addAll(cellsSimple[i][j].getCellElements());
             }
         }
-        return CheckMaxSumOfVarsInPyramidResultWrapper.builder().
-                maxSumOfVarsInPyramidCount(tempVars.size()).
-                maxSumOfVarsInPyramid(tempVars.size() <= maxSumOfVarsInPyramid).build();
+        return tempVars.size();
     }
 
     private static CellSimple[][] getEmptyCellsSimple(int correspondingPyramidSize) {

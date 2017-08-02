@@ -28,7 +28,7 @@ public class ResultSample {
 
     public ResultSample(
             GrammarPyramidWrapper grammarPyramidWrapper,
-            GrammarGeneratorSettings grammarGeneratorSettings) {
+        GrammarGeneratorSettings grammarGeneratorSettings) {
         GrammarConstraints tempGrammarConstraints = grammarGeneratorSettings.grammarProperties.
                 grammarConstraints;
         ExamConstraints tempExamConstraints = grammarGeneratorSettings.grammarProperties.
@@ -36,7 +36,7 @@ public class ResultSample {
         this.grammar = grammarPyramidWrapper.getGrammar();
         this.pyramid = grammarPyramidWrapper.getPyramid();
         this.isWordProducible = GrammarValidityChecker.
-                checkProducibilityCYK(pyramid, grammar, grammarGeneratorSettings.grammarProperties);
+                checkProducibilityCYK(pyramid);
 
         // CheckSumOfProductionsResultWrapper
         CheckSumOfProductionsResultWrapper checkSumOfProductionsResultWrapper = GrammarValidityChecker.

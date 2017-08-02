@@ -38,7 +38,7 @@ public class CYK {
                 contains(grammarPyramidWrapper.getGrammar().getVariableStart());
     }
 
-    public static boolean algorithmAdvanced(Pyramid pyramid, Grammar grammar, GrammarProperties grammarProperties) {
+    public static boolean algorithmAdvanced(Pyramid pyramid) {
         int wordlength = pyramid.getWord().getWordLength();
         List<VariableK> vars =
                 pyramid.getCellK(wordlength - 1, 0).getCellElements().stream().
