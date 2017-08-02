@@ -18,7 +18,7 @@ public class Pyramid {
     private CellK[][] cells;
     private final Word word;
 
-    public Pyramid(Word word){
+    public Pyramid(Word word) {
         this.word = word;
     }
 
@@ -36,7 +36,7 @@ public class Pyramid {
         return new Pyramid(word);
     }
 
-    public void setCells(Set<VariableK>[][] origMatrix){
+    public void setCells(Set<VariableK>[][] origMatrix) {
         int length = origMatrix[0].length;
         // pyramid has now length times many rows
         this.cells = new CellK[length][];
@@ -115,7 +115,8 @@ public class Pyramid {
         }
         {
             for (int i = 0; i < pyramidSize; i++) {
-                int emptySpace = (int) (i / 2.0) * maxLen;
+                // TODO change here!!
+                int emptySpace = (int) Math.ceil(((double) i) / 2.0) * maxLen;
                 for (int x = 0; x < emptySpace; ++x) {
                     stringBuilder.append(" ");
                 }
@@ -131,7 +132,7 @@ public class Pyramid {
         return stringBuilder.toString();
     }
 
-    public Word  getWord() {
+    public Word getWord() {
         return this.word;
     }
 
