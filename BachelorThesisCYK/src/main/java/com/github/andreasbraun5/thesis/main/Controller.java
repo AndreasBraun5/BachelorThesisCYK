@@ -5,6 +5,9 @@ import com.github.andreasbraun5.thesis.exercise.Exercise;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSplitThenFill;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.Terminal;
+import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.CheckRightCellCombinationsForcedResultWrapper;
 import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
@@ -26,10 +29,14 @@ import javafx.scene.input.MouseEvent;
 import lombok.Setter;
 
 import java.awt.*;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -43,25 +50,75 @@ public class Controller implements Initializable {
     public TextArea modify;
     @FXML
     public TextArea selectFrom;
+    @FXML
+    public TextArea wordLength;
+    @FXML
+    public TextArea terminals;
+    @FXML
+    public TextArea variables;
 
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            initWordLength();
+            initTerminals();
+            initVariables();
             createNew(null);
+            initModify();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
+    private void initTerminals() {
+        terminals.setText("a b");
+    }
+
+    private void initWordLength() {
+        wordLength.setText("10");
+    }
+
+    private void initVariables() {
+        variables.setText("A B C");
+    }
+
+    private Set<Variable> getVariables() {
+        String str = variables.getText();
+        Set<Variable> vars = new HashSet<>();
+        String[] varsStr = str.split(" ");
+        for (String string : varsStr) {
+            vars.add(Variable.of(string));
+        }
+        return vars;
+    }
+
+    private Set<Terminal> getTerminals() {
+        String str = terminals.getText();
+        Set<Terminal> terms = new HashSet<>();
+        String[] termsStr = str.split(" ");
+        for (String string : termsStr) {
+            terms.add(Terminal.of(string));
+        }
+        return terms;
+    }
+
+    private int getWordLength() {
+        String str = wordLength.getText();
+        return Integer.parseInt(str);
+    }
+
     public void createNew(MouseEvent mouseEvent) throws IOException {
         int countGeneratedGrammarsPerWord = 10;
-        int countDifferentWords = 10;
+        int countDifferentWords = 50;
         ResultCalculator resultCalculator = ResultCalculator.builder().
                 countDifferentWords(countDifferentWords).
                 countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
-        GrammarProperties grammarProperties = Main.generateGrammarPropertiesForTesting();
+
+        GrammarProperties grammarProperties = new GrammarProperties(VariableStart.of("S"), getVariables(), getTerminals());
+        grammarProperties.examConstraints.sizeOfWord = this.getWordLength();
+
         GrammarGeneratorSettings settingsGrammarGeneratorSplitThenFill = new GrammarGeneratorSettings(
                 grammarProperties, "GrammarGeneratorSplitThenFill");
         settingsGrammarGeneratorSplitThenFill.setMinValueCompoundVariablesAreAddedTo(1);
@@ -83,13 +140,35 @@ public class Controller implements Initializable {
         try {
             ExerciseLatex exerciseLatex = textToExerciseLatex(modify.getText());
             WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
-            Main.runCmd(executorService, "pdflatex \"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
-                    "achelorThesisCYK\\exercise\\exerciseLatex.tex\" --output-directory=\"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
-                    "achelorThesisCYK\\exercise\"");
+            String str = new File(ThesisDirectory.EXERCISE.path).getAbsolutePath();
+            Main.runCmd(executorService, "pdflatex \"" + str + "\\exerciseLatex.tex\"" +
+                    " --output-directory=\"" + str + "\"");
         } finally {
             executorService.shutdown();
         }
 
+    }
+
+    private void initModify() {
+        modify.setText("start:S;\n" +
+                "rules:{\n" +
+                "E -> 1\n" +
+                "N -> 0\n" +
+                "A -> E C\n" +
+                "A -> N S'\n" +
+                "A -> 0\n" +
+                "B -> E S'\n" +
+                "B -> N D\n" +
+                "B -> 1\n" +
+                "S -> eps\n" +
+                "S -> E A\n" +
+                "S -> N B\n" +
+                "C -> A A\n" +
+                "S' -> E A\n" +
+                "S' -> N B\n" +
+                "D -> B B\n" +
+                "};\n" +
+                "word: 0 1 1 1 0 1 0 0;");
     }
 
     private ExerciseLatex textToExerciseLatex(String exerciseStr) {

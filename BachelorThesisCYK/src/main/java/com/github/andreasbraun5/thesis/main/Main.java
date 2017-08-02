@@ -38,9 +38,6 @@ import java.util.logging.Logger;
 public class Main {
     static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
-    private static ExecutorService executorService;
-
-
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Note: C:\GitHub\BachelorThesis\BachelorThesisCYK>mvn clean install    --> .jar
     // TODO: Maven not working correctly.
@@ -53,115 +50,75 @@ public class Main {
     // TODO: Collections.unmodifiable(List|Set|Map) etc. in gettern, vll nach hinten an stellen
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
 
-        executorService = Executors.newSingleThreadExecutor();
-        try {
+        ThesisDirectory.initPaths();
+        /**
+         * 	Generating the settings for the generatorTest.
+         * 	GrammarProperties = general settings, the same for all settings of one run.
+         * 	GrammarGeneratorSettingsDiceRoll = generator specific settings.
+         */
+        /**
+         * 	N = countOfGrammarsToGenerate.
+         * 	Select the testing method.
+         * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
+         */
+        // It is recommended to use a high countDifferentWords. Word independent results are achieved.
 
-            ThesisDirectory.initPaths();
-            /**
-             * 	Generating the settings for the generatorTest.
-             * 	GrammarProperties = general settings, the same for all settings of one run.
-             * 	GrammarGeneratorSettingsDiceRoll = generator specific settings.
-             */
-            /**
-             * 	N = countOfGrammarsToGenerate.
-             * 	Select the testing method.
-             * 	Comparability of the TestResults is given via using the same N and the same GrammarProperties.
-             */
-            // It is recommended to use a high countDifferentWords. Word independent results are achieved.
+        int countGeneratedGrammarsPerWord = 10;
+        int countDifferentWords = 10;
 
-            int countGeneratedGrammarsPerWord = 10;
-            int countDifferentWords = 10;
-
-            ResultCalculator resultCalculator = ResultCalculator.builder().
-                    countDifferentWords(countDifferentWords).
-                    countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
-            GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
+        ResultCalculator resultCalculator = ResultCalculator.builder().
+                countDifferentWords(countDifferentWords).
+                countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
+        GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
 
 
-            GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar1 = new GrammarGeneratorSettings(
-                    grammarProperties, "GrammarGeneratorDiceRollVar1");
-            Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollVar1 = resultCalculator.buildResultWithGenerator(
-                    new GrammarGeneratorDiceRollVar1(settingsGrammarGeneratorDiceRollVar1),
-                    WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar1.name)))
-            );
-            Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollVar1);
+        GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar1 = new GrammarGeneratorSettings(
+                grammarProperties, "GrammarGeneratorDiceRollVar1");
+        Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollVar1 = resultCalculator.buildResultWithGenerator(
+                new GrammarGeneratorDiceRollVar1(settingsGrammarGeneratorDiceRollVar1),
+                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar1.name)))
+        );
+        Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollVar1);
 
-            GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar2 = new GrammarGeneratorSettings(
-                    grammarProperties, "GrammarGeneratorDiceRollVar2");
-            Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollVar2 = resultCalculator.buildResultWithGenerator(
-                    new GrammarGeneratorDiceRollVar2(settingsGrammarGeneratorDiceRollVar2),
-                    WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar2.name)))
-            );
-            Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollVar2);
+        GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar2 = new GrammarGeneratorSettings(
+                grammarProperties, "GrammarGeneratorDiceRollVar2");
+        Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollVar2 = resultCalculator.buildResultWithGenerator(
+                new GrammarGeneratorDiceRollVar2(settingsGrammarGeneratorDiceRollVar2),
+                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar2.name)))
+        );
+        Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollVar2);
 
-            GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnly = new GrammarGeneratorSettings(
-                    grammarProperties, "GrammarGeneratorDiceRollOnly");
-            Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollOnly = resultCalculator.buildResultWithGenerator(
-                    new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnly),
-                    WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollOnly.name)))
-            );
-            Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollOnly);
+        GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnly = new GrammarGeneratorSettings(
+                grammarProperties, "GrammarGeneratorDiceRollOnly");
+        Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollOnly = resultCalculator.buildResultWithGenerator(
+                new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnly),
+                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollOnly.name)))
+        );
+        Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollOnly);
 
 
-            GrammarGeneratorSettings settingsGrammarGeneratorSplitThenFill = new GrammarGeneratorSettings(
-                    grammarProperties, "GrammarGeneratorSplitThenFill");
-            settingsGrammarGeneratorSplitThenFill.setMinValueCompoundVariablesAreAddedTo(1);
-            settingsGrammarGeneratorSplitThenFill.setMaxValueCompoundVariablesAreAddedTo(1);
-            Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
-                    new GrammarGeneratorSplitThenFill(settingsGrammarGeneratorSplitThenFill),
-                    WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitThenFill.name)))
-            );
-            Util.writeResultToTxtFile(resultGrammarGeneratorSplitThenFill);
+        GrammarGeneratorSettings settingsGrammarGeneratorSplitThenFill = new GrammarGeneratorSettings(
+                grammarProperties, "GrammarGeneratorSplitThenFill");
+        settingsGrammarGeneratorSplitThenFill.setMinValueCompoundVariablesAreAddedTo(1);
+        settingsGrammarGeneratorSplitThenFill.setMaxValueCompoundVariablesAreAddedTo(1);
+        Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
+                new GrammarGeneratorSplitThenFill(settingsGrammarGeneratorSplitThenFill),
+                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitThenFill.name)))
+        );
+        Util.writeResultToTxtFile(resultGrammarGeneratorSplitThenFill);
 
-            GrammarGeneratorSettings settingsGrammarGeneratorSplitAndFill = new GrammarGeneratorSettings(
-                    grammarProperties, "GrammarGeneratorSplitAndFill");
-            settingsGrammarGeneratorSplitAndFill.setMinValueCompoundVariablesAreAddedTo(1);
-            settingsGrammarGeneratorSplitAndFill.setMaxValueCompoundVariablesAreAddedTo(1);
-            settingsGrammarGeneratorSplitAndFill.setMinValueTerminalsAreAddedTo(1);
-            settingsGrammarGeneratorSplitAndFill.setMaxValueTerminalsAreAddedTo(1);
-            Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitAndFill = resultCalculator.buildResultWithGenerator(
-                    new GrammarGeneratorSplitAndFill(settingsGrammarGeneratorSplitAndFill),
-                    WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitAndFill.name)))
-            );
-            Util.writeResultToTxtFile(resultGrammarGeneratorSplitAndFill);
+        GrammarGeneratorSettings settingsGrammarGeneratorSplitAndFill = new GrammarGeneratorSettings(
+                grammarProperties, "GrammarGeneratorSplitAndFill");
+        settingsGrammarGeneratorSplitAndFill.setMinValueCompoundVariablesAreAddedTo(1);
+        settingsGrammarGeneratorSplitAndFill.setMaxValueCompoundVariablesAreAddedTo(1);
+        settingsGrammarGeneratorSplitAndFill.setMinValueTerminalsAreAddedTo(1);
+        settingsGrammarGeneratorSplitAndFill.setMaxValueTerminalsAreAddedTo(1);
+        Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitAndFill = resultCalculator.buildResultWithGenerator(
+                new GrammarGeneratorSplitAndFill(settingsGrammarGeneratorSplitAndFill),
+                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitAndFill.name)))
+        );
+        Util.writeResultToTxtFile(resultGrammarGeneratorSplitAndFill);
 
-            String exerciseStr = "start:S;\n" +
-                    "rules:{\n" +
-                    "E -> 1\n" +
-                    "N -> 0\n" +
-                    "A -> E C\n" +
-                    "A -> N S'\n" +
-                    "A -> 0\n" +
-                    "B -> E S'\n" +
-                    "B -> N D\n" +
-                    "B -> 1\n" +
-                    "S -> eps\n" +
-                    "S -> E A\n" +
-                    "S -> N B\n" +
-                    "C -> A A\n" +
-                    "S' -> E A\n" +
-                    "S' -> N B\n" +
-                    "D -> B B\n" +
-                    "};\n" +
-                    "word: 0 1 1 1 0 1 0 0;";
-
-            ExerciseStringConverter exerciseStringConverter = new ExerciseStringConverter();
-            Exercise exercise = exerciseStringConverter.fromString(exerciseStr);
-
-            GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder().grammar(exercise.getGrammar())
-                    .pyramid(new Pyramid(exercise.getWord())).build();
-            grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
-
-            ExerciseLatex exerciseLatex = new ExerciseLatex(exercise.getGrammar(), grammarPyramidWrapper.getPyramid());
-            WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
-
-            runCmd(executorService, "pdflatex \"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
-                    "achelorThesisCYK\\exercise\\exerciseLatex.tex\" --output-directory=\"C:\\Users\\AndreasBraun\\Documents\\BachelorThesis\\B" +
-                    "achelorThesisCYK\\exercise\"");
-
-        } finally {
-            executorService.shutdown();
-        }
     }
 
     public static void runCmd(ExecutorService executorService, String cmd) throws IOException, ExecutionException, InterruptedException {

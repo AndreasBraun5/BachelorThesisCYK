@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="bachelor_thesis_cyk.jnlp">
+  <information>
+    <title>bachelor-thesis-cyk</title>
+    <vendor>Unknown</vendor>
+    <description>bachelor-thesis-cyk</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="bachelor_thesis_cyk.jar" size="176290" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="1000" height="800" main-class="com.github.andreasbraun5.thesis.main.Thesis"  name="bachelor-thesis-cyk" />
+  <update check="background"/>
+</jnlp>
