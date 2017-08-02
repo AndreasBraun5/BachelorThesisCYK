@@ -19,7 +19,8 @@ public class PyramidLatex {
     // Initialising the pyramid with the given indexes.
     public PyramidLatex(Pyramid pyramid) {
         if (!checkCountElementsPerCell(pyramid.getCellsK())) {
-            throw new CellRuntimeException("There are more than 5 Variables in the pyramid cells, coordinates: ");
+            throw new CellRuntimeException("There are less than 5 Vars,\n" +
+                    "but more than 5 VarKs\nin one Cell.\nPlease choose another one\nor modify it.");
         }
         int pyramidSize = pyramid.getSize();
         this.word = pyramid.getWord();
@@ -57,7 +58,7 @@ public class PyramidLatex {
         }
     }
 
-    private boolean checkCountElementsPerCell(Cell[][] cells) {
+    public boolean checkCountElementsPerCell(Cell[][] cells) {
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 if (cells[i][j].getCellElements().size() > 5) {
@@ -196,11 +197,11 @@ public class PyramidLatex {
         return str.toString();
     }
 
-    public String toStringTex(){
+    public String toStringTex() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(begin());
         stringBuilder.append(toTex());
-        stringBuilder.append(end()) ;
+        stringBuilder.append(end());
         return stringBuilder.toString();
     }
 }

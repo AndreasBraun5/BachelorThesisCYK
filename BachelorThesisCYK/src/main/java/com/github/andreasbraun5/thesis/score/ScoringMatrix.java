@@ -36,10 +36,10 @@ public class ScoringMatrix {
             return 4;
         } else if (21 <= cellCombinationsForcedCount && cellCombinationsForcedCount <= 30) {
             return 6;
-        } else if (41 <= cellCombinationsForcedCount && cellCombinationsForcedCount <= 50) {
-            return 8;
         } else if (31 <= cellCombinationsForcedCount && cellCombinationsForcedCount <= 40) {
             return 10;
+        } else if (41 <= cellCombinationsForcedCount && cellCombinationsForcedCount <= 50) {
+            return 8;
         } else {
             throw new ScoreMatrixRuntimeException("Value out of bound, scoring not possible.");
         }
@@ -54,10 +54,10 @@ public class ScoringMatrix {
             return 4;
         } else if (21 <= sumVarsInPyramid && sumVarsInPyramid <= 30) {
             return 6;
-        } else if (41 <= sumVarsInPyramid && sumVarsInPyramid <= 50) {
-            return 8;
         } else if (31 <= sumVarsInPyramid && sumVarsInPyramid <= 40) {
             return 10;
+        } else if (41 <= sumVarsInPyramid && sumVarsInPyramid <= 50) {
+            return 8;
         } else {
             throw new ScoreMatrixRuntimeException("Value out of bound, scoring not possible.");
         }
@@ -66,16 +66,16 @@ public class ScoringMatrix {
     private static double scoreMaxVarsPerCell(int maxVarsPerCell) {
         if (maxVarsPerCell > 5) {
             return ScoringMatrixWeights.OUT_OF_RANGE_SCORE;
-        } else if (5 <= maxVarsPerCell && maxVarsPerCell <= 5) {
-            return 2;
-        } else if (4 <= maxVarsPerCell && maxVarsPerCell <= 4) {
-            return 4;
         } else if (1 <= maxVarsPerCell && maxVarsPerCell <= 1) {
             return 6;
-        } else if (3 <= maxVarsPerCell && maxVarsPerCell <= 3) {
-            return 8;
         } else if (2 <= maxVarsPerCell && maxVarsPerCell <= 2) {
             return 10;
+        } else if (3 <= maxVarsPerCell && maxVarsPerCell <= 3) {
+            return 8;
+        } else if (4 <= maxVarsPerCell && maxVarsPerCell <= 4) {
+            return 4;
+        } else if (5 <= maxVarsPerCell && maxVarsPerCell <= 5) {
+            return 2;
         } else {
             throw new ScoreMatrixRuntimeException("Value out of bound, scoring not possible.");
         }
@@ -90,10 +90,10 @@ public class ScoringMatrix {
             return 4;
         } else if (5 <= sumProductions && sumProductions <= 6) {
             return 6;
-        } else if (9 <= sumProductions && sumProductions <= 10) {
-            return 8;
         } else if (7 <= sumProductions && sumProductions <= 8) {
             return 10;
+        } else if (9 <= sumProductions && sumProductions <= 10) {
+            return 8;
         } else {
             throw new ScoreMatrixRuntimeException("Value out of bound, scoring not possible.");
         }

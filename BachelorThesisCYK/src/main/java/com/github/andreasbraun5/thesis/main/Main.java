@@ -38,6 +38,7 @@ import java.util.logging.Logger;
 public class Main {
     static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
+
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SetV is in reality an upper triangular matrix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Note: C:\GitHub\BachelorThesis\BachelorThesisCYK>mvn clean install    --> .jar
     // TODO: Maven not working correctly.

@@ -1,10 +1,10 @@
 package com.github.andreasbraun5.thesis.main;
 
 import com.github.andreasbraun5.thesis.antlr.ExerciseStringConverter;
+import com.github.andreasbraun5.thesis.exception.CellRuntimeException;
 import com.github.andreasbraun5.thesis.exercise.Exercise;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSplitThenFill;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
@@ -15,24 +15,20 @@ import com.github.andreasbraun5.thesis.latex.ExerciseLatex;
 import com.github.andreasbraun5.thesis.latex.WriteToTexFile;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
-import com.github.andreasbraun5.thesis.pyramid.CellSimple;
+import com.github.andreasbraun5.thesis.pyramid.Cell;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.resultcalculator.*;
 import com.github.andreasbraun5.thesis.util.Tuple;
-import com.github.andreasbraun5.thesis.util.Util;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import lombok.Setter;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -46,7 +42,6 @@ public class Controller implements Initializable {
     @Setter
     private Thesis thesis;
 
-    @FXML
     public TextArea modify;
     @FXML
     public TextArea selectFrom;
@@ -56,6 +51,8 @@ public class Controller implements Initializable {
     public TextArea terminals;
     @FXML
     public TextArea variables;
+    @FXML
+    public TextArea statusOutput;
 
     @FXML
     @Override
@@ -111,12 +108,16 @@ public class Controller implements Initializable {
 
     public void createNew(MouseEvent mouseEvent) throws IOException {
         int countGeneratedGrammarsPerWord = 10;
-        int countDifferentWords = 50;
+        int countDifferentWords = 10;
         ResultCalculator resultCalculator = ResultCalculator.builder().
                 countDifferentWords(countDifferentWords).
                 countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
 
         GrammarProperties grammarProperties = new GrammarProperties(VariableStart.of("S"), getVariables(), getTerminals());
+        if (this.getWordLength() > 20) {
+            statusOutput.setText(statusOutput.getText() + "\nWord lenght smaller 21 needed.");
+            return;
+        }
         grammarProperties.examConstraints.sizeOfWord = this.getWordLength();
 
         GrammarGeneratorSettings settingsGrammarGeneratorSplitThenFill = new GrammarGeneratorSettings(
@@ -128,21 +129,29 @@ public class Controller implements Initializable {
                 WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitThenFill.name)))
         );
         this.selectFrom.setText(resultGrammarGeneratorSplitThenFill.y.toString());
+        statusOutput.setText(statusOutput.getText() + "\nExercise creation successful.");
     }
 
     public void processChanges(MouseEvent mouseEvent) {
         ModifyExerciseSample modifyExerciseSample = textToModifyExerciseSample(modify.getText());
+        statusOutput.setText(statusOutput.getText() + "\nProcessing changes successful.");
         modify.setText(modifyExerciseSample.toString());
     }
 
     public void createExercise(MouseEvent mouseEvent) throws InterruptedException, ExecutionException, IOException {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         try {
-            ExerciseLatex exerciseLatex = textToExerciseLatex(modify.getText());
-            WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
-            String str = new File(ThesisDirectory.EXERCISE.path).getAbsolutePath();
-            Main.runCmd(executorService, "pdflatex \"" + str + "\\exerciseLatex.tex\"" +
-                    " --output-directory=\"" + str + "\"");
+            try {
+                ExerciseLatex exerciseLatex = textToExerciseLatex(modify.getText());
+                WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
+                String str = new File(ThesisDirectory.EXERCISE.path).getAbsolutePath();
+                Main.runCmd(executorService, "pdflatex \"" + str + "\\exerciseLatex.tex\"" +
+                        " --output-directory=\"" + str + "\"");
+                statusOutput.setText(statusOutput.getText() + "\nExercise creation successful.");
+            } catch (RuntimeException re) {
+                statusOutput.setText(statusOutput.getText() + "\n" + re.getMessage());
+                return;
+            }
         } finally {
             executorService.shutdown();
         }
@@ -190,6 +199,10 @@ public class Controller implements Initializable {
         CheckRightCellCombinationsForcedResultWrapper temp =
                 GrammarValidityChecker.checkRightCellCombinationsForcedSimpleCells(grammarPyramidWrapper.getPyramid(),
                         grammarPyramidWrapper.getGrammar());
+        if (!checkCountElementsPerCell(grammarPyramidWrapper.getPyramid().getCellsK())) {
+            statusOutput.setText(statusOutput.getText() + "Warning:\nThere are less than 5 Vars,\n" +
+                    "but more than 5 VarKs\nin one Cell.\nPlease choose another one\nor modify it.");
+        }
         ModifyExerciseSample modifyExerciseSample = ModifyExerciseSample.builder()
                 .grammar(grammarPyramidWrapper.getGrammar())
                 .pyramid(grammarPyramidWrapper.getPyramid())
@@ -200,5 +213,16 @@ public class Controller implements Initializable {
                 .maxSumOfProductionsCount(GrammarValidityChecker.maxNumberOfVarsPerCellCount(grammarPyramidWrapper.getPyramid()))
                 .build();
         return modifyExerciseSample;
+    }
+
+    private boolean checkCountElementsPerCell(Cell[][] cells) {
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (cells[i][j].getCellElements().size() > 5) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
