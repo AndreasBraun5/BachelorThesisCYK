@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="bachelor_thesis_cyk.jar" size="844659" download="eager" />
+    <jar href="bachelor_thesis_cyk.jar" size="840607" download="eager" />
     <jar href="target\bachelor-thesis-cyk-1.0-SNAPSHOT-jar-with-dependencies.jar" size="1080622" download="eager" />
     <jar href="target\bachelor-thesis-cyk-1.0-SNAPSHOT.jar" size="175229" download="eager" />
   </resources>

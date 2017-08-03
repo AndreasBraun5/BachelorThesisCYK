@@ -4,28 +4,39 @@
 
 \subsection{Motivation}
 
-The starting point of this thesis was to get a command line interface (CLI) tool to automatically generate the 4-tuples $exercise = (grammar,\ word,\ parse\ table,\ derivation\ tree)$, which are used to test if the students have understood the way of working of the CYK algorithm.\\
-Various implementations of the Cocke-Younger-Kasami (CYK) algorithm can be found. Nevertheless none of them seemed to meet the easy to use requirements to automatically generate suitable $exercise$s, that afterwards also could be modified as wanted.\\
-Additionally the task of finding a clever algorithm to automatically generate $exercise$s with a high chance of being suitable as an exam exercise was added. 
+The starting point of this thesis is to get a tool to automatically generate a suitable 4-tuple $exercise = (grammar,\ word,\ parse\ table,\ derivation\ tree)$, that is used to test if the students have understood the way of working of the CYK algorithm.\\
+Various implementations of the Cocke-Younger-Kasami (CYK) algorithm can be found [XXX]. Nevertheless it is required to automatically generate suitable $exercise$s, that afterwards can be modified as wanted. This is the reason an own implementation has been made. It is also a task to find a more clever algorithm to automatically generate $exercise$s with a high chance of being suitable as an exam exercise.
 
-\subsection{Grammar in Chromsky Normal Form}
-\begin{DefGrey} \textbf{Grammar}\\
-	Let there be a grammar $G=(V,\ \Sigma,\ S,\ P)$ for which the following holds:
+\subsection{Context Free Grammar in Chromsky Normal Form}
+\begin{DefGrey} \textbf{Context Free Grammar (CFG)}\\
+	We define a CFG as the 4-tuple $G=(V,\ \Sigma,\ S,\ P)$:
 	\begin{itemize}
 		\item $V$ is a finite set of variables.
-		\item $\Sigma$ is an alphabet \textendash~called terminals.
+		\item $\Sigma$ is an alphabet
 		\item $S$ is the start symbol and $S \in V$.
-		\item $P$ is a finite set of rules: $P \subseteq V \times (V \cup \Sigma)^{*}$ \textendash~called productions.
+		\item $P$ is a finite set of rules: $P \subseteq V \times (V \cup \Sigma)^{*}$.
+	\end{itemize}
+	It is valid that $\Sigma \cap V =  \emptyset$.
+\end{DefGrey}
+\begin{DefGrey}\label{CFGinCNF} \textbf{CFG in Chromsky Normal Form (CNF)}\\
+	A CFG $G=(V,\ \Sigma,\ S,\ P)$ is in CNF iff.:
+	\begin{itemize}
+		\item $P \subseteq V \times (V \cup \Sigma)^{*}$.
 	\end{itemize}
 \end{DefGrey}
-\noindent Further it is assumed that the productions are more restricted and it holds: $P\ \subseteq\ V \times (V^{2} \cup \Sigma)$. Additionally let there be a word $w \in \Sigma^*$ and a language $L(G)$ of the Grammar $G$. \\
-\noindent Regarding further convenience for explaining the following default values are true:
+\noindent Regarding this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. For further convenience the following default values are always true:
 \begin{itemize}
 	\item $V = \{A, B, ...\}$
-	\item $(V^2 \cup\ \Sigma)^{*}=\{a, b, ...\} \cup \{AB, BS, AC, ... \}$
+	\item $(V^2 \cup\ \Sigma)^{*}=\{a, b, ...\} \cup \{AA, AB, BB, BA, BS, AC, ... \}$
 \end{itemize}
-\noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, which again is a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further reasoning behind this example see chapter XXX "help data structure") 
-\pagebreak
+\begin{DefGrey}\label{wordLanguage} \textbf{Word $w$ and language $L(G)$}\\
+	Word $w$ and language $L(G)$:
+	\begin{itemize}
+		\item $w \in \Sigma^*$.
+		\item A language $L(G)$ over an alphabet $\Sigma$ is a set of words over $\Sigma$ .
+	\end{itemize}
+\end{DefGrey}
+\noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, whereas a $Cell$ is again a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further reasoning behind this example see chapter XXX "help data structure") 
 \subsection{General approaches}
 Two basic approaches, that may help finding a good algorithm are explained informally.
 \subsubsection{Forward Problem \& Backward Problem}
@@ -41,35 +52,35 @@ The Forward Problem and the Backward Problem are two ways as how to determine if
 	Input: $w$ and a grammar $G$ in CNF. \\
 	Output: $w \subseteq L(G) \Longrightarrow$ derivation $d$.
 \end{DefGrey}
-\noindent It is called Backward Problem, if you are given a word $w$ and want to determine if it is element of $L(G)$. "This process, called parsing, is virtually always much more difficult than forming a derivation."
+\noindent If you are given a word $w$ and want to determine if it is element of $L(G)$, it is called Backward Problem or parsing.
 \subsubsection{Parsing Bottom-Up \& Top-Down}
-There are again two ways of how the approach of parsing can be classified.
+There are again two ways to classify the approach of parsing.
 \begin{DefGrey}
-	\textbf{Bottom-Up} \\
+	\textbf{Bottom-Up parsing} \\
 	 Bottom-Up parsing means to start parsing from the leaves up to the root node.
 \end{DefGrey}
-\noindent "Bottom-Up parsing is the general method used in the Cocke-Younger-Kasami(CYK) algorithm, which fills a parse table from the "bottom up"."[Duda 8.6.3 page 426]
+\noindent "Bottom-Up parsing is the general method used in the Cocke-Younger-Kasami(CYK) algorithm, which fills a parse table from the "bottom up""[Duda 8.6.3 page 426].
 \begin{DefGrey}
-	\textbf{Top-Down} \\
+	\textbf{Top-Down parsing} \\
 	 Top-Down parsing means to start parsing from the node down to the leaves.
 \end{DefGrey}
-\noindent Top-Down parsing means to start parsing from the node down to the leaves. "Top-Down parsing starts with the root node and successively applies productions from $P$, with the goal of finding a derivation of the test sentence $w$. Because it is rare indeed that the sentence is derived in the first production attempted, it is necessary to specify some criteria to guide the choice of which rewrite rule to apply. Such criteria could include beginning the parse at the first (left) character in the sentence (i.e., finding a small set of rewrite rules that yield the first character), then iteratively expanding the production to derive subsequent characters, or instead starting at the last (right) character in the sentence." [Duda 8.6.3 page 428]\\
+\noindent "Top-Down parsing starts with the root node and successively applies productions from $P$, with the goal of finding a derivation of the test sentence $w$." [XXX] (The so called test sentence is synonymous to an word $w$.)
+Reasonably criteria to guide the choice of which rewrite rule to apply could include to begin the parsing at the first (left) or last (right) character of the word $w$ [XXX][Duda 8.6.3 page 428]
 
 \subsection{Data Structure Pyramid}
-
-To be able to describe the way of working of the different algorithms better the help data structure $Pyramid$ will be defined. But before that let there be:
+To be able to describe the way of working of the different algorithms easier the help data structure $Pyramid$ will be defined \textendash~note that $Pyramid$ starts with upper case and therefore is a set). But before that:
 \begin{DefGrey} \textbf{$[i, j]$} \\
 	$[i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}_{\geq 0}$.
 \end{DefGrey}
-\noindent Think about if Cellij can be defined as either subset of V or (V,k)
+
 \begin{DefGrey} \textbf{$Cell_{i,j}$} \\
-	$Cell_{i,j} \subseteq V$
+	$Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \}$
 \end{DefGrey}
-\noindent With help of this $Pyramid$ can be defined as following:
+\noindent Now $Pyramid$ can be defined as following:
 \begin{DefGrey} \textbf{$Pyramid$} \\
-	$Pyramid :=\{ Cell_{i,j}\ |\ i \in [0,\ i_{max}],\  j \in [0,\ j_{max}-i],\ i_{max} = j_{max} = |word|-1\}$.
+	$Pyramid :=\{ Cell_{i,j}\ |\ i \in [0,\ i_{max}],\  j \in [0,\ j_{max}-i],\ i_{max} = j_{max} = |w|-1\}$.
 \end{DefGrey}
-\noindent A $Pyramid$ is called $EmptyPyramid \Leftrightarrow \forall i\ \forall j\ Cell_{i,j}=\emptyset$. \noindent The following is the visual representation of the $Pyramid$:
+\noindent The following is the visual representation of a $Pyramid$ that additionally has written the word $w$ above it:
 \newcommand{\boxpyramid}[1]{
 	\fontsize{5}{12}\selectfont{#1}
 }
@@ -89,9 +100,9 @@ To be able to describe the way of working of the different algorithms better the
 		}
 		%\draw[help lines] (-1,1) grid (6,-3);
 		\draw [->, thick] (-0.5,1) -- (0.5,1);
-		\node [above] at (0, 1) {i};
+		\node [above] at (0, 1) {j};
 		\draw [->, thick] (-0.5,1) -- (-0.5,-0.0);
-		\node [left] at (-0.5,0.5) {j};
+		\node [left] at (-0.5,0.5) {i};
 		%Draw the left and right line of the pyramid pointing downwards
 		\draw (0) -- (tip) -- (6);
 		%Grid lines direction down-left to top-right
@@ -217,21 +228,23 @@ To be able to describe the way of working of the different algorithms better the
 		\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
 		\end{tikzpicture}
 	}
-\caption{Visual representation of the pyramid}
+\caption{Visual representation of a $Pyramid$ with the word $w$ above it.}
 \end{figure}
 \begin{DefGrey} \textbf{$CellDown,~CellUpperLeft~and~CellUpperRight$} \\
-	Let there be a $Cell_{i,j}$. It holds $CellDown = Cell_{i,j}$. \\
-	So there are $CellUpperLeft = Cell_{i-1,j}$ and $CellUpperRight = Cell_{i-1,j+1}$.
+	Let there be a $Cell_{i,j}$ then the following is true:
+	\begin{itemize}
+		\item $CellDown = Cell_{i,j}$.
+		\item $CellUpperLeft = Cell_{i-1,j}$.
+		\item $CellUpperRight = Cell_{i-1,j+1}$.
+	\end{itemize}
 \end{DefGrey}
-
-\pagebreak
-\subsection{ Cocke-Younger-Kasami CYK}
-
+\subsection{ Cocke-Younger-Kasami Algorithm}
+The Cocke-Younger-Kasami Algorithm (CYK) has been developed independently in the 1960s by Itiroo Sakai, John Cocke, Tadao Kasami, Jacob Schwartz and Daniel Younger that uses the principle of dynamic programming.\\
 
 \frame{
 	\begin{algorithm}[H] %or another one check
-		\caption{CalculateSubsetForCell}
-		\label{CalculateSubsetForCell}
+		\caption{CYK}
+		\label{CYK}
 		\SetAlgoLined
 		\KwIn{$cell_ {i,j} \in pyramid $}
 		\KwOut{$V_{i,j} \subseteq V^2$}
@@ -243,9 +256,7 @@ To be able to describe the way of working of the different algorithms better the
 		\Return $V_{i,j}$\;
 	\end{algorithm}
 }
-Algorithm \ref{CalculateSubsetForCell} describes the magic of the CKY-algorithm. It shows what cells are taken into account while filling one cell of the parse table.
 
-\pagebreak
 \subsection{Success Rates}
 \noindent The Success Rates ($SR$) are used to compare the algorithms accounting to their performance of the different requirements. Let $N$ be the overall count of all generated grammars of the examined algorithm.\\
 
