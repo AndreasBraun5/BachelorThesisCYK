@@ -100,6 +100,7 @@ public class Pyramid {
     public static String printPyramid(Cell[][] cells) {
         StringBuilder stringBuilder = new StringBuilder();
         int pyramidSize = cells.length;
+        // Max size of the printed "[*]" like "[A,B]"; Here maxLen is 5;
         int maxLen = 0;
         {
             for (int i = 0; i < pyramidSize; i++) {
@@ -108,7 +109,7 @@ public class Pyramid {
                 }
             }
         }
-        {
+        {   // To further simplify printing work with maxLen as a even number
             if (maxLen % 2 == 1) {
                 maxLen = maxLen + 1;
             }
@@ -116,16 +117,27 @@ public class Pyramid {
         {
             for (int i = 0; i < pyramidSize; i++) {
                 // TODO change here!!
-                int emptySpace = (int) Math.ceil(((double) i) / 2.0) * maxLen;
+                // TODO Problem is that the Textare editor is shitty, cells need to inflate themselves
+                //int emptySpace = (int) Math.ceil(((double) i) / 2.0) * maxLen;
+                int emptySpace = (int) (i / 2.0) * maxLen;
+                ///* Adding spaces "before" each line
                 for (int x = 0; x < emptySpace; ++x) {
                     stringBuilder.append(" ");
                 }
+                if (i % 2 == 1) {
+                    for (int x = 0; x < maxLen/2; ++x) {
+                        stringBuilder.append(" ");
+                    }
+                }
+                //*/
                 for (int j = 0; j < pyramidSize - i; j++) {
                     stringBuilder.append(Util.padWithSpaces(cells[i][j].toString(), maxLen));
                 }
+                ///* Only adding spaces after each line
                 for (int x = 0; x < emptySpace; ++x) {
                     stringBuilder.append(" ");
                 }
+                //*/
                 stringBuilder.append("\n");
             }
         }
