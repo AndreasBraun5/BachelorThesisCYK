@@ -2,9 +2,11 @@ package com.github.andreasbraun5.thesis.main;
 
 import com.github.andreasbraun5.thesis.antlr.ExerciseStringConverter;
 import com.github.andreasbraun5.thesis.exception.CellRuntimeException;
+import com.github.andreasbraun5.thesis.exception.TreeLatexRuntimeException;
 import com.github.andreasbraun5.thesis.exercise.Exercise;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSplitThenFill;
+import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
@@ -20,6 +22,7 @@ import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.resultcalculator.*;
 import com.github.andreasbraun5.thesis.util.Tuple;
+import com.github.andreasbraun5.thesis.util.Word;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
@@ -114,6 +117,10 @@ public class Controller implements Initializable {
                 countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
 
         GrammarProperties grammarProperties = new GrammarProperties(VariableStart.of("S"), getVariables(), getTerminals());
+        if (this.getWordLength() < 4) {
+            statusOutput.setText(statusOutput.getText() + "\nWord lenght greater 3 needed.");
+            return;
+        }
         if (this.getWordLength() > 20) {
             statusOutput.setText(statusOutput.getText() + "\nWord lenght smaller 21 needed.");
             return;
@@ -133,14 +140,22 @@ public class Controller implements Initializable {
     }
 
     public void processChanges(MouseEvent mouseEvent) {
-        ModifyExerciseSample modifyExerciseSample = textToModifyExerciseSample(modify.getText());
+        ModifyExerciseSample modifyExerciseSample;
+        modifyExerciseSample = textToModifyExerciseSample(modify.getText());
+        Word word = modifyExerciseSample.getPyramid().getWord();
+        Grammar grammar = modifyExerciseSample.getGrammar();
+        if (!terminalsMath(word, grammar)) {
+            statusOutput.setText(statusOutput.getText() + "\nTerminals of word and\ngramar don't match.");
+            throw new RuntimeException("\nTerminals of word and\\ngramar don't match.");
+        }
         statusOutput.setText(statusOutput.getText() + "\nProcessing changes successful.");
         modify.setText(modifyExerciseSample.toString());
     }
 
     public void createExercise(MouseEvent mouseEvent) throws InterruptedException, ExecutionException, IOException {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
         try {
+            processChanges(null);
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
             try {
                 ExerciseLatex exerciseLatex = textToExerciseLatex(modify.getText());
                 WriteToTexFile.writeToTexFile("exerciseLatex", exerciseLatex.toString());
@@ -148,14 +163,16 @@ public class Controller implements Initializable {
                 Main.runCmd(executorService, "pdflatex \"" + str + "\\exerciseLatex.tex\"" +
                         " --output-directory=\"" + str + "\"");
                 statusOutput.setText(statusOutput.getText() + "\nExercise creation successful.");
-            } catch (RuntimeException re) {
-                statusOutput.setText(statusOutput.getText() + "\n" + re.getMessage());
+            } catch (TreeLatexRuntimeException re) {
+                statusOutput.setText(statusOutput.getText() + re.getMessage());
+                statusOutput.setText(statusOutput.getText() + "\nExercise creation unsuccessful.");
                 return;
+            } finally {
+                executorService.shutdown();
             }
-        } finally {
-            executorService.shutdown();
+        } catch (RuntimeException re) {
+            return;
         }
-
     }
 
     private void initModify() {
@@ -192,27 +209,34 @@ public class Controller implements Initializable {
 
     private ModifyExerciseSample textToModifyExerciseSample(String exerciseStr) {
         ExerciseStringConverter exerciseStringConverter = new ExerciseStringConverter();
-        Exercise exercise = exerciseStringConverter.fromString(exerciseStr);
-        GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder().grammar(exercise.getGrammar())
-                .pyramid(new Pyramid(exercise.getWord())).build();
-        grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
-        CheckRightCellCombinationsForcedResultWrapper temp =
-                GrammarValidityChecker.checkRightCellCombinationsForcedSimpleCells(grammarPyramidWrapper.getPyramid(),
-                        grammarPyramidWrapper.getGrammar());
-        if (!checkCountElementsPerCell(grammarPyramidWrapper.getPyramid().getCellsK())) {
-            statusOutput.setText(statusOutput.getText() + "Warning:\nThere are less than 5 Vars,\n" +
-                    "but more than 5 VarKs\nin one Cell.\nPlease choose another one\nor modify it.");
+        // This throws an Exception if the terminals don't match.
+        try {
+            Exercise exercise = exerciseStringConverter.fromString(exerciseStr);
+            GrammarPyramidWrapper grammarPyramidWrapper = GrammarPyramidWrapper.builder().grammar(exercise.getGrammar())
+                    .pyramid(new Pyramid(exercise.getWord())).build();
+            grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
+            CheckRightCellCombinationsForcedResultWrapper temp =
+                    GrammarValidityChecker.checkRightCellCombinationsForcedSimpleCells(grammarPyramidWrapper.getPyramid(),
+                            grammarPyramidWrapper.getGrammar());
+            if (!checkCountElementsPerCell(grammarPyramidWrapper.getPyramid().getCellsK())) {
+                statusOutput.setText(statusOutput.getText() + "Warning:\nThere are less than 5 Vars,\n" +
+                        "but more than 5 VarKs\nin one Cell.\nPlease choose another one\nor modify it.");
+            }
+            ModifyExerciseSample modifyExerciseSample = ModifyExerciseSample.builder()
+                    .grammar(grammarPyramidWrapper.getGrammar())
+                    .pyramid(grammarPyramidWrapper.getPyramid())
+                    .maxNumberOfVarsPerCellCount(GrammarValidityChecker.maxNumberOfVarsPerCellCount(grammarPyramidWrapper.getPyramid()))
+                    .maxSumOfVarsInPyramidCount(GrammarValidityChecker.countSumOfVarsInPyramid(grammarPyramidWrapper.getPyramid()))
+                    .rightCellCombinationsForcedCount(temp.getRightCellCombinationForcedCount())
+                    .markedRightCellCombinationForced(temp.getMarkedRightCellCombinationForced())
+                    .maxSumOfProductionsCount(GrammarValidityChecker.checkSumOfProductions(grammarPyramidWrapper.getGrammar()))
+                    .build();
+            return modifyExerciseSample;
+
+        } catch (IllegalArgumentException iae) {
+            statusOutput.setText(statusOutput.getText() + "\nGrammar input is malformed.");
         }
-        ModifyExerciseSample modifyExerciseSample = ModifyExerciseSample.builder()
-                .grammar(grammarPyramidWrapper.getGrammar())
-                .pyramid(grammarPyramidWrapper.getPyramid())
-                .maxNumberOfVarsPerCellCount(GrammarValidityChecker.maxNumberOfVarsPerCellCount(grammarPyramidWrapper.getPyramid()))
-                .maxSumOfVarsInPyramidCount(GrammarValidityChecker.maxNumberOfVarsPerCellCount(grammarPyramidWrapper.getPyramid()))
-                .rightCellCombinationsForcedCount(temp.getRightCellCombinationForcedCount())
-                .markedRightCellCombinationForced(temp.getMarkedRightCellCombinationForced())
-                .maxSumOfProductionsCount(GrammarValidityChecker.maxNumberOfVarsPerCellCount(grammarPyramidWrapper.getPyramid()))
-                .build();
-        return modifyExerciseSample;
+        return null;
     }
 
     private boolean checkCountElementsPerCell(Cell[][] cells) {
@@ -224,5 +248,18 @@ public class Controller implements Initializable {
             }
         }
         return true;
+    }
+
+
+    private boolean terminalsMath(Word word, Grammar grammar) {
+        Set<Terminal> wordTerms = new HashSet<>();
+        Set<Terminal> grammarTerms = new HashSet<>();
+        wordTerms.addAll(word.getTerminals());
+        grammar.getProductionsAsList().forEach(production -> {
+            if (production.getRightHandSideElement() instanceof Terminal) {
+                grammarTerms.add((Terminal) production.getRightHandSideElement());
+            }
+        });
+        return grammarTerms.containsAll(wordTerms);
     }
 }

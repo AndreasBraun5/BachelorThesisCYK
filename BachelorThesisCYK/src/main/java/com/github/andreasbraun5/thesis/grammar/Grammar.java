@@ -105,7 +105,7 @@ public class Grammar {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder(
-                "\nstart:" + variableStart + ";\n");
+                "start:" + variableStart + ";\n");
         str.append("rules:{\n");
         for (Map.Entry<Variable, Set<Production>> entry : productionsMap.entrySet()) {
             entry.getValue().forEach(production -> str.append(production).append("\n"));

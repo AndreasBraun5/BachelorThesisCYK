@@ -1,5 +1,6 @@
 package com.github.andreasbraun5.thesis.latex;
 
+import com.github.andreasbraun5.thesis.exception.TreeLatexRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.pyramid.CellElement;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
@@ -8,6 +9,7 @@ import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 import com.github.andreasbraun5.thesis.util.Word;
+import sun.reflect.generics.tree.Tree;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -54,6 +56,10 @@ public class TreeLatex {
         if (root.getI() >= 2) {
             List<Tuple<CellK, CellK>> leftAndRights = new ArrayList<>(Util.calculatePossibleCellPairs(root, pyramid));
             Tuple<CellK, CellK> leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
+            if(leftAndRight.x.getCellElements().size() == 0 && leftAndRight.y.getCellElements().size() == 0){
+                // Considering that both cells are empty
+                throw new TreeLatexRuntimeException("\nTree generation not possible.");
+            }
             // Guarantee that both cells have elements in it
             while (leftAndRight.x.getCellElements().size() == 0 || leftAndRight.y.getCellElements().size() == 0) {
                 leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
@@ -65,8 +71,12 @@ public class TreeLatex {
             CellElement varK = varsInCell.get(random.nextInt(varsInCell.size()));
             // guarantee that the start variable is picked as the top root node
             if (root.getI() == pyramid.getCellsK().length - 1) {
-                varK = varsInCell.stream().filter(variableK ->
-                        variableK.getLhse() instanceof VariableStart).collect(Collectors.toList()).get(0);
+                try {
+                    varK = varsInCell.stream().filter(variableK ->
+                            variableK.getLhse() instanceof VariableStart).collect(Collectors.toList()).get(0);
+                } catch (Exception e) {
+                    throw new TreeLatexRuntimeException("\nNo start variable in the top.");
+                }
             }
             return new TreeLatex(varK.toString(), left, right);
         } else if (root.getI() == 1) { // Case for sub tree with hasLeaf == true
@@ -80,13 +90,16 @@ public class TreeLatex {
         } else if (root.getI() == 0) { // Case for Terminals
             List<VariableK> varsInCell = root.getCellElements();
             Word word = pyramid.getWord();
-            // Add the corresponding terminal of the word
-            return new TreeLatex(
-                    varsInCell.get(random.nextInt(varsInCell.size())).toString(),
-                    new TreeLatex(word.getTerminals().get(root.getJ()).toString())
-            );
+            try {
+                // Add the corresponding terminal of the word
+                return new TreeLatex(
+                        varsInCell.get(random.nextInt(varsInCell.size())).toString(),
+                        new TreeLatex(word.getTerminals().get(root.getJ()).toString()));
+            } catch (Exception e) {
+                throw new TreeLatexRuntimeException("Terminal not included in grammar.");
+            }
         } else {
-            throw new RuntimeException("TreeLatex.generateRandomTree() failure.");
+            throw new TreeLatexRuntimeException("TreeLatex.generateRandomTree() failure.");
         }
     }
 
@@ -96,7 +109,7 @@ public class TreeLatex {
         } else if (isInnerNode()) {
             return Math.max(this.left.treeSize(), this.right.treeSize()) + 1;
         }
-        throw new RuntimeException("This should not have happened.");
+        throw new TreeLatexRuntimeException("This should not have happened.");
     }
 
     private String treeToString() {

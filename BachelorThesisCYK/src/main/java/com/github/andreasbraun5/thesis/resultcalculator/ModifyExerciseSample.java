@@ -31,10 +31,10 @@ public class ModifyExerciseSample {
                 pyramid.getWord() + "\n" +
                 "\nPyramid=\n" + Pyramid.printPyramid(pyramid.getCellsSimple()) +
                 "\nmarkedRightCellCombinationForced=\n" + Pyramid.printPyramid(getMarkedRightCellCombinationForced()) +
-                "\nmaxNumberOfVarsPerCellCount=" + maxNumberOfVarsPerCellCount +
-                "\nrightCellCombinationsForcedCount=" + rightCellCombinationsForcedCount +
+                "\nmaxSumOfProductionsCount=" + maxSumOfProductionsCount +
                 "\nmaxSumOfVarsInPyramidCount=" + maxSumOfVarsInPyramidCount +
-                "\nmaxSumOfProductionsCount=" + maxSumOfProductionsCount;
+                "\nmaxNumberOfVarsPerCellCount=" + maxNumberOfVarsPerCellCount +
+                "\nrightCellCombinationsForcedCount=" + rightCellCombinationsForcedCount;
     }
 
 }

@@ -135,6 +135,10 @@ public class GrammarValidityChecker {
                 sumOfProductions(grammar.getProductionsAsList().size() <= maxSumOfProductions).build();
     }
 
+    public static int checkSumOfProductions(Grammar grammar) {
+        return grammar.getProductionsAsList().size();
+    }
+
     /**
      * checkMaxSumOfVarsInPyramid is tested only on the setV simple.
      */

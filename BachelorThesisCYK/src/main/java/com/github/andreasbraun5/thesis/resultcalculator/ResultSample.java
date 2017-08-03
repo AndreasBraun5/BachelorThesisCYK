@@ -28,7 +28,7 @@ public class ResultSample {
 
     public ResultSample(
             GrammarPyramidWrapper grammarPyramidWrapper,
-        GrammarGeneratorSettings grammarGeneratorSettings) {
+            GrammarGeneratorSettings grammarGeneratorSettings) {
         GrammarConstraints tempGrammarConstraints = grammarGeneratorSettings.grammarProperties.
                 grammarConstraints;
         ExamConstraints tempExamConstraints = grammarGeneratorSettings.grammarProperties.
@@ -90,15 +90,15 @@ public class ResultSample {
 
     @Override
     public String toString() {
-        return "\nResultSample{" +
+        return "\nResultSample{\n" +
                 grammar +
                 pyramid.getWord() + "\n" +
                 "\nPyramid=\n" + Pyramid.printPyramid(pyramid.getCellsSimple()) +
                 "\nmarkedRightCellCombinationForced=\n" + Pyramid.printPyramid(pyramidConstraintValues.getMarkedRightCellCombinationForced()) +
                 "\nmaxSumOfProductionsCount=" + grammarConstraintValues.getMaxSumOfProductionsCount() +
-                "\nmaxSumOfVarsInPyramid=" + pyramidConstraintValues.isMaxSumOfVarsInPyramid() +
-                "\nrightCellCombinationForcedCount=" + pyramidConstraintValues.getRightCellCombinationsForcedCount() +
+                "\nmaxSumOfVarsInPyramid=" + pyramidConstraintValues.getMaxSumOfVarsInPyramidCount() +
                 "\nmaxNumberOfVarsPerCellCount=" + pyramidConstraintValues.getMaxNumberOfVarsPerCellCount() +
+                "\nrightCellCombinationForcedCount=" + pyramidConstraintValues.getRightCellCombinationsForcedCount() +
                 "\n\nisValid=" + isValid +
                 "\nisWordProducible=" + isWordProducible +
                 pyramidConstraintValues.toString() +

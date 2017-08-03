@@ -108,6 +108,7 @@ public class Pyramid {
                     maxLen = Math.max(maxLen, cells[i][j].toString().length());
                 }
             }
+            maxLen += 4;
         }
         {   // To further simplify printing work with maxLen as a even number
             if (maxLen % 2 == 1) {
@@ -117,7 +118,7 @@ public class Pyramid {
         {
             for (int i = 0; i < pyramidSize; i++) {
                 // TODO change here!!
-                // TODO Problem is that the Textare editor is shitty, cells need to inflate themselves
+                // TODO Problem is that the Textarea editor is shitty, cells need to inflate themselves
                 //int emptySpace = (int) Math.ceil(((double) i) / 2.0) * maxLen;
                 int emptySpace = (int) (i / 2.0) * maxLen;
                 ///* Adding spaces "before" each line

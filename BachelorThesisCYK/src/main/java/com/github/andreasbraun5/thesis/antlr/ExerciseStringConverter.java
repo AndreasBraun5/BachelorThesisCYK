@@ -16,7 +16,6 @@ public class ExerciseStringConverter {
         return ExerciseCompiler.parseExercise(string);
     }
 
-
     public String exerciseToString(Exercise exercise) {
         Grammar grammar = exercise.getGrammar();
         StringBuilder str = new StringBuilder();
@@ -35,14 +34,4 @@ public class ExerciseStringConverter {
         str.append(";");
         return str.toString();
     }
-
-    /*
-    start:S;
-rules:{
-    A -> A A
-    A -> a
-};
-word: a a a a a;
-     */
-
 }
