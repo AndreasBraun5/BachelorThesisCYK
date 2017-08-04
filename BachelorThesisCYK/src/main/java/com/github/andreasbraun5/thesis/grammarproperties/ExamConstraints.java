@@ -9,8 +9,8 @@ public class ExamConstraints {
     // Exam constraints
 	public int minRightCellCombinationsForced = 1; // optional, default = 1
     public int maxNumberOfVarsPerCell = 3; // optional, default = 3
-    public int sizeOfWord = 10; // optional, default = 3
-    public int maxSumOfVarsInPyramid = 100; // optional, default = 50
+    public int sizeOfWord = 10; // optional, default = 10
+    public int maxSumOfVarsInPyramid = 100; // optional, default = 100
 
 	@Override
 	public String toString() {

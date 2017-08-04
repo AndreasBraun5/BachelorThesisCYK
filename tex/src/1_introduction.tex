@@ -5,7 +5,7 @@
 \subsection{Motivation}
 
 The starting point of this thesis is to get a tool to automatically generate a suitable 4-tuple $exercise = (grammar,\ word,\ parse\ table,\ derivation\ tree)$, that is used to test if the students have understood the way of working of the CYK algorithm.\\
-Various implementations of the Cocke-Younger-Kasami (CYK) algorithm can be found [XXX]. Nevertheless it is required to automatically generate suitable $exercise$s, that afterwards can be modified as wanted. This is the reason an own implementation has been made. It is also a task to find a more clever algorithm to automatically generate $exercise$s with a high chance of being suitable as an exam exercise.
+Various implementations and small online tools of the Cocke-Younger-Kasami (CYK) algorithm can be found [XXX]. Nevertheless it is required to automatically generate suitable $exercise$s, that afterwards can be modified as wanted. This is the reason an own implementation has been made. It is also a task to find a more clever algorithm to automatically generate $exercise$s with a high chance of being suitable as an exam exercise.
 
 \subsection{Context Free Grammar in Chromsky Normal Form}
 \begin{DefGrey} \textbf{Context Free Grammar (CFG)}\\
@@ -24,11 +24,12 @@ Various implementations of the Cocke-Younger-Kasami (CYK) algorithm can be found
 		\item $P \subseteq V \times (V \cup \Sigma)^{*}$.
 	\end{itemize}
 \end{DefGrey}
-\noindent Regarding this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. For further convenience the following default values are always true:
+\noindent Throughout this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. For further convenience the following default values are always true:
 \begin{itemize}
 	\item $V = \{A, B, ...\}$
 	\item $(V^2 \cup\ \Sigma)^{*}=\{a, b, ...\} \cup \{AA, AB, BB, BA, BS, AC, ... \}$
 \end{itemize}
+A rule consists out of a left hand side element (lhse) and a right hand side element (rhse). Example: $lhse \longrightarrow rhse$ applied to $A \longrightarrow c$ and $B \longrightarrow AC$ means that $A$ and $B$ are a $lhse$ and $c$ and $AC$ are a $rhse$.
 \begin{DefGrey}\label{wordLanguage} \textbf{Word $w$ and language $L(G)$}\\
 	Word $w$ and language $L(G)$:
 	\begin{itemize}
@@ -239,7 +240,7 @@ To be able to describe the way of working of the different algorithms easier the
 	\end{itemize}
 \end{DefGrey}
 \subsection{ Cocke-Younger-Kasami Algorithm}
-The Cocke-Younger-Kasami Algorithm (CYK) has been developed independently in the 1960s by Itiroo Sakai, John Cocke, Tadao Kasami, Jacob Schwartz and Daniel Younger that uses the principle of dynamic programming. [XXX]\\
+The Cocke-Younger-Kasami Algorithm (CYK) has been developed independently in the 1960s by Itiroo Sakai, John Cocke, Tadao Kasami, Jacob Schwartz and Daniel Younger that uses the principle of dynamic programming. [wiki and the four sources]\\
 The description of the algorithm follows [TI Hofmann] adjusted to the help data structure $Pyramid$. \\
 
 \noindent \frame{
@@ -277,62 +278,169 @@ The description of the algorithm follows [TI Hofmann] adjusted to the help data 
 
 
 \subsection{Success Rates}
-\noindent Success Rates ($SR$) are used to compare the algorithms accounting to their performance of the different requirements. Let $N \in  \mathbb{N}$ be the overall count of all generated grammars of the examined algorithm.\\
+\noindent Success Rates ($SR$) are used to compare the algorithms accounting to their performance of the different requirements. $N \in  \mathbb{N}$ is the count of all generated grammars of the examined algorithm.\\
 
-\noindent Write down if the cellsVar or the cellsVarK are used.\\
-Mention the basic connection between the success rates.\\
-
-
-
-\noindent\textbf{Overall Success Rate}
-An generated $exercise$ contributes to the Overall Success Rate ($SR$) iff it contributes to the Success Rate Producibility ($SRP$), to the Success Rate Grammar Constraints ($SRG$) and to the Success Rate Pyramid Word Constraints ($SRPW$) at the same time.\\
+\noindent\textbf{Success Rate:}
+An generated $exercise$ contributes to the Success Rate ($SR$) iff it contributes to the SR-Producibility, to the SR-Cardinality-Rules and to the SR-Pyramid at the same time.\\
 It holds: $SR = n / N$, whereas $n$ is the count of $exercises$ that fulfil the requirements in this case.\\
 
-\noindent\textbf{Success Rate Producibility}
-An generated $exercise$ contributes to the $SRP$ iff the CYK algorithm's output is true.\\
-It holds: $SRP = p / N$, whereas $p$ is the count of $exercises$ that fulfil the requirements in this case.\\
+\noindent\textbf{Success Rate Producibility:}
+An generated $exercise$ contributes to the SR-Producibility iff the CYK algorithm's output (Algorithm \ref{CYK}) is true.\\
+It holds: $SR-Producibility = p / N$, whereas $p$ is the count of $exercises$ that fulfil the requirement.\\
 
-\noindent\textbf{Success Rate Grammar Constraints}
-An generated $exercise$ contributes to the $SRG$ iff the following conditions are met:
-\begin{itemize}
-	\item grammar has got less than a certain amount of productions.
-\end{itemize}
-It holds: $SRG = g / N$, whereas $g$ is the count of $exercises$ that fulfil the requirements in this case.\\
+\noindent\textbf{Success Rate Cardinality-Rules}
+An generated $exercise$ contributes to the SR-Cardinality-Rules iff the grammar has got less than a certain amount of productions.\\
+It is true: $SR-Cardinality-Rules = cr / N$, whereas $cr$ is the count of $exercises$ that fulfil this requirement.\\
 
-\noindent\textbf{Success Rate Word Pyramid Constraints}
-An generated $exercise$ contributes to the $SRWP$ iff the following conditions are met:
-\begin{itemize}
-	\item A certain amount of cells force a right cell combination.
-	\item There are less than a certain amount of variables in the entire pyramid.
-	\item There are less than a certain amount of variables in each cell of the pyramid.
-\end{itemize}
-It holds: $SRWP = wp / N$, whereas $wp$ is the count of $exercises$ that fulfil the requirements in this case.
-\pagebreak
+\noindent\textbf{Success Rate Pyramid}
+An generated $exercise$ contributes to the SR-Pyramid iff the following conditions are met:
+\begin{enumerate}
+	\item At least one cell forces a right cell combination. A right cell combination can be forced of cells with index $i>1$.
+	\item There are less than a certain amount of variables in the entire pyramid, per default 100.
+	\item There are less than a certain amount of variables in each cell of the pyramid, per default 3.
+\end{enumerate}
+It holds: $SR-Pyramid = p / N$, whereas $p$ is the count of $exercises$ that fulfil the requirements above.\\
+While checking 1., 2. and 3. a simplification of $Cell_{i,j}$ is done:\\ $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \} \longrightarrow Cell_{i,j} \subseteq V$ Example: $\{(A,1),(A,3), ...\} \longrightarrow \{A, ...\}$ \\
 
-\noindent Fore more detail of fore right cell combination see here:\\
+\noindent For more detail to what forces a right cell combination (1.) see the following algorithm:\\
 
 \noindent 
 \frame{
 	\begin{algorithm}[H] %or another one check
 		\caption{checkForceCombinationPerCell}
-		\label{checkRightCellPerCombination}
+		\label{checkForceCombinationPerCell}
 		\SetAlgoLined
-		\KwIn{$ CellDown\subseteq V,\ CellUpperLeft\subseteq V,\ CellUpperRight \subseteq V,\ P \subseteq V \times (V^{2} \cup \Sigma) $ }
-		\KwOut{$true \iff at~least~one~variable~forces$}
-		$VarsForcing \subseteq V$\;
+		\KwIn{$ CellDown,~CellUpperLeft,~CellUpperRight \subseteq V,~P \subseteq V \times (V^{2} \cup \Sigma) $ }
+		\KwOut{$true \iff at~least~one~variable\in CellDown~forces$}
+		$VarsForcing = \emptyset$;~~\tcp{$VarsForcing \subseteq V$} 
 		$VarComp = \{xy\ |\ x \in CellUpperLeft\ \wedge\ y \in CellUpperRight \}$\;
 		\ForEach{$v \in CellDown$}{
-			$Prods = \{p\ |\ p \in P\ \wedge\ p=(v_1,rhse_1)\ \wedge\ v==v_1 \}$\;
-			$Rhses = \{rhse\ |\ p \in Prods\ \wedge\ p=(v_1,rhse_1)\ \wedge\ rhse==rhse_1\} $\;
-			\If{$Rhses \nsubseteq VarComp$}{
+			$Prods = \{p\ |\ p \in P\ \wedge\ p=(v_1,rhse_1)\ \wedge\ v_1=v \}$\; \label{prods}
+			$Rhses = \{rhse\ |\ p \in Prods\ \wedge\ p=(v_1,rhse_1)\ \wedge\ rhse_1=rhse\} $\; \label{rhses}
+			\If{$Rhses \nsubseteq VarComp$}{ \label{forces}
 				$VarsForcing = VarsForcing \cup v$\;
 			}			
 		}
 		\Return $|VarsForcing| > 0$\;
 		\footnotetext{
+			Line \ref{prods}: Get all rules of $P$ that have $v$ on their left side.\\
+			Line \ref{rhses}: Get the rhse of each element of $Prods$.\\
+			Line \ref{forces}: If no $rhse \in Rhse$ can be found in VarComp, then this variables forces, concluding that this cell as a hole forces.
 		}
 	\end{algorithm}
 }
 
+\noindent Example: \\
+\begin{minipage}{6in}
+	\centering
+	\raisebox{-0.5\height}{
+		\begin{tabular}{l}
+			$Grammar:$\\
+			$C\rightarrow C S~|~a~|~b$\\ 
+			$S\rightarrow C C~~$\\ 
+		\end{tabular} 
+	}
+	\hspace*{.2in}
+	\raisebox{-0.5\height}{
+		\resizebox{0.55\linewidth}{!}{
+			\begin{tikzpicture}[baseline]
+			\newcommand{\myfontvars}[1]{
+				\fontsize{4.9}{12}\selectfont{#1}
+			}\newcommand{\myfontnumbering}[1]{
+				\fontsize{2.5}{12}\selectfont{#1}
+			}%Outer hull
+			%Tip of the pyramid
+			\coordinate (tip) at (2.0,-2.0);
+			\foreach \i in {0,...,4} {
+				\coordinate (\i) at (\i,0);
+			}
+			%Draw the left and right line of the pyramid pointing downwards
+			\draw (0) -- (tip) -- (4);
+			%Grid lines direction down-left to top-right
+			\coordinate (dl1) at (0.5,-0.5);
+			\coordinate (dl2) at (1.0,-1.0);
+			\coordinate (dl3) at (1.5,-1.5);
+			\draw (dl1) -- (1,0);
+			\draw (dl2) -- (2,0);
+			\draw (dl3) -- (3,0);
+			%Grid lines direction down-right to top-left
+			\coordinate (dr1) at (2.5,-1.5);
+			\coordinate (dr2) at (3.0,-1.0);
+			\coordinate (dr3) at (3.5,-0.5);
+			\draw (dr1) -- (1,0);
+			\draw (dr2) -- (2,0);
+			\draw (dr3) -- (3,0);
+			%Small lines at the top
+			\coordinate (top0) at (0.0,0.0);
+			\coordinate (top1) at (1.0,0.0);
+			\coordinate (top2) at (2.0,0.0);
+			\coordinate (top3) at (3.0,0.0);
+			\coordinate (top4) at (4.0,0.0);
+			\coordinate (topUpper0) at (0.0,0.6);
+			\coordinate (topUpper1) at (1.0,0.6);
+			\coordinate (topUpper2) at (2.0,0.6);
+			\coordinate (topUpper3) at (3.0,0.6);
+			\coordinate (topUpper4) at (4.0,0.6);
+			\draw (top0) -- (topUpper0);
+			\draw (top1) -- (topUpper1);
+			\draw (top2) -- (topUpper2);
+			\draw (top3) -- (topUpper3);
+			\draw (top4) -- (topUpper4);
+			%The string
+			\coordinate (w0) at (0.5,0.6);
+			\coordinate (w1) at (1.5,0.6);
+			\coordinate (w2) at (2.5,0.6);
+			\coordinate (w3) at (3.5,0.6);
+			\node [] at (w0) {a};
+			\node [] at (w1) {a};
+			\node [] at (w2) {b};
+			\node [] at (w3) {a};
+			% Variables in the cells
+			%cells00
+			\coordinate (center00) at (0.5,0.0);
+			\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+			\node [] at (center00) {\myfontvars{C$_{1}$}};
+			%cells01
+			\coordinate (center01) at (1.5,0.0);
+			\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+			\node [] at (center01) {\myfontvars{C$_{2}$}};
+			%cells02
+			\coordinate (center02) at (2.5,0.0);
+			\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+			\node [] at (center02) {\myfontvars{C$_{3}$}};
+			%cells03
+			\coordinate (center03) at (3.5,0.0);
+			\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+			\node [] at (center03) {\myfontvars{C$_{4}$}};
+			%cells10
+			\coordinate (center10) at (1.0,-0.5);
+			\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+			\node [] at (center10) {\myfontvars{S$_{1}$}};
+			%cells11
+			\coordinate (center11) at (2.0,-0.5);
+			\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+			\node [] at (center11) {\myfontvars{S$_{2}$}};
+			%cells12
+			\coordinate (center12) at (3.0,-0.5);
+			\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+			\node [] at (center12) {\myfontvars{S$_{3}$}};
+			%cells20
+			\coordinate (center20) at (1.5,-1.0);
+			\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+			\node [] at (center20) {\myfontvars{C$_{1}$}};
+			%cells21
+			\coordinate (center21) at (2.5,-1.0);
+			\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+			\node [] at (center21) {\myfontvars{C$_{2}$}};
+			%cells30
+			\coordinate (center30) at (2.0,-1.5);
+			\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+			\node [] at (center30) {\myfontvars{S$_{1}$S$_{3}$}};
+			\end{tikzpicture}
+		}
+	}
+\end{minipage}\\
 
+\noindent The variables in $Cell_{2,0}$ and in $Cell_{2,1}$ force each a right cell combination. In both cases $VarComp=\{SS\}$. The variable $v=C$ doesn't have $SS$ as one of its rhses. Therefore the variable $C$ forces.
+$Cell_{3,0}$ doesn't force because $VarComp=\{CC\}$ and the variable $v=S$ has $CC$ as its rhse.
 \pagebreak

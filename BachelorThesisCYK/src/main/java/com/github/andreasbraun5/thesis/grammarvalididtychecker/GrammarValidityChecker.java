@@ -108,6 +108,9 @@ public class GrammarValidityChecker {
     static Set<VariableK> checkRightCellCombinationForcedForCell(
             CellK cellDown, CellK cellRight, CellK cellLeft, Grammar grammar) {
         Set<VariableK> varKsThatForce = new HashSet<>();
+        if (cellRight.getCellElements().size() == 0 || cellLeft.getCellElements().size() == 0) {
+            return varKsThatForce;
+        }
         // varCompMistake compound variables aren't allowed to be an rhse of the varK that forces of cellDown.
         Set<VariableCompound> varCompMistake = Util.calculateVariablesCompoundForCellPair(new Tuple<>(cellLeft, cellRight));
         for (VariableK vark : cellDown.getCellElements()) {
