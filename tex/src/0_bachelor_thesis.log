@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  3 AUG 2017 17:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  4 AUG 2017 10:36
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -2025,55 +2025,49 @@ Package mdframed Info: mdframed detected package amsthm
  [8]
 Package mdframed Info: Not enough space on this page on input line 240.
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--243
+Underfull \hbox (badness 10000) in paragraph at lines 242--244
 
  []
 
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 271.
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 258--259
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 261--262
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 263--266
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 268--271
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 272--275
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 281--282
+Underfull \hbox (badness 10000) in paragraph at lines 276--279
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 281--284
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 285--288
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 294--295
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 293--294
+Underfull \hbox (badness 10000) in paragraph at lines 306--307
 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 316.
+(Font)              <10> on input line 329.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 316.
+(Font)              <7> on input line 329.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 316.
+(Font)              <5> on input line 329.
 ) [11] (2_success_rates.tex) (3_algorithms.tex [12]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 64.
-
 
 LaTeX Warning: Reference `DiceRollOnlySR' on page 13 undefined on input line 65
 .
@@ -2129,13 +2123,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 333.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 36740 strings out of 493328
- 709949 string characters out of 3139104
+ 36751 strings out of 493328
+ 710088 string characters out of 3139104
  928460 words of memory out of 3000000
  39437 multiletter control sequences out of 15000+200000
  655171 words of font info for 113 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
- 64i,22n,73p,10445b,24496s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,24n,73p,10445b,24496s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Def.2} has been referenced but does
  not exist, replaced by a fixed one
 
@@ -2157,9 +2151,9 @@ Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/public/lm/lmtt12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (26 pages, 419666 bytes).
+Output written on 0_bachelor_thesis.pdf (26 pages, 422075 bytes).
 PDF statistics:
- 599 PDF objects out of 1000 (max. 8388607)
- 201 named destinations out of 1000 (max. 500000)
+ 612 PDF objects out of 1000 (max. 8388607)
+ 212 named destinations out of 1000 (max. 500000)
  354 words of extra memory for PDF output out of 10000 (max. 10000000)
 
