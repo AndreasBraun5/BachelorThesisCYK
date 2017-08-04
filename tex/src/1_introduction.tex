@@ -32,7 +32,7 @@ Various implementations of the Cocke-Younger-Kasami (CYK) algorithm can be found
 \begin{DefGrey}\label{wordLanguage} \textbf{Word $w$ and language $L(G)$}\\
 	Word $w$ and language $L(G)$:
 	\begin{itemize}
-		\item $w \in \Sigma^* = \{w_0,~w_1,~...,~w_i\}$.
+		\item $w \in \Sigma^* = \{w_0,~w_1,~...,~w_j\}$.
 		\item A language $L(G)$ over an alphabet $\Sigma$ is a set of words over $\Sigma$ .
 	\end{itemize}
 \end{DefGrey}
@@ -156,12 +156,12 @@ To be able to describe the way of working of the different algorithms easier the
 		\coordinate (w3) at (3.5,0.6);
 		\coordinate (w4) at (4.5,0.6);
 		\coordinate (w5) at (5.5,0.6);
-		\node [] at (w0) {b};
-		\node [] at (w1) {b};
-		\node [] at (w2) {a};
-		\node [] at (w3) {c};
-		\node [] at (w4) {b};
-		\node [] at (w5) {c};
+		\node [] at (w0) {$w_0$};
+		\node [] at (w1) {$w_1$};
+		\node [] at (w2) {$w_2$};
+		\node [] at (w3) {$w_3$};
+		\node [] at (w4) {$w_4$};
+		\node [] at (w5) {$w_5$};
 		% Variables in the cells
 		%cell00
 		\coordinate (center00) at (0.5,0.0);
@@ -240,42 +240,48 @@ To be able to describe the way of working of the different algorithms easier the
 \end{DefGrey}
 \subsection{ Cocke-Younger-Kasami Algorithm}
 The Cocke-Younger-Kasami Algorithm (CYK) has been developed independently in the 1960s by Itiroo Sakai, John Cocke, Tadao Kasami, Jacob Schwartz and Daniel Younger that uses the principle of dynamic programming. [XXX]\\
-The description of the algorithm follows [TI Hofmann] adjusted to the help data structure pyramid. \\
+The description of the algorithm follows [TI Hofmann] adjusted to the help data structure $Pyramid$. \\
 
 \noindent \frame{
 	\begin{algorithm}[H] %or another one check
 		\caption{CYK}
 		\label{CYK}
 		\SetAlgoLined
-		\KwIn{Grammar $G=(V,\ \Sigma,\ S,\ P)$ and word $w \in \Sigma^* = \{w_0,~w_1,~...,~w_i\}$ }
+		\KwIn{Grammar $G=(V,\ \Sigma,\ S,\ P)$ and word $w \in \Sigma^* = \{w_0,~w_1,~...,~w_j\}$ }
 		\KwOut{true $\Leftrightarrow w\in L(G)$}
 		$Pyramid = \emptyset $\;
-		\For{$i:=0 \to i_{max}$}{
-			$Pyramid \cup \{(X,i)~|~X \longrightarrow w_i\}$
+		\For{$j:=0 \to i_{max}$}{ \label{row1}
+			$Pyramid \cup Cell_{0,j} = \{(X,j)~|~X \longrightarrow w_j\}$
 		}
-		\For{$i:=1 \to i_{max}$}{
-			\For{$j:=0 \to j_{max,i}$}{
-				\For{$k:=i-1 \to 0$}{
-					$Pyramid \cup \{X\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$\;
+		\For{$i:=1 \to i_{max}$}{ \label{rows}
+			\For{$j:=0 \to j_{max,i}$}{ \label{eachCell}
+				\For{$k:=i-1 \to 0$}{ \label{cellCombs}
+					$Pyramid \cup Cell_{i,j} =  \{X\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$\;
 				}
 			}
 		}
-		
-		
-		\For{$k:=i-1 \to 0$}{
-			$V_{i,j} = V_{i,j} \cup \{X\ |\ X\longrightarrow YZ,\ Y \in V_{k,j},\ Z \in V_{i-k-1,k+j+1} \}$\;
+		$wInL = false$\;
+		\If{$(S,i) \in Cell_{i_{max},0}$}{
+			$wInL = true$\; \label{true}
 		}
-		$V_{i,j} = \emptyset $;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
-		\Return $V_{i,j}$\;
+		\Return $wInL$;
+		\footnotetext{ 
+		Line \ref{row1}: First row.\\
+		Line \ref{rows}: All rows except the first. \\
+		Line \ref{eachCell}: All cells in each row. \\
+		Line \ref{cellCombs}: All possible cell combinations for each cell. \\
+		Line \ref{true}: True iff $Cell_{i_{max},0}$ contains the start variable.
+		}
 	\end{algorithm}
 }
 
+
 \subsection{Success Rates}
-\noindent The Success Rates ($SR$) are used to compare the algorithms accounting to their performance of the different requirements. Let $N$ be the overall count of all generated grammars of the examined algorithm.\\
+\noindent Success Rates ($SR$) are used to compare the algorithms accounting to their performance of the different requirements. Let $N \in  \mathbb{N}$ be the overall count of all generated grammars of the examined algorithm.\\
 
 \noindent Write down if the cellsVar or the cellsVarK are used.\\
 Mention the basic connection between the success rates.\\
-Write down the default values used for this.\\
+
 
 
 \noindent\textbf{Overall Success Rate}
