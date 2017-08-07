@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  4 AUG 2017 15:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  7 AUG 2017 10:32
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -2063,28 +2063,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 291--294
 
  []
 
+LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 437.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <4.9> on input line 437.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <3.42998> on input line 437.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <2.45> on input line 437.
 
-Underfull \hbox (badness 10000) in paragraph at lines 302--304
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
+Underfull \hbox (badness 10000) in paragraph at lines 570--571
 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 331.
+(Font)              <10.95> on input line 596.
 [11]
-LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 441.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.9> on input line 441.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <3.42998> on input line 441.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <2.45> on input line 441.
-
-Underfull \hbox (badness 10000) in paragraph at lines 333--443
+Underfull \hbox (badness 10000) in paragraph at lines 598--712
 
  []
 
@@ -2141,10 +2135,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 333.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 36763 strings out of 493328
- 710174 string characters out of 3139104
- 928868 words of memory out of 3000000
- 39445 multiletter control sequences out of 15000+200000
+ 36766 strings out of 493328
+ 710207 string characters out of 3139104
+ 928983 words of memory out of 3000000
+ 39446 multiletter control sequences out of 15000+200000
  655171 words of font info for 113 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
  64i,24n,73p,10445b,24496s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2172,9 +2166,9 @@ b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/font
 s/type1/public/lm/lmtt12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (27 pages, 458615 bytes).
+Output written on 0_bachelor_thesis.pdf (27 pages, 462553 bytes).
 PDF statistics:
- 644 PDF objects out of 1000 (max. 8388607)
- 216 named destinations out of 1000 (max. 500000)
+ 653 PDF objects out of 1000 (max. 8388607)
+ 218 named destinations out of 1000 (max. 500000)
  354 words of extra memory for PDF output out of 10000 (max. 10000000)
 
