@@ -36,12 +36,14 @@ public class GrammarGeneratorSplitAndFill extends GrammarGenerator {
             int iMax = grammarPyramidWrapper.getPyramid().getWord().getWordLength() - 1;
             sol = splitAndFill(grammarPyramidWrapper, iMax, 0, workLog);
         }
+
         grammarPyramidWrapper = CYK.calculateSetVAdvanced(sol.x);
+        /*
         workLog.log("Grammar before postprocessing: ");
         workLog.log(grammarPyramidWrapper.getGrammar().toString());
         grammarPyramidWrapper = GrammarGeneratorUtil.postprocessing(grammarPyramidWrapper);
         workLog.log("Grammar after postprocessing: ");
-        workLog.log(grammarPyramidWrapper.getGrammar().toString());
+        workLog.log(grammarPyramidWrapper.getGrammar().toString());*/
         return grammarPyramidWrapper;
     }
 

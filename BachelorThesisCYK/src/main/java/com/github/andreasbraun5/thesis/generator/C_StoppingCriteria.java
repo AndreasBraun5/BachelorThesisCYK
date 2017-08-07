@@ -9,8 +9,8 @@ import com.github.andreasbraun5.thesis.pyramid.Pyramid;
  */
 public class C_StoppingCriteria {
 
-    /*
-    public static boolean stoppingCriteriaMet(GrammarPyramidWrapper grammarPyramidWrapper) {
+
+    public static boolean stoppingCriteriaMetMoreThanHalf(GrammarPyramidWrapper grammarPyramidWrapper) {
         boolean isMet;
         int countCells = 0;
         int coundCellsNotEmpty = 0;
@@ -25,16 +25,17 @@ public class C_StoppingCriteria {
         }
         isMet = ((double) coundCellsNotEmpty / countCells) >= 0.5;
         return isMet;
-    }*/
+    }
 
     public static boolean stoppingCriteriaMet(GrammarPyramidWrapper grammarPyramidWrapper) {
-        return stoppingCriteriaMetSplitThenFill(grammarPyramidWrapper);
+        //return stoppingCriteriaMetRootNotEmpty(grammarPyramidWrapper);
+        return stoppingCriteriaMetMoreThanHalf(grammarPyramidWrapper);
     }
 
     /**
      * True if the root of the pyramid is not emtpy.
      */
-    public static boolean stoppingCriteriaMetSplitThenFill(GrammarPyramidWrapper grammarPyramidWrapper) {
+    public static boolean stoppingCriteriaMetRootNotEmpty(GrammarPyramidWrapper grammarPyramidWrapper) {
         Pyramid pyramid = grammarPyramidWrapper.getPyramid();
         int size = pyramid.getSize();
         return grammarPyramidWrapper.getPyramid().getCellK(size - 1, 0).getCellElements().size() != 0;

@@ -38,7 +38,7 @@ A rule consists out of a left hand side element (lhse) and a right hand side ele
 	\end{itemize}
 \end{DefGrey}
 \noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, whereas a $Cell$ is again a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further reasoning behind this example see chapter XXX "help data structure") 
-\subsection{General approaches}
+\subsection{General approaches} \label{approaches}
 Two basic approaches, that may help finding a good algorithm are explained informally.
 \subsubsection{Forward Problem \& Backward Problem}
 The Forward Problem and the Backward Problem are two ways as how to determine if $w \in L(G)$.	
@@ -595,6 +595,10 @@ While checking 1., 2. and 3. a simplification of $Cell_{i,j}$ is done:\\ $Cell_{
 	\end{algorithm}
 }
 
+
+\noindent As seen in Figure \ref{foreCombination} the variables in $Cell_{2,0}$ and in $Cell_{2,1}$ force each a right cell combination. In both cases $VarComp=\{SS\}$. The variable $v=C$ doesn't have $SS$ as one of its rhses. Therefore the variable $C$ forces.
+$Cell_{3,0}$ doesn't force because $VarComp=\{CC\}$ and the variable $v=S$ has $CC$ as its rhse. Remember that cells with index $i\leq1$ can't force at all.
+
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -710,6 +714,4 @@ While checking 1., 2. and 3. a simplification of $Cell_{i,j}$ is done:\\ $Cell_{
 	\label{foreCombination}
 \end{figure}\\
 
-\noindent As seen in Figure \ref{foreCombination} the variables in $Cell_{2,0}$ and in $Cell_{2,1}$ force each a right cell combination. In both cases $VarComp=\{SS\}$. The variable $v=C$ doesn't have $SS$ as one of its rhses. Therefore the variable $C$ forces.
-$Cell_{3,0}$ doesn't force because $VarComp=\{CC\}$ and the variable $v=S$ has $CC$ as its rhse. Remember that cells with index $i\leq1$ can't force at all.
 \pagebreak

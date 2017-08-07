@@ -96,7 +96,7 @@ public class GrammarGeneratorSplitThenFill extends GrammarGenerator {
             grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
         }
         {   // Line 8 to 10
-            if (C_StoppingCriteria.stoppingCriteriaMetSplitThenFill(grammarPyramidWrapper)) {
+            if (C_StoppingCriteria.stoppingCriteriaMetRootNotEmpty(grammarPyramidWrapper)) {
                 return new Tuple<>(grammarPyramidWrapper, cell_ij);
             }
         }

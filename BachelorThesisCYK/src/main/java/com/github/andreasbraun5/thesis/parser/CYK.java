@@ -40,6 +40,10 @@ public class CYK {
 
     public static boolean algorithmAdvanced(Pyramid pyramid) {
         int wordlength = pyramid.getWord().getWordLength();
+        if(pyramid.getCellK(wordlength-1, 0).getCellElements().size() == 0){
+            return false;
+        }
+
         List<VariableK> vars =
                 pyramid.getCellK(wordlength - 1, 0).getCellElements().stream().
                         filter(variableK -> variableK.getLhse() instanceof VariableStart).collect(Collectors.toList());

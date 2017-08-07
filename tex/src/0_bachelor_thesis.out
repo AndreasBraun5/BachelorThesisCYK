@@ -9,34 +9,15 @@
 \BOOKMARK [2][-]{subsection.1.5}{1.5 Cocke-Younger-Kasami Algorithm}{section.1}% 9
 \BOOKMARK [2][-]{subsection.1.6}{1.6 Success Rates}{section.1}% 10
 \BOOKMARK [1][-]{section.2}{2 Algorithms}{}% 11
-\BOOKMARK [2][-]{subsection.2.1}{2.1 Algorithm sub modules}{section.2}% 12
-\BOOKMARK [3][-]{subsubsection.2.1.1}{2.1.1 Distribute A \046 B}{subsection.2.1}% 13
-\BOOKMARK [3][-]{subsubsection.2.1.2}{2.1.2 Stopping Criteria C}{subsection.2.1}% 14
-\BOOKMARK [3][-]{subsubsection.2.1.3}{2.1.3 ChooseXYDependingOnIFromRowSet D}{subsection.2.1}% 15
-\BOOKMARK [2][-]{subsection.2.2}{2.2 DiceRollOnlyCYK}{section.2}% 16
-\BOOKMARK [3][-]{subsubsection.2.2.1}{2.2.1 Basic Idea}{subsection.2.2}% 17
-\BOOKMARK [3][-]{subsubsection.2.2.2}{2.2.2 Algorithm}{subsection.2.2}% 18
-\BOOKMARK [2][-]{subsection.2.3}{2.3 BottomUpDiceRollVar1}{section.2}% 19
-\BOOKMARK [3][-]{subsubsection.2.3.1}{2.3.1 Basic Idea}{subsection.2.3}% 20
-\BOOKMARK [3][-]{subsubsection.2.3.2}{2.3.2 Algorithm}{subsection.2.3}% 21
-\BOOKMARK [2][-]{subsection.2.4}{2.4 BottomUpDiceRollVar2}{section.2}% 22
-\BOOKMARK [3][-]{subsubsection.2.4.1}{2.4.1 Basic Idea}{subsection.2.4}% 23
-\BOOKMARK [3][-]{subsubsection.2.4.2}{2.4.2 Algorithm}{subsection.2.4}% 24
-\BOOKMARK [2][-]{subsection.2.5}{2.5 SplitThenFill}{section.2}% 25
-\BOOKMARK [3][-]{subsubsection.2.5.1}{2.5.1 Basic Idea}{subsection.2.5}% 26
-\BOOKMARK [3][-]{subsubsection.2.5.2}{2.5.2 Algorithm}{subsection.2.5}% 27
-\BOOKMARK [2][-]{subsection.2.6}{2.6 SplitAndFill}{section.2}% 28
-\BOOKMARK [3][-]{subsubsection.2.6.1}{2.6.1 Basic Idea}{subsection.2.6}% 29
-\BOOKMARK [3][-]{subsubsection.2.6.2}{2.6.2 Algorithm}{subsection.2.6}% 30
-\BOOKMARK [2][-]{subsection.2.7}{2.7 Comparision of Algorithms}{section.2}% 31
-\BOOKMARK [1][-]{section.3}{3 CLI Tool}{}% 32
-\BOOKMARK [2][-]{subsection.3.1}{3.1 Scoring Model}{section.3}% 33
-\BOOKMARK [2][-]{subsection.3.2}{3.2 Short Requirements Specification}{section.3}% 34
-\BOOKMARK [3][-]{subsubsection.3.2.1}{3.2.1 Exam Exercises}{subsection.3.2}% 35
-\BOOKMARK [2][-]{subsection.3.3}{3.3 Overview - UML}{section.3}% 36
-\BOOKMARK [3][-]{subsubsection.3.3.1}{3.3.1 UML: More Detail 1}{subsection.3.3}% 37
-\BOOKMARK [3][-]{subsubsection.3.3.2}{3.3.2 UML: More Detail 2}{subsection.3.3}% 38
-\BOOKMARK [2][-]{subsection.3.4}{3.4 User Interaction}{section.3}% 39
-\BOOKMARK [3][-]{subsubsection.3.4.1}{3.4.1 Use Case 1}{subsection.3.4}% 40
-\BOOKMARK [3][-]{subsubsection.3.4.2}{3.4.2 Use Case i}{subsection.3.4}% 41
-\BOOKMARK [1][-]{subsubsection.3.4.2}{References}{}% 42
+\BOOKMARK [2][-]{subsection.2.1}{2.1 Sub modules}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.2}{2.2 DiceRollOnlyCYK}{section.2}% 13
+\BOOKMARK [2][-]{subsection.2.3}{2.3 BottomUpDiceRollVar1}{section.2}% 14
+\BOOKMARK [2][-]{subsection.2.4}{2.4 BottomUpDiceRollVar2}{section.2}% 15
+\BOOKMARK [2][-]{subsection.2.5}{2.5 SplitThenFill}{section.2}% 16
+\BOOKMARK [2][-]{subsection.2.6}{2.6 SplitAndFill}{section.2}% 17
+\BOOKMARK [2][-]{subsection.2.7}{2.7 Comparision of Algorithms}{section.2}% 18
+\BOOKMARK [1][-]{section.3}{3 CLI Tool}{}% 19
+\BOOKMARK [2][-]{subsection.3.1}{3.1 Scoring Model}{section.3}% 20
+\BOOKMARK [2][-]{subsection.3.2}{3.2 Exam Exercises}{section.3}% 21
+\BOOKMARK [2][-]{subsection.3.3}{3.3 Overview}{section.3}% 22
+\BOOKMARK [1][-]{subsection.3.3}{References}{}% 23
