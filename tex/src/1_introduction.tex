@@ -7,7 +7,7 @@
 The starting point of this thesis is to get a tool to automatically generate a suitable 4-tuple $exercise = (grammar,\ word,\ parse\ table,\ derivation\ tree)$, that is used to test if the students have understood the way of working of the CYK algorithm.\\
 Various implementations and small online tools of the Cocke-Younger-Kasami (CYK) algorithm can be found [XXX]. Nevertheless it is required to automatically generate suitable $exercise$s, that afterwards can be modified as wanted. This is the reason an own implementation has been made. It is also a task to find a more clever algorithm to automatically generate $exercise$s with a high chance of being suitable as an exam exercise.
 
-\subsection{Context Free Grammar in Chromsky Normal Form}
+\subsection{Context Free Grammar}
 \begin{DefGrey} \textbf{Context Free Grammar (CFG)}\\
 	We define a CFG as the 4-tuple $G=(V,\ \Sigma,\ S,\ P)$:
 	\begin{itemize}
@@ -18,10 +18,10 @@ Various implementations and small online tools of the Cocke-Younger-Kasami (CYK)
 	\end{itemize}
 	It is valid that $\Sigma \cap V =  \emptyset$.
 \end{DefGrey}
-\begin{DefGrey}\label{CFGinCNF} \textbf{CFG in Chromsky Normal Form (CNF)}\\
+\begin{DefGrey}\label{CFGinCNF} \textbf{CFG with restrictions}\\
 	A CFG $G=(V,\ \Sigma,\ S,\ P)$ is in CNF iff.:
 	\begin{itemize}
-		\item $P \subseteq V \times (V \cup \Sigma)^{*}$.
+		\item $P \subseteq V \times (V^2 \cup \Sigma)^{*}$.
 	\end{itemize}
 \end{DefGrey}
 \noindent Throughout this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. For further convenience the following default values are always true:

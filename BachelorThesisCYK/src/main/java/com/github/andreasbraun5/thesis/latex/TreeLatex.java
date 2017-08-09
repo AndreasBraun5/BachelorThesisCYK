@@ -52,13 +52,17 @@ public class TreeLatex {
     }
 
     public static TreeLatex generateRandomTree(Pyramid pyramid, CellK root) {
+        int indexLast = pyramid.getCellsK().length - 1;
         Random random = new Random();
         if (root.getI() >= 2) {
             List<Tuple<CellK, CellK>> leftAndRights = new ArrayList<>(Util.calculatePossibleCellPairs(root, pyramid));
             Tuple<CellK, CellK> leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
-            if(leftAndRight.x.getCellElements().size() == 0 && leftAndRight.y.getCellElements().size() == 0){
+            if (leftAndRight.x.getCellElements().size() == 0 && leftAndRight.y.getCellElements().size() == 0) {
                 // Considering that both cells are empty
                 throw new TreeLatexRuntimeException("\nTree generation not possible.");
+            }
+            if (pyramid.getCellsK()[indexLast][0].getCellElements().size() == 0) {
+                throw new TreeLatexRuntimeException("\nNo variable in the top.");
             }
             // Guarantee that both cells have elements in it
             while (leftAndRight.x.getCellElements().size() == 0 || leftAndRight.y.getCellElements().size() == 0) {
@@ -70,7 +74,7 @@ public class TreeLatex {
             // Pick random element from the cell, but
             CellElement varK = varsInCell.get(random.nextInt(varsInCell.size()));
             // guarantee that the start variable is picked as the top root node
-            if (root.getI() == pyramid.getCellsK().length - 1) {
+            if (root.getI() == indexLast) {
                 try {
                     varK = varsInCell.stream().filter(variableK ->
                             variableK.getLhse() instanceof VariableStart).collect(Collectors.toList()).get(0);
@@ -79,7 +83,9 @@ public class TreeLatex {
                 }
             }
             return new TreeLatex(varK.toString(), left, right);
-        } else if (root.getI() == 1) { // Case for sub tree with hasLeaf == true
+        } else if (root.getI() == 1)
+
+        { // Case for sub tree with hasLeaf == true
             List<VariableK> varsInCell = root.getCellElements();
             List<Tuple<CellK, CellK>> leftAndRights = new ArrayList<>(Util.calculatePossibleCellPairs(root, pyramid));
             Tuple<CellK, CellK> leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
@@ -87,7 +93,9 @@ public class TreeLatex {
             TreeLatex right = generateRandomTree(pyramid, leftAndRight.y);
             // Pick random element from the cell
             return new TreeLatex(varsInCell.get(random.nextInt(varsInCell.size())).toString(), left, right);
-        } else if (root.getI() == 0) { // Case for Terminals
+        } else if (root.getI() == 0)
+
+        { // Case for Terminals
             List<VariableK> varsInCell = root.getCellElements();
             Word word = pyramid.getWord();
             try {
@@ -98,9 +106,12 @@ public class TreeLatex {
             } catch (Exception e) {
                 throw new TreeLatexRuntimeException("Terminal not included in grammar.");
             }
-        } else {
+        } else
+
+        {
             throw new TreeLatexRuntimeException("TreeLatex.generateRandomTree() failure.");
         }
+
     }
 
     private int treeSize() {

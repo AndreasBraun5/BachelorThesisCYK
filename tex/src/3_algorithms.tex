@@ -2,10 +2,10 @@
 
 \section{Algorithms}\label{algorithms}
 \subsection{Sub modules}
-Sub modules are parts of the algorithms that are denoted circled like \circled{A}, \circled{B}, \circled{C} and \circled{D}. They are procedures that should to be explained in more detail a little bit for a better understanding of the way of working of the algorithms.\\
+Sub modules are parts of the algorithms that are denoted circled like \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should to be explained in more detail a little bit for better understanding of the way of working of the algorithms.\\
 
 \noindent \textbf{Distribute$(\Sigma,\ V) $\circled{A} and Distribute$(V^2,\ V)$\circled{B}:}\\
-The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. The specifics of how they are distributed are the same in both cases as described in the following algorithm:\\
+The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. The specifics of how they are distributed are the same in both cases as described in the following algorithm: \\
 
 \noindent
 \frame{
@@ -14,10 +14,10 @@ The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and
 		\label{Distribute}
 		\SetAlgoLined
 		\KwIn{ $Rhse \subseteq\ (V^{2} \cup \Sigma),\ V$}
-		\KwOut{Set of productions $P$}
+		\KwOut{Set of productions $P \subseteq V \times (V^{2} \cup \Sigma)$}
 		\ForEach{$rhse \in Rhse$}{
 			$choose\ n\ uniform\ randomly\ in\ [i, j]$;~~\tcp{$i \in  \mathbb{N},\ j \in  \mathbb{N}$}
-			$V_{add} := uniform\ random\ subset\ of\ size\ n\ from\ V$\;
+			$V_{add} := uniform\ random\ subset\ of\ size\ n\ from\ V$\; \label{sizeN}
 			$P \cup \{ (v, rhse)\ |\ v \in V_{add},\ rhse \in Rhse \} $\;	
 		}
 		\Return $P$;
@@ -30,9 +30,143 @@ Two kinds of \circled{C} have been used. One is that it is true iff more than ha
 \noindent \textbf{ChooseXYDependingOnIFromRowSet \circled{D}:}\\
 $RowSet \subseteq \{(XY,i)\ |\ X,Y \in V \wedge i \in \mathbb{N} \}$\\
 Compression of the RowSet like: (AB,3) and (AB,1) -> (AB,1) --> RowSetCompressed\\
-rowListWeighted = add i times XY to rowListWeighted. XXX
+rowListWeighted = add i times XY to rowListWeighted. XXX\\
 
-\pagebreak
+\noindent \textbf{CalculateSubsetForCell(Pyramid, i, j) \circled{E}:}\\
+This works kind of analogous from Line 7 to Line 9 of the CYK algorithm. For one $Cell_{i,j}$ every possible cell combination is looked at, i.e. if a rule like $lhse \rightarrow cs$ with $cs \in CellSet$ is added then automatically  $Cell_{i,j}$ won't be empty any more.\\
+
+\noindent \frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{CalculateSubsetForCell}
+		\label{CalculateSubsetForCell}
+		\SetAlgoLined
+		\KwIn{$Pyramid,~i \in  \mathbb{N},\ j \in  \mathbb{N}$ }
+		\KwOut{$CellSet \subseteq V^2$}
+		$CellSet=\emptyset$\;
+		\For{$k:=i-1 \to 0$}{ \label{cellCombs}
+			$CellSet \cup \{X\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$\;
+		}
+		\Return $CellSet$;
+
+	\end{algorithm}
+}
+If there is the following situation and a rule should be added so that $Cell_{3,0}$ won't be empty: 
+\noindent
+\begin{figure}[h]
+	\begin{minipage}{6in}
+		\centering
+		\raisebox{-0.5\height}{
+			\begin{tabular}{l}
+				Grammar:\\
+				$A \rightarrow AB~|~a$\\
+				$B \rightarrow b$\\ 
+				$C \rightarrow AB$ \\
+				$S \rightarrow BA~|~AA$
+			\end{tabular} 
+		}
+		\hspace*{.2in}
+		\raisebox{-0.5\height}{
+			\resizebox{0.5\linewidth}{!}{
+				\resizebox{\linewidth}{!}{
+					\begin{tikzpicture}[baseline]
+					\newcommand{\myfontvars}[1]{
+						\fontsize{4.9}{12}\selectfont{#1}
+					}\newcommand{\myfontnumbering}[1]{
+						\fontsize{2.5}{12}\selectfont{#1}
+					}%Outer hull
+					%Tip of the pyramid
+					\coordinate (tip) at (2.0,-2.0);
+					\foreach \i in {0,...,4} {
+						\coordinate (\i) at (\i,0);
+					}
+					%Draw the left and right line of the pyramid pointing downwards
+					\draw (0) -- (tip) -- (4);
+					%Grid lines direction down-left to top-right
+					\coordinate (dl1) at (0.5,-0.5);
+					\coordinate (dl2) at (1.0,-1.0);
+					\coordinate (dl3) at (1.5,-1.5);
+					\draw (dl1) -- (1,0);
+					\draw (dl2) -- (2,0);
+					\draw (dl3) -- (3,0);
+					%Grid lines direction down-right to top-left
+					\coordinate (dr1) at (2.5,-1.5);
+					\coordinate (dr2) at (3.0,-1.0);
+					\coordinate (dr3) at (3.5,-0.5);
+					\draw (dr1) -- (1,0);
+					\draw (dr2) -- (2,0);
+					\draw (dr3) -- (3,0);
+					%Small lines at the top
+					\coordinate (top0) at (0.0,0.0);
+					\coordinate (top1) at (1.0,0.0);
+					\coordinate (top2) at (2.0,0.0);
+					\coordinate (top3) at (3.0,0.0);
+					\coordinate (top4) at (4.0,0.0);
+					\coordinate (topUpper0) at (0.0,0.6);
+					\coordinate (topUpper1) at (1.0,0.6);
+					\coordinate (topUpper2) at (2.0,0.6);
+					\coordinate (topUpper3) at (3.0,0.6);
+					\coordinate (topUpper4) at (4.0,0.6);
+					\draw (top0) -- (topUpper0);
+					\draw (top1) -- (topUpper1);
+					\draw (top2) -- (topUpper2);
+					\draw (top3) -- (topUpper3);
+					\draw (top4) -- (topUpper4);
+					%The string
+					\coordinate (w0) at (0.5,0.6);
+					\coordinate (w1) at (1.5,0.6);
+					\coordinate (w2) at (2.5,0.6);
+					\coordinate (w3) at (3.5,0.6);
+					\node [] at (w0) {b};
+					\node [] at (w1) {a};
+					\node [] at (w2) {a};
+					\node [] at (w3) {b};
+					% Variables in the cells
+					%cells00
+					\coordinate (center00) at (0.5,0.0);
+					\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+					\node [] at (center00) {\myfontvars{B$_{1}$}};
+					%cells01
+					\coordinate (center01) at (1.5,0.0);
+					\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+					\node [] at (center01) {\myfontvars{A$_{2}$}};
+					%cells02
+					\coordinate (center02) at (2.5,0.0);
+					\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+					\node [] at (center02) {\myfontvars{A$_{3}$}};
+					%cells03
+					\coordinate (center03) at (3.5,0.0);
+					\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+					\node [] at (center03) {\myfontvars{B$_{4}$}};
+					%cells10
+					\coordinate (center10) at (1.0,-0.5);
+					\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+					\node [] at (center10) {\myfontvars{S$_{1}$}};
+					%cells11
+					\coordinate (center11) at (2.0,-0.5);
+					\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+					\node [] at (center11) {\myfontvars{S$_{2}$}};
+					%cells12
+					\coordinate (center12) at (3.0,-0.5);
+					\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+					\node [] at (center12) {\myfontvars{A$_{3}$C$_{3}$}};
+					%cells20
+					\coordinate (center20) at (1.5,-1.0);
+					\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+					%cells21
+					\coordinate (center21) at (2.5,-1.0);
+					\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+					\node [] at (center21) {\myfontvars{S$_{2}$}};
+					%cells30
+					\coordinate (center30) at (2.0,-1.5);
+					\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+					\end{tikzpicture}
+				}	
+			}
+		}
+	\end{minipage}
+\end{figure}\\
+Calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ is from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$.
+
 \subsection{DiceRollOnlyCYK}
 \noindent This is a naive way of generating grammars, which will be the lower boundary while comparing the algorithms. Each future algorithm should have a higher score than this algorithm or otherwise it would be worse, than simple dice rolling the distribution of terminals \circled{A} and compound variables \circled{B}. \\
 
@@ -47,15 +181,148 @@ rowListWeighted = add i times XY to rowListWeighted. XXX
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\
 		$P \cup Distribute(V^2,\ V)$;  \circled{B}\\
-		$Pyramid = CYK(G,\ w)$\;	
 		\Return $P$\;
 	\end{algorithm}
-}\\
-\pagebreak
+}
+A terminal $\Sigma$ is distributed to at least one $lhse$, but a compound variable $V^2$ must not be distributed at all.\\
+For each terminal of $\Sigma=\{a,b\}$ there exists at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ and for each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~CC,$ $~CS,SS\}$ it is possible that only a small subset like $\{AA,~BA,~CC,~SC\}$ is distributed so that rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.
+\noindent
+\begin{figure} [h]
+	\begin{minipage}{6in}
+		\centering
+		\raisebox{-0.5\height}{
+			\begin{tabular}{l}
+				Grammar after Line 2:\\
+				$C\rightarrow a$\\ 
+				$B\rightarrow b$\\
+				\\
+			\end{tabular} 
+		\begin{tabular}{l}
+			Grammar after Line 3:\\
+			$C\rightarrow BA~|~AA~|~a$\\ 
+			$B\rightarrow b$ \\
+			$S\rightarrow CC~|~SC$ 
+		\end{tabular}
+	} 		
+	\end{minipage}
+	\caption{Short example of Algorithm \ref{DiceRollOnlyCYK}.}
+	\label{DiceRollONlyCYKExample}
+\end{figure}\\
 
 
 \subsection{BottomUpDiceRollVar1}
 This algorithm uses the Bottom-Up approach (Chapter \ref{approaches}) whereby the parsing table is filled starting from the leaves in direction to the root node.\\
+The idea behind this algorithm is to guide the choice of rules while distributing the compound variables $V^2$. Because in Algorithm \ref{DiceRollOnlyCYK} it can happen that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact while distributing the compound variables. In a situation as seen below it can happen \\
+\noindent
+\begin{figure}[h]
+	\begin{minipage}{6in}
+		\centering
+		\raisebox{-0.5\height}{
+			\begin{tabular}{l}
+				Grammar:\\
+				$A\rightarrow a$\\
+				$B \rightarrow b$\\ 
+			\end{tabular} 
+		}
+		\hspace*{.2in}
+		\raisebox{-0.5\height}{
+			\resizebox{0.5\linewidth}{!}{
+				\resizebox{\linewidth}{!}{
+					\begin{tikzpicture}[baseline]
+					\newcommand{\myfontvars}[1]{
+						\fontsize{4.9}{12}\selectfont{#1}
+					}\newcommand{\myfontnumbering}[1]{
+						\fontsize{2.5}{12}\selectfont{#1}
+					}%Outer hull
+					%Tip of the pyramid
+					\coordinate (tip) at (2.0,-2.0);
+					\foreach \i in {0,...,4} {
+						\coordinate (\i) at (\i,0);
+					}
+					%Draw the left and right line of the pyramid pointing downwards
+					\draw (0) -- (tip) -- (4);
+					%Grid lines direction down-left to top-right
+					\coordinate (dl1) at (0.5,-0.5);
+					\coordinate (dl2) at (1.0,-1.0);
+					\coordinate (dl3) at (1.5,-1.5);
+					\draw (dl1) -- (1,0);
+					\draw (dl2) -- (2,0);
+					\draw (dl3) -- (3,0);
+					%Grid lines direction down-right to top-left
+					\coordinate (dr1) at (2.5,-1.5);
+					\coordinate (dr2) at (3.0,-1.0);
+					\coordinate (dr3) at (3.5,-0.5);
+					\draw (dr1) -- (1,0);
+					\draw (dr2) -- (2,0);
+					\draw (dr3) -- (3,0);
+					%Small lines at the top
+					\coordinate (top0) at (0.0,0.0);
+					\coordinate (top1) at (1.0,0.0);
+					\coordinate (top2) at (2.0,0.0);
+					\coordinate (top3) at (3.0,0.0);
+					\coordinate (top4) at (4.0,0.0);
+					\coordinate (topUpper0) at (0.0,0.6);
+					\coordinate (topUpper1) at (1.0,0.6);
+					\coordinate (topUpper2) at (2.0,0.6);
+					\coordinate (topUpper3) at (3.0,0.6);
+					\coordinate (topUpper4) at (4.0,0.6);
+					\draw (top0) -- (topUpper0);
+					\draw (top1) -- (topUpper1);
+					\draw (top2) -- (topUpper2);
+					\draw (top3) -- (topUpper3);
+					\draw (top4) -- (topUpper4);
+					%The string
+					\coordinate (w0) at (0.5,0.6);
+					\coordinate (w1) at (1.5,0.6);
+					\coordinate (w2) at (2.5,0.6);
+					\coordinate (w3) at (3.5,0.6);
+					\node [] at (w0) {b};
+					\node [] at (w1) {a};
+					\node [] at (w2) {a};
+					\node [] at (w3) {b};
+					% Variables in the cells
+					%cells00
+					\coordinate (center00) at (0.5,0.0);
+					\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+					\node [] at (center00) {\myfontvars{B$_{1}$}};
+					%cells01
+					\coordinate (center01) at (1.5,0.0);
+					\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+					\node [] at (center01) {\myfontvars{A$_{2}$}};
+					%cells02
+					\coordinate (center02) at (2.5,0.0);
+					\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+					\node [] at (center02) {\myfontvars{A$_{3}$}};
+					%cells03
+					\coordinate (center03) at (3.5,0.0);
+					\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+					\node [] at (center03) {\myfontvars{B$_{4}$}};
+					%cells10
+					\coordinate (center10) at (1.0,-0.5);
+					\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+					%cells11
+					\coordinate (center11) at (2.0,-0.5);
+					\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+					%cells12
+					\coordinate (center12) at (3.0,-0.5);
+					\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+					%cells20
+					\coordinate (center20) at (1.5,-1.0);
+					\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+					%cells21
+					\coordinate (center21) at (2.5,-1.0);
+					\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+					%cells30
+					\coordinate (center30) at (2.0,-1.5);
+					\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+					\end{tikzpicture}
+				}	
+			}
+		}
+	\end{minipage}
+\end{figure}\\
+that rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added, that obviously not directly help to fill the parsing table and bloat the grammar with useless rules. More reasonably rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ and $lhse \rightarrow AB$.\\
+Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the terminals \circled{A} the parsing table is always taken into consideration while choosing variable compounds to add. I.e. for each chosen cell a $CellSet$ is calculated, that only contains reasonably variable compounds. Now only variable compounds are added that directly help to fill the parsing table.\\
 
 \noindent
 \frame{
@@ -74,7 +341,7 @@ This algorithm uses the Bottom-Up approach (Chapter \ref{approaches}) whereby th
 			\While{$|J|>0$}{
 				$choose\ one\ j \in J\ uniform\ randomly$\label{chooseJ}\;
 				$J = J \setminus \{j\} $\;
-				$CellSet = CalculateSubsetForCell(Pyramid,\ i,\ j)$\;
+				$CellSet = CalculateSubsetForCell(Pyramid,\ i,\ j)$;  \circled{E}
 				$P \cup Distribute(CellSet,\ V)$;  \circled{B}\\
 				$Pyramid = CYK(G,\ w)$\;	
 				\If{$stopping\ criteria~met$~\circled{C}}{
@@ -90,19 +357,11 @@ This algorithm uses the Bottom-Up approach (Chapter \ref{approaches}) whereby th
 		}
 	\end{algorithm}
 }
-\noindent While taking a short look at the SRs in Table \ref{ComparisonOfAlgorithms} it is seen that the SR-Pyramid is a little bit lower compared to Algorithm \ref{DiceRollOnlyCYK}. Further investigation of the logs shows that a relatively small number of rules is already sufficient to invoke the stopping criteria \circled{C}. 
-
-A good chosen stopping criteria allows a higher success rate.
 
 \pagebreak
 \subsection{BottomUpDiceRollVar2}
-
-As seen in algorithm \ref{BottomUpDiceRollVar1} a small number of productions is sufficient to make the parsing table quite full. If an cell is nearer to the leaves its chance to be in the set of one of the calculated sub sets for a cell is higher. Therefore you could introduce a bias that favours cells with an higher index i to allow different cell combinations. \\
-
-Berechnung von RowSet für alles Restlichen Zellen in der Zeile!!!!!?????????!!!!!!!
-Bisher nur für alle bisher Verwendeten.\\
-
-
+While examining the Algorithm \ref{BottomUpDiceRollVar1} via its log files [XXX] it can be seen that already a very small number of rules in the grammar is sufficient so that the stopping criteria \circled{C} is met \textendash the cells that indirectly decide what rules to add are mostly from row one ($i=1$) and sometimes if at all from row two ($i\leq2$).\\ 
+This again leads to another idea to introduce a row dependent $threshold_i$ that helps that more cells with $i\geq2$ are chosen, what possibly can lead to more diverse grammars. The diversity, in context of Algorithm \ref{BottomUpDiceRollVar1}, is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the gramamr will contain one these $lhse$s. This is due to the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the small number of rules. \\
 
 \noindent
 \frame{
@@ -119,7 +378,7 @@ Bisher nur für alle bisher Verwendeten.\\
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
 			%$choose\ j\ uniform\ randomly\ in\ [0,\ j_{max}-i]  $\;
 			\For{$j:=0\ \textbf{to}\ j_{max}-i$}{
-				$RowSet \cup \{(XY,i)\ |\ XY \in CalculateSubsetForCell(Pyramid,\ i,\ j) \}$\label{rowSet}\;
+				$RowSet \cup \{(XY,i)\ |\ XY \in CalculateSubsetForCell(Pyramid,\ i,\ j) $\circled{E}$\}$\label{rowSet}\;  
 			}
 			\While{$threshold_i\ not\ reached $}{ \label{threshold}
 				$choose\ one~xy\ out\ of\ (XY,\ i) \in RowSet~uniform\ randomly\ with$ $probability~depending~on~i $;\label{chooseVc} \circled{D}  \\
@@ -303,15 +562,15 @@ Finding of ideal parameter for each algorithm.
 	\centering
 	\caption{My caption}
 	\label{my-label}
-	\begin{tabular}{l|c|c|c|c|c|c|c|}
-		\cline{5-8}
-		\multicolumn{4}{c|}{}                                                                                                                                                 & \multicolumn{4}{c|}{Pyramid}                                                                                                                                                        \\ \cline{1-4} \cline{6-8} 
-		\multicolumn{1}{|l|}{Algorithm}     & SR   & \begin{tabular}[c]{@{}c@{}}Produci-\\ bility\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cardinality-\\ Rules\end{tabular} &      & \begin{tabular}[c]{@{}c@{}}Force-\\ Right\end{tabular} & \begin{tabular}[c]{@{}c@{}}Vars-\\ PerCell\end{tabular} & \begin{tabular}[c]{@{}c@{}}VarsIn-\\ Pyramid\end{tabular} \\ \hline
-		\multicolumn{1}{|l|}{DiceRollOnly}  & 09\% &                                                           &                                                              & 67\% &                                                        &                                                         &                                                           \\ \hline
-		\multicolumn{1}{|l|}{BottomUpVar1}  &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
-		\multicolumn{1}{|l|}{BottomUpVar2}  &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
-		\multicolumn{1}{|l|}{SplitThenFill} &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
-		\multicolumn{1}{|l|}{SplitAndFill}  &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
+	\begin{tabular}{|l|c|c|c|c|c|c|c|}
+		\hline
+		\multicolumn{1}{|c|}{Algorithm} & SR   & \begin{tabular}[c]{@{}c@{}}Produci-\\ bility\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cardinality-\\ Rules\end{tabular} & \multicolumn{4}{c|}{Pyramid}                                                                                                                                                        \\ \cline{6-8} 
+		&      &                                                           &                                                              &      & \begin{tabular}[c]{@{}c@{}}Force-\\ Right\end{tabular} & \begin{tabular}[c]{@{}c@{}}Vars-\\ PerCell\end{tabular} & \begin{tabular}[c]{@{}c@{}}VarsIn-\\ Pyramid\end{tabular} \\ \hline
+		DiceRollOnly                    & 09\% &                                                           &                                                              & 67\% &                                                        &                                                         &                                                           \\ \hline
+		BottomUpVar1                    &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
+		BottomUpVar2                    &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
+		SplitThenFill                   &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
+		SplitAndFill                    &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
 	\end{tabular}
 \end{table}
 \pagebreak

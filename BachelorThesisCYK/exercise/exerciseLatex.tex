@@ -4,10 +4,10 @@
 \usepackage{fix-cm}
 \begin{document}
 \begin{center} 
-\begin{tabular}{l}$A\rightarrow S C~~$\\ 
-$B\rightarrow S S~~$\\ 
-$S\rightarrow b~|~S B~|~a~~$\\ 
-$C\rightarrow S S~~$\\ 
+\begin{tabular}{l}$A\rightarrow C C~~$\\ 
+$B\rightarrow C C~~$\\ 
+$C\rightarrow b~|~B C~|~a~~$\\ 
+$S\rightarrow A C~~$\\ 
 \end{tabular} 
 \end{center}
 \begin{center}
@@ -68,100 +68,100 @@ $C\rightarrow S S~~$\\
 \coordinate (w2) at (2.5,0.6);
 \coordinate (w3) at (3.5,0.6);
 \coordinate (w4) at (4.5,0.6);
-\node [] at (w0) {b};
+\node [] at (w0) {a};
 \node [] at (w1) {a};
 \node [] at (w2) {a};
-\node [] at (w3) {a};
-\node [] at (w4) {a};
+\node [] at (w3) {b};
+\node [] at (w4) {b};
 % Variables in the cells
 %cells00
 \coordinate (center00) at (0.5,0.0);
 \node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-\node [] at (center00) {\myfontvars{S$_{1}$}};
+\node [] at (center00) {\myfontvars{C$_{1}$}};
 %cells01
 \coordinate (center01) at (1.5,0.0);
 \node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-\node [] at (center01) {\myfontvars{S$_{2}$}};
+\node [] at (center01) {\myfontvars{C$_{2}$}};
 %cells02
 \coordinate (center02) at (2.5,0.0);
 \node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-\node [] at (center02) {\myfontvars{S$_{3}$}};
+\node [] at (center02) {\myfontvars{C$_{3}$}};
 %cells03
 \coordinate (center03) at (3.5,0.0);
 \node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-\node [] at (center03) {\myfontvars{S$_{4}$}};
+\node [] at (center03) {\myfontvars{C$_{4}$}};
 %cells04
 \coordinate (center04) at (4.5,0.0);
 \node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
-\node [] at (center04) {\myfontvars{S$_{5}$}};
+\node [] at (center04) {\myfontvars{C$_{5}$}};
 %cells10
 \coordinate (center10) at (1.0,-0.5);
 \node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-\node [] at (center10) {\myfontvars{C$_{1}$B$_{1}$}};
+\node [] at (center10) {\myfontvars{B$_{1}$A$_{1}$}};
 %cells11
 \coordinate (center11) at (2.0,-0.5);
 \node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-\node [] at (center11) {\myfontvars{C$_{2}$B$_{2}$}};
+\node [] at (center11) {\myfontvars{B$_{2}$A$_{2}$}};
 %cells12
 \coordinate (center12) at (3.0,-0.5);
 \node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-\node [] at (center12) {\myfontvars{C$_{3}$B$_{3}$}};
+\node [] at (center12) {\myfontvars{B$_{3}$A$_{3}$}};
 %cells13
 \coordinate (center13) at (4.0,-0.5);
 \node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
-\node [] at (center13) {\myfontvars{C$_{4}$B$_{4}$}};
+\node [] at (center13) {\myfontvars{B$_{4}$A$_{4}$}};
 %cells20
 \coordinate (center20) at (1.5,-1.0);
 \node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-\node [] at (center20) {\myfontvars{S$_{1}$A$_{1}$}};
+\node [] at (center20) {\myfontvars{C$_{2}$S$_{2}$}};
 %cells21
 \coordinate (center21) at (2.5,-1.0);
 \node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-\node [] at (center21) {\myfontvars{S$_{2}$A$_{2}$}};
+\node [] at (center21) {\myfontvars{C$_{3}$S$_{3}$}};
 %cells22
 \coordinate (center22) at (3.5,-1.0);
 \node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
-\node [] at (center22) {\myfontvars{S$_{3}$A$_{3}$}};
+\node [] at (center22) {\myfontvars{C$_{4}$S$_{4}$}};
 %cells30
 \coordinate (center30) at (2.0,-1.5);
 \node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-\node [] at (center30) {\myfontvars{C$_{1}$B$_{1}$C$_{3}$}};
-\node [above] at (center30) {\myfontvars{B$_{3}$}};
+\node [] at (center30) {\myfontvars{B$_{1}$A$_{1}$B$_{3}$}};
+\node [above] at (center30) {\myfontvars{A$_{3}$}};
 %cells31
 \coordinate (center31) at (3.0,-1.5);
 \node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
-\node [] at (center31) {\myfontvars{C$_{2}$B$_{2}$C$_{4}$}};
-\node [above] at (center31) {\myfontvars{B$_{4}$}};
+\node [] at (center31) {\myfontvars{B$_{2}$A$_{2}$B$_{4}$}};
+\node [above] at (center31) {\myfontvars{A$_{4}$}};
 %cells40
 \coordinate (center40) at (2.5,-2.0);
 \node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
-\node [] at (center40) {\myfontvars{S$_{1}$A$_{1}$S$_{3}$}};
-\node [above] at (center40) {\myfontvars{A$_{3}$}};
+\node [] at (center40) {\myfontvars{C$_{2}$S$_{2}$C$_{4}$}};
+\node [above] at (center40) {\myfontvars{S$_{4}$}};
 \end{tikzpicture}
 }
 \end{center}
 \begin{center}
 \resizebox{\linewidth}{!}{
 \begin{tikzpicture}[baseline]
-		\tikzset{frontier/.style={distance from root=120pt}} %height of tree times 30pt
+		\tikzset{frontier/.style={distance from root=150pt}} %height of tree times 30pt
 		\tikzset{edge from parent/.style= {
 				draw,
 				edge from parent path={(\tikzparentnode.south)	-- +(0,-8pt)-| (\tikzchildnode)}
 			}
 		}
 		\Tree
-[.S1
-[.C1
-[.B1
-[.S1 b ]
-[.S2 a ]
-]
+[.S2
+[.C1 a ]
+[.A2
+[.S3
+[.C2 a ]
 [.B3
-[.S3 a ]
-[.S4 a ]
+[.C3 a ]
+[.C4 b ]
 ]
 ]
-[.S5 a ]
+[.C5 b ]
+]
 ]
 \end{tikzpicture}
 }
