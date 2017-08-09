@@ -76,7 +76,7 @@ public class GrammarGeneratorDiceRollVar2 extends GrammarGenerator {
                 while (!thresholdRowiReached(grammarPyramidWrapper, i)) {
                     // Line 10
                     Set<VariableCompound> varComp = new HashSet<>();
-                    varComp.add(D_ChooseXYDependingOnIFromRowSet.chooseXYDependingOnIFromRowSet(rowSet));
+                    varComp.add(E_ChooseXYDependingOnIFromRowSet.chooseXYDependingOnIFromRowSet(rowSet));
                     {   // Line 11
                         grammarPyramidWrapper = B_DistributeVariables.distributeCompoundVariables(
                                 new ArrayList<>(varComp),

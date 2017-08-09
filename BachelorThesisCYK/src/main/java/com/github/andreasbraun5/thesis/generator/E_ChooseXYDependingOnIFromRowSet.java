@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * Created by AndreasBraun on 16.07.2017.
  */
-public class D_ChooseXYDependingOnIFromRowSet {
+public class E_ChooseXYDependingOnIFromRowSet {
 
     /**
      * Implements linear dependency between i. It weights the tuples regarding with their i.

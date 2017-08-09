@@ -158,6 +158,9 @@ public class GrammarGeneratorUtil {
         return varComp;
     }
 
+    /**
+     * Merges all productions with the same rhse's.
+     */
     public static GrammarPyramidWrapper postprocessing(GrammarPyramidWrapper grammarPyramidWrapper) {
         Grammar grammar = grammarPyramidWrapper.getGrammar();
         List<Production> prodList = grammar.getProductionsAsList();
