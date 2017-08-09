@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  9 AUG 2017 15:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  9 AUG 2017 21:23
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -1781,9 +1781,6 @@ LaTeX Warning: Label `cellCombs' multiply defined.
 LaTeX Warning: Label `stepii' multiply defined.
 
 
-LaTeX Warning: Label `stepii' multiply defined.
-
-
 LaTeX Warning: Label `cell' multiply defined.
 
 
@@ -2077,7 +2074,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 570--571
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 596.
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 602--716
+Underfull \hbox (badness 10000) in paragraph at lines 599--715
 
  []
 
@@ -2102,22 +2099,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--29
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 30--34
+Underfull \hbox (badness 10000) in paragraph at lines 30--32
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--37
+Overfull \hbox (25.63826pt too wide) in paragraph at lines 33--39
+\OML/lmm/m/it/12 choose one []xy out of \OT1/lmr/m/n/12 (\OML/lmm/m/it/12 XY;  
+i\OT1/lmr/m/n/12 ) \OMS/lmsy/m/n/12 2 \OML/lmm/m/it/12 RowSet []uniform randoml
+y with$ $probability []depending []on []i$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--39
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 171--172
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 173--211
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
 
  []
 
@@ -2132,24 +2131,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 363--365
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 412--431
+Underfull \hbox (badness 10000) in paragraph at lines 404--406
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--427
 
  []
 
 [18] [19]
-Underfull \hbox (badness 10000) in paragraph at lines 475--477
+Underfull \hbox (badness 10000) in paragraph at lines 467--469
 
  []
 
 [20]
-Underfull \hbox (badness 10000) in paragraph at lines 497--521
+Underfull \hbox (badness 10000) in paragraph at lines 489--513
 
  []
 
 [21]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 561.
+               Default added (so using `tbp') on input line 553.
 
 ) [22] (5_implementation.tex [23] [24]) [25] (bibliography.tex) [26
 
@@ -2173,13 +2177,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 333.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 36735 strings out of 493328
- 709548 string characters out of 3139104
- 926877 words of memory out of 3000000
- 39430 multiletter control sequences out of 15000+200000
- 655171 words of font info for 113 fonts, out of 3000000 for 9000
+ 36754 strings out of 493328
+ 709784 string characters out of 3139104
+ 927319 words of memory out of 3000000
+ 39444 multiletter control sequences out of 15000+200000
+ 667127 words of font info for 117 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
- 64i,24n,73p,10445b,24492s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,24n,73p,10445b,24494s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Def.2} has been referenced but does
  not exist, replaced by a fixed one
 
@@ -2187,26 +2191,27 @@ pdfTeX warning (dest): name{Def.2} has been referenced but does
 TeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvi
 ps/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.e
 nc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/lm/lmbx8.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/lm/lmbxi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-lm/lmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi5.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/lm/lmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm
-/lmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/lm/lmtt12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (27 pages, 456178 bytes).
+les/MiKTeX 2.9/fonts/type1/public/lm/lmbx5.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/lm/lmbx8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm
+/lmbxi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/lm/lmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/lm/lmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi7.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm
+/lmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr5.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
+lmtt12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb>
+Output written on 0_bachelor_thesis.pdf (27 pages, 475745 bytes).
 PDF statistics:
- 562 PDF objects out of 1000 (max. 8388607)
- 203 named destinations out of 1000 (max. 500000)
+ 583 PDF objects out of 1000 (max. 8388607)
+ 204 named destinations out of 1000 (max. 500000)
  202 words of extra memory for PDF output out of 10000 (max. 10000000)
 

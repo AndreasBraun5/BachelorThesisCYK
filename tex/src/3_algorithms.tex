@@ -4,7 +4,7 @@
 \subsection{Sub modules}
 Sub modules are parts of the algorithms that are denoted circled like \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should to be explained in more detail a little bit for better understanding of the way of working of the algorithms.\\
 
-\noindent \textbf{Distribute$(\Sigma,\ V) $\circled{A} and Distribute$(V^2,\ V)$\circled{B}:}\\
+\noindent \textbf{Distribute$(\Sigma,\ V) $ \circled{A} and Distribute$(V^2,\ V)$ \circled{B}:}\\
 The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. The specifics of how they are distributed are the same in both cases as described in the following algorithm: \\
 
 \noindent
@@ -27,13 +27,15 @@ The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and
 \noindent \textbf{Stopping Criteria \circled{C}:}\\
 Two kinds of \circled{C} have been used. One is that it is true iff more than half of the pyramid cells are not empty and the other one is that there is at least one variable in the tip of the pyramid. It is to be taken in consideration that the latter is somewhat dependent on the count possible variables as seen in [XXX]. \\
 
-\noindent \textbf{ChooseXYDependingOnIFromRowSet \circled{D}:}\\
-$RowSet \subseteq \{(XY,i)\ |\ X,Y \in V \wedge i \in \mathbb{N} \}$\\
+\noindent \textbf{CalculateSubsetForCell(Pyramid, i, j) \circled{D}:}\\
+This works kind of analogous from Line 7 to Line 9 of the CYK algorithm. For one $Cell_{i,j}$ every possible cell combination is looked at, i.e. if a rule like $lhse \rightarrow cs$ with $cs \in CellSet$ is added then automatically  $Cell_{i,j}$ won't be empty any more.\\
+
+\noindent \textbf{Choose one xy with probability depending on row \circled{E} :}\\
+There is the set $RowSet \subseteq \{(XY,i)\ |\ X,Y \in V \wedge i \in \mathbb{N} \}$\\
 Compression of the RowSet like: (AB,3) and (AB,1) -> (AB,1) --> RowSetCompressed\\
 rowListWeighted = add i times XY to rowListWeighted. XXX\\
-
-\noindent \textbf{CalculateSubsetForCell(Pyramid, i, j) \circled{E}:}\\
-This works kind of analogous from Line 7 to Line 9 of the CYK algorithm. For one $Cell_{i,j}$ every possible cell combination is looked at, i.e. if a rule like $lhse \rightarrow cs$ with $cs \in CellSet$ is added then automatically  $Cell_{i,j}$ won't be empty any more.\\
+\noindent Line \ref{rowSet}: $(AB,1), (AB,2), (BC,3) ... \in sub$ $\rightarrow$ multiple occurrences of $AB$ are allowed here yet.\\
+$choose\ one~xy\ out\ of\ (XY,\ i) \in RowSet~uniform\ randomly\ with$ $probability~depending~on~i $\\
 
 \noindent \frame{
 	\begin{algorithm}[H] %or another one check
@@ -50,7 +52,7 @@ This works kind of analogous from Line 7 to Line 9 of the CYK algorithm. For one
 
 	\end{algorithm}
 }
-If there is the following situation and a rule should be added so that $Cell_{3,0}$ won't be empty: 
+In the following situation a rule should be added so that $Cell_{3,0}$ won't be empty: 
 \noindent
 \begin{figure}[h]
 	\begin{minipage}{6in}
@@ -59,7 +61,7 @@ If there is the following situation and a rule should be added so that $Cell_{3,
 			\begin{tabular}{l}
 				Grammar:\\
 				$A \rightarrow AB~|~a$\\
-				$B \rightarrow b$\\ 
+				$B \rightarrow \textcolor{gray}{\textbf{SC}}~|~b$\\ 
 				$C \rightarrow AB$ \\
 				$S \rightarrow BA~|~AA$
 			\end{tabular} 
@@ -159,16 +161,17 @@ If there is the following situation and a rule should be added so that $Cell_{3,
 					%cells30
 					\coordinate (center30) at (2.0,-1.5);
 					\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+					\node [] at (center30) {\myfontvars{\textcolor{gray}{\textbf{B$_{2}$}}}};
 					\end{tikzpicture}
 				}	
 			}
 		}
 	\end{minipage}
 \end{figure}\\
-Calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ is from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$.
+Then the calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ is from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textcolor{gray}{\textbf{B $\rightarrow$ SC}} has been added and now $B$ is element of $Cell_{3,0}$.
 
 \subsection{DiceRollOnlyCYK}
-\noindent This is a naive way of generating grammars, which will be the lower boundary while comparing the algorithms. Each future algorithm should have a higher score than this algorithm or otherwise it would be worse, than simple dice rolling the distribution of terminals \circled{A} and compound variables \circled{B}. \\
+\noindent This is a naive way of generating grammars, which will be the lower boundary while comparing the algorithms. Each future algorithm should have a higher score than this algorithm or otherwise it would be worse, than simple dice rolling the distribution of terminals (Line \ref{diceRollOnlyA}) and compound variables (Line \ref{diceRollOnlyB}). \\
 
 \noindent
 \frame{
@@ -179,13 +182,12 @@ Calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA
 		\KwIn{Word $w \in \Sigma^{*}$ }
 		\KwOut{Set of productions $P$}
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\
-		$P \cup Distribute(V^2,\ V)$;  \circled{B}\\
+		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\ \label{diceRollOnlyA}
+		$P \cup Distribute(V^2,\ V)$;  \circled{B}\\ \label{diceRollOnlyB}
 		\Return $P$\;
 	\end{algorithm}
 }
-A terminal $\Sigma$ is distributed to at least one $lhse$, but a compound variable $V^2$ must not be distributed at all.\\
-For each terminal of $\Sigma=\{a,b\}$ there exists at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ and for each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~CC,$ $~CS,SS\}$ it is possible that only a small subset like $\{AA,~BA,~CC,~SC\}$ is distributed so that rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.
+A terminal $\Sigma$ is distributed to at least one $lhse$, but a compound variable $V^2$ must not be distributed at all. This means that for each terminal of $\Sigma=\{a,b\}$ there exists at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ and for each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~CC,$ $~CS,SS\}$ it is possible that only a smaller subset like $\{AA,~BA,~CC,~SC\}$ is distributed so that only rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -207,12 +209,10 @@ For each terminal of $\Sigma=\{a,b\}$ there exists at least one rule like $lhse\
 	\end{minipage}
 	\caption{Short example of Algorithm \ref{DiceRollOnlyCYK}.}
 	\label{DiceRollONlyCYKExample}
-\end{figure}\\
-
-
+\end{figure}
 \subsection{BottomUpDiceRollVar1}
 This algorithm uses the Bottom-Up approach (Chapter \ref{approaches}) whereby the parsing table is filled starting from the leaves in direction to the root node.\\
-The idea behind this algorithm is to guide the choice of rules while distributing the compound variables $V^2$. Because in Algorithm \ref{DiceRollOnlyCYK} it can happen that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact while distributing the compound variables. In a situation as seen below it can happen \\
+The basic idea behind this algorithm is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK} it can happen that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables. In a situation as seen below it can happen \\
 \noindent
 \begin{figure}[h]
 	\begin{minipage}{6in}
@@ -322,7 +322,7 @@ The idea behind this algorithm is to guide the choice of rules while distributin
 	\end{minipage}
 \end{figure}\\
 that rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added, that obviously not directly help to fill the parsing table and bloat the grammar with useless rules. More reasonably rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ and $lhse \rightarrow AB$.\\
-Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the terminals \circled{A} the parsing table is always taken into consideration while choosing variable compounds to add. I.e. for each chosen cell a $CellSet$ is calculated, that only contains reasonably variable compounds. Now only variable compounds are added that directly help to fill the parsing table.\\
+Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the terminals (Line \ref{var1A}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while choosing variable compounds to add (Line \ref{var1E}). I.e. for each chosen cell a $CellSet$ is calculated, that only contains reasonably variable compounds. Now only variable compounds are added that directly help to fill the parsing table.\\
 
 \noindent
 \frame{
@@ -337,13 +337,13 @@ Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the termi
 		$Pyramid = CYK(G,\ w)$\label{stepii}\;
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
 			$J = \{0,~...~,~j_{max} -1\}$;~~\tcp{$J \subseteq \mathbb{N}$}
-			$CellSet = \emptyset$;~~\tcp{$CellSet \subseteq V^2$}
+			$CellSet = \emptyset$;~~\tcp{$CellSet \subseteq V^2$} \label{var1A}
 			\While{$|J|>0$}{
 				$choose\ one\ j \in J\ uniform\ randomly$\label{chooseJ}\;
 				$J = J \setminus \{j\} $\;
-				$CellSet = CalculateSubsetForCell(Pyramid,\ i,\ j)$;  \circled{E}
+				$CellSet = CalculateSubsetForCell(Pyramid,\ i,\ j)$;  \circled{D} \label{var1E}\\
 				$P \cup Distribute(CellSet,\ V)$;  \circled{B}\\
-				$Pyramid = CYK(G,\ w)$\;	
+				$Pyramid = CYK(G,\ w)$\; \label{var1Update}
 				\If{$stopping\ criteria~met$~\circled{C}}{
 					\Return $P$\;
 				}
@@ -360,8 +360,8 @@ Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the termi
 
 \pagebreak
 \subsection{BottomUpDiceRollVar2}
-While examining the Algorithm \ref{BottomUpDiceRollVar1} via its log files [XXX] it can be seen that already a very small number of rules in the grammar is sufficient so that the stopping criteria \circled{C} is met \textendash the cells that indirectly decide what rules to add are mostly from row one ($i=1$) and sometimes if at all from row two ($i\leq2$).\\ 
-This again leads to another idea to introduce a row dependent $threshold_i$ that helps that more cells with $i\geq2$ are chosen, what possibly can lead to more diverse grammars. The diversity, in context of Algorithm \ref{BottomUpDiceRollVar1}, is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the gramamr will contain one these $lhse$s. This is due to the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the small number of rules. \\
+While examining the Algorithm \ref{BottomUpDiceRollVar1} via its log files [XXX] it can be seen that already a very small number of rules in the grammar is sufficient so that the stopping criteria \circled{C} is met \textendash~the cells that indirectly decide what rules to add are mostly from row one ($i=1$) and sometimes if at all from row two ($i\leq2$).\\ 
+This again leads to another idea to introduce a row dependent $threshold_i$ (Line \ref{var2threshold}) that helps that more cells with $i\geq2$ are chosen \textendash~what possibly can lead to more diverse grammars. The diversity, in context of Algorithm \ref{BottomUpDiceRollVar1}, is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the grammar will contain one these $lhse$s. This is due to the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the relatively small number of rules in the grammar. \\
 
 \noindent
 \frame{
@@ -378,10 +378,10 @@ This again leads to another idea to introduce a row dependent $threshold_i$ that
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
 			%$choose\ j\ uniform\ randomly\ in\ [0,\ j_{max}-i]  $\;
 			\For{$j:=0\ \textbf{to}\ j_{max}-i$}{
-				$RowSet \cup \{(XY,i)\ |\ XY \in CalculateSubsetForCell(Pyramid,\ i,\ j) $\circled{E}$\}$\label{rowSet}\;  
+				$RowSet \cup \{(XY,i)\ |\ XY \in CalculateSubsetForCell(Pyramid,\ i,\ j) $\circled{D}$\}$\label{rowSet}\;  
 			}
-			\While{$threshold_i\ not\ reached $}{ \label{threshold}
-				$choose\ one~xy\ out\ of\ (XY,\ i) \in RowSet~uniform\ randomly\ with$ $probability~depending~on~i $;\label{chooseVc} \circled{D}  \\
+			\While{$threshold_i\ not\ reached $}{ \label{var2threshold}
+				$choose\ one~xy\ out\ of\ (XY,\ i) \in RowSet~uniform\ randomly\ with$ $probability~depending~on~i $;\label{chooseVc} \circled{E}  \\
 				$P \cup Distribute(xy,\ V) $; \circled{B}  \\
 				$Pyramid = CYK(G,\ w)$\;
 				\If{$stopping\ criteria~met$~\circled{C}}{
@@ -392,10 +392,6 @@ This again leads to another idea to introduce a row dependent $threshold_i$ that
 		\Return $P$\;
 		\footnotetext{
 			\noindent Line \ref{stepii}: Fills the i=0 row of the pyramid.
-			
-			\noindent Line \ref{rowSet}: $(AB,1), (AB,2), (BC,3) ... \in sub$ $\rightarrow$ multiple occurrences of $AB$ are allowed here yet.
-			
-			\noindent Note Line \ref{threshold}: threshold is reached iff more than half of the cells of one row aren't empty.
 		}
 	\end{algorithm}
 }
@@ -405,9 +401,8 @@ This again leads to another idea to introduce a row dependent $threshold_i$ that
 \pagebreak
 \subsection{SplitThenFill}
 
-The basic idea for this algorithm is to uniform randomly generate a predefined structure of the derivation tree that helps adding the "right" productions. You always update the pyramid after adding one production to the grammar.
-This is also some kind of BottumUp approach - Bottom Up: The parse table is filled relatively evenly. All information regarding the upper cells are available and can be used. Similar to the CYK Algorithm approach. \\
-It is important to distribute the varComp exactly to one var.
+The idea here is to first distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFillPrep}) and then to uniform randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{splitThenStepii} and in general Algorithm \ref{SplitThenFill}) Top-Downwards and afterwards to fill the parsing table Bottom-Upwards accordingly to this derivation tree.\\
+Every time before adding a new rule the already available information regarding the other rules is used to determine if a new rule is needed to fill this node of the derivation tree (Line \ref{empty} of Algorithm \ref{SplitThenFill}).\\
 
 \noindent
 \frame{
@@ -418,16 +413,17 @@ It is important to distribute the varComp exactly to one var.
 		\KwIn{Word $w \in \Sigma^{*}$}
 		\KwOut{Set of productions $P$}
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$P = Distribute(\Sigma,\ V)$; \circled{A} \label{stepii}  \\		
+		$P = Distribute(\Sigma,\ V)$; \circled{A} \label{splitThenStepii}  \\		
 		$Sol = (P_{Sol},~Cell_{i,j})$;~~\tcp{$P_{Sol} \subseteq P~\wedge~ Cell_{i,j} \in Pyramid$} \label{cell}
-		$Sol = SplitThenFill(P,\ w,\ i_{max},\ 0)$\;
+		$Sol = SplitThenFill(P,\ w,\ i_{max},\ 0)$\; \label{splitThenFillTreeStart}
 		\Return $P_{Sol}$\;
 		\footnotetext{
-			\noindent Line \ref{stepii}: Fills the i=0 row of the pyramid.	
+			\noindent Line \ref{splitThenStepii}: Fills the i=0 row of the pyramid.	
 		}
 	\end{algorithm}
 }
 \\
+For this algorithm it is important to mention that while using \circled{B} (Line \ref{splitThenFillB} of Algorithm \ref{SplitThenFill}) a variable compound is added to at least one $lhse$. For every element of $Vc$ (Line \ref{splitThenFillVc} of Algorithm \ref{SplitThenFill}) there exists at least one rule $lhse \rightarrow vc$ with $vc \in Vc$.\\
 
 \noindent
 \frame{
@@ -448,18 +444,14 @@ It is important to distribute the varComp exactly to one var.
 		\If{$stopping\ criteria~met$~\circled{C}}{
 			\Return $(P,\ Cell_{i,j})$\;
 		}
-		\If{$Cell_{i,j} = \emptyset$}{
-			$Vc = uniform\ random\ subset\ from\ \{vc\ |\ v \in Cell_l\ \wedge\ c \in Cell_r\} ~with~|Vc| \geq 1$\;
-			$P \cup Distribute(Vc,\ V) $; \circled{B}  \\
+		\If{$Cell_{i,j} = \emptyset$}{ \label{empty}
+			$Vc = uniform\ random\ subset\ from\ \{vc\ |\ v \in Cell_l\ \wedge\ c \in Cell_r\} ~with~|Vc| \geq 1$\; \label{splitThenFillVc}
+			$P \cup Distribute(Vc,\ V) $; \circled{B} \label{splitThenFillB}  \\
 		}
 		
 		\Return $(P,\ Cell_{i,j})$\;
-		\footnotetext{
-		}
 	\end{algorithm}
 }
-
-\noindent The stopping criteria is met if the tip of the pyramid is not empty. It is a valid approach because if this cell is not empty it means that there is a chance of being able to generate the word. To add further productions only results in a grammar that has to many productions with its pyramid having to many variables.
 \pagebreak
 
 \subsection{SplitAndFill}
