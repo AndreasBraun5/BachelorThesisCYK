@@ -65,14 +65,6 @@ public class GrammarGeneratorSplitThenFill extends GrammarGenerator {
             workLog.log(sol.x.getPyramid().toString());
         }
         grammarPyramidWrapper = sol.x;
-        /*
-        grammarPyramidWrapper = CYK.calculateSetVAdvanced(sol.x);
-        workLog.log("Grammar before postprocessing: ");
-        workLog.log(grammarPyramidWrapper.getGrammar().toString());
-        grammarPyramidWrapper = GrammarGeneratorUtil.postprocessing(grammarPyramidWrapper);
-        workLog.log("Grammar after postprocessing: ");
-        workLog.log(grammarPyramidWrapper.getGrammar().toString());
-        */
         return grammarPyramidWrapper;
     }
 
@@ -82,25 +74,25 @@ public class GrammarGeneratorSplitThenFill extends GrammarGenerator {
             int j,
             WorkLog workLog) {
         CellK cell_ij = grammarPyramidWrapper.getPyramid().getCellK(i, j);
-        {   // Line 1 to 3
+        {   // Line 2 to 4
             if (i == 0) {
                 return new Tuple<>(grammarPyramidWrapper, cell_ij);
             }
         }
-        // Line 4:
+        // Line 5:
         int m = random.nextInt(i) + j + 1; // ( j + i + 1 - j - 1) || + j + 1
-        // Line 5 + 6:
+        // Line 6 + 7:
         Tuple<GrammarPyramidWrapper, CellK> left = splitThenFill(grammarPyramidWrapper, (m - j - 1), j, workLog);
         Tuple<GrammarPyramidWrapper, CellK> right = splitThenFill(grammarPyramidWrapper, (j + i - m), m, workLog);
-        {   // Line 7:
+        {   // Line 8:
             grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
         }
-        {   // Line 8 to 10
+        {   // Line 9 to 11
             if (C_StoppingCriteria.stoppingCriteriaMetRootNotEmpty(grammarPyramidWrapper)) {
                 return new Tuple<>(grammarPyramidWrapper, cell_ij);
             }
         }
-        {   // Line 11 to 14:
+        {   // Line 12 to 15:
             if (cell_ij.getCellElements().size() == 0) {
                 // Line 12:
                 CellK cellLeft = grammarPyramidWrapper.getPyramid().getCellK(left.y.getI(), left.y.getJ());
@@ -118,6 +110,7 @@ public class GrammarGeneratorSplitThenFill extends GrammarGenerator {
                     workLog.log("pyramid before line 13:");
                     workLog.log(grammarPyramidWrapper.getPyramid().toString());
                 }
+                // Line 14:
                 grammarPyramidWrapper = B_DistributeVariables.distributeCompoundVariables(
                         new ArrayList<>(VC),
                         grammarPyramidWrapper,

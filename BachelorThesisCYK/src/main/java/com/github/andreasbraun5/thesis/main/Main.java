@@ -64,8 +64,8 @@ public class Main {
          */
         // It is recommended to use a high countDifferentWords. Word independent results are achieved.
 
-        int countGeneratedGrammarsPerWord = 10;
-        int countDifferentWords = 10;
+        int countGeneratedGrammarsPerWord = 100;
+        int countDifferentWords = 100;
 
         ResultCalculator resultCalculator = ResultCalculator.builder().
                 countDifferentWords(countDifferentWords).

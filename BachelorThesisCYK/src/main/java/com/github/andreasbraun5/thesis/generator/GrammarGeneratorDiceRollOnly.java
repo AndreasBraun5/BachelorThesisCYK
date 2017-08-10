@@ -58,32 +58,6 @@ public class GrammarGeneratorDiceRollOnly extends GrammarGenerator {
             workLog.log(variables.toString());
             workLog.log(grammarPyramidWrapper.getGrammar().toString());
         }
-        {   // Line 4: Update the pyramid
-            grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
-            workLog.log("Pyramid before removing useless productions:");
-            workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
-        }
-        {
-            // Line 5:  Delete unnecessary productions
-            workLog.log("Pyramid before removing unnecessary productions:");
-            workLog.log(Pyramid.printPyramid(grammarPyramidWrapper.getPyramid().getCellsK()));
-            grammarPyramidWrapper = GrammarGeneratorUtil.deleteUnnecessaryProductions(grammarPyramidWrapper);
-            workLog.log("Grammar after removing unnecessary productions:");
-            workLog.log(grammarPyramidWrapper.getGrammar().toString());
-        }
-        {
-            // End of logging
-            workLog.log("END of Logging of GrammarGeneratorDiceRollOnly.");
-            workLog.log("#########################################################################################################");
-        }
-        /*
-        grammarPyramidWrapper = CYK.calculateSetVAdvanced(grammarPyramidWrapper);
-        workLog.log("Grammar before postprocessing: ");
-        workLog.log(grammarPyramidWrapper.getGrammar().toString());
-        grammarPyramidWrapper = GrammarGeneratorUtil.postprocessing(grammarPyramidWrapper);
-        workLog.log("Grammar after postprocessing: ");
-        workLog.log(grammarPyramidWrapper.getGrammar().toString());
-        */
-        return grammarPyramidWrapper;
+        return CYK.calculateSetVAdvanced(grammarPyramidWrapper);
     }
 }
