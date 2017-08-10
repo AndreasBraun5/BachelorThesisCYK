@@ -93,7 +93,8 @@ public class ResultSample {
         return "\nResultSample{\n" +
                 grammar +
                 pyramid.getWord() + "\n" +
-                "\nPyramid=\n" + Pyramid.printPyramid(pyramid.getCellsK()) +
+                "\nPyramidAdvanced=\n" + Pyramid.printPyramid(pyramid.getCellsK()) +
+                "\nPyramidSimple=\n" + Pyramid.printPyramid(pyramid.getCellsSimple()) +
                 "\nmarkedRightCellCombinationForced=\n" + Pyramid.printPyramid(pyramidConstraintValues.getMarkedRightCellCombinationForced()) +
                 "\nmaxSumOfProductionsCount=" + grammarConstraintValues.getMaxSumOfProductionsCount() +
                 "\nmaxSumOfVarsInPyramid=" + pyramidConstraintValues.getMaxSumOfVarsInPyramidCount() +

@@ -6,11 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.andreasbraun5.thesis.main.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.andreasbraun5.thesis.main.Controller">
    <children>
-      <AnchorPane prefHeight="800.0" prefWidth="1000.0">
+      <AnchorPane prefHeight="800.0" prefWidth="1400.0">
          <children>
-            <SplitPane dividerPositions="0.2, 0.6" layoutX="234.0" layoutY="97.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <SplitPane dividerPositions="0.2, 0.6" layoutX="234.0" layoutY="97.0" prefHeight="800.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
                 <AnchorPane maxWidth="197.0" minHeight="0.0" minWidth="197.0" prefHeight="160.0" prefWidth="197.0">
                      <children>
@@ -18,7 +18,7 @@
                           <items>
                             <AnchorPane maxHeight="35.0" minHeight="35.0" minWidth="0.0" prefHeight="35.0" prefWidth="160.0">
                                  <children>
-                                    <Label layoutX="81.0" layoutY="10.0" style="-fx-border-style: solid; -fx-border-width: 2;" text=" Input Values " AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="2.0">
+                                    <Label layoutX="81.0" layoutY="10.0" style=": ;" text=" Input Values " AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="2.0">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -73,13 +73,13 @@
                           </items>
                         </SplitPane>
                      </children></AnchorPane>
-                <AnchorPane maxWidth="393.0" minHeight="0.0" minWidth="393.0" prefHeight="398.0" prefWidth="393.0">
+                <AnchorPane maxWidth="593.0" minHeight="0.0" minWidth="593.0" prefHeight="398.0" prefWidth="593.0">
                      <children>
-                        <SplitPane dividerPositions="0.05, 0.95" maxHeight="398.0" maxWidth="393.0" minHeight="398.0" minWidth="393.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="393.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                        <SplitPane dividerPositions="0.05, 0.95" maxHeight="398.0" maxWidth="593.0" minHeight="398.0" minWidth="593.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="593.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
                           <items>
                             <AnchorPane maxHeight="35.0" minHeight="35.0" minWidth="0.0" prefHeight="35.0" prefWidth="160.0">
                                  <children>
-                                    <Label layoutX="159.0" layoutY="10.0" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" style="-fx-border-style: solid; -fx-border-width: 2;" text="    Select Exercise" textAlignment="CENTER" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="2.0">
+                                    <Label layoutX="159.0" layoutY="10.0" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" style="-fx-alignment: solid; -: 2;" text="    Select Exercise" textAlignment="CENTER" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="2.0">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -94,19 +94,19 @@
                                  </children></AnchorPane>
                               <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="35.0" minHeight="35.0" minWidth="0.0" prefHeight="35.0" prefWidth="160.0">
                                  <children>
-                                    <Button layoutX="157.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#createNew" text="Create New" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="157.0" AnchorPane.rightAnchor="156.0" />
+                                    <Button layoutX="157.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#createNew" text="Create New" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="256.0" />
                                  </children></AnchorPane>
                           </items>
                         </SplitPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="10.0" layoutY="10.0" maxWidth="393.0" minHeight="0.0" minWidth="393.0" prefHeight="398.0" prefWidth="393.0">
+                  <AnchorPane layoutX="10.0" layoutY="10.0" maxWidth="593.0" minHeight="0.0" minWidth="593.0" prefHeight="398.0" prefWidth="593.0">
                      <children>
                         <SplitPane dividerPositions="0.05, 0.95" maxHeight="398.0" maxWidth="393.0" minHeight="398.0" minWidth="393.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="393.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <items>
                               <AnchorPane maxHeight="35.0" minHeight="35.0" minWidth="0.0" prefHeight="35.0" prefWidth="160.0">
                                  <children>
-                                    <Label layoutX="151.0" layoutY="13.0" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" style="-fx-border-style: solid; -fx-border-width: 2;" text="  Modifiy Exercise " AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="2.0">
+                                    <Label layoutX="151.0" layoutY="13.0" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" style="-fx-alignment: solid; -fx-border-width: 2;" text="  Modifiy Exercise " AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="219.0" AnchorPane.topAnchor="2.0">
                                        <font>
                                           <Font size="18.0" />
                                        </font>

@@ -57,16 +57,17 @@ public class TreeLatex {
         if (root.getI() >= 2) {
             List<Tuple<CellK, CellK>> leftAndRights = new ArrayList<>(Util.calculatePossibleCellPairs(root, pyramid));
             Tuple<CellK, CellK> leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
-            if (leftAndRight.x.getCellElements().size() == 0 && leftAndRight.y.getCellElements().size() == 0) {
-                // Considering that both cells are empty
-                throw new TreeLatexRuntimeException("\nTree generation not possible.");
+            // Guarantee that both cells have elements in it
+            int count = 0;
+            while (leftAndRight.x.getCellElements().size() == 0 || leftAndRight.y.getCellElements().size() == 0) {
+                leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
+                count++;
+                if(count > 50) {
+                    throw new TreeLatexRuntimeException("\nTree generation not possible.\nToo many left cells.");
+                }
             }
             if (pyramid.getCellsK()[indexLast][0].getCellElements().size() == 0) {
                 throw new TreeLatexRuntimeException("\nNo variable in the top.");
-            }
-            // Guarantee that both cells have elements in it
-            while (leftAndRight.x.getCellElements().size() == 0 || leftAndRight.y.getCellElements().size() == 0) {
-                leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
             }
             TreeLatex left = generateRandomTree(pyramid, leftAndRight.x);
             TreeLatex right = generateRandomTree(pyramid, leftAndRight.y);

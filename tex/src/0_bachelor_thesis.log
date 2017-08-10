@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  10 AUG 2017 12:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  10 AUG 2017 16:43
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -1784,10 +1784,6 @@ LaTeX Warning: Label `DiceRollONlyCYKExample' multiply defined.
 LaTeX Warning: Label `stepii' multiply defined.
 
 
-LaTeX Warning: Label `IllustrationAlgorithmSplitThenFillPart5' multiply defined
-.
-
-
 LaTeX Warning: Label `cell' multiply defined.
 
 
@@ -1906,14 +1902,15 @@ LaTeX Info: Redefining \nameref on input line 182.
 \openout2 = `latex_settings/deckblatt.aux'.
 
 
-(latex_settings/deckblatt.tex <abb/logo1.png, id=97, 536.0025pt x 165.61874pt>
+(latex_settings/deckblatt.tex
+<abb/logo1.png, id=109, 536.0025pt x 165.61874pt>
 File: abb/logo1.png Graphic file (type png)
-
-<use abb/logo1.png>
+ <use abb/logo1.png>
 Package pdftex.def Info: abb/logo1.png used on input line 22.
 (pdftex.def)             Requested size: 264.61333pt x 81.76039pt.
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 27.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 74.
@@ -1992,7 +1989,6 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 33.
-Package mdframed Info: Not enough space on this page on input line 39.
  [6]
 Package mdframed Info: Not enough space on this page on input line 39.
 Package mdframed Info: mdframed detected package amsthm 
@@ -2143,13 +2139,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 451--453
 
  []
 
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 827--990
+[20] [21]
+Underfull \hbox (badness 10000) in paragraph at lines 992--1155
 
  []
 
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 1158--1652
+
+Underfull \hbox (badness 10000) in paragraph at lines 1156--1651
 
  []
 
@@ -2163,33 +2159,53 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [22] [23]
-Underfull \hbox (badness 10000) in paragraph at lines 1656--1659
+Underfull \hbox (badness 10000) in paragraph at lines 1655--1658
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1660--1674
+Underfull \hbox (badness 10000) in paragraph at lines 1659--1673
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1675--1697
-
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 [24
 
-]) [25] (5_implementation.tex [26] [27]) [28] (bibliography.tex) [29
+]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [25] (5_implementation.tex
+
+pdfTeX warning: pdflatex.exe (file ./abb/CYKInstancesGenerator.pdf): PDF inclus
+ion: found PDF version <1.7>, but at most version <1.5> allowed
+<abb/CYKInstancesGenerator.pdf, id=497, 963.6pt x 542.025pt>
+File: abb/CYKInstancesGenerator.pdf Graphic file (type pdf)
+
+<use abb/CYKInstancesGenerator.pdf>
+Package pdftex.def Info: abb/CYKInstancesGenerator.pdf used on input line 15.
+(pdftex.def)             Requested size: 441.01773pt x 248.0691pt.
+ [26 <./abb/CYKInstancesGenerator.pdf>]
+[27] [28] [29
 
 ]
-[30]
+Underfull \hbox (badness 10000) in paragraph at lines 355--358
+
+ []
+
+) [30] (bibliography.tex) [31
+
+] [32]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 333.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 333.
- (0_bachelor_thesis.aux (latex_settings/deckblatt.aux) (abstract.aux))
+ (0_bachelor_thesis.aux
+(latex_settings/deckblatt.aux) (abstract.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 333.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 333.
 Package rerunfilecheck Info: File `0_bachelor_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: F153A2174D5F0E402416A1D938F9C5C0;1582.
+(rerunfilecheck)             Checksum: 8A2BA99AF82388C7D5849625A8B3840D;1854.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2201,13 +2217,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 333.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 36773 strings out of 493328
- 710135 string characters out of 3139104
- 939966 words of memory out of 3000000
- 39453 multiletter control sequences out of 15000+200000
+ 36793 strings out of 493328
+ 710475 string characters out of 3139104
+ 942490 words of memory out of 3000000
+ 39464 multiletter control sequences out of 15000+200000
  667127 words of font info for 117 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
- 64i,24n,73p,10445b,24494s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,24n,70p,10445b,24548s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Def.2} has been referenced but does
  not exist, replaced by a fixed one
 
@@ -2233,9 +2249,9 @@ MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
 type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lm
 tt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (30 pages, 512913 bytes).
+Output written on 0_bachelor_thesis.pdf (32 pages, 704761 bytes).
 PDF statistics:
- 632 PDF objects out of 1000 (max. 8388607)
- 214 named destinations out of 1000 (max. 500000)
- 202 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 679 PDF objects out of 1000 (max. 8388607)
+ 222 named destinations out of 1000 (max. 500000)
+ 231 words of extra memory for PDF output out of 10000 (max. 10000000)
 

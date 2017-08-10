@@ -1,5 +1,6 @@
 package com.github.andreasbraun5.thesis.latex;
 
+import com.github.andreasbraun5.thesis.grammar.Epsilon;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.Production;
 import com.github.andreasbraun5.thesis.grammar.Variable;
@@ -28,7 +29,11 @@ public class GrammarLatex {
         productionsMap.forEach((variable, productions) -> {
             str.append("$").append(variable.getLhse()).append("\\rightarrow ");
             productionsMap.get(variable).forEach(production -> {
-                str.append(production.getRightHandSideElement()).append("~|~");
+                if (production.getRightHandSideElement() instanceof Epsilon) {
+                    str.append("\\epsilon").append("~|~");
+                } else {
+                    str.append(production.getRightHandSideElement()).append("~|~");
+                }
             });
             str.deleteCharAt(str.length() - 2);
             str.append("$\\\\ \n");

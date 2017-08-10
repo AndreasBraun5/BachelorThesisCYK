@@ -24,7 +24,7 @@ Various implementations and small online tools of the Cocke-Younger-Kasami (CYK)
 		\item $P \subseteq V \times (V^2 \cup \Sigma)^{*}$.
 	\end{itemize}
 \end{DefGrey}
-\noindent Throughout this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. For further convenience the following default values are always true:
+\noindent Throughout this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. $P$ is not necessarily in CNF because it is possible that there are unreachable variables \textendash~from the starting variable. For further convenience the following default values are always true:
 \begin{itemize}
 	\item $V = \{A, B, ...\}$
 	\item $(V^2 \cup\ \Sigma)^{*}=\{a, b, ...\} \cup \{AA, AB, BB, BA, BS, AC, ... \}$

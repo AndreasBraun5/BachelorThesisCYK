@@ -16,8 +16,11 @@
 \contentsline {subsection}{\numberline {2.5}SplitThenFill}{20}{subsection.2.5}
 \contentsline {subsection}{\numberline {2.6}SplitAndFill}{24}{subsection.2.6}
 \contentsline {subsection}{\numberline {2.7}Comparision of Algorithms}{25}{subsection.2.7}
-\contentsline {section}{\numberline {3}CLI Tool}{26}{section.3}
-\contentsline {subsection}{\numberline {3.1}Scoring Model}{26}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Exam Exercises}{26}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Overview}{28}{subsection.3.3}
-\contentsline {section}{References}{29}{subsection.3.3}
+\contentsline {section}{\numberline {3}GUI Tool: CYK Instances Generator}{26}{section.3}
+\contentsline {subsection}{\numberline {3.1}Overview GUI}{26}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Exam Exercises}{28}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Scoring Model}{29}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Parsing input with ANTLR}{30}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Other matters}{30}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Working with the program}{30}{subsubsection.3.5.1}
+\contentsline {section}{References}{31}{subsubsection.3.5.1}
