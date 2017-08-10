@@ -29,7 +29,7 @@ public class ModifyExerciseSample {
     public String toString() {
         return grammar.toString() +
                 pyramid.getWord() + "\n" +
-                "\nPyramid=\n" + Pyramid.printPyramid(pyramid.getCellsSimple()) +
+                "\nPyramid=\n" + Pyramid.printPyramid(pyramid.getCellsK()) +
                 "\nmarkedRightCellCombinationForced=\n" + Pyramid.printPyramid(getMarkedRightCellCombinationForced()) +
                 "\nmaxSumOfProductionsCount=" + maxSumOfProductionsCount +
                 "\nmaxSumOfVarsInPyramidCount=" + maxSumOfVarsInPyramidCount +

@@ -12,12 +12,12 @@
 \contentsline {subsection}{\numberline {2.1}Sub modules}{13}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}DiceRollOnlyCYK}{15}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}BottomUpDiceRollVar1}{15}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}BottomUpDiceRollVar2}{17}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}SplitThenFill}{18}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}SplitAndFill}{20}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}Comparision of Algorithms}{21}{subsection.2.7}
-\contentsline {section}{\numberline {3}CLI Tool}{22}{section.3}
-\contentsline {subsection}{\numberline {3.1}Scoring Model}{22}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Exam Exercises}{22}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Overview}{24}{subsection.3.3}
-\contentsline {section}{References}{25}{subsection.3.3}
+\contentsline {subsection}{\numberline {2.4}BottomUpDiceRollVar2}{18}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}SplitThenFill}{20}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}SplitAndFill}{24}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Comparision of Algorithms}{25}{subsection.2.7}
+\contentsline {section}{\numberline {3}CLI Tool}{26}{section.3}
+\contentsline {subsection}{\numberline {3.1}Scoring Model}{26}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Exam Exercises}{26}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Overview}{28}{subsection.3.3}
+\contentsline {section}{References}{29}{subsection.3.3}
