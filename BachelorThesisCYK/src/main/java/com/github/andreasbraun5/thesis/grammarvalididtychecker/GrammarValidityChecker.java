@@ -1,8 +1,10 @@
 package com.github.andreasbraun5.thesis.grammarvalididtychecker;
 
 import com.github.andreasbraun5.thesis.exception.GrammarPropertiesRuntimeException;
-import com.github.andreasbraun5.thesis.grammar.*;
-import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
+import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.Production;
+import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.CellSimple;
@@ -11,7 +13,10 @@ import com.github.andreasbraun5.thesis.pyramid.VariableK;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Andreas Braun on 05.01.2017.

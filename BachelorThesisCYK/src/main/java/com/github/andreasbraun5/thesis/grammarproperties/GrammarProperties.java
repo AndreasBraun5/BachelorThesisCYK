@@ -2,7 +2,6 @@ package com.github.andreasbraun5.thesis.grammarproperties;
 
 import com.github.andreasbraun5.thesis.grammar.*;
 
-import java.time.temporal.ValueRange;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;

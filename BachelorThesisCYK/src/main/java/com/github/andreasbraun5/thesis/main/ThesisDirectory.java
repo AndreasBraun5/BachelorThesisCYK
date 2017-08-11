@@ -1,10 +1,6 @@
 package com.github.andreasbraun5.thesis.main;
 
-import com.github.andreasbraun5.thesis.resultcalculator.Result;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 
 /**
  * Created by AndreasBraun on 04.06.2017.

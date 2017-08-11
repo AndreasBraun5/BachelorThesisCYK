@@ -7,7 +7,6 @@ import com.github.andreasbraun5.thesis.grammar.VariableCompound;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
-import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 
 import java.util.ArrayList;
 import java.util.Set;

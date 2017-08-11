@@ -2,8 +2,6 @@ package com.github.andreasbraun5.thesis.exercise;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by AndreasBraun on 20.07.2017.
  */

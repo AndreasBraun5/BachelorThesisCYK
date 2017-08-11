@@ -1,6 +1,9 @@
 package com.github.andreasbraun5.thesis.util;
 
-import com.github.andreasbraun5.thesis.grammar.*;
+import com.github.andreasbraun5.thesis.grammar.Grammar;
+import com.github.andreasbraun5.thesis.grammar.Production;
+import com.github.andreasbraun5.thesis.grammar.Terminal;
+import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 
 import java.util.Set;

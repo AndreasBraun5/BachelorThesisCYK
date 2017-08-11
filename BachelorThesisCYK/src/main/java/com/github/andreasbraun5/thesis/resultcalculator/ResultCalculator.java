@@ -3,7 +3,6 @@ package com.github.andreasbraun5.thesis.resultcalculator;
 import com.github.andreasbraun5.thesis.exception.TestGrammarRuntimeException;
 import com.github.andreasbraun5.thesis.generator.GrammarGenerator;
 import com.github.andreasbraun5.thesis.generator.WordGeneratorDiceRoll;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;

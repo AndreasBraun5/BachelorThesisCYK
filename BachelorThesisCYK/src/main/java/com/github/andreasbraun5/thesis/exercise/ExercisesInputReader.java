@@ -1,14 +1,11 @@
 package com.github.andreasbraun5.thesis.exercise;
 
 import com.github.andreasbraun5.thesis.antlr.ExerciseStringConverter;
-import com.github.andreasbraun5.thesis.grammar.*;
-import com.github.andreasbraun5.thesis.main.ThesisDirectory;
-import com.github.andreasbraun5.thesis.parser.CYK;
-import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
-import com.github.andreasbraun5.thesis.pyramid.Pyramid;
-import com.github.andreasbraun5.thesis.util.Word;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 
 /**

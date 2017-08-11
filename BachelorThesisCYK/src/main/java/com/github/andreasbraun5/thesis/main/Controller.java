@@ -1,7 +1,6 @@
 package com.github.andreasbraun5.thesis.main;
 
 import com.github.andreasbraun5.thesis.antlr.ExerciseStringConverter;
-import com.github.andreasbraun5.thesis.exception.CellRuntimeException;
 import com.github.andreasbraun5.thesis.exception.TreeLatexRuntimeException;
 import com.github.andreasbraun5.thesis.exercise.Exercise;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
@@ -20,7 +19,10 @@ import com.github.andreasbraun5.thesis.parser.CYK;
 import com.github.andreasbraun5.thesis.pyramid.Cell;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
-import com.github.andreasbraun5.thesis.resultcalculator.*;
+import com.github.andreasbraun5.thesis.resultcalculator.BestResultSamples;
+import com.github.andreasbraun5.thesis.resultcalculator.ModifyExerciseSample;
+import com.github.andreasbraun5.thesis.resultcalculator.Result;
+import com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Word;
 import javafx.fxml.FXML;

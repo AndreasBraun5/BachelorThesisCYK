@@ -1,6 +1,5 @@
 package com.github.andreasbraun5.thesis.score;
 
-import com.github.andreasbraun5.thesis.pyramid.CellSimple;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,8 +1,6 @@
 package com.github.andreasbraun5.thesis.latex;
 
-import com.github.andreasbraun5.thesis.exception.TreeLatexRuntimeException;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.pyramid.Cell;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 
 /**

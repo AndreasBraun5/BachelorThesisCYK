@@ -1,38 +1,25 @@
 package com.github.andreasbraun5.thesis.main;
 
-import com.github.andreasbraun5.thesis.antlr.ExerciseCompiler;
-import com.github.andreasbraun5.thesis.antlr.ExerciseStringConverter;
-import com.github.andreasbraun5.thesis.exercise.Exercise;
 import com.github.andreasbraun5.thesis.generator.*;
-import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
-import com.github.andreasbraun5.thesis.latex.ExerciseLatex;
-import com.github.andreasbraun5.thesis.latex.WriteToTexFile;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
-import com.github.andreasbraun5.thesis.parser.CYK;
-import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
-import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import com.github.andreasbraun5.thesis.resultcalculator.BestResultSamples;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 import com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator;
 import com.github.andreasbraun5.thesis.util.Tuple;
 import com.github.andreasbraun5.thesis.util.Util;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import org.junit.Assert;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 public class Main {

@@ -2,14 +2,9 @@ package com.github.andreasbraun5.thesis.antlr;
 
 import com.github.andreasbraun5.thesis.exercise.Exercise;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
-import com.github.andreasbraun5.thesis.grammar.Terminal;
 import com.github.andreasbraun5.thesis.util.Word;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import org.antlr.v4.runtime.tree.TerminalNodeImpl;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by AndreasBraun on 20.07.2017.

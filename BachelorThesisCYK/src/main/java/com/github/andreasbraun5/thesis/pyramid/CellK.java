@@ -2,7 +2,6 @@ package com.github.andreasbraun5.thesis.pyramid;
 
 import com.github.andreasbraun5.thesis.grammar.Variable;
 
-import java.time.temporal.ValueRange;
 import java.util.HashSet;
 import java.util.Set;
 

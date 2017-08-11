@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  11 AUG 2017 20:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  11 AUG 2017 21:47
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -2212,14 +2212,19 @@ File: abb/CYKInstancesGenerator.pdf Graphic file (type pdf)
 Package pdftex.def Info: abb/CYKInstancesGenerator.pdf used on input line 15.
 (pdftex.def)             Requested size: 441.01773pt x 248.0691pt.
  [30 <./abb/CYKInstancesGenerator.pdf>]
-[31] [32
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 353--356
+[31]
+Underfull \hbox (badness 10000) in paragraph at lines 352--353
 
  []
 
-) [33] (0_bachelor_thesis.bbl) [34
+
+Underfull \hbox (badness 10000) in paragraph at lines 354--355
+
+ []
+
+) [32
+
+] (0_bachelor_thesis.bbl) [33
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 343.
@@ -2229,7 +2234,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 343.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 343.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 343.
 Package rerunfilecheck Info: File `0_bachelor_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 9D7FFB368B4C9173483C3F35E37054C8;1797.
+(rerunfilecheck)             Checksum: 853E52A15C7A25BEEC98D43DAD71D034;1797.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2241,8 +2246,8 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 343.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 36932 strings out of 493328
- 712464 string characters out of 3139104
+ 36931 strings out of 493328
+ 712457 string characters out of 3139104
  949507 words of memory out of 3000000
  39573 multiletter control sequences out of 15000+200000
  667127 words of font info for 117 fonts, out of 3000000 for 9000
@@ -2274,9 +2279,9 @@ pe1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/l
 msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 
 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (34 pages, 722059 bytes).
+Output written on 0_bachelor_thesis.pdf (33 pages, 721669 bytes).
 PDF statistics:
- 747 PDF objects out of 1000 (max. 8388607)
- 248 named destinations out of 1000 (max. 500000)
+ 743 PDF objects out of 1000 (max. 8388607)
+ 247 named destinations out of 1000 (max. 500000)
  223 words of extra memory for PDF output out of 10000 (max. 10000000)
 

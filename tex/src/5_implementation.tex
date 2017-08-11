@@ -16,7 +16,9 @@ The tool consists out of four major elements as marked in Figure \ref{CYKInstanc
 	\caption{CYK Instances Generator}
 	\label{CYKInstancesGenerator}
 \end{figure}
-Clicking the button 3.1 allows the creation of new suitable exercises with the given input values from area 1. Pressing button 4.1 processes the latest input given in area 4 to create a preview analogously to area 3 of how the created exercise would look like and finally button 4.2 creates the desired $exercise$. The output for this $exercise$ is done through \LaTeX-code and a pdf-file.
+Clicking the button 3.1 allows the creation of new suitable exercises with the given input values from area 1. Pressing button 4.1 processes the latest input given in area 4 to create a preview analogously to area 3 of how the created exercise would look like and finally button 4.2 creates the desired $exercise$. The output for this $exercise$ is done through \LaTeX-code-file and a pdf-file.
+\subsubsection{Working with the program}
+There is the folder BachelorThesisCYK that contains the "bachelor\_thesis\_cyk.jar" file and various other folders. One of these folders is named "exercise". After clicking button 4.2 "Create Exercise" a new .tex-file and the corresponding .pdf-file will be generated within it. 
 \pagebreak
 \subsection{Exam Exercises}
 The 4-tuple $exercise = (grammar,\ word,\ parse\ table,\ derivation\ tree)$ that is the output of the tool looks as following:
@@ -339,10 +341,7 @@ To be able to find suitable exercises that can be displayed in area 3 of the too
 The result will be normalized to the maximum possible points so that the maximum score is 1.0.\\
 $score = (\#Parameter\cdot10)^{-1}\cdot\sum\limits_{parameter}^{}points$
 
-\pagebreak
 \subsection{Parsing input with ANTLR}
-
-
 
 
 
@@ -350,10 +349,9 @@ $score = (\#Parameter\cdot10)^{-1}\cdot\sum\limits_{parameter}^{}points$
 
 \subsection{Other matters}
 
-Technologies that have been used for programming are Github \cite{github} with Sourcetree \cite{sourcetree}, Maven \cite{maven}, IntelliJ\cite{intellij}, ANTLR \cite{antlr} and JavaFX Scene Builder \cite{scenebuilder}. \\
-Important used frameworks are: JUnit \cite{junit} and Project Lombok \cite{lombok}.\\
-Altogether around 7100 lines of code have been written, of which 5400 are pure java code, 900 are comment lines and 800 are blank lines.\\
+Technologies that have been used for programming are Github \cite{github} with Sourcetree \cite{sourcetree} for version control, Maven \cite{maven} for build management, IntelliJ\cite{intellij} as the IDE, ANTLR \cite{antlr} for parsing input and JavaFX Scene Builder \cite{scenebuilder} to create the GUI. \\
 
-\subsubsection{Working with the program}
-Short introduction on how to run the program and where to find the output exercise.
+\noindent Important used frameworks are: JUnit \cite{junit} for testing and Project Lombok \cite{lombok} to greatly reduce boilerplate code.\\
+
+\noindent Altogether around 7100 lines of code have been written, of which 5400 are pure java code, 900 are comment lines and 800 are blank lines.\\ 
 \pagebreak
