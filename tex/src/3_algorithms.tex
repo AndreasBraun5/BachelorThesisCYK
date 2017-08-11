@@ -2518,7 +2518,7 @@ Looking at this algorithm only productions according to the tree structure are a
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitAndFill} part 5. Finally to fill the cell in the tip a rule must be added that has the start variable as its $lhse$. Here the rule $S\rightarrow CA$ is added.}
+	\caption{Illustration of Algorithm \ref{SplitAndFill} part 5. Finally to fill the cell in the tip a rule must be added that has the start variable as its $lhse$ that guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added.}
 	\label{IllustrationAlgorithmSplitAndFillPart5}
 \end{figure}
 
@@ -2646,6 +2646,7 @@ Looking at this algorithm only productions according to the tree structure are a
 			%cells14
 			\coordinate (center14) at (5.0,-0.5);
 			\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
+			\node [] at (center14) {\myfontvars{A$_{5}$}};
 			%cells20
 			\coordinate (center20) at (1.5,-1.0);
 			\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
@@ -2659,7 +2660,7 @@ Looking at this algorithm only productions according to the tree structure are a
 			%cells23
 			\coordinate (center23) at (4.5,-1.0);
 			\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
-			\node [] at (center23) {\myfontvars{A$_{5}$}};
+			\node [] at (center23) {\myfontvars{S$_{4}$A$_{5}$}};
 			%cells30
 			\coordinate (center30) at (2.0,-1.5);
 			\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
@@ -2672,13 +2673,14 @@ Looking at this algorithm only productions according to the tree structure are a
 			%cells40
 			\coordinate (center40) at (2.5,-2.0);
 			\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
+			\node [] at (center40) {\myfontvars{B$_{3}$}};
 			%cells41
 			\coordinate (center41) at (3.5,-2.0);
 			\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
 			%cells50
 			\coordinate (center50) at (3.0,-2.5);
 			\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
-			\node [] at (center50) {\myfontvars{S$_{3}$}};
+			\node [] at (center50) {\myfontvars{S$_{3}$A$_{5}$}};
 			\end{tikzpicture}
 		}
 	\end{minipage}

@@ -23,4 +23,3 @@
 \contentsline {subsection}{\numberline {3.4}Parsing input with ANTLR}{33}{subsection.3.4}
 \contentsline {subsection}{\numberline {3.5}Other matters}{33}{subsection.3.5}
 \contentsline {subsubsection}{\numberline {3.5.1}Working with the program}{33}{subsubsection.3.5.1}
-\contentsline {section}{References}{34}{subsubsection.3.5.1}

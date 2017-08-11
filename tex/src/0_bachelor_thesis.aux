@@ -19,21 +19,33 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\bibstyle{alphadin}
 \@input{latex_settings/deckblatt.aux}
 \@input{abstract.aux}
 \@writefile{toc}{\contentsline {section}{Abstract}{5}{section*.3}}
+\citation{cykImpl1}
+\citation{cykImpl2}
+\citation{cykImpl3}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{6}{section.1}}
 \newlabel{Introduction}{{1}{6}{Introduction}{section.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Motivation}{6}{subsection.1.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Context Free Grammar}{6}{subsection.1.2}}
 \newlabel{CFGinCNF}{{2}{6}{}{Def.2}{}}
+\citation{Duda.2012}
 \newlabel{wordLanguage}{{3}{7}{}{Def.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}General approaches}{7}{subsection.1.3}}
 \newlabel{approaches}{{1.3}{7}{General approaches}{subsection.1.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.1}Forward Problem \& Backward Problem}{7}{subsubsection.1.3.1}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.2}Parsing Bottom-Up \& Top-Down}{7}{subsubsection.1.3.2}}
+\citation{Duda.2012}
+\citation{Duda.2012}
+\citation{Duda.2012}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Data Structure Pyramid}{8}{subsection.1.4}}
+\newlabel{dataStructurePyramid}{{1.4}{8}{Data Structure Pyramid}{subsection.1.4}{}}
+\citation{Sakai.1962}
+\citation{JohnCockeJacobT.Schwartz.1970}
+\citation{Kasami.1966}
+\citation{YOUNGER.1967}
+\citation{Hoffmann.2015}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Visual representation of a $Pyramid$ with the word $w$ above it.}}{9}{figure.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Cocke-Younger-Kasami Algorithm}{9}{subsection.1.5}}
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces CYK}}{10}{algocf.1}}
@@ -134,8 +146,8 @@
 \newlabel{IllustrationAlgorithmSplitAndFillPart3}{{16}{26}{Illustration of Algorithm \ref {SplitAndFill} part 3. Filling the $Cell_{2,0}$ the rule $C \rightarrow BS$ is added}{figure.16}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Illustration of Algorithm \ref  {SplitAndFill} part 4. In analogous manner the other cells are filled. $Cell_{03}$ is responsible for the rule $C \rightarrow c$, $Cell_{0,4}$ doesn't cause a rule because again there already is the rule $B \rightarrow b$, $Cell_{1,3}$ contributes for the rule $B \rightarrow CB$, $Cell_{0,5}$ doesn't add a rule because of $C\rightarrow c$ and to fill $Cell_{2,3}$ the rule $A \rightarrow BC$ is added.}}{27}{figure.17}}
 \newlabel{IllustrationAlgorithmSplitAndFillPart4}{{17}{27}{Illustration of Algorithm \ref {SplitAndFill} part 4. In analogous manner the other cells are filled. $Cell_{03}$ is responsible for the rule $C \rightarrow c$, $Cell_{0,4}$ doesn't cause a rule because again there already is the rule $B \rightarrow b$, $Cell_{1,3}$ contributes for the rule $B \rightarrow CB$, $Cell_{0,5}$ doesn't add a rule because of $C\rightarrow c$ and to fill $Cell_{2,3}$ the rule $A \rightarrow BC$ is added}{figure.17}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Illustration of Algorithm \ref  {SplitAndFill} part 5. Finally to fill the cell in the tip a rule must be added that has the start variable as its $lhse$. Here the rule $S\rightarrow CA$ is added.}}{27}{figure.18}}
-\newlabel{IllustrationAlgorithmSplitAndFillPart5}{{18}{27}{Illustration of Algorithm \ref {SplitAndFill} part 5. Finally to fill the cell in the tip a rule must be added that has the start variable as its $lhse$. Here the rule $S\rightarrow CA$ is added}{figure.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Illustration of Algorithm \ref  {SplitAndFill} part 5. Finally to fill the cell in the tip a rule must be added that has the start variable as its $lhse$ that guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added.}}{27}{figure.18}}
+\newlabel{IllustrationAlgorithmSplitAndFillPart5}{{18}{27}{Illustration of Algorithm \ref {SplitAndFill} part 5. Finally to fill the cell in the tip a rule must be added that has the start variable as its $lhse$ that guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added}{figure.18}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Illustration of Algorithm \ref  {SplitAndFill} part 6. With part 5 of the example the algorithm is finished. In comparison to Figure \ref  {IllustrationAlgorithmSplitAndFillPart5} the complete parsing table looks like above.}}{28}{figure.19}}
 \newlabel{IllustrationAlgorithmSplitAndFillPart6}{{19}{28}{Illustration of Algorithm \ref {SplitAndFill} part 6. With part 5 of the example the algorithm is finished. In comparison to Figure \ref {IllustrationAlgorithmSplitAndFillPart5} the complete parsing table looks like above}{figure.19}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Comparision of Algorithms}{29}{subsection.2.7}}
@@ -154,14 +166,39 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Example output for a $exercise$.}}{31}{figure.21}}
 \newlabel{exampleOutputExercise}{{21}{31}{Example output for a $exercise$}{figure.21}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Scoring Model}{32}{subsection.3.3}}
-\newlabel{scoringMoetedel}{{3.3}{32}{Scoring Model}{subsection.3.3}{}}
+\newlabel{scoringModel}{{3.3}{32}{Scoring Model}{subsection.3.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scoring of the different parameter values}}{32}{table.4}}
 \newlabel{scoring}{{4}{32}{Scoring of the different parameter values}{table.4}{}}
+\citation{github}
+\citation{sourcetree}
+\citation{maven}
+\citation{intellij}
+\citation{antlr}
+\citation{scenebuilder}
+\citation{junit}
+\citation{lombok}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Parsing input with ANTLR}{33}{subsection.3.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Other matters}{33}{subsection.3.5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Working with the program}{33}{subsubsection.3.5.1}}
-\bibcite{jsr_jpa1}{1}
-\@writefile{toc}{\contentsline {section}{References}{34}{subsubsection.3.5.1}}
+\bibdata{literature}
+\bibcite{cykImpl1}{1}
+\bibcite{cykImpl2}{2}
+\bibcite{cykImpl3}{3}
+\bibcite{Duda.2012}{4}
+\bibcite{Sakai.1962}{5}
+\bibcite{JohnCockeJacobT.Schwartz.1970}{6}
+\bibcite{Kasami.1966}{7}
+\bibcite{YOUNGER.1967}{8}
+\bibcite{Hoffmann.2015}{9}
+\bibcite{github}{10}
+\bibcite{sourcetree}{11}
+\bibcite{maven}{12}
+\bibcite{intellij}{13}
+\bibcite{antlr}{14}
+\bibcite{scenebuilder}{15}
+\bibcite{junit}{16}
+\bibcite{lombok}{17}
+\bibstyle{unsrt}
 \global\@namedef{scr@dte@section@lastmaxnumwidth}{11.8799pt}
 \global\@namedef{scr@dte@subsection@lastmaxnumwidth}{19.71382pt}
 \global\@namedef{scr@dte@subsubsection@lastmaxnumwidth}{28.8528pt}

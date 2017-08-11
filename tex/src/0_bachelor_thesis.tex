@@ -112,6 +112,9 @@
 %\hypersetup{colorlinks, citecolor=red, linkcolor=blue, urlcolor=black}
 %\hypersetup{colorlinks, citecolor=black, linkcolor= black, urlcolor=black}
 
+
+
+
 % neue Kopfzeilen mit fancypaket
 \usepackage{fancyhdr} %Paket laden
 \pagestyle{fancy} %eigener Seitenstil
@@ -130,7 +133,11 @@
 %\usepackage[numbers,round]{natbib}
 
 % Festlegung Art der Zitierung - Havardmethode: Abkuerzung Autor + Jahr
-\bibliographystyle{alphadin}
+% bibliography and references 
+\usepackage{cite}
+%\bibliography{literature}{}
+%\bibliographystyle{plain}
+%\bibliographystyle{alphadin}
 
 % Schaltet den zusätzlichen Zwischenraum ab, den LaTeX normalerweise nach einem Satzzeichen einfügt.
 \frenchspacing
@@ -313,10 +320,14 @@
 	%\fancyhead[L]{Tables}
 	%\input{appendix/tables}
 	
-	\newpage
-	\addcontentsline{toc}{section}{References}
-	\fancyhead[L]{References}
-	\input{bibliography}
+	%\newpage
+	%\addcontentsline{toc}{section}{References}
+	%\fancyhead[L]{References}
+	%\input{bibliography}
+	
+	
+	\bibliography{literature}{}
+	\bibliographystyle{unsrt}
 	
 	%\newpage
 	% Erklärung
@@ -325,8 +336,8 @@
 	%\include{erklaerung}
 	
 	% leere Abschlussseite
-	\newpage
-	\thispagestyle{empty} % erzeugt Seite ohne Kopf- / Fusszeile
+	%\newpage
+	%\thispagestyle{empty} % erzeugt Seite ohne Kopf- / Fusszeile
 	\section*{ }
 	
 \end{document}

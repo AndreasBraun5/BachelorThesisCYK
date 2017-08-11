@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  11 AUG 2017 14:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  11 AUG 2017 18:25
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -1706,7 +1706,7 @@ Class scrartcl Warning: Usage of package `fancyhdr' together
 (scrartcl)              I'd suggest to use 
 (scrartcl)              package `scrlayer-scrpage'.
 (scrartcl)              Nevertheless, using requested
-(scrartcl)              package `fancyhdr' on input line 117.
+(scrartcl)              package `fancyhdr' on input line 120.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
 Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
@@ -1719,6 +1719,11 @@ Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
 \f@ncyO@erf=\skip171
 \f@ncyO@olf=\skip172
 \f@ncyO@orf=\skip173
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\cite\cite.sty"
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 332.
+Package: cite 2015/02/27  v 5.5
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\setspace\setspace.sty"
 Package: setspace 2011/12/19 v6.7a set line spacing
@@ -1798,23 +1803,23 @@ LaTeX Warning: Label `comparisonAlgorithms' multiply defined.
 )
 \openout1 = `0_bachelor_thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 182.
-LaTeX Font Info:    ... okay on input line 182.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 182.
-LaTeX Font Info:    ... okay on input line 182.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 182.
-LaTeX Font Info:    ... okay on input line 182.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 182.
-LaTeX Font Info:    ... okay on input line 182.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 182.
-LaTeX Font Info:    ... okay on input line 182.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 182.
-LaTeX Font Info:    ... okay on input line 182.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 182.
-LaTeX Font Info:    ... okay on input line 182.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 182.
-LaTeX Font Info:    ... okay on input line 182.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 182.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 189.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1880,7 +1885,7 @@ ABD: EveryShipout initializing macros
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box105
-Package hyperref Info: Link coloring OFF on input line 182.
+Package hyperref Info: Link coloring OFF on input line 189.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -1889,9 +1894,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count335
 )
-LaTeX Info: Redefining \ref on input line 182.
-LaTeX Info: Redefining \pageref on input line 182.
-LaTeX Info: Redefining \nameref on input line 182.
+LaTeX Info: Redefining \ref on input line 189.
+LaTeX Info: Redefining \pageref on input line 189.
+LaTeX Info: Redefining \nameref on input line 189.
 
 (0_bachelor_thesis.out) (0_bachelor_thesis.out)
 \@outlinefile=\write7
@@ -1903,7 +1908,7 @@ LaTeX Info: Redefining \nameref on input line 182.
 
 
 (latex_settings/deckblatt.tex
-<abb/logo1.png, id=109, 536.0025pt x 165.61874pt>
+<abb/logo1.png, id=106, 536.0025pt x 165.61874pt>
 File: abb/logo1.png Graphic file (type png)
  <use abb/logo1.png>
 Package pdftex.def Info: abb/logo1.png used on input line 22.
@@ -2000,11 +2005,12 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 59.
+Package mdframed Info: Not enough space on this page on input line 62.
+ [7]
+Package mdframed Info: Not enough space on this page on input line 62.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 64.
- [7]
-Package mdframed Info: Not enough space on this page on input line 67.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 73.
@@ -2025,6 +2031,12 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 234.
+
+Overfull \hbox (3.67805pt too wide) in paragraph at lines 243--245
+\T1/lmr/m/n/12 The de-scrip-tion of the al-go-rithm fol-lows [[]9[]] ad-justed 
+to the help data struc-ture $\OML/lmm/m/it/12 Pyramid$\T1/lmr/m/n/12 . 
+ []
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 243--245
 
@@ -2134,12 +2146,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 230--342
 
  []
 
-[15] [16] [17]
-
-LaTeX Warning: Reference `scoringModel' on page 18 undefined on input line 380.
-
-
-[18] [19]
+[15] [16] [17] [18] [19]
 Underfull \hbox (badness 10000) in paragraph at lines 451--453
 
  []
@@ -2198,7 +2205,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 pdfTeX warning: pdflatex.exe (file ./abb/CYKInstancesGenerator.pdf): PDF inclus
 ion: found PDF version <1.7>, but at most version <1.5> allowed
-<abb/CYKInstancesGenerator.pdf, id=536, 963.6pt x 542.025pt>
+<abb/CYKInstancesGenerator.pdf, id=555, 963.6pt x 542.025pt>
 File: abb/CYKInstancesGenerator.pdf Graphic file (type pdf)
 
 <use abb/CYKInstancesGenerator.pdf>
@@ -2212,38 +2219,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 355--358
 
  []
 
-) [33] (bibliography.tex) [34
+) [33] (0_bachelor_thesis.bbl) [34
 
-] [35]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 332.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 332.
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 343.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 343.
  (0_bachelor_thesis.aux
 (latex_settings/deckblatt.aux) (abstract.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 332.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 332.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 343.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 343.
 Package rerunfilecheck Info: File `0_bachelor_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 8A2BA99AF82388C7D5849625A8B3840D;1854.
-
-
-LaTeX Warning: There were undefined references.
+(rerunfilecheck)             Checksum: 9D7FFB368B4C9173483C3F35E37054C8;1797.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 332.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 343.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 36811 strings out of 493328
- 710837 string characters out of 3139104
- 947931 words of memory out of 3000000
- 39471 multiletter control sequences out of 15000+200000
+ 36932 strings out of 493328
+ 712464 string characters out of 3139104
+ 949507 words of memory out of 3000000
+ 39573 multiletter control sequences out of 15000+200000
  667127 words of font info for 117 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
- 64i,24n,70p,10445b,24549s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,24n,70p,10445b,24636s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Def.2} has been referenced but does
  not exist, replaced by a fixed one
 
@@ -2267,11 +2271,11 @@ c/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:
 /Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Program Files/
 MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
 type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lm
-tt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (35 pages, 728340 bytes).
+tt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm1
+0.pfb>
+Output written on 0_bachelor_thesis.pdf (34 pages, 718242 bytes).
 PDF statistics:
- 715 PDF objects out of 1000 (max. 8388607)
- 233 named destinations out of 1000 (max. 500000)
- 231 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 743 PDF objects out of 1000 (max. 8388607)
+ 248 named destinations out of 1000 (max. 500000)
+ 223 words of extra memory for PDF output out of 10000 (max. 10000000)
 

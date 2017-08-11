@@ -1,0 +1,69 @@
+\begin{thebibliography}{10}
+
+\bibitem{cykImpl1}
+http://lxmls.it.pt/2015/cky.html.
+
+\bibitem{cykImpl2}
+http://jflap.org/tutorial/grammar/cyk/index.html.
+
+\bibitem{cykImpl3}
+https://github.com/ajh17/CYK Java.
+
+\bibitem{Duda.2012}
+Richard~O. Duda, Peter~E. Hart, and David~G. Stork.
+\newblock {\em Pattern Classification}.
+\newblock Wiley-Interscience, s.l., 2. aufl. edition, 2012.
+
+\bibitem{Sakai.1962}
+Itiroo Sakai.
+\newblock {\em Syntax in universal translation}.
+\newblock {Her Majesty's Stationery Office}, London, 1962.
+
+\bibitem{JohnCockeJacobT.Schwartz.1970}
+{John Cocke, Jacob T. Schwartz}.
+\newblock {\em Programming languages and their compilers. Preliminary notes}.
+\newblock {Courant Institute of Mathematical Sciences of New York University},
+  New York, 1970.
+
+\bibitem{Kasami.1966}
+T.~Kasami.
+\newblock An efficient recognition and syntax-analysis algorithm for
+  context-free languages.
+\newblock 1966.
+
+\bibitem{YOUNGER.1967}
+D.~H. YOUNGER.
+\newblock Recognition and parsing of context-free languages in time n3.
+\newblock {\em INFORMATION AND CONTROL}, 10(2):189--{\&}, 1967.
+
+\bibitem{Hoffmann.2015}
+Dirk Hoffmann.
+\newblock {\em Theoretische Informatik}.
+\newblock {Hanser, Carl}, M{\"u}nchen, 1., neu bearbeitete auflage edition,
+  2015.
+
+\bibitem{github}
+https://github.com/.
+
+\bibitem{sourcetree}
+https://www.sourcetreeapp.com/.
+
+\bibitem{maven}
+https://maven.apache.org/.
+
+\bibitem{intellij}
+https://www.jetbrains.com/idea/.
+
+\bibitem{antlr}
+http://www.antlr.org/.
+
+\bibitem{scenebuilder}
+http://gluonhq.com/products/scene builder/.
+
+\bibitem{junit}
+http://junit.org/junit4/.
+
+\bibitem{lombok}
+https://projectlombok.org/features/all.
+
+\end{thebibliography}
