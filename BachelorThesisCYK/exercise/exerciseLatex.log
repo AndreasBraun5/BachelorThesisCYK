@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  11 AUG 2017 14:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  11 AUG 2017 21:04
 entering extended mode
 **C:/Users/AndreasBraun/Documents/BachelorThesis/BachelorThesisCYK/exercise/exe
 rciseLatex.tex
@@ -543,41 +543,42 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 7.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 7.
-LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 163.
+LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 251.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <2.5> on input line 163.
+(Font)              <2.5> on input line 251.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <1.74998> on input line 163.
+(Font)              <1.74998> on input line 251.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <1.25> on input line 163.
-LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 163.
+(Font)              <1.25> on input line 251.
+LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 251.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <4.9> on input line 163.
+(Font)              <4.9> on input line 251.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <3.42998> on input line 163.
+(Font)              <3.42998> on input line 251.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <2.45> on input line 163.
+(Font)              <2.45> on input line 251.
  [1
 
 {C:/Users/AndreasBraun/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 (C:\Users\AndreasBraun\Documents\BachelorThesis\BachelorThesisCYK\exercise\exer
 ciseLatex.aux) ) 
 Here is how much of TeX's memory you used:
- 14635 strings out of 493328
- 296781 string characters out of 3139104
- 430520 words of memory out of 3000000
- 17935 multiletter control sequences out of 15000+200000
+ 14913 strings out of 493328
+ 301649 string characters out of 3139104
+ 457064 words of memory out of 3000000
+ 18213 multiletter control sequences out of 15000+200000
  11710 words of font info for 41 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,11n,63p,8915b,892s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,11n,73p,8915b,974s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
 i12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 Output written on C:\Users\AndreasBraun\Documents\BachelorThesis\BachelorThesis
-CYK\exercise\exerciseLatex.pdf (2 pages, 42688 bytes).
+CYK\exercise\exerciseLatex.pdf (2 pages, 53421 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
+ 32 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
