@@ -312,12 +312,11 @@ The 4-tuple $exercise = (grammar,\ word,\ parse\ table,\ derivation\ tree)$ that
 \subsection{Scoring Model} \label{scoringModel}
 To be able to find suitable exercises that can be displayed in area 3 of the tool some kind of scoring is needed. ResultSamples are given a score according to Table \ref{scoring}. Parameter that will influence the score are:
 \begin{itemize}
-	\item RightCellCombinationsForcedCount
-	\item maxSumOfVarsInPyramidCount 	
-	\item maxNumberOfVarsPerCellCount
-	\item maxSumOfProductionsCount
-	\item homogeneity
-	\item maxVarKsPerCell
+	\item countRightCellCombinationsForced, i.e. number of times a student is forced to make the right choice to fill the parsing table.
+	\item sumOfVarsInPyramid, i.e. all variables in the pyramid.
+	\item countVarsPerCell, i.e. maximum count of variables per cell.
+	\item sumOfRules, i.e. all rules in the grammar
+	\item countUniqueCells, excluding row $i=0$. 
 \end{itemize}
 \begin{table}[H]
 	\centering
@@ -325,12 +324,10 @@ To be able to find suitable exercises that can be displayed in area 3 of the too
 		\hline
 		\multicolumn{1}{|c|}{\multirow{2}{*}{Parameter}} & \multicolumn{6}{c|}{Points}                                                          \\ \cline{2-7} 
 		\multicolumn{1}{|c|}{}		& 2          & 4           & 6           & 8           & 10          & -100            \\ \hline
-		cellCombinationsForced      & {[}0,10{]} & {[}11,20{]} & {[}21,30{]} & {[}41,50{]} & {[}31,40{]} & \textgreater 50 \\ \hline
+		\#cellCombinationsForced      & {[}0,10{]} & {[}11,20{]} & {[}21,30{]} & {[}41,50{]} & {[}31,40{]} & \textgreater 50 \\ \hline
 		sumVarsInPyramid            & {[}0,10{]} & {[}11,20{]} & {[}21,30{]} & {[}41,50{]} & {[}31,40{]} & \textgreater 50 \\ \hline
-		maxVarsPerCell              & {[}5,5{]}  & {[}4,4{]}   & {[}1,1{]}   & {[}3,3{]}   & {[}2,2{]}   & \textgreater 5  \\ \hline
-		sumProductions              & {[}1,2{]}  & {[}3,4{]}   & {[}5,6{]}   & {[}9,10{]}  & {[}7,8{]}   & \textgreater 10 \\ \hline
-		homogeneity 				& {[} {]}  & {[} {]}   & {[} {]}   & {[} {]}  & {[} {]}   & \textgreater 10 \\ \hline
-		maxVarKsPerCell 			& {[} {]}  & {[} {]}   & {[} {]}   & {[} {]}  & {[} {]}   & \textgreater 10 \\ \hline
+		\#VarsPerCell              & {[}5,5{]}  & {[}4,4{]}   & {[}1,1{]}   & {[}3,3{]}   & {[}2,2{]}   & \textgreater 5  \\ \hline
+		sumOfRules              & {[}1,2{]}  & {[}3,4{]}   & {[}5,6{]}   & {[}9,10{]}  & {[}7,8{]}   & \textgreater 10 \\ \hline		countUniqueCells & {[}3,3{]}  & {[}4,4{]}   & {[}5,5{]}   & {[}6,6{]}  & {[}7,7{]}   & $\leq$2  \\ \hline
 	\end{tabular}
 	\caption{Scoring of the different parameter values}
 	\label{scoring}
@@ -339,7 +336,8 @@ To be able to find suitable exercises that can be displayed in area 3 of the too
 
 
 \noindent Based on table \ref{scoring} each $exercise$ is scored.
-The result will be normalized to the maximum possible points -> range 0.0 to 1.0. 
+The result will be normalized to the maximum possible points so that the maximum score is 1.0.\\
+$score = (\#Parameter\cdot10)^{-1}\cdot\sum\limits_{parameter}^{}points$
 
 \pagebreak
 \subsection{Parsing input with ANTLR}

@@ -1,9 +1,15 @@
 package com.github.andreasbraun5.thesis.score;
 
 import com.github.andreasbraun5.thesis.exception.ScoreMatrixRuntimeException;
+import com.github.andreasbraun5.thesis.grammar.Variable;
+import com.github.andreasbraun5.thesis.pyramid.CellSimple;
 import com.github.andreasbraun5.thesis.resultcalculator.GrammarConstraintValues;
 import com.github.andreasbraun5.thesis.resultcalculator.PyramidConstraintValues;
 import com.github.andreasbraun5.thesis.resultcalculator.ResultSample;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by AndreasBraun on 18.07.2017.
@@ -23,6 +29,7 @@ public class ScoringMatrix {
             score += scoreCellCombinationsForced(pyramidValues.getRightCellCombinationsForcedCount());
             score += scoreSumVarsInPyramid(pyramidValues.getMaxSumOfVarsInPyramidCount());
             score += scoreMaxVarsPerCell(pyramidValues.getMaxNumberOfVarsPerCellCount());
+            score += scoreUniqueCells(resultSample.getPyramid().getCellsSimple());
         }
         return (double) score / ScoringMatrixWeights.MAX_SUM_SCORE_AVAILABLE;
     }
@@ -96,6 +103,32 @@ public class ScoringMatrix {
             return 8;
         } else {
             throw new ScoreMatrixRuntimeException("Value out of bound, scoring not possible.");
+        }
+    }
+
+    private static int scoreUniqueCells(CellSimple[][] cellSimple) {
+        Set<Set<Variable>> uniqueCells = new HashSet<>();
+        for (int i = 1; i < cellSimple.length; i++) {
+            for (int j = 0; j < cellSimple.length-i; j++) {
+                List<Variable> cellList = cellSimple[i][j].getCellElements();
+                if (cellList.size() > 0) {
+                    uniqueCells.add(new HashSet<>(cellList));
+                }
+            }
+        }
+        int countUnique = uniqueCells.size();
+        if (countUnique <= 2) {
+            return ScoringMatrixWeights.OUT_OF_RANGE_SCORE;
+        } else if (countUnique == 3) {
+            return 2;
+        } else if (countUnique == 4) {
+            return 4;
+        } else if (countUnique == 5) {
+            return 6;
+        } else if (countUnique == 6) {
+            return 8;
+        } else {
+            return 10;
         }
     }
 }

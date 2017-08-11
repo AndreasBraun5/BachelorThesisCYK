@@ -1,6 +1,7 @@
 package com.github.andreasbraun5.thesis.pyramid;
 
 import com.github.andreasbraun5.thesis.util.Util;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Collection;

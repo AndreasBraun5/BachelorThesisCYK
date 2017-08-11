@@ -13,6 +13,6 @@ import lombok.Setter;
 @Setter
 @Builder
 public class ScoringMatrixWeights {
-    public static final int MAX_SUM_SCORE_AVAILABLE = 40;
+    public static final int MAX_SUM_SCORE_AVAILABLE = 50;
     public static final int OUT_OF_RANGE_SCORE = -100;
 }
