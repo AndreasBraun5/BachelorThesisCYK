@@ -145,7 +145,7 @@ public class Controller implements Initializable {
         Word word = modifyExerciseSample.getPyramid().getWord();
         Grammar grammar = modifyExerciseSample.getGrammar();
         if (!terminalsMath(word, grammar)) {
-            statusOutput.setText(statusOutput.getText() + "\nTerminals of word and\ngramar don't match.");
+            statusOutput.setText(statusOutput.getText() + "\nTerminals of word and\ngrammar don't match.");
             throw new RuntimeException("\nTerminals of word and\\ngramar don't match.");
         }
         statusOutput.setText(statusOutput.getText() + "\nProcessing changes successful.");
@@ -219,8 +219,8 @@ public class Controller implements Initializable {
                     GrammarValidityChecker.checkRightCellCombinationsForcedSimpleCells(grammarPyramidWrapper.getPyramid(),
                             grammarPyramidWrapper.getGrammar());
             if (!checkCountElementsPerCell(grammarPyramidWrapper.getPyramid().getCellsK())) {
-                statusOutput.setText(statusOutput.getText() + "Warning:\nThere are less than 5 Vars,\n" +
-                        "but more than 5 VarKs\nin one Cell.\nPlease choose another one\nor modify it.");
+                statusOutput.setText(statusOutput.getText() + "Warning:\nThere are more than 5 VarKs,\n" +
+                        "in one Cell. Please choose\nanother one or modify it.");
             }
             ModifyExerciseSample modifyExerciseSample = ModifyExerciseSample.builder()
                     .grammar(grammarPyramidWrapper.getGrammar())

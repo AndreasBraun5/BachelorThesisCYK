@@ -63,7 +63,7 @@ public class TreeLatex {
                 leftAndRight = leftAndRights.get(random.nextInt(leftAndRights.size()));
                 count++;
                 if(count > 50) {
-                    throw new TreeLatexRuntimeException("\nTree generation not possible.\nToo many left cells.");
+                    throw new TreeLatexRuntimeException("\nTree generation not possible.\nToo many empty cells.");
                 }
             }
             if (pyramid.getCellsK()[indexLast][0].getCellElements().size() == 0) {
