@@ -16,8 +16,8 @@
 \contentsline {subsection}{\numberline {2.5}SplitThenFill}{20}{subsection.2.5}
 \contentsline {subsection}{\numberline {2.6}SplitAndFill}{24}{subsection.2.6}
 \contentsline {subsection}{\numberline {2.7}Analysis of Algorithms}{29}{subsection.2.7}
-\contentsline {subsubsection}{\numberline {2.7.1}Comparision of Success Rates}{29}{subsubsection.2.7.1}
-\contentsline {subsubsection}{\numberline {2.7.2}Problem space analysis}{30}{subsubsection.2.7.2}
+\contentsline {subsubsection}{\numberline {2.7.1}Comparison of Success Rates}{29}{subsubsection.2.7.1}
+\contentsline {subsubsection}{\numberline {2.7.2}Problem space exploration}{30}{subsubsection.2.7.2}
 \contentsline {section}{\numberline {3}GUI Tool: CYK Instances Generator}{31}{section.3}
 \contentsline {subsection}{\numberline {3.1}Overview GUI}{31}{subsection.3.1}
 \contentsline {subsubsection}{\numberline {3.1.1}Working with the program}{31}{subsubsection.3.1.1}
