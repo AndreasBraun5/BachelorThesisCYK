@@ -138,18 +138,6 @@ public class Main {
         //terminals.add( new Terminal( "d" ) );
         //terminals.add( new Terminal( "e" ) );
         //terminals.add( new Terminal( "f" ) );
-
-        /**
-         * Some settings for the beginning:
-         * variables.size() should be around 4, considering exam exercises.
-         * terminals.size() should be 2.
-         * Used default setting:
-         * grammarConstraints: sizeOfWord = 10 // All TestResults will be based on words of this size
-         * grammarConstraints: maxNumberOfVarsPerCell = 3 // The CYK simple pyramid must contain less than 4 vars in cone cells
-         * examConstraints: minRightCellCombinationsForced = 1
-         * examConstraints: countSumOfProductions = 10; // approximate maximum value taken from the exam exercises
-         * examConstraints: minRightCellCombinationsForced = 1 countSumOfVarsInPyramid = 50; // approximate maximum value taken from the exam exercises
-         */
         GrammarProperties grammarProperties = new GrammarProperties(new VariableStart("S"), variables, terminals);
         grammarProperties.examConstraints.maxNumberOfVarsPerCell = 3; //Set like this
         return grammarProperties;

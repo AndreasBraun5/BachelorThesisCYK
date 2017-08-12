@@ -3,6 +3,7 @@ package com.github.andreasbraun5.thesis.main;
 import com.github.andreasbraun5.thesis.antlr.ExerciseStringConverter;
 import com.github.andreasbraun5.thesis.exception.TreeLatexRuntimeException;
 import com.github.andreasbraun5.thesis.exercise.Exercise;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSplitThenFill;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
@@ -112,19 +113,19 @@ public class Controller implements Initializable {
     }
 
     public void createNew(MouseEvent mouseEvent) throws IOException {
-        int countGeneratedGrammarsPerWord = 10;
-        int countDifferentWords = 10;
+        int countGeneratedGrammarsPerWord = 20;
+        int countDifferentWords = 20;
         ResultCalculator resultCalculator = ResultCalculator.builder().
                 countDifferentWords(countDifferentWords).
                 countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
 
         GrammarProperties grammarProperties = new GrammarProperties(VariableStart.of("S"), getVariables(), getTerminals());
         if (this.getWordLength() < 4) {
-            statusOutput.setText(statusOutput.getText() + "\nWord lenght greater 3 needed.");
+            statusOutput.setText(statusOutput.getText() + "\nWord length greater 3 needed.");
             return;
         }
         if (this.getWordLength() > 20) {
-            statusOutput.setText(statusOutput.getText() + "\nWord lenght smaller 21 needed.");
+            statusOutput.setText(statusOutput.getText() + "\nWord length smaller 21 needed.");
             return;
         }
         grammarProperties.examConstraints.sizeOfWord = this.getWordLength();
@@ -137,6 +138,7 @@ public class Controller implements Initializable {
                 new GrammarGeneratorSplitThenFill(settingsGrammarGeneratorSplitThenFill),
                 WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitThenFill.name)))
         );
+
         this.selectFrom.setText(resultGrammarGeneratorSplitThenFill.y.toString());
         statusOutput.setText(statusOutput.getText() + "\nExercise creation successful.");
     }
@@ -148,7 +150,7 @@ public class Controller implements Initializable {
         Grammar grammar = modifyExerciseSample.getGrammar();
         if (!terminalsMath(word, grammar)) {
             statusOutput.setText(statusOutput.getText() + "\nTerminals of word and\ngrammar don't match.");
-            throw new RuntimeException("\nTerminals of word and\\ngramar don't match.");
+            throw new RuntimeException("\nTerminals of word and\\grammar don't match.");
         }
         statusOutput.setText(statusOutput.getText() + "\nProcessing changes successful.");
         modify.setText(modifyExerciseSample.toString());

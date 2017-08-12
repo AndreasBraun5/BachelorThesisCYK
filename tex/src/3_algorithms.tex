@@ -2690,58 +2690,67 @@ Looking at this algorithm only productions according to the tree structure are a
 
 \clearpage
 \pagebreak
-\subsection{Comparision of Algorithms} \label{ComparisonOfAlgorithms}
-\noindent Write about the standard configuration used.
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ | l | c |c |c |c | }
-		\hline
-Algorithm 		& SR 	& SR-Producibility 	& SR-Cardinality-Rules 	& SR-Pyramid   	\\ \hline
-\hline
-DiceRollOnly 	& 09~\%	& 24~\% & 88~\% & 39~\%		\\ \hline
-BotomUpVar1 	& 16~\% & 52~\% & 90~\% & 41~\% 	\\ \hline
-BotomUpVar2 	& 19~\% & 47~\% & 93~\% & 53~\% 	\\ \hline
-SplitThenFill 	& 24~\% & 40~\% & 97~\% & 67~\% 	\\ \hline
-SplitAndFill 	& 11~\% & 100~\% & 69~\% & 15~\% 	\\ \hline
-	\end{tabular}
-	\caption{Comparison of the SRs of the algorithms. Stopping criteria root not empty.}
-	\label{comparisonAlgorithms}
-\end{table}
-Finding of ideal parameter for each algorithm.
+\subsection{Analysis of Algorithms} \label{AnalysisOfAlgorithms}
+While analysing the algorithms there are some settings to be considered.
+\begin{itemize} [noitemsep]
+	\item \textbf{variables= [A, B, S, C]}
+	\item \textbf{terminals= [a, b]}
+	\item maxSumOfProductions=10
+	\item minRightCellCombinationsForced=1
+	\item maxNumberOfVarsPerCell=3
+	\item maxSumOfVarsInPyramid=100
+	\item \textbf{sizeOfWord=10}
+	\item minValueCompoundVariablesAreAddedTo=0 (=1 in case of Algorithm SplitThenFill and Algorithm SplitAndFill) 
+	\item minValueTerminalsAreAddedTo=1
+	\item maxValueCompoundVariablesAreAddedTo=2 (=1 in case of Algorithm SplitThenFill and Algorithm SplitAndFill) 
+	\item maxValueTerminalsAreAddedTo=1
+\end{itemize} 
 
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ | l | c |c |c |c | }
-		\hline
-		Algorithm 		& SR 	& SR-Producibility 	& SR-Cardinality-Rules 	& SR-Pyramid   	\\ \hline
-		\hline
-		DiceRollOnly 	& 09~\%	& 23~\% & 88~\% & 38~\%		\\ \hline
-		BotomUpVar1 	& 11~\% & 30~\% & 99~\% & 58~\% 	\\ \hline
-		BotomUpVar2 	& 13~\% & 26~\% & 99~\% & 66~\% 	\\ \hline
-		SplitThenFill 	& 24~\% & 40~\% & 97~\% & 67~\% 	\\ \hline
-		SplitAndFill 	& 11~\% & 100~\% & 70~\% & 14~\% 	\\ \hline
-	\end{tabular}
-	\caption{Comparison of the SRs of the algorithms. Stopping criteria more than half.}
-	\label{comparisonAlgorithms}
-\end{table}
+\subsubsection{Comparision of Success Rates}
 
-Analysis of the problem space possibly visualized in heat maps.
-
-
-
+By comparing Table \ref{ComparisionRootNotEmpty} and Table \ref{ComparisionMoreThanHalf} it is seen that the stopping criteria doesn't have that much of an influence on the algorithms SR with the used input configuration.
 \begin{table}[h]
 	\centering
-	\caption{My caption}
-	\label{my-label}
 	\begin{tabular}{|l|c|c|c|c|c|c|c|}
 		\hline
 		\multicolumn{1}{|c|}{Algorithm} & SR   & \begin{tabular}[c]{@{}c@{}}Produci-\\ bility\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cardinality-\\ Rules\end{tabular} & \multicolumn{4}{c|}{Pyramid}                                                                                                                                                        \\ \cline{6-8} 
 		&      &                                                           &                                                              &      & \begin{tabular}[c]{@{}c@{}}Force-\\ Right\end{tabular} & \begin{tabular}[c]{@{}c@{}}Vars-\\ PerCell\end{tabular} & \begin{tabular}[c]{@{}c@{}}VarsIn-\\ Pyramid\end{tabular} \\ \hline
-		DiceRollOnly                    & 09\% &                                                           &                                                              & 67\% &                                                        &                                                         &                                                           \\ \hline
-		BottomUpVar1                    &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
-		BottomUpVar2                    &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
-		SplitThenFill                   &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
-		SplitAndFill                    &      &                                                           &                                                              &      &                                                        &                                                         &                                                           \\ \hline
+		DiceRollOnly                    & 04\% & 24\%                                                           &59\%                                                              & 37\% &50\%                                                        &88\%                                                         &94\%                                                           \\ \hline
+		BottomUpVar1                    &15\%      &51\%                                                           &89\%                                                              &42\%      &73\%                                                        &76\%                                                         &67\%                                                           \\ \hline
+		BottomUpVar2                    &19\%      &46\%                                                           &92\%                                                              &54\%      &80\%                                                        &79\%                                                         &77\%                                                           \\ \hline
+		SplitThenFill                   &23\%    &39\%                                                           &97\%                                                              &68\%      &78\%                                                        &91\%                                                         &93\%                                                           \\ \hline
+		SplitAndFill                    &11\%      &100\%                                                           &70\%                                                              &14\%      &79\%                                                        &34\%                                                         &22\%                                                           \\ \hline
 	\end{tabular}
+	\caption{SRs of the algorithms with stopping criteria that the root is not empty.}
+	\label{ComparisionRootNotEmpty}
 \end{table}
+In both cases the SplitThenFill algorithm is the one with the highest SR.
+\pagebreak
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|c|c|c|c|c|c|c|}
+		\hline
+		\multicolumn{1}{|c|}{Algorithm} & SR   & \begin{tabular}[c]{@{}c@{}}Produci-\\ bility\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cardinality-\\ Rules\end{tabular} & \multicolumn{4}{c|}{Pyramid}                                                                                                                                                        \\ \cline{6-8} 
+		&      &                                                           &                                                              &      & \begin{tabular}[c]{@{}c@{}}Force-\\ Right\end{tabular} & \begin{tabular}[c]{@{}c@{}}Vars-\\ PerCell\end{tabular} & \begin{tabular}[c]{@{}c@{}}VarsIn-\\ Pyramid\end{tabular} \\ \hline
+		DiceRollOnly                    & 04\% & 24\%                                                           &59\%                                                              & 37\% &50\%                                                        &88\%                                                         &94\%                                                           \\ \hline
+		BottomUpVar1                    &11\%      &29\%                                                           &99\%                                                              &56\%      &69\%                                                        &91\%                                                         &87\%                                                           \\ \hline
+		BottomUpVar2                    &12\%      &25\%                                                           &99\%                                                              &66\%      &78\%                                                        &90\%                                                         &93\%                                                           \\ \hline
+		SplitThenFill                   &23\%    &40\%                                                           &97\%                                                              &66\%      &78\%                                                        &90\%                                                         &92\%                                                           \\ \hline
+		SplitAndFill                    &10\%      &100\%                                                           &69\%                                                              &14\%      &78\%                                                        &36\%                                                         &20\%                                                           \\ \hline
+	\end{tabular}
+	\caption{SRs of the algorithms with stopping criteria that half of the parsing table is not empty.}
+	\label{ComparisionMoreThanHalf}
+\end{table}
+\subsubsection{Problem space analysis}
+Further investigation will be done with the parameters:
+\begin{itemize} [noitemsep]
+	\item \textbf{variables= [A, B, S, C]}
+	\item \textbf{terminals= [a, b]}
+	\item \textbf{sizeOfWord=10}
+\end{itemize} 
+
+
+Finding of ideal parameter for each algorithm.\\
+Analysis of the problem space possibly visualized in heat maps.
+\clearpage
 \pagebreak

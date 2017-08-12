@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  11 AUG 2017 21:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  12 AUG 2017 14:29
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -1720,6 +1720,14 @@ Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
 \f@ncyO@olf=\skip172
 \f@ncyO@orf=\skip173
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty"
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip174
+\enit@outerparindent=\dimen319
+\enit@toks=\toks55
+\enit@inbox=\box102
+\enitdp@description=\count321
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\cite\cite.sty"
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 332.
@@ -1735,24 +1743,24 @@ Package: capt-of 2009/12/29 v0.2 standard captions outside of floats
 Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.sty"
-\lst@mode=\count321
-\lst@gtempboxa=\box102
-\lst@token=\toks55
-\lst@length=\count322
-\lst@currlwidth=\dimen319
-\lst@column=\count323
-\lst@pos=\count324
-\lst@lostspace=\dimen320
-\lst@width=\dimen321
-\lst@newlines=\count325
-\lst@lineno=\count326
-\lst@maxwidth=\dimen322
+\lst@mode=\count322
+\lst@gtempboxa=\box103
+\lst@token=\toks56
+\lst@length=\count323
+\lst@currlwidth=\dimen320
+\lst@column=\count324
+\lst@pos=\count325
+\lst@lostspace=\dimen321
+\lst@width=\dimen322
+\lst@newlines=\count326
+\lst@lineno=\count327
+\lst@maxwidth=\dimen323
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count327
-\lst@skipnumbers=\count328
-\lst@framebox=\box103
+\c@lstnumber=\count328
+\lst@skipnumbers=\count329
+\lst@framebox=\box104
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.cfg"
 File: listings.cfg 2015/06/04 1.6 listings configuration
@@ -1769,9 +1777,9 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 Writing index file 0_bachelor_thesis.idx
 ("C:\Program Files\MiKTeX 2.9\tex\latex\nomencl\nomencl.sty"
 Package: nomencl 2005/09/22 v4.2 Nomenclature package (LN)
-\nomlabelwidth=\dimen323
-\nom@tempdim=\dimen324
-\nomitemsep=\skip174
+\nomlabelwidth=\dimen324
+\nom@tempdim=\dimen325
+\nomitemsep=\skip175
 )
 \@nomenclaturefile=\write6
 \openout6 = `0_bachelor_thesis.nlo'.
@@ -1797,45 +1805,42 @@ LaTeX Warning: Label `left' multiply defined.
 
 LaTeX Warning: Label `right' multiply defined.
 
-
-LaTeX Warning: Label `comparisonAlgorithms' multiply defined.
-
 )
 \openout1 = `0_bachelor_thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 189.
-LaTeX Font Info:    ... okay on input line 189.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 189.
-LaTeX Font Info:    ... okay on input line 189.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 189.
-LaTeX Font Info:    ... okay on input line 189.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 189.
-LaTeX Font Info:    ... okay on input line 189.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 189.
-LaTeX Font Info:    ... okay on input line 189.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 189.
-LaTeX Font Info:    ... okay on input line 189.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 189.
-LaTeX Font Info:    ... okay on input line 189.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 189.
-LaTeX Font Info:    ... okay on input line 189.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 189.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 194.
+LaTeX Font Info:    ... okay on input line 194.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 194.
+LaTeX Font Info:    ... okay on input line 194.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 194.
+LaTeX Font Info:    ... okay on input line 194.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 194.
+LaTeX Font Info:    ... okay on input line 194.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 194.
+LaTeX Font Info:    ... okay on input line 194.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 194.
+LaTeX Font Info:    ... okay on input line 194.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 194.
+LaTeX Font Info:    ... okay on input line 194.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 194.
+LaTeX Font Info:    ... okay on input line 194.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 194.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count329
-\scratchdimen=\dimen325
-\scratchbox=\box104
-\nofMPsegments=\count330
-\nofMParguments=\count331
-\everyMPshowfont=\toks56
-\MPscratchCnt=\count332
-\MPscratchDim=\dimen326
-\MPnumerator=\count333
-\makeMPintoPDFobject=\count334
-\everyMPtoPDFconversion=\toks57
+\scratchcounter=\count330
+\scratchdimen=\dimen326
+\scratchbox=\box105
+\nofMPsegments=\count331
+\nofMParguments=\count332
+\everyMPshowfont=\toks57
+\MPscratchCnt=\count333
+\MPscratchDim=\dimen327
+\MPnumerator=\count334
+\makeMPintoPDFobject=\count335
+\everyMPtoPDFconversion=\toks58
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1884,31 +1889,31 @@ ABD: EveryShipout initializing macros
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\AtBeginShipoutBox=\box105
-Package hyperref Info: Link coloring OFF on input line 189.
+\AtBeginShipoutBox=\box106
+Package hyperref Info: Link coloring OFF on input line 194.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count335
+\c@section@level=\count336
 )
-LaTeX Info: Redefining \ref on input line 189.
-LaTeX Info: Redefining \pageref on input line 189.
-LaTeX Info: Redefining \nameref on input line 189.
+LaTeX Info: Redefining \ref on input line 194.
+LaTeX Info: Redefining \pageref on input line 194.
+LaTeX Info: Redefining \nameref on input line 194.
 
 (0_bachelor_thesis.out) (0_bachelor_thesis.out)
 \@outlinefile=\write7
 \openout7 = `0_bachelor_thesis.out'.
 
-\c@lstlisting=\count336
+\c@lstlisting=\count337
  (latex_settings/trennung.tex)
 \openout2 = `latex_settings/deckblatt.aux'.
 
 
 (latex_settings/deckblatt.tex
-<abb/logo1.png, id=106, 536.0025pt x 165.61874pt>
+<abb/logo1.png, id=114, 536.0025pt x 165.61874pt>
 File: abb/logo1.png Graphic file (type png)
  <use abb/logo1.png>
 Package pdftex.def Info: abb/logo1.png used on input line 22.
@@ -2199,60 +2204,68 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[26] [27] [28]) [29
+[26] [27] [28]
+Overfull \hbox (2.32837pt too wide) in paragraph at lines 2703--2704
+[]\T1/lmr/m/n/12 minValueCompoundVariablesAreAddedTo=0 (=1 in case of Al-go-rit
+hm Split-Then-
+ []
 
-] (5_implementation.tex
+[29
+
+] [30]) (5_implementation.tex
 
 pdfTeX warning: pdflatex.exe (file ./abb/CYKInstancesGenerator.pdf): PDF inclus
 ion: found PDF version <1.7>, but at most version <1.5> allowed
-<abb/CYKInstancesGenerator.pdf, id=554, 963.6pt x 542.025pt>
+<abb/CYKInstancesGenerator.pdf, id=569, 963.6pt x 542.025pt>
 File: abb/CYKInstancesGenerator.pdf Graphic file (type pdf)
 
 <use abb/CYKInstancesGenerator.pdf>
 Package pdftex.def Info: abb/CYKInstancesGenerator.pdf used on input line 15.
 (pdftex.def)             Requested size: 441.01773pt x 248.0691pt.
- [30 <./abb/CYKInstancesGenerator.pdf>]
-[31]
-Underfull \hbox (badness 10000) in paragraph at lines 352--353
+ [31
+
+ <./abb/CYKInstancesGenerator.pdf>]
+[32]
+Underfull \hbox (badness 10000) in paragraph at lines 351--352
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 354--355
+Underfull \hbox (badness 10000) in paragraph at lines 353--354
 
  []
 
-) [32
+) [33
 
-] (0_bachelor_thesis.bbl) [33
+] (0_bachelor_thesis.bbl) [34
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 343.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 343.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 348.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 348.
  (0_bachelor_thesis.aux
 (latex_settings/deckblatt.aux) (abstract.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 343.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 343.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 348.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 348.
 Package rerunfilecheck Info: File `0_bachelor_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 853E52A15C7A25BEEC98D43DAD71D034;1797.
+(rerunfilecheck)             Checksum: 15DA7675E1F0804591730B8013669889;1978.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 343.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 348.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 36931 strings out of 493328
- 712457 string characters out of 3139104
- 949507 words of memory out of 3000000
- 39573 multiletter control sequences out of 15000+200000
+ 37220 strings out of 493328
+ 717424 string characters out of 3139104
+ 955879 words of memory out of 3000000
+ 39856 multiletter control sequences out of 15000+200000
  667127 words of font info for 117 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
- 64i,24n,70p,10445b,24636s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,24n,70p,10445b,24895s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Def.2} has been referenced but does
  not exist, replaced by a fixed one
 
@@ -2279,9 +2292,9 @@ pe1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/l
 msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 
 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (33 pages, 721669 bytes).
+Output written on 0_bachelor_thesis.pdf (34 pages, 725068 bytes).
 PDF statistics:
- 743 PDF objects out of 1000 (max. 8388607)
- 247 named destinations out of 1000 (max. 500000)
- 223 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 757 PDF objects out of 1000 (max. 8388607)
+ 249 named destinations out of 1000 (max. 500000)
+ 239 words of extra memory for PDF output out of 10000 (max. 10000000)
 
