@@ -1,9 +1,9 @@
 grammar Exercise;
 
 exerciseDefinition: grammarDefinition NEWLINE
-                    wordDefinition NEWLINE?;
+                    wordDefinition RANDOM?;
 
-grammarDefinition: NEWLINE* WHITE_SPACE* varStart WHITE_SPACE* NEWLINE
+grammarDefinition: NEWLINE* varStart NEWLINE
                    rules;
 
 varStart: START COLON WHITE_SPACE* nonTerminal SEMICOLON;
@@ -48,3 +48,5 @@ WHITE_SPACE: ' ' | '\t';
 NEWLINE: '\n';
 
 SPECIALSYMBOL: ('\'');
+
+RANDOM: 'a'..'z' | 'A'..'Z' | '0'..'9' | '\n' | ',' | '[' | ']' | '=' | ' ' | '\t';
