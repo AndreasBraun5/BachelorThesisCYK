@@ -36,6 +36,9 @@ D.~H. YOUNGER.
 \newblock Recognition and parsing of context-free languages in time n3.
 \newblock {\em INFORMATION AND CONTROL}, 10(2):189--{\&}, 1967.
 
+\bibitem{wikiCYK}
+https://de.wikipedia.org/wiki/Cocke Younger-Kasami-Algorithmus.
+
 \bibitem{Hoffmann.2015}
 Dirk Hoffmann.
 \newblock {\em Theoretische Informatik}.

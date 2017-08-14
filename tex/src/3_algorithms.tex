@@ -2,7 +2,7 @@
 
 \section{Algorithms}\label{algorithms}
 \subsection{Sub modules}
-Sub modules are parts of the algorithms that are denoted circled like \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should to be explained in more detail a little bit for a better understanding of the way of working of the following algorithms.\\
+Sub modules are parts of the algorithms that are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should be explained in more detail for a better understanding of the way of working of algorithms in Chapter \ref{diceRollOnlyCYK}ff.\\
 
 \noindent \textbf{Distribute$(\Sigma,\ V) $ \circled{A} and Distribute$(V^2,\ V)$ \circled{B}:}\\
 The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. While distributing the terminals there exists at least one rule for every terminal used in the word $w$. The specifics of how they are distributed are the same in both cases as described in the following algorithm: \\
@@ -25,7 +25,9 @@ The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and
 } \\
 
 \noindent \textbf{Stopping Criteria \circled{C}:}\\
-Two kinds of \circled{C} have been used. One is that it is true iff more than half of the pyramid cells are not empty and the other one is that there is at least one variable in the tip of the pyramid. It is to be taken in consideration that the latter is somewhat dependent on the count possible variables as seen in [XXX] (chapter problem space analysis). \\
+Two kinds of \circled{C} have been used. One is that it is true iff more than half of the pyramid cells are not empty and the other one is that there is at least one variable in the tip of the pyramid. Both stopping criteria are compared shortly in Chapter \ref{AnalysisOfAlgorithms}.
+
+It is to be taken in consideration that the latter is somewhat dependent on the count possible variables as seen in [XXX] (chapter problem space analysis). \\
 
 \noindent \textbf{CalculateSubsetForCell(Pyramid, i, j) \circled{D}:}\\
 This procedure works kind of analogous from Line 7 to Line 9 of the CYK algorithm. 
@@ -46,7 +48,7 @@ For one $Cell_{i,j}$ every possible cell combination is looked at, i.e. if a rul
 		
 	\end{algorithm}
 }
-In the following situation a rule should be added so that $Cell_{3,0}$ won't be empty: 
+In the following situation a rule should be added while using Algorithm \ref{CalculateSubsetForCell}:
 \noindent
 \begin{figure}[h]
 	\begin{minipage}{6in}
@@ -161,8 +163,9 @@ In the following situation a rule should be added so that $Cell_{3,0}$ won't be 
 			}
 		}
 	\end{minipage}
+	\caption{Example of Algorithm \ref{CalculateSubsetForCell} while applying it on $Cell_{3,0}$.}
 \end{figure}\\
-Then the calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ is from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textcolor{gray}{\textbf{B $\rightarrow$ SC}} has been added and now $(B,2)$ is element of $Cell_{3,0}$.\\
+The calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ is from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textcolor{gray}{\textbf{B $\rightarrow$ SC}} has been added and now $(B,2)$ is element of $Cell_{3,0}$.\\
 
 \noindent \textbf{Choose one xy from (xy,i) $\in$ RowSet uniform randomly with probability depending on row i \circled{E} :}\\
 There is the set $RowSet \subseteq \{(xy,i)\ |\ x,y \in V \wedge i \in \mathbb{N} \}$ and one xy is chosen out of it as following:
@@ -182,12 +185,11 @@ Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be 
 		\end{tabular} 
 		} 		
 	\end{minipage}
-	\caption{Short example of the procedure E.}
-	\label{DiceRollONlyCYKExample}
+	\caption{Short example of the procedure E as described before.}
 \end{figure}
 
-\subsection{DiceRollOnlyCYK}
-\noindent This is a naive way of generating grammars, which will be the lower boundary while comparing the algorithms. Each future algorithm should have a higher score than this algorithm or otherwise it would be worse, than simple dice rolling the distribution of terminals (Line \ref{diceRollOnlyA}) and compound variables (Line \ref{diceRollOnlyB}). \\
+\subsection{DiceRollOnlyCYK} \label{diceRollOnlyCYK}
+\noindent This is a primitive way of generating grammars, which will be the lower boundary while comparing the algorithms. Each future algorithm should have a higher score than this algorithm or otherwise it would be worse, than simple dice rolling the distribution of terminals (Line \ref{diceRollOnlyA}) and compound variables (Line \ref{diceRollOnlyB}). \\
 
 \noindent
 \frame{
@@ -200,7 +202,7 @@ Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be 
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
 		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\ \label{diceRollOnlyA}
 		$P \cup Distribute(V^2,\ V)$;  \circled{B}\\ \label{diceRollOnlyB}
-		\Return $P$\;
+		\Return $P$;
 	\end{algorithm}
 }
 A terminal $\Sigma$ is distributed to at least one $lhse$, but a compound variable $V^2$ must not be distributed at all. This means that for each terminal of $\Sigma=\{a,b\}$ there exists at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ and for each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~CC,$ $~CS,SS\}$ it is possible that only a smaller subset like $\{AA,~BA,~CC,~SC\}$ is distributed so that only rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.
@@ -226,9 +228,10 @@ A terminal $\Sigma$ is distributed to at least one $lhse$, but a compound variab
 	\caption{Short example of Algorithm \ref{DiceRollOnlyCYK}.}
 	\label{DiceRollONlyCYKExample}
 \end{figure}
+\pagebreak
 \subsection{BottomUpDiceRollVar1}
 This algorithm uses the Bottom-Up approach (Chapter \ref{approaches}) whereby the parsing table is filled starting from the leaves in direction to the root node.\\
-The basic idea behind this algorithm is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK} it can happen that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables. In a situation as seen below it can happen \\
+The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK} it can happen that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables. In a situation as seen below it can happen \\
 \noindent
 \begin{figure}[h]
 	\begin{minipage}{6in}
@@ -336,9 +339,13 @@ The basic idea behind this algorithm is to guide the choice of rules while distr
 			}
 		}
 	\end{minipage}
+	\caption{In between step of Algorithm \ref{BottomUpDiceRollVar1}, disregarding the already added rules.}
 \end{figure}\\
 that rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added, that obviously not directly help to fill the parsing table and bloat the grammar with useless rules. More reasonably rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ and $lhse \rightarrow AB$.\\
-Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the terminals (Line \ref{var1A}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while choosing (Line \ref{var1E}) variable compounds and to finally add them (Line \ref{var1Add}). I.e. for each chosen cell a $CellSet$ is calculated, that only contains reasonably variable compounds. Now only variable compounds are added that directly help to fill the parsing table.\\
+
+\pagebreak
+
+Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating (Line \ref{var1E}) variable compounds and to finally add a part of them (Line \ref{var1Add}). I.e. for each chosen cell a $CellSet$ is calculated, that only contains reasonably variable compounds. Now only variable compounds are added that directly help to fill the parsing table.\\
 
 \noindent
 \frame{
@@ -349,14 +356,14 @@ Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the termi
 		\KwIn{Word $w \in \Sigma^{*}$ }
 		\KwOut{Set of productions $P$}
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$P = Distribute(\Sigma,\ V)$;  \circled{A}\\
-		$Pyramid = CYK(G,\ w)$\label{stepii}\;
+		$P = Distribute(\Sigma,\ V)$;  \circled{A} \label{distrTerm}\\
+		$Pyramid = CYK(G,\ w)$\label{var1Stepii}\;
 		\For{$i:=1\ \textbf{to}\ i_{max}$}{
 			$J = \{0,~...~,~j_{max} -1\}$;~~\tcp{$J \subseteq \mathbb{N}$}
 			$CellSet = \emptyset$;~~\tcp{$CellSet \subseteq V^2$} \label{var1A}
 			\While{$|J|>0$}{
-				$choose\ one\ j \in J\ uniform\ randomly$\label{chooseJ}\;
-				$J = J \setminus \{j\} $\;
+				$choose\ one\ j \in J\ uniform\ randomly$\;
+				$J = J \setminus \{j\} $\label{chooseJ}\;
 				$CellSet = CalculateSubsetForCell(Pyramid,\ i,\ j)$;  \circled{D} \label{var1E}\\
 				$P \cup Distribute(CellSet,\ V)$;  \circled{B} \label{var1Add}\\
 				$Pyramid = CYK(G,\ w)$\; \label{var1Update}
@@ -367,7 +374,7 @@ Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the termi
 		}
 		\Return $P$\;
 		\footnotetext{
-			\noindent Line \ref{stepii}: Fills the i=0 row of the pyramid.
+			\noindent Line \ref{var1Stepii}: Fills the i=0 row of the pyramid.
 			
 			\noindent Line \ref{chooseJ}: A cell is only visited only once.
 		}
@@ -379,7 +386,7 @@ Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the termi
 While examining the Algorithm \ref{BottomUpDiceRollVar1} via its log files [XXX] it can be seen that already a very small number of rules in the grammar is sufficient so that the stopping criteria \circled{C} is met \textendash~the cells that indirectly decide what rules to add are mostly from row one ($i=1$) and sometimes if at all from row two ($i=2$).\\ 
 This again leads to another idea to introduce a row dependent $threshold_i$ (Line \ref{var2threshold}) that helps that more cells with $i\geq2$ are chosen \textendash~what possibly can lead to more diverse grammars. The diversity, in context of Algorithm \ref{BottomUpDiceRollVar1}, is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the grammar will contain one these $lhse$s. This is due to the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the relatively small number of rules in the grammar. \\
 Further diversification is achieved through the usage of \circled{E} (Line \ref{chooseVc}). Variable compounds that already have been used in a row with low index $i$ are at a disadvantage to be picked again as described in Algorithm \ref{CalculateSubsetForCell}.\\
-As seen in Figure \ref{GoalofBetterDiversity} rules with the same $rhse = BA~and~AA$ have been added to the variables $B$ and $A$ in Grammar1. For Grammar2 instead the rule $B\rightarrow SS$ was added that contributes to a better diversity.
+As seen in Figure \ref{GoalofBetterDiversity} rules with $BA$~and~$AA$ have been added to the variables $B$ and $A$ in Grammar1. For Grammar2 instead the rule $B\rightarrow SS$ was added that contributes to a better diversity compared to Grammar1.
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -405,7 +412,7 @@ As seen in Figure \ref{GoalofBetterDiversity} rules with the same $rhse = BA~and
 		\end{tabular}
 		} 		
 	\end{minipage}
-	\caption{Goal of better diversity: Starting point is Grammar0. Grammar2 is of better diversity than Grammar1.}
+	\caption{Example for better diversity. Starting point is Grammar0. Grammar2 is of better diversity than Grammar1.}
 	\label{GoalofBetterDiversity}
 \end{figure}
 
@@ -448,7 +455,7 @@ As seen in Figure \ref{GoalofBetterDiversity} rules with the same $rhse = BA~and
 \pagebreak
 \subsection{SplitThenFill}
 
-The idea here is to first distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFill}) and then to uniform randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{splitThenStepii} and in general Algorithm \ref{SplitThenFillRecursion}) Top-Downwards and then again to fill the parsing table Bottom-Upwards accordingly to this derivation tree. The reason behind its name comes from the fact that only after completely generating the structure (splitting of the word in subwords) of the derivation tree then the rules are added to the grammar that allows further filling of the parsing table. \\
+The idea here is to first distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFill}) and then to uniform randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{splitThenStepii} and in general Algorithm \ref{SplitThenFillRecursion}) Top-Downwards and then again to fill the parsing table Bottom-Upwards accordingly to this derivation tree. The reason behind its name comes from the fact that only after completely generating the structure (splitting of the word in subwords) of the derivation tree then the rules are added to the grammar that allow further filling of the parsing table. \\
 Every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} Line \ref{splitThenFillB}) the already available information regarding the other rules is used to determine if a new rule is needed to fill this node of the derivation tree (Line \ref{empty} of Algorithm \ref{SplitThenFillRecursion}).\\
 
 
@@ -471,7 +478,7 @@ Every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} Line
 	\end{algorithm}
 }
 \\
-For this algorithm it is important to mention that while using \circled{B} (Line \ref{splitThenFillB} of Algorithm \ref{SplitThenFillRecursion}) a variable compound is added to at least one $lhse$. For every element of $Vc$ (Line \ref{splitThenFillVc} of Algorithm \ref{SplitThenFillRecursion}) there exists at least one rule $lhse \rightarrow vc$ with $vc \in Vc$.\\
+For this algorithm it is important to mention that while using \circled{B} (Line \ref{splitThenFillB} of Algorithm \ref{SplitThenFillRecursion}) a variable compound is added to at least one $lhse$. For every element of $vc \in VarComp$ (Line \ref{splitThenFillVc} of Algorithm \ref{SplitThenFillRecursion}) there exists at least one rule $lhse \rightarrow vc$.\\
 The construction of the derivation tree for instance is done as following \textendash~each number represents the recursion depth of its subtree: 
 \begin{center}
 	\begin{figure} [h]
@@ -656,7 +663,7 @@ The construction of the derivation tree for instance is done as following \texte
 		\Return $(P,\ Cell_{i,j})$\;
 	\end{algorithm}
 }
-The same example tree structure is used as seen in Figure \ref{treeStruct}.
+The same example tree structure is used in the following example.
 
 \noindent
 \begin{figure} [h]
@@ -822,7 +829,7 @@ The same example tree structure is used as seen in Figure \ref{treeStruct}.
 	\label{IllustrationAlgorithmSplitThenFillPart1}
 \end{figure}
 
-\noindent After adding the terminals to the grammar (Line \ref{splitThenStepii} in Algorithm \ref{SplitThenFill}) now one must take on the recursion step at $Cell_{1,1}$. Now $Cell_l=\{B_2\}$ and $Cell_r=\{A_3\}$ and therefore $Vc={BA}$. Now adding the rule $S \rightarrow BA$ leads to the following changes: 
+\noindent After adding the terminals to the grammar (Line \ref{splitThenStepii} in Algorithm \ref{SplitThenFill}) now one must take on the recursion step at $Cell_{1,1}$. Now $Cell_l=\{B_2\}$ and $Cell_r=\{A_3\}$ and therefore $VarComp=\{BA\}$ adding the rule $S \rightarrow BA$ leads to the following changes: 
 
 \noindent
 \begin{figure} [h]
@@ -984,7 +991,7 @@ The same example tree structure is used as seen in Figure \ref{treeStruct}.
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} part 2.}
+	\caption{Illustration of Algorithm \ref{SplitThenFill} part 2 after adding $S\rightarrow BA$}
 	\label{IllustrationAlgorithmSplitThenFillPart2}
 \end{figure}\\
 \noindent The next recursion step happens in $Cell_{2,0}$. Now $Cell_l=\{B_1\}$ and $Cell_r=\{S_2\}$. Analogously the rule $A\rightarrow BS$ is added to the grammar:
@@ -1652,8 +1659,8 @@ The same example tree structure is used as seen in Figure \ref{treeStruct}.
 \clearpage
 
 \subsection{SplitAndFill}
-Algorithm \ref{SplitThenFill} creates the derivation tree structure Top-Downwards but adds rules to the grammar Bottom-Upwards. Another way to do this would be an attempt to do both Top-Downwards.\\
-This algorithm therefore makes use of a part of the same idea as Algorithm \ref{SplitThenFill}. It also uses the concept of generating a predefined structure of the derivation tree Top-Downwards. The difference now is, that every time a node of the structure of the derivation tree has been decided on a rule is directly added to the grammar \textendash~therefore the name SplitAndFill, which is like "split for a node and then directly add a rule so that the node is then filled with at least one variable". \\
+Algorithm \ref{SplitThenFill} creates the derivation tree structure Top-Downwards but adds rules to the grammar Bottom-Upwards. Another way to do this both Top-Downwards.\\
+This algorithm therefore makes use of a part of the same idea as Algorithm \ref{SplitThenFill}, it generates a predefined structure of the derivation tree Top-Downwards. The difference now is, that every time a node of the structure of the derivation tree has been decided on a rule is directly added to the grammar \textendash~therefore the name SplitAndFill, which is like "split for a node and then directly add a rule so that the node is then filled with at least one variable". \\
 Note that the count of rules in the grammar is dependent on the count of nodes in the derivation tree and a terminal is distributed to only one variable. Further while resolving the last recursion step (Line \ref{splitAndFillRecLastStep}) of Algorithm \ref{SplitAndFillRecursion} the start variable will be in the tip in the pyramid that always leads to $w \in L(G)$.\\
 
 \noindent
@@ -1665,11 +1672,11 @@ Note that the count of rules in the grammar is dependent on the count of nodes i
 		\KwIn{Word $w \in \Sigma^{*}$}
 		\KwOut{Set of productions $P$}
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$Sol = (P_{Sol},~v)$;~~\tcp{$P_{Sol} \subseteq P$} \label{cell}
+		$Sol = (P_{Sol},~v)$;~~\tcp{$P_{Sol} \subseteq P$} \label{splitAndFillcell}
 		$Sol = SplitAndFillRec(P,\ w,\ i_{max},\ 0)$\;
 		\Return $P_{Sol}$\;
 				\footnotetext{
-			\noindent Note: $v$ is a random element $v\in V$.
+			\noindent Line \ref{splitAndFillcell}: $v$ can be any random element $v\in V$.
 		}
 	\end{algorithm}
 }\\
@@ -1685,9 +1692,9 @@ Note that the count of rules in the grammar is dependent on the count of nodes i
 		$P = P_{in}$\;
 		\If{$i=0$}{
 			\If{terminal $w_j$ not distributed yet}{
-				\Return $(P \cup \{(v,~ w_j)\},\ v_{lhse})$\;	
+				\Return $(P \cup \{(v,~ w_j)\},\ v_{lhse})$\; \label{termDistr1}	
 			}
-			\Return $(P,\ v_{lhse})$\;	
+			\Return $(P,\ v_{lhse})$\;	\label{termDistr2}
 		}
 		$choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
 		$(P,\ v_l) = SplitAndFillRec(P,\ w,\ (m-j-1),\ j)$\label{left}\;
@@ -1695,15 +1702,15 @@ Note that the count of rules in the grammar is dependent on the count of nodes i
 		\If{$i=i_{max}$}{
 			\Return $(P \cup \{(S,~v_l v_r)\},\ S)$\; \label{splitAndFillRecLastStep}
 		}
-		\Return $(P \cup \{(v,~v_l v_r)\},\ v)$\;
+		\Return $(P \cup \{(v,~v_l v_r)\},\ v)$\; \label{SplitAndFillReturn}
 		\footnotetext{
-			\noindent Note to $v$: $v$ is a random element $v\in V$.\\
-			\noindent Note to $v_{lhse}$: There is the rule $v_{lhse}\rightarrow w_j$, i.e. $v_{lhse}$ is the variable on the left side of the one rule that has the terminal as its rhse.
+			\noindent Line \ref{termDistr1} and Line \ref{termDistr2}: There is the rule $v_{lhse}\rightarrow w_j$, then $v_{lhse}$ is the variable on the left side of the one rule that has the terminal $w_j$ as its rhse.
+			\noindent Line \ref{termDistr1} and Line \ref{SplitAndFillReturn}: $v$ is a random element $v\in V$.\\
 		}
 	\end{algorithm}
 }
 \\
-Looking at this algorithm only productions according to the tree structure are added to the grammar. For illustration purposes now, the pyramid here is also shown to reflect the immediate changes of the added rules to the pyramid. Again the predefined derivation tree structure of Figure \ref{treeStruct} is used. Starting point is always a empty grammar.
+Looking at this algorithm only productions according to the tree structure are added to the grammar. For illustration purposes now, the pyramid here is also shown to reflect the immediate changes of the added rules to the pyramid. Again the predefined derivation tree structure of Figure \ref{treeStruct} is used.
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -2194,6 +2201,7 @@ Looking at this algorithm only productions according to the tree structure are a
 	\caption{Illustration of Algorithm \ref{SplitAndFill} part 3. Filling the $Cell_{2,0}$ the rule $C \rightarrow BS$ is added.}
 	\label{IllustrationAlgorithmSplitAndFillPart3}
 \end{figure}
+\clearpage
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -2521,6 +2529,8 @@ Looking at this algorithm only productions according to the tree structure are a
 	\caption{Illustration of Algorithm \ref{SplitAndFill} part 5. Finally to fill the cell in the tip a rule must be added that has the start variable as its $lhse$ that guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added.}
 	\label{IllustrationAlgorithmSplitAndFillPart5}
 \end{figure}
+
+\clearpage
 
 \noindent
 \begin{figure} [h]

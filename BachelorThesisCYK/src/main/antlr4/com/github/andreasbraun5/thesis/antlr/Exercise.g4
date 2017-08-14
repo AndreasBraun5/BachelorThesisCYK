@@ -1,48 +1,50 @@
 grammar Exercise;
 
 exerciseDefinition: grammarDefinition NEWLINE
-                    wordDefinition RANDOM?;
+                    wordDefinition NEWLINE?;
 
-grammarDefinition: NEWLINE* varStart NEWLINE
+grammarDefinition: NEWLINE* WHITE_SPACE* varStart WHITE_SPACE* NEWLINE
                    rules;
 
-varStart: 'start:' WHITE_SPACE* nonTerminal SEMICOLON;
+varStart: START COLON WHITE_SPACE* nonTerminal SEMICOLON;
 
-rules: 'rules:' WHITE_SPACE* OPEN_BRACE_CURLY NEWLINE
+rules: RULES COLON WHITE_SPACE* OPEN_BRACE_CURLY NEWLINE
                     (singleRule NEWLINE)+
                  CLOSE_BRACE_CURLY SEMICOLON;
 
 singleRule: WHITE_SPACE* nonTerminal // A
-      WHITE_SPACE* '->' WHITE_SPACE* // ->
+      WHITE_SPACE* ARROW WHITE_SPACE* // ->
       terminal WHITE_SPACE* // a
     |
       WHITE_SPACE* nonTerminal // A
-      WHITE_SPACE* '->' WHITE_SPACE* // ->
+      WHITE_SPACE* ARROW WHITE_SPACE* // ->
       nonTerminal WHITE_SPACE+ nonTerminal WHITE_SPACE*;
 
-wordDefinition: 'word:' WHITE_SPACE* terminals WHITE_SPACE* SEMICOLON;
+wordDefinition: WORD COLON WHITE_SPACE* terminals WHITE_SPACE* SEMICOLON;
 
 terminals: terminal
          |
            terminal WHITE_SPACE terminals;
 
-nonTerminal: UPPERCASE_OR_NUM+ '\''?;
-terminal: LOWER_CASE+;
+nonTerminal: UPPERCASE+ SPECIALSYMBOL?;
+terminal: LOWER_CASE_OR_NUM+;
 
-UPPERCASE_OR_NUM: ('A'..'Z');
+START: ('start');
+RULES: ('rules');
+ARROW: ('->');
+WORD: ('word');
 
-LOWER_CASE: ('a'..'z' | '0'..'9');
+UPPERCASE: ('A'..'Z');
+LOWER_CASE_OR_NUM: ('a'..'z' | '0'..'9');
 
 OPEN_BRACE: '(';
 CLOSE_BRACE: ')';
-
-SEMICOLON : ';';
-
 OPEN_BRACE_CURLY: '{';
 CLOSE_BRACE_CURLY: '}';
 
+SEMICOLON : ';';
+COLON: (':');
 WHITE_SPACE: ' ' | '\t';
-
 NEWLINE: '\n';
 
-RANDOM: 'a'..'z' | 'A'..'Z' | '0'..'9' | '\n' | ',' | '[' | ']' | '=' | ' ' | '\t';
+SPECIALSYMBOL: ('\'');

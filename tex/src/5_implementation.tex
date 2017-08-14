@@ -10,7 +10,7 @@ The tool consists out of four major elements as marked in Figure \ref{CYKInstanc
 	\item Area 3 allows to automatically create suitable exercises to choose from.
 	\item In area 4 the chosen exercise can be modified as wanted.
 \end{itemize}
-\begin{figure} [h]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{abb/CYKInstancesGenerator.pdf}
 	\caption{CYK Instances Generator}
@@ -339,16 +339,31 @@ To be able to find suitable exercises that can be displayed in area 3 of the too
 
 \noindent The score of each $exercise$ is normalized to the maximum possible points so that the maximum score is 1.0.\\
 $score = (\#Parameter\cdot10)^{-1}\cdot\sum\limits_{parameter}^{}points$
+\pagebreak
 
 \subsection{Parsing input with ANTLR}
+The first step here is the tokenization of the input. After that with the help of the Grammar seen below a abstract syntax tree is generated out of which intern Java objects can parsed.\\
+The used grammar is a LL(k) grammar whereas each derivation step can be distinctly identified through the next k tokens.\\
+ANTLR has been used because it enables a clear separation between the language definition and the object handling in the code.\\
+In Figure \ref{antlrGrammarRules} the rules of the grammar are seen and in Figure \ref{antlrGrammarTokens} its used tokens.
+\noindent
+\begin{figure} [h]
+		\centering
+		\includegraphics{abb/antrlRules.png}
+	\caption{Formal definition of the used ANTLR grammar rules.}
+	\label{antlrGrammarRules}
+\end{figure}
+\begin{figure} [h]
+	\centering
+	\includegraphics{abb/antrlTokens.png}
+	\caption{Formal definition of the used ANTLR grammar tokens.}
+	\label{antlrGrammarTokens}
+\end{figure}
 
-
-
-
-
+\pagebreak
 \subsection{Other matters}
 
-Technologies that have been used for programming are Github \cite{github} with Sourcetree \cite{sourcetree} for version control, Maven \cite{maven} for build management, IntelliJ\cite{intellij} as the IDE, ANTLR \cite{antlr} for parsing input and JavaFX Scene Builder \cite{scenebuilder} to create the GUI. \\
+Technologies that have been used for programming are Github \cite{github} with Sourcetree \cite{sourcetree} for version control, Maven \cite{maven} for build management, IntelliJ\cite{intellij} as the IDE, ANTLR \cite{antlr} with ANTLRWorks for parsing input and JavaFX Scene Builder \cite{scenebuilder} to create the GUI. \\
 
 \noindent Important used frameworks are: JUnit \cite{junit} for testing and Project Lombok \cite{lombok} to greatly reduce boilerplate code.\\
 

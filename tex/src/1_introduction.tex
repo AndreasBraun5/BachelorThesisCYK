@@ -30,16 +30,15 @@ Various implementations and small online tools of the Cocke-Younger-Kasami (CYK)
 	\item $(V^2 \cup\ \Sigma)^{*}=\{a, b, ...\} \cup \{AA, AB, BB, BA, BS, AC, ... \}$
 \end{itemize}
 A rule consists out of a left hand side element (lhse) and a right hand side element (rhse). Example: $lhse \longrightarrow rhse$ applied to $A \longrightarrow c$ and $B \longrightarrow AC$ means that $A$ and $B$ are a $lhse$ and $c$ and $AC$ are a $rhse$.
-\begin{DefGrey}\label{wordLanguage} \textbf{Word $w$ and language $L(G)$}\\
-	Word $w$ and language $L(G)$:
+\begin{DefGrey}\label{wordLanguage} \textbf{Word $w$ and language $L(G)$}
 	\begin{itemize}
-		\item $w \in \Sigma^* = \{w_0,~w_1,~...,~w_j\}$.
-		\item A language $L(G)$ over an alphabet $\Sigma$ is a set of words over $\Sigma$ .
+		\item Word: $w \in \Sigma^* = \{w_0,~w_1,~...,~w_j\}$.
+		\item Language: $L(G)$ over an alphabet $\Sigma$ is a set of words over $\Sigma$ .
 	\end{itemize}
 \end{DefGrey}
 \noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, whereas a $Cell$ is again a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further reasoning behind this example see chapter \ref{dataStructurePyramid}) 
 \subsection{General approaches} \label{approaches}
-Two basic approaches, that may help finding a good algorithm are explained informally \cite{Duda.2012}.
+Two basic approaches that may help finding a good algorithm are explained informally \cite{Duda.2012}.
 \subsubsection{Forward Problem \& Backward Problem}
 The Forward Problem and the Backward Problem are two ways as how to determine if $w \in L(G)$.	
 \begin{DefGrey}
@@ -53,23 +52,22 @@ The Forward Problem and the Backward Problem are two ways as how to determine if
 	Input: $w$ and a grammar $G$ in CNF. \\
 	Output: $w \subseteq L(G) \Longrightarrow$ derivation $d$.
 \end{DefGrey}
-\noindent If you are given a word $w$ and want to determine if it is element of $L(G)$, it is called Backward Problem or parsing.
+\noindent If you are given a word $w$ and want to determine if it is element of $L(G)$, it is called Backward Problem or parsing.The CYK does parsing and is the focus here.
 \subsubsection{Parsing Bottom-Up \& Top-Down}
 There are again two ways to classify the approach of parsing.
 \begin{DefGrey}
 	\textbf{Bottom-Up parsing} \\
 	 Bottom-Up parsing means to start parsing from the leaves up to the root node.
 \end{DefGrey}
-\noindent "Bottom-Up parsing is the general method used in the Cocke-Younger-Kasami(CYK) algorithm, which fills a parse table from the "bottom up""\cite{Duda.2012}.
+\noindent "Bottom-Up parsing is the general method used in the Cocke-Younger-Kasami (CYK) algorithm, which fills a parse table from the "bottom up""\cite{Duda.2012}.
 \begin{DefGrey}
 	\textbf{Top-Down parsing} \\
-	 Top-Down parsing means to start parsing from the node down to the leaves.
+	 Top-Down parsing means to start parsing from the root node down to the leaves.
 \end{DefGrey}
-\noindent "Top-Down parsing starts with the root node and successively applies productions from $P$, with the goal of finding a derivation of the test sentence $w$." \cite{Duda.2012} (The so called test sentence is synonymous to an word $w$.)
-Reasonably criteria to guide the choice of which rewrite rule to apply could include to begin the parsing at the first (left) or last (right) character of the word $w$ \cite{Duda.2012}.
+\noindent "Top-Down parsing starts with the root node and successively applies productions from $P$, with the goal of finding a derivation of the test sentence $w$." \cite{Duda.2012} (The so called test sentence is synonymous to an word $w$.) \cite{Duda.2012}.
 
 \subsection{Data Structure Pyramid} \label{dataStructurePyramid}
-To be able to describe the way of working of the different algorithms easier the help data structure $Pyramid$ will be defined \textendash~note that $Pyramid$ starts with upper case and therefore is a set). But before that:
+To be able to describe the way of working of the different algorithms easier the help data structure $Pyramid$ will be defined \textendash~note that $Pyramid$ starts with upper case and therefore is a set. But before that:
 \begin{DefGrey} \textbf{$[i, j]$} \\
 	$[i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}_{\geq 0}$.
 \end{DefGrey}
@@ -81,7 +79,7 @@ To be able to describe the way of working of the different algorithms easier the
 \begin{DefGrey} \textbf{$Pyramid$} \\
 	$Pyramid :=\{ Cell_{i,j}\ |\ i \in [0,\ i_{max}],\  j \in [0,\ j_{max,i}],\ i_{max} = |w|-1,~j_{max,i} = i_{max} -i\}$.
 \end{DefGrey}
-\noindent The following is the visual representation of a $Pyramid$ that additionally has written the word $w$ above it:
+\noindent The following is the visual representation of a $Pyramid$.
 \newcommand{\boxpyramid}[1]{
 	\fontsize{5}{12}\selectfont{#1}
 }
@@ -229,10 +227,10 @@ To be able to describe the way of working of the different algorithms easier the
 		\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
 		\end{tikzpicture}
 	}
-\caption{Visual representation of a $Pyramid$ with the word $w$ above it.}
+\caption{Visual representation of a $Pyramid$ with the word $w$ written above it.}
 \end{figure}
 \begin{DefGrey} \textbf{$CellDown,~CellUpperLeft~and~CellUpperRight$} \\
-	Let there be a $Cell_{i,j}$ then the following is true:
+	For every $Cell_{i,j}$ with $i>0$ the following is true:
 	\begin{itemize}
 		\item $CellDown = Cell_{i,j}$.
 		\item $CellUpperLeft = Cell_{i-1,j}$.
@@ -240,7 +238,7 @@ To be able to describe the way of working of the different algorithms easier the
 	\end{itemize}
 \end{DefGrey}
 \subsection{ Cocke-Younger-Kasami Algorithm}
-The Cocke-Younger-Kasami Algorithm (CYK) has been developed independently in the 1960s by Itiroo Sakai \cite{Sakai.1962}, John Cocke and Jacob Schwartz \cite{JohnCockeJacobT.Schwartz.1970}, Tadao Kasami \cite{Kasami.1966} and Daniel Younger \cite{YOUNGER.1967} that uses the principle of dynamic programming.\\
+The Cocke-Younger-Kasami Algorithm (CYK) has been developed independently in the 1960s by Itiroo Sakai \cite{Sakai.1962}, John Cocke and Jacob Schwartz \cite{JohnCockeJacobT.Schwartz.1970}, Tadao Kasami \cite{Kasami.1966} and Daniel Younger \cite{YOUNGER.1967} that uses the principle of dynamic programming\cite{wikiCYK}.\\
 The description of the algorithm follows \cite{Hoffmann.2015} adjusted to the help data structure $Pyramid$. \\
 
 \noindent \frame{
@@ -252,25 +250,24 @@ The description of the algorithm follows \cite{Hoffmann.2015} adjusted to the he
 		\KwOut{true $\Leftrightarrow w\in L(G)$}
 		$Pyramid = \emptyset $\;
 		\For{$j:=0 \to i_{max}$}{ \label{row1}
-			$Pyramid \cup Cell_{0,j} = \{(X,j)~|~X \longrightarrow w_j\}$
+			$Pyramid~\cup  = \{(X,j+1)~|~X \longrightarrow w_j\}$; \tcp{Fills cells $Cell_{0,j}$}
 		}
 		\For{$i:=1 \to i_{max}$}{ \label{rows}
 			\For{$j:=0 \to j_{max,i}$}{ \label{eachCell}
-				\For{$k:=i-1 \to 0$}{ \label{cellCombs}
-					$Pyramid \cup Cell_{i,j} =  \{X\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$\;
+				\For{$k:=i-1 \to 0$}{ \label{cykCellCombs}
+					$Pyramid~\cup \{(X,k)\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$; \tcp{Fills cells $Cell_{i,j}$ ??k?? XXX}
 				}
 			}
 		}
-		$wInL = false$\;
-		\If{$(S,i) \in Cell_{i_{max},0}$}{
-			$wInL = true$\; \label{true}
+		\If{$(S,i) \in Cell_{i_{max},0}$}{ 
+			\Return $true$; \label{true}
 		}
-		\Return $wInL$;
+		\Return $false$;
 		\footnotetext{ 
 		Line \ref{row1}: First row.\\
 		Line \ref{rows}: All rows except the first. \\
 		Line \ref{eachCell}: All cells in each row. \\
-		Line \ref{cellCombs}: All possible cell combinations for each cell. \\
+		Line \ref{cykCellCombs}: All possible cell combinations for each cell. \\
 		Line \ref{true}: True iff $Cell_{i_{max},0}$ contains the start variable.
 		}
 	\end{algorithm}
@@ -278,29 +275,29 @@ The description of the algorithm follows \cite{Hoffmann.2015} adjusted to the he
 
 
 \subsection{Success Rates}
-\noindent Success Rates ($SR$) are used to compare the algorithms accounting to their performance of the different requirements. $N \in  \mathbb{N}$ is the count of all generated grammars of the examined algorithm.\\
+\noindent The Success Rates ($SR$) are used to compare the algorithms accounting to their performance to the different requirements. $N \in  \mathbb{N}^+$ is the sample size of all generated grammars of the examined algorithm.\\
 
 \noindent\textbf{Success Rate:}
-An generated $exercise$ contributes to the Success Rate ($SR$) iff it contributes to the SR-Producibility, to the SR-Cardinality-Rules and to the SR-Pyramid at the same time.\\
-It holds: $SR = n / N$, whereas $n$ is the count of $exercises$ that fulfil the requirements in this case.\\
+A generated $exercise$ contributes to the Success Rate ($SR$) iff it contributes to the SR-Producibility, to the SR-Cardinality-Rules and to the SR-Pyramid at the same time.\\
+It holds: $SR = n / N$, whereas $n$ is the count of $exercises$ that fulfil the requirement above in this case.\\
 
 \noindent\textbf{Success Rate Producibility:}
-An generated $exercise$ contributes to the SR-Producibility iff the CYK algorithm's output (Algorithm \ref{CYK}) is true, in other words $w\in L(G)$.\\
+A generated $exercise$ contributes to the SR-Producibility iff the CYK algorithm's output (Algorithm \ref{CYK}) is true or in other words $w\in L(G)$.\\
 It holds: SR-Producibility $ = p / N$, whereas $p$ is the count of $exercises$ that fulfil the requirement.\\
 
 \noindent\textbf{Success Rate Cardinality-Rules}
-An generated $exercise$ contributes to the SR-Cardinality-Rules iff the grammar has got less than a certain amount of productions.\\
-It is true: SR-Cardinality-Rules $ = cr / N$, whereas $cr$ is the count of $exercises$ that fulfil this requirement.\\
+A generated $exercise$ contributes to the SR-Cardinality-Rules iff the grammar has got less than a certain amount of productions.\\
+It is true: SR-Cardinality-Rules $ = cr / N$, whereas $cr$ is the count of $exercises$.\\
 
 \noindent\textbf{Success Rate Pyramid}
-An generated $exercise$ contributes to the SR-Pyramid iff the following conditions are met:
+A generated $exercise$ contributes to the SR-Pyramid iff the following conditions are met:
 \begin{enumerate} [noitemsep]
 	\item At least one cell forces a right cell combination.
-	\item There are less than a certain amount of variables in the entire pyramid, per default 100.
-	\item There are less than a certain amount of variables in each cell of the pyramid, per default 3.
+	\item There are less than 100 variables in the entire pyramid.
+	\item There are less than 3 variables in each cell of the pyramid.
 \end{enumerate}
-It holds: SR-Pyramid $= p / N$, whereas $p$ is the count of $exercises$ that fulfil the requirements above.\\
-While checking 1., 2. and 3. a simplification of $Cell_{i,j}$ is done:\\ $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \} \longrightarrow Cell_{i,j} \subseteq V$ See the following example:
+It holds: SR-Pyramid $= p / N$, whereas $p$ is the count of $exercises$ that fulfil the three requirements above.\\
+While checking 1., 2. and 3. a simplification of $Cell_{i,j}$ is done:\\ $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \} \longrightarrow Cell_{i,j} \subseteq V$, see the following example:
 \noindent 
 \begin{figure}[h]
 	\begin{minipage}{6in}
@@ -576,26 +573,24 @@ While checking 1., 2. and 3. a simplification of $Cell_{i,j}$ is done:\\ $Cell_{
 		\label{checkForceCombinationPerCell}
 		\SetAlgoLined
 		\KwIn{$ CellDown,~CellUpperLeft,~CellUpperRight \subseteq V,~P \subseteq V \times (V^{2} \cup \Sigma) $ }
-		\KwOut{$true \iff at~least~one~variable\in CellDown~forces$}
+		\KwOut{$true \iff |VarsForcing| > 0$}
 		$VarsForcing = \emptyset$;~~\tcp{$VarsForcing \subseteq V$} 
 		$VarComp = \{xy\ |\ x \in CellUpperLeft\ \wedge\ y \in CellUpperRight \}$\;
 		\ForEach{$v \in CellDown$}{
-			$Prods = \{p\ |\ p \in P\ \wedge\ p=(v_1,rhse_1)\ \wedge\ v_1=v \}$\; \label{prods}
-			$Rhses = \{rhse\ |\ p \in Prods\ \wedge\ p=(v_1,rhse_1)\ \wedge\ rhse_1=rhse\} $\; \label{rhses}
+			$Rhses = \{rhse\ |\ p \in P\ \wedge\ p=(v,rhse)\} $\; \label{rhses}
 			\If{$Rhses \nsubseteq VarComp$}{ \label{forces}
 				$VarsForcing = VarsForcing \cup v$\;
 			}			
 		}
 		\Return $|VarsForcing| > 0$\;
 		\footnotetext{
-			Line \ref{prods}: Get all rules of $P$ that have $v$ on their left side.\\
-			Line \ref{rhses}: Get the rhse of each element of $Prods$.\\
+			Line \ref{rhses}: Get all rules of $P$ that have $v$ as the $lhse$ and add their $rhse$ to $Rhses$.\\
 			Line \ref{forces}: If no $rhse \in Rhse$ can be found in VarComp, then this variables forces, concluding that this cell as a hole forces.
 		}
 	\end{algorithm}
 }
 
-
+\pagebreak
 \noindent As seen in Figure \ref{foreCombination} the variables in $Cell_{2,0}$ and in $Cell_{2,1}$ force each a right cell combination and in both cases $VarComp=\{SS\}$. The variable $v=C$ doesn't have $SS$ as one of its rhses. Therefore the variable $C$ forces.
 $Cell_{3,0}$ doesn't force because $VarComp=\{CC\}$ and the variable $v=S$ has $CC$ as its rhse. Remember that cells with index $i\leq1$ can't force at all.
 \noindent
@@ -709,8 +704,8 @@ $Cell_{3,0}$ doesn't force because $VarComp=\{CC\}$ and the variable $v=S$ has $
 			}
 		}
 	\end{minipage}
-	\caption{Application of Algorithm \ref{checkForceCombinationPerCell} onto a entire pyramid.}
+	\caption{Application of Algorithm \ref{checkForceCombinationPerCell} onto an entire pyramid.}
 	\label{foreCombination}
 \end{figure}\\
-
+\clearpage
 \pagebreak

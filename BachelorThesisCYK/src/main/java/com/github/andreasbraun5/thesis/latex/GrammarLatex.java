@@ -28,7 +28,7 @@ public class GrammarLatex {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("\\begin{center} \n\\begin{tabular}{l}");
+        str.append("\\begin{center} \n\\begin{tabular}{l}\n");
         productionsMap.forEach((variable, productions) -> {
             str.append("$").append(variable.getLhse()).append("\\rightarrow ");
             productionsMap.get(variable).forEach(production -> {

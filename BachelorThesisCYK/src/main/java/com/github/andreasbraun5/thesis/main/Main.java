@@ -108,7 +108,25 @@ public class Main {
         Util.writeResultToTxtFile(resultGrammarGeneratorSplitAndFill);
 
     }
+    /*
+    public static void calculateMaximumSuccessRate(Algorithmus alg, int minVars, int maxVars,
+                                              int minTerms, int maxTerms,
+                                              int minSizeWord, int maxSizeWord) {
 
+        for(int varCount = minVars, varCount <= maxVars; ++varCount) {
+            for(int termCount = minTerms, termCount <= maxTerms; ++termCount) {
+                for(int wordSize = minSizeWord; wordSize <= maxSizeWord; ++wordSize) {
+
+                }
+            }
+        }
+
+    }
+
+    public static void calculateMaxSuccessRate1(Algorithmus alg, int varCount, int termCount, int wordSize) {
+        for()
+    }
+    */
     public static void runCmd(ExecutorService executorService, String cmd) throws IOException, ExecutionException, InterruptedException {
         LOGGER.info("running cmd: " + cmd);
 
