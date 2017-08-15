@@ -3,7 +3,6 @@ package com.github.andreasbraun5.thesis.main;
 import com.github.andreasbraun5.thesis.antlr.ExerciseStringConverter;
 import com.github.andreasbraun5.thesis.exception.TreeLatexRuntimeException;
 import com.github.andreasbraun5.thesis.exercise.Exercise;
-import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSplitThenFill;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
@@ -148,7 +147,7 @@ public class Controller implements Initializable {
         modifyExerciseSample = textToModifyExerciseSample(modify.getText());
         Word word = modifyExerciseSample.getPyramid().getWord();
         Grammar grammar = modifyExerciseSample.getGrammar();
-        if (!terminalsMath(word, grammar)) {
+        if (!terminalsMatch(word, grammar)) {
             statusOutput.setText(statusOutput.getText() + "\nTerminals of word and\ngrammar don't match.");
             throw new RuntimeException("\nTerminals of word and\\grammar don't match.");
         }
@@ -254,8 +253,10 @@ public class Controller implements Initializable {
         return true;
     }
 
-
-    private boolean terminalsMath(Word word, Grammar grammar) {
+    /**
+     * All terminals from the word must be included in the grammar but not otherwise.
+     */
+    private boolean terminalsMatch(Word word, Grammar grammar) {
         Set<Terminal> wordTerms = new HashSet<>();
         Set<Terminal> grammarTerms = new HashSet<>();
         wordTerms.addAll(word.getTerminals());

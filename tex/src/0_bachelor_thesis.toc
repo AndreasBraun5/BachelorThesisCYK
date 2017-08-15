@@ -16,12 +16,12 @@
 \contentsline {subsection}{\numberline {2.5}SplitThenFill}{20}{subsection.2.5}
 \contentsline {subsection}{\numberline {2.6}SplitAndFill}{24}{subsection.2.6}
 \contentsline {subsection}{\numberline {2.7}Analysis of Algorithms}{29}{subsection.2.7}
-\contentsline {subsubsection}{\numberline {2.7.1}Comparison of Success Rates}{29}{subsubsection.2.7.1}
-\contentsline {subsubsection}{\numberline {2.7.2}Problem space exploration}{30}{subsubsection.2.7.2}
-\contentsline {section}{\numberline {3}GUI Tool: CYK Instances Generator}{31}{section.3}
-\contentsline {subsection}{\numberline {3.1}Overview GUI}{31}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Working with the program}{31}{subsubsection.3.1.1}
-\contentsline {subsection}{\numberline {3.2}Exam Exercises}{32}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Scoring Model}{33}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Parsing input with ANTLR}{34}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Other matters}{35}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {2.7.1}Problem space exploration}{29}{subsubsection.2.7.1}
+\contentsline {subsubsection}{\numberline {2.7.2}Comparison of Success Rates}{30}{subsubsection.2.7.2}
+\contentsline {section}{\numberline {3}GUI Tool: CYK Instances Generator}{32}{section.3}
+\contentsline {subsection}{\numberline {3.1}Overview GUI}{32}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Working with the program}{32}{subsubsection.3.1.1}
+\contentsline {subsection}{\numberline {3.2}Exam Exercises}{33}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Scoring Model}{34}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Parsing input with ANTLR}{35}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Other matters}{36}{subsection.3.5}

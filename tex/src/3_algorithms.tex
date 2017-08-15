@@ -2362,7 +2362,7 @@ Looking at this algorithm only productions according to the tree structure are a
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitAndFill} part 4. In analogous manner the other cells are filled. $Cell_{03}$ is responsible for the rule $C \rightarrow c$, $Cell_{0,4}$ doesn't cause a rule because again there already is the rule $B \rightarrow b$, $Cell_{1,3}$ contributes for the rule $B \rightarrow CB$, $Cell_{0,5}$ doesn't add a rule because of $C\rightarrow c$ and to fill $Cell_{2,3}$ the rule $A \rightarrow BC$ is added.}
+	\caption{Illustration of Algorithm \ref{SplitAndFill} part 4. In analogous manner the other cells are filled. $Cell_{0,3}$ is responsible for the rule $C \rightarrow c$, $Cell_{0,4}$ doesn't cause a rule because again there already is the rule $B \rightarrow b$, $Cell_{1,3}$ contributes for the rule $B \rightarrow CB$, $Cell_{0,5}$ doesn't add a rule because of $C\rightarrow c$ and to fill $Cell_{2,3}$ the rule $A \rightarrow BC$ is added.}
 	\label{IllustrationAlgorithmSplitAndFillPart4}
 \end{figure}
 
@@ -2701,20 +2701,38 @@ Looking at this algorithm only productions according to the tree structure are a
 \clearpage
 \pagebreak
 \subsection{Analysis of Algorithms} \label{AnalysisOfAlgorithms}
-While analysing the algorithms there are some settings to be considered:
-\begin{itemize} [noitemsep]
-	\item \textbf{variables= [A, B, S, C]}
-	\item \textbf{terminals= [a, b]}
-	\item maxSumOfProductions=10
-	\item minRightCellCombinationsForced=1
-	\item maxNumberOfVarsPerCell=3
-	\item maxSumOfVarsInPyramid=100
-	\item \textbf{sizeOfWord=10}
-	\item minValueCompoundVariablesAreAddedTo=0 (=1 in case of Algorithm SplitThenFill and Algorithm SplitAndFill) 
-	\item minValueTerminalsAreAddedTo=1
-	\item maxValueCompoundVariablesAreAddedTo=2 (=1 in case of Algorithm SplitThenFill and Algorithm SplitAndFill) 
-	\item maxValueTerminalsAreAddedTo=1
-\end{itemize} 
+While analysing the algorithms there are some settings to be considered. Each shown value is the default value for its parameter.\\
+Input Values of the program:
+\begin{itemize}[noitemsep,nolistsep]
+	\item variables = [A, B, S, C]
+	\item terminals = [a, b]
+	\item sizeOfWord = 10
+\end{itemize}
+
+\noindent Specified parameters that decide over the SR:
+\begin{itemize}[noitemsep,nolistsep]
+	\item maxSumOfProductions = 10
+	\item minRightCellCombinationsForced = 1
+	\item maxNumberOfVarsPerCell = 3
+	\item maxSumOfVarsInPyramid = 100
+\end{itemize}
+
+\noindent Intern algorithm dependent parameters:
+\begin{itemize}[noitemsep,nolistsep]
+	\item minValueCompoundVariablesAreAddedTo = 0 \\(=1 in case of Algorithm SplitThenFill and Algorithm SplitAndFill) 
+	\item minValueTerminalsAreAddedTo = 1
+	\item maxValueCompoundVariablesAreAddedTo = 2 \\(=1 in case of Algorithm SplitThenFill and Algorithm SplitAndFill) 
+	\item maxValueTerminalsAreAddedTo = 1
+\end{itemize}
+The settings above for the input values and the specific SR parameters that have been decided on because they typical while designing a exam $exercise$.
+
+\subsubsection{Problem space exploration}
+The problem space or input parameter space in itself is a n-dimensional hypercube \\ (n = \#parametersAbove = 3 + 4 + 4 = 11). \\
+The No Free Lunch theorem states that all algorithms have the same performance averaged over the entire problem space.\\
+But now the to be analysed area of our problem space is restricted to exam $exercise$ relevant parameters (therefore the fixed settings from before are needed).\\
+Within that predefined area now one can find the optimal settings for the algorithm dependent parameters and can use these to finally compare them.\\
+During the comparison of the algorithms the n-dimensional problem spaced is reduced to a single scalar value, the Success Rate.\\
+Because of the restricted problem space brute forcing is used to find the best parameter settings.\\
 
 \subsubsection{Comparison of Success Rates}
 
@@ -2731,7 +2749,7 @@ By comparing Table \ref{ComparisionRootNotEmpty} and Table \ref{ComparisionMoreT
 		SplitThenFill                   &23\%    &39\%                                                           &97\%                                                              &68\%      &78\%                                                        &91\%                                                         &93\%                                                           \\ \hline
 		SplitAndFill                    &11\%      &100\%                                                           &70\%                                                              &14\%      &79\%                                                        &34\%                                                         &22\%                                                           \\ \hline
 	\end{tabular}
-	\caption{SRs of the algorithms with stopping criteria that the root is not empty.}
+	\caption{SRs of the algorithms with stopping criteria that the root is not empty (N = 10000).}
 	\label{ComparisionRootNotEmpty}
 \end{table}
 In both cases the SplitThenFill algorithm is the one with the highest SR.
@@ -2748,19 +2766,9 @@ In both cases the SplitThenFill algorithm is the one with the highest SR.
 		SplitThenFill                   &23\%    &40\%                                                           &97\%                                                              &66\%      &78\%                                                        &90\%                                                         &92\%                                                           \\ \hline
 		SplitAndFill                    &10\%      &100\%                                                           &69\%                                                              &14\%      &78\%                                                        &36\%                                                         &20\%                                                           \\ \hline
 	\end{tabular}
-	\caption{SRs of the algorithms with stopping criteria that half of the parsing table is not empty.}
+	\caption{SRs of the algorithms with stopping criteria that half of the parsing table is not empty (N = 10000).}
 	\label{ComparisionMoreThanHalf}
 \end{table}
-\subsubsection{Problem space exploration}
-Further investigation will be done with the parameters:
-\begin{itemize} [noitemsep]
-	\item \textbf{variables= [A, B, S, C]}
-	\item \textbf{terminals= [a, b]}
-	\item \textbf{sizeOfWord=10}
-\end{itemize} 
 
-
-Finding of ideal parameter for each algorithm.\\
-Analysis of the problem space possibly visualized in heat maps.
 \clearpage
 \pagebreak
