@@ -10,9 +10,9 @@
 \BOOKMARK [2][-]{subsection.1.6}{1.6 Success Rates}{section.1}% 10
 \BOOKMARK [1][-]{section.2}{2 Algorithms}{}% 11
 \BOOKMARK [2][-]{subsection.2.1}{2.1 Sub modules}{section.2}% 12
-\BOOKMARK [2][-]{subsection.2.2}{2.2 DiceRollOnlyCYK}{section.2}% 13
-\BOOKMARK [2][-]{subsection.2.3}{2.3 BottomUpDiceRollVar1}{section.2}% 14
-\BOOKMARK [2][-]{subsection.2.4}{2.4 BottomUpDiceRollVar2}{section.2}% 15
+\BOOKMARK [2][-]{subsection.2.2}{2.2 Dice rolling the distributions only}{section.2}% 13
+\BOOKMARK [2][-]{subsection.2.3}{2.3 Dice rolling and Bottom-Up approach variant 1}{section.2}% 14
+\BOOKMARK [2][-]{subsection.2.4}{2.4 Dice rolling and Bottom-Up approach variant 2}{section.2}% 15
 \BOOKMARK [2][-]{subsection.2.5}{2.5 SplitThenFill}{section.2}% 16
 \BOOKMARK [2][-]{subsection.2.6}{2.6 SplitAndFill}{section.2}% 17
 \BOOKMARK [2][-]{subsection.2.7}{2.7 Analysis of Algorithms}{section.2}% 18

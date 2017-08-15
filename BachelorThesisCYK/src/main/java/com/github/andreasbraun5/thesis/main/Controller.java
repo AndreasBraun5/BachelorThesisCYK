@@ -113,14 +113,15 @@ public class Controller implements Initializable {
 
     public void createNew(MouseEvent mouseEvent) throws IOException {
         int countGeneratedGrammarsPerWord = 20;
-        int countDifferentWords = 20;
+        int countDifferentWords = 16;
         ResultCalculator resultCalculator = ResultCalculator.builder().
                 countDifferentWords(countDifferentWords).
                 countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
 
         GrammarProperties grammarProperties = new GrammarProperties(VariableStart.of("S"), getVariables(), getTerminals());
+        // TODO why ?
         if (this.getWordLength() < 4) {
-            statusOutput.setText(statusOutput.getText() + "\nWord length greater 3 needed.");
+            statusOutput.setText(statusOutput.getText() + "\nWord length greater 4 needed.");
             return;
         }
         if (this.getWordLength() > 20) {

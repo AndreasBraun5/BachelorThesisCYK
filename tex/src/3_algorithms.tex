@@ -5,7 +5,7 @@
 Sub modules are parts of the algorithms that are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should be explained in more detail for a better understanding of the way of working of algorithms in Chapter \ref{diceRollOnlyCYK}ff.\\
 
 \noindent \textbf{Distribute$(\Sigma,\ V) $ \circled{A} and Distribute$(V^2,\ V)$ \circled{B}:}\\
-The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. While distributing the terminals there exists at least one rule for every terminal used in the word $w$. The specifics of how they are distributed are the same in both cases as described in the following algorithm: \\
+The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. But in both cases a uniform random subset of the $Rhse$ is taken and again uniform randomly distributed over the set of available variables $V$. While distributing the terminals there exists at least one rule for every terminal used in the word $w$. The specifics of how they are distributed are described in the following algorithm: \\
 
 \noindent
 \frame{
@@ -25,13 +25,10 @@ The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and
 } \\
 
 \noindent \textbf{Stopping Criteria \circled{C}:}\\
-Two kinds of \circled{C} have been used. One is that it is true iff more than half of the pyramid cells are not empty and the other one is that there is at least one variable in the tip of the pyramid. Both stopping criteria are compared shortly in Chapter \ref{AnalysisOfAlgorithms}.
-
-It is to be taken in consideration that the latter is somewhat dependent on the count possible variables as seen in [XXX] (chapter problem space analysis). \\
+Two kinds of stopping criteria have been used to determine if a algorithm terminates early on. One is that it stops iff more than half of the pyramid cells are not empty any more and the other one is that there is at least one variable in the tip of the pyramid. Both stopping criteria are compared in short in Chapter \ref{AnalysisOfAlgorithms}. \\
 
 \noindent \textbf{CalculateSubsetForCell(Pyramid, i, j) \circled{D}:}\\
-This procedure works kind of analogous from Line 7 to Line 9 of the CYK algorithm. 
-For one $Cell_{i,j}$ every possible cell combination is looked at, i.e. if a rule like $lhse \rightarrow cs$ with $cs \in CellSet$ is added then automatically $Cell_{i,j}$ won't be empty any more.\\
+This procedure is needed to determine all possible compound variables out of all possible cell combinations for one specific cell. It works kind of analogous from Line 7 to Line 9 of the CYK algorithm (Algorithm \ref{CYK}). If now for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \in CellSet~(Line~\ref{cellSet})$ is added then automatically $Cell_{i,j}$ won't be empty any more.\\
 
 \noindent \frame{
 	\begin{algorithm}[H] %or another one check
@@ -42,13 +39,13 @@ For one $Cell_{i,j}$ every possible cell combination is looked at, i.e. if a rul
 		\KwOut{$CellSet \subseteq V^2$}
 		$CellSet=\emptyset$\;
 		\For{$k:=i-1 \to 0$}{ \label{cellCombs}
-			$CellSet \cup \{YZ\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$\;
+			$CellSet \cup \{YZ\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$\; \label{cellSet}
 		}
 		\Return $CellSet$;
 		
 	\end{algorithm}
 }
-In the following situation a rule should be added while using Algorithm \ref{CalculateSubsetForCell}:
+In the following situation a rule is be added to $Cell_{3,0}$ while using Algorithm \ref{CalculateSubsetForCell}.
 \noindent
 \begin{figure}[h]
 	\begin{minipage}{6in}
@@ -163,13 +160,13 @@ In the following situation a rule should be added while using Algorithm \ref{Cal
 			}
 		}
 	\end{minipage}
-	\caption{Example of Algorithm \ref{CalculateSubsetForCell} while applying it on $Cell_{3,0}$.}
+	\caption{Example of Algorithm \ref{CalculateSubsetForCell} while applying it on $Cell_{3,0}$ via adding the rule $B \rightarrow SC$.}
 \end{figure}\\
 The calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ is from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textcolor{gray}{\textbf{B $\rightarrow$ SC}} has been added and now $(B,2)$ is element of $Cell_{3,0}$.\\
 
 \noindent \textbf{Choose one xy from (xy,i) $\in$ RowSet uniform randomly with probability depending on row i \circled{E} :}\\
 There is the set $RowSet \subseteq \{(xy,i)\ |\ x,y \in V \wedge i \in \mathbb{N} \}$ and one xy is chosen out of it as following:
-Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be merged to its lowest $i$, as following: $RowSet = \{(AB,3),~(AB,1),~(AB,5),~... \}$ will become $RowSet = \{(AB,1),~... \}$. Afterwards all elements of $RowSet$ will be placed in the $RowMultiSet$ that  can contain multiple equivalent elements. Now each element of $RowMultiSet$ will be weighted according to their $i$. That means that elements like $(AB,1)$ will only occur one time though elements like $(BC,3)$ will occur three times and so on: $RowMultiSet = \{(AB,1),~(BC,3),~...\}$ becomes $RowMultiSet = \{(AB,1),~(BC,3),~(BC,3),~(BC,3),~...\}$. Now one element will be uniform randomly picked out of this weighted $RowMultiSet$ like $xy = BC$.\\
+Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be merged to its lowest $i$, as following: $RowSet = \{(AB,3),~(AB,1),~(AB,5),~... \}$ will become $RowSet = \{(AB,1),~... \}$. Afterwards all elements of $RowSet$ will be placed in the $RowMultiSet$ that  can contain multiple equivalent elements. Now each element of $RowMultiSet$ will be weighted according to their $i$. That means that elements like $(AB,1)$ will only occur one time though elements like $(BC,3)$ will occur three times and so on: $RowMultiSet = \{(AB,1),~(BC,3),~...\}$ becomes $RowMultiSet = \{(AB,1),~(BC,3),~(BC,3),~(BC,3),~...\}$. Now one element will be uniform randomly picked out of this weighted $RowMultiSet$ example wise $xy = BC$.\\
 
 \noindent
 \begin{figure} [h]
@@ -185,10 +182,10 @@ Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be 
 		\end{tabular} 
 		} 		
 	\end{minipage}
-	\caption{Short example of the procedure E as described before.}
+	\caption{Shortened example of the procedure E as before in the text.}
 \end{figure}
 
-\subsection{DiceRollOnlyCYK} \label{diceRollOnlyCYK}
+\subsection{Dice rolling the distributions only} \label{diceRollOnlyCYK}
 \noindent This is a primitive way of generating grammars, which will be the lower boundary while comparing the algorithms. Each future algorithm should have a higher score than this algorithm or otherwise it would be worse, than simple dice rolling the distribution of terminals (Line \ref{diceRollOnlyA}) and compound variables (Line \ref{diceRollOnlyB}). \\
 
 \noindent
@@ -225,13 +222,13 @@ A terminal $\Sigma$ is distributed to at least one $lhse$, but a compound variab
 		\end{tabular}
 	} 		
 	\end{minipage}
-	\caption{Short example of Algorithm \ref{DiceRollOnlyCYK}.}
+	\caption{Shortend overview of an example of Algorithm \ref{DiceRollOnlyCYK} as described before.}
 	\label{DiceRollONlyCYKExample}
 \end{figure}
 \pagebreak
-\subsection{BottomUpDiceRollVar1}
-This algorithm uses the Bottom-Up approach (Chapter \ref{approaches}) whereby the parsing table is filled starting from the leaves in direction to the root node.\\
-The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK} it can happen that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables. In a situation as seen below it can happen \\
+\subsection{Dice rolling and Bottom-Up approach variant 1}
+The first approach to design an algorithm will be Bottom-Up (Chapter \ref{approaches}) whereby the parsing table is filled starting from the leaves in direction to the root node.\\
+The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK} it can happen that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables. \\
 \noindent
 \begin{figure}[h]
 	\begin{minipage}{6in}
@@ -244,7 +241,6 @@ The basic idea is to guide the choice of rules while distributing the compound v
 			\end{tabular} 
 		}
 		\hspace*{.2in}
-		\raisebox{-0.5\height}{
 			\resizebox{0.5\linewidth}{!}{
 				\resizebox{\linewidth}{!}{
 					\begin{tikzpicture}[baseline]
@@ -337,15 +333,219 @@ The basic idea is to guide the choice of rules while distributing the compound v
 					\end{tikzpicture}
 				}	
 			}
+\begin{minipage}{6in}
+		\centering
+		\raisebox{-0.5\height}{
+		\begin{tabular}{l}
+			Grammar:\\
+			$A\rightarrow CC~|~a$\\
+			$B \rightarrow b$\\ 
+		\end{tabular} 
+	}
+\hspace*{.2in}
+\resizebox{0.5\linewidth}{!}{
+\resizebox{\linewidth}{!}{
+	\begin{tikzpicture}[baseline]
+	\newcommand{\myfontvars}[1]{
+		\fontsize{4.9}{12}\selectfont{#1}
+	}\newcommand{\myfontnumbering}[1]{
+		\fontsize{2.5}{12}\selectfont{#1}
+	}%Outer hull
+	%Tip of the pyramid
+	\coordinate (tip) at (2.0,-2.0);
+	\foreach \i in {0,...,4} {
+		\coordinate (\i) at (\i,0);
+	}
+	%Draw the left and right line of the pyramid pointing downwards
+	\draw (0) -- (tip) -- (4);
+	%Grid lines direction down-left to top-right
+	\coordinate (dl1) at (0.5,-0.5);
+	\coordinate (dl2) at (1.0,-1.0);
+	\coordinate (dl3) at (1.5,-1.5);
+	\draw (dl1) -- (1,0);
+	\draw (dl2) -- (2,0);
+	\draw (dl3) -- (3,0);
+	%Grid lines direction down-right to top-left
+	\coordinate (dr1) at (2.5,-1.5);
+	\coordinate (dr2) at (3.0,-1.0);
+	\coordinate (dr3) at (3.5,-0.5);
+	\draw (dr1) -- (1,0);
+	\draw (dr2) -- (2,0);
+	\draw (dr3) -- (3,0);
+	%Small lines at the top
+	\coordinate (top0) at (0.0,0.0);
+	\coordinate (top1) at (1.0,0.0);
+	\coordinate (top2) at (2.0,0.0);
+	\coordinate (top3) at (3.0,0.0);
+	\coordinate (top4) at (4.0,0.0);
+	\coordinate (topUpper0) at (0.0,0.6);
+	\coordinate (topUpper1) at (1.0,0.6);
+	\coordinate (topUpper2) at (2.0,0.6);
+	\coordinate (topUpper3) at (3.0,0.6);
+	\coordinate (topUpper4) at (4.0,0.6);
+	\draw (top0) -- (topUpper0);
+	\draw (top1) -- (topUpper1);
+	\draw (top2) -- (topUpper2);
+	\draw (top3) -- (topUpper3);
+	\draw (top4) -- (topUpper4);
+	%The string
+	\coordinate (w0) at (0.5,0.6);
+	\coordinate (w1) at (1.5,0.6);
+	\coordinate (w2) at (2.5,0.6);
+	\coordinate (w3) at (3.5,0.6);
+	\node [] at (w0) {b};
+	\node [] at (w1) {a};
+	\node [] at (w2) {a};
+	\node [] at (w3) {b};
+	% Variables in the cells
+	%cells00
+	\coordinate (center00) at (0.5,0.0);
+	\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+	\node [] at (center00) {\myfontvars{B$_{1}$}};
+	%cells01
+	\coordinate (center01) at (1.5,0.0);
+	\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+	\node [] at (center01) {\myfontvars{A$_{2}$}};
+	%cells02
+	\coordinate (center02) at (2.5,0.0);
+	\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+	\node [] at (center02) {\myfontvars{A$_{3}$}};
+	%cells03
+	\coordinate (center03) at (3.5,0.0);
+	\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+	\node [] at (center03) {\myfontvars{B$_{4}$}};
+	%cells10
+	\coordinate (center10) at (1.0,-0.5);
+	\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+	%cells11
+	\coordinate (center11) at (2.0,-0.5);
+	\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+	%cells12
+	\coordinate (center12) at (3.0,-0.5);
+	\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+	%cells20
+	\coordinate (center20) at (1.5,-1.0);
+	\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+	%cells21
+	\coordinate (center21) at (2.5,-1.0);
+	\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+	%cells30
+	\coordinate (center30) at (2.0,-1.5);
+	\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+	\end{tikzpicture}
+}	
+}
+\end{minipage}
+\begin{minipage}{6in}
+\centering
+\raisebox{-0.5\height}{
+	\begin{tabular}{l}
+		Grammar:\\
+		$A\rightarrow a$\\
+		$B \rightarrow AB~|~b$\\ 
+	\end{tabular} 
+}
+\hspace*{.2in}
+\resizebox{0.5\linewidth}{!}{
+	\resizebox{\linewidth}{!}{
+		\begin{tikzpicture}[baseline]
+		\newcommand{\myfontvars}[1]{
+			\fontsize{4.9}{12}\selectfont{#1}
+		}\newcommand{\myfontnumbering}[1]{
+			\fontsize{2.5}{12}\selectfont{#1}
+		}%Outer hull
+		%Tip of the pyramid
+		\coordinate (tip) at (2.0,-2.0);
+		\foreach \i in {0,...,4} {
+			\coordinate (\i) at (\i,0);
 		}
-	\end{minipage}
-	\caption{In between step of Algorithm \ref{BottomUpDiceRollVar1}, disregarding the already added rules.}
+		%Draw the left and right line of the pyramid pointing downwards
+		\draw (0) -- (tip) -- (4);
+		%Grid lines direction down-left to top-right
+		\coordinate (dl1) at (0.5,-0.5);
+		\coordinate (dl2) at (1.0,-1.0);
+		\coordinate (dl3) at (1.5,-1.5);
+		\draw (dl1) -- (1,0);
+		\draw (dl2) -- (2,0);
+		\draw (dl3) -- (3,0);
+		%Grid lines direction down-right to top-left
+		\coordinate (dr1) at (2.5,-1.5);
+		\coordinate (dr2) at (3.0,-1.0);
+		\coordinate (dr3) at (3.5,-0.5);
+		\draw (dr1) -- (1,0);
+		\draw (dr2) -- (2,0);
+		\draw (dr3) -- (3,0);
+		%Small lines at the top
+		\coordinate (top0) at (0.0,0.0);
+		\coordinate (top1) at (1.0,0.0);
+		\coordinate (top2) at (2.0,0.0);
+		\coordinate (top3) at (3.0,0.0);
+		\coordinate (top4) at (4.0,0.0);
+		\coordinate (topUpper0) at (0.0,0.6);
+		\coordinate (topUpper1) at (1.0,0.6);
+		\coordinate (topUpper2) at (2.0,0.6);
+		\coordinate (topUpper3) at (3.0,0.6);
+		\coordinate (topUpper4) at (4.0,0.6);
+		\draw (top0) -- (topUpper0);
+		\draw (top1) -- (topUpper1);
+		\draw (top2) -- (topUpper2);
+		\draw (top3) -- (topUpper3);
+		\draw (top4) -- (topUpper4);
+		%The string
+		\coordinate (w0) at (0.5,0.6);
+		\coordinate (w1) at (1.5,0.6);
+		\coordinate (w2) at (2.5,0.6);
+		\coordinate (w3) at (3.5,0.6);
+		\node [] at (w0) {b};
+		\node [] at (w1) {a};
+		\node [] at (w2) {a};
+		\node [] at (w3) {b};
+		% Variables in the cells
+		%cells00
+		\coordinate (center00) at (0.5,0.0);
+		\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+		\node [] at (center00) {\myfontvars{B$_{1}$}};
+		%cells01
+		\coordinate (center01) at (1.5,0.0);
+		\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+		\node [] at (center01) {\myfontvars{A$_{2}$}};
+		%cells02
+		\coordinate (center02) at (2.5,0.0);
+		\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+		\node [] at (center02) {\myfontvars{A$_{3}$}};
+		%cells03
+		\coordinate (center03) at (3.5,0.0);
+		\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+		\node [] at (center03) {\myfontvars{B$_{4}$}};
+		%cells10
+		\coordinate (center10) at (1.0,-0.5);
+		\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+		%cells11
+		\coordinate (center11) at (2.0,-0.5);
+		\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+		%cells12
+		\coordinate (center12) at (3.0,-0.5);
+		\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+		\node [] at (center12) {\myfontvars{B$_{3}$}};
+		%cells20
+		\coordinate (center20) at (1.5,-1.0);
+		\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+		%cells21
+		\coordinate (center21) at (2.5,-1.0);
+		\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+		\node [] at (center21) {\myfontvars{B$_{2}$}};
+		%cells30
+		\coordinate (center30) at (2.0,-1.5);
+		\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+		\end{tikzpicture}
+	}	
+}
+\end{minipage}	
+\end{minipage}
+	\caption{Example of disregarding the already added rules. Top: starting situation. Middle: Unfortunate adding of rules that doesn't help to fill the parsing table and can happen in Algorithm \ref{DiceRollOnlyCYK}. Down: Good adding of rules as intended in Algorithm \ref{BottomUpDiceRollVar1} that helps filling.}
 \end{figure}\\
-that rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added, that obviously not directly help to fill the parsing table and bloat the grammar with useless rules. More reasonably rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ and $lhse \rightarrow AB$.\\
-
-\pagebreak
-
-Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating (Line \ref{var1E}) variable compounds and to finally add a part of them (Line \ref{var1Add}). I.e. for each chosen cell a $CellSet$ is calculated, that only contains reasonably variable compounds. Now only variable compounds are added that directly help to fill the parsing table.\\
+If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they obviously don't directly help to fill the parsing table and bloat the grammar with useless rules. More reasonably rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ and $lhse \rightarrow AB$.\\
+\noindent Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating (Line \ref{var1E}) variable compounds and to finally add a part of them (Line \ref{var1Add}). I.e. for each chosen cell a $CellSet$ is calculated, that only contains reasonably variable compounds. Now only variable compounds are added that directly help to fill the parsing table.\\
 
 \noindent
 \frame{
@@ -382,7 +582,7 @@ Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the termi
 }
 
 \pagebreak
-\subsection{BottomUpDiceRollVar2}
+\subsection{Dice rolling and Bottom-Up approach variant 2}
 While examining the Algorithm \ref{BottomUpDiceRollVar1} via its log files [XXX] it can be seen that already a very small number of rules in the grammar is sufficient so that the stopping criteria \circled{C} is met \textendash~the cells that indirectly decide what rules to add are mostly from row one ($i=1$) and sometimes if at all from row two ($i=2$).\\ 
 This again leads to another idea to introduce a row dependent $threshold_i$ (Line \ref{var2threshold}) that helps that more cells with $i\geq2$ are chosen \textendash~what possibly can lead to more diverse grammars. The diversity, in context of Algorithm \ref{BottomUpDiceRollVar1}, is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the grammar will contain one these $lhse$s. This is due to the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the relatively small number of rules in the grammar. \\
 Further diversification is achieved through the usage of \circled{E} (Line \ref{chooseVc}). Variable compounds that already have been used in a row with low index $i$ are at a disadvantage to be picked again as described in Algorithm \ref{CalculateSubsetForCell}.\\
@@ -2731,7 +2931,7 @@ The problem space or input parameter space in itself is a n-dimensional hypercub
 The No Free Lunch theorem states that all algorithms have the same performance averaged over the entire problem space.\\
 But now the to be analysed area of our problem space is restricted to exam $exercise$ relevant parameters (therefore the fixed settings from before are needed).\\
 Within that predefined area now one can find the optimal settings for the algorithm dependent parameters and can use these to finally compare them.\\
-During the comparison of the algorithms the n-dimensional problem spaced is reduced to a single scalar value, the Success Rate.\\
+During the comparison of the algorithms the n-dimensional problem space is reduced to a single scalar value, the Success Rate.\\
 Because of the restricted problem space brute forcing is used to find the best parameter settings.\\
 
 \subsubsection{Comparison of Success Rates}
@@ -2753,7 +2953,6 @@ By comparing Table \ref{ComparisionRootNotEmpty} and Table \ref{ComparisionMoreT
 	\label{ComparisionRootNotEmpty}
 \end{table}
 In both cases the SplitThenFill algorithm is the one with the highest SR.
-\pagebreak
 \begin{table}[h]
 	\centering
 	\begin{tabular}{|l|c|c|c|c|c|c|c|}
