@@ -64,7 +64,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.github.andreasbraun5.thesis.main.Main</mainClass>
+                            <mainClass>com.github.andreasbraun5.thesis.main.Thesis</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -8,10 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="bachelor-thesis-cyk" />
+        <module name="BachelorThesisCYK" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bachelor-thesis-cyk" target="1.8" />
+      <module name="BachelorThesisCYK" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

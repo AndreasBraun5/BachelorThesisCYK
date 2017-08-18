@@ -2,8 +2,7 @@
 
 \section{Algorithms}\label{algorithms}
 \subsection{Sub modules}
-Sub modules are parts of the algorithms that are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should be explained in more detail for a better understanding of the way of working of algorithms in Chapter \ref{diceRollOnlyCYK}ff.\\
-
+Sub modules are exchangeable parts of the algorithms and are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should be explained in more detail for a better understanding of the way of working of algorithms in Chapter \ref{diceRollOnlyCYK}ff.\\
 \noindent \textbf{Distribute$(\Sigma,\ V) $ \circled{A} and Distribute$(V^2,\ V)$ \circled{B}:}\\
 The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. But in both cases a uniform random subset of the $Rhse$ is taken and again uniform randomly distributed over the set of available variables $V$. While distributing the terminals there exists at least one rule for every terminal used in the word $w$. The specifics of how they are distributed are described in the following algorithm: \\
 
@@ -165,8 +164,9 @@ In the following situation a rule is be added to $Cell_{3,0}$ while using Algori
 The calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ is from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textcolor{gray}{\textbf{B $\rightarrow$ SC}} has been added and now $(B,2)$ is element of $Cell_{3,0}$.\\
 
 \noindent \textbf{Choose one xy from (xy,i) $\in$ RowSet uniform randomly with probability depending on row i \circled{E} :}\\
-There is the set $RowSet \subseteq \{(xy,i)\ |\ x,y \in V \wedge i \in \mathbb{N} \}$ and one xy is chosen out of it as following:
-Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be merged to its lowest $i$, as following: $RowSet = \{(AB,3),~(AB,1),~(AB,5),~... \}$ will become $RowSet = \{(AB,1),~... \}$. Afterwards all elements of $RowSet$ will be placed in the $RowMultiSet$ that  can contain multiple equivalent elements. Now each element of $RowMultiSet$ will be weighted according to their $i$. That means that elements like $(AB,1)$ will only occur one time though elements like $(BC,3)$ will occur three times and so on: $RowMultiSet = \{(AB,1),~(BC,3),~...\}$ becomes $RowMultiSet = \{(AB,1),~(BC,3),~(BC,3),~(BC,3),~...\}$. Now one element will be uniform randomly picked out of this weighted $RowMultiSet$ example wise $xy = BC$.\\
+At some point a decision needs to me made about what rule $lhse\rightarrow xy$ with $xy \in V^2$ will be added to the grammar. Depending on which $xy$ is chosen the influence on the entire pyramid varies. Some $xy$ only change the parsing table in one of its later rows ($i>>1$) but other $xy$ even change it in one of the first rows. If there is change in one of the first rows it is more likely that the entire pyramid will be more filled. Now the task of choosing rules to add, that only change the pyramid in one of the later rows, with a higher probability than the others is tackled with \circled{E}. \\
+The approach here only makes sense together with \circled{D} in which all possible compound variables are calculated that help to fill one specific cell. If you use this sub module on every cell of the pyramid to calculate the different variable compounds $xy$ and additionally store the row number $i$ then you get the set $RowSet \subseteq \{(xy,i)\ |\ x,y \in V \wedge i \in \mathbb{N} \}$.\\ 
+Using this $RowSet$ the choice can be influenced regarding the row number $i$:\\ Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be merged to its lowest $i$, as following: $RowSet = \{(AB,3),~(AB,1),~(AB,5),~... \}$ will become $RowSet = \{(AB,1),~... \}$. Afterwards all elements of $RowSet$ will be placed in the $RowMultiSet$ that  can contain multiple equivalent elements. Now each element of $RowMultiSet$ will be weighted according to their $i$. That means that elements like $(AB,1)$ will only occur one time though elements like $(BC,3)$ will occur three times and so on: $RowMultiSet = \{(AB,1),~(BC,3),~...\}$ becomes $RowMultiSet = \{(AB,1),~(BC,3),~(BC,3),~(BC,3),~...\}$. Now one element will be uniform randomly picked out of this weighted $RowMultiSet$ example wise $xy = BC$.\\
 
 \noindent
 \begin{figure} [h]
@@ -184,9 +184,10 @@ Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be 
 	\end{minipage}
 	\caption{Shortened example of the procedure E as before in the text.}
 \end{figure}
-
+\pagebreak
+\clearpage
 \subsection{Dice rolling the distributions only} \label{diceRollOnlyCYK}
-\noindent This is a primitive way of generating grammars, which will be the lower boundary while comparing the algorithms. Each future algorithm should have a higher score than this algorithm or otherwise it would be worse, than simple dice rolling the distribution of terminals (Line \ref{diceRollOnlyA}) and compound variables (Line \ref{diceRollOnlyB}). \\
+\noindent We start off, by a primitive way of generating grammars, which will be the lower boundary while comparing the algorithms. Each future algorithm should perform better than this algorithm or otherwise it would be worse, than simple dice rolling the distribution of terminals (Line \ref{diceRollOnlyA}) and compound variables (Line \ref{diceRollOnlyB}). Note that later on in Chapter \ref{successRates} it is described how algorithm can perform better than another. \\
 
 \noindent
 \frame{
@@ -226,8 +227,9 @@ A terminal $\Sigma$ is distributed to at least one $lhse$, but a compound variab
 	\label{DiceRollONlyCYKExample}
 \end{figure}
 \pagebreak
+\clearpage
 \subsection{Dice rolling and Bottom-Up approach variant 1}
-The first approach to design an algorithm will be Bottom-Up (Chapter \ref{approaches}) whereby the parsing table is filled starting from the leaves in direction to the root node.\\
+Another approach to design an algorithm will be Bottom-Up (Chapter \ref{approaches}) whereby the parsing table is filled starting from the leaves in direction to the root node.\\
 The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK} it can happen that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables. \\
 \noindent
 \begin{figure}[h]
@@ -542,10 +544,11 @@ The basic idea is to guide the choice of rules while distributing the compound v
 }
 \end{minipage}	
 \end{minipage}
-	\caption{Example of disregarding the already added rules. Top: starting situation. Middle: Unfortunate adding of rules that doesn't help to fill the parsing table and can happen in Algorithm \ref{DiceRollOnlyCYK}. Down: Good adding of rules as intended in Algorithm \ref{BottomUpDiceRollVar1} that helps filling.}
+	\caption{Example of disregarding the already added rules. Top: starting situation. Middle: Unfortunate adding of rules that doesn't help to fill the parsing table and can happen in Algorithm \ref{DiceRollOnlyCYK}. Bottom: Good adding of rules as intended in Algorithm \ref{BottomUpDiceRollVar1} that helps filling.}
+	\label{var1Example}
 \end{figure}\\
-If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they obviously don't directly help to fill the parsing table and bloat the grammar with useless rules. More reasonably rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ and $lhse \rightarrow AB$.\\
-\noindent Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating (Line \ref{var1E}) variable compounds and to finally add a part of them (Line \ref{var1Add}). I.e. for each chosen cell a $CellSet$ is calculated, that only contains reasonably variable compounds. Now only variable compounds are added that directly help to fill the parsing table.\\
+If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they don't directly help to fill the parsing table and bloat the grammar with useless rules. More reasonably rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ and $lhse \rightarrow AB$ (for an example see Figure \ref{var1Example}).\\
+\noindent Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating (Line \ref{var1D}) variable compounds and to finally add a part of them (Line \ref{var1Add}) in form of rules to the grammar. I.e. for each chosen cell a $CellSet$ (Line \ref{var1D}) is calculated, that only contains reasonable variable compounds. This way only variable compounds are added that directly help to fill the parsing table.\\
 
 \noindent
 \frame{
@@ -564,7 +567,7 @@ If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they obvi
 			\While{$|J|>0$}{
 				$choose\ one\ j \in J\ uniform\ randomly$\;
 				$J = J \setminus \{j\} $\label{chooseJ}\;
-				$CellSet = CalculateSubsetForCell(Pyramid,\ i,\ j)$;  \circled{D} \label{var1E}\\
+				$CellSet = CalculateSubsetForCell(Pyramid,\ i,\ j)$;  \circled{D} \label{var1D}\\
 				$P \cup Distribute(CellSet,\ V)$;  \circled{B} \label{var1Add}\\
 				$Pyramid = CYK(G,\ w)$\; \label{var1Update}
 				\If{$stopping\ criteria~met$~\circled{C}}{
@@ -576,15 +579,30 @@ If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they obvi
 		\footnotetext{
 			\noindent Line \ref{var1Stepii}: Fills the i=0 row of the pyramid.
 			
-			\noindent Line \ref{chooseJ}: A cell is only visited only once.
+			\noindent Line \ref{chooseJ}: A cell is visited only once.
 		}
 	\end{algorithm}
 }
 
 \pagebreak
 \subsection{Dice rolling and Bottom-Up approach variant 2}
-While examining the Algorithm \ref{BottomUpDiceRollVar1} via its log files [XXX] it can be seen that already a very small number of rules in the grammar is sufficient so that the stopping criteria \circled{C} is met \textendash~the cells that indirectly decide what rules to add are mostly from row one ($i=1$) and sometimes if at all from row two ($i=2$).\\ 
-This again leads to another idea to introduce a row dependent $threshold_i$ (Line \ref{var2threshold}) that helps that more cells with $i\geq2$ are chosen \textendash~what possibly can lead to more diverse grammars. The diversity, in context of Algorithm \ref{BottomUpDiceRollVar1}, is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the grammar will contain one these $lhse$s. This is due to the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the relatively small number of rules in the grammar. \\
+While examining Algorithm \ref{BottomUpDiceRollVar1} via its log file (Figure \ref{logsVar1}) it can be seen (for the default values described in Chapter \ref{cfgChapter}) that already a very small number of rules in the grammar is sufficient so that the stopping criteria \circled{C} is met \textendash~the cells that indirectly decide what rules to add are mostly from row one ($i=1$) and sometimes if at all from row two ($i=2$).\\
+
+\begin{figure}[h]
+	\centering
+		\begin{tabular}{l}
+			Final cell worked with Index: 1,2\\
+			Final cell worked with Index: 1,0\\
+			Final cell worked with Index: 1,6 \\
+			Final cell worked with Index: 1,0\\
+			Final cell worked with Index: 1,2\\
+			Final cell worked with Index: 1,3\\
+			Final cell worked with Index: 2,4\\
+	\end{tabular}
+	\caption{Digest of log files of Algorithm \ref{BottomUpDiceRollVar1}.}
+	\label{logsVar1}
+\end{figure}
+\noindent This again leads to further improvement idea to introduce a row dependent $threshold_i$ (Line \ref{var2threshold}) which helps that more cells with $i\geq2$ are chosen \textendash~what possibly leads to more diverse grammars being generated. The diversity, in context of Algorithm \ref{BottomUpDiceRollVar1}, is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the grammar will contain one of these $lhse$s (See explanation in Figure \ref{var1Example}). This is caused by the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the relatively small number of rules that are added to the grammar altogether. \\
 Further diversification is achieved through the usage of \circled{E} (Line \ref{chooseVc}). Variable compounds that already have been used in a row with low index $i$ are at a disadvantage to be picked again as described in Algorithm \ref{CalculateSubsetForCell}.\\
 As seen in Figure \ref{GoalofBetterDiversity} rules with $BA$~and~$AA$ have been added to the variables $B$ and $A$ in Grammar1. For Grammar2 instead the rule $B\rightarrow SS$ was added that contributes to a better diversity compared to Grammar1.
 \noindent
@@ -653,10 +671,195 @@ As seen in Figure \ref{GoalofBetterDiversity} rules with $BA$~and~$AA$ have been
 
 
 \pagebreak
-\subsection{SplitThenFill}
+\subsection{Split Top-Down then fill Bottom-Up}
+Up till now we have only discussed algorithms that purely use the Bottom-Up approach, so another way is to make use of the Top-Down approach in combination with the Bottom-Up approach.\\
+The idea here is to first distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFill}) and then to uniformly randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{splitThenStepii} and in general Algorithm \ref{SplitThenFillRecursion}) Top-Downwards and then again to fill the parsing table Bottom-Upwards accordingly to fill this derivation tree. \\
+The structure of the derivation tree for instance can look as follows:
+\begin{figure} [h]
+		\begin{minipage}{6in}
+		\centering
+		\resizebox{0.8\linewidth}{!}{
+			\begin{tikzpicture}[baseline]
+			\newcommand{\myfontvars}[1]{
+				\fontsize{4.9}{12}\selectfont{#1}
+			}\newcommand{\myfontnumbering}[1]{
+				\fontsize{2.5}{12}\selectfont{#1}
+			}%Outer hull
+			%Tip of the pyramid
+			\coordinate (tip) at (3.0,-3.0);
+			\foreach \i in {0,...,6} {
+				\coordinate (\i) at (\i,0);
+			}
+			%Draw the left and right line of the pyramid pointing downwards
+			\draw (0) -- (tip) -- (6);
+			%Grid lines direction down-left to top-right
+			\coordinate (dl1) at (0.5,-0.5);
+			\coordinate (dl2) at (1.0,-1.0);
+			\coordinate (dl3) at (1.5,-1.5);
+			\coordinate (dl4) at (2.0,-2.0);
+			\coordinate (dl5) at (2.5,-2.5);
+			\draw (dl1) -- (1,0);
+			\draw (dl2) -- (2,0);
+			\draw (dl3) -- (3,0);
+			\draw (dl4) -- (4,0);
+			\draw (dl5) -- (5,0);
+			%Grid lines direction down-right to top-left
+			\coordinate (dr1) at (3.5,-2.5);
+			\coordinate (dr2) at (4.0,-2.0);
+			\coordinate (dr3) at (4.5,-1.5);
+			\coordinate (dr4) at (5.0,-1.0);
+			\coordinate (dr5) at (5.5,-0.5);
+			\draw (dr1) -- (1,0);
+			\draw (dr2) -- (2,0);
+			\draw (dr3) -- (3,0);
+			\draw (dr4) -- (4,0);
+			\draw (dr5) -- (5,0);
+			%Small lines at the top
+			\coordinate (top0) at (0.0,0.0);
+			\coordinate (top1) at (1.0,0.0);
+			\coordinate (top2) at (2.0,0.0);
+			\coordinate (top3) at (3.0,0.0);
+			\coordinate (top4) at (4.0,0.0);
+			\coordinate (top5) at (5.0,0.0);
+			\coordinate (top6) at (6.0,0.0);
+			\coordinate (topUpper0) at (0.0,0.6);
+			\coordinate (topUpper1) at (1.0,0.6);
+			\coordinate (topUpper2) at (2.0,0.6);
+			\coordinate (topUpper3) at (3.0,0.6);
+			\coordinate (topUpper4) at (4.0,0.6);
+			\coordinate (topUpper5) at (5.0,0.6);
+			\coordinate (topUpper6) at (6.0,0.6);
+			\draw (top0) -- (topUpper0);
+			\draw (top1) -- (topUpper1);
+			\draw (top2) -- (topUpper2);
+			\draw (top3) -- (topUpper3);
+			\draw (top4) -- (topUpper4);
+			\draw (top5) -- (topUpper5);
+			\draw (top6) -- (topUpper6);
+			%The string
+			\coordinate (w0) at (0.5,0.6);
+			\coordinate (w1) at (1.5,0.6);
+			\coordinate (w2) at (2.5,0.6);
+			\coordinate (w3) at (3.5,0.6);
+			\coordinate (w4) at (4.5,0.6);
+			\coordinate (w5) at (5.5,0.6);
+			\node [] at (w0) {b};
+			\node [] at (w1) {b};
+			\node [] at (w2) {a};
+			\node [] at (w3) {c};
+			\node [] at (w4) {b};
+			\node [] at (w5) {c};
+			% Variables in the cells
+			%cells00
+			\coordinate (center00) at (0.5,0.0);
+			\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+			\node [] at (center00) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
+			%cells01
+			\coordinate (center01) at (1.5,0.0);
+			\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+			\node [] at (center01) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
+			%cells02
+			\coordinate (center02) at (2.5,0.0);
+			\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+			\node [] at (center02) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
+			%cells03
+			\coordinate (center03) at (3.5,0.0);
+			\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+			\node [] at (center03) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
+			%cells04
+			\coordinate (center04) at (4.5,0.0);
+			\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
+			\node [] at (center04) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
+			%cells05
+			\coordinate (center05) at (5.5,0.0);
+			\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
+			\node [] at (center05) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
+			%cells10
+			\coordinate (center10) at (1.0,-0.5);
+			\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+			%cells11
+			\coordinate (center11) at (2.0,-0.5);
+			\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+			\node [] at (center11) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
+			%cells12
+			\coordinate (center12) at (3.0,-0.5);
+			\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+			%cells13
+			\coordinate (center13) at (4.0,-0.5);
+			\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
+			\node [] at (center13) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
+			%cells14
+			\coordinate (center14) at (5.0,-0.5);
+			\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
+			%cells20
+			\coordinate (center20) at (1.5,-1.0);
+			\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+			\node [] at (center20) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
+			%cells21
+			\coordinate (center21) at (2.5,-1.0);
+			\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+			%cells22
+			\coordinate (center22) at (3.5,-1.0);
+			\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
+			%cells23
+			\coordinate (center23) at (4.5,-1.0);
+			\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
+			\node [] at (center23) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
+			%cells30
+			\coordinate (center30) at (2.0,-1.5);
+			\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+			%cells31
+			\coordinate (center31) at (3.0,-1.5);
+			\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
+			%cells32
+			\coordinate (center32) at (4.0,-1.5);
+			\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
+			%cells40
+			\coordinate (center40) at (2.5,-2.0);
+			\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
+			%cells41
+			\coordinate (center41) at (3.5,-2.0);
+			\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
+			%cells50
+			\coordinate (center50) at (3.0,-2.5);
+			\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
+			\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
+			\end{tikzpicture}
+		}
+		\resizebox{0.70\linewidth}{!}{
+			\begin{tikzpicture}[baseline]
+			\tikzset{frontier/.style={distance from root=150pt}} %height of tree times 30pt
+			\tikzset{edge from parent/.style= {
+					draw,
+					edge from parent path={(\tikzparentnode.south)	-- +(0,-8pt)-| (\tikzchildnode)}
+				}
+			}
+			\Tree
+			[.$Cell_{5,0}$
+				[.$Cell_{2,0}$
+					[.$Cell_{0,0}$ b ]
+					[.$Cell_{1,1}$
+						[.$Cell_{0,1}$ b ]
+						[.$Cell_{0,2}$ a ]
+					]
+				]
+			[.$Cell_{2,3}$
+				[.$Cell_{1,3}$
+					[.$Cell_{0,3}$ c ]
+					[.$Cell_{0,4}$ b ]
+				]
+				[.$Cell_{0,5}$ c ]
+			]
+			]
+			\end{tikzpicture}
+		}
+	\end{minipage}
+		\label{treeStruct}
+		\caption{Example derivation tree structure. Top: Shown in the pyramid, the numbers correspond to the depth in the tree. Down: Shown as a derivation tree.}
+\end{figure}
 
-The idea here is to first distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFill}) and then to uniform randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{splitThenStepii} and in general Algorithm \ref{SplitThenFillRecursion}) Top-Downwards and then again to fill the parsing table Bottom-Upwards accordingly to this derivation tree. The reason behind its name comes from the fact that only after completely generating the structure (splitting of the word in subwords) of the derivation tree then the rules are added to the grammar that allow further filling of the parsing table. \\
-Every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} Line \ref{splitThenFillB}) the already available information regarding the other rules is used to determine if a new rule is needed to fill this node of the derivation tree (Line \ref{empty} of Algorithm \ref{SplitThenFillRecursion}).\\
+\noindent As the name of the algorithms implies only after completely generating the structure of the derivation tree (splitting of the word in subwords) then the rules are added to the grammar that help filling the cells occurring in the derivation tree.\\
+Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} Line \ref{splitThenFillB}) the already available information regarding the other rules is used to determine if a new rule is needed to fill this node of the derivation tree (Line \ref{empty} of Algorithm \ref{SplitThenFillRecursion}).\\
 
 
 \noindent
@@ -679,162 +882,6 @@ Every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} Line
 }
 \\
 For this algorithm it is important to mention that while using \circled{B} (Line \ref{splitThenFillB} of Algorithm \ref{SplitThenFillRecursion}) a variable compound is added to at least one $lhse$. For every element of $vc \in VarComp$ (Line \ref{splitThenFillVc} of Algorithm \ref{SplitThenFillRecursion}) there exists at least one rule $lhse \rightarrow vc$.\\
-The construction of the derivation tree for instance is done as following \textendash~each number represents the recursion depth of its subtree: 
-\begin{center}
-	\begin{figure} [h]
-		\centering
-	\resizebox{0.65\linewidth}{!}{
-		\begin{tikzpicture}[baseline]
-		\newcommand{\myfontvars}[1]{
-			\fontsize{4.9}{12}\selectfont{#1}
-		}\newcommand{\myfontnumbering}[1]{
-			\fontsize{2.5}{12}\selectfont{#1}
-		}%Outer hull
-		%Tip of the pyramid
-		\coordinate (tip) at (3.0,-3.0);
-		\foreach \i in {0,...,6} {
-			\coordinate (\i) at (\i,0);
-		}
-		%Draw the left and right line of the pyramid pointing downwards
-		\draw (0) -- (tip) -- (6);
-		%Grid lines direction down-left to top-right
-		\coordinate (dl1) at (0.5,-0.5);
-		\coordinate (dl2) at (1.0,-1.0);
-		\coordinate (dl3) at (1.5,-1.5);
-		\coordinate (dl4) at (2.0,-2.0);
-		\coordinate (dl5) at (2.5,-2.5);
-		\draw (dl1) -- (1,0);
-		\draw (dl2) -- (2,0);
-		\draw (dl3) -- (3,0);
-		\draw (dl4) -- (4,0);
-		\draw (dl5) -- (5,0);
-		%Grid lines direction down-right to top-left
-		\coordinate (dr1) at (3.5,-2.5);
-		\coordinate (dr2) at (4.0,-2.0);
-		\coordinate (dr3) at (4.5,-1.5);
-		\coordinate (dr4) at (5.0,-1.0);
-		\coordinate (dr5) at (5.5,-0.5);
-		\draw (dr1) -- (1,0);
-		\draw (dr2) -- (2,0);
-		\draw (dr3) -- (3,0);
-		\draw (dr4) -- (4,0);
-		\draw (dr5) -- (5,0);
-		%Small lines at the top
-		\coordinate (top0) at (0.0,0.0);
-		\coordinate (top1) at (1.0,0.0);
-		\coordinate (top2) at (2.0,0.0);
-		\coordinate (top3) at (3.0,0.0);
-		\coordinate (top4) at (4.0,0.0);
-		\coordinate (top5) at (5.0,0.0);
-		\coordinate (top6) at (6.0,0.0);
-		\coordinate (topUpper0) at (0.0,0.6);
-		\coordinate (topUpper1) at (1.0,0.6);
-		\coordinate (topUpper2) at (2.0,0.6);
-		\coordinate (topUpper3) at (3.0,0.6);
-		\coordinate (topUpper4) at (4.0,0.6);
-		\coordinate (topUpper5) at (5.0,0.6);
-		\coordinate (topUpper6) at (6.0,0.6);
-		\draw (top0) -- (topUpper0);
-		\draw (top1) -- (topUpper1);
-		\draw (top2) -- (topUpper2);
-		\draw (top3) -- (topUpper3);
-		\draw (top4) -- (topUpper4);
-		\draw (top5) -- (topUpper5);
-		\draw (top6) -- (topUpper6);
-		%The string
-		\coordinate (w0) at (0.5,0.6);
-		\coordinate (w1) at (1.5,0.6);
-		\coordinate (w2) at (2.5,0.6);
-		\coordinate (w3) at (3.5,0.6);
-		\coordinate (w4) at (4.5,0.6);
-		\coordinate (w5) at (5.5,0.6);
-		\node [] at (w0) {b};
-		\node [] at (w1) {b};
-		\node [] at (w2) {a};
-		\node [] at (w3) {c};
-		\node [] at (w4) {b};
-		\node [] at (w5) {c};
-		% Variables in the cells
-		%cells00
-		\coordinate (center00) at (0.5,0.0);
-		\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-		\node [] at (center00) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
-		%cells01
-		\coordinate (center01) at (1.5,0.0);
-		\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-		\node [] at (center01) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
-		%cells02
-		\coordinate (center02) at (2.5,0.0);
-		\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-		\node [] at (center02) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
-		%cells03
-		\coordinate (center03) at (3.5,0.0);
-		\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-		\node [] at (center03) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
-		%cells04
-		\coordinate (center04) at (4.5,0.0);
-		\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
-		\node [] at (center04) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
-		%cells05
-		\coordinate (center05) at (5.5,0.0);
-		\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
-		\node [] at (center05) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
-		%cells10
-		\coordinate (center10) at (1.0,-0.5);
-		\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-		%cells11
-		\coordinate (center11) at (2.0,-0.5);
-		\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-		\node [] at (center11) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
-		%cells12
-		\coordinate (center12) at (3.0,-0.5);
-		\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-		%cells13
-		\coordinate (center13) at (4.0,-0.5);
-		\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
-		\node [] at (center13) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
-		%cells14
-		\coordinate (center14) at (5.0,-0.5);
-		\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
-		%cells20
-		\coordinate (center20) at (1.5,-1.0);
-		\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-		\node [] at (center20) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
-		%cells21
-		\coordinate (center21) at (2.5,-1.0);
-		\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-		%cells22
-		\coordinate (center22) at (3.5,-1.0);
-		\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
-		%cells23
-		\coordinate (center23) at (4.5,-1.0);
-		\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
-		\node [] at (center23) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
-		%cells30
-		\coordinate (center30) at (2.0,-1.5);
-		\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-		%cells31
-		\coordinate (center31) at (3.0,-1.5);
-		\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
-		%cells32
-		\coordinate (center32) at (4.0,-1.5);
-		\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
-		%cells40
-		\coordinate (center40) at (2.5,-2.0);
-		\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
-		%cells41
-		\coordinate (center41) at (3.5,-2.0);
-		\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
-		%cells50
-		\coordinate (center50) at (3.0,-2.5);
-		\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
-		\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
-		\end{tikzpicture}
-	}
-	\label{treeStruct}
-	\caption{Example derivation tree structure.}
-	\end{figure}
-\end{center}
 
 \noindent
 \frame{
@@ -863,7 +910,8 @@ The construction of the derivation tree for instance is done as following \texte
 		\Return $(P,\ Cell_{i,j})$\;
 	\end{algorithm}
 }
-The same example tree structure is used in the following example.
+\clearpage
+\noindent The same example tree structure as in Figure \ref{treeStruct} is used in the following example \textendash~each number represents the recursion depth of its subtree: 
 
 \noindent
 \begin{figure} [h]
@@ -1025,11 +1073,11 @@ The same example tree structure is used in the following example.
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} part 1.}
+	\caption{Illustration of Algorithm \ref{SplitThenFill} part 1 after adding $A \rightarrow a$, $B \rightarrow b$ and $C \rightarrow c$.}
 	\label{IllustrationAlgorithmSplitThenFillPart1}
 \end{figure}
 
-\noindent After adding the terminals to the grammar (Line \ref{splitThenStepii} in Algorithm \ref{SplitThenFill}) now one must take on the recursion step at $Cell_{1,1}$. Now $Cell_l=\{B_2\}$ and $Cell_r=\{A_3\}$ and therefore $VarComp=\{BA\}$ adding the rule $S \rightarrow BA$ leads to the following changes: 
+\noindent After adding the terminals to the grammar (Line \ref{splitThenStepii} in Algorithm \ref{SplitThenFill}) now one must take on the recursion step at $Cell_{1,1}$. Now $Cell_l=\{B_2\}$ and $Cell_r=\{A_3\}$ and therefore $VarComp=\{BA\}$. Adding the rule $S \rightarrow BA$ leads to the following changes: 
 
 \noindent
 \begin{figure} [h]
@@ -1191,9 +1239,10 @@ The same example tree structure is used in the following example.
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} part 2 after adding $S\rightarrow BA$}
+	\caption{Illustration of Algorithm \ref{SplitThenFill} part 2 after adding $S\rightarrow BA$.}
 	\label{IllustrationAlgorithmSplitThenFillPart2}
 \end{figure}\\
+\clearpage
 \noindent The next recursion step happens in $Cell_{2,0}$. Now $Cell_l=\{B_1\}$ and $Cell_r=\{S_2\}$. Analogously the rule $A\rightarrow BS$ is added to the grammar:
 
 \noindent
@@ -1356,7 +1405,7 @@ The same example tree structure is used in the following example.
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} part 3.}
+	\caption{Illustration of Algorithm \ref{SplitThenFill} part 3 after adding the rule $A\rightarrow BS$.}
 	\label{IllustrationAlgorithmSplitThenFillPart3}
 \end{figure}\\
 
@@ -1520,7 +1569,7 @@ The same example tree structure is used in the following example.
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} part 4. Recursion step in $Cell_{1,3}$ is  resolved by adding the rule $B\rightarrow CB$.}
+	\caption{Illustration of Algorithm \ref{SplitThenFill} part 4. The recursion step in $Cell_{1,3}$ is  resolved by adding the rule $B\rightarrow CB$.}
 	\label{IllustrationAlgorithmSplitThenFillPart4}
 \end{figure}
 \noindent
@@ -1684,7 +1733,7 @@ The same example tree structure is used in the following example.
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} part 5. Recursion step in $Cell_{2,3}$ is  resolved by adding the rule $C\rightarrow BC$.}
+	\caption{Illustration of Algorithm \ref{SplitThenFill} part 5. The recursion step in $Cell_{2,3}$ is  resolved by adding the rule $C\rightarrow BC$.}
 	\label{IllustrationAlgorithmSplitThenFillPart5}
 \end{figure}
 \noindent
@@ -1692,6 +1741,7 @@ The same example tree structure is used in the following example.
 	\begin{minipage}{6in}
 		\centering
 		\begin{tabular}{l}
+			$Grammar:$\\
 			$A\rightarrow B S~|~a~~$\\ 
 			$B\rightarrow C B~|~b$\\ 
 			$C\rightarrow B C~|~ c$\\ 
@@ -1852,16 +1902,16 @@ The same example tree structure is used in the following example.
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} part 6. Recursion step in $Cell_{5,0}$ is  resolved by adding the rule $S\rightarrow AC$.}
+	\caption{Illustration of Algorithm \ref{SplitThenFill} part 6. The recursion step in $Cell_{5,0}$ is  resolved by adding the rule $S\rightarrow AC$.}
 	\label{IllustrationAlgorithmSplitThenFillPart6}
 \end{figure}\\
 
 \clearpage
 
 \subsection{SplitAndFill}
-Algorithm \ref{SplitThenFill} creates the derivation tree structure Top-Downwards but adds rules to the grammar Bottom-Upwards. Another way to do this both Top-Downwards.\\
-This algorithm therefore makes use of a part of the same idea as Algorithm \ref{SplitThenFill}, it generates a predefined structure of the derivation tree Top-Downwards. The difference now is, that every time a node of the structure of the derivation tree has been decided on a rule is directly added to the grammar \textendash~therefore the name SplitAndFill, which is like "split for a node and then directly add a rule so that the node is then filled with at least one variable". \\
-Note that the count of rules in the grammar is dependent on the count of nodes in the derivation tree and a terminal is distributed to only one variable. Further while resolving the last recursion step (Line \ref{splitAndFillRecLastStep}) of Algorithm \ref{SplitAndFillRecursion} the start variable will be in the tip in the pyramid that always leads to $w \in L(G)$.\\
+After defining an algorithm that uses the combination of the Bottom-Up approach and the Top-Down approach (Algorithm \ref{SplitThenFill}) a step further is to find an algorithm that only makes use of the Top-Down approach.\\
+This algorithm again generates a predefined structure of the derivation tree Top-Downwards. Every time a node of the structure of the derivation tree has been decided on, a rule is immediately added to the grammar \textendash~therefore the name SplitAndFill, which is like "split for a node and then directly add a rule so that the node is then filled with at least one variable". \\
+Note that the count of rules in the grammar is dependent on the count of nodes in the derivation tree and a terminal is distributed to only one variable. While resolving the last recursion step (Line \ref{splitAndFillRecLastStep}) of Algorithm \ref{SplitAndFillRecursion} the start variable will be in the tip in the pyramid that always leads to $w \in L(G)$.\\
 
 \noindent
 \frame{
@@ -1910,7 +1960,7 @@ Note that the count of rules in the grammar is dependent on the count of nodes i
 	\end{algorithm}
 }
 \\
-Looking at this algorithm only productions according to the tree structure are added to the grammar. For illustration purposes now, the pyramid here is also shown to reflect the immediate changes of the added rules to the pyramid. Again the predefined derivation tree structure of Figure \ref{treeStruct} is used.
+Looking at this algorithm, only productions according to the tree structure are added to the grammar. For illustration purposes, the pyramid here is also shown to reflect the immediate changes of the added rules to the pyramid. Again the predefined derivation tree structure of Figure \ref{treeStruct} is used.
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -2562,7 +2612,7 @@ Looking at this algorithm only productions according to the tree structure are a
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitAndFill} part 4. In analogous manner the other cells are filled. $Cell_{0,3}$ is responsible for the rule $C \rightarrow c$, $Cell_{0,4}$ doesn't cause a rule because again there already is the rule $B \rightarrow b$, $Cell_{1,3}$ contributes for the rule $B \rightarrow CB$, $Cell_{0,5}$ doesn't add a rule because of $C\rightarrow c$ and to fill $Cell_{2,3}$ the rule $A \rightarrow BC$ is added.}
+	\caption{Illustration of Algorithm \ref{SplitAndFill} part 4. Analogously the other cells are filled. $Cell_{0,3}$ is responsible for the rule $C \rightarrow c$, $Cell_{0,4}$ doesn't cause a rule because again there already is the rule $B \rightarrow b$, $Cell_{1,3}$ contributes for the rule $B \rightarrow CB$, $Cell_{0,5}$ does not add a rule because of $C\rightarrow c$ and to fill $Cell_{2,3}$ the rule $A \rightarrow BC$ is added.}
 	\label{IllustrationAlgorithmSplitAndFillPart4}
 \end{figure}
 
@@ -2726,7 +2776,7 @@ Looking at this algorithm only productions according to the tree structure are a
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitAndFill} part 5. Finally to fill the cell in the tip a rule must be added that has the start variable as its $lhse$ that guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added.}
+	\caption{Illustration of Algorithm \ref{SplitAndFill} part 5. Finally, to fill the cell in the tip a rule must be added that has the start variable as its $lhse$ that guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added.}
 	\label{IllustrationAlgorithmSplitAndFillPart5}
 \end{figure}
 
@@ -2900,15 +2950,449 @@ Looking at this algorithm only productions according to the tree structure are a
 
 \clearpage
 \pagebreak
-\subsection{Analysis of Algorithms} \label{AnalysisOfAlgorithms}
-While analysing the algorithms there are some settings to be considered. Each shown value is the default value for its parameter.\\
-Input Values of the program:
+\subsection{Evaluation of Algorithms} \label{AnalysisOfAlgorithms}
+\subsubsection{Success Rates} \label{successRates}
+\noindent Now that different algorithms have been described to generate exam $exercises$ it is of interest to compare them. Therefore different Success Rates are used on the algorithms according to their performance of the different requirements for an exam $exercise$. Here $N \in  \mathbb{N}^+$ is the sample size of all generated grammars of the examined algorithm. Before defining a overall Success Rate ($SR$) three other Success Rates set the basis for it.\\
+
+\noindent\textbf{Success Rate Producibility: }
+A generated $exercise$ contributes to the SR-Producibility iff the CYK algorithm's output (Algorithm \ref{CYK}) is true or in other words $w\in L(G)$.\\
+SR-Producibility $ = p / N$, whereas $p$ is the count of $exercise$s that fulfil the requirement.\\
+
+\noindent\textbf{Success Rate Cardinality-Rules: }
+A generated $exercise$ contributes to the SR-Cardinality-Rules iff the grammar has got less than a certain amount of productions.\\
+SR-Cardinality-Rules $ = cr / N$, whereas $cr$ is the count of $exercise$s.\\
+
+\noindent\textbf{Success Rate Pyramid: }
+A generated $exercise$ contributes to the SR-Pyramid iff the following conditions are met:
+\begin{enumerate} [noitemsep]
+	\item At least one cell forces to do a correct cell combination.
+	\item There are less than 100 variables in the entire pyramid.
+	\item There are less than 3 variables in each cell of the pyramid.
+\end{enumerate}
+SR-Pyramid $= p / N$, whereas $p$ is the count of $exercise$s that fulfil the three requirements above. While checking 1., 2. and 3. a simplification of $Cell_{i,j}$ is done:\\ $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \} \longrightarrow Cell_{i,j} \subseteq V$, see Figure \ref{simplificationExample}. \\
+\noindent 
+\begin{figure}[h]
+	\begin{minipage}{6in}
+		\centering
+		\raisebox{-0.5\height}{
+			\resizebox{0.45\linewidth}{!}{
+				\begin{tikzpicture}[baseline]
+				\newcommand{\myfontvars}[1]{
+					\fontsize{4.9}{12}\selectfont{#1}
+				}\newcommand{\myfontnumbering}[1]{
+					\fontsize{2.5}{12}\selectfont{#1}
+				}%Outer hull
+				%Tip of the pyramid
+				\coordinate (tip) at (2.5,-2.5);
+				\foreach \i in {0,...,5} {
+					\coordinate (\i) at (\i,0);
+				}
+				%Draw the left and right line of the pyramid pointing downwards
+				\draw (0) -- (tip) -- (5);
+				%Grid lines direction down-left to top-right
+				\coordinate (dl1) at (0.5,-0.5);
+				\coordinate (dl2) at (1.0,-1.0);
+				\coordinate (dl3) at (1.5,-1.5);
+				\coordinate (dl4) at (2.0,-2.0);
+				\draw (dl1) -- (1,0);
+				\draw (dl2) -- (2,0);
+				\draw (dl3) -- (3,0);
+				\draw (dl4) -- (4,0);
+				%Grid lines direction down-right to top-left
+				\coordinate (dr1) at (3.0,-2.0);
+				\coordinate (dr2) at (3.5,-1.5);
+				\coordinate (dr3) at (4.0,-1.0);
+				\coordinate (dr4) at (4.5,-0.5);
+				\draw (dr1) -- (1,0);
+				\draw (dr2) -- (2,0);
+				\draw (dr3) -- (3,0);
+				\draw (dr4) -- (4,0);
+				%Small lines at the top
+				\coordinate (top0) at (0.0,0.0);
+				\coordinate (top1) at (1.0,0.0);
+				\coordinate (top2) at (2.0,0.0);
+				\coordinate (top3) at (3.0,0.0);
+				\coordinate (top4) at (4.0,0.0);
+				\coordinate (top5) at (5.0,0.0);
+				\coordinate (topUpper0) at (0.0,0.6);
+				\coordinate (topUpper1) at (1.0,0.6);
+				\coordinate (topUpper2) at (2.0,0.6);
+				\coordinate (topUpper3) at (3.0,0.6);
+				\coordinate (topUpper4) at (4.0,0.6);
+				\coordinate (topUpper5) at (5.0,0.6);
+				\draw (top0) -- (topUpper0);
+				\draw (top1) -- (topUpper1);
+				\draw (top2) -- (topUpper2);
+				\draw (top3) -- (topUpper3);
+				\draw (top4) -- (topUpper4);
+				\draw (top5) -- (topUpper5);
+				%The string
+				\coordinate (w0) at (0.5,0.6);
+				\coordinate (w1) at (1.5,0.6);
+				\coordinate (w2) at (2.5,0.6);
+				\coordinate (w3) at (3.5,0.6);
+				\coordinate (w4) at (4.5,0.6);
+				\node [] at (w0) {b};
+				\node [] at (w1) {a};
+				\node [] at (w2) {a};
+				\node [] at (w3) {a};
+				\node [] at (w4) {a};
+				% Variables in the cells
+				%cells00
+				\coordinate (center00) at (0.5,0.0);
+				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+				\node [] at (center00) {\myfontvars{S$_{1}$}};
+				%cells01
+				\coordinate (center01) at (1.5,0.0);
+				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+				\node [] at (center01) {\myfontvars{S$_{2}$}};
+				%cells02
+				\coordinate (center02) at (2.5,0.0);
+				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+				\node [] at (center02) {\myfontvars{S$_{3}$}};
+				%cells03
+				\coordinate (center03) at (3.5,0.0);
+				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+				\node [] at (center03) {\myfontvars{S$_{4}$}};
+				%cells04
+				\coordinate (center04) at (4.5,0.0);
+				\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
+				\node [] at (center04) {\myfontvars{S$_{5}$}};
+				%cells10
+				\coordinate (center10) at (1.0,-0.5);
+				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+				\node [] at (center10) {\myfontvars{C$_{1}$B$_{1}$}};
+				%cells11
+				\coordinate (center11) at (2.0,-0.5);
+				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+				\node [] at (center11) {\myfontvars{C$_{2}$B$_{2}$}};
+				%cells12
+				\coordinate (center12) at (3.0,-0.5);
+				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+				\node [] at (center12) {\myfontvars{C$_{3}$B$_{3}$}};
+				%cells13
+				\coordinate (center13) at (4.0,-0.5);
+				\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
+				\node [] at (center13) {\myfontvars{C$_{4}$B$_{4}$}};
+				%cells20
+				\coordinate (center20) at (1.5,-1.0);
+				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+				\node [] at (center20) {\myfontvars{S$_{1}$A$_{1}$}};
+				%cells21
+				\coordinate (center21) at (2.5,-1.0);
+				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+				\node [] at (center21) {\myfontvars{S$_{2}$A$_{2}$}};
+				%cells22
+				\coordinate (center22) at (3.5,-1.0);
+				\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
+				\node [] at (center22) {\myfontvars{S$_{3}$A$_{3}$}};
+				%cells30
+				\coordinate (center30) at (2.0,-1.5);
+				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+				\node [] at (center30) {\myfontvars{C$_{1}$B$_{1}$C$_{3}$}};
+				\node [above] at (center30) {\myfontvars{B$_{3}$}};
+				%cells31
+				\coordinate (center31) at (3.0,-1.5);
+				\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
+				\node [] at (center31) {\myfontvars{C$_{2}$B$_{2}$C$_{4}$}};
+				\node [above] at (center31) {\myfontvars{B$_{4}$}};
+				%cells40
+				\coordinate (center40) at (2.5,-2.0);
+				\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
+				\node [] at (center40) {\myfontvars{S$_{1}$A$_{1}$S$_{3}$}};
+				\node [above] at (center40) {\myfontvars{A$_{3}$}};
+				\end{tikzpicture}
+			}
+		}
+		\hspace*{.2in}
+		\raisebox{-0.5\height}{
+			\resizebox{0.45\linewidth}{!}{
+				\begin{tikzpicture}[baseline]
+				\newcommand{\myfontvars}[1]{
+					\fontsize{4.9}{12}\selectfont{#1}
+				}\newcommand{\myfontnumbering}[1]{
+					\fontsize{2.5}{12}\selectfont{#1}
+				}%Outer hull
+				%Tip of the pyramid
+				\coordinate (tip) at (2.5,-2.5);
+				\foreach \i in {0,...,5} {
+					\coordinate (\i) at (\i,0);
+				}
+				%Draw the left and right line of the pyramid pointing downwards
+				\draw (0) -- (tip) -- (5);
+				%Grid lines direction down-left to top-right
+				\coordinate (dl1) at (0.5,-0.5);
+				\coordinate (dl2) at (1.0,-1.0);
+				\coordinate (dl3) at (1.5,-1.5);
+				\coordinate (dl4) at (2.0,-2.0);
+				\draw (dl1) -- (1,0);
+				\draw (dl2) -- (2,0);
+				\draw (dl3) -- (3,0);
+				\draw (dl4) -- (4,0);
+				%Grid lines direction down-right to top-left
+				\coordinate (dr1) at (3.0,-2.0);
+				\coordinate (dr2) at (3.5,-1.5);
+				\coordinate (dr3) at (4.0,-1.0);
+				\coordinate (dr4) at (4.5,-0.5);
+				\draw (dr1) -- (1,0);
+				\draw (dr2) -- (2,0);
+				\draw (dr3) -- (3,0);
+				\draw (dr4) -- (4,0);
+				%Small lines at the top
+				\coordinate (top0) at (0.0,0.0);
+				\coordinate (top1) at (1.0,0.0);
+				\coordinate (top2) at (2.0,0.0);
+				\coordinate (top3) at (3.0,0.0);
+				\coordinate (top4) at (4.0,0.0);
+				\coordinate (top5) at (5.0,0.0);
+				\coordinate (topUpper0) at (0.0,0.6);
+				\coordinate (topUpper1) at (1.0,0.6);
+				\coordinate (topUpper2) at (2.0,0.6);
+				\coordinate (topUpper3) at (3.0,0.6);
+				\coordinate (topUpper4) at (4.0,0.6);
+				\coordinate (topUpper5) at (5.0,0.6);
+				\draw (top0) -- (topUpper0);
+				\draw (top1) -- (topUpper1);
+				\draw (top2) -- (topUpper2);
+				\draw (top3) -- (topUpper3);
+				\draw (top4) -- (topUpper4);
+				\draw (top5) -- (topUpper5);
+				%The string
+				\coordinate (w0) at (0.5,0.6);
+				\coordinate (w1) at (1.5,0.6);
+				\coordinate (w2) at (2.5,0.6);
+				\coordinate (w3) at (3.5,0.6);
+				\coordinate (w4) at (4.5,0.6);
+				\node [] at (w0) {b};
+				\node [] at (w1) {a};
+				\node [] at (w2) {a};
+				\node [] at (w3) {a};
+				\node [] at (w4) {a};
+				% Variables in the cells
+				%cells00
+				\coordinate (center00) at (0.5,0.0);
+				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+				\node [] at (center00) {\myfontvars{S}};
+				%cells01
+				\coordinate (center01) at (1.5,0.0);
+				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+				\node [] at (center01) {\myfontvars{S}};
+				%cells02
+				\coordinate (center02) at (2.5,0.0);
+				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+				\node [] at (center02) {\myfontvars{S}};
+				%cells03
+				\coordinate (center03) at (3.5,0.0);
+				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+				\node [] at (center03) {\myfontvars{S}};
+				%cells04
+				\coordinate (center04) at (4.5,0.0);
+				\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
+				\node [] at (center04) {\myfontvars{S}};
+				%cells10
+				\coordinate (center10) at (1.0,-0.5);
+				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+				\node [] at (center10) {\myfontvars{C B}};
+				%cells11
+				\coordinate (center11) at (2.0,-0.5);
+				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+				\node [] at (center11) {\myfontvars{C B}};
+				%cells12
+				\coordinate (center12) at (3.0,-0.5);
+				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+				\node [] at (center12) {\myfontvars{C B}};
+				%cells13
+				\coordinate (center13) at (4.0,-0.5);
+				\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
+				\node [] at (center13) {\myfontvars{C B}};
+				%cells20
+				\coordinate (center20) at (1.5,-1.0);
+				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+				\node [] at (center20) {\myfontvars{S A}};
+				%cells21
+				\coordinate (center21) at (2.5,-1.0);
+				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+				\node [] at (center21) {\myfontvars{S A}};
+				%cells22
+				\coordinate (center22) at (3.5,-1.0);
+				\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
+				\node [] at (center22) {\myfontvars{S A}};
+				%cells30
+				\coordinate (center30) at (2.0,-1.5);
+				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+				\node [] at (center30) {\myfontvars{C B}};
+				%cells31
+				\coordinate (center31) at (3.0,-1.5);
+				\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
+				\node [] at (center31) {\myfontvars{C B}};
+				%cells40
+				\coordinate (center40) at (2.5,-2.0);
+				\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
+				\node [] at (center40) {\myfontvars{S A}};
+				\end{tikzpicture}
+			}
+		}
+	\end{minipage}
+	\caption{The simplification of cells in a pyramid.}
+	\label{simplificationExample}
+\end{figure}
+
+\noindent The experience of professor Martens shows that usually most students easily find a pattern of how to fill the first two rows of the $pyramid$ during the execution of the CYK algorithm but do more mistakes starting at row $i\geq2$. The approach of only finding patterns and not thoroughly understanding the algorithm is countered by Algorithm \ref{checkForceCombinationPerCell}. Students often don't know what cell combinations need to be considered while filling one specific cell of the pyramid. They simply take the $UpperLeftCell$ and the $UpperRightCell$ and try to find rules in the grammar that match the resulting compound variables. More detail on how to force a correct cell combination (1.) see Algorithm \ref{checkForceCombinationPerCell}. But note that a right cell combination can only be forced of cells with index $i>1$.\\
+
+\noindent 
+\frame{
+	\begin{algorithm}[H] %or another one check
+		\caption{checkForceCombinationPerCell}
+		\label{checkForceCombinationPerCell}
+		\SetAlgoLined
+		\KwIn{$ CellBottom,~CellUpperLeft,~CellUpperRight \subseteq V,~P \subseteq V \times (V^{2} \cup \Sigma) $ }
+		\KwOut{$true \iff |VarsForcing| > 0$}
+		$VarsForcing = \emptyset$;~~\tcp{$VarsForcing \subseteq V$} 
+		$VarComp = \{xy\ |\ x \in CellUpperLeft\ \wedge\ y \in CellUpperRight \}$\;
+		\ForEach{$v \in CellDown$}{
+			$Rhses = \{rhse\ |\ p \in P\ \wedge\ p=(v,rhse)\} $\; \label{rhses}
+			\If{$Rhses \nsubseteq VarComp$}{ \label{forces}
+				$VarsForcing = VarsForcing \cup v$\;
+			}			
+		}
+		\Return $|VarsForcing| > 0$\;
+		\footnotetext{
+			Line \ref{rhses}: Get all rules of $P$ that have $v$ as the $lhse$ and add their $rhse$ to $Rhses$.\\
+			Line \ref{forces}: If no $rhse \in Rhse$ can be found in VarComp, then this variables forces, concluding that this cell as a hole forces.
+		}
+	\end{algorithm}
+}
+
+\noindent As seen in Figure \ref{foreCombination}, the variables in $Cell_{2,0}$ and in $Cell_{2,1}$ each force a right cell combination and in both cases $VarComp=\{SS\}$. The variable $v=C$ doesn't have $SS$ as one of its rhses and therefore the variable $C$ forces. $Cell_{3,0}$ doesn't force because $VarComp=\{CC\}$ and the variable $v=S$ has $CC$ as its rhse. Note again, that cells with index $i\leq1$ can't force at all.
+\noindent
+\begin{figure} [h]
+	\begin{minipage}{6in}
+		\centering
+		\raisebox{-0.5\height}{
+			\begin{tabular}{l}
+				$Grammar:$\\
+				$C\rightarrow C S~|~a~|~b$\\ 
+				$S\rightarrow C C~~$\\ 
+			\end{tabular} 
+		}
+		\hspace*{.2in}
+		\raisebox{-0.5\height}{
+			\resizebox{0.5\linewidth}{!}{
+				\begin{tikzpicture}[baseline]
+				\newcommand{\myfontvars}[1]{
+					\fontsize{4.9}{12}\selectfont{#1}
+				}\newcommand{\myfontnumbering}[1]{
+					\fontsize{2.5}{12}\selectfont{#1}
+				}%Outer hull
+				%Tip of the pyramid
+				\coordinate (tip) at (2.0,-2.0);
+				\foreach \i in {0,...,4} {
+					\coordinate (\i) at (\i,0);
+				}
+				%Draw the left and right line of the pyramid pointing downwards
+				\draw (0) -- (tip) -- (4);
+				%Grid lines direction down-left to top-right
+				\coordinate (dl1) at (0.5,-0.5);
+				\coordinate (dl2) at (1.0,-1.0);
+				\coordinate (dl3) at (1.5,-1.5);
+				\draw (dl1) -- (1,0);
+				\draw (dl2) -- (2,0);
+				\draw (dl3) -- (3,0);
+				%Grid lines direction down-right to top-left
+				\coordinate (dr1) at (2.5,-1.5);
+				\coordinate (dr2) at (3.0,-1.0);
+				\coordinate (dr3) at (3.5,-0.5);
+				\draw (dr1) -- (1,0);
+				\draw (dr2) -- (2,0);
+				\draw (dr3) -- (3,0);
+				%Small lines at the top
+				\coordinate (top0) at (0.0,0.0);
+				\coordinate (top1) at (1.0,0.0);
+				\coordinate (top2) at (2.0,0.0);
+				\coordinate (top3) at (3.0,0.0);
+				\coordinate (top4) at (4.0,0.0);
+				\coordinate (topUpper0) at (0.0,0.6);
+				\coordinate (topUpper1) at (1.0,0.6);
+				\coordinate (topUpper2) at (2.0,0.6);
+				\coordinate (topUpper3) at (3.0,0.6);
+				\coordinate (topUpper4) at (4.0,0.6);
+				\draw (top0) -- (topUpper0);
+				\draw (top1) -- (topUpper1);
+				\draw (top2) -- (topUpper2);
+				\draw (top3) -- (topUpper3);
+				\draw (top4) -- (topUpper4);
+				%The string
+				\coordinate (w0) at (0.5,0.6);
+				\coordinate (w1) at (1.5,0.6);
+				\coordinate (w2) at (2.5,0.6);
+				\coordinate (w3) at (3.5,0.6);
+				\node [] at (w0) {a};
+				\node [] at (w1) {a};
+				\node [] at (w2) {b};
+				\node [] at (w3) {a};
+				% Variables in the cells
+				%cells00
+				\coordinate (center00) at (0.5,0.0);
+				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+				\node [] at (center00) {\myfontvars{C$_{1}$}};
+				%cells01
+				\coordinate (center01) at (1.5,0.0);
+				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+				\node [] at (center01) {\myfontvars{C$_{2}$}};
+				%cells02
+				\coordinate (center02) at (2.5,0.0);
+				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+				\node [] at (center02) {\myfontvars{C$_{3}$}};
+				%cells03
+				\coordinate (center03) at (3.5,0.0);
+				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+				\node [] at (center03) {\myfontvars{C$_{4}$}};
+				%cells10
+				\coordinate (center10) at (1.0,-0.5);
+				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+				\node [] at (center10) {\myfontvars{S$_{1}$}};
+				%cells11
+				\coordinate (center11) at (2.0,-0.5);
+				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+				\node [] at (center11) {\myfontvars{S$_{2}$}};
+				%cells12
+				\coordinate (center12) at (3.0,-0.5);
+				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+				\node [] at (center12) {\myfontvars{S$_{3}$}};
+				%cells20
+				\coordinate (center20) at (1.5,-1.0);
+				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+				\node [] at (center20) {\myfontvars{C$_{1}$}};
+				%cells21
+				\coordinate (center21) at (2.5,-1.0);
+				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+				\node [] at (center21) {\myfontvars{C$_{2}$}};
+				%cells30
+				\coordinate (center30) at (2.0,-1.5);
+				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+				\node [] at (center30) {\myfontvars{S$_{1}$S$_{3}$}};
+				\end{tikzpicture}
+			}
+		}
+	\end{minipage}
+	\caption{Application of Algorithm \ref{checkForceCombinationPerCell} onto an entire pyramid.}
+	\label{foreCombination}
+\end{figure}\\
+\noindent Now that the three Success Rates are known the overall Success Rate can be specified. \\
+
+\noindent\textbf{Success Rate:}
+A generated $exercise$ contributes to the Success Rate ($SR$) iff it contributes to the SR-Producibility, to the SR-Cardinality-Rules and to the SR-Pyramid at the same time.\\
+It holds: $SR = n / N$, whereas $n$ is the count of $exercises$ that fulfil the requirement above in this case.
+\subsubsection{Problem space exploration}
+For the problem space exploration the following settings need to be considered while each shown value represents the default value for its parameter.\\
+
+\noindent Input Values of the program:
 \begin{itemize}[noitemsep,nolistsep]
 	\item variables = [A, B, S, C]
 	\item terminals = [a, b]
 	\item sizeOfWord = 10
 \end{itemize}
-
+\vspace{0.3cm}
 \noindent Specified parameters that decide over the SR:
 \begin{itemize}[noitemsep,nolistsep]
 	\item maxSumOfProductions = 10
@@ -2916,7 +3400,7 @@ Input Values of the program:
 	\item maxNumberOfVarsPerCell = 3
 	\item maxSumOfVarsInPyramid = 100
 \end{itemize}
-
+\vspace{0.3cm}
 \noindent Intern algorithm dependent parameters:
 \begin{itemize}[noitemsep,nolistsep]
 	\item minValueCompoundVariablesAreAddedTo = 0 \\(=1 in case of Algorithm SplitThenFill and Algorithm SplitAndFill) 
@@ -2924,12 +3408,9 @@ Input Values of the program:
 	\item maxValueCompoundVariablesAreAddedTo = 2 \\(=1 in case of Algorithm SplitThenFill and Algorithm SplitAndFill) 
 	\item maxValueTerminalsAreAddedTo = 1
 \end{itemize}
-The settings above for the input values and the specific SR parameters that have been decided on because they typical while designing a exam $exercise$.
-
-\subsubsection{Problem space exploration}
-The problem space or input parameter space in itself is a n-dimensional hypercube \\ (n = \#parametersAbove = 3 + 4 + 4 = 11). \\
-The No Free Lunch theorem states that all algorithms have the same performance averaged over the entire problem space.\\
-But now the to be analysed area of our problem space is restricted to exam $exercise$ relevant parameters (therefore the fixed settings from before are needed).\\
+\vspace{0.6cm}
+\noindent The problem space or input parameter space in itself is a n-dimensional hypercube with dimension n equalling the count of parameters, i.e. n = \#parametersAbove = 3 + 4 + 4 = 11. \\
+But now the evaluation area of our problem space is restricted to exam $exercise$ relevant parameters, that have been decided upon before. \\
 Within that predefined area now one can find the optimal settings for the algorithm dependent parameters and can use these to finally compare them.\\
 During the comparison of the algorithms the n-dimensional problem space is reduced to a single scalar value, the Success Rate.\\
 Because of the restricted problem space brute forcing is used to find the best parameter settings.\\
@@ -2968,6 +3449,8 @@ In both cases the SplitThenFill algorithm is the one with the highest SR.
 	\caption{SRs of the algorithms with stopping criteria that half of the parsing table is not empty (N = 10000).}
 	\label{ComparisionMoreThanHalf}
 \end{table}
+
+\subsection{Conclusion}
 
 \clearpage
 \pagebreak

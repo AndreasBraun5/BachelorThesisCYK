@@ -3,11 +3,10 @@
 \section{Introduction}\label{Introduction}
 
 \subsection{Motivation}
+The starting point of this thesis is to get a tool to automatically generate a suitable 4-tuple $exercise = (grammar,\ word,\ parse\ table,\ derivation\ tree)$, that is used to test if the students have properly understood how the Cocke-Younger-Kasami (CYK) algorithm works.\\
+Various implementations and small online tools of the CYK algorithm can be found \cite{cykImpl1} \cite{cykImpl2} \cite{cykImpl3}. Nevertheless it is required to automatically generate suitable $exercise$s, that afterwards can be modified as wanted. This is the reason an own implementation has been made. It is also a task to find a more clever algorithm to automatically generate $exercise$s with a high chance of being suitable as an exam exercise.
 
-The starting point of this thesis is to get a tool to automatically generate a suitable 4-tuple $exercise = (grammar,\ word,\ parse\ table,\ derivation\ tree)$, that is used to test if the students have understood the way of working of the CYK algorithm.\\
-Various implementations and small online tools of the Cocke-Younger-Kasami (CYK) algorithm can be found \cite{cykImpl1} \cite{cykImpl2} \cite{cykImpl3}. Nevertheless it is required to automatically generate suitable $exercise$s, that afterwards can be modified as wanted. This is the reason an own implementation has been made. It is also a task to find a more clever algorithm to automatically generate $exercise$s with a high chance of being suitable as an exam exercise.
-
-\subsection{Context Free Grammar}
+\subsection{Context Free Grammar} \label{cfgChapter}
 \begin{DefGrey} \textbf{Context Free Grammar (CFG)}\\
 	We define a CFG as the 4-tuple $G=(V,\ \Sigma,\ S,\ P)$:
 	\begin{itemize}
@@ -19,42 +18,42 @@ Various implementations and small online tools of the Cocke-Younger-Kasami (CYK)
 	It is valid that $\Sigma \cap V =  \emptyset$.
 \end{DefGrey}
 \begin{DefGrey}\label{CFGinCNF} \textbf{CFG with restrictions}\\
-	A CFG $G=(V,\ \Sigma,\ S,\ P)$ is in CNF iff.:
+	A CFG $G=(V,\ \Sigma,\ S,\ P)$ has the following restrictions:
 	\begin{itemize}
 		\item $P \subseteq V \times (V^2 \cup \Sigma)^{*}$.
 	\end{itemize}
 \end{DefGrey}
-\noindent Throughout this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. $P$ is not necessarily in CNF because it is possible that there are unreachable variables \textendash~from the starting variable. For further convenience the following default values are always true:
+\noindent Throughout this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. $P$ is not necessarily in CNF because it is possible that there are unreachable variables \textendash~from the starting variable. For further convenience the following default values are always assumed in this thesis:
 \begin{itemize}
 	\item $V = \{A, B, ...\}$
 	\item $(V^2 \cup\ \Sigma)^{*}=\{a, b, ...\} \cup \{AA, AB, BB, BA, BS, AC, ... \}$
 \end{itemize}
-A rule consists out of a left hand side element (lhse) and a right hand side element (rhse). Example: $lhse \longrightarrow rhse$ applied to $A \longrightarrow c$ and $B \longrightarrow AC$ means that $A$ and $B$ are a $lhse$ and $c$ and $AC$ are a $rhse$.
+A rule consists of a left hand side element (lhse) and a right hand side element (rhse). Example: $lhse \longrightarrow rhse$ applied to $A \longrightarrow c$ and $B \longrightarrow AC$ means that $A$ and $B$ are a $lhse$ and $c$ and $AC$ are a $rhse$. Elements of $V^2$ are often referred to as variable compounds.
 \begin{DefGrey}\label{wordLanguage} \textbf{Word $w$ and language $L(G)$}
 	\begin{itemize}
-		\item Word: $w \in \Sigma^* = \{w_0,~w_1,~...,~w_j\}$.
+		\item Word: $w \in \Sigma^* = w_0\cdot w_1\cdot ...\cdot w_j$.
 		\item Language: $L(G)$ over an alphabet $\Sigma$ is a set of words over $\Sigma$ .
 	\end{itemize}
 \end{DefGrey}
 \noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, whereas a $Cell$ is again a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further reasoning behind this example see chapter \ref{dataStructurePyramid}) 
 \subsection{General approaches} \label{approaches}
-Two basic approaches that may help finding a good algorithm are explained informally \cite{Duda.2012}.
+Now two basic approaches that may help finding a good algorithm are explained informally like in \cite{Duda.2012}. At first the difference between derivation and parsing and secondly the two different ways of parsing are explained shortly.  
 \subsubsection{Forward Problem \& Backward Problem}
 The Forward Problem and the Backward Problem are two ways as how to determine if $w \in L(G)$.	
 \begin{DefGrey}
 	\textbf{Forward Problem ($G \xrightarrow[]{derivation} w$)} \\
-	Input: Grammar $G$ in CNF. \\
+	Input: Grammar $G$.\\
 	Output: Derivation $d$ that shows implicitly $w \subseteq L$.
 \end{DefGrey}
-\noindent It is called Forward Problem, if you are given a grammar $G$ and form a derivation from its root node to a final word $w$. The derived word $w$ is always element of $L(G)$.
+\noindent It is called Forward Problem, if you are given a grammar $G$ and form a derivation from its root node to a final word $w$. The derived word $w$ is always part of $L(G)$.
 \begin{DefGrey}
 	\textbf{Backward Problem = Parsing ($w\overset{?}{\subseteq}L(G)$)}\\
-	Input: $w$ and a grammar $G$ in CNF. \\
+	Input: $w$ and a grammar $G$. \\
 	Output: $w \subseteq L(G) \Longrightarrow$ derivation $d$.
 \end{DefGrey}
 \noindent If you are given a word $w$ and want to determine if it is element of $L(G)$, it is called Backward Problem or parsing. The Cocke-Younger-Kasami algorithm does parsing and is the focus here.
 \subsubsection{Parsing Bottom-Up \& Top-Down}
-There are again two ways to classify the approach of parsing.
+After knowing what parsing in general is, it is important to know that there are again two ways to classify the approach of parsing itself.
 \begin{mdframed}[backgroundcolor=defColour]
 	\textbf{Bottom-Up parsing} \\
 Bottom-Up parsing means to start parsing from the leaves up to the root node.
@@ -229,19 +228,19 @@ To be able to describe the way of working of the different algorithms easier the
 	}
 \caption{Visual representation of a $Pyramid$ with the word $w$ written above it.}
 \end{figure}
-\noindent Lastly we define $CellDown$, $CellUpperLeft$ and $CellUpperright$ that are used for description in Algorithm \ref{checkForceCombinationPerCell}.
+\noindent Lastly we define $CellBottom$, $CellUpperLeft$ and $CellUpperright$ that are used for description in Algorithm \ref{checkForceCombinationPerCell}.
 \begin{DefGrey} \textbf{$CellDown,~CellUpperLeft~and~CellUpperRight$} \\
 	For every $Cell_{i,j}$ with $i>0$ the following is true:
 	\begin{itemize}
-		\item $CellDown = Cell_{i,j}$.
+		\item $CellBottom = Cell_{i,j}$.
 		\item $CellUpperLeft = Cell_{i-1,j}$.
 		\item $CellUpperRight = Cell_{i-1,j+1}$.
 	\end{itemize}
 \end{DefGrey}
 \subsection{ Cocke-Younger-Kasami Algorithm}
 The Cocke-Younger-Kasami Algorithm (CYK) has been developed independently in the 1960s by Itiroo Sakai \cite{Sakai.1962}, John Cocke and Jacob Schwartz \cite{JohnCockeJacobT.Schwartz.1970}, Tadao Kasami \cite{Kasami.1966} and Daniel Younger \cite{YOUNGER.1967} \cite{wikiCYK}.\\
-The idea is to find all possible derivations of each subword starting with size one and to consecutively use this information to find all possible derivations with a lager size of the subword up to the size of $w$. Finally it is checked if $w \in L(G)$ through the presence of the start variable in the tip of the pyramid.. \\
-The description of the algorithm follows \cite{Hoffmann.2015} adjusted to the data structure $Pyramid$. While describing Algorithm \ref{checkForceCombinationPerCell} a back reference to the CYK-Algorithm will be made that points out a similarity.\\
+The idea is to find all possible derivations of each subword starting with size one and to consecutively use this information to find all possible derivations with a larger size of the subword up to the size of $w$. Finally it is checked if $w \in L(G)$ through the presence of the start variable in the tip of the pyramid.. \\
+The description of the algorithm follows the source \cite{Hoffmann.2015} adjusted to the data structure $Pyramid$. While describing Algorithm \ref{checkForceCombinationPerCell} later on a back reference to the CYK-Algorithm here will be made that points out a similarity.\\
 
 \noindent \frame{
 	\begin{algorithm}[H] %or another one check
@@ -274,7 +273,7 @@ The description of the algorithm follows \cite{Hoffmann.2015} adjusted to the da
 		}
 	\end{algorithm}
 }
-During the execution of Algorithm \ref{CYK} the parsing table is filled as shown in Figure \ref{exampleCYK}.
+During the execution of Algorithm \ref{CYK} the parsing table is filled as shown in Figure \ref{exampleCYK}. An example output of this definition of the CYK could look like this:
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -443,439 +442,7 @@ During the execution of Algorithm \ref{CYK} the parsing table is filled as shown
 	\caption{The CYK algorithm fills the cells of the pyramid during execution (Line \ref{fill1} and Line \ref{fill2}).}
 	\label{exampleCYK}
 \end{figure}
-\subsection{Success Rates}
-\noindent Different Success Rates are used to compare the algorithms accounting to their performance to the different requirements. Here $N \in  \mathbb{N}^+$ is the sample size of all generated grammars of the examined algorithm. Before defining a overall Success Rate ($SR$) three other Success Rates set the basis for it.\\
 
-\noindent\textbf{Success Rate Producibility: }
-A generated $exercise$ contributes to the SR-Producibility iff the CYK algorithm's output (Algorithm \ref{CYK}) is true or in other words $w\in L(G)$.\\
-It holds: SR-Producibility $ = p / N$, whereas $p$ is the count of $exercise$s that fulfil the requirement.\\
-
-\noindent\textbf{Success Rate Cardinality-Rules: }
-A generated $exercise$ contributes to the SR-Cardinality-Rules iff the grammar has got less than a certain amount of productions.\\
-It is true: SR-Cardinality-Rules $ = cr / N$, whereas $cr$ is the count of $exercise$s.\\
-
-\noindent\textbf{Success Rate Pyramid: }
-A generated $exercise$ contributes to the SR-Pyramid iff the following conditions are met:
-\begin{enumerate} [noitemsep]
-	\item At least one cell forces to do a correct cell combination.
-	\item There are less than 100 variables in the entire pyramid.
-	\item There are less than 3 variables in each cell of the pyramid.
-\end{enumerate}
-It holds: SR-Pyramid $= p / N$, whereas $p$ is the count of $exercise$s that fulfil the three requirements above. While checking 1., 2. and 3. a simplification of $Cell_{i,j}$ is done:\\ $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \} \longrightarrow Cell_{i,j} \subseteq V$, see Figure \ref{simplification}. \\
-\noindent 
-\begin{figure}[h]
-	\label{simplification}
-	\begin{minipage}{6in}
-		\centering
-		\raisebox{-0.5\height}{
-			\resizebox{0.45\linewidth}{!}{
-				\begin{tikzpicture}[baseline]
-				\newcommand{\myfontvars}[1]{
-					\fontsize{4.9}{12}\selectfont{#1}
-				}\newcommand{\myfontnumbering}[1]{
-					\fontsize{2.5}{12}\selectfont{#1}
-				}%Outer hull
-				%Tip of the pyramid
-				\coordinate (tip) at (2.5,-2.5);
-				\foreach \i in {0,...,5} {
-					\coordinate (\i) at (\i,0);
-				}
-				%Draw the left and right line of the pyramid pointing downwards
-				\draw (0) -- (tip) -- (5);
-				%Grid lines direction down-left to top-right
-				\coordinate (dl1) at (0.5,-0.5);
-				\coordinate (dl2) at (1.0,-1.0);
-				\coordinate (dl3) at (1.5,-1.5);
-				\coordinate (dl4) at (2.0,-2.0);
-				\draw (dl1) -- (1,0);
-				\draw (dl2) -- (2,0);
-				\draw (dl3) -- (3,0);
-				\draw (dl4) -- (4,0);
-				%Grid lines direction down-right to top-left
-				\coordinate (dr1) at (3.0,-2.0);
-				\coordinate (dr2) at (3.5,-1.5);
-				\coordinate (dr3) at (4.0,-1.0);
-				\coordinate (dr4) at (4.5,-0.5);
-				\draw (dr1) -- (1,0);
-				\draw (dr2) -- (2,0);
-				\draw (dr3) -- (3,0);
-				\draw (dr4) -- (4,0);
-				%Small lines at the top
-				\coordinate (top0) at (0.0,0.0);
-				\coordinate (top1) at (1.0,0.0);
-				\coordinate (top2) at (2.0,0.0);
-				\coordinate (top3) at (3.0,0.0);
-				\coordinate (top4) at (4.0,0.0);
-				\coordinate (top5) at (5.0,0.0);
-				\coordinate (topUpper0) at (0.0,0.6);
-				\coordinate (topUpper1) at (1.0,0.6);
-				\coordinate (topUpper2) at (2.0,0.6);
-				\coordinate (topUpper3) at (3.0,0.6);
-				\coordinate (topUpper4) at (4.0,0.6);
-				\coordinate (topUpper5) at (5.0,0.6);
-				\draw (top0) -- (topUpper0);
-				\draw (top1) -- (topUpper1);
-				\draw (top2) -- (topUpper2);
-				\draw (top3) -- (topUpper3);
-				\draw (top4) -- (topUpper4);
-				\draw (top5) -- (topUpper5);
-				%The string
-				\coordinate (w0) at (0.5,0.6);
-				\coordinate (w1) at (1.5,0.6);
-				\coordinate (w2) at (2.5,0.6);
-				\coordinate (w3) at (3.5,0.6);
-				\coordinate (w4) at (4.5,0.6);
-				\node [] at (w0) {b};
-				\node [] at (w1) {a};
-				\node [] at (w2) {a};
-				\node [] at (w3) {a};
-				\node [] at (w4) {a};
-				% Variables in the cells
-				%cells00
-				\coordinate (center00) at (0.5,0.0);
-				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-				\node [] at (center00) {\myfontvars{S$_{1}$}};
-				%cells01
-				\coordinate (center01) at (1.5,0.0);
-				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-				\node [] at (center01) {\myfontvars{S$_{2}$}};
-				%cells02
-				\coordinate (center02) at (2.5,0.0);
-				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-				\node [] at (center02) {\myfontvars{S$_{3}$}};
-				%cells03
-				\coordinate (center03) at (3.5,0.0);
-				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-				\node [] at (center03) {\myfontvars{S$_{4}$}};
-				%cells04
-				\coordinate (center04) at (4.5,0.0);
-				\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
-				\node [] at (center04) {\myfontvars{S$_{5}$}};
-				%cells10
-				\coordinate (center10) at (1.0,-0.5);
-				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-				\node [] at (center10) {\myfontvars{C$_{1}$B$_{1}$}};
-				%cells11
-				\coordinate (center11) at (2.0,-0.5);
-				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-				\node [] at (center11) {\myfontvars{C$_{2}$B$_{2}$}};
-				%cells12
-				\coordinate (center12) at (3.0,-0.5);
-				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-				\node [] at (center12) {\myfontvars{C$_{3}$B$_{3}$}};
-				%cells13
-				\coordinate (center13) at (4.0,-0.5);
-				\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
-				\node [] at (center13) {\myfontvars{C$_{4}$B$_{4}$}};
-				%cells20
-				\coordinate (center20) at (1.5,-1.0);
-				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-				\node [] at (center20) {\myfontvars{S$_{1}$A$_{1}$}};
-				%cells21
-				\coordinate (center21) at (2.5,-1.0);
-				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-				\node [] at (center21) {\myfontvars{S$_{2}$A$_{2}$}};
-				%cells22
-				\coordinate (center22) at (3.5,-1.0);
-				\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
-				\node [] at (center22) {\myfontvars{S$_{3}$A$_{3}$}};
-				%cells30
-				\coordinate (center30) at (2.0,-1.5);
-				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-				\node [] at (center30) {\myfontvars{C$_{1}$B$_{1}$C$_{3}$}};
-				\node [above] at (center30) {\myfontvars{B$_{3}$}};
-				%cells31
-				\coordinate (center31) at (3.0,-1.5);
-				\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
-				\node [] at (center31) {\myfontvars{C$_{2}$B$_{2}$C$_{4}$}};
-				\node [above] at (center31) {\myfontvars{B$_{4}$}};
-				%cells40
-				\coordinate (center40) at (2.5,-2.0);
-				\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
-				\node [] at (center40) {\myfontvars{S$_{1}$A$_{1}$S$_{3}$}};
-				\node [above] at (center40) {\myfontvars{A$_{3}$}};
-				\end{tikzpicture}
-			}
-		}
-		\hspace*{.2in}
-		\raisebox{-0.5\height}{
-			\resizebox{0.45\linewidth}{!}{
-				\begin{tikzpicture}[baseline]
-				\newcommand{\myfontvars}[1]{
-					\fontsize{4.9}{12}\selectfont{#1}
-				}\newcommand{\myfontnumbering}[1]{
-					\fontsize{2.5}{12}\selectfont{#1}
-				}%Outer hull
-				%Tip of the pyramid
-				\coordinate (tip) at (2.5,-2.5);
-				\foreach \i in {0,...,5} {
-					\coordinate (\i) at (\i,0);
-				}
-				%Draw the left and right line of the pyramid pointing downwards
-				\draw (0) -- (tip) -- (5);
-				%Grid lines direction down-left to top-right
-				\coordinate (dl1) at (0.5,-0.5);
-				\coordinate (dl2) at (1.0,-1.0);
-				\coordinate (dl3) at (1.5,-1.5);
-				\coordinate (dl4) at (2.0,-2.0);
-				\draw (dl1) -- (1,0);
-				\draw (dl2) -- (2,0);
-				\draw (dl3) -- (3,0);
-				\draw (dl4) -- (4,0);
-				%Grid lines direction down-right to top-left
-				\coordinate (dr1) at (3.0,-2.0);
-				\coordinate (dr2) at (3.5,-1.5);
-				\coordinate (dr3) at (4.0,-1.0);
-				\coordinate (dr4) at (4.5,-0.5);
-				\draw (dr1) -- (1,0);
-				\draw (dr2) -- (2,0);
-				\draw (dr3) -- (3,0);
-				\draw (dr4) -- (4,0);
-				%Small lines at the top
-				\coordinate (top0) at (0.0,0.0);
-				\coordinate (top1) at (1.0,0.0);
-				\coordinate (top2) at (2.0,0.0);
-				\coordinate (top3) at (3.0,0.0);
-				\coordinate (top4) at (4.0,0.0);
-				\coordinate (top5) at (5.0,0.0);
-				\coordinate (topUpper0) at (0.0,0.6);
-				\coordinate (topUpper1) at (1.0,0.6);
-				\coordinate (topUpper2) at (2.0,0.6);
-				\coordinate (topUpper3) at (3.0,0.6);
-				\coordinate (topUpper4) at (4.0,0.6);
-				\coordinate (topUpper5) at (5.0,0.6);
-				\draw (top0) -- (topUpper0);
-				\draw (top1) -- (topUpper1);
-				\draw (top2) -- (topUpper2);
-				\draw (top3) -- (topUpper3);
-				\draw (top4) -- (topUpper4);
-				\draw (top5) -- (topUpper5);
-				%The string
-				\coordinate (w0) at (0.5,0.6);
-				\coordinate (w1) at (1.5,0.6);
-				\coordinate (w2) at (2.5,0.6);
-				\coordinate (w3) at (3.5,0.6);
-				\coordinate (w4) at (4.5,0.6);
-				\node [] at (w0) {b};
-				\node [] at (w1) {a};
-				\node [] at (w2) {a};
-				\node [] at (w3) {a};
-				\node [] at (w4) {a};
-				% Variables in the cells
-				%cells00
-				\coordinate (center00) at (0.5,0.0);
-				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-				\node [] at (center00) {\myfontvars{S}};
-				%cells01
-				\coordinate (center01) at (1.5,0.0);
-				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-				\node [] at (center01) {\myfontvars{S}};
-				%cells02
-				\coordinate (center02) at (2.5,0.0);
-				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-				\node [] at (center02) {\myfontvars{S}};
-				%cells03
-				\coordinate (center03) at (3.5,0.0);
-				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-				\node [] at (center03) {\myfontvars{S}};
-				%cells04
-				\coordinate (center04) at (4.5,0.0);
-				\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
-				\node [] at (center04) {\myfontvars{S}};
-				%cells10
-				\coordinate (center10) at (1.0,-0.5);
-				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-				\node [] at (center10) {\myfontvars{C B}};
-				%cells11
-				\coordinate (center11) at (2.0,-0.5);
-				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-				\node [] at (center11) {\myfontvars{C B}};
-				%cells12
-				\coordinate (center12) at (3.0,-0.5);
-				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-				\node [] at (center12) {\myfontvars{C B}};
-				%cells13
-				\coordinate (center13) at (4.0,-0.5);
-				\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
-				\node [] at (center13) {\myfontvars{C B}};
-				%cells20
-				\coordinate (center20) at (1.5,-1.0);
-				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-				\node [] at (center20) {\myfontvars{S A}};
-				%cells21
-				\coordinate (center21) at (2.5,-1.0);
-				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-				\node [] at (center21) {\myfontvars{S A}};
-				%cells22
-				\coordinate (center22) at (3.5,-1.0);
-				\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
-				\node [] at (center22) {\myfontvars{S A}};
-				%cells30
-				\coordinate (center30) at (2.0,-1.5);
-				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-				\node [] at (center30) {\myfontvars{C B}};
-				%cells31
-				\coordinate (center31) at (3.0,-1.5);
-				\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
-				\node [] at (center31) {\myfontvars{C B}};
-				%cells40
-				\coordinate (center40) at (2.5,-2.0);
-				\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
-				\node [] at (center40) {\myfontvars{S A}};
-				\end{tikzpicture}
-			}
-		}
-	\end{minipage}
-	\caption{The simplification of cells in a pyramid.}
-\end{figure}
-
-\noindent Students easily find a pattern of how to fill the first two rows of the $pyramid$ during execution of the CYK algorithm but do more mistakes starting at row $i\geq2$. The approach of finding only patterns and not thoroughly understanding the algorithm is countered through Algorithm \ref{checkForceCombinationPerCell}. Students often don't know what cell combinations need to taken into account while filling one specific cell of the pyramid. They simply take the $UpperLeftCell$ and the $UpperRightCell$ and try to find rules in the grammar that match the resulting compound variables. More detail to how force a correct cell combination (1.) see Algorithm \ref{checkForceCombinationPerCell}. But note that a right cell combination can only be forced of cells with index $i>1$.\\
-
-\noindent 
-\frame{
-	\begin{algorithm}[H] %or another one check
-		\caption{checkForceCombinationPerCell}
-		\label{checkForceCombinationPerCell}
-		\SetAlgoLined
-		\KwIn{$ CellDown,~CellUpperLeft,~CellUpperRight \subseteq V,~P \subseteq V \times (V^{2} \cup \Sigma) $ }
-		\KwOut{$true \iff |VarsForcing| > 0$}
-		$VarsForcing = \emptyset$;~~\tcp{$VarsForcing \subseteq V$} 
-		$VarComp = \{xy\ |\ x \in CellUpperLeft\ \wedge\ y \in CellUpperRight \}$\;
-		\ForEach{$v \in CellDown$}{
-			$Rhses = \{rhse\ |\ p \in P\ \wedge\ p=(v,rhse)\} $\; \label{rhses}
-			\If{$Rhses \nsubseteq VarComp$}{ \label{forces}
-				$VarsForcing = VarsForcing \cup v$\;
-			}			
-		}
-		\Return $|VarsForcing| > 0$\;
-		\footnotetext{
-			Line \ref{rhses}: Get all rules of $P$ that have $v$ as the $lhse$ and add their $rhse$ to $Rhses$.\\
-			Line \ref{forces}: If no $rhse \in Rhse$ can be found in VarComp, then this variables forces, concluding that this cell as a hole forces.
-		}
-	\end{algorithm}
-}
-
-\noindent As seen in Figure \ref{foreCombination} the variables in $Cell_{2,0}$ and in $Cell_{2,1}$ force each a right cell combination and in both cases $VarComp=\{SS\}$. The variable $v=C$ doesn't have $SS$ as one of its rhses. Therefore the variable $C$ forces.
-$Cell_{3,0}$ doesn't force because $VarComp=\{CC\}$ and the variable $v=S$ has $CC$ as its rhse. Remember again that cells with index $i\leq1$ can't force at all.
-\noindent
-\begin{figure} [h]
-	\begin{minipage}{6in}
-		\centering
-		\raisebox{-0.5\height}{
-			\begin{tabular}{l}
-				$Grammar:$\\
-				$C\rightarrow C S~|~a~|~b$\\ 
-				$S\rightarrow C C~~$\\ 
-			\end{tabular} 
-		}
-		\hspace*{.2in}
-		\raisebox{-0.5\height}{
-			\resizebox{0.5\linewidth}{!}{
-				\begin{tikzpicture}[baseline]
-				\newcommand{\myfontvars}[1]{
-					\fontsize{4.9}{12}\selectfont{#1}
-				}\newcommand{\myfontnumbering}[1]{
-					\fontsize{2.5}{12}\selectfont{#1}
-				}%Outer hull
-				%Tip of the pyramid
-				\coordinate (tip) at (2.0,-2.0);
-				\foreach \i in {0,...,4} {
-					\coordinate (\i) at (\i,0);
-				}
-				%Draw the left and right line of the pyramid pointing downwards
-				\draw (0) -- (tip) -- (4);
-				%Grid lines direction down-left to top-right
-				\coordinate (dl1) at (0.5,-0.5);
-				\coordinate (dl2) at (1.0,-1.0);
-				\coordinate (dl3) at (1.5,-1.5);
-				\draw (dl1) -- (1,0);
-				\draw (dl2) -- (2,0);
-				\draw (dl3) -- (3,0);
-				%Grid lines direction down-right to top-left
-				\coordinate (dr1) at (2.5,-1.5);
-				\coordinate (dr2) at (3.0,-1.0);
-				\coordinate (dr3) at (3.5,-0.5);
-				\draw (dr1) -- (1,0);
-				\draw (dr2) -- (2,0);
-				\draw (dr3) -- (3,0);
-				%Small lines at the top
-				\coordinate (top0) at (0.0,0.0);
-				\coordinate (top1) at (1.0,0.0);
-				\coordinate (top2) at (2.0,0.0);
-				\coordinate (top3) at (3.0,0.0);
-				\coordinate (top4) at (4.0,0.0);
-				\coordinate (topUpper0) at (0.0,0.6);
-				\coordinate (topUpper1) at (1.0,0.6);
-				\coordinate (topUpper2) at (2.0,0.6);
-				\coordinate (topUpper3) at (3.0,0.6);
-				\coordinate (topUpper4) at (4.0,0.6);
-				\draw (top0) -- (topUpper0);
-				\draw (top1) -- (topUpper1);
-				\draw (top2) -- (topUpper2);
-				\draw (top3) -- (topUpper3);
-				\draw (top4) -- (topUpper4);
-				%The string
-				\coordinate (w0) at (0.5,0.6);
-				\coordinate (w1) at (1.5,0.6);
-				\coordinate (w2) at (2.5,0.6);
-				\coordinate (w3) at (3.5,0.6);
-				\node [] at (w0) {a};
-				\node [] at (w1) {a};
-				\node [] at (w2) {b};
-				\node [] at (w3) {a};
-				% Variables in the cells
-				%cells00
-				\coordinate (center00) at (0.5,0.0);
-				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-				\node [] at (center00) {\myfontvars{C$_{1}$}};
-				%cells01
-				\coordinate (center01) at (1.5,0.0);
-				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-				\node [] at (center01) {\myfontvars{C$_{2}$}};
-				%cells02
-				\coordinate (center02) at (2.5,0.0);
-				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-				\node [] at (center02) {\myfontvars{C$_{3}$}};
-				%cells03
-				\coordinate (center03) at (3.5,0.0);
-				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-				\node [] at (center03) {\myfontvars{C$_{4}$}};
-				%cells10
-				\coordinate (center10) at (1.0,-0.5);
-				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-				\node [] at (center10) {\myfontvars{S$_{1}$}};
-				%cells11
-				\coordinate (center11) at (2.0,-0.5);
-				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-				\node [] at (center11) {\myfontvars{S$_{2}$}};
-				%cells12
-				\coordinate (center12) at (3.0,-0.5);
-				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-				\node [] at (center12) {\myfontvars{S$_{3}$}};
-				%cells20
-				\coordinate (center20) at (1.5,-1.0);
-				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-				\node [] at (center20) {\myfontvars{C$_{1}$}};
-				%cells21
-				\coordinate (center21) at (2.5,-1.0);
-				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-				\node [] at (center21) {\myfontvars{C$_{2}$}};
-				%cells30
-				\coordinate (center30) at (2.0,-1.5);
-				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-				\node [] at (center30) {\myfontvars{S$_{1}$S$_{3}$}};
-				\end{tikzpicture}
-			}
-		}
-	\end{minipage}
-	\caption{Application of Algorithm \ref{checkForceCombinationPerCell} onto an entire pyramid.}
-	\label{foreCombination}
-\end{figure}\\
-\noindent Now that the three Success Rates are known the overall Success Rate can be specified. \\
-
-\noindent\textbf{Success Rate:}
-A generated $exercise$ contributes to the Success Rate ($SR$) iff it contributes to the SR-Producibility, to the SR-Cardinality-Rules and to the SR-Pyramid at the same time.\\
-It holds: $SR = n / N$, whereas $n$ is the count of $exercises$ that fulfil the requirement above in this case.\\
 
 \clearpage
 \pagebreak

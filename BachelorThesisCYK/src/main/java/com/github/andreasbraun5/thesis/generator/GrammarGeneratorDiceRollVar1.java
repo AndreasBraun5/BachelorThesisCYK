@@ -101,7 +101,7 @@ public class GrammarGeneratorDiceRollVar1 extends GrammarGenerator {
                     // Line 13
                     if (C_StoppingCriteria.stoppingCriteriaMet(grammarPyramidWrapper)) {
                         // End of logging
-                        workLog.log("Final cell worked with:" + i + j);
+                        workLog.log("Final cell worked with Index:" + i + ", " + j);
                         workLog.log("Final grammar and pyramid");
                         workLog.log(grammarPyramidWrapper.getGrammar().toString());
                         workLog.log(grammarPyramidWrapper.getPyramid().toString());
