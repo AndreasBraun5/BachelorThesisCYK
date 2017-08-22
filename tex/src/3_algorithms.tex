@@ -2,7 +2,7 @@
 
 \section{Algorithms}\label{algorithms}
 \subsection{Sub modules}
-Sub modules are exchangeable parts of the algorithms and are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should be explained in more detail for a better understanding of the way of working of algorithms in Chapter \ref{diceRollOnlyCYK}ff.\\
+Sub modules are parts of the algorithms that are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should be explained in more detail for a better understanding of the way of working of algorithms in the following chapters.\\
 \noindent \textbf{Distribute$(\Sigma,\ V) $ \circled{A} and Distribute$(V^2,\ V)$ \circled{B}:}\\
 The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. But in both cases a uniform random subset of the $Rhse$ is taken and again uniform randomly distributed over the set of available variables $V$. While distributing the terminals there exists at least one rule for every terminal used in the word $w$. The specifics of how they are distributed are described in the following algorithm: \\
 
@@ -12,10 +12,10 @@ The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and
 		\caption{Distribute}
 		\label{Distribute}
 		\SetAlgoLined
-		\KwIn{ $Rhse \subseteq\ (V^{2} \cup \Sigma),\ V$}
-		\KwOut{Set of productions $P \subseteq V \times (V^{2} \cup \Sigma)$}
+		\KwIn{$V,~Rhse \subseteq\ V^{2}~or~Rhse \subseteq \Sigma$}
+		\KwOut{Set of productions $P \subseteq V \times V^{2}$ or $P \subseteq V \times \Sigma$}
 		\ForEach{$rhse \in Rhse$}{
-			$choose\ n\ uniform\ randomly\ in\ [i, j]$;~~\tcp{$i \in  \mathbb{N},\ j \in  \mathbb{N}$}
+			$choose\ n\ uniformly\ randomly\ in\ [i, j]$;~~\tcp{$i \in  \mathbb{N},\ j \in  \mathbb{N}$}
 			$V_{add} := uniform\ random\ subset\ of\ size\ n\ from\ V$\; \label{sizeN}
 			$P \cup \{ (v, rhse)\ |\ v \in V_{add},\ rhse \in Rhse \} $\;	
 		}
@@ -24,7 +24,12 @@ The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and
 } \\
 
 \noindent \textbf{Stopping Criteria \circled{C}:}\\
-Two kinds of stopping criteria have been used to determine if a algorithm terminates early on. One is that it stops iff more than half of the pyramid cells are not empty any more and the other one is that there is at least one variable in the tip of the pyramid. Both stopping criteria are compared in short in Chapter \ref{AnalysisOfAlgorithms}. \\
+Two kinds of stopping criteria have been used to determine whether an algorithm should terminate early on because an already suitable exercise has been found.
+\begin{itemize}[noitemsep,nolistsep]
+	\item stop if more than half of the pyramid cells are not empty any more
+	\item stop if the root of the pyramid is not empty any more
+\end{itemize}
+Both stopping criteria are compared in short in Chapter \ref{AnalysisOfAlgorithms}. \\
 
 \noindent \textbf{CalculateSubsetForCell(Pyramid, i, j) \circled{D}:}\\
 This procedure is needed to determine all possible compound variables out of all possible cell combinations for one specific cell. It works kind of analogous from Line 7 to Line 9 of the CYK algorithm (Algorithm \ref{CYK}). If now for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \in CellSet~(Line~\ref{cellSet})$ is added then automatically $Cell_{i,j}$ won't be empty any more.\\
@@ -203,7 +208,7 @@ Using this $RowSet$ the choice can be influenced regarding the row number $i$:\\
 		\Return $P$;
 	\end{algorithm}
 }
-A terminal $\Sigma$ is distributed to at least one $lhse$, but a compound variable $V^2$ must not be distributed at all. This means that for each terminal of $\Sigma=\{a,b\}$ there exists at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ and for each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~CC,$ $~CS,SS\}$ it is possible that only a smaller subset like $\{AA,~BA,~CC,~SC\}$ is distributed so that only rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.
+A terminal $\Sigma$ is distributed to at least one $lhse$, but a compound variable $V^2$ must not be distributed at all. Note that for each terminal of $\Sigma=\{a,b\}$ there exists at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ and for each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~CC,$ $~CS,SS\}$ it is possible that only a smaller subset like $\{AA,~BA,~CC,~SC\}$ is distributed so that only rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -340,7 +345,7 @@ The basic idea is to guide the choice of rules while distributing the compound v
 		\raisebox{-0.5\height}{
 		\begin{tabular}{l}
 			Grammar:\\
-			$A\rightarrow CC~|~a$\\
+			$A\rightarrow \mathbf{CC}~|~a$\\
 			$B \rightarrow b$\\ 
 		\end{tabular} 
 	}
@@ -444,7 +449,7 @@ The basic idea is to guide the choice of rules while distributing the compound v
 	\begin{tabular}{l}
 		Grammar:\\
 		$A\rightarrow a$\\
-		$B \rightarrow AB~|~b$\\ 
+		$B \rightarrow \mathbf{AB}~|~b$\\ 
 	\end{tabular} 
 }
 \hspace*{.2in}
@@ -528,14 +533,14 @@ The basic idea is to guide the choice of rules while distributing the compound v
 		%cells12
 		\coordinate (center12) at (3.0,-0.5);
 		\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-		\node [] at (center12) {\myfontvars{B$_{3}$}};
+		\node [] at (center12) {\myfontvars{\textbf{B}$\mathbf{_{3}}$}};
 		%cells20
 		\coordinate (center20) at (1.5,-1.0);
 		\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
 		%cells21
 		\coordinate (center21) at (2.5,-1.0);
 		\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-		\node [] at (center21) {\myfontvars{B$_{2}$}};
+		\node [] at (center21) {\myfontvars{\textbf{B}$\mathbf{_{2}}$}};
 		%cells30
 		\coordinate (center30) at (2.0,-1.5);
 		\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
@@ -548,7 +553,7 @@ The basic idea is to guide the choice of rules while distributing the compound v
 	\label{var1Example}
 \end{figure}\\
 If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they don't directly help to fill the parsing table and bloat the grammar with useless rules. More reasonably rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ and $lhse \rightarrow AB$ (for an example see Figure \ref{var1Example}).\\
-\noindent Algorithm \ref{BottomUpDiceRollVar1} takes this up: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating (Line \ref{var1D}) variable compounds and to finally add a part of them (Line \ref{var1Add}) in form of rules to the grammar. I.e. for each chosen cell a $CellSet$ (Line \ref{var1D}) is calculated, that only contains reasonable variable compounds. This way only variable compounds are added that directly help to fill the parsing table.\\
+\noindent Algorithm \ref{BottomUpDiceRollVar1} continues on this: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating (Line \ref{var1D}) variable compounds and to finally add a part of them (Line \ref{var1Add}) in form of rules to the grammar. I.e. for each chosen cell a $CellSet$ (Line \ref{var1D}) is calculated, that only contains reasonable variable compounds. This way only variable compounds are added that directly help to fill the parsing table.\\
 
 \noindent
 \frame{
@@ -3257,6 +3262,7 @@ SR-Pyramid $= p / N$, whereas $p$ is the count of $exercise$s that fulfil the th
 		}
 		\Return $|VarsForcing| > 0$\;
 		\footnotetext{
+			Note: $CellBottom=Cell_{i,j}$, $CellUpperLeft=Cell_{i-1,j}$ and  $CellUpperRight=Cell_{i-1,j-1}$\\
 			Line \ref{rhses}: Get all rules of $P$ that have $v$ as the $lhse$ and add their $rhse$ to $Rhses$.\\
 			Line \ref{forces}: If no $rhse \in Rhse$ can be found in VarComp, then this variables forces, concluding that this cell as a hole forces.
 		}
@@ -3378,46 +3384,63 @@ SR-Pyramid $= p / N$, whereas $p$ is the count of $exercise$s that fulfil the th
 	\caption{Application of Algorithm \ref{checkForceCombinationPerCell} onto an entire pyramid.}
 	\label{foreCombination}
 \end{figure}\\
-\noindent Now that the three Success Rates are known the overall Success Rate can be specified. \\
+\noindent With the help of the three known Success Rates the overall Success Rate can be specified. \\
 
 \noindent\textbf{Success Rate:}
 A generated $exercise$ contributes to the Success Rate ($SR$) iff it contributes to the SR-Producibility, to the SR-Cardinality-Rules and to the SR-Pyramid at the same time.\\
 It holds: $SR = n / N$, whereas $n$ is the count of $exercises$ that fulfil the requirement above in this case.
 \subsubsection{Problem space exploration}
-For the problem space exploration the following settings need to be considered while each shown value represents the default value for its parameter.\\
+Now that there is a measure to compare the different algorithms it is of interest for which input values the different algorithms perform the best. Therefore a problem space exploration is done while the following ranges of the parameters are considered:\\
 
 \noindent Input Values of the program:
 \begin{itemize}[noitemsep,nolistsep]
-	\item variables = [A, B, S, C]
-	\item terminals = [a, b]
-	\item sizeOfWord = 10
-\end{itemize}
-\vspace{0.3cm}
-\noindent Specified parameters that decide over the SR:
-\begin{itemize}[noitemsep,nolistsep]
-	\item maxSumOfProductions = 10
-	\item minRightCellCombinationsForced = 1
-	\item maxNumberOfVarsPerCell = 3
-	\item maxSumOfVarsInPyramid = 100
-\end{itemize}
-\vspace{0.3cm}
-\noindent Intern algorithm dependent parameters:
-\begin{itemize}[noitemsep,nolistsep]
-	\item minValueCompoundVariablesAreAddedTo = 0 \\(=1 in case of Algorithm SplitThenFill and Algorithm SplitAndFill) 
-	\item minValueTerminalsAreAddedTo = 1
-	\item maxValueCompoundVariablesAreAddedTo = 2 \\(=1 in case of Algorithm SplitThenFill and Algorithm SplitAndFill) 
-	\item maxValueTerminalsAreAddedTo = 1
+	\item count of variables = [2;~26]
+	\item count of terminals = [2;~26]
+	\item size of word = [4;~21]
 \end{itemize}
 \vspace{0.6cm}
-\noindent The problem space or input parameter space in itself is a n-dimensional hypercube with dimension n equalling the count of parameters, i.e. n = \#parametersAbove = 3 + 4 + 4 = 11. \\
-But now the evaluation area of our problem space is restricted to exam $exercise$ relevant parameters, that have been decided upon before. \\
-Within that predefined area now one can find the optimal settings for the algorithm dependent parameters and can use these to finally compare them.\\
-During the comparison of the algorithms the n-dimensional problem space is reduced to a single scalar value, the Success Rate.\\
-Because of the restricted problem space brute forcing is used to find the best parameter settings.\\
+\noindent The resulting best SRs of each algorithm are used to decide which stopping criteria \circled{C} gives more exam suitable $exercise$s and finally the algorithms are compared to each other. \\
 
-\subsubsection{Comparison of Success Rates}
+\subsubsection{Comparison of stopping criteria}
+For all of the five algorithms the best SRs have been calculated for both stopping criteria and are shown in Figure \ref{comparisionStoppingCriteria}.
 
-By comparing Table \ref{ComparisionRootNotEmpty} and Table \ref{ComparisionMoreThanHalf} it is seen that the stopping criteria doesn't have that much of an influence on the algorithms SR with the used input configuration.
+\begin{table}[h]
+	\centering
+		\begin{tabular}{l|l|l|}
+			\cline{2-3}
+			& MoreThanHalf & TipNotEmpty \\ \hline
+			\multicolumn{1}{|l|}{DiceRollOnly}  &              &             \\ \hline
+			\multicolumn{1}{|l|}{DiceRollVar1}  &              &             \\ \hline
+			\multicolumn{1}{|l|}{DiceRollVar2}  &              &             \\ \hline
+			\multicolumn{1}{|l|}{SplitThenFill} &              &             \\ \hline
+			\multicolumn{1}{|l|}{SplitAndFill}  &              &             \\ \hline
+		\end{tabular}
+	\caption{Comparision of the two stopping criteria: Half of the cells in the pyramid are not empty and at least one variable is in the tip of the pyramid. (N = XXX)}
+	\label{comparisionStoppingCriteria}
+\end{table}
+\noindent It can be seen that the stopping criteria does not really have a big impact on the SR. ... XXX
+
+
+
+
+\subsubsection{Comparison of the algorithms}
+It is interesting to see which input values of the algorithms are responsible for the good SR. They are shown in Table \ref{inputValuesOfBestSuccessRate}
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|l|l|l|l|}
+		\cline{2-5}
+		& SR & count of variables & count of terminals & size of word \\ \hline
+		\multicolumn{1}{|l|}{DiceRollOnly}  &    &                    &                    &              \\ \hline
+		\multicolumn{1}{|l|}{DiceRollVar1}  &    &                    &                    &              \\ \hline
+		\multicolumn{1}{|l|}{DiceRollVar2}  &    &                    &                    &              \\ \hline
+		\multicolumn{1}{|l|}{SplitThenFill} &    &                    &                    &              \\ \hline
+		\multicolumn{1}{|l|}{SplitAndFill}  &    &                    &                    &              \\ \hline
+	\end{tabular}
+	\caption{Comparison of the input values of each algorithm for its best SR. }
+	\label{inputValuesOfBestSuccessRate}
+\end{table}
+
+\noindent By comparing the five algorithms in Table \ref{comparisionsAlgorithms} in more detail it is ... XXX
 \begin{table}[h]
 	\centering
 	\begin{tabular}{|l|c|c|c|c|c|c|c|}
@@ -3430,27 +3453,9 @@ By comparing Table \ref{ComparisionRootNotEmpty} and Table \ref{ComparisionMoreT
 		SplitThenFill                   &23\%    &39\%                                                           &97\%                                                              &68\%      &78\%                                                        &91\%                                                         &93\%                                                           \\ \hline
 		SplitAndFill                    &11\%      &100\%                                                           &70\%                                                              &14\%      &79\%                                                        &34\%                                                         &22\%                                                           \\ \hline
 	\end{tabular}
-	\caption{SRs of the algorithms with stopping criteria that the root is not empty (N = 10000).}
-	\label{ComparisionRootNotEmpty}
+	\caption{Comparison of the five algorithms with their best SR in more detail. (N = 10000)}
+	\label{comparisionsAlgorithms}
 \end{table}
-In both cases the SplitThenFill algorithm is the one with the highest SR.
-\begin{table}[h]
-	\centering
-	\begin{tabular}{|l|c|c|c|c|c|c|c|}
-		\hline
-		\multicolumn{1}{|c|}{Algorithm} & SR   & \begin{tabular}[c]{@{}c@{}}Produci-\\ bility\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cardinality-\\ Rules\end{tabular} & \multicolumn{4}{c|}{Pyramid}                                                                                                                                                        \\ \cline{6-8} 
-		&      &                                                           &                                                              &      & \begin{tabular}[c]{@{}c@{}}Force-\\ Right\end{tabular} & \begin{tabular}[c]{@{}c@{}}Vars-\\ PerCell\end{tabular} & \begin{tabular}[c]{@{}c@{}}VarsIn-\\ Pyramid\end{tabular} \\ \hline
-		DiceRollOnly                    & 04\% & 24\%                                                           &59\%                                                              & 37\% &50\%                                                        &88\%                                                         &94\%                                                           \\ \hline
-		BottomUpVar1                    &11\%      &29\%                                                           &99\%                                                              &56\%      &69\%                                                        &91\%                                                         &87\%                                                           \\ \hline
-		BottomUpVar2                    &12\%      &25\%                                                           &99\%                                                              &66\%      &78\%                                                        &90\%                                                         &93\%                                                           \\ \hline
-		SplitThenFill                   &23\%    &40\%                                                           &97\%                                                              &66\%      &78\%                                                        &90\%                                                         &92\%                                                           \\ \hline
-		SplitAndFill                    &10\%      &100\%                                                           &69\%                                                              &14\%      &78\%                                                        &36\%                                                         &20\%                                                           \\ \hline
-	\end{tabular}
-	\caption{SRs of the algorithms with stopping criteria that half of the parsing table is not empty (N = 10000).}
-	\label{ComparisionMoreThanHalf}
-\end{table}
-
-\subsection{Conclusion}
 
 \clearpage
 \pagebreak

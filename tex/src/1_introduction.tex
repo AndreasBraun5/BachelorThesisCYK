@@ -3,62 +3,58 @@
 \section{Introduction}\label{Introduction}
 
 \subsection{Motivation}
-The starting point of this thesis is to get a tool to automatically generate a suitable 4-tuple $exercise = (grammar,\ word,\ parse\ table,\ derivation\ tree)$, that is used to test if the students have properly understood how the Cocke-Younger-Kasami (CYK) algorithm works.\\
-Various implementations and small online tools of the CYK algorithm can be found \cite{cykImpl1} \cite{cykImpl2} \cite{cykImpl3}. Nevertheless it is required to automatically generate suitable $exercise$s, that afterwards can be modified as wanted. This is the reason an own implementation has been made. It is also a task to find a more clever algorithm to automatically generate $exercise$s with a high chance of being suitable as an exam exercise.
+Every year, lecturer in the field of theoretical computer science or an related one face the task to create the 4-tuple exam $exercise = (grammar,\ word,\ parse\ table,\ derivation\ $ $tree)$ that tests if their students have understood the way of working of the Cocke-Younger-Kasami (CYK) algorithm. For it $exercises$ need to be created which is a bit of a time consuming task that can only be done in $O(n^3)$ \cite{YOUNGER.1967}. \\
+Various implementations and small online tools of the CYK algorithm can be found \footnote{\href{http://lxmls.it.pt/2015/cky.html}{CYK online tool: http://lxmls.it.pt/2015/cky.html}} \footnote{\href{http://jflap.org/tutorial/grammar/cyk/index.html}{CYK parser implementation: http://jflap.org/tutorial/grammar/cyk/index.html}} \footnote{\href{https://github.com/ajh17/CYK-Java}{CYK algorithm implementation in Java: https://github.com/ajh17/CYK-Java}} but none actually assists during the process of creating an exercise.\\
+Therefore algorithms are needed to generate specifically suitable exercises with a high chance of success. Also a GUI tool, that allows automatic generation of the suitable exam exercises and further modification, is required. Therefore an separate solution is implemented.
 
 \subsection{Context Free Grammar} \label{cfgChapter}
+Firstly, we define a Context Free Grammar (CFG) as follows:
 \begin{DefGrey} \textbf{Context Free Grammar (CFG)}\\
-	We define a CFG as the 4-tuple $G=(V,\ \Sigma,\ S,\ P)$:
+	A CFG is a 4-tuple $G=(V,\ \Sigma,\ S,\ P)$:
 	\begin{itemize}
 		\item $V$ is a finite set of variables.
 		\item $\Sigma$ is an alphabet
 		\item $S$ is the start symbol and $S \in V$.
 		\item $P$ is a finite set of rules: $P \subseteq V \times (V \cup \Sigma)^{*}$.
 	\end{itemize}
-	It is valid that $\Sigma \cap V =  \emptyset$.
+	It holds: $\Sigma \cap V =  \emptyset$.
 \end{DefGrey}
-\begin{DefGrey}\label{CFGinCNF} \textbf{CFG with restrictions}\\
-	A CFG $G=(V,\ \Sigma,\ S,\ P)$ has the following restrictions:
+\noindent Secondly, we define a CFG with restrictions (CFGR) as:
+\begin{DefGrey}\label{CFGinCNF} \textbf{CFG with restrictions (CFGR)}\\
+	A CFG $G=(V,\ \Sigma,\ S,\ P)$ is a CFGR iff:
 	\begin{itemize}
-		\item $P \subseteq V \times (V^2 \cup \Sigma)^{*}$.
+		\item $P \subseteq V \times (V^2 \cup \Sigma)$.
 	\end{itemize}
 \end{DefGrey}
-\noindent Throughout this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. $P$ is not necessarily in CNF because it is possible that there are unreachable variables \textendash~from the starting variable. For further convenience the following default values are always assumed in this thesis:
+\noindent Throughout this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. Note that a CFGR is not necessarily in chomsyk normal form (CNF) because it is still possible that there are unreachable variables \textendash~from the starting variable \textendash~ or useless rules. For further convenience the following default values are always assumed in this thesis:
 \begin{itemize}
 	\item $V = \{A, B, ...\}$
-	\item $(V^2 \cup\ \Sigma)^{*}=\{a, b, ...\} \cup \{AA, AB, BB, BA, BS, AC, ... \}$
+	\item $(V^2 \cup\ \Sigma)=\{AA, AB, BB, BA, BS, AC, ... \} \cup \{a, b, ...\}$
 \end{itemize}
-A rule consists of a left hand side element (lhse) and a right hand side element (rhse). Example: $lhse \longrightarrow rhse$ applied to $A \longrightarrow c$ and $B \longrightarrow AC$ means that $A$ and $B$ are a $lhse$ and $c$ and $AC$ are a $rhse$. Elements of $V^2$ are often referred to as variable compounds.
+A rule consists of a left hand side element (lhse) and a right hand side element (rhse). Example: $lhse \longrightarrow rhse$ applied to $A \longrightarrow c$ and $B \longrightarrow AC$ means that $A$ and $B$ are a $lhse$ and $c$ and $AC$ are a $rhse$. Elements of $V^2$ are often referred to as variable compounds.\\
+While talking about a word $w$ or a language $L(G)$ Definition \ref{wordLanguage} holds:
 \begin{DefGrey}\label{wordLanguage} \textbf{Word $w$ and language $L(G)$}
 	\begin{itemize}
-		\item Word: $w \in \Sigma^* = w_0\cdot w_1\cdot ...\cdot w_j$.
+		\item Word: $w = w_0\cdot w_1\cdot ...\cdot w_j~and~w \in \Sigma^*$.
 		\item Language: $L(G)$ over an alphabet $\Sigma$ is a set of words over $\Sigma$ .
 	\end{itemize}
 \end{DefGrey}
 \noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, whereas a $Cell$ is again a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further reasoning behind this example see chapter \ref{dataStructurePyramid}) 
-\subsection{General approaches} \label{approaches}
-Now two basic approaches that may help finding a good algorithm are explained informally like in \cite{Duda.2012}. At first the difference between derivation and parsing and secondly the two different ways of parsing are explained shortly.  
-\subsubsection{Forward Problem \& Backward Problem}
-The Forward Problem and the Backward Problem are two ways as how to determine if $w \in L(G)$.	
+\subsection{General approaches of parsing} \label{approaches}
+Next, the basic approach that may help finding a good algorithm is explained informally like in \cite{Duda.2012}. At first, parsing is described in general and afterwards its two characteristics are explained.  
 \begin{DefGrey}
-	\textbf{Forward Problem ($G \xrightarrow[]{derivation} w$)} \\
-	Input: Grammar $G$.\\
-	Output: Derivation $d$ that shows implicitly $w \subseteq L$.
-\end{DefGrey}
-\noindent It is called Forward Problem, if you are given a grammar $G$ and form a derivation from its root node to a final word $w$. The derived word $w$ is always part of $L(G)$.
-\begin{DefGrey}
-	\textbf{Backward Problem = Parsing ($w\overset{?}{\subseteq}L(G)$)}\\
+	\textbf{Backward Problem = Parsing ($\mathbf{w\overset{?}{\subseteq}L(G)}$)}\\
 	Input: $w$ and a grammar $G$. \\
 	Output: $w \subseteq L(G) \Longrightarrow$ derivation $d$.
 \end{DefGrey}
-\noindent If you are given a word $w$ and want to determine if it is element of $L(G)$, it is called Backward Problem or parsing. The Cocke-Younger-Kasami algorithm does parsing and is the focus here.
-\subsubsection{Parsing Bottom-Up \& Top-Down}
-After knowing what parsing in general is, it is important to know that there are again two ways to classify the approach of parsing itself.
+\noindent If you are given a word $w$ and want to determine if it is element of $L(G)$, it is called parsing, which is also the basis of the Cocke-Younger-Kasami algorithm.\\
+After having defined what parsing in general is, it is important to know the two different ways of parsing, that will act as an idea provider for the algorithms.
 \begin{mdframed}[backgroundcolor=defColour]
 	\textbf{Bottom-Up parsing} \\
 Bottom-Up parsing means to start parsing from the leaves up to the root node.
 \end{mdframed}
-\noindent "Bottom-Up parsing is the general method used in the Cocke-Younger-Kasami algorithm, which fills a parse table from the "bottom up""\cite{Duda.2012}.
+\noindent Actually, Bottom-Up parsing is the method used in the Cocke-Younger-Kasami algorithm, which fills the parse table from the "bottom up"\cite{Duda.2012}.\\
+Bottom-up parsing starts by recognizing the words smallest sub words before its mid-size sub words, and leaving the largest overall word as the last.
 \begin{mdframed}[backgroundcolor=defColour]
 	\textbf{Top-Down parsing} \\
 	 Top-Down parsing means to start parsing from the root node down to the leaves.
@@ -66,24 +62,19 @@ Bottom-Up parsing means to start parsing from the leaves up to the root node.
 \noindent "Top-Down parsing starts with the root node and successively applies productions from $P$, with the goal of finding a derivation of the test sentence $w$." \cite{Duda.2012} (The so called test sentence is synonymous to an word $w$.) \cite{Duda.2012}.
 
 \subsection{Data Structure Pyramid} \label{dataStructurePyramid}
-To be able to describe the way of working of the different algorithms easier the help data structure $Pyramid$ will be defined \textendash~note that $Pyramid$ starts with upper case and therefore is a set. But before that:
-\begin{DefGrey} \textbf{$[i, j]$} \\
-	$[i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}_{\geq 0}$.
-\end{DefGrey}
-
-\begin{DefGrey} \textbf{$Cell_{i,j}$} \\
-	$Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \}$.
-\end{DefGrey}
-\noindent Now $Pyramid$ can be defined as following:
+To be able to describe how the different algorithms work in a simpler way, the help data structure $Pyramid$ will be defined \textendash~note that $Pyramid$ starts with upper case and therefore is a set.
 \begin{DefGrey} \textbf{$Pyramid$} \\
-	$Pyramid :=\{ Cell_{i,j}\ |\ i \in [0,\ i_{max}],\  j \in [0,\ j_{max,i}],\ i_{max} = |w|-1,~j_{max,i} = i_{max} -i\}$.
+	$Pyramid :=\{ Cell_{i,j}\ |\ i \in [0,\ i_{max}],\  j \in [0,\ j_{max,i}],\ i_{max} = |w|-1,~j_{max,i} = i_{max} -i\}$\\
+	~~~where $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \}$ denotes the contents of the j's cell in row i\\
+	~~~and $[i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}_{\geq 0}$.
 \end{DefGrey}
-\noindent The following is the visual representation of a $Pyramid$.
+\noindent The cell $Cell_{i_{max},0}$ is called the root of such a $Pyramid$ and Figure \ref{visualPyramid} is the visual representation of one.
 \newcommand{\boxpyramid}[1]{
 	\fontsize{5}{12}\selectfont{#1}
 }
 \begin{figure}[H]
 \centering
+\label{visualPyramid}
 	\resizebox{\linewidth}{!}{
 		\begin{tikzpicture}[baseline]
 		\newcommand{\myfontvars}[1]{
@@ -228,19 +219,12 @@ To be able to describe the way of working of the different algorithms easier the
 	}
 \caption{Visual representation of a $Pyramid$ with the word $w$ written above it.}
 \end{figure}
-\noindent Lastly we define $CellBottom$, $CellUpperLeft$ and $CellUpperright$ that are used for description in Algorithm \ref{checkForceCombinationPerCell}.
-\begin{DefGrey} \textbf{$CellDown,~CellUpperLeft~and~CellUpperRight$} \\
-	For every $Cell_{i,j}$ with $i>0$ the following is true:
-	\begin{itemize}
-		\item $CellBottom = Cell_{i,j}$.
-		\item $CellUpperLeft = Cell_{i-1,j}$.
-		\item $CellUpperRight = Cell_{i-1,j+1}$.
-	\end{itemize}
-\end{DefGrey}
+
 \subsection{ Cocke-Younger-Kasami Algorithm}
-The Cocke-Younger-Kasami Algorithm (CYK) has been developed independently in the 1960s by Itiroo Sakai \cite{Sakai.1962}, John Cocke and Jacob Schwartz \cite{JohnCockeJacobT.Schwartz.1970}, Tadao Kasami \cite{Kasami.1966} and Daniel Younger \cite{YOUNGER.1967} \cite{wikiCYK}.\\
-The idea is to find all possible derivations of each subword starting with size one and to consecutively use this information to find all possible derivations with a larger size of the subword up to the size of $w$. Finally it is checked if $w \in L(G)$ through the presence of the start variable in the tip of the pyramid.. \\
-The description of the algorithm follows the source \cite{Hoffmann.2015} adjusted to the data structure $Pyramid$. While describing Algorithm \ref{checkForceCombinationPerCell} later on a back reference to the CYK-Algorithm here will be made that points out a similarity.\\
+The Cocke-Younger-Kasami Algorithm (CYK) was independently developed in the 1960s by Itiroo Sakai \cite{Sakai.1962}, John Cocke and Jacob Schwartz \cite{JohnCockeJacobT.Schwartz.1970}, Tadao Kasami \cite{Kasami.1966} and Daniel Younger \cite{YOUNGER.1967}.\\
+The idea is to find all possible derivations of each subword starting with size one and to consecutively use this information to find all possible derivations with a larger size of the subword up to the size of $w$. Finally it is checked whether $w \in L(G)$ through the presence of the start variable in the tip of the pyramid.. \\
+The description of the algorithm follows the source \cite{Hoffmann.2015} adjusted to the data structure $Pyramid$. 
+Later on it can be seen, that the CYK algorithm can be used as a basis to find good algorithms.\\
 
 \noindent \frame{
 	\begin{algorithm}[H] %or another one check
@@ -273,7 +257,7 @@ The description of the algorithm follows the source \cite{Hoffmann.2015} adjuste
 		}
 	\end{algorithm}
 }
-During the execution of Algorithm \ref{CYK} the parsing table is filled as shown in Figure \ref{exampleCYK}. An example output of this definition of the CYK could look like this:
+During the execution of the CYK algorithm the parsing table is filled as shown in Figure \ref{exampleCYK}. An example output of this definition of the CYK could look like this:
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}

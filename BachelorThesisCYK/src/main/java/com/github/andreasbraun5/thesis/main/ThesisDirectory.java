@@ -9,7 +9,8 @@ public enum ThesisDirectory {
     LOGS("logs"),
     EXERCISE("exercise"),
     EXAMPLES("examples"),
-    BEST("bestOnes");
+    BEST("bestOnes"),
+    SUCCESSRATES("successRates");
 
     public final String path;
 

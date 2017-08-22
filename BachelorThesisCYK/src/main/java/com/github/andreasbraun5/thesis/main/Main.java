@@ -51,13 +51,22 @@ public class Main {
          */
         // It is recommended to use a high countDifferentWords. Word independent results are achieved.
 
-        int countGeneratedGrammarsPerWord = 100;
-        int countDifferentWords = 100;
+        int countGeneratedGrammarsPerWord = 32;
+        int countDifferentWords = 32;
 
         ResultCalculator resultCalculator = ResultCalculator.builder().
                 countDifferentWords(countDifferentWords).
                 countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
         GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
+        grammarProperties.examConstraints.sizeOfWord = 20;
+
+        GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnly = new GrammarGeneratorSettings(
+                grammarProperties, "GrammarGeneratorDiceRollOnly");
+        Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollOnly = resultCalculator.buildResultWithGenerator(
+                new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnly),
+                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollOnly.name)))
+        );
+        Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollOnly);
 
 
         GrammarGeneratorSettings settingsGrammarGeneratorDiceRollVar1 = new GrammarGeneratorSettings(
@@ -75,15 +84,6 @@ public class Main {
                 WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollVar2.name)))
         );
         Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollVar2);
-
-        GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnly = new GrammarGeneratorSettings(
-                grammarProperties, "GrammarGeneratorDiceRollOnly");
-        Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollOnly = resultCalculator.buildResultWithGenerator(
-                new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnly),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorDiceRollOnly.name)))
-        );
-        Util.writeResultToTxtFile(resultGrammarGeneratorDiceRollOnly);
-
 
         GrammarGeneratorSettings settingsGrammarGeneratorSplitThenFill = new GrammarGeneratorSettings(
                 grammarProperties, "GrammarGeneratorSplitThenFill");
