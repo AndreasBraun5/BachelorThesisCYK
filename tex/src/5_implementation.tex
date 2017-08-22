@@ -339,31 +339,30 @@ Not every exercise is actually suitable for an exam. Therefore a scoring model i
 
 
 \noindent The score of each $exercise$ is normalized to the maximum possible points so the maximum score is 1.0: $score = (\#Parameter\cdot10)^{-1}\cdot\sum\limits_{parameter}^{}points$. \\
-One negative score is already sufficient to avoid examples in area 3 with undesired properties.
+One negative score is already sufficient to avoid examples in area 3 with undesired properties. One negative score is already sufficient that the overall score of the exercise is negative.
 \pagebreak
 
 \subsection{Parsing input with ANTLR}
-The first step here is the tokenization of the input. After that with the help of the Grammar seen below a abstract syntax tree is generated out of which intern Java objects can parsed.\\
-The used grammar is a LL(k) grammar whereas each derivation step can be distinctly identified through the next k tokens.\\
-ANTLR has been used because it enables a clear separation between the language definition and the object handling in the code.\\
-In Figure \ref{antlrGrammarRules} the rules of the grammar are seen and in Figure \ref{antlrGrammarTokens} its used tokens.
+In area 4 of the application a context free grammar is given as input as seen in Figure \ref{antlrGrammarTokens} on the left. This input is parsed with ANTLR \footnote{ANTLR works with LL(k) grammars, which means that each derivation step can be distinctly identified through the next k tokens.} because it allows a clear separation between the language definition and the Java code.\\
+The first step here is the tokenization of the input in token as seen in Figure \ref{antlrGrammarTokens} on the right. After that with the help of the Grammar as seen in Figure \ref{antlrGrammarRules} an abstract syntax tree is generated out of which intern Java objects can be parsed.\\
 \noindent
 \begin{figure} [h]
-		\centering
-		\includegraphics{abb/antrlTokens.png}
-	\caption{Formal definition of the used ANTLR grammar tokens.}
-	\label{antlrGrammarRules}
+	\centering
+	\includegraphics{abb/exampleGrammarInput.png}
+	\includegraphics{abb/antrlTokens.png}
+	\caption{Left: Input grammar example of the application. Right: Formal definition of the used ANTLR grammar tokens to parse the input grammar.}
+	\label{antlrGrammarTokens}
 \end{figure}
 \begin{figure} [h]
 	\centering 
-	\includegraphics{abb/antrlRules.png}
+	\includegraphics[width=0.9\textwidth]{abb/antrlRules.png}
 	\caption{Formal definition of the used ANTLR grammar rules.}
-	\label{antlrGrammarTokens}
+	\label{antlrGrammarRules}
 \end{figure}
 
 \pagebreak
 \subsection{Other matters}
-
+Lastly, just some general information about the implementation are given here.\\
 Technologies that have been used for programming are 
 Github \footnote{\href{https://github.com/}{Github: https://github.com/}} with 
 Sourcetree \footnote{\href{https://www.sourcetreeapp.com/}{Sourcetree: https://www.sourcetreeapp.com/}} for version control, 
@@ -371,12 +370,10 @@ Maven \footnote{\href{https://maven.apache.org/}{Maven: https://maven.apache.org
 IntelliJ \footnote{\href{https://www.jetbrains.com/idea/}{IntelliJ: https://www.jetbrains.com/idea/}} as the IDE, 
 ANTLR \footnote{\href{http://www.antlr.org/}{ANTLR: http://www.antlr.org/}} with ANTLRWorks for parsing input and 
 JavaFX Scene Builder \footnote{\href{http://gluonhq.com/products/scene-builder/}{JavaFX Scene Builder: http://gluonhq.com/products/scene-builder/}} to create the GUI. \\
-
 \noindent Important used frameworks are: 
 JUnit \footnote{\href{http://junit.org/junit4/}{JUnit: http://junit.org/junit4/}} for testing and Project 
 Lombok \footnote{\href{https://projectlombok.org/features/all}{Project Lombok: https://projectlombok.org/features/all}} to greatly reduce boilerplate code.\\
-
-\noindent Altogether around 7100 lines of code have been written, of which 5400 are pure java code, 900 are comment lines and 800 are blank lines.\\ 
+\noindent Altogether around 7100 lines of code have been written, of which 5400 are pure java code lines, 900 are comment lines and 800 are blank lines.\\ 
 
 \pagebreak\
 \clearpage

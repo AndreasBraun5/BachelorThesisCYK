@@ -2,7 +2,7 @@
 
 \section{Algorithms}\label{algorithms}
 \subsection{Sub modules}
-Sub modules are parts of the algorithms that are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should be explained in more detail for a better understanding of the way of working of algorithms in the following chapters. \circled{E} is explained not until Chapter \ref{var2} because it is needed only there.\\
+Sub modules are parts of the algorithms that are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that will be explained in more detail for a better understanding of the way of working of algorithms in the following chapters. \circled{E} is explained not until Chapter \ref{var2} because it is needed only there.\\
 
 \noindent \textbf{Distribute$(\Sigma,\ V) $ \circled{A} and Distribute$(V^2,\ V)$ \circled{B}:}\\
 The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. But in both cases a uniform random subset of the $Rhse$ is taken and again uniform randomly distributed over the set of available variables $V$. While distributing the terminals there exists at least one rule for every terminal used in the word $w$. The specifics of how they are distributed are described in the following algorithm: \\
@@ -60,7 +60,7 @@ In the following situation a rule is added to $Cell_{3,0}$ while using Algorithm
 			\begin{tabular}{l}
 				Grammar:\\
 				$A \rightarrow AB~|~a$\\
-				$B \rightarrow \textcolor{gray}{\textbf{SC}}~|~b$\\ 
+				$\mathbf{B \rightarrow \textbf{SC}}~|~b$\\ 
 				$C \rightarrow AB$ \\
 				$S \rightarrow BA~|~AA$
 			\end{tabular} 
@@ -168,7 +168,7 @@ In the following situation a rule is added to $Cell_{3,0}$ while using Algorithm
 	\end{minipage}
 	\caption{Example of Algorithm \ref{CalculateSubsetForCell} while applying it on $Cell_{3,0}$ via adding the rule $B \rightarrow SC$.}
 \end{figure}\\
-The calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ comes from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textcolor{gray}{\textbf{B $\rightarrow$ SC}} has been added and finally $(B,2)$ is element of $Cell_{3,0}$.\\
+The calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ comes from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textbf{B $\rightarrow$ SC} has been added and finally $(B,2)$ is element of $Cell_{3,0}$.\\
 In general if for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \in CellSet~(Line~\ref{cellSet})$ is added then automatically $Cell_{i,j}$ won't be empty any more. 
 \pagebreak
 
@@ -189,7 +189,7 @@ In general if for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \i
 		\Return $P$;
 	\end{algorithm}
 }
-The algoritm DiceRollOnly (Algorithm \ref{DiceRollOnlyCYK}) distributes terminals $\Sigma$ to at least one $lhse$, but a compound variable $V^2$ must not be distributed at all. Note that for each terminal of $\Sigma=\{a,b\}$ at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ is generated. But for each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~CC,$ $~CS,SS\}$ it is possible that only a smaller subset like $\{AA,~BA,~CC,~SC\}$ is distributed so that only rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.
+The algoritm DiceRollOnly (Algorithm \ref{DiceRollOnlyCYK}) distributes terminals $\Sigma$ to at least one $lhse$, but a compound variable $V^2$ does not has to be distributed at all. Note that for each terminal of $\Sigma=\{a,b\}$ at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ is generated. But for each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~CC,$ $~CS,SS\}$ it is possible that only a smaller subset like $\{AA,~BA,~CC,~SC\}$ is distributed so that only rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -216,7 +216,7 @@ The algoritm DiceRollOnly (Algorithm \ref{DiceRollOnlyCYK}) distributes terminal
 \clearpage
 \subsection{Dice rolling and Bottom-Up variant 1}
 Another approach to design an algorithm is after the Bottom-Up approach (Chapter \ref{approaches}) in which the parsing table is filled starting from the leaves in direction of the root node.\\
-The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK}, the naive approach, it can happen that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables (see Figure \ref{var1Example}, the middle part of the example). \\
+The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK}, the naive approach, it is possible that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables (see Figure \ref{var1Example}, the middle part of the example). \\
 \noindent
 \begin{figure}[h]
 	\begin{minipage}{6in}
@@ -534,7 +534,7 @@ The basic idea is to guide the choice of rules while distributing the compound v
 	\label{var1Example}
 \end{figure}\\
 If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they don't directly help to fill the parsing table and bloat the grammar with useless rules (see Figure \ref{var1Example}, the middle part of the example). More reasonable rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ or $lhse \rightarrow AB$ (see Figure \ref{var1Example}, the bottom part of the example).\\
-\noindent Algorithm \ref{BottomUpDiceRollVar1} continues on this idea: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating (Line \ref{var1D}) variable compounds and to finally add a part of them (Line \ref{var1Add}) in form of rules to the grammar. I.e. for each chosen cell a $CellSet$ (Line \ref{var1D}) is calculated, that only contains reasonable variable compounds. This way only variable compounds are added that directly help to fill the parsing table.\\
+\noindent Algorithm \ref{BottomUpDiceRollVar1} continues on this idea: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating (Line \ref{var1D}) variable compounds and to finally add a part of them (Line \ref{var1Add}) in form of rules to the grammar. In explanation  for each chosen cell a $CellSet$ (Line \ref{var1D}) is calculated, that only contains reasonable variable compounds. This way only variable compounds are added that directly help to fill the parsing table.\\
 
 \noindent
 \frame{
@@ -588,9 +588,9 @@ While examining Algorithm \ref{BottomUpDiceRollVar1} via its log file (Figure \r
 	\caption{Digest of log files of Algorithm \ref{BottomUpDiceRollVar1} with $|V|=4$ and $|\Sigma|=2$.}
 	\label{logsVar1}
 \end{figure}
-\noindent This again leads to a further improvement idea to introduce a row dependent $threshold_i$ (Line \ref{var2threshold}) which helps that more cells with $i\geq2$ are chosen \textendash~what possibly leads to more diverse grammars being generated. The diversity, in context of the procedure BottomUpDiceRollVar1 (Algorithm \ref{BottomUpDiceRollVar1}), is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the grammar will contain one of these $lhse$s as explained in Figure \ref{var1Example}. This is caused by the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the relatively small number of rules that are added to the grammar altogether. \\
-Further diversification is achieved through the usage of \circled{E} (Line \ref{chooseVc}; for a detailed explanation see at the end of this chapter), i.e. variable compounds that already have been used in a row with low index $i$ are at a disadvantage to be picked again.\\
-As seen in Figure \ref{GoalofBetterDiversity} rules with $BA$~and~$AA$ are added to the variables $B$ and $A$ in Grammar1. For Grammar2 instead the rule $B\rightarrow SS$ is added that contributes to a better diversity compared to Grammar1.
+\noindent This again leads to a further improvement idea to introduce a row dependent $threshold_i$ (Line \ref{var2threshold} of Algorithm \ref{BottomUpDiceRollVar2} BottomUpDiceRollVars) which helps that more cells with $i\geq2$ are chosen \textendash~what possibly leads to more diverse grammars being generated. The diversity, in context of the procedure BottomUpDiceRollVar1 (Algorithm \ref{BottomUpDiceRollVar1}), is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the grammar will contain one of these $lhse$s as explained in Figure \ref{var1Example}. This is caused by the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the relatively small number of rules that are added to the grammar altogether. \\
+Further diversification is achieved through the usage of \circled{E} (Line \ref{chooseVc} of Algorithm \ref{BottomUpDiceRollVar2} BottomUpDiceRollVars), i.e. the variable compounds that already have been used in a row with low index $i$ are at a disadvantage to be picked again (A more detailed explanation is found at the and of this chapter).\\
+As seen in Figure \ref{GoalofBetterDiversity} the rules with $BA$~and~$AA$ are added to the variables $B$ and $A$ in Grammar1. For Grammar2 instead the rule $B\rightarrow SS$ is added that contributes to a better diversity compared to Grammar1.
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -680,8 +680,8 @@ The approach here only makes sense together with \circled{D} in which all possib
 
 \pagebreak
 \subsection{Split Top-Down and fill Bottom-Up}
-Until now we have only discussed algorithms that purely use the Bottom-Up approach, so another way is to make use of the Top-Down approach in combination with the Bottom-Up approach.\\
-The idea here is to first distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFill} SplitThenFill) and then to uniformly randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{SplitThenFill} and in general Algorithm \ref{SplitThenFillRecursion} SplitThenFillRec) Top-Downwards and then again to fill the parsing table Bottom-Upwards accordingly to fill this derivation tree. The structure of the derivation tree for instance can look as follows:
+Until now we have only discussed algorithms that purely use the Bottom-Up approach, so another way is to utilize the Top-Down approach in combination with the Bottom-Up approach.\\
+The idea here is first to distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFill} SplitThenFill) and then to uniformly randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{SplitThenFill} and in general Algorithm \ref{SplitThenFillRecursion} SplitThenFillRec) Top-Downwards and then again to fill the parsing table Bottom-Upwards accordingly to fill this derivation tree. The structure of the derivation tree for instance can look as follows:
 \begin{figure} [h]
 		\begin{minipage}{6in}
 		\centering
@@ -1918,7 +1918,7 @@ The next two analogous steps are described in Figure \ref{IllustrationAlgorithmS
 \clearpage
 
 \subsection{Split Top-Down and fill Top-Down}
-After defining an algorithm that uses the combination of the Bottom-Up approach and the Top-Down approach (Algorithm \ref{SplitThenFill}) a step further is to find an algorithm that only makes use of the Top-Down approach.\\
+After defining an algorithm that uses the combination of the Bottom-Up approach and the Top-Down approach (Algorithm \ref{SplitThenFill}) a step further is to find an algorithm that only makes use of the Top-Down approach to see if an even better algorithm can be found.\\
 This algorithm again generates a predefined structure of the derivation tree Top-Downwards. Every time a node of the structure of the derivation tree has been decided on, a rule is immediately added to the grammar \textendash~therefore the name SplitAndFill, which is like "split for a node and then directly add a rule so that the node is then filled with at least one variable". \\
 Note that the count of rules in the grammar is dependent on the count of nodes in the derivation tree and a terminal is distributed to only one variable. While resolving the last recursion step (Line \ref{splitAndFillRecLastStep}) of Algorithm \ref{SplitAndFillRecursion} SplitAndFillRec the start variable will be in the root of the pyramid that always leads to $w \in L(G)$.\\
 
@@ -3403,7 +3403,7 @@ Now that there is a measure to compare the different algorithms it is of interes
 	\item size of word = [4;~11]
 \end{itemize}
 \vspace{0.6cm}
-\noindent The resulting best SRs of each algorithm are used to decide which stopping criteria \circled{C} gives more exam suitable $exercise$s and finally the algorithms are compared to each other. \\
+\noindent The resulting best SRs of each algorithm are used to decide which stopping criteria \circled{C} gives more exam suitable $exercise$s and finally the algorithms are compared to each other. The best SR is calculated via BruteForce over all count of variables ascending again over all count terminals ascending and over the size of the word ascending. The best SR is only updated if the net determined SR is better than the tempBestOne. This means the first maximum (ascending) will be picked and all other maxima with the same height will be ignored. \\
 
 \subsubsection{Comparison of stopping criteria}
 For all of the five algorithms the best SRs have been calculated for both stopping criteria and are shown in Table \ref{comparisionStoppingCriteria}.
@@ -3422,7 +3422,7 @@ For all of the five algorithms the best SRs have been calculated for both stoppi
 	\caption{Comparision of the two stopping criteria: Half of the cells in the pyramid are not empty and at least one variable is in the root of the pyramid. (N = 1024)}
 	\label{comparisionStoppingCriteria}
 \end{table}
-\noindent It can be seen that the stopping criteria does not really have a big impact on the SR. ... XXX
+\noindent It can be seen that the stopping criteria RootNotEmpty is better or at least as good as MoreThanHalf in all cases. All other discussion is done with the Criteria RootNotEmpty.
 
 
 
@@ -3443,8 +3443,8 @@ It is interesting to see which input values of the algorithms are responsible fo
 	\caption{Comparison of the input values of each algorithm for with best SR. (N = 1024)}
 	\label{inputValuesOfBestSuccessRate}
 \end{table}
-
-\noindent By comparing the five algorithms in Table \ref{comparisionsAlgorithms} in more detail it is ... XXX
+Mostly the count of variables and the count of terminals is three. No further discussion is done. The size of the word is 8 or 9. Don't know why.
+\noindent By comparing the five algorithms in Table \ref{comparisionsAlgorithms} in more detail it is clearly seen that "very very good" SR are achieved. VarsInPyramid and VarsPerCell are in most cases fulfilled. ForceRight is kind of not always fulfilled. Why do I have to discuss this....
 \begin{table}[h]
 	\centering
 	\begin{tabular}{|l|c|c|c|c|c|c|c|}

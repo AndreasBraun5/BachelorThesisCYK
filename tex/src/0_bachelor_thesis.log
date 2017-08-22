@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  22 AUG 2017 20:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  22 AUG 2017 22:53
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -2203,7 +2203,7 @@ Overfull \hbox (3.01166pt too wide) in paragraph at lines 3450--3460
 
 pdfTeX warning: pdflatex.exe (file ./abb/CYKInstancesGenerator.pdf): PDF inclus
 ion: found PDF version <1.7>, but at most version <1.5> allowed
-<abb/CYKInstancesGenerator.pdf, id=619, 963.6pt x 542.025pt>
+<abb/CYKInstancesGenerator.pdf, id=621, 963.6pt x 542.025pt>
 File: abb/CYKInstancesGenerator.pdf Graphic file (type pdf)
 
 <use abb/CYKInstancesGenerator.pdf>
@@ -2226,55 +2226,48 @@ parse table;  derivation tree\OT1/lmr/m/n/12 )$\T1/lmr/m/n/12 .
 
 [34] [35
 
-] <abb/antrlTokens.png, id=652, 252.19218pt x 257.46187pt>
+] <abb/exampleGrammarInput.png, id=655, 133.24782pt x 287.57437pt>
+File: abb/exampleGrammarInput.png Graphic file (type png)
+
+<use abb/exampleGrammarInput.png>
+Package pdftex.def Info: abb/exampleGrammarInput.png used on input line 351.
+(pdftex.def)             Requested size: 133.24748pt x 287.57367pt.
+
+<abb/antrlTokens.png, id=656, 252.19218pt x 257.46187pt>
 File: abb/antrlTokens.png Graphic file (type png)
 
 <use abb/antrlTokens.png>
-Package pdftex.def Info: abb/antrlTokens.png used on input line 353.
+Package pdftex.def Info: abb/antrlTokens.png used on input line 352.
 (pdftex.def)             Requested size: 252.19156pt x 257.46123pt.
 
-<abb/antrlRules.png, id=653, 442.65375pt x 405.01312pt>
+<abb/antrlRules.png, id=657, 442.65375pt x 405.01312pt>
 File: abb/antrlRules.png Graphic file (type png)
 
 <use abb/antrlRules.png>
-Package pdftex.def Info: abb/antrlRules.png used on input line 359.
-(pdftex.def)             Requested size: 442.65265pt x 405.01212pt.
-
-Overfull \hbox (1.63492pt too wide) in paragraph at lines 359--360
- [][] 
- []
+Package pdftex.def Info: abb/antrlRules.png used on input line 358.
+(pdftex.def)             Requested size: 396.91325pt x 363.17972pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[36 <./abb/antrlTokens.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 367--374
+[36 <./abb/exampleGrammarInput.png> <./abb/antrlTokens.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 365--377
+
+ []
+
+[37 <./abb/antrlRules.png>] [38]
+Underfull \hbox (badness 10000) in paragraph at lines 380--381
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 375--378
+Underfull \hbox (badness 10000) in paragraph at lines 382--384
 
  []
 
+) [39
 
-Underfull \hbox (badness 10000) in paragraph at lines 379--380
-
- []
-
-[37 <./abb/antrlRules.png>] [38] [39]
-Underfull \hbox (badness 10000) in paragraph at lines 383--384
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 385--387
-
- []
-
-) [40
-
-] (0_bachelor_thesis.bbl) [41
+] (0_bachelor_thesis.bbl) [40
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 348.
@@ -2296,10 +2289,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 348.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 37517 strings out of 493328
- 722770 string characters out of 3139104
- 951640 words of memory out of 3000000
- 40138 multiletter control sequences out of 15000+200000
+ 37521 strings out of 493328
+ 722913 string characters out of 3139104
+ 951722 words of memory out of 3000000
+ 40142 multiletter control sequences out of 15000+200000
  705320 words of font info for 130 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
  64i,24n,70p,10445b,24896s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2336,9 +2329,9 @@ msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (41 pages, 814388 bytes).
+Output written on 0_bachelor_thesis.pdf (40 pages, 818311 bytes).
 PDF statistics:
- 840 PDF objects out of 1000 (max. 8388607)
- 256 named destinations out of 1000 (max. 500000)
- 241 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 841 PDF objects out of 1000 (max. 8388607)
+ 255 named destinations out of 1000 (max. 500000)
+ 246 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -5,7 +5,7 @@
 \subsection{Motivation}
 Every year, lecturer in the field of theoretical computer science or an related one face the task to create the 4-tuple exam $exercise = (grammar,\ word,\ parse\ table,\ derivation\ $ $tree)$ that tests if their students have understood the way of working of the Cocke-Younger-Kasami (CYK) algorithm. For it $exercises$ need to be created which is a bit of a time consuming task that can only be done in $O(n^3)$ \cite{YOUNGER.1967}. \\
 Various implementations and small online tools of the CYK algorithm can be found \footnote{\href{http://lxmls.it.pt/2015/cky.html}{CYK online tool: http://lxmls.it.pt/2015/cky.html}} \footnote{\href{http://jflap.org/tutorial/grammar/cyk/index.html}{CYK parser implementation: http://jflap.org/tutorial/grammar/cyk/index.html}} \footnote{\href{https://github.com/ajh17/CYK-Java}{CYK algorithm implementation in Java: https://github.com/ajh17/CYK-Java}} but none actually assists during the process of creating an exercise.\\
-Therefore algorithms are needed to generate specifically suitable exercises with a high chance of success. Also a GUI tool, that allows automatic generation of the suitable exam exercises and further modification, is required. Therefore an separate solution is implemented.
+Therefore algorithms are needed to generate specifically suitable exercises with a high chance of success. Also a GUI tool, that allows automatic generation of the suitable exam exercises and further modification, is required and so a separate solution is implemented.
 
 \subsection{Context Free Grammar} \label{cfgChapter}
 Firstly, we define a Context Free Grammar (CFG) as follows:
@@ -39,9 +39,9 @@ While talking about a word $w$ or a language $L(G)$ Definition \ref{wordLanguage
 		\item Language: $L(G)$ over an alphabet $\Sigma$ is a set of words over $\Sigma$ .
 	\end{itemize}
 \end{DefGrey}
-\noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, whereas a $Cell$ is again a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further reasoning behind this example see chapter \ref{dataStructurePyramid}) 
+\noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, whereas a $Cell$ is again a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further explanation behind this example see chapter \ref{dataStructurePyramid}) 
 \subsection{General approaches of parsing} \label{approaches}
-Next, the basic approach that may help finding a good algorithm is explained informally like in \cite{Duda.2012}. At first, parsing is described in general and afterwards its two characteristics are explained.  
+Next, the basic approach that may help finding a good algorithm is explained informally analogous to \cite{Duda.2012}. At first, parsing is described in general and afterwards its two characteristics are explained.  
 \begin{DefGrey}
 	\textbf{Backward Problem = Parsing ($\mathbf{w\overset{?}{\subseteq}L(G)}$)}\\
 	Input: $w$ and a grammar $G$. \\
@@ -62,13 +62,13 @@ Bottom-up parsing starts by recognizing the words smallest sub words before its 
 \noindent "Top-Down parsing starts with the root node and successively applies productions from $P$, with the goal of finding a derivation of the test sentence $w$." \cite{Duda.2012} (The so called test sentence is synonymous to an word $w$.) \cite{Duda.2012}.
 
 \subsection{Data Structure Pyramid} \label{dataStructurePyramid}
-To be able to describe how the different algorithms work in a simpler way, the help data structure $Pyramid$ will be defined \textendash~note that $Pyramid$ starts with upper case and therefore is a set.
+To be able to describe how the different algorithms work in a simpler way, the help data structure $Pyramid$ is defined \textendash~note that $Pyramid$ starts with upper case and therefore is a set.
 \begin{DefGrey} \textbf{$Pyramid$} \\
 	$Pyramid :=\{ Cell_{i,j}\ |\ i \in [0,\ i_{max}],\  j \in [0,\ j_{max,i}],\ i_{max} = |w|-1,~j_{max,i} = i_{max} -i\}$\\
 	~~~where $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \}$ denotes the contents of the j's cell in row i\\
 	~~~and $[i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}_{\geq 0}$.
 \end{DefGrey}
-\noindent The cell $Cell_{i_{max},0}$ is called the root of such a $Pyramid$ and Figure \ref{visualPyramid} is the visual representation of one.
+\noindent The cell $Cell_{i_{max},0}$ is called the root of such a $Pyramid$ and Figure \ref{visualPyramid} shows the visual representation of one.
 \newcommand{\boxpyramid}[1]{
 	\fontsize{5}{12}\selectfont{#1}
 }
@@ -222,7 +222,7 @@ To be able to describe how the different algorithms work in a simpler way, the h
 \pagebreak
 \subsection{ Cocke-Younger-Kasami Algorithm}
 The Cocke-Younger-Kasami Algorithm (CYK) was independently developed in the 1960s by Itiroo Sakai \cite{Sakai.1962}, John Cocke and Jacob Schwartz \cite{JohnCockeJacobT.Schwartz.1970}, Tadao Kasami \cite{Kasami.1966} and Daniel Younger \cite{YOUNGER.1967}.\\
-The idea is to find all possible derivations of each subword starting with size one and to consecutively use this information to find all possible derivations with a larger size of the subword up to the size of $w$. Finally it is checked whether $w \in L(G)$ through the presence of the start variable in the root of the pyramid.. \\
+The idea is to find all possible derivations of each subword starting with size one and to consecutively use this information to find all possible derivations with a larger size of the subword up to the size of $w$. Finally it is checked whether $w \in L(G)$ through the presence of the start variable in the root of the pyramid. \\
 The description of the algorithm follows the source \cite{Hoffmann.2015} adjusted to the data structure $Pyramid$. 
 Later on it can be seen, that the CYK algorithm can be used as a basis to find good algorithms.\\
 
