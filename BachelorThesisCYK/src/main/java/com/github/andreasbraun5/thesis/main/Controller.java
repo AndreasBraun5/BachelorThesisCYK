@@ -136,8 +136,7 @@ public class Controller implements Initializable {
         settingsGrammarGeneratorSplitThenFill.setMaxValueCompoundVariablesAreAddedTo(1);
         Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
                 new GrammarGeneratorSplitThenFill(settingsGrammarGeneratorSplitThenFill),
-                WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitThenFill.name)))
-        );
+                WorkLog.createFromWriter(null));
 
         this.selectFrom.setText(resultGrammarGeneratorSplitThenFill.y.toString());
         statusOutput.setText(statusOutput.getText() + "\nExercise creation successful.");

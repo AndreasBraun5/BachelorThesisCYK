@@ -38,8 +38,8 @@ public class CalculateBestSuccessRate {
     private static final int MAX_VARS = 8; // plus the Variable Start S
     private static final int MIN_TERMS = 2;
     private static final int MAX_TERMS = 8;
-    private static final int MIN_SIZE_WORD = 4;
-    private static final int MAX_SIZE_WORD = 10;
+    private static final int MIN_SIZE_WORD = 8;
+    private static final int MAX_SIZE_WORD = 11;
 
     public static void main(String[] args) throws IOException {
         calculateMaxSuccessRate(Generators.DiceRollOnly);
@@ -56,7 +56,7 @@ public class CalculateBestSuccessRate {
     }
 
     public static void calculateMaxSuccessRate(Generators generatorType) throws IOException {
-        GrammarProperties grammarProperties = createGrammarProperties(3, 2, 10);
+        GrammarProperties grammarProperties = createGrammarProperties(1, 2, 4);
         Result bestResult = startAlgorithms(generatorType, grammarProperties); // Default stuff
         for (int varCount = MIN_VARS; varCount < MAX_VARS; ++varCount) {
             for (int termCount = MIN_TERMS; termCount < MAX_TERMS; ++termCount) {
