@@ -2018,4 +2018,325 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 66.
 LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 219.
-LaTeX Font Info:    External font `
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <2.5> on input line 219.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <1.74998> on input line 219.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <1.25> on input line 219.
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--228
+
+ []
+
+[8]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 259.
+LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 424.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <4.9> on input line 424.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <3.42998> on input line 424.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <2.45> on input line 424.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9] [10]) (2_success_rates.tex) (3_algorithms.tex
+Underfull \hbox (badness 10000) in paragraph at lines 5--8
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--25
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--33
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--36
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--170
+
+ []
+
+[11
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 171--175
+
+ []
+
+[12]
+Overfull \hbox (20.02167pt too wide) in paragraph at lines 180--189
+ [][] 
+ []
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
+
+ []
+
+[14
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 237--557
+
+ []
+
+[15
+
+] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 594--595
+
+ []
+
+[17] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 866--868
+
+ []
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 870--890
+
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1250
+
+ []
+
+[21
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1253--1416
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1417--1913
+
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22
+
+] [23]
+Underfull \hbox (badness 10000) in paragraph at lines 1917--1920
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1921--1938
+
+ []
+
+[24
+
+]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[25] [26] [27
+
+] [28
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 2960--2961
+
+ []
+
+
+Overfull \hbox (10.99472pt too wide) in paragraph at lines 2962--2965
+\T1/lmr/bx/n/12 Success Rate Pro-ducibil-ity:  \T1/lmr/m/n/12 A gen-er-ated $\O
+ML/lmm/m/it/12 exercise$ \T1/lmr/m/n/12 con-tributes to the SR-Producibility
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2962--2965
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2966--2969
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3245--3246
+
+ []
+
+[29
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 3272--3388
+
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3393--3394
+
+ []
+
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 3402--3403
+
+ []
+
+[31] [32]) (5_implementation.tex
+
+pdfTeX warning: pdflatex.exe (file ./abb/CYKInstancesGenerator.pdf): PDF inclus
+ion: found PDF version <1.7>, but at most version <1.5> allowed
+<abb/CYKInstancesGenerator.pdf, id=612, 963.6pt x 542.025pt>
+File: abb/CYKInstancesGenerator.pdf Graphic file (type pdf)
+
+<use abb/CYKInstancesGenerator.pdf>
+Package pdftex.def Info: abb/CYKInstancesGenerator.pdf used on input line 15.
+(pdftex.def)             Requested size: 441.01773pt x 248.0691pt.
+ [33
+
+ <./abb/CYKInstancesGenerator.pdf>]
+Overfull \hbox (7.79866pt too wide) in paragraph at lines 24--311
+\T1/lmr/m/n/12 A exam $\OML/lmm/m/it/12 exercise$ \T1/lmr/m/n/12 is a 4-tuple $
+\OML/lmm/m/it/12 exercise \OT1/lmr/m/n/12 = (\OML/lmm/m/it/12 grammar;  word;  
+parse table;  derivation tree\OT1/lmr/m/n/12 )$\T1/lmr/m/n/12 .
+ []
+
+[34] [35
+
+] <abb/antrlRules.png, id=641, 442.65375pt x 405.01312pt>
+File: abb/antrlRules.png Graphic file (type png)
+
+<use abb/antrlRules.png>
+Package pdftex.def Info: abb/antrlRules.png used on input line 353.
+(pdftex.def)             Requested size: 442.65265pt x 405.01212pt.
+
+Overfull \hbox (1.63492pt too wide) in paragraph at lines 353--354
+ [][] 
+ []
+
+<abb/antrlTokens.png, id=642, 252.19218pt x 257.46187pt>
+File: abb/antrlTokens.png Graphic file (type png)
+
+<use abb/antrlTokens.png>
+Package pdftex.def Info: abb/antrlTokens.png used on input line 359.
+(pdftex.def)             Requested size: 252.19156pt x 257.46123pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[36 <./abb/antrlRules.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 367--374
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 375--378
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 379--380
+
+ []
+
+[37 <./abb/antrlTokens.png>] [38]
+Underfull \hbox (badness 10000) in paragraph at lines 383--384
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 385--387
+
+ []
+
+) [39
+
+] (0_bachelor_thesis.bbl) [40
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 348.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 348.
+ (0_bachelor_thesis.aux
+(latex_settings/deckblatt.aux) (abstract.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 348.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 348.
+Package rerunfilecheck Info: File `0_bachelor_thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 5FD074B9DED40D16752AD8148AE0CDD1;1993.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 348.
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 1061 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 37509 strings out of 493328
+ 722698 string characters out of 3139104
+ 952973 words of memory out of 3000000
+ 40136 multiletter control sequences out of 15000+200000
+ 705320 words of font info for 130 fonts, out of 3000000 for 9000
+ 1145 hyphenation exceptions out of 8191
+ 64i,24n,70p,10445b,24898s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{Def.5} has been referenced but does
+ not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Def.3} has been referenced but does not exist, repl
+aced by a fixed one
+
+pdfTeX warning (dest): name{Def.2} has been referenced but does not exist, repl
+aced by a fixed one
+
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Program Files
+/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts
+/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.e
+nc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/lm/lmbx5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/l
+m/lmbx8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbxi10.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/lm/lmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi
+5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi6.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/lm/lmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/lm/lmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/lm/lmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/l
+msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/symbols/msbm10.pfb>
+Output written on 0_bachelor_thesis.pdf (40 pages, 807577 bytes).
+PDF statistics:
+ 823 PDF objects out of 1000 (max. 8388607)
+ 250 named destinations out of 1000 (max. 500000)
+ 241 words of extra memory for PDF output out of 10000 (max. 10000000)
+
