@@ -2,7 +2,8 @@
 
 \section{Algorithms}\label{algorithms}
 \subsection{Sub modules}
-Sub modules are parts of the algorithms that are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should be explained in more detail for a better understanding of the way of working of algorithms in the following chapters.\\
+Sub modules are parts of the algorithms that are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that should be explained in more detail for a better understanding of the way of working of algorithms in the following chapters. \circled{E} is explained not until Chapter \ref{var2} because it is needed only there.\\
+
 \noindent \textbf{Distribute$(\Sigma,\ V) $ \circled{A} and Distribute$(V^2,\ V)$ \circled{B}:}\\
 The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. But in both cases a uniform random subset of the $Rhse$ is taken and again uniform randomly distributed over the set of available variables $V$. While distributing the terminals there exists at least one rule for every terminal used in the word $w$. The specifics of how they are distributed are described in the following algorithm: \\
 
@@ -30,9 +31,10 @@ Two kinds of stopping criteria have been used to determine whether an algorithm 
 	\item stop if the root of the pyramid is not empty any more
 \end{itemize}
 Both stopping criteria are compared in short in Chapter \ref{AnalysisOfAlgorithms}. \\
+\pagebreak
 
 \noindent \textbf{CalculateSubsetForCell(Pyramid, i, j) \circled{D}:}\\
-This procedure is needed to determine all possible compound variables out of all possible cell combinations for one specific cell. It works kind of analogous from Line 7 to Line 9 of the CYK algorithm (Algorithm \ref{CYK}). If now for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \in CellSet~(Line~\ref{cellSet})$ is added then automatically $Cell_{i,j}$ won't be empty any more.\\
+This procedure is needed to determine all possible compound variables out of all possible cell combinations for one specific cell. It works kind of analogous from Line 7 to Line 9 of the CYK algorithm (Algorithm \ref{CYK}).\\
 
 \noindent \frame{
 	\begin{algorithm}[H] %or another one check
@@ -49,7 +51,7 @@ This procedure is needed to determine all possible compound variables out of all
 		
 	\end{algorithm}
 }
-In the following situation a rule is be added to $Cell_{3,0}$ while using Algorithm \ref{CalculateSubsetForCell}.
+In the following situation a rule is added to $Cell_{3,0}$ while using Algorithm \ref{CalculateSubsetForCell}.
 \noindent
 \begin{figure}[h]
 	\begin{minipage}{6in}
@@ -166,33 +168,12 @@ In the following situation a rule is be added to $Cell_{3,0}$ while using Algori
 	\end{minipage}
 	\caption{Example of Algorithm \ref{CalculateSubsetForCell} while applying it on $Cell_{3,0}$ via adding the rule $B \rightarrow SC$.}
 \end{figure}\\
-The calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ is from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textcolor{gray}{\textbf{B $\rightarrow$ SC}} has been added and now $(B,2)$ is element of $Cell_{3,0}$.\\
-
-\noindent \textbf{Choose one xy from (xy,i) $\in$ RowSet uniform randomly with probability depending on row i \circled{E} :}\\
-At some point a decision needs to me made about what rule $lhse\rightarrow xy$ with $xy \in V^2$ will be added to the grammar. Depending on which $xy$ is chosen the influence on the entire pyramid varies. Some $xy$ only change the parsing table in one of its later rows ($i>>1$) but other $xy$ even change it in one of the first rows. If there is change in one of the first rows it is more likely that the entire pyramid will be more filled. Now the task of choosing rules to add, that only change the pyramid in one of the later rows, with a higher probability than the others is tackled with \circled{E}. \\
-The approach here only makes sense together with \circled{D} in which all possible compound variables are calculated that help to fill one specific cell. If you use this sub module on every cell of the pyramid to calculate the different variable compounds $xy$ and additionally store the row number $i$ then you get the set $RowSet \subseteq \{(xy,i)\ |\ x,y \in V \wedge i \in \mathbb{N} \}$.\\ 
-Using this $RowSet$ the choice can be influenced regarding the row number $i$:\\ Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be merged to its lowest $i$, as following: $RowSet = \{(AB,3),~(AB,1),~(AB,5),~... \}$ will become $RowSet = \{(AB,1),~... \}$. Afterwards all elements of $RowSet$ will be placed in the $RowMultiSet$ that  can contain multiple equivalent elements. Now each element of $RowMultiSet$ will be weighted according to their $i$. That means that elements like $(AB,1)$ will only occur one time though elements like $(BC,3)$ will occur three times and so on: $RowMultiSet = \{(AB,1),~(BC,3),~...\}$ becomes $RowMultiSet = \{(AB,1),~(BC,3),~(BC,3),~(BC,3),~...\}$. Now one element will be uniform randomly picked out of this weighted $RowMultiSet$ example wise $xy = BC$.\\
-
-\noindent
-\begin{figure} [h]
-	\begin{minipage}{6in}
-		\centering
-		\raisebox{-0.5\height}{
-		\begin{tabular}{l l}
-			$RowSet = \{(AB,3),(AB,1),(AB,5),... \}$ & // compress \\
-			$RowSet = \{(AB,1),... \}$ & // place into RowMultiSet \\
-			$RowMultiSet = \{(AB,1),(BC,3),...\}$ & // weight elements \\
-			$RowMultiSet = \{(AB,1),(BC,3),(BC,3),(BC,3),...\}$ & // pick element\\
-			$xy = BC$
-		\end{tabular} 
-		} 		
-	\end{minipage}
-	\caption{Shortened example of the procedure E as before in the text.}
-\end{figure}
+The calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ comes from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textcolor{gray}{\textbf{B $\rightarrow$ SC}} has been added and finally $(B,2)$ is element of $Cell_{3,0}$.\\
+In general if for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \in CellSet~(Line~\ref{cellSet})$ is added then automatically $Cell_{i,j}$ won't be empty any more. 
 \pagebreak
-\clearpage
+
 \subsection{Dice rolling the distributions only} \label{diceRollOnlyCYK}
-\noindent We start off, by a primitive way of generating grammars, which will be the lower boundary while comparing the algorithms. Each future algorithm should perform better than this algorithm or otherwise it would be worse, than simple dice rolling the distribution of terminals (Line \ref{diceRollOnlyA}) and compound variables (Line \ref{diceRollOnlyB}). Note that later on in Chapter \ref{successRates} it is described how algorithm can perform better than another. \\
+\noindent We start off by a primitive way of generating grammars, which will be the lower boundary while comparing the algorithms. Note that later on in Chapter \ref{successRates} it is described what "performing better" means in the context of this thesis. \\
 
 \noindent
 \frame{
@@ -208,7 +189,7 @@ Using this $RowSet$ the choice can be influenced regarding the row number $i$:\\
 		\Return $P$;
 	\end{algorithm}
 }
-A terminal $\Sigma$ is distributed to at least one $lhse$, but a compound variable $V^2$ must not be distributed at all. Note that for each terminal of $\Sigma=\{a,b\}$ there exists at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ and for each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~CC,$ $~CS,SS\}$ it is possible that only a smaller subset like $\{AA,~BA,~CC,~SC\}$ is distributed so that only rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.
+The algoritm DiceRollOnly (Algorithm \ref{DiceRollOnlyCYK}) distributes terminals $\Sigma$ to at least one $lhse$, but a compound variable $V^2$ must not be distributed at all. Note that for each terminal of $\Sigma=\{a,b\}$ at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ is generated. But for each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~CC,$ $~CS,SS\}$ it is possible that only a smaller subset like $\{AA,~BA,~CC,~SC\}$ is distributed so that only rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -233,9 +214,9 @@ A terminal $\Sigma$ is distributed to at least one $lhse$, but a compound variab
 \end{figure}
 \pagebreak
 \clearpage
-\subsection{Dice rolling and Bottom-Up approach variant 1}
-Another approach to design an algorithm will be Bottom-Up (Chapter \ref{approaches}) whereby the parsing table is filled starting from the leaves in direction to the root node.\\
-The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK} it can happen that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables. \\
+\subsection{Dice rolling and Bottom-Up variant 1}
+Another approach to design an algorithm is after the Bottom-Up approach (Chapter \ref{approaches}) in which the parsing table is filled starting from the leaves in direction of the root node.\\
+The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK}, the naive approach, it can happen that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables (See Figure \ref{var1Example} the middle part of the example). \\
 \noindent
 \begin{figure}[h]
 	\begin{minipage}{6in}
@@ -590,7 +571,7 @@ If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they don'
 }
 
 \pagebreak
-\subsection{Dice rolling and Bottom-Up approach variant 2}
+\subsection{Dice rolling and Bottom-Up variant 2} \label{var2}
 While examining Algorithm \ref{BottomUpDiceRollVar1} via its log file (Figure \ref{logsVar1}) it can be seen (for the default values described in Chapter \ref{cfgChapter}) that already a very small number of rules in the grammar is sufficient so that the stopping criteria \circled{C} is met \textendash~the cells that indirectly decide what rules to add are mostly from row one ($i=1$) and sometimes if at all from row two ($i=2$).\\
 
 \begin{figure}[h]
@@ -673,10 +654,31 @@ As seen in Figure \ref{GoalofBetterDiversity} rules with $BA$~and~$AA$ have been
 	\end{algorithm}
 }
 
+\noindent \textbf{Choose one xy from (xy,i) $\in$ RowSet uniform randomly with probability depending on row i \circled{E} :}\\
+At some point a decision needs to me made about what rule $lhse\rightarrow xy$ with $xy \in V^2$ will be added to the grammar. Depending on which $xy$ is chosen the influence on the entire pyramid varies. Some $xy$ only change the parsing table in one of its later rows ($i>>1$) but other $xy$ even change it in one of the first rows. If there is change in one of the first rows it is more likely that the entire pyramid will be more filled. Now the task of choosing rules to add, that only change the pyramid in one of the later rows, with a higher probability than the others is tackled with \circled{E}. \\
+The approach here only makes sense together with \circled{D} in which all possible compound variables are calculated that help to fill one specific cell. If you use this sub module on every cell of the pyramid to calculate the different variable compounds $xy$ and additionally store the row number $i$ then you get the set $RowSet \subseteq \{(xy,i)\ |\ x,y \in V \wedge i \in \mathbb{N} \}$.\\ 
+Using this $RowSet$ the choice can be influenced regarding the row number $i$:\\ Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be merged to its lowest $i$, as following: $RowSet = \{(AB,3),~(AB,1),~(AB,5),~... \}$ will become $RowSet = \{(AB,1),~... \}$. Afterwards all elements of $RowSet$ will be placed in the $RowMultiSet$ that  can contain multiple equivalent elements. Now each element of $RowMultiSet$ will be weighted according to their $i$. That means that elements like $(AB,1)$ will only occur one time though elements like $(BC,3)$ will occur three times and so on: $RowMultiSet = \{(AB,1),~(BC,3),~...\}$ becomes $RowMultiSet = \{(AB,1),~(BC,3),~(BC,3),~(BC,3),~...\}$. Now one element will be uniform randomly picked out of this weighted $RowMultiSet$ example wise $xy = BC$.\\
+
+\noindent
+\begin{figure} [h]
+	\begin{minipage}{6in}
+		\centering
+		\raisebox{-0.5\height}{
+			\begin{tabular}{l l}
+				$RowSet = \{(AB,3),(AB,1),(AB,5),... \}$ & // compress \\
+				$RowSet = \{(AB,1),... \}$ & // place into RowMultiSet \\
+				$RowMultiSet = \{(AB,1),(BC,3),...\}$ & // weight elements \\
+				$RowMultiSet = \{(AB,1),(BC,3),(BC,3),(BC,3),...\}$ & // pick element\\
+				$xy = BC$
+			\end{tabular} 
+		} 		
+	\end{minipage}
+	\caption{Shortened example of the procedure E as before in the text.}
+\end{figure}
 
 
 \pagebreak
-\subsection{Split Top-Down then fill Bottom-Up}
+\subsection{Split Top-Down and fill Bottom-Up}
 Up till now we have only discussed algorithms that purely use the Bottom-Up approach, so another way is to make use of the Top-Down approach in combination with the Bottom-Up approach.\\
 The idea here is to first distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFill}) and then to uniformly randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{splitThenStepii} and in general Algorithm \ref{SplitThenFillRecursion}) Top-Downwards and then again to fill the parsing table Bottom-Upwards accordingly to fill this derivation tree. \\
 The structure of the derivation tree for instance can look as follows:
@@ -1913,10 +1915,10 @@ For this algorithm it is important to mention that while using \circled{B} (Line
 
 \clearpage
 
-\subsection{SplitAndFill}
+\subsection{Split Top-Down and fill Top-Down}
 After defining an algorithm that uses the combination of the Bottom-Up approach and the Top-Down approach (Algorithm \ref{SplitThenFill}) a step further is to find an algorithm that only makes use of the Top-Down approach.\\
 This algorithm again generates a predefined structure of the derivation tree Top-Downwards. Every time a node of the structure of the derivation tree has been decided on, a rule is immediately added to the grammar \textendash~therefore the name SplitAndFill, which is like "split for a node and then directly add a rule so that the node is then filled with at least one variable". \\
-Note that the count of rules in the grammar is dependent on the count of nodes in the derivation tree and a terminal is distributed to only one variable. While resolving the last recursion step (Line \ref{splitAndFillRecLastStep}) of Algorithm \ref{SplitAndFillRecursion} the start variable will be in the tip in the pyramid that always leads to $w \in L(G)$.\\
+Note that the count of rules in the grammar is dependent on the count of nodes in the derivation tree and a terminal is distributed to only one variable. While resolving the last recursion step (Line \ref{splitAndFillRecLastStep}) of Algorithm \ref{SplitAndFillRecursion} the start variable will be in the root of the pyramid that always leads to $w \in L(G)$.\\
 
 \noindent
 \frame{
@@ -2781,7 +2783,7 @@ Looking at this algorithm, only productions according to the tree structure are 
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitAndFill} part 5. Finally, to fill the cell in the tip a rule must be added that has the start variable as its $lhse$ that guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added.}
+	\caption{Illustration of Algorithm \ref{SplitAndFill} part 5. Finally, to fill the cell in the root a rule must be added that has the start variable as its $lhse$ that guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added.}
 	\label{IllustrationAlgorithmSplitAndFillPart5}
 \end{figure}
 
@@ -3408,14 +3410,14 @@ For all of the five algorithms the best SRs have been calculated for both stoppi
 	\centering
 		\begin{tabular}{l|l|l|}
 			\cline{2-3}
-			& MoreThanHalf & TipNotEmpty \\ \hline
+			& MoreThanHalf & RootNotEmpty \\ \hline
 			\multicolumn{1}{|l|}{DiceRollOnly}  &              &             \\ \hline
 			\multicolumn{1}{|l|}{DiceRollVar1}  &              &             \\ \hline
 			\multicolumn{1}{|l|}{DiceRollVar2}  &              &             \\ \hline
 			\multicolumn{1}{|l|}{SplitThenFill} &              &             \\ \hline
 			\multicolumn{1}{|l|}{SplitAndFill}  &              &             \\ \hline
 		\end{tabular}
-	\caption{Comparision of the two stopping criteria: Half of the cells in the pyramid are not empty and at least one variable is in the tip of the pyramid. (N = XXX)}
+	\caption{Comparision of the two stopping criteria: Half of the cells in the pyramid are not empty and at least one variable is in the root of the pyramid. (N = XXX)}
 	\label{comparisionStoppingCriteria}
 \end{table}
 \noindent It can be seen that the stopping criteria does not really have a big impact on the SR. ... XXX

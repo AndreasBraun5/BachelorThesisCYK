@@ -219,10 +219,10 @@ To be able to describe how the different algorithms work in a simpler way, the h
 	}
 \caption{Visual representation of a $Pyramid$ with the word $w$ written above it.}
 \end{figure}
-
+\pagebreak
 \subsection{ Cocke-Younger-Kasami Algorithm}
 The Cocke-Younger-Kasami Algorithm (CYK) was independently developed in the 1960s by Itiroo Sakai \cite{Sakai.1962}, John Cocke and Jacob Schwartz \cite{JohnCockeJacobT.Schwartz.1970}, Tadao Kasami \cite{Kasami.1966} and Daniel Younger \cite{YOUNGER.1967}.\\
-The idea is to find all possible derivations of each subword starting with size one and to consecutively use this information to find all possible derivations with a larger size of the subword up to the size of $w$. Finally it is checked whether $w \in L(G)$ through the presence of the start variable in the tip of the pyramid.. \\
+The idea is to find all possible derivations of each subword starting with size one and to consecutively use this information to find all possible derivations with a larger size of the subword up to the size of $w$. Finally it is checked whether $w \in L(G)$ through the presence of the start variable in the root of the pyramid.. \\
 The description of the algorithm follows the source \cite{Hoffmann.2015} adjusted to the data structure $Pyramid$. 
 Later on it can be seen, that the CYK algorithm can be used as a basis to find good algorithms.\\
 
@@ -240,7 +240,7 @@ Later on it can be seen, that the CYK algorithm can be used as a basis to find g
 		\For{$i:=1 \to i_{max}$}{ \label{rows}
 			\For{$j:=0 \to j_{max,i}$}{ \label{eachCell}
 				\For{$k:=i-1 \to 0$}{ \label{cykCellCombs}
-					$Pyramid~\cup \{(X,k)\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$; \tcp{Fills cells $Cell_{i,j}$ \label{fill2} ??k?? XXX}
+					$Pyramid~\cup \{(X,k)\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$; \tcp{Fills cells $Cell_{i,j}$ \label{fill2} ??k?? XXX and $Y \in Cell_{k,j}$ is wrong like in circled D}
 				}
 			}
 		}
@@ -257,7 +257,7 @@ Later on it can be seen, that the CYK algorithm can be used as a basis to find g
 		}
 	\end{algorithm}
 }
-During the execution of the CYK algorithm the parsing table is filled as shown in Figure \ref{exampleCYK}. An example output of this definition of the CYK could look like this:
+During the execution of the CYK algorithm the parsing table is filled as shown in Figure \ref{exampleCYK}. At first the row with index $i=0$ is filled after Line 2 to Line 4 of the CYK algorithm, i.e. a $Cell_{0,j}$ will contain the variable if it has the terminal $w_j$ as its $rhse$. Then for each row $i$ every cell with ascending index $j$ is looked at. Every possible combination of sub words for a cell are taken into account, i.e. for $Cell_{4,1}$ there are the combinations of ($Cell_{0,1},Cell_{3,2}$), ($Cell_{1,1},Cell_{2,3}$), ($Cell_{2,1},Cell_{1,4}$) and ($Cell_{3,1},Cell_{0,5}$). Applying Line 8 for example to the cell combination ($Cell_{2,1},Cell_{1,4}$) it leads to $X\rightarrow AC$ and because the compound variable $AC$ is $rhse$ of the variable $S$ the $Cell_{4,1}$ contains the element $(S,4)$.
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
