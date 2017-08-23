@@ -3408,7 +3408,7 @@ The application allows input values to be given for the creation of new suitable
 \vspace{0.6cm}
 \noindent For every algorithm and for every possible configuration of these input values the $SR$s are calculated to see which configuration leads to the best performance of an algorithm. The best ones of each will be used as a representative for further examination.
 \clearpage
-\paragraph{Comparison of stopping criteria}~\\
+\paragraph{Comparison of the stopping criteria}~\\
 As described in Chapter \ref{subModules} Sub Modules, two different stopping criteria \circled{C} are used and it is of interest to know which one helps to generate more suitable exam $exercise$s so that the better one can be used in the application. Therefore both variants of the stopping criteria are compared in Table \ref{comparisionStoppingCriteria}.
 
 \begin{table}[h]
@@ -3427,7 +3427,9 @@ As described in Chapter \ref{subModules} Sub Modules, two different stopping cri
 \end{table}
 \noindent As seen in the table above, the stopping criteria RootNotEmpty performs better or equally good for every algorithm. RootNotEmpty wins and all further discussion in the following Chapter \ref{comparisonOfTheAlgorithms} is done only with it.
 
-\noindent Finally a closer look onto the actual input values is given in the following Table \ref{inputValuesOfBestSuccessRate}. It might be interesting to see which input values of the algorithms are responsible for the good SR.
+\paragraph{Comparison of the algorithms}~\\\label{comparisonOfTheAlgorithms}
+\noindent Now that the choice of stopping criteria has been decided for RootNotEmpty, that guarantees the better $SR$s it is time to choose the one algorithm for usage in the application.\\
+\noindent Before deciding, a closer look onto the actual input values is given in the following Table \ref{inputValuesOfBestSuccessRate}. It might be interesting to see which configurations of input values of the algorithms are responsible for the good SR.
 
 \begin{table}[h]
 	\centering
@@ -3443,11 +3445,10 @@ As described in Chapter \ref{subModules} Sub Modules, two different stopping cri
 	\caption{Comparison of the input values of each algorithm with its best SR. (N = 1024)}
 	\label{inputValuesOfBestSuccessRate}
 \end{table}
-\noindent Mostly in every case the count of variables and the count of terminals is three and the size of the word ranges from 8 to 9. No further discussion is done, as this only intends to display the actual values.
-
- \clearpage
-\paragraph{Comparison of the algorithms}~\\\label{comparisonOfTheAlgorithms}
-\noindent By comparing the five algorithms in Table \ref{comparisionsAlgorithms} in more detail it is clearly seen that "very very good" SR are achieved. VarsInPyramid and VarsPerCell are in most cases fulfilled. ForceRight is kind of not always fulfilled. Why do I have to discuss this....
+\noindent Nearly every time the count of variables and the count of terminals is three and the size of the word ranges from 8 to 9.\\
+\clearpage
+\noindent The composite success rates of the five algorithms are displayed in more detail in Table \ref{comparisionsAlgorithms}. While looking at the configuration of the algorithms that generate the best $SR$s, it is seen that the best algorithm for the application to use is Algorithm \ref{SplitAndFill} SplitAndFill, because it has the best $SR$.
+ 
 \begin{table}[h]
 	\centering
 	\begin{tabular}{|l|c|c|c|c|c|c|c|}
@@ -3460,9 +3461,8 @@ As described in Chapter \ref{subModules} Sub Modules, two different stopping cri
 		SplitThenFill                   &\textbf{36\%}    &50\%                                                           &93\%                                                              &75\%      &76\%                                                        &100\%                                                         &99\%                                                           \\ \hline
 		SplitAndFill                    &\textbf{74\%}      &100\%                                                           &100\%                                                              &74\%      &74\%                                                        &100\%                                                         &100\%                                                           \\ \hline
 	\end{tabular}
-	\caption{Comparison of the five algorithms with their best SR in more detail. (N = 1024)}
+	\caption{More detailed composite $SR$ of the algorithms with their best overall $SR$. (N = 1024)}
 	\label{comparisionsAlgorithms}
 \end{table}
-
 \clearpage
 \pagebreak

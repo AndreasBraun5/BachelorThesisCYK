@@ -344,7 +344,7 @@ One negative score is already sufficient to avoid examples in area 3 with undesi
 
 \subsection{Parsing input with ANTLR}
 In area 4 of the application a context free grammar is given as input as seen in Figure \ref{antlrGrammarTokens} on the left. This input is parsed with ANTLR \footnote{ANTLR works with LL(k) grammars, which means that each derivation step can be distinctly identified through the next k tokens.} because it allows a clear separation between the language definition and the Java code.\\
-The first step here is the tokenization of the input in token as seen in Figure \ref{antlrGrammarTokens} on the right. After that with the help of the Grammar as seen in Figure \ref{antlrGrammarRules} an abstract syntax tree is generated out of which intern Java objects can be parsed.\\
+The first step here is the tokenization of the input in token as seen in Figure \ref{antlrGrammarTokens} on the right. After that with the help of the Grammar as seen in Figure \ref{antlrGrammarRules} an abstract syntax tree is generated out of which intern Java objects can be parsed for further processing.\\
 \noindent
 \begin{figure} [h]
 	\centering

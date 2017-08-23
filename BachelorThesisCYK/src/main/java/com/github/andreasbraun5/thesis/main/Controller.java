@@ -4,6 +4,7 @@ import com.github.andreasbraun5.thesis.antlr.ExerciseStringConverter;
 import com.github.andreasbraun5.thesis.exception.TreeLatexRuntimeException;
 import com.github.andreasbraun5.thesis.exercise.Exercise;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSplitAndFill;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSplitThenFill;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.Terminal;
@@ -112,8 +113,8 @@ public class Controller implements Initializable {
     }
 
     public void createNew(MouseEvent mouseEvent) throws IOException {
-        int countGeneratedGrammarsPerWord = 20;
-        int countDifferentWords = 16;
+        int countGeneratedGrammarsPerWord = 30;
+        int countDifferentWords = 30;
         ResultCalculator resultCalculator = ResultCalculator.builder().
                 countDifferentWords(countDifferentWords).
                 countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
@@ -130,12 +131,12 @@ public class Controller implements Initializable {
         }
         grammarProperties.examConstraints.sizeOfWord = this.getWordLength();
 
-        GrammarGeneratorSettings settingsGrammarGeneratorSplitThenFill = new GrammarGeneratorSettings(
+        GrammarGeneratorSettings settingsGrammarGeneratorSplitAndFill = new GrammarGeneratorSettings(
                 grammarProperties, "GrammarGeneratorSplitThenFill");
-        settingsGrammarGeneratorSplitThenFill.setMinValueCompoundVariablesAreAddedTo(1);
-        settingsGrammarGeneratorSplitThenFill.setMaxValueCompoundVariablesAreAddedTo(1);
+        settingsGrammarGeneratorSplitAndFill.setMinValueCompoundVariablesAreAddedTo(1);
+        settingsGrammarGeneratorSplitAndFill.setMaxValueCompoundVariablesAreAddedTo(1);
         Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
-                new GrammarGeneratorSplitThenFill(settingsGrammarGeneratorSplitThenFill),
+                new GrammarGeneratorSplitAndFill(settingsGrammarGeneratorSplitAndFill),
                 WorkLog.createFromWriter(null));
 
         this.selectFrom.setText(resultGrammarGeneratorSplitThenFill.y.toString());

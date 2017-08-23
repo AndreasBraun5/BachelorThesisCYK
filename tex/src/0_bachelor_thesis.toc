@@ -15,8 +15,8 @@
 \contentsline {subsection}{\numberline {2.7}Evaluation of Algorithms}{29}{subsection.2.7}
 \contentsline {subsubsection}{\numberline {2.7.1}Success Rates}{29}{subsubsection.2.7.1}
 \contentsline {subsubsection}{\numberline {2.7.2}Problem space exploration}{31}{subsubsection.2.7.2}
-\contentsline {paragraph}{\numberline {2.7.2.1}Comparison of stopping criteria}{32}{paragraph.2.7.2.1}
-\contentsline {paragraph}{\numberline {2.7.2.2}Comparison of the algorithms}{33}{paragraph.2.7.2.2}
+\contentsline {paragraph}{\numberline {2.7.2.1}Comparison of the stopping criteria}{32}{paragraph.2.7.2.1}
+\contentsline {paragraph}{\numberline {2.7.2.2}Comparison of the algorithms}{32}{paragraph.2.7.2.2}
 \contentsline {section}{\numberline {3}GUI Tool: CYK Instances Generator}{34}{section.3}
 \contentsline {subsection}{\numberline {3.1}Overview GUI}{34}{subsection.3.1}
 \contentsline {subsubsection}{\numberline {3.1.1}Working with the program}{34}{subsubsection.3.1.1}
