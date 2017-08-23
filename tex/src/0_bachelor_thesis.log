@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  23 AUG 2017 13:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  23 AUG 2017 17:34
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -2157,65 +2157,75 @@ Underfull \hbox (badness 10000) in paragraph at lines 2964--2965
  []
 
 
-Overfull \hbox (10.99472pt too wide) in paragraph at lines 2966--2969
+Underfull \hbox (badness 10000) in paragraph at lines 2966--2967
+
+ []
+
+
+Overfull \hbox (10.99472pt too wide) in paragraph at lines 2968--2971
 \T1/lmr/bx/n/12 Success Rate Pro-ducibil-ity:  \T1/lmr/m/n/12 A gen-er-ated $\O
 ML/lmm/m/it/12 exercise$ \T1/lmr/m/n/12 con-tributes to the SR-Producibility
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2966--2969
+Underfull \hbox (badness 10000) in paragraph at lines 2968--2971
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2970--2973
+Underfull \hbox (badness 10000) in paragraph at lines 2972--2975
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2983--2984
 
  []
 
 [29
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3251--3253
+Underfull \hbox (badness 10000) in paragraph at lines 3256--3258
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3279--3394
+Underfull \hbox (badness 10000) in paragraph at lines 3284--3399
 
  []
 
 [30
 
 ]
-Overfull \hbox (1.24698pt too wide) in paragraph at lines 3400--3401
+Overfull \hbox (1.24698pt too wide) in paragraph at lines 3405--3406
 \T1/lmr/m/n/12 The ap-pli-ca-tion al-lows in-put val-ues to be given for the cr
 e-ation of new suit-able $\OML/lmm/m/it/12 exercises$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3400--3401
+Underfull \hbox (badness 10000) in paragraph at lines 3405--3406
 
  []
 
 [31]
-Underfull \hbox (badness 10000) in paragraph at lines 3448--3449
+Underfull \hbox (badness 10000) in paragraph at lines 3468--3469
 
  []
 
 [32
 
-]
-Overfull \hbox (3.01166pt too wide) in paragraph at lines 3454--3464
+] [33]
+Overfull \hbox (3.01166pt too wide) in paragraph at lines 3474--3484
  [][] 
  []
 
-[33
+[34
 
 ]) (5_implementation.tex
 
 pdfTeX warning: pdflatex.exe (file ./abb/CYKInstancesGenerator.pdf): PDF inclus
 ion: found PDF version <1.7>, but at most version <1.5> allowed
-<abb/CYKInstancesGenerator.pdf, id=628, 963.6pt x 542.025pt>
+<abb/CYKInstancesGenerator.pdf, id=633, 963.6pt x 542.025pt>
 File: abb/CYKInstancesGenerator.pdf Graphic file (type pdf)
 
 <use abb/CYKInstancesGenerator.pdf>
@@ -2227,7 +2237,7 @@ Overfull \hbox (2.78706pt too wide) in paragraph at lines 21--22
 -cise" a new "exerciseLatex.tex"-
  []
 
-[34
+[35
 
  <./abb/CYKInstancesGenerator.pdf>]
 Overfull \hbox (7.79866pt too wide) in paragraph at lines 24--313
@@ -2236,23 +2246,23 @@ Overfull \hbox (7.79866pt too wide) in paragraph at lines 24--313
 parse table;  derivation tree\OT1/lmr/m/n/12 )$\T1/lmr/m/n/12 .
  []
 
-[35] [36
+[36] [37
 
-] <abb/exampleGrammarInput.png, id=662, 133.24782pt x 287.57437pt>
+] <abb/exampleGrammarInput.png, id=668, 133.24782pt x 287.57437pt>
 File: abb/exampleGrammarInput.png Graphic file (type png)
 
 <use abb/exampleGrammarInput.png>
 Package pdftex.def Info: abb/exampleGrammarInput.png used on input line 351.
 (pdftex.def)             Requested size: 133.24748pt x 287.57367pt.
 
-<abb/antrlTokens.png, id=663, 252.19218pt x 257.46187pt>
+<abb/antrlTokens.png, id=669, 252.19218pt x 257.46187pt>
 File: abb/antrlTokens.png Graphic file (type png)
 
 <use abb/antrlTokens.png>
 Package pdftex.def Info: abb/antrlTokens.png used on input line 352.
 (pdftex.def)             Requested size: 252.19156pt x 257.46123pt.
 
-<abb/antrlRules.png, id=664, 442.65375pt x 405.01312pt>
+<abb/antrlRules.png, id=670, 442.65375pt x 405.01312pt>
 File: abb/antrlRules.png Graphic file (type png)
 
 <use abb/antrlRules.png>
@@ -2262,12 +2272,12 @@ Package pdftex.def Info: abb/antrlRules.png used on input line 358.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[37 <./abb/exampleGrammarInput.png> <./abb/antrlTokens.png>]
+[38 <./abb/exampleGrammarInput.png> <./abb/antrlTokens.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 365--377
 
  []
 
-[38 <./abb/antrlRules.png>] [39]
+[39 <./abb/antrlRules.png>] [40]
 Underfull \hbox (badness 10000) in paragraph at lines 380--381
 
  []
@@ -2277,9 +2287,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 382--384
 
  []
 
-) [40
+) [41
 
-] (0_bachelor_thesis.bbl) [41
+] (0_bachelor_thesis.bbl) [42
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 348.
@@ -2301,10 +2311,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 348.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 37526 strings out of 493328
- 723004 string characters out of 3139104
+ 37529 strings out of 493328
+ 723040 string characters out of 3139104
  952312 words of memory out of 3000000
- 40146 multiletter control sequences out of 15000+200000
+ 40147 multiletter control sequences out of 15000+200000
  705320 words of font info for 130 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
  64i,24n,70p,10445b,24899s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2341,9 +2351,9 @@ msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (41 pages, 819965 bytes).
+Output written on 0_bachelor_thesis.pdf (42 pages, 821202 bytes).
 PDF statistics:
- 848 PDF objects out of 1000 (max. 8388607)
- 256 named destinations out of 1000 (max. 500000)
+ 853 PDF objects out of 1000 (max. 8388607)
+ 258 named destinations out of 1000 (max. 500000)
  246 words of extra memory for PDF output out of 10000 (max. 10000000)
 

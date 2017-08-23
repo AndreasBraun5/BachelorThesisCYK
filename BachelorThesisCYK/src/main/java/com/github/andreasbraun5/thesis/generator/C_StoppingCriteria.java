@@ -28,8 +28,8 @@ public class C_StoppingCriteria {
     }
 
     public static boolean stoppingCriteriaMet(GrammarPyramidWrapper grammarPyramidWrapper) {
-        return stoppingCriteriaMetRootNotEmpty(grammarPyramidWrapper);
-        //return stoppingCriteriaMetMoreThanHalf(grammarPyramidWrapper);
+        //return stoppingCriteriaMetRootNotEmpty(grammarPyramidWrapper);
+        return stoppingCriteriaMetMoreThanHalf(grammarPyramidWrapper);
     }
 
     /**

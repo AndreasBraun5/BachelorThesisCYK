@@ -6,16 +6,11 @@ import com.github.andreasbraun5.thesis.grammar.Variable;
 import com.github.andreasbraun5.thesis.grammar.VariableStart;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
-import com.github.andreasbraun5.thesis.resultcalculator.BestResultSamples;
 import com.github.andreasbraun5.thesis.resultcalculator.Result;
 import com.github.andreasbraun5.thesis.resultcalculator.ResultCalculator;
-import com.github.andreasbraun5.thesis.util.Tuple;
-import com.github.andreasbraun5.thesis.util.Util;
 
 import java.io.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class CalculateBestSuccessRate {
 
@@ -38,8 +33,11 @@ public class CalculateBestSuccessRate {
     private static final int MAX_VARS = 8; // plus the Variable Start S
     private static final int MIN_TERMS = 2;
     private static final int MAX_TERMS = 8;
-    private static final int MIN_SIZE_WORD = 8;
+    private static final int MIN_SIZE_WORD = 4;
     private static final int MAX_SIZE_WORD = 11;
+
+    private static final Map<String, Double> meanValues  = new HashMap<>();
+
 
     public static void main(String[] args) throws IOException {
         calculateMaxSuccessRate(Generators.DiceRollOnly);
@@ -47,22 +45,24 @@ public class CalculateBestSuccessRate {
         calculateMaxSuccessRate(Generators.DiceRollVar2);
         calculateMaxSuccessRate(Generators.SplitThenFill);
         calculateMaxSuccessRate(Generators.SplitAndFill);
-
-        // 12.5s bei wordsize 20 mit 1024 wörter pro Result
-        // bei wordSize 20 werden aber bereits 625 Results bei je 5 Algorithmen berechnet
-        // 625 * 20 = 7813 zu je 5 Algos entspricht 130 min zu je 5 Algos
-        //
-
+        File test = new File(ThesisDirectory.SUCCESSRATES.path, "meanValues.txt");
+        try (PrintWriter out = new PrintWriter(test)) {
+            out.println(meanValues);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void calculateMaxSuccessRate(Generators generatorType) throws IOException {
         GrammarProperties grammarProperties = createGrammarProperties(1, 2, 4);
         Result bestResult = startAlgorithms(generatorType, grammarProperties); // Default stuff
+        double successRateAccumulated = 0.0;
         for (int varCount = MIN_VARS; varCount < MAX_VARS; ++varCount) {
             for (int termCount = MIN_TERMS; termCount < MAX_TERMS; ++termCount) {
                 for (int wordSize = MIN_SIZE_WORD; wordSize < MAX_SIZE_WORD; ++wordSize) {
                     grammarProperties = createGrammarProperties(varCount, termCount, wordSize);
                     Result tempResult = startAlgorithms(generatorType, grammarProperties);
+                    successRateAccumulated += tempResult.getSuccessRates().getSuccessRate();
                     if (tempResult.getSuccessRates().getSuccessRate() > bestResult.getSuccessRates().getSuccessRate()) {
                         bestResult = tempResult;
                     }
@@ -77,6 +77,7 @@ public class CalculateBestSuccessRate {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        meanValues.put(generatorType.name(), successRateAccumulated / SAMPLE_SIZE);
     }
 
     private static Result startAlgorithms(Generators generatorType, GrammarProperties grammarProperties) throws IOException {
