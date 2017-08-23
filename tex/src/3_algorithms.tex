@@ -1,7 +1,7 @@
 % !TeX spellcheck = en_GB
 
 \section{Algorithms}\label{algorithms}
-\subsection{Sub modules}
+\subsection{Sub modules} \label{subModules}
 Sub modules are parts of the algorithms that are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that will be explained in more detail for a better understanding of the way of working of algorithms in the following chapters. \circled{E} is explained not until Chapter \ref{var2} because it is needed only there.\\
 
 \noindent \textbf{Distribute$(\Sigma,\ V) $ \circled{A} and Distribute$(V^2,\ V)$ \circled{B}:}\\
@@ -25,12 +25,12 @@ The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and
 } \\
 
 \noindent \textbf{Stopping Criteria \circled{C}:}\\
-Two kinds of stopping criteria have been used to determine whether an algorithm should terminate early on because an already suitable exercise has been found.
+Two kinds of stopping criteria are used to determine whether an algorithm should terminate early on because an already suitable exercise has been found:
 \begin{itemize}[noitemsep,nolistsep]
 	\item stop if more than half of the pyramid cells are not empty any more
 	\item stop if the root of the pyramid is not empty any more
 \end{itemize}
-Both stopping criteria are compared in short in Chapter \ref{AnalysisOfAlgorithms}. \\
+Both stopping criteria are compared in Chapter \ref{AnalysisOfAlgorithms} to see which one leads to more suitable exam $exercises$. \\
 \pagebreak
 
 \noindent \textbf{CalculateSubsetForCell(Pyramid, i, j) \circled{D}:}\\
@@ -214,7 +214,7 @@ The algoritm DiceRollOnly (Algorithm \ref{DiceRollOnlyCYK}) distributes terminal
 \end{figure}
 \pagebreak
 \clearpage
-\subsection{Dice rolling and Bottom-Up variant 1}
+\subsection{Dice rolling and Bottom-Up variant one}
 Another approach to design an algorithm is after the Bottom-Up approach (Chapter \ref{approaches}) in which the parsing table is filled starting from the leaves in direction of the root node.\\
 The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK}, the naive approach, it is possible that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables (see Figure \ref{var1Example}, the middle part of the example). \\
 \noindent
@@ -571,7 +571,7 @@ If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they don'
 }
 
 \pagebreak
-\subsection{Dice rolling and Bottom-Up variant 2} \label{var2}
+\subsection{Dice rolling and Bottom-Up variant two} \label{var2}
 While examining Algorithm \ref{BottomUpDiceRollVar1} via its log file (Figure \ref{logsVar1}) it can be seen that already a very small number of rules in the grammar is sufficient so that the stopping criteria \circled{C} is met \textendash~the cells that indirectly decide what rules to add are mostly from row one ($i=1$) and sometimes if at all from row two ($i=2$).\\
 
 \begin{figure}[h]
@@ -2961,24 +2961,26 @@ According to this algorithm, only productions corresponding to the tree structur
 \pagebreak
 \subsection{Evaluation of Algorithms} \label{AnalysisOfAlgorithms}
 \subsubsection{Success Rates} \label{successRates}
-\noindent Now that different algorithms have been described to generate exam $exercises$ it is of interest to compare them. Therefore Success Rates are used on the algorithms according to their performance of the different requirements for an exam $exercise$. Here $N \in  \mathbb{N}^+$ is the sample size of all generated grammars of the examined algorithm. Before defining a overall Success Rate ($SR$) three other Success Rates set the basis for it.\\
+\noindent Different algorithms have been described that could be used in the application to create suitable exam $exercises$. Now it is of interest to find out which algorithm performs the best and which algorithm should actually be used in the application. Therefore a composite $Success~Rate$ has been defined that measures the algorithms performance for the different requirements towards an exam $exercise$.  \\Here $N \in  \mathbb{N}$ is the sample size of all generated grammars while examining the algorithms. Before defining the overall Success Rate ($SR$) three other Success Rates set the basis for it.\\
 
 \noindent\textbf{Success Rate Producibility: }
-A generated $exercise$ contributes to the SR-Producibility iff the CYK algorithm's output (Algorithm \ref{CYK}) is true or in other words $w\in L(G)$.\\
+A generated $exercise$ contributes to the SR-Producibility if the CYK algorithm's output (Algorithm \ref{CYK}) is true or in other words $w\in L(G)$.\\
 SR-Producibility $ = p / N$, where $p$ is the count of $exercise$s that fulfil the requirement.\\
 
 \noindent\textbf{Success Rate Cardinality-Rules: }
-A generated $exercise$ contributes to the SR-Cardinality-Rules iff the grammar has got less than a certain amount of productions.\\
+A generated $exercise$ contributes to the SR-Cardinality-Rules if the grammar has got less than a certain count $x$ of rules, i.e. $|P|\leq x$ of the grammar $G=(V,\ \Sigma,\ S,\ P)$.\\
 SR-Cardinality-Rules $ = cr / N$, where $cr$ is the count of $exercise$s.\\
 
 \noindent\textbf{Success Rate Pyramid: }
-A generated $exercise$ contributes to the SR-Pyramid iff the following conditions are met:
+A generated $exercise$ contributes to the SR-Pyramid if the following conditions are met:
 \begin{enumerate} [noitemsep]
-	\item At least one cell forces to do a correct cell combination.
+	\item At least one cell enforces to do a correct cell combination \textendash~see the description of Algorithm \ref{checkForceCombinationPerCell} CheckforceCombinationPerCell for more information.
 	\item There are less than 100 variables in the entire pyramid.
 	\item There are less than 3 variables in each cell of the pyramid.
 \end{enumerate}
-SR-Pyramid $= p / N$, where $p$ is the count of $exercise$s that fulfil the three requirements above. While checking 1., 2. and 3. a simplification of $Cell_{i,j}$ is done:\\ $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \} \longrightarrow Cell_{i,j} \subseteq V$, see Figure \ref{simplificationExample}. \\
+SR-Pyramid $= p / N$, where $p$ is the count of $exercise$s that fulfil the three requirements above. 
+\clearpage
+\noindent While checking 1., 2. and 3. a simplification of $Cell_{i,j}$ is done:\\ $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \} \longrightarrow Cell_{i,j} \subseteq V$, for illustration see Figure \ref{simplificationExample}. 
 \noindent 
 \begin{figure}[h]
 	\begin{minipage}{6in}
@@ -3246,7 +3248,8 @@ SR-Pyramid $= p / N$, where $p$ is the count of $exercise$s that fulfil the thre
 	\label{simplificationExample}
 \end{figure}
 
-\noindent The experience of professor Martens shows that usually most students easily find a pattern of how to fill the first two rows of the $pyramid$ during the execution of the CYK algorithm but do more mistakes starting at row $i\geq2$. The approach of only finding patterns and not thoroughly understanding the algorithm is countered by Algorithm \ref{checkForceCombinationPerCell} CheckForceCombinationPerCell. Students often don't know what cell combinations need to be considered while filling one specific cell of the pyramid. They simply take the $UpperLeftCell$ and the $UpperRightCell$ and try to find rules in the grammar that match the resulting compound variables. More detail on how to force a correct cell combination (1.) see Algorithm \ref{checkForceCombinationPerCell}. But note that a right cell combination can only be forced of cells with index $i>1$.\\
+\noindent \textbf{Description of the Algorithm CheckForceCombinationPerCell: }\\
+The experience of professor Martens shows that usually most students easily find a pattern of how to fill the first two rows of the $pyramid$ during the execution of the CYK algorithm but do more mistakes starting at row $i\geq2$. The approach of only finding patterns and not thoroughly understanding the algorithm is countered by Algorithm \ref{checkForceCombinationPerCell} CheckForceCombinationPerCell \textendash~it is called forcing. Students often don't know exactly what cell combinations need to be considered while filling one specific cell of the pyramid. They simply take only the one top left cell and the one top right cell and try to find rules in the grammar that match the resulting compound variables.\\
 
 \noindent 
 \frame{
@@ -3254,10 +3257,10 @@ SR-Pyramid $= p / N$, where $p$ is the count of $exercise$s that fulfil the thre
 		\caption{CheckForceCombinationPerCell}
 		\label{checkForceCombinationPerCell}
 		\SetAlgoLined
-		\KwIn{$ CellBottom,~CellUpperLeft,~CellUpperRight \subseteq V,~P \subseteq V \times (V^{2} \cup \Sigma) $ }
+		\KwIn{$ CellBottom,~CellTopLeft,~CellTopRight \subseteq V,~P \subseteq V \times (V^{2} \cup \Sigma) $ }
 		\KwOut{$true \iff |VarsForcing| > 0$}
 		$VarsForcing = \emptyset$;~~\tcp{$VarsForcing \subseteq V$} 
-		$VarComp = \{xy\ |\ x \in CellUpperLeft\ \wedge\ y \in CellUpperRight \}$\;
+		$VarComp = \{xy\ |\ x \in CellTopLeft\ \wedge\ y \in CellTopRight \}$\;
 		\ForEach{$v \in CellDown$}{
 			$Rhses = \{rhse\ |\ p \in P\ \wedge\ p=(v,rhse)\} $\; \label{rhses}
 			\If{$Rhses \nsubseteq VarComp$}{ \label{forces}
@@ -3273,7 +3276,7 @@ SR-Pyramid $= p / N$, where $p$ is the count of $exercise$s that fulfil the thre
 	\end{algorithm}
 }
 
-\noindent In the example in Figure \ref{foreCombination}, the variables in $Cell_{2,0}$ and in $Cell_{2,1}$ each force a right cell combination and in both cases $VarComp=\{SS\}$. The variable $v=C$ doesn't have $SS$ as one of its rhses and therefore the variable $C$ forces. $Cell_{3,0}$ doesn't force because $VarComp=\{CC\}$ and the variable $v=S$ has $CC$ as its rhse. Note again, that cells with index $i\leq1$ can't force at all.
+\noindent In the example in Figure \ref{foreCombination}, the variables in $Cell_{2,0}$ and in $Cell_{2,1}$ each force a right cell combination and in both cases $VarComp=\{SS\}$. The variable $v=C$ doesn't have $SS$ as one of its rhses and therefore the variable $C$ forces. $Cell_{3,0}$ does not force because $VarComp=\{CC\}$ and the variable $v=S$ has $CC$ as its rhse. Note again, that cells with index $i\leq1$ can not force at all.
 \noindent
 \begin{figure} [h]
 	\begin{minipage}{6in}
@@ -3385,16 +3388,16 @@ SR-Pyramid $= p / N$, where $p$ is the count of $exercise$s that fulfil the thre
 			}
 		}
 	\end{minipage}
-	\caption{Application of Algorithm \ref{checkForceCombinationPerCell} onto an entire pyramid.}
+	\caption{Application of Algorithm \ref{checkForceCombinationPerCell} CheckForceCombinationPerCell onto an entire pyramid.}
 	\label{foreCombination}
 \end{figure}\\
-\noindent With the help of the three known Success Rates the overall Success Rate can be specified. \\
 
+\noindent With the help of the three now known Success Rates the overall Success Rate can be specified. \\
 \noindent\textbf{Success Rate:}
-A generated $exercise$ contributes to the Success Rate ($SR$) iff it contributes to the SR-Producibility, to the SR-Cardinality-Rules and to the SR-Pyramid at the same time.\\
-It holds: $SR = n / N$, whereas $n$ is the count of $exercises$ that fulfil the requirement above in this case.
+A generated $exercise$ contributes to the Success Rate ($SR$) if it contributes to the SR-Producibility, to the SR-Cardinality-Rules and to the SR-Pyramid at the same time.\\
+It holds: $SR = n / N$, where $n$ is the count of $exercises$.
 \subsubsection{Problem space exploration}
-Now that there is a measure to compare the different algorithms it is of interest for which input values the different algorithms perform the best. Therefore a problem space exploration is done while the following ranges of the parameters are considered:\\
+The application allows input values to be given for the creation of new suitable $exercises$ and typical ranges for this values are as following:\\
 
 \noindent Input Values of the program:
 \begin{itemize}[noitemsep,nolistsep]
@@ -3403,10 +3406,10 @@ Now that there is a measure to compare the different algorithms it is of interes
 	\item size of word = [4;~11]
 \end{itemize}
 \vspace{0.6cm}
-\noindent The resulting best SRs of each algorithm are used to decide which stopping criteria \circled{C} gives more exam suitable $exercise$s and finally the algorithms are compared to each other. The best SR is calculated via BruteForce over all count of variables ascending again over all count terminals ascending and over the size of the word ascending. The best SR is only updated if the net determined SR is better than the tempBestOne. This means the first maximum (ascending) will be picked and all other maxima with the same height will be ignored. \\
-
-\subsubsection{Comparison of stopping criteria}
-For all of the five algorithms the best SRs have been calculated for both stopping criteria and are shown in Table \ref{comparisionStoppingCriteria}.
+\noindent For every algorithm and for every possible configuration of these input values the $SR$s are calculated to see which configuration leads to the best performance of an algorithm. The best ones of each will be used as a representative for further examination.
+\clearpage
+\paragraph{Comparison of stopping criteria}~\\
+As described in Chapter \ref{subModules} Sub Modules, two different stopping criteria \circled{C} are used and it is of interest to know which one helps to generate more suitable exam $exercise$s so that the better one can be used in the application. Therefore both variants of the stopping criteria are compared in Table \ref{comparisionStoppingCriteria}.
 
 \begin{table}[h]
 	\centering
@@ -3422,28 +3425,28 @@ For all of the five algorithms the best SRs have been calculated for both stoppi
 	\caption{Comparision of the two stopping criteria: Half of the cells in the pyramid are not empty and at least one variable is in the root of the pyramid. (N = 1024)}
 	\label{comparisionStoppingCriteria}
 \end{table}
-\noindent It can be seen that the stopping criteria RootNotEmpty is better or at least as good as MoreThanHalf in all cases. All other discussion is done with the Criteria RootNotEmpty.
+\noindent As seen in the table above, the stopping criteria RootNotEmpty performs better or equally good for every algorithm. RootNotEmpty wins and all further discussion in the following Chapter \ref{comparisonOfTheAlgorithms} is done only with it.
 
+\noindent Finally a closer look onto the actual input values is given in the following Table \ref{inputValuesOfBestSuccessRate}. It might be interesting to see which input values of the algorithms are responsible for the good SR.
 
-
-
-\subsubsection{Comparison of the algorithms}
-It is interesting to see which input values of the algorithms are responsible for the good SR. They are shown in Table \ref{inputValuesOfBestSuccessRate}.
 \begin{table}[h]
 	\centering
 	\begin{tabular}{l|c|c|c|c|}
 		\cline{2-5}
-														& SR & count of variables & count of terminals & size of word \\ \hline
+		& SR & count of variables & count of terminals & size of word \\ \hline
 		\multicolumn{1}{|l|}{DiceRollOnly}  &\textbf{18\%}    & 3                    & 3                   &   9           \\ \hline
 		\multicolumn{1}{|l|}{DiceRollVar1}  &\textbf{35\%}    & 3                   & 3                   & 8             \\ \hline
 		\multicolumn{1}{|l|}{DiceRollVar2}  &\textbf{37\%}    & 3                   & 3                   & 8             \\ \hline
 		\multicolumn{1}{|l|}{SplitThenFill} &\textbf{36\%}    & 3                   & 4                   & 9             \\ \hline
 		\multicolumn{1}{|l|}{SplitAndFill}  &\textbf{74\%}    & 3                   & 3                   & 8             \\ \hline
 	\end{tabular}
-	\caption{Comparison of the input values of each algorithm for with best SR. (N = 1024)}
+	\caption{Comparison of the input values of each algorithm with its best SR. (N = 1024)}
 	\label{inputValuesOfBestSuccessRate}
 \end{table}
-Mostly the count of variables and the count of terminals is three. No further discussion is done. The size of the word is 8 or 9. Don't know why.
+\noindent Mostly in every case the count of variables and the count of terminals is three and the size of the word ranges from 8 to 9. No further discussion is done, as this only intends to display the actual values.
+
+ \clearpage
+\paragraph{Comparison of the algorithms}~\\\label{comparisonOfTheAlgorithms}
 \noindent By comparing the five algorithms in Table \ref{comparisionsAlgorithms} in more detail it is clearly seen that "very very good" SR are achieved. VarsInPyramid and VarsPerCell are in most cases fulfilled. ForceRight is kind of not always fulfilled. Why do I have to discuss this....
 \begin{table}[h]
 	\centering

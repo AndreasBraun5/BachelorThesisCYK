@@ -8,19 +8,19 @@
 \contentsline {section}{\numberline {2}Algorithms}{11}{section.2}
 \contentsline {subsection}{\numberline {2.1}Sub modules}{11}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Dice rolling the distributions only}{13}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Dice rolling and Bottom-Up variant 1}{14}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Dice rolling and Bottom-Up variant 2}{16}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.3}Dice rolling and Bottom-Up variant one}{14}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Dice rolling and Bottom-Up variant two}{16}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}Split Top-Down and fill Bottom-Up}{19}{subsection.2.5}
 \contentsline {subsection}{\numberline {2.6}Split Top-Down and fill Top-Down}{24}{subsection.2.6}
 \contentsline {subsection}{\numberline {2.7}Evaluation of Algorithms}{29}{subsection.2.7}
 \contentsline {subsubsection}{\numberline {2.7.1}Success Rates}{29}{subsubsection.2.7.1}
 \contentsline {subsubsection}{\numberline {2.7.2}Problem space exploration}{31}{subsubsection.2.7.2}
-\contentsline {subsubsection}{\numberline {2.7.3}Comparison of stopping criteria}{31}{subsubsection.2.7.3}
-\contentsline {subsubsection}{\numberline {2.7.4}Comparison of the algorithms}{32}{subsubsection.2.7.4}
-\contentsline {section}{\numberline {3}GUI Tool: CYK Instances Generator}{33}{section.3}
-\contentsline {subsection}{\numberline {3.1}Overview GUI}{33}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Working with the program}{33}{subsubsection.3.1.1}
-\contentsline {subsection}{\numberline {3.2}Exam Exercises}{34}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Scoring Model}{35}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Parsing input with ANTLR}{36}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Other matters}{37}{subsection.3.5}
+\contentsline {paragraph}{\numberline {2.7.2.1}Comparison of stopping criteria}{32}{paragraph.2.7.2.1}
+\contentsline {paragraph}{\numberline {2.7.2.2}Comparison of the algorithms}{33}{paragraph.2.7.2.2}
+\contentsline {section}{\numberline {3}GUI Tool: CYK Instances Generator}{34}{section.3}
+\contentsline {subsection}{\numberline {3.1}Overview GUI}{34}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Working with the program}{34}{subsubsection.3.1.1}
+\contentsline {subsection}{\numberline {3.2}Exam Exercises}{35}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Scoring Model}{36}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Parsing input with ANTLR}{37}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Other matters}{38}{subsection.3.5}
