@@ -36,7 +36,13 @@ public class CalculateBestSuccessRate {
     private static final int MIN_SIZE_WORD = 4;
     private static final int MAX_SIZE_WORD = 11;
 
-    private static final Map<String, Double> meanValues  = new HashMap<>();
+    private static final Map<String, Double> meanValuesOverall  = new HashMap<>();
+    private static final Map<String, Double> meanValuesProducibility  = new HashMap<>();
+    private static final Map<String, Double> meanValuesCardinality  = new HashMap<>();
+    private static final Map<String, Double> meanValuesPyramid  = new HashMap<>();
+    private static final Map<String, Double> meanValuesForceRight  = new HashMap<>();
+    private static final Map<String, Double> meanValuesVarPerPyramid  = new HashMap<>();
+    private static final Map<String, Double> meanValuesVarsPerCell  = new HashMap<>();
 
 
     public static void main(String[] args) throws IOException {
@@ -45,9 +51,18 @@ public class CalculateBestSuccessRate {
         calculateMaxSuccessRate(Generators.DiceRollVar2);
         calculateMaxSuccessRate(Generators.SplitThenFill);
         calculateMaxSuccessRate(Generators.SplitAndFill);
-        File test = new File(ThesisDirectory.SUCCESSRATES.path, "meanValues.txt");
-        try (PrintWriter out = new PrintWriter(test)) {
-            out.println(meanValues);
+        writeFile(new File(ThesisDirectory.SUCCESSRATES.path, "meanValuesOverall.txt"), meanValuesOverall);
+        writeFile(new File(ThesisDirectory.SUCCESSRATES.path, "meanValuesProducibility.txt"), meanValuesProducibility);
+        writeFile(new File(ThesisDirectory.SUCCESSRATES.path, "meanValuesCardinality.txt"), meanValuesCardinality);
+        writeFile(new File(ThesisDirectory.SUCCESSRATES.path, "meanValuesPyramid.txt"), meanValuesPyramid);
+        writeFile(new File(ThesisDirectory.SUCCESSRATES.path, "meanValuesForceRight.txt"), meanValuesForceRight);
+        writeFile(new File(ThesisDirectory.SUCCESSRATES.path, "meanValuesVarPerPyramid.txt"), meanValuesVarPerPyramid);
+        writeFile(new File(ThesisDirectory.SUCCESSRATES.path, "meanValuesVarsPerCell.txt"), meanValuesVarsPerCell);
+    }
+
+    private static void writeFile(File file, Map<String, Double> map){
+        try (PrintWriter out = new PrintWriter(file)) {
+            out.println(map);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -56,13 +71,25 @@ public class CalculateBestSuccessRate {
     public static void calculateMaxSuccessRate(Generators generatorType) throws IOException {
         GrammarProperties grammarProperties = createGrammarProperties(1, 2, 4);
         Result bestResult = startAlgorithms(generatorType, grammarProperties); // Default stuff
-        double successRateAccumulated = 0.0;
+        double meanValuesOverallAcc = 0.0;
+        double meanValuesProducibilityAcc = 0.0;
+        double meanValuesCardinalityAcc = 0.0;
+        double meanValuesPyramidAcc = 0.0;
+        double meanValuesForceRightAcc = 0.0;
+        double meanValuesVarPerPyramidAcc = 0.0;
+        double meanValuesVarsPerCellAcc = 0.0;
         for (int varCount = MIN_VARS; varCount < MAX_VARS; ++varCount) {
             for (int termCount = MIN_TERMS; termCount < MAX_TERMS; ++termCount) {
                 for (int wordSize = MIN_SIZE_WORD; wordSize < MAX_SIZE_WORD; ++wordSize) {
                     grammarProperties = createGrammarProperties(varCount, termCount, wordSize);
                     Result tempResult = startAlgorithms(generatorType, grammarProperties);
-                    successRateAccumulated += tempResult.getSuccessRates().getSuccessRate();
+                    meanValuesOverallAcc += tempResult.getSuccessRates().getSuccessRate();
+                    meanValuesProducibilityAcc += tempResult.getSuccessRates().getSuccessRateProducibility();
+                    meanValuesCardinalityAcc += tempResult.getSuccessRates().getSuccessRatesGrammarConstraints().getSuccessRateGrammarRestrictions();
+                    meanValuesPyramidAcc += tempResult.getSuccessRates().getSuccessRatesPyramidConstraints().getSuccessRateExamConstraints();
+                    meanValuesForceRightAcc += tempResult.getSuccessRates().getSuccessRatesPyramidConstraints().getSuccessRateRightCellCombinationsForced();
+                    meanValuesVarPerPyramidAcc += tempResult.getSuccessRates().getSuccessRatesPyramidConstraints().getSuccessRateMaxSumOfVarsInPyramid();
+                    meanValuesVarsPerCellAcc += tempResult.getSuccessRates().getSuccessRatesPyramidConstraints().getSuccessRateMaxNumberOfVarsPerCell();
                     if (tempResult.getSuccessRates().getSuccessRate() > bestResult.getSuccessRates().getSuccessRate()) {
                         bestResult = tempResult;
                     }
@@ -77,7 +104,13 @@ public class CalculateBestSuccessRate {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        meanValues.put(generatorType.name(), successRateAccumulated / SAMPLE_SIZE);
+        meanValuesOverall.put(generatorType.name(), meanValuesOverallAcc / SAMPLE_SIZE);
+        meanValuesProducibility.put(generatorType.name(), meanValuesProducibilityAcc / SAMPLE_SIZE);
+        meanValuesCardinality.put(generatorType.name(), meanValuesCardinalityAcc / SAMPLE_SIZE);
+        meanValuesPyramid.put(generatorType.name(), meanValuesPyramidAcc / SAMPLE_SIZE);
+        meanValuesForceRight.put(generatorType.name(), meanValuesForceRightAcc / SAMPLE_SIZE);
+        meanValuesVarPerPyramid.put(generatorType.name(), meanValuesVarPerPyramidAcc / SAMPLE_SIZE);
+        meanValuesVarsPerCell.put(generatorType.name(), meanValuesVarsPerCellAcc / SAMPLE_SIZE);
     }
 
     private static Result startAlgorithms(Generators generatorType, GrammarProperties grammarProperties) throws IOException {

@@ -3,6 +3,7 @@ package com.github.andreasbraun5.thesis.main;
 import com.github.andreasbraun5.thesis.antlr.ExerciseStringConverter;
 import com.github.andreasbraun5.thesis.exception.TreeLatexRuntimeException;
 import com.github.andreasbraun5.thesis.exercise.Exercise;
+import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSplitAndFill;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSplitThenFill;
@@ -108,19 +109,14 @@ public class Controller implements Initializable {
     }
 
     private int getWordLength() {
-        String str = wordLength.getText();
+        String str = wordLength.getText().replaceAll("\n","");
         return Integer.parseInt(str);
     }
 
     public void createNew(MouseEvent mouseEvent) throws IOException {
-        int countGeneratedGrammarsPerWord = 30;
-        int countDifferentWords = 30;
-        ResultCalculator resultCalculator = ResultCalculator.builder().
-                countDifferentWords(countDifferentWords).
-                countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
-
+        int countGeneratedGrammarsPerWord = 10;
+        int countDifferentWords = 10;
         GrammarProperties grammarProperties = new GrammarProperties(VariableStart.of("S"), getVariables(), getTerminals());
-        // TODO why ?
         if (this.getWordLength() < 4) {
             statusOutput.setText(statusOutput.getText() + "\nWord length greater 4 needed.");
             return;
@@ -131,15 +127,39 @@ public class Controller implements Initializable {
         }
         grammarProperties.examConstraints.sizeOfWord = this.getWordLength();
 
+        /*GrammarGeneratorSettings settingsGrammarGeneratorSplitThenFill = new GrammarGeneratorSettings(
+                grammarProperties, "GrammarGeneratorSplitThenFill");
+        settingsGrammarGeneratorSplitThenFill.setMinValueCompoundVariablesAreAddedTo(1);
+        settingsGrammarGeneratorSplitThenFill.setMaxValueCompoundVariablesAreAddedTo(1);
+        Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
+                new GrammarGeneratorSplitThenFill(settingsGrammarGeneratorSplitThenFill),
+                WorkLog.createFromWriter(null));
+        this.selectFrom.setText(resultGrammarGeneratorSplitThenFill.y.toString());
+        */
+
+
+        countGeneratedGrammarsPerWord = 10;
+        countDifferentWords = 10;
+        ResultCalculator resultCalculator = ResultCalculator.builder().
+                countDifferentWords(countDifferentWords).
+                countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
         GrammarGeneratorSettings settingsGrammarGeneratorSplitAndFill = new GrammarGeneratorSettings(
                 grammarProperties, "GrammarGeneratorSplitThenFill");
         settingsGrammarGeneratorSplitAndFill.setMinValueCompoundVariablesAreAddedTo(1);
         settingsGrammarGeneratorSplitAndFill.setMaxValueCompoundVariablesAreAddedTo(1);
-        Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
-                new GrammarGeneratorSplitAndFill(settingsGrammarGeneratorSplitAndFill),
+        Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitAndFill = resultCalculator.buildResultWithGenerator(
+                new GrammarGeneratorSplitThenFill(settingsGrammarGeneratorSplitAndFill),
                 WorkLog.createFromWriter(null));
+        this.selectFrom.setText(resultGrammarGeneratorSplitAndFill.y.toString());
 
+
+        /*GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnly = new GrammarGeneratorSettings(
+                grammarProperties, "GrammarGeneratorSplitThenFill");
+        Tuple<Result, BestResultSamples> resultGrammarGeneratorSplitThenFill = resultCalculator.buildResultWithGenerator(
+                new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnly),
+                WorkLog.createFromWriter(null));
         this.selectFrom.setText(resultGrammarGeneratorSplitThenFill.y.toString());
+        */
         statusOutput.setText(statusOutput.getText() + "\nExercise creation successful.");
     }
 

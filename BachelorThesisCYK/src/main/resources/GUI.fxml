@@ -47,7 +47,7 @@
                                                    </padding>
                                                 </Label>
                                                 <TextArea fx:id="terminals" layoutX="10.0" layoutY="27.0" prefHeight="50.0" prefWidth="190.0" />
-                                                <Label layoutX="10.0" layoutY="79.0" text=" Wordlength: [5-21]">
+                                                <Label layoutX="10.0" layoutY="79.0" text=" Wordlength: [5-20]">
                                                    <padding>
                                                       <Insets top="5.0" />
                                                    </padding>

@@ -3397,77 +3397,79 @@ The experience of professor Martens shows that usually most students easily find
 	\label{foreCombination}
 \end{figure}\\
 
-\noindent With the help of the three now known Success Rates the overall Success Rate can be specified. \\
+\noindent The three success rates have been explained and finally the overall Success Rate can be specified. \\
 \noindent\textbf{Success Rate:}
-A generated $exercise$ contributes to the Success Rate ($SR$) if it contributes to the SR-Producibility, to the SR-Cardinality-Rules and to the SR-Pyramid at the same time.\\
+A generated $exercise$ contributes to the Success Rate (SR) if it contributes to the SR-Producibility, to the SR-Cardinality-Rules and to the SR-Pyramid at the same time.\\
 It holds: $SR = n / N$, where $n$ is the count of $exercises$.
 \subsubsection{Problem space exploration}
-The application allows input values to be given for the creation of new suitable $exercises$ and typical ranges for this values are as following:\\
-
-\noindent Input Values of the program:
+Suitable ranges of parameters, to create exam $exercises$ with, are:
 \begin{itemize}[noitemsep,nolistsep]
 	\item count of variables = [2;~8]
 	\item count of terminals = [2;~8]
 	\item size of word = [4;~11]
 \end{itemize}
-\vspace{0.6cm}
-\noindent For every algorithm and for every possible configuration of these input values the $SR$s are calculated to see which configuration leads to the best performance of an algorithm. The best ones of each will be used as a representative for further examination.
-\clearpage
+%\vspace{0.6cm}
+This input value ranges are used during the further comparison. 
 \paragraph{Comparison of the stopping criteria}~\\
-As described in Chapter \ref{subModules} Sub Modules, two different stopping criteria \circled{C} are used and it is of interest to know which one helps to generate more suitable exam $exercise$s so that the better one can be used in the application. Therefore both variants of the stopping criteria are compared in Table \ref{comparisionStoppingCriteria}.
+As described in Chapter \ref{subModules} Sub Modules, two different stopping criteria \circled{C} are used and it is of interest to know which one helps to generate more suitable exam $exercise$s so that the better one can be used in a real world application. Therefore both variants of the stopping criteria are compared in Table \ref{comparisionMeanValue} and Table \ref{comparisionStoppingCriteria}.
 
-\begin{table}[h]
-	\centering
-		\begin{tabular}{l|c|c|}
-			\cline{2-3}
-			& MoreThanHalf & RootNotEmpty \\ \hline
-			\multicolumn{1}{|l|}{DiceRollOnly}  & 17\%             & \textbf{18\%}            \\ \hline
-			\multicolumn{1}{|l|}{DiceRollVar1}  & 18\%             & \textbf{35\%}            \\ \hline
-			\multicolumn{1}{|l|}{DiceRollVar2}  & 20\%             & \textbf{37\%}            \\ \hline
-			\multicolumn{1}{|l|}{SplitThenFill} & 36\%             & \textbf{36\%}            \\ \hline
-			\multicolumn{1}{|l|}{SplitAndFill}  & 74\%             & \textbf{74\%}             \\ \hline
-		\end{tabular}
-	\caption{Comparision of the two stopping criteria: Half of the cells in the pyramid are not empty and at least one variable is in the root of the pyramid. (N = 1024)}
-	\label{comparisionStoppingCriteria}
-\end{table}
-\noindent As seen in the table above, the stopping criteria RootNotEmpty performs better or equally good for every algorithm. RootNotEmpty wins and all further discussion in the following Chapter \ref{comparisonOfTheAlgorithms} is done only with it.
+\noindent For every algorithm and for every possible configuration of the input values the SRs are calculated with a batch size N of 1024.
 
 \begin{table}[h]
 	\centering
 	\begin{tabular}{l|c|c|}
 		\cline{2-3}
 		& MoreThanHalf & RootNotEmpty \\ \hline
-		\multicolumn{1}{|l|}{DiceRollOnly}  & 17\%             & \textbf{18\%}            \\ \hline
-		\multicolumn{1}{|l|}{DiceRollVar1}  & 18\%             & \textbf{35\%}            \\ \hline
-		\multicolumn{1}{|l|}{DiceRollVar2}  & 20\%             & \textbf{37\%}            \\ \hline
-		\multicolumn{1}{|l|}{SplitThenFill} & 36\%             & \textbf{36\%}            \\ \hline
-		\multicolumn{1}{|l|}{SplitAndFill}  & 74\%             & \textbf{74\%}             \\ \hline
+		\multicolumn{1}{|l|}{DiceRollOnly}  & 0.3\%             & \textbf{0.3\%}            \\ \hline
+		\multicolumn{1}{|l|}{DiceRollVar1}  & 0.5\%             & \textbf{1.2\%}            \\ \hline
+		\multicolumn{1}{|l|}{DiceRollVar2}  & 0.6\%             & \textbf{1.7\%}            \\ \hline
+		\multicolumn{1}{|l|}{SplitThenFill} & 1.4\%             & \textbf{1.4\%}            \\ \hline
+		\multicolumn{1}{|l|}{SplitAndFill}  & 8.4\%             & \textbf{8.5\%}             \\ \hline
 	\end{tabular}
-	\caption{Comparision of mean value. (N = 1024)}
+	\caption{Comparison of the mean value of all the configurations of input values for the different algorithms. (N = 1024)}
 	\label{comparisionMeanValue}
 \end{table}
 
-\paragraph{Comparison of the algorithms}~\\\label{comparisonOfTheAlgorithms}
-\noindent Now that the choice of stopping criteria has been decided for RootNotEmpty, that guarantees the better $SR$s it is time to choose the one algorithm for usage in the application.\\
-\noindent Before deciding, a closer look onto the actual input values is given in the following Table \ref{inputValuesOfBestSuccessRate}. It might be interesting to see which configurations of input values of the algorithms are responsible for the good SR.
+\noindent Table \ref{comparisionMeanValue} shows the mean value of all the configurations of input values for the different algorithms. In Table \ref{comparisionStoppingCriteria} the best possible SRs of each algorithm are compared.\\
+
+
 
 \begin{table}[h]
 	\centering
-	\begin{tabular}{l|c|c|c|c|}
-		\cline{2-5}
-		& SR & count of variables & count of terminals & size of word \\ \hline
-		\multicolumn{1}{|l|}{DiceRollOnly}  &\textbf{18\%}    & 3                    & 3                   &   9           \\ \hline
-		\multicolumn{1}{|l|}{DiceRollVar1}  &\textbf{35\%}    & 3                   & 3                   & 8             \\ \hline
-		\multicolumn{1}{|l|}{DiceRollVar2}  &\textbf{37\%}    & 3                   & 3                   & 8             \\ \hline
-		\multicolumn{1}{|l|}{SplitThenFill} &\textbf{36\%}    & 3                   & 4                   & 9             \\ \hline
-		\multicolumn{1}{|l|}{SplitAndFill}  &\textbf{74\%}    & 3                   & 3                   & 8             \\ \hline
-	\end{tabular}
-	\caption{Comparison of the input values of each algorithm with its best SR. (N = 1024)}
-	\label{inputValuesOfBestSuccessRate}
+		\begin{tabular}{l|c|c|}
+			\cline{2-3}
+			& MoreThanHalf & RootNotEmpty \\ \hline
+			\multicolumn{1}{|l|}{DiceRollOnly}  & 17\%             & \textbf{17\%}            \\ \hline
+			\multicolumn{1}{|l|}{DiceRollVar1}  & 18\%             & \textbf{36\%}            \\ \hline
+			\multicolumn{1}{|l|}{DiceRollVar2}  & 20\%             & \textbf{38\%}            \\ \hline
+			\multicolumn{1}{|l|}{SplitThenFill} & 36\%             & \textbf{36\%}            \\ \hline
+			\multicolumn{1}{|l|}{SplitAndFill}  & 74\%             & \textbf{74\%}             \\ \hline
+		\end{tabular}
+	\caption{Comparison of the two stopping criteria: Half of the cells in the pyramid are not empty and at least one variable is in the root of the pyramid. (N = 1024)}
+	\label{comparisionStoppingCriteria}
 \end{table}
-\noindent Nearly every time the count of variables and the count of terminals is three and the size of the word ranges from 8 to 9.\\
-\clearpage
-\noindent The composite success rates of the five algorithms are displayed in more detail in Table \ref{comparisionsAlgorithms}. While looking at the configuration of the algorithms that generate the best $SR$s, it is seen that the best algorithm for the application to use is Algorithm \ref{SplitAndFill} SplitAndFill, because it has the best $SR$.
+\noindent As seen in the two tables above (Table \ref{comparisionMeanValue} and Table \ref{comparisionStoppingCriteria}), the stopping criteria RootNotEmpty performs better or at least equally good in every case. RootNotEmpty wins and all further discussion in the following Chapter \ref{comparisonOfTheAlgorithms} is done with it.
+\paragraph{Picking the best algorithm}~\\\label{comparisonOfTheAlgorithms}
+\noindent Now that the choice of stopping criteria has been decided in favour of RootNotEmpty, that guarantees the better SRs, it is time to determine the one algorithm that performs the best.\\
+As seen in Table \ref{comparisionMeanValue2} the Algorithm \ref{SplitAndFill} SplitAndFill performs the best considering the mean value.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|}
+		\cline{2-2}
+														 & RootNotEmpty \\ \hline
+		\multicolumn{1}{|l|}{DiceRollOnly}               & \textbf{0.3\%}            \\ \hline
+		\multicolumn{1}{|l|}{DiceRollVar1}               & \textbf{1.2\%}            \\ \hline
+		\multicolumn{1}{|l|}{DiceRollVar2}               & \textbf{1.7\%}            \\ \hline
+		\multicolumn{1}{|l|}{SplitThenFill}              & \textbf{1.4\%}            \\ \hline
+		\multicolumn{1}{|l|}{SplitAndFill}               & \textbf{8.5\%}             \\ \hline
+	\end{tabular}
+	\caption{Comparision of the mean value of all the configurations of input values for the different algorithms with stopping criteria RootNotEmpty. (N = 1024)}
+	\label{comparisionMeanValue2}
+\end{table}
+
+\noindent The composite success rates of the five algorithms are displayed in more detail in Table \ref{comparisionsAlgorithms}. While looking at the configuration of the algorithms that generate the best SRs, it is seen that the best algorithm for the application to use is Algorithm \ref{SplitAndFill} SplitAndFill, because it has the best SR.
+
  
 \begin{table}[h]
 	\centering
@@ -3475,13 +3477,13 @@ As described in Chapter \ref{subModules} Sub Modules, two different stopping cri
 		\hline
 		\multicolumn{1}{|c|}{Algorithm} & SR   & \begin{tabular}[c]{@{}c@{}}Produci-\\ bility\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cardinality-\\ Rules\end{tabular} & \multicolumn{4}{c|}{Pyramid}                                                                                                                                                        \\ \cline{6-8} 
 		&      &                                                           &                                                              &      & \begin{tabular}[c]{@{}c@{}}Force-\\ Right\end{tabular} & \begin{tabular}[c]{@{}c@{}}Vars-\\ PerCell\end{tabular} & \begin{tabular}[c]{@{}c@{}}VarsIn-\\ Pyramid\end{tabular} \\ \hline
-		DiceRollOnly                    & \textbf{18\%} & 22\%                                                           &98\%                                                              & 48\% &48\%                                                        &100\%                                                         &100\%                                                           \\ \hline
-		BottomUpVar1                    &\textbf{35\%}      &55\%                                                           &92\%                                                              &66\%      &66\%                                                        &100\%                                                         &100\%                                                           \\ \hline
-		BottomUpVar2                    &\textbf{37\%}      &56\%                                                           &96\%                                                              &69\%      &69\%                                                        &100\%                                                         &100\%                                                           \\ \hline
-		SplitThenFill                   &\textbf{36\%}    &50\%                                                           &93\%                                                              &75\%      &76\%                                                        &100\%                                                         &99\%                                                           \\ \hline
+		DiceRollOnly                    & \textbf{17\%} & 21\%                                                           &98\%                                                              & 47\% &47\%                                                        &100\%                                                         &100\%                                                           \\ \hline
+		BottomUpVar1                    &\textbf{36\%}      &60\%                                                           &91\%                                                              &65\%      &69\%                                                        &100\%                                                         &93\%                                                           \\ \hline
+		BottomUpVar2                    &\textbf{38\%}      &56\%                                                           &95\%                                                              &69\%      &69\%                                                        &100\%                                                         &100\%                                                           \\ \hline
+		SplitThenFill                   &\textbf{36\%}    &51\%                                                           &97\%                                                              &71\%      &71\%                                                        &100\%                                                         &99\%                                                           \\ \hline
 		SplitAndFill                    &\textbf{74\%}      &100\%                                                           &100\%                                                              &74\%      &74\%                                                        &100\%                                                         &100\%                                                           \\ \hline
 	\end{tabular}
-	\caption{More detailed composite $SR$ of the algorithms with their best overall $SR$. (N = 1024)}
+	\caption{More detailed composite $SR$ of the algorithms with their best overall SR. (N = 1024)}
 	\label{comparisionsAlgorithms}
 \end{table}
 \clearpage
