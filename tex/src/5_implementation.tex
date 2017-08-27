@@ -344,7 +344,7 @@ One negative score is already sufficient to avoid examples in area 3 with undesi
 
 \subsection{Parsing input with ANTLR}
 In area 4 of the application a context free grammar is given as input as seen in Figure \ref{antlrGrammarTokens} on the left. This input is parsed with ANTLR \footnote{ANTLR works with LL(k) grammars, which means that each derivation step can be distinctly identified through the next k tokens.} because it allows a clear separation between the language definition and the Java code.\\
-The first step here is the tokenization of the input in token as seen in Figure \ref{antlrGrammarTokens} on the right. After that with the help of the Grammar as seen in Figure \ref{antlrGrammarRules} an abstract syntax tree is generated out of which intern Java objects can be parsed for further processing.\\
+The first step here is the tokenization of the input in token as seen in Figure \ref{antlrGrammarTokens} on the right. After that with the help of the Grammar as seen in Figure \ref{antlrGrammarRules} an abstract syntax tree is generated out of which Java souce code is generated.\\
 \noindent
 \begin{figure} [h]
 	\centering
@@ -374,17 +374,5 @@ JavaFX Scene Builder \footnote{\href{http://gluonhq.com/products/scene-builder/}
 JUnit \footnote{\href{http://junit.org/junit4/}{JUnit: http://junit.org/junit4/}} for testing and Project 
 Lombok \footnote{\href{https://projectlombok.org/features/all}{Project Lombok: https://projectlombok.org/features/all}} to greatly reduce boilerplate code.\\
 \noindent Altogether around 7100 lines of code have been written, of which 5400 are pure java code lines, 900 are comment lines and 800 are blank lines.\\ 
-
-\pagebreak\
-\clearpage
-\noindent\textbf{Eidesstattliche Erklärung}\\
-
-\noindent Hiermit erkläre ich, dass ich die Bachelorarbeit selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt und die aus fremden Quellen direkt oder indirekt übernommenen Gedanken als solche kenntlich gemacht habe.
-Die Arbeit wurde bisher keiner anderen Prüfungsbehörde vorgelegt und noch nicht veröffentlicht.\\
-
-
-\vspace{1cm}
-\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-Ort, Datum~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Unterschrift
 
 \pagebreak

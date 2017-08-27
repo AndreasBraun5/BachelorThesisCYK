@@ -1,26 +1,27 @@
-\contentsline {section}{Abstract}{5}{section*.3}
-\contentsline {section}{\numberline {1}Introduction}{6}{section.1}
-\contentsline {subsection}{\numberline {1.1}Motivation}{6}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Context Free Grammar}{6}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}General approaches of parsing}{7}{subsection.1.3}
-\contentsline {subsection}{\numberline {1.4}Data Structure Pyramid}{8}{subsection.1.4}
-\contentsline {subsection}{\numberline {1.5}Cocke-Younger-Kasami Algorithm}{9}{subsection.1.5}
-\contentsline {section}{\numberline {2}Algorithms}{11}{section.2}
-\contentsline {subsection}{\numberline {2.1}Sub modules}{11}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Dice rolling the distributions only}{13}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Dice rolling and Bottom-Up variant one}{14}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Dice rolling and Bottom-Up variant two}{16}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Split Top-Down and fill Bottom-Up}{19}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}Split Top-Down and fill Top-Down}{24}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}Evaluation of Algorithms}{29}{subsection.2.7}
-\contentsline {subsubsection}{\numberline {2.7.1}Success Rates}{29}{subsubsection.2.7.1}
-\contentsline {subsubsection}{\numberline {2.7.2}Problem space exploration}{31}{subsubsection.2.7.2}
+\contentsline {section}{Abstract}{4}{section*.3}
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}
+\contentsline {subsection}{\numberline {1.1}Motivation}{5}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Context Free Grammar}{5}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}General approaches of parsing}{6}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Data Structure Pyramid}{7}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Cocke-Younger-Kasami Algorithm}{8}{subsection.1.5}
+\contentsline {section}{\numberline {2}Algorithms}{10}{section.2}
+\contentsline {subsection}{\numberline {2.1}Sub modules}{10}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Dice rolling the distributions only}{12}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Dice rolling and Bottom-Up variant one}{13}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Dice rolling and Bottom-Up variant two}{15}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Split Top-Down and fill Bottom-Up}{18}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Split Top-Down and fill Top-Down}{23}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Evaluation of Algorithms}{28}{subsection.2.7}
+\contentsline {subsubsection}{\numberline {2.7.1}Success Rates}{28}{subsubsection.2.7.1}
+\contentsline {subsubsection}{\numberline {2.7.2}Problem space exploration}{30}{subsubsection.2.7.2}
 \contentsline {paragraph}{\numberline {2.7.2.1}Comparison of the stopping criteria}{31}{paragraph.2.7.2.1}
 \contentsline {paragraph}{\numberline {2.7.2.2}Picking the best algorithm}{32}{paragraph.2.7.2.2}
-\contentsline {section}{\numberline {3}GUI Tool: CYK Instances Generator}{34}{section.3}
-\contentsline {subsection}{\numberline {3.1}Overview GUI}{34}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Working with the program}{34}{subsubsection.3.1.1}
-\contentsline {subsection}{\numberline {3.2}Exam Exercises}{35}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Scoring Model}{36}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Parsing input with ANTLR}{37}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Other matters}{38}{subsection.3.5}
+\contentsline {section}{\numberline {3}GUI Tool: CYK Instances Generator}{33}{section.3}
+\contentsline {subsection}{\numberline {3.1}Overview GUI}{33}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Working with the program}{33}{subsubsection.3.1.1}
+\contentsline {subsection}{\numberline {3.2}Exam Exercises}{34}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Scoring Model}{35}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Parsing input with ANTLR}{36}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Other matters}{37}{subsection.3.5}
+\contentsline {section}{Erkl\IeC {\"a}rung}{39}{section*.4}

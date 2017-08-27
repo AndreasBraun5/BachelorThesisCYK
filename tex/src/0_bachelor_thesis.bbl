@@ -1,14 +1,9 @@
 \begin{thebibliography}{1}
 
-\bibitem{YOUNGER.1967}
-Daniel Younger.
-\newblock Recognition and parsing of context-free languages in time n$^3$.
-\newblock {\em INFORMATION AND CONTROL}, 10(2):189--208, 1967.
-
 \bibitem{Duda.2012}
 Richard~O. Duda, Peter~E. Hart, and David~G. Stork.
 \newblock {\em Pattern Classification}.
-\newblock Wiley-Interscience, s.l., 2. aufl. edition, 2012.
+\newblock Wiley-Interscience, 2. aufl. edition, 2012.
 
 \bibitem{Sakai.1962}
 Itiroo Sakai.
@@ -26,6 +21,11 @@ Tadao Kasami.
 \newblock An efficient recognition and syntax-analysis algorithm for
   context-free languages.
 \newblock 1966.
+
+\bibitem{YOUNGER.1967}
+Daniel Younger.
+\newblock Recognition and parsing of context-free languages in time n$^3$.
+\newblock {\em INFORMATION AND CONTROL}, 10(2):189--{\&}, 1967.
 
 \bibitem{Hoffmann.2015}
 Dirk Hoffmann.
