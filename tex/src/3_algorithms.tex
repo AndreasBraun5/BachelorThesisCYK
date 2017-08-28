@@ -51,125 +51,128 @@ This procedure is needed to determine all possible compound variables out of all
 		
 	\end{algorithm}
 }
-In the following situation a rule is added to $Cell_{3,0}$ while using Algorithm \ref{CalculateSubsetForCell}.
-\noindent
-\begin{figure}[h]
+~~
+
+
+\begin{testexample}[Algorithm CalculateSubsetForCell]
+			In the following situation a rule is added to $Cell_{3,0}$ while using Algorithm \ref{CalculateSubsetForCell}.\\
 	\begin{minipage}{6in}
 		\centering
-		\raisebox{-0.5\height}{
-			\begin{tabular}{l}
-				Grammar:\\
-				$A \rightarrow AB~|~a$\\
-				$\mathbf{B \rightarrow \textbf{SC}}~|~b$\\ 
-				$C \rightarrow AB$ \\
-				$S \rightarrow BA~|~AA$
-			\end{tabular} 
-		}
-		\hspace*{.2in}
-		\raisebox{-0.5\height}{
-			\resizebox{0.5\linewidth}{!}{
-				\resizebox{\linewidth}{!}{
-					\begin{tikzpicture}[baseline]
-					\newcommand{\myfontvars}[1]{
-						\fontsize{4.9}{12}\selectfont{#1}
-					}\newcommand{\myfontnumbering}[1]{
-						\fontsize{2.5}{12}\selectfont{#1}
-					}%Outer hull
-					%Tip of the pyramid
-					\coordinate (tip) at (2.0,-2.0);
-					\foreach \i in {0,...,4} {
-						\coordinate (\i) at (\i,0);
+				\raisebox{-0.5\height}{
+					\begin{tabular}{l}
+						Grammar:\\
+						$A \rightarrow AB~|~a$\\
+						$\mathbf{B \rightarrow \textbf{SC}}~|~b$\\ 
+						$C \rightarrow AB$ \\
+						$S \rightarrow BA~|~AA$
+					\end{tabular} 
+				}
+				\hspace*{.2in}
+				\raisebox{-0.5\height}{
+					\resizebox{0.5\linewidth}{!}{
+						\resizebox{\linewidth}{!}{
+							\begin{tikzpicture}[baseline]
+							\newcommand{\myfontvars}[1]{
+								\fontsize{4.9}{12}\selectfont{#1}
+							}\newcommand{\myfontnumbering}[1]{
+								\fontsize{2.5}{12}\selectfont{#1}
+							}%Outer hull
+							%Tip of the pyramid
+							\coordinate (tip) at (2.0,-2.0);
+							\foreach \i in {0,...,4} {
+								\coordinate (\i) at (\i,0);
+							}
+							%Draw the left and right line of the pyramid pointing downwards
+							\draw (0) -- (tip) -- (4);
+							%Grid lines direction down-left to top-right
+							\coordinate (dl1) at (0.5,-0.5);
+							\coordinate (dl2) at (1.0,-1.0);
+							\coordinate (dl3) at (1.5,-1.5);
+							\draw (dl1) -- (1,0);
+							\draw (dl2) -- (2,0);
+							\draw (dl3) -- (3,0);
+							%Grid lines direction down-right to top-left
+							\coordinate (dr1) at (2.5,-1.5);
+							\coordinate (dr2) at (3.0,-1.0);
+							\coordinate (dr3) at (3.5,-0.5);
+							\draw (dr1) -- (1,0);
+							\draw (dr2) -- (2,0);
+							\draw (dr3) -- (3,0);
+							%Small lines at the top
+							\coordinate (top0) at (0.0,0.0);
+							\coordinate (top1) at (1.0,0.0);
+							\coordinate (top2) at (2.0,0.0);
+							\coordinate (top3) at (3.0,0.0);
+							\coordinate (top4) at (4.0,0.0);
+							\coordinate (topUpper0) at (0.0,0.6);
+							\coordinate (topUpper1) at (1.0,0.6);
+							\coordinate (topUpper2) at (2.0,0.6);
+							\coordinate (topUpper3) at (3.0,0.6);
+							\coordinate (topUpper4) at (4.0,0.6);
+							\draw (top0) -- (topUpper0);
+							\draw (top1) -- (topUpper1);
+							\draw (top2) -- (topUpper2);
+							\draw (top3) -- (topUpper3);
+							\draw (top4) -- (topUpper4);
+							%The string
+							\coordinate (w0) at (0.5,0.6);
+							\coordinate (w1) at (1.5,0.6);
+							\coordinate (w2) at (2.5,0.6);
+							\coordinate (w3) at (3.5,0.6);
+							\node [] at (w0) {b};
+							\node [] at (w1) {a};
+							\node [] at (w2) {a};
+							\node [] at (w3) {b};
+							% Variables in the cells
+							%cells00
+							\coordinate (center00) at (0.5,0.0);
+							\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+							\node [] at (center00) {\myfontvars{B$_{1}$}};
+							%cells01
+							\coordinate (center01) at (1.5,0.0);
+							\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+							\node [] at (center01) {\myfontvars{A$_{2}$}};
+							%cells02
+							\coordinate (center02) at (2.5,0.0);
+							\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+							\node [] at (center02) {\myfontvars{A$_{3}$}};
+							%cells03
+							\coordinate (center03) at (3.5,0.0);
+							\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+							\node [] at (center03) {\myfontvars{B$_{4}$}};
+							%cells10
+							\coordinate (center10) at (1.0,-0.5);
+							\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+							\node [] at (center10) {\myfontvars{S$_{1}$}};
+							%cells11
+							\coordinate (center11) at (2.0,-0.5);
+							\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+							\node [] at (center11) {\myfontvars{S$_{2}$}};
+							%cells12
+							\coordinate (center12) at (3.0,-0.5);
+							\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+							\node [] at (center12) {\myfontvars{A$_{3}$C$_{3}$}};
+							%cells20
+							\coordinate (center20) at (1.5,-1.0);
+							\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+							%cells21
+							\coordinate (center21) at (2.5,-1.0);
+							\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+							\node [] at (center21) {\myfontvars{S$_{2}$}};
+							%cells30
+							\coordinate (center30) at (2.0,-1.5);
+							\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+							\node [] at (center30) {\myfontvars{{\textbf{B$_{2}$}}}};
+							\end{tikzpicture}
+						}	
 					}
-					%Draw the left and right line of the pyramid pointing downwards
-					\draw (0) -- (tip) -- (4);
-					%Grid lines direction down-left to top-right
-					\coordinate (dl1) at (0.5,-0.5);
-					\coordinate (dl2) at (1.0,-1.0);
-					\coordinate (dl3) at (1.5,-1.5);
-					\draw (dl1) -- (1,0);
-					\draw (dl2) -- (2,0);
-					\draw (dl3) -- (3,0);
-					%Grid lines direction down-right to top-left
-					\coordinate (dr1) at (2.5,-1.5);
-					\coordinate (dr2) at (3.0,-1.0);
-					\coordinate (dr3) at (3.5,-0.5);
-					\draw (dr1) -- (1,0);
-					\draw (dr2) -- (2,0);
-					\draw (dr3) -- (3,0);
-					%Small lines at the top
-					\coordinate (top0) at (0.0,0.0);
-					\coordinate (top1) at (1.0,0.0);
-					\coordinate (top2) at (2.0,0.0);
-					\coordinate (top3) at (3.0,0.0);
-					\coordinate (top4) at (4.0,0.0);
-					\coordinate (topUpper0) at (0.0,0.6);
-					\coordinate (topUpper1) at (1.0,0.6);
-					\coordinate (topUpper2) at (2.0,0.6);
-					\coordinate (topUpper3) at (3.0,0.6);
-					\coordinate (topUpper4) at (4.0,0.6);
-					\draw (top0) -- (topUpper0);
-					\draw (top1) -- (topUpper1);
-					\draw (top2) -- (topUpper2);
-					\draw (top3) -- (topUpper3);
-					\draw (top4) -- (topUpper4);
-					%The string
-					\coordinate (w0) at (0.5,0.6);
-					\coordinate (w1) at (1.5,0.6);
-					\coordinate (w2) at (2.5,0.6);
-					\coordinate (w3) at (3.5,0.6);
-					\node [] at (w0) {b};
-					\node [] at (w1) {a};
-					\node [] at (w2) {a};
-					\node [] at (w3) {b};
-					% Variables in the cells
-					%cells00
-					\coordinate (center00) at (0.5,0.0);
-					\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-					\node [] at (center00) {\myfontvars{B$_{1}$}};
-					%cells01
-					\coordinate (center01) at (1.5,0.0);
-					\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-					\node [] at (center01) {\myfontvars{A$_{2}$}};
-					%cells02
-					\coordinate (center02) at (2.5,0.0);
-					\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-					\node [] at (center02) {\myfontvars{A$_{3}$}};
-					%cells03
-					\coordinate (center03) at (3.5,0.0);
-					\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-					\node [] at (center03) {\myfontvars{B$_{4}$}};
-					%cells10
-					\coordinate (center10) at (1.0,-0.5);
-					\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-					\node [] at (center10) {\myfontvars{S$_{1}$}};
-					%cells11
-					\coordinate (center11) at (2.0,-0.5);
-					\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-					\node [] at (center11) {\myfontvars{S$_{2}$}};
-					%cells12
-					\coordinate (center12) at (3.0,-0.5);
-					\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-					\node [] at (center12) {\myfontvars{A$_{3}$C$_{3}$}};
-					%cells20
-					\coordinate (center20) at (1.5,-1.0);
-					\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-					%cells21
-					\coordinate (center21) at (2.5,-1.0);
-					\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-					\node [] at (center21) {\myfontvars{S$_{2}$}};
-					%cells30
-					\coordinate (center30) at (2.0,-1.5);
-					\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-					\node [] at (center30) {\myfontvars{\textcolor{gray}{\textbf{B$_{2}$}}}};
-					\end{tikzpicture}
-				}	
-			}
-		}
+				} 
 	\end{minipage}
-	\caption{Example of Algorithm \ref{CalculateSubsetForCell} while applying it on $Cell_{3,0}$ via adding the rule $B \rightarrow SC$.}
-\end{figure}\\
-The calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ comes from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textbf{B $\rightarrow$ SC} has been added and finally $(B,2)$ is element of $Cell_{3,0}$.\\
-In general if for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \in CellSet$ (Line~\ref{cellSet}) is added, then automatically $Cell_{i,j}$ will not be empty any more. 
+\captionof{figure}{Example of Algorithm \ref{CalculateSubsetForCell} while applying it on $Cell_{3,0}$ via adding the rule $B \rightarrow SC$.}
+\noindent The calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ comes from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textbf{B $\rightarrow$ SC} has been added and finally $(B,2)$ is element of $Cell_{3,0}$.
+\end{testexample}
+In general if for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \in CellSet$ (Line~\ref{cellSet}) is added, then automatically $Cell_{i,j}$ will not be empty any more.
+
 \pagebreak
 
 \subsection{Dice rolling the distributions only} \label{diceRollOnlyCYK}
@@ -189,39 +192,45 @@ In general if for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \i
 		\Return $P$;
 	\end{algorithm}
 }
-The algoritm DiceRollOnly (Algorithm \ref{DiceRollOnlyCYK}) distributes terminals $\Sigma$ to at least one $lhse$, but a compound variable $vc \in V^2$ does not has to be distributed at all. Note that for each terminal of $\Sigma=\{a,b\}$ at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ is generated. But for each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~CC,$ $~CS,SS\}$ it is possible that only a smaller subset like $\{AA,~BA,~CC,~SC\}$ is distributed (Figure \ref{DiceRollONlyCYKExample})so that only rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.
-\noindent
-\begin{figure} [h]
+
+\noindent The algoritm DiceRollOnly (Algorithm \ref{DiceRollOnlyCYK}) distributes terminals $\Sigma$ to at least one $lhse$, but a compound variable $vc \in V^2$ does not has to be distributed at all. Note that for each terminal of $\Sigma=\{a,b\}$ at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ is generated.\\
+
+\begin{testexample}[Algorithm DiceRollOnlyCYK]
+	For each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~$ $CC,$ $CS,SS\}$ it is possible that only a smaller subset like $\{AA,~BA,~CC,~SC\}$ is distributed (Figure \ref{DiceRollONlyCYKExample}) so that only rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.\\
 	\begin{minipage}{6in}
 		\centering
 		\raisebox{-0.5\height}{
-		\begin{tabular}{l}
+			\begin{tabular}{l}
 				Grammar after Line 2:\\
 				$C\rightarrow a$\\ 
 				$B\rightarrow b$\\
 				\\
 			\end{tabular} 
-		\begin{tabular}{l}
-			Grammar after Line 3:\\
-			$C\rightarrow BA~|~AA~|~a$\\ 
-			$B\rightarrow b$ \\
-			$S\rightarrow CC~|~SC$ 
-		\end{tabular}
-	} 		
+			\begin{tabular}{l}
+				Grammar after Line 3:\\
+				$C\rightarrow BA~|~AA~|~a$\\ 
+				$B\rightarrow b$ \\
+				$S\rightarrow CC~|~SC$ 
+			\end{tabular}
+		} 	
 	\end{minipage}
-	\caption{Shortend overview of an example of Algorithm \ref{DiceRollOnlyCYK}.}
+	\captionof{figure}{Shortend overview of the example of Algorithm \ref{DiceRollOnlyCYK}.}
 	\label{DiceRollONlyCYKExample}
-\end{figure}
+\end{testexample}
+
+
+
 \pagebreak
 \clearpage
-\subsection{Dice rolling and Bottom-Up variant one}
+\subsection{Dice rolling and Bottom-Up variant one} \label{var1}
 Another approach to design an algorithm is after the Bottom-Up approach (Chapter \ref{approaches}) in which the parsing table is filled starting from the leaves in direction of the root node.\\
-The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK}, the naive approach, it is possible that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables (see Figure \ref{var1Example}, the middle part of the example). \\
-\noindent
-\begin{figure}[h]
-	\begin{minipage}{6in}
+The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK}, the naive approach, it is possible that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables (see Figure \ref{var1ExampleMiddle} in the middle). \\
+
+\begin{testexample}[Disregarding already added rules]
+	Figure \ref{var1ExampleTop} shows the starting situation for this example.
+	
 		\centering
-		\raisebox{-0.5\height}{
+				\raisebox{-0.5\height}{
 			\begin{tabular}{l}
 				Grammar:\\
 				$A\rightarrow a$\\
@@ -229,6 +238,114 @@ The basic idea is to guide the choice of rules while distributing the compound v
 			\end{tabular} 
 		}
 		\hspace*{.2in}
+		\resizebox{0.5\linewidth}{!}{
+			\resizebox{\linewidth}{!}{
+				\begin{tikzpicture}[baseline]
+				\newcommand{\myfontvars}[1]{
+					\fontsize{4.9}{12}\selectfont{#1}
+				}\newcommand{\myfontnumbering}[1]{
+					\fontsize{2.5}{12}\selectfont{#1}
+				}%Outer hull
+				%Tip of the pyramid
+				\coordinate (tip) at (2.0,-2.0);
+				\foreach \i in {0,...,4} {
+					\coordinate (\i) at (\i,0);
+				}
+				%Draw the left and right line of the pyramid pointing downwards
+				\draw (0) -- (tip) -- (4);
+				%Grid lines direction down-left to top-right
+				\coordinate (dl1) at (0.5,-0.5);
+				\coordinate (dl2) at (1.0,-1.0);
+				\coordinate (dl3) at (1.5,-1.5);
+				\draw (dl1) -- (1,0);
+				\draw (dl2) -- (2,0);
+				\draw (dl3) -- (3,0);
+				%Grid lines direction down-right to top-left
+				\coordinate (dr1) at (2.5,-1.5);
+				\coordinate (dr2) at (3.0,-1.0);
+				\coordinate (dr3) at (3.5,-0.5);
+				\draw (dr1) -- (1,0);
+				\draw (dr2) -- (2,0);
+				\draw (dr3) -- (3,0);
+				%Small lines at the top
+				\coordinate (top0) at (0.0,0.0);
+				\coordinate (top1) at (1.0,0.0);
+				\coordinate (top2) at (2.0,0.0);
+				\coordinate (top3) at (3.0,0.0);
+				\coordinate (top4) at (4.0,0.0);
+				\coordinate (topUpper0) at (0.0,0.6);
+				\coordinate (topUpper1) at (1.0,0.6);
+				\coordinate (topUpper2) at (2.0,0.6);
+				\coordinate (topUpper3) at (3.0,0.6);
+				\coordinate (topUpper4) at (4.0,0.6);
+				\draw (top0) -- (topUpper0);
+				\draw (top1) -- (topUpper1);
+				\draw (top2) -- (topUpper2);
+				\draw (top3) -- (topUpper3);
+				\draw (top4) -- (topUpper4);
+				%The string
+				\coordinate (w0) at (0.5,0.6);
+				\coordinate (w1) at (1.5,0.6);
+				\coordinate (w2) at (2.5,0.6);
+				\coordinate (w3) at (3.5,0.6);
+				\node [] at (w0) {b};
+				\node [] at (w1) {a};
+				\node [] at (w2) {a};
+				\node [] at (w3) {b};
+				% Variables in the cells
+				%cells00
+				\coordinate (center00) at (0.5,0.0);
+				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+				\node [] at (center00) {\myfontvars{B$_{1}$}};
+				%cells01
+				\coordinate (center01) at (1.5,0.0);
+				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+				\node [] at (center01) {\myfontvars{A$_{2}$}};
+				%cells02
+				\coordinate (center02) at (2.5,0.0);
+				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+				\node [] at (center02) {\myfontvars{A$_{3}$}};
+				%cells03
+				\coordinate (center03) at (3.5,0.0);
+				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+				\node [] at (center03) {\myfontvars{B$_{4}$}};
+				%cells10
+				\coordinate (center10) at (1.0,-0.5);
+				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+				%cells11
+				\coordinate (center11) at (2.0,-0.5);
+				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+				%cells12
+				\coordinate (center12) at (3.0,-0.5);
+				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+				%cells20
+				\coordinate (center20) at (1.5,-1.0);
+				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+				%cells21
+				\coordinate (center21) at (2.5,-1.0);
+				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+				%cells30
+				\coordinate (center30) at (2.0,-1.5);
+				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+				\end{tikzpicture}
+			}	
+		}
+		\captionof{figure}{Disregarding the already added rules: Starting situation.}
+	    \label{var1ExampleTop}
+	    
+	   \justify If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they do not directly help to fill the parsing table and bloat the grammar with useless rules (see Figure \ref{var1ExampleMiddle}). This is a unfortunate adding of rules that does not help to fill the parsing table and can happen in Algorithm \ref{DiceRollOnlyCYK}.
+	   
+	   \centering
+		\begin{minipage}{6in}
+			\centering
+			\raisebox{-0.5\height}{
+				\begin{tabular}{l}
+					Grammar:\\
+					$A\rightarrow \mathbf{CC}~|~a$\\
+					$B \rightarrow b$\\ 
+				\end{tabular} 
+			}
+			\hspace*{.2in}
 			\resizebox{0.5\linewidth}{!}{
 				\resizebox{\linewidth}{!}{
 					\begin{tikzpicture}[baseline]
@@ -321,219 +438,122 @@ The basic idea is to guide the choice of rules while distributing the compound v
 					\end{tikzpicture}
 				}	
 			}
-\begin{minipage}{6in}
-		\centering
-		\raisebox{-0.5\height}{
-		\begin{tabular}{l}
-			Grammar:\\
-			$A\rightarrow \mathbf{CC}~|~a$\\
-			$B \rightarrow b$\\ 
-		\end{tabular} 
-	}
-\hspace*{.2in}
-\resizebox{0.5\linewidth}{!}{
-\resizebox{\linewidth}{!}{
-	\begin{tikzpicture}[baseline]
-	\newcommand{\myfontvars}[1]{
-		\fontsize{4.9}{12}\selectfont{#1}
-	}\newcommand{\myfontnumbering}[1]{
-		\fontsize{2.5}{12}\selectfont{#1}
-	}%Outer hull
-	%Tip of the pyramid
-	\coordinate (tip) at (2.0,-2.0);
-	\foreach \i in {0,...,4} {
-		\coordinate (\i) at (\i,0);
-	}
-	%Draw the left and right line of the pyramid pointing downwards
-	\draw (0) -- (tip) -- (4);
-	%Grid lines direction down-left to top-right
-	\coordinate (dl1) at (0.5,-0.5);
-	\coordinate (dl2) at (1.0,-1.0);
-	\coordinate (dl3) at (1.5,-1.5);
-	\draw (dl1) -- (1,0);
-	\draw (dl2) -- (2,0);
-	\draw (dl3) -- (3,0);
-	%Grid lines direction down-right to top-left
-	\coordinate (dr1) at (2.5,-1.5);
-	\coordinate (dr2) at (3.0,-1.0);
-	\coordinate (dr3) at (3.5,-0.5);
-	\draw (dr1) -- (1,0);
-	\draw (dr2) -- (2,0);
-	\draw (dr3) -- (3,0);
-	%Small lines at the top
-	\coordinate (top0) at (0.0,0.0);
-	\coordinate (top1) at (1.0,0.0);
-	\coordinate (top2) at (2.0,0.0);
-	\coordinate (top3) at (3.0,0.0);
-	\coordinate (top4) at (4.0,0.0);
-	\coordinate (topUpper0) at (0.0,0.6);
-	\coordinate (topUpper1) at (1.0,0.6);
-	\coordinate (topUpper2) at (2.0,0.6);
-	\coordinate (topUpper3) at (3.0,0.6);
-	\coordinate (topUpper4) at (4.0,0.6);
-	\draw (top0) -- (topUpper0);
-	\draw (top1) -- (topUpper1);
-	\draw (top2) -- (topUpper2);
-	\draw (top3) -- (topUpper3);
-	\draw (top4) -- (topUpper4);
-	%The string
-	\coordinate (w0) at (0.5,0.6);
-	\coordinate (w1) at (1.5,0.6);
-	\coordinate (w2) at (2.5,0.6);
-	\coordinate (w3) at (3.5,0.6);
-	\node [] at (w0) {b};
-	\node [] at (w1) {a};
-	\node [] at (w2) {a};
-	\node [] at (w3) {b};
-	% Variables in the cells
-	%cells00
-	\coordinate (center00) at (0.5,0.0);
-	\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-	\node [] at (center00) {\myfontvars{B$_{1}$}};
-	%cells01
-	\coordinate (center01) at (1.5,0.0);
-	\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-	\node [] at (center01) {\myfontvars{A$_{2}$}};
-	%cells02
-	\coordinate (center02) at (2.5,0.0);
-	\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-	\node [] at (center02) {\myfontvars{A$_{3}$}};
-	%cells03
-	\coordinate (center03) at (3.5,0.0);
-	\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-	\node [] at (center03) {\myfontvars{B$_{4}$}};
-	%cells10
-	\coordinate (center10) at (1.0,-0.5);
-	\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-	%cells11
-	\coordinate (center11) at (2.0,-0.5);
-	\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-	%cells12
-	\coordinate (center12) at (3.0,-0.5);
-	\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-	%cells20
-	\coordinate (center20) at (1.5,-1.0);
-	\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-	%cells21
-	\coordinate (center21) at (2.5,-1.0);
-	\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-	%cells30
-	\coordinate (center30) at (2.0,-1.5);
-	\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-	\end{tikzpicture}
-}	
-}
-\end{minipage}
-\begin{minipage}{6in}
-\centering
-\raisebox{-0.5\height}{
-	\begin{tabular}{l}
-		Grammar:\\
-		$A\rightarrow a$\\
-		$B \rightarrow \mathbf{AB}~|~b$\\ 
-	\end{tabular} 
-}
-\hspace*{.2in}
-\resizebox{0.5\linewidth}{!}{
-	\resizebox{\linewidth}{!}{
-		\begin{tikzpicture}[baseline]
-		\newcommand{\myfontvars}[1]{
-			\fontsize{4.9}{12}\selectfont{#1}
-		}\newcommand{\myfontnumbering}[1]{
-			\fontsize{2.5}{12}\selectfont{#1}
-		}%Outer hull
-		%Tip of the pyramid
-		\coordinate (tip) at (2.0,-2.0);
-		\foreach \i in {0,...,4} {
-			\coordinate (\i) at (\i,0);
-		}
-		%Draw the left and right line of the pyramid pointing downwards
-		\draw (0) -- (tip) -- (4);
-		%Grid lines direction down-left to top-right
-		\coordinate (dl1) at (0.5,-0.5);
-		\coordinate (dl2) at (1.0,-1.0);
-		\coordinate (dl3) at (1.5,-1.5);
-		\draw (dl1) -- (1,0);
-		\draw (dl2) -- (2,0);
-		\draw (dl3) -- (3,0);
-		%Grid lines direction down-right to top-left
-		\coordinate (dr1) at (2.5,-1.5);
-		\coordinate (dr2) at (3.0,-1.0);
-		\coordinate (dr3) at (3.5,-0.5);
-		\draw (dr1) -- (1,0);
-		\draw (dr2) -- (2,0);
-		\draw (dr3) -- (3,0);
-		%Small lines at the top
-		\coordinate (top0) at (0.0,0.0);
-		\coordinate (top1) at (1.0,0.0);
-		\coordinate (top2) at (2.0,0.0);
-		\coordinate (top3) at (3.0,0.0);
-		\coordinate (top4) at (4.0,0.0);
-		\coordinate (topUpper0) at (0.0,0.6);
-		\coordinate (topUpper1) at (1.0,0.6);
-		\coordinate (topUpper2) at (2.0,0.6);
-		\coordinate (topUpper3) at (3.0,0.6);
-		\coordinate (topUpper4) at (4.0,0.6);
-		\draw (top0) -- (topUpper0);
-		\draw (top1) -- (topUpper1);
-		\draw (top2) -- (topUpper2);
-		\draw (top3) -- (topUpper3);
-		\draw (top4) -- (topUpper4);
-		%The string
-		\coordinate (w0) at (0.5,0.6);
-		\coordinate (w1) at (1.5,0.6);
-		\coordinate (w2) at (2.5,0.6);
-		\coordinate (w3) at (3.5,0.6);
-		\node [] at (w0) {b};
-		\node [] at (w1) {a};
-		\node [] at (w2) {a};
-		\node [] at (w3) {b};
-		% Variables in the cells
-		%cells00
-		\coordinate (center00) at (0.5,0.0);
-		\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-		\node [] at (center00) {\myfontvars{B$_{1}$}};
-		%cells01
-		\coordinate (center01) at (1.5,0.0);
-		\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-		\node [] at (center01) {\myfontvars{A$_{2}$}};
-		%cells02
-		\coordinate (center02) at (2.5,0.0);
-		\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-		\node [] at (center02) {\myfontvars{A$_{3}$}};
-		%cells03
-		\coordinate (center03) at (3.5,0.0);
-		\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-		\node [] at (center03) {\myfontvars{B$_{4}$}};
-		%cells10
-		\coordinate (center10) at (1.0,-0.5);
-		\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-		%cells11
-		\coordinate (center11) at (2.0,-0.5);
-		\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-		%cells12
-		\coordinate (center12) at (3.0,-0.5);
-		\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-		\node [] at (center12) {\myfontvars{\textbf{B}$\mathbf{_{3}}$}};
-		%cells20
-		\coordinate (center20) at (1.5,-1.0);
-		\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-		%cells21
-		\coordinate (center21) at (2.5,-1.0);
-		\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-		\node [] at (center21) {\myfontvars{\textbf{B}$\mathbf{_{2}}$}};
-		%cells30
-		\coordinate (center30) at (2.0,-1.5);
-		\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-		\end{tikzpicture}
-	}	
-}
-\end{minipage}	
-\end{minipage}
-	\caption{Example of disregarding the already added rules. Top: starting situation. Middle: Unfortunate adding of rules that does not help to fill the parsing table and possibly happens in Algorithm \ref{DiceRollOnlyCYK}. Bottom: Advantageous adding of rules as intended in Algorithm \ref{BottomUpDiceRollVar1} that helps filling.}
-	\label{var1Example}
-\end{figure}\\
-If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they do not directly help to fill the parsing table and bloat the grammar with useless rules (see Figure \ref{var1Example}, in the middle). More reasonable rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ or $lhse \rightarrow AB$ (see Figure \ref{var1Example}, the bottom part of the example).\\
+		\end{minipage}
+	\captionof{figure}{Disregarding the already added rules middle: Unfortunate adding. Bottom: Advantageous adding of rules.}
+	\label{var1ExampleMiddle}
+	
+	\justify More reasonable rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ or $lhse \rightarrow AB$ (see Figure \ref{var1ExampleDown}). This is an advantageous adding of rules as intended in Algorithm \ref{BottomUpDiceRollVar1} that helps to fill the $pyramid$.
+	
+	\centering
+		\begin{minipage}{6in}
+			\centering
+			\raisebox{-0.5\height}{
+				\begin{tabular}{l}
+					Grammar:\\
+					$A\rightarrow a$\\
+					$B \rightarrow \mathbf{AB}~|~b$\\ 
+				\end{tabular} 
+			}
+			\hspace*{.2in}
+			\resizebox{0.5\linewidth}{!}{
+				\resizebox{\linewidth}{!}{
+					\begin{tikzpicture}[baseline]
+					\newcommand{\myfontvars}[1]{
+						\fontsize{4.9}{12}\selectfont{#1}
+					}\newcommand{\myfontnumbering}[1]{
+						\fontsize{2.5}{12}\selectfont{#1}
+					}%Outer hull
+					%Tip of the pyramid
+					\coordinate (tip) at (2.0,-2.0);
+					\foreach \i in {0,...,4} {
+						\coordinate (\i) at (\i,0);
+					}
+					%Draw the left and right line of the pyramid pointing downwards
+					\draw (0) -- (tip) -- (4);
+					%Grid lines direction down-left to top-right
+					\coordinate (dl1) at (0.5,-0.5);
+					\coordinate (dl2) at (1.0,-1.0);
+					\coordinate (dl3) at (1.5,-1.5);
+					\draw (dl1) -- (1,0);
+					\draw (dl2) -- (2,0);
+					\draw (dl3) -- (3,0);
+					%Grid lines direction down-right to top-left
+					\coordinate (dr1) at (2.5,-1.5);
+					\coordinate (dr2) at (3.0,-1.0);
+					\coordinate (dr3) at (3.5,-0.5);
+					\draw (dr1) -- (1,0);
+					\draw (dr2) -- (2,0);
+					\draw (dr3) -- (3,0);
+					%Small lines at the top
+					\coordinate (top0) at (0.0,0.0);
+					\coordinate (top1) at (1.0,0.0);
+					\coordinate (top2) at (2.0,0.0);
+					\coordinate (top3) at (3.0,0.0);
+					\coordinate (top4) at (4.0,0.0);
+					\coordinate (topUpper0) at (0.0,0.6);
+					\coordinate (topUpper1) at (1.0,0.6);
+					\coordinate (topUpper2) at (2.0,0.6);
+					\coordinate (topUpper3) at (3.0,0.6);
+					\coordinate (topUpper4) at (4.0,0.6);
+					\draw (top0) -- (topUpper0);
+					\draw (top1) -- (topUpper1);
+					\draw (top2) -- (topUpper2);
+					\draw (top3) -- (topUpper3);
+					\draw (top4) -- (topUpper4);
+					%The string
+					\coordinate (w0) at (0.5,0.6);
+					\coordinate (w1) at (1.5,0.6);
+					\coordinate (w2) at (2.5,0.6);
+					\coordinate (w3) at (3.5,0.6);
+					\node [] at (w0) {b};
+					\node [] at (w1) {a};
+					\node [] at (w2) {a};
+					\node [] at (w3) {b};
+					% Variables in the cells
+					%cells00
+					\coordinate (center00) at (0.5,0.0);
+					\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+					\node [] at (center00) {\myfontvars{B$_{1}$}};
+					%cells01
+					\coordinate (center01) at (1.5,0.0);
+					\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+					\node [] at (center01) {\myfontvars{A$_{2}$}};
+					%cells02
+					\coordinate (center02) at (2.5,0.0);
+					\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+					\node [] at (center02) {\myfontvars{A$_{3}$}};
+					%cells03
+					\coordinate (center03) at (3.5,0.0);
+					\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+					\node [] at (center03) {\myfontvars{B$_{4}$}};
+					%cells10
+					\coordinate (center10) at (1.0,-0.5);
+					\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+					%cells11
+					\coordinate (center11) at (2.0,-0.5);
+					\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+					%cells12
+					\coordinate (center12) at (3.0,-0.5);
+					\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+					\node [] at (center12) {\myfontvars{\textbf{B}$\mathbf{_{3}}$}};
+					%cells20
+					\coordinate (center20) at (1.5,-1.0);
+					\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+					%cells21
+					\coordinate (center21) at (2.5,-1.0);
+					\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+					\node [] at (center21) {\myfontvars{\textbf{B}$\mathbf{_{2}}$}};
+					%cells30
+					\coordinate (center30) at (2.0,-1.5);
+					\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+					\end{tikzpicture}
+				}	
+			}
+		\end{minipage}	
+\captionof{figure}{Disregarding the already added rules Bottom: Advantageous adding of rules.}
+\label{var1ExampleDown}
+\end{testexample}
+\pagebreak
 \noindent Algorithm \ref{BottomUpDiceRollVar1} continues on this idea: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating (Line \ref{var1D}) variable compounds and to finally add a part of them (Line \ref{var1Add}) in form of rules to the grammar. As explanation, for each chosen cell a $CellSet$ (Line \ref{var1D}) is calculated, that only contains reasonable variable compounds. This way only variable compounds are added that directly help to fill the parsing table.\\
 
 \noindent
@@ -587,11 +607,12 @@ While examining Algorithm \ref{BottomUpDiceRollVar1} via its log file (Figure \r
 	\caption{Overview of log files of Algorithm \ref{BottomUpDiceRollVar1} with $|V|=4$ and $|\Sigma|=2$.}
 	\label{logsVar1}
 \end{figure}
-\noindent This again leads to a further improvement idea to introduce a row dependent $threshold_i$ (Line \ref{var2threshold} of Algorithm \ref{BottomUpDiceRollVar2} BottomUpDiceRollVars) which helps that more cells with $i\geq2$ are chosen \textendash~what possibly leads to more diverse grammars being generated. The diversity, in context of the procedure BottomUpDiceRollVar1 (Algorithm \ref{BottomUpDiceRollVar1}), is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the grammar will contain one of these $lhse$s as explained in Figure \ref{var1Example}. This is caused by the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the relatively small number of rules that are added to the grammar altogether. \\
+\noindent This again leads to a further improvement idea to introduce a row dependent $threshold_i$ (Line \ref{var2threshold} of Algorithm \ref{BottomUpDiceRollVar2} BottomUpDiceRollVars) which helps that more cells with $i\geq2$ are chosen \textendash~what possibly leads to more diverse grammars being generated. The diversity, in context of the procedure BottomUpDiceRollVar1 (Algorithm \ref{BottomUpDiceRollVar1}), is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the grammar will contain one of these $lhse$s as explained in Chapter \ref{var1}. This is caused by the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the relatively small number of rules that are added to the grammar altogether. \\
 Further diversification is achieved through the usage of \circled{E} (Line \ref{chooseVc} of Algorithm \ref{BottomUpDiceRollVar2} BottomUpDiceRollVars), i.e. the variable compounds that already have been used in a row with low index $i$ are at a disadvantage to be picked again (A more detailed explanation is found at the and of this chapter).\\
-As seen in Figure \ref{GoalofBetterDiversity} the rules with $BA$~and~$AA$ are added to the variables $B$ and $A$ in Grammar1. For Grammar2 instead the rule $B\rightarrow SS$ is added that contributes to a better diversity compared to Grammar1.
-\noindent
-\begin{figure} [h]
+
+\begin{testexample}[Better diversity in a grammar]
+	As seen in Figure \ref{GoalofBetterDiversity} the rules with $BA$~and~$AA$ are added to the variables $B$ and $A$ in Grammar1. For Grammar2 instead the rule $B\rightarrow SS$ is added that contributes to a better diversity compared to Grammar1. Grammar2 contains one more unique $rhse$ ($SS$) compared to Grammar1.\\
+	
 	\begin{minipage}{6in}
 		\centering
 		\raisebox{-0.5\height}{
@@ -608,17 +629,16 @@ As seen in Figure \ref{GoalofBetterDiversity} the rules with $BA$~and~$AA$ are a
 				$S\rightarrow BA~|~AA~|~CC~|~SC$ 
 			\end{tabular}
 			\begin{tabular}{l}
-			Grammar2:\\
-			$C\rightarrow BA~|~AA~|~a$\\ 
-			$B\rightarrow SS~|~b$ \\
-			$S\rightarrow CC~|~SC$ 
-		\end{tabular}
-		} 		
+				Grammar2:\\
+				$C\rightarrow BA~|~AA~|~a$\\ 
+				$B\rightarrow SS~|~b$ \\
+				$S\rightarrow CC~|~SC$ 
+			\end{tabular}
+		} 
 	\end{minipage}
-	\caption{Example for better diversity. Starting point is Grammar0. Grammar2 is of better diversity than Grammar1.}
+	\captionof{figure}{Better diversity.: Starting point is Grammar0 and Grammar2 is of better diversity than Grammar1.}
 	\label{GoalofBetterDiversity}
-\end{figure}
-
+\end{testexample}
 
 \noindent
 \frame{
@@ -657,32 +677,34 @@ As seen in Figure \ref{GoalofBetterDiversity} the rules with $BA$~and~$AA$ are a
 \noindent \textbf{Choose one xy from (xy,i) $\in$ RowSet uniform randomly with probability depending on row i \circled{E} :}\\
 At some point a decision needs to me made about what rule $lhse\rightarrow xy$ with $xy \in V^2$ will be added to the grammar. Depending on which $xy$ is chosen the influence on the entire pyramid varies. Some $xy$ only change the parsing table in one of its later rows ($i>>1$) but other $xy$ even change it in one of the first rows. If there is a change in one of the first rows it is more likely that the entire pyramid will be filled with more elements. Now the task of choosing rules to add, that only change the pyramid in one of the later rows, with a higher probability than the others is tackled with \circled{E}. \\
 The approach here only makes sense together with \circled{D} in which all possible compound variables are calculated that help to fill one specific cell. $RowSet \subseteq \{(xy,i)\ |\ x,y \in V \wedge i \in \mathbb{N} \}$ whereas the $xy$ are calculated with \circled{D} and $i$ is the row number of the specific cell. \pagebreak \clearpage
-\noindent With this $RowSet$ the choice can be influenced regarding the row number $i$: Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be merged to its lowest $i$, as following: $RowSet = \{(AB,3),~(AB,1),~(AB,5),~... \}$ will become $RowSet = \{(AB,1),~... \}$. Afterwards all elements of $RowSet$ will be placed in the $RowMultiSet$ that  can contain multiple equivalent elements. Now each element of $RowMultiSet$ will be weighted according to their $i$. That means that elements like $(AB,1)$ will only occur one time while elements like $(BC,3)$ will occur three times and so on: $RowMultiSet = \{(AB,1),~(BC,3),~...\}$ becomes $RowMultiSet = \{(AB,1),~(BC,3),~(BC,3),~(BC,3),~...\}$. Now one element will be chosen uniformly randomly out of this weighted $RowMultiSet$. In the example in Figure \ref{exampleProcE} this results in $xy = BC$.\\
-\noindent
-\begin{figure} [h]
+
+\begin{testexample}[Procedure \circled{E}]
+	With $RowSet$ the choice can be influenced regarding the row number $i$: Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be merged to its lowest $i$, as following: $RowSet = \{(AB,3),~(AB,1),~(AB,5),~... \}$ will become $RowSet = \{(AB,1),~... \}$. Afterwards all elements of $RowSet$ will be placed in the $RowMultiSet$ that  can contain multiple equivalent elements. Now each element of $RowMultiSet$ will be weighted according to their $i$. That means that elements like $(AB,1)$ will only occur one time while elements like $(BC,3)$ will occur three times and so on: $RowMultiSet = \{(AB,1),~(BC,3),~...\}$ becomes $RowMultiSet = \{(AB,1),~(BC,3),~(BC,3),~(BC,3),~...\}$. Now one element will be chosen uniformly randomly out of this weighted $RowMultiSet$. In the example in Figure \ref{exampleProcE} this results in $xy = BC$.\\
+	
 	\begin{minipage}{6in}
 		\centering
 		\raisebox{-0.5\height}{
 			\begin{tabular}{l l}
 				$RowSet = \{(AB,3),(AB,1),(AB,5),... \}$ & // compress \\
-				$RowSet = \{(AB,1),... \}$ & // place into RowMultiSet \\
+				$RowSet = \{(AB,1),... \}$ & // put in RowMultiSet \\
 				$RowMultiSet = \{(AB,1),(BC,3),...\}$ & // weight elements \\
 				$RowMultiSet = \{(AB,1),(BC,3),(BC,3),(BC,3),...\}$ & // pick element\\
 				$xy = BC$
 			\end{tabular} 
 		} 		
 	\end{minipage}
+	\captionof{figure}{Overview of the procedure E.}
 	\label{exampleProcE}
-	\caption{Shortened example of the procedure E.}
-\end{figure}
-
+\end{testexample}
 
 \pagebreak
 \subsection{Split Top-Down and fill Bottom-Up}
 Until now we have only discussed algorithms that purely use the Bottom-Up approach, so another way is to utilize the Top-Down approach in combination with the Bottom-Up approach.\\
-The idea here is first to distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFill} SplitThenFill) and then to uniformly randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{SplitThenFill} and in general Algorithm \ref{SplitThenFillRecursion} SplitThenFillRec) Top-Downwards and then again to fill the parsing table Bottom-Upwards accordingly to fill this derivation tree. The structure of the derivation tree for instance can look as follows:
-\begin{figure} [h]
-		\begin{minipage}{6in}
+The idea here is first to distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFill} SplitThenFill) and then to uniformly randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{SplitThenFill} and in general Algorithm \ref{SplitThenFillRecursion} SplitThenFillRec) Top-Downwards and then again to fill the parsing table Bottom-Upwards accordingly to fill this derivation tree. The structure of the derivation tree for instance can look as follows:\\
+
+\begin{testexample}[Derivation structure in the pyramid and as a derivation tree]
+	The numbers correspond to the depth in the tree.\\
+	\begin{minipage}{6in}
 		\centering
 		\resizebox{0.8\linewidth}{!}{
 			\begin{tikzpicture}[baseline]
@@ -842,29 +864,29 @@ The idea here is first to distribute the terminals (Line \ref{splitThenStepii} o
 			}
 			\Tree
 			[.$Cell_{5,0}$
-				[.$Cell_{2,0}$
-					[.$Cell_{0,0}$ b ]
-					[.$Cell_{1,1}$
-						[.$Cell_{0,1}$ b ]
-						[.$Cell_{0,2}$ a ]
-					]
-				]
+			[.$Cell_{2,0}$
+			[.$Cell_{0,0}$ b ]
+			[.$Cell_{1,1}$
+			[.$Cell_{0,1}$ b ]
+			[.$Cell_{0,2}$ a ]
+			]
+			]
 			[.$Cell_{2,3}$
-				[.$Cell_{1,3}$
-					[.$Cell_{0,3}$ c ]
-					[.$Cell_{0,4}$ b ]
-				]
-				[.$Cell_{0,5}$ c ]
+			[.$Cell_{1,3}$
+			[.$Cell_{0,3}$ c ]
+			[.$Cell_{0,4}$ b ]
+			]
+			[.$Cell_{0,5}$ c ]
 			]
 			]
 			\end{tikzpicture}
 		}
 	\end{minipage}
-		\label{treeStruct}
-		\caption{Example derivation tree structure. Top: Shown in the pyramid, the numbers correspond to the depth in the tree. Down: Shown as a derivation tree.}
-\end{figure}
+	\captionof{figure}{Derivation structure shown in the pyramid in the top and down as a derivation tree.}
+	\label{treeStruct}
+\end{testexample}
 
-\noindent As the name of the algorithms implies only after completely generating the structure of the derivation tree (splitting of the word in subwords) the rules are added to the grammar that help filling the cells occurring in the derivation tree.\\
+\noindent As the name of the algorithms implies only after completely generating the structure of the derivation tree (splitting of the word in sub words) the rules are added to the grammar that help filling the cells occurring in the derivation tree.\\
 Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} SplitThenFillRec Line \ref{splitThenFillB}) the already available information regarding the other rules is used to determine if a new rule is needed to fill this node of the derivation tree (Line \ref{empty} of Algorithm \ref{SplitThenFillRecursion} SplitThenFillRec).\\
 
 
@@ -917,10 +939,12 @@ For this algorithm it is important to mention that while using \circled{B} (Line
 	\end{algorithm}
 }
 \clearpage
-\noindent The same example tree structure as in Figure \ref{treeStruct} is used in the following example \textendash~each number represents the recursion depth of its subtree: 
 
-\noindent
-\begin{figure} [h]
+\begin{testexample}[Algorithm SplitThenFill]
+	\noindent The same example tree structure as in Figure \ref{treeStruct} is used here \textendash~remember that each number represents the recursion depth of its subtree.\\
+	
+	\noindent The situation after adding the terminals (Line \ref{splitThenStepii} in Algorithm \ref{SplitThenFill} SplitThenFill) to the grammar is shown in Figure \ref{IllustrationAlgorithmSplitThenFillPart1}:\\
+	
 	\begin{minipage}{6in}
 		\centering
 		\begin{tabular}{l}
@@ -1079,840 +1103,833 @@ For this algorithm it is important to mention that while using \circled{B} (Line
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 1 after adding $A \rightarrow a$, $B \rightarrow b$ and $C \rightarrow c$.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 1 after adding $A \rightarrow a$, $B \rightarrow b$ and $C \rightarrow c$.}
 	\label{IllustrationAlgorithmSplitThenFillPart1}
-\end{figure}
-
-\noindent After adding the terminals to the grammar (Line \ref{splitThenStepii} in Algorithm \ref{SplitThenFill} SplitThenFill) now the recursion step at $Cell_{1,1}$ is taken on. Now $Cell_l=\{B_2\}$ and $Cell_r=\{A_3\}$ and therefore $VarComp=\{BA\}$. Adding the rule $S \rightarrow BA$ leads to the following $Pyramid$: 
-
-\noindent
-\begin{figure} [h]
+	~
+	
+	\noindent After adding the terminals to the grammar now the recursion step at $Cell_{1,1}$ is taken on. Now $Cell_l=\{B_2\}$ and $Cell_r=\{A_3\}$ and therefore $VarComp=\{BA\}$. Adding the rule $S \rightarrow BA$ leads to the following $Pyramid$ shown in Figure \ref{IllustrationAlgorithmSplitThenFillPart2}: \\
+	
 	\begin{minipage}{6in}
-		\centering
-		\begin{tabular}{l}
-			Grammar:\\
-			$A \rightarrow a$\\
-			$B \rightarrow b$\\ 
-			$C \rightarrow c$\\
-			$S \rightarrow \textbf{BA}$\\ 
-		\end{tabular} 
-		\resizebox{0.7\linewidth}{!}{
-			\begin{tikzpicture}[baseline]
-			\newcommand{\myfontvars}[1]{
-				\fontsize{4.9}{12}\selectfont{#1}
-			}\newcommand{\myfontnumbering}[1]{
-				\fontsize{2.5}{12}\selectfont{#1}
-			}%Outer hull
-			%Tip of the pyramid
-			\coordinate (tip) at (3.0,-3.0);
-			\foreach \i in {0,...,6} {
-				\coordinate (\i) at (\i,0);
+			\centering
+			\begin{tabular}{l}
+				Grammar:\\
+				$A \rightarrow a$\\
+				$B \rightarrow b$\\ 
+				$C \rightarrow c$\\
+				$S \rightarrow \textbf{BA}$\\ 
+			\end{tabular} 
+			\resizebox{0.7\linewidth}{!}{
+				\begin{tikzpicture}[baseline]
+				\newcommand{\myfontvars}[1]{
+					\fontsize{4.9}{12}\selectfont{#1}
+				}\newcommand{\myfontnumbering}[1]{
+					\fontsize{2.5}{12}\selectfont{#1}
+				}%Outer hull
+				%Tip of the pyramid
+				\coordinate (tip) at (3.0,-3.0);
+				\foreach \i in {0,...,6} {
+					\coordinate (\i) at (\i,0);
+				}
+				%Draw the left and right line of the pyramid pointing downwards
+				\draw (0) -- (tip) -- (6);
+				%Grid lines direction down-left to top-right
+				\coordinate (dl1) at (0.5,-0.5);
+				\coordinate (dl2) at (1.0,-1.0);
+				\coordinate (dl3) at (1.5,-1.5);
+				\coordinate (dl4) at (2.0,-2.0);
+				\coordinate (dl5) at (2.5,-2.5);
+				\draw (dl1) -- (1,0);
+				\draw (dl2) -- (2,0);
+				\draw (dl3) -- (3,0);
+				\draw (dl4) -- (4,0);
+				\draw (dl5) -- (5,0);
+				%Grid lines direction down-right to top-left
+				\coordinate (dr1) at (3.5,-2.5);
+				\coordinate (dr2) at (4.0,-2.0);
+				\coordinate (dr3) at (4.5,-1.5);
+				\coordinate (dr4) at (5.0,-1.0);
+				\coordinate (dr5) at (5.5,-0.5);
+				\draw (dr1) -- (1,0);
+				\draw (dr2) -- (2,0);
+				\draw (dr3) -- (3,0);
+				\draw (dr4) -- (4,0);
+				\draw (dr5) -- (5,0);
+				%Small lines at the top
+				\coordinate (top0) at (0.0,0.0);
+				\coordinate (top1) at (1.0,0.0);
+				\coordinate (top2) at (2.0,0.0);
+				\coordinate (top3) at (3.0,0.0);
+				\coordinate (top4) at (4.0,0.0);
+				\coordinate (top5) at (5.0,0.0);
+				\coordinate (top6) at (6.0,0.0);
+				\coordinate (topUpper0) at (0.0,0.6);
+				\coordinate (topUpper1) at (1.0,0.6);
+				\coordinate (topUpper2) at (2.0,0.6);
+				\coordinate (topUpper3) at (3.0,0.6);
+				\coordinate (topUpper4) at (4.0,0.6);
+				\coordinate (topUpper5) at (5.0,0.6);
+				\coordinate (topUpper6) at (6.0,0.6);
+				\draw (top0) -- (topUpper0);
+				\draw (top1) -- (topUpper1);
+				\draw (top2) -- (topUpper2);
+				\draw (top3) -- (topUpper3);
+				\draw (top4) -- (topUpper4);
+				\draw (top5) -- (topUpper5);
+				\draw (top6) -- (topUpper6);
+				%The string
+				\coordinate (w0) at (0.5,0.6);
+				\coordinate (w1) at (1.5,0.6);
+				\coordinate (w2) at (2.5,0.6);
+				\coordinate (w3) at (3.5,0.6);
+				\coordinate (w4) at (4.5,0.6);
+				\coordinate (w5) at (5.5,0.6);
+				\node [] at (w0) {b};
+				\node [] at (w1) {b};
+				\node [] at (w2) {a};
+				\node [] at (w3) {c};
+				\node [] at (w4) {b};
+				\node [] at (w5) {c};
+				% Variables in the cells
+				%cells00
+				\coordinate (center00) at (0.5,0.0);
+				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+				\node [] at (center00) {\myfontvars{B$_{1}$}};
+				%cells01
+				\coordinate (center01) at (1.5,0.0);
+				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+				\node [] at (center01) {\myfontvars{B$_{2}$}};
+				%cells02
+				\coordinate (center02) at (2.5,0.0);
+				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+				\node [] at (center02) {\myfontvars{A$_{3}$}};
+				%cells03
+				\coordinate (center03) at (3.5,0.0);
+				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+				\node [] at (center03) {\myfontvars{C$_{4}$}};
+				%cells04
+				\coordinate (center04) at (4.5,0.0);
+				\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
+				\node [] at (center04) {\myfontvars{B$_{5}$}};
+				%cells05
+				\coordinate (center05) at (5.5,0.0);
+				\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
+				\node [] at (center05) {\myfontvars{C$_{6}$}};
+				%cells10
+				\coordinate (center10) at (1.0,-0.5);
+				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+				%cells11
+				\coordinate (center11) at (2.0,-0.5);
+				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+				\node [] at (center11) {\myfontvars{S$_{2}$}};
+				%cells12
+				\coordinate (center12) at (3.0,-0.5);
+				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+				%cells13
+				\coordinate (center13) at (4.0,-0.5);
+				\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
+				\node [] at (center13) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
+				%cells14
+				\coordinate (center14) at (5.0,-0.5);
+				\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
+				%cells20
+				\coordinate (center20) at (1.5,-1.0);
+				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+				\node [] at (center20) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
+				%cells21
+				\coordinate (center21) at (2.5,-1.0);
+				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+				%cells22
+				\coordinate (center22) at (3.5,-1.0);
+				\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
+				%cells23
+				\coordinate (center23) at (4.5,-1.0);
+				\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
+				\node [] at (center23) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
+				%cells30
+				\coordinate (center30) at (2.0,-1.5);
+				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+				%cells31
+				\coordinate (center31) at (3.0,-1.5);
+				\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
+				%cells32
+				\coordinate (center32) at (4.0,-1.5);
+				\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
+				%cells40
+				\coordinate (center40) at (2.5,-2.0);
+				\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
+				%cells41
+				\coordinate (center41) at (3.5,-2.0);
+				\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
+				%cells50
+				\coordinate (center50) at (3.0,-2.5);
+				\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
+				\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
+				\end{tikzpicture}
 			}
-			%Draw the left and right line of the pyramid pointing downwards
-			\draw (0) -- (tip) -- (6);
-			%Grid lines direction down-left to top-right
-			\coordinate (dl1) at (0.5,-0.5);
-			\coordinate (dl2) at (1.0,-1.0);
-			\coordinate (dl3) at (1.5,-1.5);
-			\coordinate (dl4) at (2.0,-2.0);
-			\coordinate (dl5) at (2.5,-2.5);
-			\draw (dl1) -- (1,0);
-			\draw (dl2) -- (2,0);
-			\draw (dl3) -- (3,0);
-			\draw (dl4) -- (4,0);
-			\draw (dl5) -- (5,0);
-			%Grid lines direction down-right to top-left
-			\coordinate (dr1) at (3.5,-2.5);
-			\coordinate (dr2) at (4.0,-2.0);
-			\coordinate (dr3) at (4.5,-1.5);
-			\coordinate (dr4) at (5.0,-1.0);
-			\coordinate (dr5) at (5.5,-0.5);
-			\draw (dr1) -- (1,0);
-			\draw (dr2) -- (2,0);
-			\draw (dr3) -- (3,0);
-			\draw (dr4) -- (4,0);
-			\draw (dr5) -- (5,0);
-			%Small lines at the top
-			\coordinate (top0) at (0.0,0.0);
-			\coordinate (top1) at (1.0,0.0);
-			\coordinate (top2) at (2.0,0.0);
-			\coordinate (top3) at (3.0,0.0);
-			\coordinate (top4) at (4.0,0.0);
-			\coordinate (top5) at (5.0,0.0);
-			\coordinate (top6) at (6.0,0.0);
-			\coordinate (topUpper0) at (0.0,0.6);
-			\coordinate (topUpper1) at (1.0,0.6);
-			\coordinate (topUpper2) at (2.0,0.6);
-			\coordinate (topUpper3) at (3.0,0.6);
-			\coordinate (topUpper4) at (4.0,0.6);
-			\coordinate (topUpper5) at (5.0,0.6);
-			\coordinate (topUpper6) at (6.0,0.6);
-			\draw (top0) -- (topUpper0);
-			\draw (top1) -- (topUpper1);
-			\draw (top2) -- (topUpper2);
-			\draw (top3) -- (topUpper3);
-			\draw (top4) -- (topUpper4);
-			\draw (top5) -- (topUpper5);
-			\draw (top6) -- (topUpper6);
-			%The string
-			\coordinate (w0) at (0.5,0.6);
-			\coordinate (w1) at (1.5,0.6);
-			\coordinate (w2) at (2.5,0.6);
-			\coordinate (w3) at (3.5,0.6);
-			\coordinate (w4) at (4.5,0.6);
-			\coordinate (w5) at (5.5,0.6);
-			\node [] at (w0) {b};
-			\node [] at (w1) {b};
-			\node [] at (w2) {a};
-			\node [] at (w3) {c};
-			\node [] at (w4) {b};
-			\node [] at (w5) {c};
-			% Variables in the cells
-			%cells00
-			\coordinate (center00) at (0.5,0.0);
-			\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-			\node [] at (center00) {\myfontvars{B$_{1}$}};
-			%cells01
-			\coordinate (center01) at (1.5,0.0);
-			\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-			\node [] at (center01) {\myfontvars{B$_{2}$}};
-			%cells02
-			\coordinate (center02) at (2.5,0.0);
-			\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-			\node [] at (center02) {\myfontvars{A$_{3}$}};
-			%cells03
-			\coordinate (center03) at (3.5,0.0);
-			\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-			\node [] at (center03) {\myfontvars{C$_{4}$}};
-			%cells04
-			\coordinate (center04) at (4.5,0.0);
-			\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
-			\node [] at (center04) {\myfontvars{B$_{5}$}};
-			%cells05
-			\coordinate (center05) at (5.5,0.0);
-			\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
-			\node [] at (center05) {\myfontvars{C$_{6}$}};
-			%cells10
-			\coordinate (center10) at (1.0,-0.5);
-			\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-			%cells11
-			\coordinate (center11) at (2.0,-0.5);
-			\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-			\node [] at (center11) {\myfontvars{S$_{2}$}};
-			%cells12
-			\coordinate (center12) at (3.0,-0.5);
-			\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-			%cells13
-			\coordinate (center13) at (4.0,-0.5);
-			\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
-			\node [] at (center13) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
-			%cells14
-			\coordinate (center14) at (5.0,-0.5);
-			\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
-			%cells20
-			\coordinate (center20) at (1.5,-1.0);
-			\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-			\node [] at (center20) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
-			%cells21
-			\coordinate (center21) at (2.5,-1.0);
-			\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-			%cells22
-			\coordinate (center22) at (3.5,-1.0);
-			\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
-			%cells23
-			\coordinate (center23) at (4.5,-1.0);
-			\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
-			\node [] at (center23) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
-			%cells30
-			\coordinate (center30) at (2.0,-1.5);
-			\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-			%cells31
-			\coordinate (center31) at (3.0,-1.5);
-			\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
-			%cells32
-			\coordinate (center32) at (4.0,-1.5);
-			\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
-			%cells40
-			\coordinate (center40) at (2.5,-2.0);
-			\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
-			%cells41
-			\coordinate (center41) at (3.5,-2.0);
-			\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
-			%cells50
-			\coordinate (center50) at (3.0,-2.5);
-			\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
-			\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
-			\end{tikzpicture}
-		}
-	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 2 after adding $S\rightarrow BA$.}
-	\label{IllustrationAlgorithmSplitThenFillPart2}
-\end{figure}\\
-\clearpage
-\noindent The next recursion step happens in $Cell_{2,0}$. Now $Cell_l=\{B_1\}$ and $Cell_r=\{S_2\}$. Analogously the rule $A\rightarrow BS$ is added to the grammar:
-
-\noindent
-\begin{figure} [h]
-	\begin{minipage}{6in}
-		\centering
-		\begin{tabular}{l}
-			Grammar:\\
-			$A \rightarrow \textbf{BS}~|~a$\\
-			$B \rightarrow b$\\ 
-			$C \rightarrow c$\\
-			$S \rightarrow BA$\\ 
-		\end{tabular} 
-		\resizebox{0.7\linewidth}{!}{
-			\begin{tikzpicture}[baseline]
-			\newcommand{\myfontvars}[1]{
-				\fontsize{4.9}{12}\selectfont{#1}
-			}\newcommand{\myfontnumbering}[1]{
-				\fontsize{2.5}{12}\selectfont{#1}
-			}%Outer hull
-			%Tip of the pyramid
-			\coordinate (tip) at (3.0,-3.0);
-			\foreach \i in {0,...,6} {
-				\coordinate (\i) at (\i,0);
+		\end{minipage}
+		\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 2 after adding $S\rightarrow BA$.}
+		\label{IllustrationAlgorithmSplitThenFillPart2}
+		
+		\noindent The next recursion step happens in $Cell_{2,0}$. Now $Cell_l=\{B_1\}$ and $Cell_r=\{S_2\}$. Analogously the rule $A\rightarrow BS$ is added to the grammar as seen in Figure \ref{IllustrationAlgorithmSplitThenFillPart3}:\\
+		
+		\begin{minipage}{6in}
+			\centering
+			\begin{tabular}{l}
+				Grammar:\\
+				$A \rightarrow \textbf{BS}~|~a$\\
+				$B \rightarrow b$\\ 
+				$C \rightarrow c$\\
+				$S \rightarrow BA$\\ 
+			\end{tabular} 
+			\resizebox{0.7\linewidth}{!}{
+				\begin{tikzpicture}[baseline]
+				\newcommand{\myfontvars}[1]{
+					\fontsize{4.9}{12}\selectfont{#1}
+				}\newcommand{\myfontnumbering}[1]{
+					\fontsize{2.5}{12}\selectfont{#1}
+				}%Outer hull
+				%Tip of the pyramid
+				\coordinate (tip) at (3.0,-3.0);
+				\foreach \i in {0,...,6} {
+					\coordinate (\i) at (\i,0);
+				}
+				%Draw the left and right line of the pyramid pointing downwards
+				\draw (0) -- (tip) -- (6);
+				%Grid lines direction down-left to top-right
+				\coordinate (dl1) at (0.5,-0.5);
+				\coordinate (dl2) at (1.0,-1.0);
+				\coordinate (dl3) at (1.5,-1.5);
+				\coordinate (dl4) at (2.0,-2.0);
+				\coordinate (dl5) at (2.5,-2.5);
+				\draw (dl1) -- (1,0);
+				\draw (dl2) -- (2,0);
+				\draw (dl3) -- (3,0);
+				\draw (dl4) -- (4,0);
+				\draw (dl5) -- (5,0);
+				%Grid lines direction down-right to top-left
+				\coordinate (dr1) at (3.5,-2.5);
+				\coordinate (dr2) at (4.0,-2.0);
+				\coordinate (dr3) at (4.5,-1.5);
+				\coordinate (dr4) at (5.0,-1.0);
+				\coordinate (dr5) at (5.5,-0.5);
+				\draw (dr1) -- (1,0);
+				\draw (dr2) -- (2,0);
+				\draw (dr3) -- (3,0);
+				\draw (dr4) -- (4,0);
+				\draw (dr5) -- (5,0);
+				%Small lines at the top
+				\coordinate (top0) at (0.0,0.0);
+				\coordinate (top1) at (1.0,0.0);
+				\coordinate (top2) at (2.0,0.0);
+				\coordinate (top3) at (3.0,0.0);
+				\coordinate (top4) at (4.0,0.0);
+				\coordinate (top5) at (5.0,0.0);
+				\coordinate (top6) at (6.0,0.0);
+				\coordinate (topUpper0) at (0.0,0.6);
+				\coordinate (topUpper1) at (1.0,0.6);
+				\coordinate (topUpper2) at (2.0,0.6);
+				\coordinate (topUpper3) at (3.0,0.6);
+				\coordinate (topUpper4) at (4.0,0.6);
+				\coordinate (topUpper5) at (5.0,0.6);
+				\coordinate (topUpper6) at (6.0,0.6);
+				\draw (top0) -- (topUpper0);
+				\draw (top1) -- (topUpper1);
+				\draw (top2) -- (topUpper2);
+				\draw (top3) -- (topUpper3);
+				\draw (top4) -- (topUpper4);
+				\draw (top5) -- (topUpper5);
+				\draw (top6) -- (topUpper6);
+				%The string
+				\coordinate (w0) at (0.5,0.6);
+				\coordinate (w1) at (1.5,0.6);
+				\coordinate (w2) at (2.5,0.6);
+				\coordinate (w3) at (3.5,0.6);
+				\coordinate (w4) at (4.5,0.6);
+				\coordinate (w5) at (5.5,0.6);
+				\node [] at (w0) {b};
+				\node [] at (w1) {b};
+				\node [] at (w2) {a};
+				\node [] at (w3) {c};
+				\node [] at (w4) {b};
+				\node [] at (w5) {c};
+				% Variables in the cells
+				%cells00
+				\coordinate (center00) at (0.5,0.0);
+				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+				\node [] at (center00) {\myfontvars{B$_{1}$}};
+				%cells01
+				\coordinate (center01) at (1.5,0.0);
+				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+				\node [] at (center01) {\myfontvars{B$_{2}$}};
+				%cells02
+				\coordinate (center02) at (2.5,0.0);
+				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+				\node [] at (center02) {\myfontvars{A$_{3}$}};
+				%cells03
+				\coordinate (center03) at (3.5,0.0);
+				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+				\node [] at (center03) {\myfontvars{C$_{4}$}};
+				%cells04
+				\coordinate (center04) at (4.5,0.0);
+				\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
+				\node [] at (center04) {\myfontvars{B$_{5}$}};
+				%cells05
+				\coordinate (center05) at (5.5,0.0);
+				\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
+				\node [] at (center05) {\myfontvars{C$_{6}$}};
+				%cells10
+				\coordinate (center10) at (1.0,-0.5);
+				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+				%cells11
+				\coordinate (center11) at (2.0,-0.5);
+				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+				\node [] at (center11) {\myfontvars{S$_{2}$}};
+				%cells12
+				\coordinate (center12) at (3.0,-0.5);
+				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+				%cells13
+				\coordinate (center13) at (4.0,-0.5);
+				\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
+				\node [] at (center13) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
+				%cells14
+				\coordinate (center14) at (5.0,-0.5);
+				\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
+				%cells20
+				\coordinate (center20) at (1.5,-1.0);
+				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+				\node [] at (center20) {\myfontvars{A$_{1}$}};
+				%cells21
+				\coordinate (center21) at (2.5,-1.0);
+				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+				%cells22
+				\coordinate (center22) at (3.5,-1.0);
+				\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
+				%cells23
+				\coordinate (center23) at (4.5,-1.0);
+				\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
+				\node [] at (center23) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
+				%cells30
+				\coordinate (center30) at (2.0,-1.5);
+				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+				%cells31
+				\coordinate (center31) at (3.0,-1.5);
+				\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
+				%cells32
+				\coordinate (center32) at (4.0,-1.5);
+				\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
+				%cells40
+				\coordinate (center40) at (2.5,-2.0);
+				\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
+				%cells41
+				\coordinate (center41) at (3.5,-2.0);
+				\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
+				%cells50
+				\coordinate (center50) at (3.0,-2.5);
+				\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
+				\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
+				\end{tikzpicture}
 			}
-			%Draw the left and right line of the pyramid pointing downwards
-			\draw (0) -- (tip) -- (6);
-			%Grid lines direction down-left to top-right
-			\coordinate (dl1) at (0.5,-0.5);
-			\coordinate (dl2) at (1.0,-1.0);
-			\coordinate (dl3) at (1.5,-1.5);
-			\coordinate (dl4) at (2.0,-2.0);
-			\coordinate (dl5) at (2.5,-2.5);
-			\draw (dl1) -- (1,0);
-			\draw (dl2) -- (2,0);
-			\draw (dl3) -- (3,0);
-			\draw (dl4) -- (4,0);
-			\draw (dl5) -- (5,0);
-			%Grid lines direction down-right to top-left
-			\coordinate (dr1) at (3.5,-2.5);
-			\coordinate (dr2) at (4.0,-2.0);
-			\coordinate (dr3) at (4.5,-1.5);
-			\coordinate (dr4) at (5.0,-1.0);
-			\coordinate (dr5) at (5.5,-0.5);
-			\draw (dr1) -- (1,0);
-			\draw (dr2) -- (2,0);
-			\draw (dr3) -- (3,0);
-			\draw (dr4) -- (4,0);
-			\draw (dr5) -- (5,0);
-			%Small lines at the top
-			\coordinate (top0) at (0.0,0.0);
-			\coordinate (top1) at (1.0,0.0);
-			\coordinate (top2) at (2.0,0.0);
-			\coordinate (top3) at (3.0,0.0);
-			\coordinate (top4) at (4.0,0.0);
-			\coordinate (top5) at (5.0,0.0);
-			\coordinate (top6) at (6.0,0.0);
-			\coordinate (topUpper0) at (0.0,0.6);
-			\coordinate (topUpper1) at (1.0,0.6);
-			\coordinate (topUpper2) at (2.0,0.6);
-			\coordinate (topUpper3) at (3.0,0.6);
-			\coordinate (topUpper4) at (4.0,0.6);
-			\coordinate (topUpper5) at (5.0,0.6);
-			\coordinate (topUpper6) at (6.0,0.6);
-			\draw (top0) -- (topUpper0);
-			\draw (top1) -- (topUpper1);
-			\draw (top2) -- (topUpper2);
-			\draw (top3) -- (topUpper3);
-			\draw (top4) -- (topUpper4);
-			\draw (top5) -- (topUpper5);
-			\draw (top6) -- (topUpper6);
-			%The string
-			\coordinate (w0) at (0.5,0.6);
-			\coordinate (w1) at (1.5,0.6);
-			\coordinate (w2) at (2.5,0.6);
-			\coordinate (w3) at (3.5,0.6);
-			\coordinate (w4) at (4.5,0.6);
-			\coordinate (w5) at (5.5,0.6);
-			\node [] at (w0) {b};
-			\node [] at (w1) {b};
-			\node [] at (w2) {a};
-			\node [] at (w3) {c};
-			\node [] at (w4) {b};
-			\node [] at (w5) {c};
-			% Variables in the cells
-			%cells00
-			\coordinate (center00) at (0.5,0.0);
-			\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-			\node [] at (center00) {\myfontvars{B$_{1}$}};
-			%cells01
-			\coordinate (center01) at (1.5,0.0);
-			\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-			\node [] at (center01) {\myfontvars{B$_{2}$}};
-			%cells02
-			\coordinate (center02) at (2.5,0.0);
-			\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-			\node [] at (center02) {\myfontvars{A$_{3}$}};
-			%cells03
-			\coordinate (center03) at (3.5,0.0);
-			\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-			\node [] at (center03) {\myfontvars{C$_{4}$}};
-			%cells04
-			\coordinate (center04) at (4.5,0.0);
-			\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
-			\node [] at (center04) {\myfontvars{B$_{5}$}};
-			%cells05
-			\coordinate (center05) at (5.5,0.0);
-			\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
-			\node [] at (center05) {\myfontvars{C$_{6}$}};
-			%cells10
-			\coordinate (center10) at (1.0,-0.5);
-			\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-			%cells11
-			\coordinate (center11) at (2.0,-0.5);
-			\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-			\node [] at (center11) {\myfontvars{S$_{2}$}};
-			%cells12
-			\coordinate (center12) at (3.0,-0.5);
-			\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-			%cells13
-			\coordinate (center13) at (4.0,-0.5);
-			\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
-			\node [] at (center13) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
-			%cells14
-			\coordinate (center14) at (5.0,-0.5);
-			\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
-			%cells20
-			\coordinate (center20) at (1.5,-1.0);
-			\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-			\node [] at (center20) {\myfontvars{A$_{1}$}};
-			%cells21
-			\coordinate (center21) at (2.5,-1.0);
-			\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-			%cells22
-			\coordinate (center22) at (3.5,-1.0);
-			\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
-			%cells23
-			\coordinate (center23) at (4.5,-1.0);
-			\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
-			\node [] at (center23) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
-			%cells30
-			\coordinate (center30) at (2.0,-1.5);
-			\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-			%cells31
-			\coordinate (center31) at (3.0,-1.5);
-			\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
-			%cells32
-			\coordinate (center32) at (4.0,-1.5);
-			\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
-			%cells40
-			\coordinate (center40) at (2.5,-2.0);
-			\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
-			%cells41
-			\coordinate (center41) at (3.5,-2.0);
-			\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
-			%cells50
-			\coordinate (center50) at (3.0,-2.5);
-			\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
-			\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
-			\end{tikzpicture}
-		}
-	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 3 after adding the rule $A\rightarrow BS$.}
-	\label{IllustrationAlgorithmSplitThenFillPart3}
-\end{figure}\\
-The next two analogous steps are described in Figure \ref{IllustrationAlgorithmSplitThenFillPart4} and in Figure \ref{IllustrationAlgorithmSplitThenFillPart5}. \\
-\noindent
-\begin{figure} [h]
-	\begin{minipage}{6in}
-		\centering
-		\begin{tabular}{l}
-			Grammar:\\
-			$A \rightarrow BS~|~a$\\
-			$B \rightarrow \textbf{CB}~|~b$\\ 
-			$C \rightarrow c$\\
-			$S \rightarrow BA$\\ 
-		\end{tabular} 
-		\resizebox{0.7\linewidth}{!}{
-			\begin{tikzpicture}[baseline]
-			\newcommand{\myfontvars}[1]{
-				\fontsize{4.9}{12}\selectfont{#1}
-			}\newcommand{\myfontnumbering}[1]{
-				\fontsize{2.5}{12}\selectfont{#1}
-			}%Outer hull
-			%Tip of the pyramid
-			\coordinate (tip) at (3.0,-3.0);
-			\foreach \i in {0,...,6} {
-				\coordinate (\i) at (\i,0);
+		\end{minipage}
+		\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 3 after adding the rule $A\rightarrow BS$.}
+		\label{IllustrationAlgorithmSplitThenFillPart3}
+		~\\
+		The next two analogous steps are described with Figure \ref{IllustrationAlgorithmSplitThenFillPart4} and with Figure \ref{IllustrationAlgorithmSplitThenFillPart5}. \\
+		
+		\begin{minipage}{6in}
+			\centering
+			\centering
+			\begin{tabular}{l}
+				Grammar:\\
+				$A \rightarrow BS~|~a$\\
+				$B \rightarrow \textbf{CB}~|~b$\\ 
+				$C \rightarrow c$\\
+				$S \rightarrow BA$\\ 
+			\end{tabular} 
+			\resizebox{0.7\linewidth}{!}{
+				\begin{tikzpicture}[baseline]
+				\newcommand{\myfontvars}[1]{
+					\fontsize{4.9}{12}\selectfont{#1}
+				}\newcommand{\myfontnumbering}[1]{
+					\fontsize{2.5}{12}\selectfont{#1}
+				}%Outer hull
+				%Tip of the pyramid
+				\coordinate (tip) at (3.0,-3.0);
+				\foreach \i in {0,...,6} {
+					\coordinate (\i) at (\i,0);
+				}
+				%Draw the left and right line of the pyramid pointing downwards
+				\draw (0) -- (tip) -- (6);
+				%Grid lines direction down-left to top-right
+				\coordinate (dl1) at (0.5,-0.5);
+				\coordinate (dl2) at (1.0,-1.0);
+				\coordinate (dl3) at (1.5,-1.5);
+				\coordinate (dl4) at (2.0,-2.0);
+				\coordinate (dl5) at (2.5,-2.5);
+				\draw (dl1) -- (1,0);
+				\draw (dl2) -- (2,0);
+				\draw (dl3) -- (3,0);
+				\draw (dl4) -- (4,0);
+				\draw (dl5) -- (5,0);
+				%Grid lines direction down-right to top-left
+				\coordinate (dr1) at (3.5,-2.5);
+				\coordinate (dr2) at (4.0,-2.0);
+				\coordinate (dr3) at (4.5,-1.5);
+				\coordinate (dr4) at (5.0,-1.0);
+				\coordinate (dr5) at (5.5,-0.5);
+				\draw (dr1) -- (1,0);
+				\draw (dr2) -- (2,0);
+				\draw (dr3) -- (3,0);
+				\draw (dr4) -- (4,0);
+				\draw (dr5) -- (5,0);
+				%Small lines at the top
+				\coordinate (top0) at (0.0,0.0);
+				\coordinate (top1) at (1.0,0.0);
+				\coordinate (top2) at (2.0,0.0);
+				\coordinate (top3) at (3.0,0.0);
+				\coordinate (top4) at (4.0,0.0);
+				\coordinate (top5) at (5.0,0.0);
+				\coordinate (top6) at (6.0,0.0);
+				\coordinate (topUpper0) at (0.0,0.6);
+				\coordinate (topUpper1) at (1.0,0.6);
+				\coordinate (topUpper2) at (2.0,0.6);
+				\coordinate (topUpper3) at (3.0,0.6);
+				\coordinate (topUpper4) at (4.0,0.6);
+				\coordinate (topUpper5) at (5.0,0.6);
+				\coordinate (topUpper6) at (6.0,0.6);
+				\draw (top0) -- (topUpper0);
+				\draw (top1) -- (topUpper1);
+				\draw (top2) -- (topUpper2);
+				\draw (top3) -- (topUpper3);
+				\draw (top4) -- (topUpper4);
+				\draw (top5) -- (topUpper5);
+				\draw (top6) -- (topUpper6);
+				%The string
+				\coordinate (w0) at (0.5,0.6);
+				\coordinate (w1) at (1.5,0.6);
+				\coordinate (w2) at (2.5,0.6);
+				\coordinate (w3) at (3.5,0.6);
+				\coordinate (w4) at (4.5,0.6);
+				\coordinate (w5) at (5.5,0.6);
+				\node [] at (w0) {b};
+				\node [] at (w1) {b};
+				\node [] at (w2) {a};
+				\node [] at (w3) {c};
+				\node [] at (w4) {b};
+				\node [] at (w5) {c};
+				% Variables in the cells
+				%cells00
+				\coordinate (center00) at (0.5,0.0);
+				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+				\node [] at (center00) {\myfontvars{B$_{1}$}};
+				%cells01
+				\coordinate (center01) at (1.5,0.0);
+				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+				\node [] at (center01) {\myfontvars{B$_{2}$}};
+				%cells02
+				\coordinate (center02) at (2.5,0.0);
+				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+				\node [] at (center02) {\myfontvars{A$_{3}$}};
+				%cells03
+				\coordinate (center03) at (3.5,0.0);
+				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+				\node [] at (center03) {\myfontvars{C$_{4}$}};
+				%cells04
+				\coordinate (center04) at (4.5,0.0);
+				\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
+				\node [] at (center04) {\myfontvars{B$_{5}$}};
+				%cells05
+				\coordinate (center05) at (5.5,0.0);
+				\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
+				\node [] at (center05) {\myfontvars{C$_{6}$}};
+				%cells10
+				\coordinate (center10) at (1.0,-0.5);
+				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+				%cells11
+				\coordinate (center11) at (2.0,-0.5);
+				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+				\node [] at (center11) {\myfontvars{S$_{2}$}};
+				%cells12
+				\coordinate (center12) at (3.0,-0.5);
+				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+				%cells13
+				\coordinate (center13) at (4.0,-0.5);
+				\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
+				\node [] at (center13) {\myfontvars{B$_{4}$}};
+				%cells14
+				\coordinate (center14) at (5.0,-0.5);
+				\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
+				%cells20
+				\coordinate (center20) at (1.5,-1.0);
+				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+				\node [] at (center20) {\myfontvars{A$_{1}$}};
+				%cells21
+				\coordinate (center21) at (2.5,-1.0);
+				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+				%cells22
+				\coordinate (center22) at (3.5,-1.0);
+				\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
+				%cells23
+				\coordinate (center23) at (4.5,-1.0);
+				\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
+				\node [] at (center23) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
+				%cells30
+				\coordinate (center30) at (2.0,-1.5);
+				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+				%cells31
+				\coordinate (center31) at (3.0,-1.5);
+				\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
+				%cells32
+				\coordinate (center32) at (4.0,-1.5);
+				\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
+				%cells40
+				\coordinate (center40) at (2.5,-2.0);
+				\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
+				%cells41
+				\coordinate (center41) at (3.5,-2.0);
+				\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
+				%cells50
+				\coordinate (center50) at (3.0,-2.5);
+				\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
+				\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
+				\end{tikzpicture}
 			}
-			%Draw the left and right line of the pyramid pointing downwards
-			\draw (0) -- (tip) -- (6);
-			%Grid lines direction down-left to top-right
-			\coordinate (dl1) at (0.5,-0.5);
-			\coordinate (dl2) at (1.0,-1.0);
-			\coordinate (dl3) at (1.5,-1.5);
-			\coordinate (dl4) at (2.0,-2.0);
-			\coordinate (dl5) at (2.5,-2.5);
-			\draw (dl1) -- (1,0);
-			\draw (dl2) -- (2,0);
-			\draw (dl3) -- (3,0);
-			\draw (dl4) -- (4,0);
-			\draw (dl5) -- (5,0);
-			%Grid lines direction down-right to top-left
-			\coordinate (dr1) at (3.5,-2.5);
-			\coordinate (dr2) at (4.0,-2.0);
-			\coordinate (dr3) at (4.5,-1.5);
-			\coordinate (dr4) at (5.0,-1.0);
-			\coordinate (dr5) at (5.5,-0.5);
-			\draw (dr1) -- (1,0);
-			\draw (dr2) -- (2,0);
-			\draw (dr3) -- (3,0);
-			\draw (dr4) -- (4,0);
-			\draw (dr5) -- (5,0);
-			%Small lines at the top
-			\coordinate (top0) at (0.0,0.0);
-			\coordinate (top1) at (1.0,0.0);
-			\coordinate (top2) at (2.0,0.0);
-			\coordinate (top3) at (3.0,0.0);
-			\coordinate (top4) at (4.0,0.0);
-			\coordinate (top5) at (5.0,0.0);
-			\coordinate (top6) at (6.0,0.0);
-			\coordinate (topUpper0) at (0.0,0.6);
-			\coordinate (topUpper1) at (1.0,0.6);
-			\coordinate (topUpper2) at (2.0,0.6);
-			\coordinate (topUpper3) at (3.0,0.6);
-			\coordinate (topUpper4) at (4.0,0.6);
-			\coordinate (topUpper5) at (5.0,0.6);
-			\coordinate (topUpper6) at (6.0,0.6);
-			\draw (top0) -- (topUpper0);
-			\draw (top1) -- (topUpper1);
-			\draw (top2) -- (topUpper2);
-			\draw (top3) -- (topUpper3);
-			\draw (top4) -- (topUpper4);
-			\draw (top5) -- (topUpper5);
-			\draw (top6) -- (topUpper6);
-			%The string
-			\coordinate (w0) at (0.5,0.6);
-			\coordinate (w1) at (1.5,0.6);
-			\coordinate (w2) at (2.5,0.6);
-			\coordinate (w3) at (3.5,0.6);
-			\coordinate (w4) at (4.5,0.6);
-			\coordinate (w5) at (5.5,0.6);
-			\node [] at (w0) {b};
-			\node [] at (w1) {b};
-			\node [] at (w2) {a};
-			\node [] at (w3) {c};
-			\node [] at (w4) {b};
-			\node [] at (w5) {c};
-			% Variables in the cells
-			%cells00
-			\coordinate (center00) at (0.5,0.0);
-			\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-			\node [] at (center00) {\myfontvars{B$_{1}$}};
-			%cells01
-			\coordinate (center01) at (1.5,0.0);
-			\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-			\node [] at (center01) {\myfontvars{B$_{2}$}};
-			%cells02
-			\coordinate (center02) at (2.5,0.0);
-			\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-			\node [] at (center02) {\myfontvars{A$_{3}$}};
-			%cells03
-			\coordinate (center03) at (3.5,0.0);
-			\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-			\node [] at (center03) {\myfontvars{C$_{4}$}};
-			%cells04
-			\coordinate (center04) at (4.5,0.0);
-			\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
-			\node [] at (center04) {\myfontvars{B$_{5}$}};
-			%cells05
-			\coordinate (center05) at (5.5,0.0);
-			\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
-			\node [] at (center05) {\myfontvars{C$_{6}$}};
-			%cells10
-			\coordinate (center10) at (1.0,-0.5);
-			\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-			%cells11
-			\coordinate (center11) at (2.0,-0.5);
-			\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-			\node [] at (center11) {\myfontvars{S$_{2}$}};
-			%cells12
-			\coordinate (center12) at (3.0,-0.5);
-			\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-			%cells13
-			\coordinate (center13) at (4.0,-0.5);
-			\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
-			\node [] at (center13) {\myfontvars{B$_{4}$}};
-			%cells14
-			\coordinate (center14) at (5.0,-0.5);
-			\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
-			%cells20
-			\coordinate (center20) at (1.5,-1.0);
-			\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-			\node [] at (center20) {\myfontvars{A$_{1}$}};
-			%cells21
-			\coordinate (center21) at (2.5,-1.0);
-			\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-			%cells22
-			\coordinate (center22) at (3.5,-1.0);
-			\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
-			%cells23
-			\coordinate (center23) at (4.5,-1.0);
-			\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
-			\node [] at (center23) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
-			%cells30
-			\coordinate (center30) at (2.0,-1.5);
-			\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-			%cells31
-			\coordinate (center31) at (3.0,-1.5);
-			\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
-			%cells32
-			\coordinate (center32) at (4.0,-1.5);
-			\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
-			%cells40
-			\coordinate (center40) at (2.5,-2.0);
-			\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
-			%cells41
-			\coordinate (center41) at (3.5,-2.0);
-			\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
-			%cells50
-			\coordinate (center50) at (3.0,-2.5);
-			\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
-			\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
-			\end{tikzpicture}
-		}
-	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 4. The recursion step in $Cell_{1,3}$ is  resolved by adding the rule $B\rightarrow CB$.}
-	\label{IllustrationAlgorithmSplitThenFillPart4}
-\end{figure}
-\clearpage
-\noindent
-\begin{figure} [h]
-	\begin{minipage}{6in}
-		\centering
-		\begin{tabular}{l}
-			Grammar:\\
-			$A \rightarrow BS~|~a$\\
-			$B \rightarrow CB~|~b$\\ 
-			$C \rightarrow \textbf{BC}~|~c$\\
-			$S \rightarrow BA$\\ 
-		\end{tabular} 
-		\resizebox{0.7\linewidth}{!}{
-			\begin{tikzpicture}[baseline]
-			\newcommand{\myfontvars}[1]{
-				\fontsize{4.9}{12}\selectfont{#1}
-			}\newcommand{\myfontnumbering}[1]{
-				\fontsize{2.5}{12}\selectfont{#1}
-			}%Outer hull
-			%Tip of the pyramid
-			\coordinate (tip) at (3.0,-3.0);
-			\foreach \i in {0,...,6} {
-				\coordinate (\i) at (\i,0);
+		\end{minipage}
+		\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 4. The recursion step in $Cell_{1,3}$ is  resolved by adding the rule $B\rightarrow CB$.}
+		\label{IllustrationAlgorithmSplitThenFillPart4}
+		\pagebreak \clearpage
+		
+		\begin{minipage}{6in}
+			\centering
+			\begin{tabular}{l}
+				Grammar:\\
+				$A \rightarrow BS~|~a$\\
+				$B \rightarrow CB~|~b$\\ 
+				$C \rightarrow \textbf{BC}~|~c$\\
+				$S \rightarrow BA$\\ 
+			\end{tabular} 
+			\resizebox{0.7\linewidth}{!}{
+				\begin{tikzpicture}[baseline]
+				\newcommand{\myfontvars}[1]{
+					\fontsize{4.9}{12}\selectfont{#1}
+				}\newcommand{\myfontnumbering}[1]{
+					\fontsize{2.5}{12}\selectfont{#1}
+				}%Outer hull
+				%Tip of the pyramid
+				\coordinate (tip) at (3.0,-3.0);
+				\foreach \i in {0,...,6} {
+					\coordinate (\i) at (\i,0);
+				}
+				%Draw the left and right line of the pyramid pointing downwards
+				\draw (0) -- (tip) -- (6);
+				%Grid lines direction down-left to top-right
+				\coordinate (dl1) at (0.5,-0.5);
+				\coordinate (dl2) at (1.0,-1.0);
+				\coordinate (dl3) at (1.5,-1.5);
+				\coordinate (dl4) at (2.0,-2.0);
+				\coordinate (dl5) at (2.5,-2.5);
+				\draw (dl1) -- (1,0);
+				\draw (dl2) -- (2,0);
+				\draw (dl3) -- (3,0);
+				\draw (dl4) -- (4,0);
+				\draw (dl5) -- (5,0);
+				%Grid lines direction down-right to top-left
+				\coordinate (dr1) at (3.5,-2.5);
+				\coordinate (dr2) at (4.0,-2.0);
+				\coordinate (dr3) at (4.5,-1.5);
+				\coordinate (dr4) at (5.0,-1.0);
+				\coordinate (dr5) at (5.5,-0.5);
+				\draw (dr1) -- (1,0);
+				\draw (dr2) -- (2,0);
+				\draw (dr3) -- (3,0);
+				\draw (dr4) -- (4,0);
+				\draw (dr5) -- (5,0);
+				%Small lines at the top
+				\coordinate (top0) at (0.0,0.0);
+				\coordinate (top1) at (1.0,0.0);
+				\coordinate (top2) at (2.0,0.0);
+				\coordinate (top3) at (3.0,0.0);
+				\coordinate (top4) at (4.0,0.0);
+				\coordinate (top5) at (5.0,0.0);
+				\coordinate (top6) at (6.0,0.0);
+				\coordinate (topUpper0) at (0.0,0.6);
+				\coordinate (topUpper1) at (1.0,0.6);
+				\coordinate (topUpper2) at (2.0,0.6);
+				\coordinate (topUpper3) at (3.0,0.6);
+				\coordinate (topUpper4) at (4.0,0.6);
+				\coordinate (topUpper5) at (5.0,0.6);
+				\coordinate (topUpper6) at (6.0,0.6);
+				\draw (top0) -- (topUpper0);
+				\draw (top1) -- (topUpper1);
+				\draw (top2) -- (topUpper2);
+				\draw (top3) -- (topUpper3);
+				\draw (top4) -- (topUpper4);
+				\draw (top5) -- (topUpper5);
+				\draw (top6) -- (topUpper6);
+				%The string
+				\coordinate (w0) at (0.5,0.6);
+				\coordinate (w1) at (1.5,0.6);
+				\coordinate (w2) at (2.5,0.6);
+				\coordinate (w3) at (3.5,0.6);
+				\coordinate (w4) at (4.5,0.6);
+				\coordinate (w5) at (5.5,0.6);
+				\node [] at (w0) {b};
+				\node [] at (w1) {b};
+				\node [] at (w2) {a};
+				\node [] at (w3) {c};
+				\node [] at (w4) {b};
+				\node [] at (w5) {c};
+				% Variables in the cells
+				%cells00
+				\coordinate (center00) at (0.5,0.0);
+				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+				\node [] at (center00) {\myfontvars{B$_{1}$}};
+				%cells01
+				\coordinate (center01) at (1.5,0.0);
+				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+				\node [] at (center01) {\myfontvars{B$_{2}$}};
+				%cells02
+				\coordinate (center02) at (2.5,0.0);
+				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+				\node [] at (center02) {\myfontvars{A$_{3}$}};
+				%cells03
+				\coordinate (center03) at (3.5,0.0);
+				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+				\node [] at (center03) {\myfontvars{C$_{4}$}};
+				%cells04
+				\coordinate (center04) at (4.5,0.0);
+				\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
+				\node [] at (center04) {\myfontvars{B$_{5}$}};
+				%cells05
+				\coordinate (center05) at (5.5,0.0);
+				\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
+				\node [] at (center05) {\myfontvars{C$_{6}$}};
+				%cells10
+				\coordinate (center10) at (1.0,-0.5);
+				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+				%cells11
+				\coordinate (center11) at (2.0,-0.5);
+				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+				\node [] at (center11) {\myfontvars{S$_{2}$}};
+				%cells12
+				\coordinate (center12) at (3.0,-0.5);
+				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+				%cells13
+				\coordinate (center13) at (4.0,-0.5);
+				\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
+				\node [] at (center13) {\myfontvars{B$_{4}$}};
+				%cells14
+				\coordinate (center14) at (5.0,-0.5);
+				\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
+				\node [] at (center14) {\myfontvars{C$_{5}$}};
+				%cells20
+				\coordinate (center20) at (1.5,-1.0);
+				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+				\node [] at (center20) {\myfontvars{A$_{1}$}};
+				%cells21
+				\coordinate (center21) at (2.5,-1.0);
+				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+				%cells22
+				\coordinate (center22) at (3.5,-1.0);
+				\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
+				%cells23
+				\coordinate (center23) at (4.5,-1.0);
+				\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
+				\node [] at (center23) {\myfontvars{C$_{5}$}};
+				%cells30
+				\coordinate (center30) at (2.0,-1.5);
+				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+				%cells31
+				\coordinate (center31) at (3.0,-1.5);
+				\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
+				%cells32
+				\coordinate (center32) at (4.0,-1.5);
+				\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
+				%cells40
+				\coordinate (center40) at (2.5,-2.0);
+				\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
+				%cells41
+				\coordinate (center41) at (3.5,-2.0);
+				\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
+				%cells50
+				\coordinate (center50) at (3.0,-2.5);
+				\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
+				\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
+				\end{tikzpicture}
 			}
-			%Draw the left and right line of the pyramid pointing downwards
-			\draw (0) -- (tip) -- (6);
-			%Grid lines direction down-left to top-right
-			\coordinate (dl1) at (0.5,-0.5);
-			\coordinate (dl2) at (1.0,-1.0);
-			\coordinate (dl3) at (1.5,-1.5);
-			\coordinate (dl4) at (2.0,-2.0);
-			\coordinate (dl5) at (2.5,-2.5);
-			\draw (dl1) -- (1,0);
-			\draw (dl2) -- (2,0);
-			\draw (dl3) -- (3,0);
-			\draw (dl4) -- (4,0);
-			\draw (dl5) -- (5,0);
-			%Grid lines direction down-right to top-left
-			\coordinate (dr1) at (3.5,-2.5);
-			\coordinate (dr2) at (4.0,-2.0);
-			\coordinate (dr3) at (4.5,-1.5);
-			\coordinate (dr4) at (5.0,-1.0);
-			\coordinate (dr5) at (5.5,-0.5);
-			\draw (dr1) -- (1,0);
-			\draw (dr2) -- (2,0);
-			\draw (dr3) -- (3,0);
-			\draw (dr4) -- (4,0);
-			\draw (dr5) -- (5,0);
-			%Small lines at the top
-			\coordinate (top0) at (0.0,0.0);
-			\coordinate (top1) at (1.0,0.0);
-			\coordinate (top2) at (2.0,0.0);
-			\coordinate (top3) at (3.0,0.0);
-			\coordinate (top4) at (4.0,0.0);
-			\coordinate (top5) at (5.0,0.0);
-			\coordinate (top6) at (6.0,0.0);
-			\coordinate (topUpper0) at (0.0,0.6);
-			\coordinate (topUpper1) at (1.0,0.6);
-			\coordinate (topUpper2) at (2.0,0.6);
-			\coordinate (topUpper3) at (3.0,0.6);
-			\coordinate (topUpper4) at (4.0,0.6);
-			\coordinate (topUpper5) at (5.0,0.6);
-			\coordinate (topUpper6) at (6.0,0.6);
-			\draw (top0) -- (topUpper0);
-			\draw (top1) -- (topUpper1);
-			\draw (top2) -- (topUpper2);
-			\draw (top3) -- (topUpper3);
-			\draw (top4) -- (topUpper4);
-			\draw (top5) -- (topUpper5);
-			\draw (top6) -- (topUpper6);
-			%The string
-			\coordinate (w0) at (0.5,0.6);
-			\coordinate (w1) at (1.5,0.6);
-			\coordinate (w2) at (2.5,0.6);
-			\coordinate (w3) at (3.5,0.6);
-			\coordinate (w4) at (4.5,0.6);
-			\coordinate (w5) at (5.5,0.6);
-			\node [] at (w0) {b};
-			\node [] at (w1) {b};
-			\node [] at (w2) {a};
-			\node [] at (w3) {c};
-			\node [] at (w4) {b};
-			\node [] at (w5) {c};
-			% Variables in the cells
-			%cells00
-			\coordinate (center00) at (0.5,0.0);
-			\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-			\node [] at (center00) {\myfontvars{B$_{1}$}};
-			%cells01
-			\coordinate (center01) at (1.5,0.0);
-			\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-			\node [] at (center01) {\myfontvars{B$_{2}$}};
-			%cells02
-			\coordinate (center02) at (2.5,0.0);
-			\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-			\node [] at (center02) {\myfontvars{A$_{3}$}};
-			%cells03
-			\coordinate (center03) at (3.5,0.0);
-			\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-			\node [] at (center03) {\myfontvars{C$_{4}$}};
-			%cells04
-			\coordinate (center04) at (4.5,0.0);
-			\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
-			\node [] at (center04) {\myfontvars{B$_{5}$}};
-			%cells05
-			\coordinate (center05) at (5.5,0.0);
-			\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
-			\node [] at (center05) {\myfontvars{C$_{6}$}};
-			%cells10
-			\coordinate (center10) at (1.0,-0.5);
-			\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-			%cells11
-			\coordinate (center11) at (2.0,-0.5);
-			\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-			\node [] at (center11) {\myfontvars{S$_{2}$}};
-			%cells12
-			\coordinate (center12) at (3.0,-0.5);
-			\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-			%cells13
-			\coordinate (center13) at (4.0,-0.5);
-			\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
-			\node [] at (center13) {\myfontvars{B$_{4}$}};
-			%cells14
-			\coordinate (center14) at (5.0,-0.5);
-			\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
-			\node [] at (center14) {\myfontvars{C$_{5}$}};
-			%cells20
-			\coordinate (center20) at (1.5,-1.0);
-			\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-			\node [] at (center20) {\myfontvars{A$_{1}$}};
-			%cells21
-			\coordinate (center21) at (2.5,-1.0);
-			\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-			%cells22
-			\coordinate (center22) at (3.5,-1.0);
-			\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
-			%cells23
-			\coordinate (center23) at (4.5,-1.0);
-			\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
-			\node [] at (center23) {\myfontvars{C$_{5}$}};
-			%cells30
-			\coordinate (center30) at (2.0,-1.5);
-			\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-			%cells31
-			\coordinate (center31) at (3.0,-1.5);
-			\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
-			%cells32
-			\coordinate (center32) at (4.0,-1.5);
-			\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
-			%cells40
-			\coordinate (center40) at (2.5,-2.0);
-			\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
-			%cells41
-			\coordinate (center41) at (3.5,-2.0);
-			\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
-			%cells50
-			\coordinate (center50) at (3.0,-2.5);
-			\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
-			\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
-			\end{tikzpicture}
-		}
-	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 5. The recursion step in $Cell_{2,3}$ is  resolved by adding the rule $C\rightarrow BC$.}
-	\label{IllustrationAlgorithmSplitThenFillPart5}
-\end{figure}
-
-\noindent Finally the last recursion step that decides on the content of the root cell is shown in Figure \ref{IllustrationAlgorithmSplitThenFillPart6}:
-\begin{figure} [h]
-	\begin{minipage}{6in}
-		\centering
-		\begin{tabular}{l}
-			$Grammar:$\\
-			$A\rightarrow B S~|~a~~$\\ 
-			$B\rightarrow C B~|~b$\\ 
-			$C\rightarrow B C~|~ c$\\ 
-			$S\rightarrow B A~|~\textbf{AC}~~$\\ 
-		\end{tabular}
-		\resizebox{0.7\linewidth}{!}{
-			\begin{tikzpicture}[baseline]
-			\newcommand{\myfontvars}[1]{
-				\fontsize{4.9}{12}\selectfont{#1}
-			}\newcommand{\myfontnumbering}[1]{
-				\fontsize{2.5}{12}\selectfont{#1}
-			}%Outer hull
-			%Tip of the pyramid
-			\coordinate (tip) at (3.0,-3.0);
-			\foreach \i in {0,...,6} {
-				\coordinate (\i) at (\i,0);
+		\end{minipage}
+		\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 5. The recursion step in $Cell_{2,3}$ is  resolved by adding the rule $C\rightarrow BC$.}
+		\label{IllustrationAlgorithmSplitThenFillPart5}
+		~\\
+		\noindent Finally the last recursion step that decides on the content of the root cell is shown in Figure \ref{IllustrationAlgorithmSplitThenFillPart6}. In this case the start variable is contained in the root of the pyramid.\\
+		
+		\begin{minipage}{6in}
+			\centering
+			\begin{tabular}{l}
+				$Grammar:$\\
+				$A\rightarrow B S~|~a~~$\\ 
+				$B\rightarrow C B~|~b$\\ 
+				$C\rightarrow B C~|~ c$\\ 
+				$S\rightarrow B A~|~\textbf{AC}~~$\\ 
+			\end{tabular}
+			\resizebox{0.7\linewidth}{!}{
+				\begin{tikzpicture}[baseline]
+				\newcommand{\myfontvars}[1]{
+					\fontsize{4.9}{12}\selectfont{#1}
+				}\newcommand{\myfontnumbering}[1]{
+					\fontsize{2.5}{12}\selectfont{#1}
+				}%Outer hull
+				%Tip of the pyramid
+				\coordinate (tip) at (3.0,-3.0);
+				\foreach \i in {0,...,6} {
+					\coordinate (\i) at (\i,0);
+				}
+				%Draw the left and right line of the pyramid pointing downwards
+				\draw (0) -- (tip) -- (6);
+				%Grid lines direction down-left to top-right
+				\coordinate (dl1) at (0.5,-0.5);
+				\coordinate (dl2) at (1.0,-1.0);
+				\coordinate (dl3) at (1.5,-1.5);
+				\coordinate (dl4) at (2.0,-2.0);
+				\coordinate (dl5) at (2.5,-2.5);
+				\draw (dl1) -- (1,0);
+				\draw (dl2) -- (2,0);
+				\draw (dl3) -- (3,0);
+				\draw (dl4) -- (4,0);
+				\draw (dl5) -- (5,0);
+				%Grid lines direction down-right to top-left
+				\coordinate (dr1) at (3.5,-2.5);
+				\coordinate (dr2) at (4.0,-2.0);
+				\coordinate (dr3) at (4.5,-1.5);
+				\coordinate (dr4) at (5.0,-1.0);
+				\coordinate (dr5) at (5.5,-0.5);
+				\draw (dr1) -- (1,0);
+				\draw (dr2) -- (2,0);
+				\draw (dr3) -- (3,0);
+				\draw (dr4) -- (4,0);
+				\draw (dr5) -- (5,0);
+				%Small lines at the top
+				\coordinate (top0) at (0.0,0.0);
+				\coordinate (top1) at (1.0,0.0);
+				\coordinate (top2) at (2.0,0.0);
+				\coordinate (top3) at (3.0,0.0);
+				\coordinate (top4) at (4.0,0.0);
+				\coordinate (top5) at (5.0,0.0);
+				\coordinate (top6) at (6.0,0.0);
+				\coordinate (topUpper0) at (0.0,0.6);
+				\coordinate (topUpper1) at (1.0,0.6);
+				\coordinate (topUpper2) at (2.0,0.6);
+				\coordinate (topUpper3) at (3.0,0.6);
+				\coordinate (topUpper4) at (4.0,0.6);
+				\coordinate (topUpper5) at (5.0,0.6);
+				\coordinate (topUpper6) at (6.0,0.6);
+				\draw (top0) -- (topUpper0);
+				\draw (top1) -- (topUpper1);
+				\draw (top2) -- (topUpper2);
+				\draw (top3) -- (topUpper3);
+				\draw (top4) -- (topUpper4);
+				\draw (top5) -- (topUpper5);
+				\draw (top6) -- (topUpper6);
+				%The string
+				\coordinate (w0) at (0.5,0.6);
+				\coordinate (w1) at (1.5,0.6);
+				\coordinate (w2) at (2.5,0.6);
+				\coordinate (w3) at (3.5,0.6);
+				\coordinate (w4) at (4.5,0.6);
+				\coordinate (w5) at (5.5,0.6);
+				\node [] at (w0) {b};
+				\node [] at (w1) {b};
+				\node [] at (w2) {a};
+				\node [] at (w3) {c};
+				\node [] at (w4) {b};
+				\node [] at (w5) {c};
+				% Variables in the cells
+				%cells00
+				\coordinate (center00) at (0.5,0.0);
+				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+				\node [] at (center00) {\myfontvars{B$_{1}$}};
+				%cells01
+				\coordinate (center01) at (1.5,0.0);
+				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+				\node [] at (center01) {\myfontvars{B$_{2}$}};
+				%cells02
+				\coordinate (center02) at (2.5,0.0);
+				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+				\node [] at (center02) {\myfontvars{A$_{3}$}};
+				%cells03
+				\coordinate (center03) at (3.5,0.0);
+				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+				\node [] at (center03) {\myfontvars{C$_{4}$}};
+				%cells04
+				\coordinate (center04) at (4.5,0.0);
+				\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
+				\node [] at (center04) {\myfontvars{B$_{5}$}};
+				%cells05
+				\coordinate (center05) at (5.5,0.0);
+				\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
+				\node [] at (center05) {\myfontvars{C$_{6}$}};
+				%cells10
+				\coordinate (center10) at (1.0,-0.5);
+				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+				%cells11
+				\coordinate (center11) at (2.0,-0.5);
+				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+				\node [] at (center11) {\myfontvars{S$_{2}$}};
+				%cells12
+				\coordinate (center12) at (3.0,-0.5);
+				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+				\node [] at (center12) {\myfontvars{S$_{3}$}};
+				%cells13
+				\coordinate (center13) at (4.0,-0.5);
+				\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
+				\node [] at (center13) {\myfontvars{B$_{4}$}};
+				%cells14
+				\coordinate (center14) at (5.0,-0.5);
+				\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
+				\node [] at (center14) {\myfontvars{C$_{5}$}};
+				%cells20
+				\coordinate (center20) at (1.5,-1.0);
+				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+				\node [] at (center20) {\myfontvars{A$_{1}$}};
+				%cells21
+				\coordinate (center21) at (2.5,-1.0);
+				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+				\node [] at (center21) {\myfontvars{A$_{2}$}};
+				%cells22
+				\coordinate (center22) at (3.5,-1.0);
+				\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
+				%cells23
+				\coordinate (center23) at (4.5,-1.0);
+				\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
+				\node [] at (center23) {\myfontvars{C$_{5}$}};
+				%cells30
+				\coordinate (center30) at (2.0,-1.5);
+				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+				\node [] at (center30) {\myfontvars{S$_{1}$S$_{3}$}};
+				%cells31
+				\coordinate (center31) at (3.0,-1.5);
+				\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
+				%cells32
+				\coordinate (center32) at (4.0,-1.5);
+				\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
+				\node [] at (center32) {\myfontvars{S$_{3}$}};
+				%cells40
+				\coordinate (center40) at (2.5,-2.0);
+				\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
+				%cells41
+				\coordinate (center41) at (3.5,-2.0);
+				\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
+				\node [] at (center41) {\myfontvars{A$_{2}$S$_{4}$}};
+				%cells50
+				\coordinate (center50) at (3.0,-2.5);
+				\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
+				\node [] at (center50) {\myfontvars{S$_{1}$A$_{1}$S$_{3}$}};
+				\end{tikzpicture}
 			}
-			%Draw the left and right line of the pyramid pointing downwards
-			\draw (0) -- (tip) -- (6);
-			%Grid lines direction down-left to top-right
-			\coordinate (dl1) at (0.5,-0.5);
-			\coordinate (dl2) at (1.0,-1.0);
-			\coordinate (dl3) at (1.5,-1.5);
-			\coordinate (dl4) at (2.0,-2.0);
-			\coordinate (dl5) at (2.5,-2.5);
-			\draw (dl1) -- (1,0);
-			\draw (dl2) -- (2,0);
-			\draw (dl3) -- (3,0);
-			\draw (dl4) -- (4,0);
-			\draw (dl5) -- (5,0);
-			%Grid lines direction down-right to top-left
-			\coordinate (dr1) at (3.5,-2.5);
-			\coordinate (dr2) at (4.0,-2.0);
-			\coordinate (dr3) at (4.5,-1.5);
-			\coordinate (dr4) at (5.0,-1.0);
-			\coordinate (dr5) at (5.5,-0.5);
-			\draw (dr1) -- (1,0);
-			\draw (dr2) -- (2,0);
-			\draw (dr3) -- (3,0);
-			\draw (dr4) -- (4,0);
-			\draw (dr5) -- (5,0);
-			%Small lines at the top
-			\coordinate (top0) at (0.0,0.0);
-			\coordinate (top1) at (1.0,0.0);
-			\coordinate (top2) at (2.0,0.0);
-			\coordinate (top3) at (3.0,0.0);
-			\coordinate (top4) at (4.0,0.0);
-			\coordinate (top5) at (5.0,0.0);
-			\coordinate (top6) at (6.0,0.0);
-			\coordinate (topUpper0) at (0.0,0.6);
-			\coordinate (topUpper1) at (1.0,0.6);
-			\coordinate (topUpper2) at (2.0,0.6);
-			\coordinate (topUpper3) at (3.0,0.6);
-			\coordinate (topUpper4) at (4.0,0.6);
-			\coordinate (topUpper5) at (5.0,0.6);
-			\coordinate (topUpper6) at (6.0,0.6);
-			\draw (top0) -- (topUpper0);
-			\draw (top1) -- (topUpper1);
-			\draw (top2) -- (topUpper2);
-			\draw (top3) -- (topUpper3);
-			\draw (top4) -- (topUpper4);
-			\draw (top5) -- (topUpper5);
-			\draw (top6) -- (topUpper6);
-			%The string
-			\coordinate (w0) at (0.5,0.6);
-			\coordinate (w1) at (1.5,0.6);
-			\coordinate (w2) at (2.5,0.6);
-			\coordinate (w3) at (3.5,0.6);
-			\coordinate (w4) at (4.5,0.6);
-			\coordinate (w5) at (5.5,0.6);
-			\node [] at (w0) {b};
-			\node [] at (w1) {b};
-			\node [] at (w2) {a};
-			\node [] at (w3) {c};
-			\node [] at (w4) {b};
-			\node [] at (w5) {c};
-			% Variables in the cells
-			%cells00
-			\coordinate (center00) at (0.5,0.0);
-			\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-			\node [] at (center00) {\myfontvars{B$_{1}$}};
-			%cells01
-			\coordinate (center01) at (1.5,0.0);
-			\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-			\node [] at (center01) {\myfontvars{B$_{2}$}};
-			%cells02
-			\coordinate (center02) at (2.5,0.0);
-			\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-			\node [] at (center02) {\myfontvars{A$_{3}$}};
-			%cells03
-			\coordinate (center03) at (3.5,0.0);
-			\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-			\node [] at (center03) {\myfontvars{C$_{4}$}};
-			%cells04
-			\coordinate (center04) at (4.5,0.0);
-			\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
-			\node [] at (center04) {\myfontvars{B$_{5}$}};
-			%cells05
-			\coordinate (center05) at (5.5,0.0);
-			\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
-			\node [] at (center05) {\myfontvars{C$_{6}$}};
-			%cells10
-			\coordinate (center10) at (1.0,-0.5);
-			\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-			%cells11
-			\coordinate (center11) at (2.0,-0.5);
-			\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-			\node [] at (center11) {\myfontvars{S$_{2}$}};
-			%cells12
-			\coordinate (center12) at (3.0,-0.5);
-			\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-			\node [] at (center12) {\myfontvars{S$_{3}$}};
-			%cells13
-			\coordinate (center13) at (4.0,-0.5);
-			\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
-			\node [] at (center13) {\myfontvars{B$_{4}$}};
-			%cells14
-			\coordinate (center14) at (5.0,-0.5);
-			\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
-			\node [] at (center14) {\myfontvars{C$_{5}$}};
-			%cells20
-			\coordinate (center20) at (1.5,-1.0);
-			\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-			\node [] at (center20) {\myfontvars{A$_{1}$}};
-			%cells21
-			\coordinate (center21) at (2.5,-1.0);
-			\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-			\node [] at (center21) {\myfontvars{A$_{2}$}};
-			%cells22
-			\coordinate (center22) at (3.5,-1.0);
-			\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
-			%cells23
-			\coordinate (center23) at (4.5,-1.0);
-			\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
-			\node [] at (center23) {\myfontvars{C$_{5}$}};
-			%cells30
-			\coordinate (center30) at (2.0,-1.5);
-			\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-			\node [] at (center30) {\myfontvars{S$_{1}$S$_{3}$}};
-			%cells31
-			\coordinate (center31) at (3.0,-1.5);
-			\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
-			%cells32
-			\coordinate (center32) at (4.0,-1.5);
-			\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
-			\node [] at (center32) {\myfontvars{S$_{3}$}};
-			%cells40
-			\coordinate (center40) at (2.5,-2.0);
-			\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
-			%cells41
-			\coordinate (center41) at (3.5,-2.0);
-			\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
-			\node [] at (center41) {\myfontvars{A$_{2}$S$_{4}$}};
-			%cells50
-			\coordinate (center50) at (3.0,-2.5);
-			\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
-			\node [] at (center50) {\myfontvars{S$_{1}$A$_{1}$S$_{3}$}};
-			\end{tikzpicture}
-		}
-	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 6. The recursion step in $Cell_{5,0}$ is  resolved by adding the rule $S\rightarrow AC$.}
-	\label{IllustrationAlgorithmSplitThenFillPart6}
-\end{figure}\\
+			
+		\end{minipage}
+		\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFill part 6. The recursion step in $Cell_{5,0}$ is  resolved by adding the rule $S\rightarrow AC$.}
+		\label{IllustrationAlgorithmSplitThenFillPart6}
+\end{testexample}
 
 \clearpage
 
@@ -1967,174 +1984,172 @@ Note that the count of rules in the grammar is dependent on the count of nodes i
 		}
 	\end{algorithm}
 }
-\\
-According to this algorithm, only productions corresponding to the tree structure are added to the grammar. For illustration purposes, the pyramid is also shown to reflect the immediate changes of the added rules to the pyramid in the Figures \ref{IllustrationAlgorithmSplitAndFillPart1} to \ref{IllustrationAlgorithmSplitAndFillPart6}. Again the predefined derivation tree structure of Figure \ref{treeStruct} is used.
-\noindent
-\begin{figure} [h]
-	\begin{minipage}{6in}
-		\centering
-		\begin{tabular}{l}
-			Grammar:\\
-			$A \rightarrow $\\
-			$B \rightarrow \textbf{b}$\\ 
-			$C \rightarrow $\\
-			$S \rightarrow $\\ 
-		\end{tabular} 
-		\resizebox{0.65\linewidth}{!}{
-		\begin{tikzpicture}[baseline]
-		\newcommand{\myfontvars}[1]{
-			\fontsize{4.9}{12}\selectfont{#1}
-		}\newcommand{\myfontnumbering}[1]{
-			\fontsize{2.5}{12}\selectfont{#1}
-		}%Outer hull
-		%Tip of the pyramid
-		\coordinate (tip) at (3.0,-3.0);
-		\foreach \i in {0,...,6} {
-			\coordinate (\i) at (\i,0);
-		}
-		%Draw the left and right line of the pyramid pointing downwards
-		\draw (0) -- (tip) -- (6);
-		%Grid lines direction down-left to top-right
-		\coordinate (dl1) at (0.5,-0.5);
-		\coordinate (dl2) at (1.0,-1.0);
-		\coordinate (dl3) at (1.5,-1.5);
-		\coordinate (dl4) at (2.0,-2.0);
-		\coordinate (dl5) at (2.5,-2.5);
-		\draw (dl1) -- (1,0);
-		\draw (dl2) -- (2,0);
-		\draw (dl3) -- (3,0);
-		\draw (dl4) -- (4,0);
-		\draw (dl5) -- (5,0);
-		%Grid lines direction down-right to top-left
-		\coordinate (dr1) at (3.5,-2.5);
-		\coordinate (dr2) at (4.0,-2.0);
-		\coordinate (dr3) at (4.5,-1.5);
-		\coordinate (dr4) at (5.0,-1.0);
-		\coordinate (dr5) at (5.5,-0.5);
-		\draw (dr1) -- (1,0);
-		\draw (dr2) -- (2,0);
-		\draw (dr3) -- (3,0);
-		\draw (dr4) -- (4,0);
-		\draw (dr5) -- (5,0);
-		%Small lines at the top
-		\coordinate (top0) at (0.0,0.0);
-		\coordinate (top1) at (1.0,0.0);
-		\coordinate (top2) at (2.0,0.0);
-		\coordinate (top3) at (3.0,0.0);
-		\coordinate (top4) at (4.0,0.0);
-		\coordinate (top5) at (5.0,0.0);
-		\coordinate (top6) at (6.0,0.0);
-		\coordinate (topUpper0) at (0.0,0.6);
-		\coordinate (topUpper1) at (1.0,0.6);
-		\coordinate (topUpper2) at (2.0,0.6);
-		\coordinate (topUpper3) at (3.0,0.6);
-		\coordinate (topUpper4) at (4.0,0.6);
-		\coordinate (topUpper5) at (5.0,0.6);
-		\coordinate (topUpper6) at (6.0,0.6);
-		\draw (top0) -- (topUpper0);
-		\draw (top1) -- (topUpper1);
-		\draw (top2) -- (topUpper2);
-		\draw (top3) -- (topUpper3);
-		\draw (top4) -- (topUpper4);
-		\draw (top5) -- (topUpper5);
-		\draw (top6) -- (topUpper6);
-		%The string
-		\coordinate (w0) at (0.5,0.6);
-		\coordinate (w1) at (1.5,0.6);
-		\coordinate (w2) at (2.5,0.6);
-		\coordinate (w3) at (3.5,0.6);
-		\coordinate (w4) at (4.5,0.6);
-		\coordinate (w5) at (5.5,0.6);
-		\node [] at (w0) {b};
-		\node [] at (w1) {b};
-		\node [] at (w2) {a};
-		\node [] at (w3) {c};
-		\node [] at (w4) {b};
-		\node [] at (w5) {c};
-		% Variables in the cells
-		%cells00
-		\coordinate (center00) at (0.5,0.0);
-		\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
-		\node [] at (center00) {\myfontvars{B$_{1}$}};
-		%cells01
-		\coordinate (center01) at (1.5,0.0);
-		\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
-		\node [] at (center01) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
-		%cells02
-		\coordinate (center02) at (2.5,0.0);
-		\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
-		\node [] at (center02) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
-		%cells03
-		\coordinate (center03) at (3.5,0.0);
-		\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
-		\node [] at (center03) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
-		%cells04
-		\coordinate (center04) at (4.5,0.0);
-		\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
-		\node [] at (center04) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
-		%cells05
-		\coordinate (center05) at (5.5,0.0);
-		\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
-		\node [] at (center05) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
-		%cells10
-		\coordinate (center10) at (1.0,-0.5);
-		\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
-		%cells11
-		\coordinate (center11) at (2.0,-0.5);
-		\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
-		\node [] at (center11) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
-		%cells12
-		\coordinate (center12) at (3.0,-0.5);
-		\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
-		%cells13
-		\coordinate (center13) at (4.0,-0.5);
-		\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
-		\node [] at (center13) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
-		%cells14
-		\coordinate (center14) at (5.0,-0.5);
-		\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
-		%cells20
-		\coordinate (center20) at (1.5,-1.0);
-		\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
-		\node [] at (center20) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
-		%cells21
-		\coordinate (center21) at (2.5,-1.0);
-		\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
-		%cells22
-		\coordinate (center22) at (3.5,-1.0);
-		\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
-		%cells23
-		\coordinate (center23) at (4.5,-1.0);
-		\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
-		\node [] at (center23) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
-		%cells30
-		\coordinate (center30) at (2.0,-1.5);
-		\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
-		%cells31
-		\coordinate (center31) at (3.0,-1.5);
-		\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
-		%cells32
-		\coordinate (center32) at (4.0,-1.5);
-		\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
-		%cells40
-		\coordinate (center40) at (2.5,-2.0);
-		\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
-		%cells41
-		\coordinate (center41) at (3.5,-2.0);
-		\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
-		%cells50
-		\coordinate (center50) at (3.0,-2.5);
-		\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
-		\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
-		\end{tikzpicture}
-	}
+\begin{testexample}[Algorithm SplitAndFill]
+	According to this algorithm, only productions corresponding to the tree structure are added to the grammar. For illustration purposes, the pyramid is  shown to reflect the immediate changes of the added rules to the pyramid in the Figures \ref{IllustrationAlgorithmSplitAndFillPart1} to \ref{IllustrationAlgorithmSplitAndFillPart6}. Again the predefined derivation tree structure of Figure \ref{treeStruct} is used.\\	
+		\begin{minipage}{6in}
+			\centering
+			\begin{tabular}{l}
+				Grammar:\\
+				$A \rightarrow $\\
+				$B \rightarrow \textbf{b}$\\ 
+				$C \rightarrow $\\
+				$S \rightarrow $\\ 
+			\end{tabular} 
+			\resizebox{0.65\linewidth}{!}{
+				\begin{tikzpicture}[baseline]
+				\newcommand{\myfontvars}[1]{
+					\fontsize{4.9}{12}\selectfont{#1}
+				}\newcommand{\myfontnumbering}[1]{
+					\fontsize{2.5}{12}\selectfont{#1}
+				}%Outer hull
+				%Tip of the pyramid
+				\coordinate (tip) at (3.0,-3.0);
+				\foreach \i in {0,...,6} {
+					\coordinate (\i) at (\i,0);
+				}
+				%Draw the left and right line of the pyramid pointing downwards
+				\draw (0) -- (tip) -- (6);
+				%Grid lines direction down-left to top-right
+				\coordinate (dl1) at (0.5,-0.5);
+				\coordinate (dl2) at (1.0,-1.0);
+				\coordinate (dl3) at (1.5,-1.5);
+				\coordinate (dl4) at (2.0,-2.0);
+				\coordinate (dl5) at (2.5,-2.5);
+				\draw (dl1) -- (1,0);
+				\draw (dl2) -- (2,0);
+				\draw (dl3) -- (3,0);
+				\draw (dl4) -- (4,0);
+				\draw (dl5) -- (5,0);
+				%Grid lines direction down-right to top-left
+				\coordinate (dr1) at (3.5,-2.5);
+				\coordinate (dr2) at (4.0,-2.0);
+				\coordinate (dr3) at (4.5,-1.5);
+				\coordinate (dr4) at (5.0,-1.0);
+				\coordinate (dr5) at (5.5,-0.5);
+				\draw (dr1) -- (1,0);
+				\draw (dr2) -- (2,0);
+				\draw (dr3) -- (3,0);
+				\draw (dr4) -- (4,0);
+				\draw (dr5) -- (5,0);
+				%Small lines at the top
+				\coordinate (top0) at (0.0,0.0);
+				\coordinate (top1) at (1.0,0.0);
+				\coordinate (top2) at (2.0,0.0);
+				\coordinate (top3) at (3.0,0.0);
+				\coordinate (top4) at (4.0,0.0);
+				\coordinate (top5) at (5.0,0.0);
+				\coordinate (top6) at (6.0,0.0);
+				\coordinate (topUpper0) at (0.0,0.6);
+				\coordinate (topUpper1) at (1.0,0.6);
+				\coordinate (topUpper2) at (2.0,0.6);
+				\coordinate (topUpper3) at (3.0,0.6);
+				\coordinate (topUpper4) at (4.0,0.6);
+				\coordinate (topUpper5) at (5.0,0.6);
+				\coordinate (topUpper6) at (6.0,0.6);
+				\draw (top0) -- (topUpper0);
+				\draw (top1) -- (topUpper1);
+				\draw (top2) -- (topUpper2);
+				\draw (top3) -- (topUpper3);
+				\draw (top4) -- (topUpper4);
+				\draw (top5) -- (topUpper5);
+				\draw (top6) -- (topUpper6);
+				%The string
+				\coordinate (w0) at (0.5,0.6);
+				\coordinate (w1) at (1.5,0.6);
+				\coordinate (w2) at (2.5,0.6);
+				\coordinate (w3) at (3.5,0.6);
+				\coordinate (w4) at (4.5,0.6);
+				\coordinate (w5) at (5.5,0.6);
+				\node [] at (w0) {b};
+				\node [] at (w1) {b};
+				\node [] at (w2) {a};
+				\node [] at (w3) {c};
+				\node [] at (w4) {b};
+				\node [] at (w5) {c};
+				% Variables in the cells
+				%cells00
+				\coordinate (center00) at (0.5,0.0);
+				\node [below=0.18cm] at (center00) {\myfontnumbering{$(00)$}};
+				\node [] at (center00) {\myfontvars{B$_{1}$}};
+				%cells01
+				\coordinate (center01) at (1.5,0.0);
+				\node [below=0.18cm] at (center01) {\myfontnumbering{$(01)$}};
+				\node [] at (center01) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
+				%cells02
+				\coordinate (center02) at (2.5,0.0);
+				\node [below=0.18cm] at (center02) {\myfontnumbering{$(02)$}};
+				\node [] at (center02) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
+				%cells03
+				\coordinate (center03) at (3.5,0.0);
+				\node [below=0.18cm] at (center03) {\myfontnumbering{$(03)$}};
+				\node [] at (center03) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
+				%cells04
+				\coordinate (center04) at (4.5,0.0);
+				\node [below=0.18cm] at (center04) {\myfontnumbering{$(04)$}};
+				\node [] at (center04) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{4}};
+				%cells05
+				\coordinate (center05) at (5.5,0.0);
+				\node [below=0.18cm] at (center05) {\myfontnumbering{$(05)$}};
+				\node [] at (center05) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
+				%cells10
+				\coordinate (center10) at (1.0,-0.5);
+				\node [below=0.18cm] at (center10) {\myfontnumbering{$(10)$}};
+				%cells11
+				\coordinate (center11) at (2.0,-0.5);
+				\node [below=0.18cm] at (center11) {\myfontnumbering{$(11)$}};
+				\node [] at (center11) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
+				%cells12
+				\coordinate (center12) at (3.0,-0.5);
+				\node [below=0.18cm] at (center12) {\myfontnumbering{$(12)$}};
+				%cells13
+				\coordinate (center13) at (4.0,-0.5);
+				\node [below=0.18cm] at (center13) {\myfontnumbering{$(13)$}};
+				\node [] at (center13) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{3}};
+				%cells14
+				\coordinate (center14) at (5.0,-0.5);
+				\node [below=0.18cm] at (center14) {\myfontnumbering{$(14)$}};
+				%cells20
+				\coordinate (center20) at (1.5,-1.0);
+				\node [below=0.18cm] at (center20) {\myfontnumbering{$(20)$}};
+				\node [] at (center20) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
+				%cells21
+				\coordinate (center21) at (2.5,-1.0);
+				\node [below=0.18cm] at (center21) {\myfontnumbering{$(21)$}};
+				%cells22
+				\coordinate (center22) at (3.5,-1.0);
+				\node [below=0.18cm] at (center22) {\myfontnumbering{$(22)$}};
+				%cells23
+				\coordinate (center23) at (4.5,-1.0);
+				\node [below=0.18cm] at (center23) {\myfontnumbering{$(23)$}};
+				\node [] at (center23) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{2}};
+				%cells30
+				\coordinate (center30) at (2.0,-1.5);
+				\node [below=0.18cm] at (center30) {\myfontnumbering{$(30)$}};
+				%cells31
+				\coordinate (center31) at (3.0,-1.5);
+				\node [below=0.18cm] at (center31) {\myfontnumbering{$(31)$}};
+				%cells32
+				\coordinate (center32) at (4.0,-1.5);
+				\node [below=0.18cm] at (center32) {\myfontnumbering{$(32)$}};
+				%cells40
+				\coordinate (center40) at (2.5,-2.0);
+				\node [below=0.18cm] at (center40) {\myfontnumbering{$(40)$}};
+				%cells41
+				\coordinate (center41) at (3.5,-2.0);
+				\node [below=0.18cm] at (center41) {\myfontnumbering{$(41)$}};
+				%cells50
+				\coordinate (center50) at (3.0,-2.5);
+				\node [below=0.18cm] at (center50) {\myfontnumbering{$(50)$}};
+				\node [] at (center50) [minimum height=0.25cm,minimum width=0.25cm,draw] {\tiny{1}};
+				\end{tikzpicture}
+			}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitAndFill} part 1. To resolve the recursion step that fills $Cell_{0,0}$ the rule $B\rightarrow b$ is added.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} part 1. To resolve the recursion step that fills $Cell_{0,0}$ the rule $B\rightarrow b$ is added.}
 	\label{IllustrationAlgorithmSplitAndFillPart1}
-\end{figure}
-
-\noindent
-\begin{figure} [h]
+	
+	\noindent At first the rule $B\longrightarrow b$ is added as shown in Figure \ref{IllustrationAlgorithmSplitAndFillPart1}.\\ Next are the rules $A\longrightarrow a$ and $S\longrightarrow BA$ as seen in Figure \ref{IllustrationAlgorithmSplitAndFillPart2}. To resolve the recursion step that fills $Cell_{0,1}$ no rule is added because a rule $lhse\rightarrow b$ already exists. To fill $Cell_{0,2}$ the rule $A\rightarrow a$ and regarding $Cell_{1,1}$ the rule $S \rightarrow BA$ is added.\\
+	
+	
 	\begin{minipage}{6in}
 		\centering
 		\begin{tabular}{l}
@@ -2293,11 +2308,11 @@ According to this algorithm, only productions corresponding to the tree structur
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitAndFill} part 2. Resolving the recursion step that fills $Cell_{0,1}$ no rule is added because a rule $lhse\rightarrow b$ already exists. To fill $Cell_{0,2}$ the rule $A\rightarrow a$ is added. Regarding $Cell_{1,1}$ the rule $S \rightarrow BA$ is added.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} part 2. Adding of the rules $A\longrightarrow a$ and $S\longrightarrow BA$.}
 	\label{IllustrationAlgorithmSplitAndFillPart2}
-\end{figure}
-\noindent
-\begin{figure} [h]
+	~\\
+	To fill the $Cell_{2,0}$ the rule $C \rightarrow BS$ is added, see Figure \ref{IllustrationAlgorithmSplitAndFillPart3}: \\
+	
 	\begin{minipage}{6in}
 		\centering
 		\begin{tabular}{l}
@@ -2456,12 +2471,12 @@ According to this algorithm, only productions corresponding to the tree structur
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitAndFill} part 3. Filling the $Cell_{2,0}$ the rule $C \rightarrow BS$ is added.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} part 3. Adding of the rule $C \rightarrow BS$ to fill the $Cell_{2,0}$.}
 	\label{IllustrationAlgorithmSplitAndFillPart3}
-\end{figure}
-\clearpage
-\noindent
-\begin{figure} [h]
+	\pagebreak
+	
+	\noindent Analogously the other cells are filled. $Cell_{0,3}$ is responsible for the rule $C \rightarrow c$, $Cell_{0,4}$ doesn't cause a rule because again there already is the rule $B \rightarrow b$, $Cell_{1,3}$ contributes for the rule $B \rightarrow CB$, $Cell_{0,5}$ does not add a rule because of $C\rightarrow c$ and to fill $Cell_{2,3}$ the rule $A \rightarrow BC$ is added.\\
+	
 	\begin{minipage}{6in}
 		\centering
 		\begin{tabular}{l}
@@ -2620,12 +2635,11 @@ According to this algorithm, only productions corresponding to the tree structur
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitAndFill} part 4. Analogously the other cells are filled. $Cell_{0,3}$ is responsible for the rule $C \rightarrow c$, $Cell_{0,4}$ doesn't cause a rule because again there already is the rule $B \rightarrow b$, $Cell_{1,3}$ contributes for the rule $B \rightarrow CB$, $Cell_{0,5}$ does not add a rule because of $C\rightarrow c$ and to fill $Cell_{2,3}$ the rule $A \rightarrow BC$ is added.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} part 4. Adding of the rules $A\longrightarrow BC$ and $B \longrightarrow CB$.}
 	\label{IllustrationAlgorithmSplitAndFillPart4}
-\end{figure}
+	~\\
+	\noindent To fill the cell in the root a rule must be added that has the start variable as its $lhse$ that guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added.\\
 
-\noindent
-\begin{figure} [h]
 	\begin{minipage}{6in}
 		\centering
 		\begin{tabular}{l}
@@ -2784,14 +2798,11 @@ According to this algorithm, only productions corresponding to the tree structur
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitAndFill} part 5. Finally, to fill the cell in the root a rule must be added that has the start variable as its $lhse$ that guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} part 5. Adding of the rule $S\longrightarrow CA$.}
 	\label{IllustrationAlgorithmSplitAndFillPart5}
-\end{figure}
-
-\clearpage
-
-\noindent
-\begin{figure} [h]
+	\pagebreak
+	\noindent Finally a comparison of Figure \ref{IllustrationAlgorithmSplitAndFillPart5} and Figure \ref{IllustrationAlgorithmSplitAndFillPart6} shows the difference between parsing table after the last step of the algorithm and what the complete parsing table would look like. Additional variables are found in the cells $Cell_{1,4}$, $Cell_{2,3}$, $Cell_{4,0}$ and $Cell_{5,0}$.\\
+	
 	\begin{minipage}{6in}
 		\centering
 		\begin{tabular}{l}
@@ -2952,8 +2963,19 @@ According to this algorithm, only productions corresponding to the tree structur
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\caption{Illustration of Algorithm \ref{SplitAndFill} part 6. With part 5 of the example the algorithm is finished. In comparison to Figure \ref{IllustrationAlgorithmSplitAndFillPart5} the complete parsing table looks like above.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} part 6. Comparison of the last step of the algorithm and the complete parsing table.}
 	\label{IllustrationAlgorithmSplitAndFillPart6}
+	
+\end{testexample}
+
+
+
+
+
+
+\noindent
+\begin{figure} [h]
+	
 \end{figure}
 
 \clearpage
@@ -2985,9 +3007,12 @@ SR-Pyramid $= p / N$, where $p$ is the count of $exercise$s that fulfil the thre
 $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \} \longrightarrow Cell_{i,j} \subseteq V$\\
 For further illustration see Figure \ref{simplificationExample} on the next page. 
 \clearpage
-\noindent 
-\begin{figure}[h]
+
+\begin{testexample}[Simplification of cell in a pyramid]
+	\noindent The pyramid with the simpler cells is shown right.\\
+	
 	\begin{minipage}{6in}
+		\centering
 		\centering
 		\raisebox{-0.5\height}{
 			\resizebox{0.45\linewidth}{!}{
@@ -3248,9 +3273,9 @@ For further illustration see Figure \ref{simplificationExample} on the next page
 			}
 		}
 	\end{minipage}
-	\caption{The simplification of cells in a pyramid.}
+	\captionof{figure}{The simplification of cells in a pyramid.}
 	\label{simplificationExample}
-\end{figure}
+\end{testexample}
 
 \noindent \textbf{Description of the Algorithm CheckForceCombinationPerCell: }\\
 The experience of professor Martens shows that usually most students easily find a pattern of how to fill the first two rows of the $pyramid$ during the execution of the CYK algorithm but do more mistakes starting at row $i\geq2$. Students often do not know exactly what cell combinations need to be considered while filling one specific cell of the pyramid. They simply take only the one top left cell and the one top right cell and try to find rules in the grammar that match the resulting compound variables. The approach of only finding patterns and not thoroughly understanding the algorithm is countered by Algorithm \ref{checkForceCombinationPerCell} CheckForceCombinationPerCell. Here a cell forces if it is possible to see if the student has clearly understood the algorithm and not only takes the next top left cell and the next top right cell.\\
@@ -3280,11 +3305,12 @@ The experience of professor Martens shows that usually most students easily find
 	\end{algorithm}
 }
 
-\noindent In the example in Figure \ref{foreCombination}, the variables in $Cell_{2,0}$ and in $Cell_{2,1}$ each force a right cell combination and in both cases $VarComp=\{SS\}$. The variable $v=C$ doesn't have $SS$ as one of its rhses and therefore the variable $C$ forces. $Cell_{3,0}$ does not force because $VarComp=\{CC\}$ and the variable $v=S$ has $CC$ as its rhse. Note again, that cells with index $i\leq1$ can not force at all.
-\noindent
-\begin{figure} [h]
+\begin{testexample}[Algorithm CheckForceCombinationPerCell]
+	\noindent In Figure \ref{foreCombination}, the variables in $Cell_{2,0}$ and in $Cell_{2,1}$ each force a right cell combination and in both cases $VarComp=\{SS\}$. The variable $v=C$ does not have $SS$ as one of its rhses and therefore the variable $C$ forces. $Cell_{3,0}$ does not force because $VarComp=\{CC\}$ and the variable $v=S$ has $CC$ as its rhse. Note again, that cells with index $i\leq1$ can not force at all.\\
+	
 	\begin{minipage}{6in}
 		\centering
+			\centering
 		\raisebox{-0.5\height}{
 			\begin{tabular}{l}
 				$Grammar:$\\
@@ -3392,9 +3418,9 @@ The experience of professor Martens shows that usually most students easily find
 			}
 		}
 	\end{minipage}
-	\caption{Application of Algorithm \ref{checkForceCombinationPerCell} CheckForceCombinationPerCell onto an entire pyramid.}
+	\captionof{figure}{Application of Algorithm \ref{checkForceCombinationPerCell} CheckForceCombinationPerCell onto an entire pyramid.}
 	\label{foreCombination}
-\end{figure}\\
+\end{testexample}
 
 \noindent The three success rates have been explained and finally the overall Success Rate can be specified. \\
 \noindent\textbf{Success Rate:}

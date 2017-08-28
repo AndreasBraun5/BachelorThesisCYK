@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  27 AUG 2017 17:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  28 AUG 2017 08:57
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -981,9 +981,30 @@ File: pgflibraryfadings.code.tex 2008/02/07 v3.0.1a (rcs-revision 1.3)
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'testexample' with sig. ' O{} ' on line 70.
+. Defining environment 'testexample' with sig. ' O{} ' on line 67.
 .................................................
- ("C:\Program Files\MiKTeX 2.9\tex\latex\eurosym\eurosym.sty"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\ms\ragged2e.sty"
+Package: ragged2e 2009/05/21 v2.1 ragged2e Package (MS)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ms\everysel.sty"
+Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
+)
+\CenteringLeftskip=\skip82
+\RaggedLeftLeftskip=\skip83
+\RaggedRightLeftskip=\skip84
+\CenteringRightskip=\skip85
+\RaggedLeftRightskip=\skip86
+\RaggedRightRightskip=\skip87
+\CenteringParfillskip=\skip88
+\RaggedLeftParfillskip=\skip89
+\RaggedRightParfillskip=\skip90
+\JustifyingParfillskip=\skip91
+\CenteringParindent=\skip92
+\RaggedLeftParindent=\skip93
+\RaggedRightParindent=\skip94
+\JustifyingParindent=\skip95
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\eurosym\eurosym.sty"
 Package: eurosym 1998/08/06 v1.1 European currency symbol ``Euro''
 \@eurobox=\box100
 )
@@ -1009,9 +1030,9 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
 Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
-\multirow@colwidth=\skip82
+\multirow@colwidth=\skip96
 \multirow@cntb=\count304
-\multirow@dima=\skip83
+\multirow@dima=\skip97
 \bigstrutjot=\dimen296
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
@@ -1022,8 +1043,8 @@ Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \col@sep=\dimen297
 \extrarowheight=\dimen298
 \NC@list=\toks40
-\extratabsurround=\skip84
-\backup@length=\skip85
+\extratabsurround=\skip98
+\backup@length=\skip99
 )
 \TX@col@width=\dimen299
 \TX@old@table=\dimen300
@@ -1491,10 +1512,10 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty"
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
-\LTleft=\skip86
-\LTright=\skip87
-\LTpre=\skip88
-\LTpost=\skip89
+\LTleft=\skip100
+\LTright=\skip101
+\LTpre=\skip102
+\LTpost=\skip103
 \LTchunksize=\count308
 \LTcapwidth=\dimen304
 \LT@head=\box101
@@ -1507,7 +1528,7 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \c@LT@chunks=\count312
 \LT@p@ftn=\toks44
 )
-Class scrartcl Info: longtable captions redefined on input line 102.
+Class scrartcl Info: longtable captions redefined on input line 104.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
@@ -1578,9 +1599,9 @@ Package: amsthm 2015/03/04 v2.20.2
 \thm@headfont=\toks55
 \thm@notefont=\toks56
 \thm@headpunct=\toks57
-\thm@preskip=\skip90
-\thm@postskip=\skip91
-\thm@headsep=\skip92
+\thm@preskip=\skip104
+\thm@postskip=\skip105
+\thm@headsep=\skip106
 \dth@everypar=\toks58
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\mdframed\mdframed.sty"
@@ -1621,47 +1642,47 @@ Package zref Info: New property: abspage on input line 62.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\needspace\needspace.sty"
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
-\mdf@templength=\skip93
+\mdf@templength=\skip107
 \c@mdf@globalstyle@cnt=\count318
-\mdf@skipabove@length=\skip94
-\mdf@skipbelow@length=\skip95
-\mdf@leftmargin@length=\skip96
-\mdf@rightmargin@length=\skip97
-\mdf@innerleftmargin@length=\skip98
-\mdf@innerrightmargin@length=\skip99
-\mdf@innertopmargin@length=\skip100
-\mdf@innerbottommargin@length=\skip101
-\mdf@splittopskip@length=\skip102
-\mdf@splitbottomskip@length=\skip103
-\mdf@outermargin@length=\skip104
-\mdf@innermargin@length=\skip105
-\mdf@linewidth@length=\skip106
-\mdf@innerlinewidth@length=\skip107
-\mdf@middlelinewidth@length=\skip108
-\mdf@outerlinewidth@length=\skip109
-\mdf@roundcorner@length=\skip110
-\mdf@footenotedistance@length=\skip111
-\mdf@userdefinedwidth@length=\skip112
-\mdf@needspace@length=\skip113
-\mdf@frametitleaboveskip@length=\skip114
-\mdf@frametitlebelowskip@length=\skip115
-\mdf@frametitlerulewidth@length=\skip116
-\mdf@frametitleleftmargin@length=\skip117
-\mdf@frametitlerightmargin@length=\skip118
-\mdf@shadowsize@length=\skip119
-\mdf@extratopheight@length=\skip120
-\mdf@subtitleabovelinewidth@length=\skip121
-\mdf@subtitlebelowlinewidth@length=\skip122
-\mdf@subtitleaboveskip@length=\skip123
-\mdf@subtitlebelowskip@length=\skip124
-\mdf@subtitleinneraboveskip@length=\skip125
-\mdf@subtitleinnerbelowskip@length=\skip126
-\mdf@subsubtitleabovelinewidth@length=\skip127
-\mdf@subsubtitlebelowlinewidth@length=\skip128
-\mdf@subsubtitleaboveskip@length=\skip129
-\mdf@subsubtitlebelowskip@length=\skip130
-\mdf@subsubtitleinneraboveskip@length=\skip131
-\mdf@subsubtitleinnerbelowskip@length=\skip132
+\mdf@skipabove@length=\skip108
+\mdf@skipbelow@length=\skip109
+\mdf@leftmargin@length=\skip110
+\mdf@rightmargin@length=\skip111
+\mdf@innerleftmargin@length=\skip112
+\mdf@innerrightmargin@length=\skip113
+\mdf@innertopmargin@length=\skip114
+\mdf@innerbottommargin@length=\skip115
+\mdf@splittopskip@length=\skip116
+\mdf@splitbottomskip@length=\skip117
+\mdf@outermargin@length=\skip118
+\mdf@innermargin@length=\skip119
+\mdf@linewidth@length=\skip120
+\mdf@innerlinewidth@length=\skip121
+\mdf@middlelinewidth@length=\skip122
+\mdf@outerlinewidth@length=\skip123
+\mdf@roundcorner@length=\skip124
+\mdf@footenotedistance@length=\skip125
+\mdf@userdefinedwidth@length=\skip126
+\mdf@needspace@length=\skip127
+\mdf@frametitleaboveskip@length=\skip128
+\mdf@frametitlebelowskip@length=\skip129
+\mdf@frametitlerulewidth@length=\skip130
+\mdf@frametitleleftmargin@length=\skip131
+\mdf@frametitlerightmargin@length=\skip132
+\mdf@shadowsize@length=\skip133
+\mdf@extratopheight@length=\skip134
+\mdf@subtitleabovelinewidth@length=\skip135
+\mdf@subtitlebelowlinewidth@length=\skip136
+\mdf@subtitleaboveskip@length=\skip137
+\mdf@subtitlebelowskip@length=\skip138
+\mdf@subtitleinneraboveskip@length=\skip139
+\mdf@subtitleinnerbelowskip@length=\skip140
+\mdf@subsubtitleabovelinewidth@length=\skip141
+\mdf@subsubtitlebelowlinewidth@length=\skip142
+\mdf@subsubtitleaboveskip@length=\skip143
+\mdf@subsubtitlebelowskip@length=\skip144
+\mdf@subsubtitleinneraboveskip@length=\skip145
+\mdf@subsubtitleinnerbelowskip@length=\skip146
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\mdframed\md-frame-0.mdf"
 File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
@@ -1671,33 +1692,33 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \mdf@splitbox@one=\box113
 \mdf@splitbox@two=\box114
 \mdf@splitbox@save=\box115
-\mdfsplitboxwidth=\skip133
-\mdfsplitboxtotalwidth=\skip134
-\mdfsplitboxheight=\skip135
-\mdfsplitboxdepth=\skip136
-\mdfsplitboxtotalheight=\skip137
-\mdfframetitleboxwidth=\skip138
-\mdfframetitleboxtotalwidth=\skip139
-\mdfframetitleboxheight=\skip140
-\mdfframetitleboxdepth=\skip141
-\mdfframetitleboxtotalheight=\skip142
-\mdffootnoteboxwidth=\skip143
-\mdffootnoteboxtotalwidth=\skip144
-\mdffootnoteboxheight=\skip145
-\mdffootnoteboxdepth=\skip146
-\mdffootnoteboxtotalheight=\skip147
-\mdftotallinewidth=\skip148
-\mdfboundingboxwidth=\skip149
-\mdfboundingboxtotalwidth=\skip150
-\mdfboundingboxheight=\skip151
-\mdfboundingboxdepth=\skip152
-\mdfboundingboxtotalheight=\skip153
-\mdf@freevspace@length=\skip154
-\mdf@horizontalwidthofbox@length=\skip155
-\mdf@verticalmarginwhole@length=\skip156
-\mdf@horizontalspaceofbox=\skip157
-\mdfsubtitleheight=\skip158
-\mdfsubsubtitleheight=\skip159
+\mdfsplitboxwidth=\skip147
+\mdfsplitboxtotalwidth=\skip148
+\mdfsplitboxheight=\skip149
+\mdfsplitboxdepth=\skip150
+\mdfsplitboxtotalheight=\skip151
+\mdfframetitleboxwidth=\skip152
+\mdfframetitleboxtotalwidth=\skip153
+\mdfframetitleboxheight=\skip154
+\mdfframetitleboxdepth=\skip155
+\mdfframetitleboxtotalheight=\skip156
+\mdffootnoteboxwidth=\skip157
+\mdffootnoteboxtotalwidth=\skip158
+\mdffootnoteboxheight=\skip159
+\mdffootnoteboxdepth=\skip160
+\mdffootnoteboxtotalheight=\skip161
+\mdftotallinewidth=\skip162
+\mdfboundingboxwidth=\skip163
+\mdfboundingboxtotalwidth=\skip164
+\mdfboundingboxheight=\skip165
+\mdfboundingboxdepth=\skip166
+\mdfboundingboxtotalheight=\skip167
+\mdf@freevspace@length=\skip168
+\mdf@horizontalwidthofbox@length=\skip169
+\mdf@verticalmarginwhole@length=\skip170
+\mdf@horizontalspaceofbox=\skip171
+\mdfsubtitleheight=\skip172
+\mdfsubsubtitleheight=\skip173
 \c@mdfcountframes=\count319
 
 ****** mdframed patching \endmdf@trivlist
@@ -1731,12 +1752,12 @@ Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Bcount=\count326
 \calc@Adimen=\dimen314
 \calc@Bdimen=\dimen315
-\calc@Askip=\skip160
-\calc@Bskip=\skip161
+\calc@Askip=\skip174
+\calc@Bskip=\skip175
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count327
-\calc@Cskip=\skip162
+\calc@Cskip=\skip176
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty"
 Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
@@ -1747,7 +1768,7 @@ LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \g_MT_multlinerow_int=\count328
 \l_MT_multwidth_dim=\dimen316
-\origjot=\skip163
+\origjot=\skip177
 \l_MT_shortvdotswithinadjustabove_dim=\dimen317
 \l_MT_shortvdotswithinadjustbelow_dim=\dimen318
 \l_MT_above_intertext_sep=\dimen319
@@ -1846,7 +1867,7 @@ Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip164
+\Hy@SectionHShift=\skip178
 )
 
 Class scrartcl Warning: Usage of package `fancyhdr' together
@@ -1854,23 +1875,23 @@ Class scrartcl Warning: Usage of package `fancyhdr' together
 (scrartcl)              I'd suggest to use 
 (scrartcl)              package `scrlayer-scrpage'.
 (scrartcl)              Nevertheless, using requested
-(scrartcl)              package `fancyhdr' on input line 160.
+(scrartcl)              package `fancyhdr' on input line 162.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
 Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
-\fancy@headwidth=\skip165
-\f@ncyO@elh=\skip166
-\f@ncyO@erh=\skip167
-\f@ncyO@olh=\skip168
-\f@ncyO@orh=\skip169
-\f@ncyO@elf=\skip170
-\f@ncyO@erf=\skip171
-\f@ncyO@olf=\skip172
-\f@ncyO@orf=\skip173
+\fancy@headwidth=\skip179
+\f@ncyO@elh=\skip180
+\f@ncyO@erh=\skip181
+\f@ncyO@olh=\skip182
+\f@ncyO@orh=\skip183
+\f@ncyO@elf=\skip184
+\f@ncyO@erf=\skip185
+\f@ncyO@olf=\skip186
+\f@ncyO@orf=\skip187
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty"
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
-\labelindent=\skip174
+\labelindent=\skip188
 \enit@outerparindent=\dimen327
 \enit@toks=\toks59
 \enit@inbox=\box116
@@ -1902,7 +1923,7 @@ Writing index file 0_bachelor_thesis.idx
 Package: nomencl 2005/09/22 v4.2 Nomenclature package (LN)
 \nomlabelwidth=\dimen328
 \nom@tempdim=\dimen329
-\nomitemsep=\skip175
+\nomitemsep=\skip189
 )
 \@nomenclaturefile=\write8
 \openout8 = `0_bachelor_thesis.nlo'.
@@ -1919,23 +1940,23 @@ LaTeX Warning: Label `right' multiply defined.
 (erklaerung.aux))
 \openout1 = `0_bachelor_thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 234.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 236.
+LaTeX Font Info:    ... okay on input line 236.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 236.
+LaTeX Font Info:    ... okay on input line 236.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 236.
+LaTeX Font Info:    ... okay on input line 236.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 236.
+LaTeX Font Info:    ... okay on input line 236.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 236.
+LaTeX Font Info:    ... okay on input line 236.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 236.
+LaTeX Font Info:    ... okay on input line 236.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 236.
+LaTeX Font Info:    ... okay on input line 236.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 236.
+LaTeX Font Info:    ... okay on input line 236.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 236.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1967,6 +1988,8 @@ G,.JBIG2,.JB2,.eps]
 )
 ABD: EveryShipout initializing macros
 \c@lstlisting=\count346
+ ABD: EverySelectfont initializing macros
+LaTeX Info: Redefining \selectfont on input line 236.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -2003,7 +2026,7 @@ ABD: EveryShipout initializing macros
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box118
-Package hyperref Info: Link coloring OFF on input line 234.
+Package hyperref Info: Link coloring OFF on input line 236.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -2012,9 +2035,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count347
 )
-LaTeX Info: Redefining \ref on input line 234.
-LaTeX Info: Redefining \pageref on input line 234.
-LaTeX Info: Redefining \nameref on input line 234.
+LaTeX Info: Redefining \ref on input line 236.
+LaTeX Info: Redefining \pageref on input line 236.
+LaTeX Info: Redefining \nameref on input line 236.
 
 (0_bachelor_thesis.out) (0_bachelor_thesis.out)
 \@outlinefile=\write9
@@ -2126,43 +2149,50 @@ Package mdframed Info: mdframed detected package amsthm
  [5]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 36.
+(mdframed)              on input line 39.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 52.
+(mdframed)              on input line 55.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 59.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 65.
+(mdframed)              on input line 62.
  [6]
-Package mdframed Info: Not enough space on this page on input line 68.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 73.
-LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 226.
+(mdframed)              on input line 68.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 76.
+LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 229.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <2.5> on input line 226.
+(Font)              <2.5> on input line 229.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <1.74998> on input line 226.
+(Font)              <1.74998> on input line 229.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <1.25> on input line 226.
+(Font)              <1.25> on input line 229.
  [7]
-Underfull \hbox (badness 10000) in paragraph at lines 231--235
+Underfull \hbox (badness 10000) in paragraph at lines 234--238
 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 266.
-LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 431.
+(Font)              <10.95> on input line 269.
+[8]
+LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 434.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.9> on input line 431.
+(Font)              <4.9> on input line 434.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <3.42998> on input line 431.
+(Font)              <3.42998> on input line 434.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <2.45> on input line 431.
-[8] [9]) (2_success_rates.tex) (3_algorithms.tex
+(Font)              <2.45> on input line 434.
+
+Overfull \hbox (3.98332pt too wide) in paragraph at lines 271--436
+[]$ 
+ []
+
+[9
+
+]) (2_success_rates.tex) (3_algorithms.tex
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
@@ -2184,186 +2214,355 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--38
 
  []
 
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 176--177
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--55
 
  []
 
-[12]
-Underfull \hbox (badness 10000) in paragraph at lines 218--538
 
+Overfull \hbox (3.98332pt too wide) in paragraph at lines 57--171
+[]$ 
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--197
+
+ []
+
+
+Overfull \hbox (3.98332pt too wide) in paragraph at lines 198--217
+[]$ 
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 226--228
+
+ []
+
+
+Overfull \hbox (3.98332pt too wide) in paragraph at lines 339--442
+ []$[]$ 
+ []
+
+
+Overfull \hbox (3.98332pt too wide) in paragraph at lines 448--553
+ []$[]$ 
  []
 
 [13
 
 ] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 574--575
+Underfull \hbox (badness 10000) in paragraph at lines 557--558
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 594--595
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 623--656
+Underfull \hbox (badness 10000) in paragraph at lines 610--612
 
  []
 
-[15] [16]
-Overfull \hbox (20.02167pt too wide) in paragraph at lines 665--674
+
+Underfull \hbox (badness 10000) in paragraph at lines 613--615
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 616--639
+[]$[]$ 
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 643--676
+
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 681--683
+
+ []
+
+
+Overfull \hbox (1.41812pt too wide) in paragraph at lines 686--695
  [][] 
  []
 
 
-Overfull \hbox (20.21304pt too wide) in paragraph at lines 660--678
-\OMS/lmsy/m/n/12 f\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 AB; \OT1/lmr/m/n/12 1)\OML/
-lmm/m/it/12 ;  []\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 BC; \OT1/lmr/m/n/12 3)\OML/l
-mm/m/it/12 ;  []:::\OMS/lmsy/m/n/12 g$ \T1/lmr/m/n/12 be-comes $\OML/lmm/m/it/1
-2 RowMultiSet \OT1/lmr/m/n/12 = \OMS/lmsy/m/n/12 f\OT1/lmr/m/n/12 (\OML/lmm/m/i
-t/12 AB; \OT1/lmr/m/n/12 1)\OML/lmm/m/it/12 ;  []\OT1/lmr/m/n/12 (\OML/lmm/m/it
-/12 BC; \OT1/lmr/m/n/12 3)\OML/lmm/m/it/12 ;  []\OT1/lmr/m/n/12 (\OML/lmm/m/it/
-12 BC; \OT1/lmr/m/n/12 3)\OML/lmm/m/it/12 ;  []\OT1/lmr/m/n/12 (\OML/lmm/m/it/1
-2 BC; \OT1/lmr/m/n/12 3)\OML/lmm/m/it/12 ;  []:::\OMS/lmsy/m/n/12 g$\T1/lmr/m/n
-/12 .
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 684--696
+[]$[]$ 
  []
 
-[17
+[18
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 867--869
+Underfull \hbox (badness 10000) in paragraph at lines 702--704
 
  []
 
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 871--891
+
+Overfull \hbox (3.98332pt too wide) in paragraph at lines 705--885
+[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 889--891
 
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 1088--1251
+Underfull \hbox (badness 10000) in paragraph at lines 893--913
 
  []
 
-[20
+[20] [21]
+Underfull \hbox (badness 10000) in paragraph at lines 943--945
 
-] [21
+ []
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 1747--1916
 
+Underfull \hbox (badness 10000) in paragraph at lines 946--947
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 948--1106
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1110--1111
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1112--1270
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1273--1274
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1275--1433
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1435--1437
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1438--1597
+[]$[]$ 
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1601--1760
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1762--1764
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1765--1930
+[]$[]$ 
  []
 
 [22
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 1920--1923
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1924--1941
-
- []
-
-[23
+] [23] [24
 
 ]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[24] [25] [26
-
-] [27
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 2963--2964
+Underfull \hbox (badness 10000) in paragraph at lines 1937--1940
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2965--2966
+Underfull \hbox (badness 10000) in paragraph at lines 1941--1958
 
  []
 
 
-Overfull \hbox (10.99472pt too wide) in paragraph at lines 2967--2970
+Overfull \hbox (3.98332pt too wide) in paragraph at lines 1987--2147
+[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2150--2151
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2153--2311
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2313--2315
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2316--2474
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2478--2479
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2480--2638
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2640--2642
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2643--2801
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2804--2805
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2806--2966
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1959--2969
+
+ []
+
+[25
+
+] [26] [27] [28] [29]
+Underfull \hbox (badness 10000) in paragraph at lines 2985--2986
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2987--2988
+
+ []
+
+
+Overfull \hbox (10.99472pt too wide) in paragraph at lines 2989--2992
 \T1/lmr/bx/n/12 Success Rate Pro-ducibil-ity:  \T1/lmr/m/n/12 A gen-er-ated $\O
 ML/lmm/m/it/12 exercise$ \T1/lmr/m/n/12 con-tributes to the SR-Producibility
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2967--2970
+Underfull \hbox (badness 10000) in paragraph at lines 2989--2992
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2971--2974
+Underfull \hbox (badness 10000) in paragraph at lines 2993--2996
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2982--2983
+Underfull \hbox (badness 10000) in paragraph at lines 3004--3005
 
  []
 
-[28
+[30
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3255--3257
+Underfull \hbox (badness 10000) in paragraph at lines 3011--3013
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3283--3398
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 3014--3276
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3280--3282
 
  []
 
-[29
 
-] [30]
-Underfull \hbox (badness 10000) in paragraph at lines 3432--3433
+Underfull \hbox (badness 10000) in paragraph at lines 3308--3310
 
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 3311--3421
+[]$[]$ 
  []
 
 [31
 
+] [32]
+Underfull \hbox (badness 10000) in paragraph at lines 3458--3459
+
+ []
+
+[33
+
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3452--3454
+Underfull \hbox (badness 10000) in paragraph at lines 3478--3480
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3455--3456
+Underfull \hbox (badness 10000) in paragraph at lines 3481--3482
 
  []
 
 
-Overfull \hbox (15.90063pt too wide) in paragraph at lines 3459--3469
+Overfull \hbox (15.90063pt too wide) in paragraph at lines 3485--3495
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3472--3473
+Underfull \hbox (badness 10000) in paragraph at lines 3498--3499
 
  []
 
 
-Overfull \hbox (3.01166pt too wide) in paragraph at lines 3476--3486
+Overfull \hbox (3.01166pt too wide) in paragraph at lines 3502--3512
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3489--3490
+Underfull \hbox (badness 10000) in paragraph at lines 3515--3516
 
  []
 
-[32
+[34
 
 ]) (5_implementation.tex
 
 pdfTeX warning: pdflatex.exe (file ./abb/CYKInstancesGenerator.pdf): PDF inclus
 ion: found PDF version <1.7>, but at most version <1.5> allowed
-<abb/CYKInstancesGenerator.pdf, id=673, 963.6pt x 542.025pt>
+<abb/CYKInstancesGenerator.pdf, id=702, 963.6pt x 542.025pt>
 File: abb/CYKInstancesGenerator.pdf Graphic file (type pdf)
 
 <use abb/CYKInstancesGenerator.pdf>
@@ -2375,32 +2574,37 @@ Overfull \hbox (2.78706pt too wide) in paragraph at lines 21--22
 -cise" a new "exerciseLatex.tex"-
  []
 
-[33
+[35
 
  <./abb/CYKInstancesGenerator.pdf>]
-Overfull \hbox (7.79866pt too wide) in paragraph at lines 24--313
+Overfull \hbox (7.79866pt too wide) in paragraph at lines 24--25
 \T1/lmr/m/n/12 A exam $\OML/lmm/m/it/12 exercise$ \T1/lmr/m/n/12 is a 4-tuple $
 \OML/lmm/m/it/12 exercise \OT1/lmr/m/n/12 = (\OML/lmm/m/it/12 grammar;  word;  
-parse table;  derivation tree\OT1/lmr/m/n/12 )$\T1/lmr/m/n/12 .
+parse table;  derivation tree\OT1/lmr/m/n/12 )$\T1/lmr/m/n/12 . 
  []
 
-[34] [35
 
-] <abb/exampleGrammarInput.png, id=707, 133.24782pt x 287.57437pt>
+Overfull \hbox (3.98332pt too wide) in paragraph at lines 26--309
+[]$ 
+ []
+
+[36] [37
+
+] <abb/exampleGrammarInput.png, id=738, 133.24782pt x 287.57437pt>
 File: abb/exampleGrammarInput.png Graphic file (type png)
 
 <use abb/exampleGrammarInput.png>
 Package pdftex.def Info: abb/exampleGrammarInput.png used on input line 351.
 (pdftex.def)             Requested size: 133.24748pt x 287.57367pt.
 
-<abb/antrlTokens.png, id=708, 252.19218pt x 257.46187pt>
+<abb/antrlTokens.png, id=739, 252.19218pt x 257.46187pt>
 File: abb/antrlTokens.png Graphic file (type png)
 
 <use abb/antrlTokens.png>
 Package pdftex.def Info: abb/antrlTokens.png used on input line 352.
 (pdftex.def)             Requested size: 252.19156pt x 257.46123pt.
 
-<abb/antrlRules.png, id=709, 442.65375pt x 405.01312pt>
+<abb/antrlRules.png, id=740, 442.65375pt x 405.01312pt>
 File: abb/antrlRules.png Graphic file (type png)
 
 <use abb/antrlRules.png>
@@ -2410,32 +2614,32 @@ Package pdftex.def Info: abb/antrlRules.png used on input line 358.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[36 <./abb/exampleGrammarInput.png> <./abb/antrlTokens.png>]
+[38 <./abb/exampleGrammarInput.png> <./abb/antrlTokens.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 365--377
 
  []
 
-) [37 <./abb/antrlRules.png>] (0_bachelor_thesis.bbl) [38
+) [39 <./abb/antrlRules.png>] (0_bachelor_thesis.bbl) [40
 
 ]
 \openout2 = `erklaerung.aux'.
 
  (erklaerung.tex
-Overfull \hbox (59.59001pt too wide) detected at line 23
+Overfull \hbox (59.59001pt too wide) detected at line 17
 []
  []
 
-) [39
+) [41
 
-] [40
+] [42
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 388.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 388.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 390.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 390.
  (0_bachelor_thesis.aux (latex_settings/deckblatt.aux) (abstract.aux) (erklaeru
 ng.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 388.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 388.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 390.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 390.
 Package rerunfilecheck Info: File `0_bachelor_thesis.out' has not changed.
 (rerunfilecheck)             Checksum: F080150D147B3FAC18A2030A2B98F1C3;2060.
 
@@ -2448,13 +2652,13 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42070 strings out of 493328
- 847738 string characters out of 3139104
- 1114042 words of memory out of 3000000
- 44605 multiletter control sequences out of 15000+200000
- 708335 words of font info for 131 fonts, out of 3000000 for 9000
+ 42213 strings out of 493328
+ 850344 string characters out of 3139104
+ 1151030 words of memory out of 3000000
+ 44723 multiletter control sequences out of 15000+200000
+ 705320 words of font info for 130 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
- 65i,24n,105p,10502b,29279s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 65i,24n,105p,10502b,29429s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Def.5} has been referenced but does
  not exist, replaced by a fixed one
 
@@ -2488,9 +2692,9 @@ msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (40 pages, 831903 bytes).
+Output written on 0_bachelor_thesis.pdf (42 pages, 840916 bytes).
 PDF statistics:
- 893 PDF objects out of 1000 (max. 8388607)
- 258 named destinations out of 1000 (max. 500000)
+ 927 PDF objects out of 1000 (max. 8388607)
+ 277 named destinations out of 1000 (max. 500000)
  398 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -33,14 +33,11 @@
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
 
-
+% example stuff
 \usepackage[most]{tcolorbox}
 \newcounter{testexample}
 \usepackage{xparse}
-
-
 \def\exampletext{Example} % If English
-
 \NewDocumentEnvironment{testexample}{ O{} }
 {
 	\colorlet{colexam}{black!55!black} % Global example color
@@ -68,6 +65,11 @@
 	}
 	\begin{testexamplebox}}
 	{\end{testexamplebox}\endlist}
+
+
+
+%text right justified
+\usepackage{ragged2e}
 
 
 % Eurozeichen einbinden
