@@ -21,7 +21,7 @@ Firstly, we define a Context Free Grammar (CFG) as follows:
 \end{DefGrey}
 \noindent Secondly, we define a CFG with restrictions (CFGR) as:
 \begin{DefGrey}\label{CFGinCNF} \textbf{CFG with restrictions (CFGR)}\\
-	A CFG $G=(V,\ \Sigma,\ S,\ P)$ is a CFGR iff:
+	A CFG $G=(V,\ \Sigma,\ S,\ P)$ is a CFGR if:
 	\begin{itemize}
 		\item $P \subseteq V \times (V^2 \cup \Sigma)$.
 	\end{itemize}
@@ -36,7 +36,7 @@ A rule consists of a left hand side element ($lhse \in Lhse$) and a right hand s
 	$lhse \longrightarrow rhse$ applied to $A \longrightarrow c$ and $B \longrightarrow AC$ means that $A$ and $B$ are a $lhse$ and $c$ and $AC$ are a $rhse$. Elements of $V^2$ are often referred to as variable compounds.
 \end{testexample}
 While talking about a word $w$ or a language $L(G)$ Definition \ref{wordLanguage} holds:
-\begin{DefGrey}\label{wordLanguage} \textbf{Word $w$ and language $L(G)$}
+\begin{DefGrey}\label{wordLanguage} \textbf{Word $\mathbf{w}$ and language $\mathbf{L(G)}$}~
 	\begin{itemize}
 		\item Word: $w = w_0\cdot w_1\cdot ...\cdot w_j~and~w \in \Sigma^*$.
 		\item Language: $L(G)$ over an alphabet $\Sigma$ is a set of words over $\Sigma$ .
@@ -435,15 +435,6 @@ During the execution of the CYK algorithm the parsing table is filled as shown i
 	\end{minipage}
 	\captionof{figure}{The CYK algorithm fills the cells of the pyramid during execution of Line \ref{fill1} and Line \ref{fill2}.}
 	\label{exampleCYK}
-\end{testexample}
-
-\begin{testexample}[Procedure ABC]
-	\begin{minipage}{6in}
-		\centering
-		
-	\end{minipage}
-	\captionof{figure}{Caption ABC}
-	\label{ABC}
 \end{testexample}
 
 

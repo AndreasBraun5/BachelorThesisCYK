@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  28 AUG 2017 08:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  28 AUG 2017 09:23
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -2562,7 +2562,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3515--3516
 
 pdfTeX warning: pdflatex.exe (file ./abb/CYKInstancesGenerator.pdf): PDF inclus
 ion: found PDF version <1.7>, but at most version <1.5> allowed
-<abb/CYKInstancesGenerator.pdf, id=702, 963.6pt x 542.025pt>
+<abb/CYKInstancesGenerator.pdf, id=700, 963.6pt x 542.025pt>
 File: abb/CYKInstancesGenerator.pdf Graphic file (type pdf)
 
 <use abb/CYKInstancesGenerator.pdf>
@@ -2590,21 +2590,21 @@ Overfull \hbox (3.98332pt too wide) in paragraph at lines 26--309
 
 [36] [37
 
-] <abb/exampleGrammarInput.png, id=738, 133.24782pt x 287.57437pt>
+] <abb/exampleGrammarInput.png, id=736, 133.24782pt x 287.57437pt>
 File: abb/exampleGrammarInput.png Graphic file (type png)
 
 <use abb/exampleGrammarInput.png>
 Package pdftex.def Info: abb/exampleGrammarInput.png used on input line 351.
 (pdftex.def)             Requested size: 133.24748pt x 287.57367pt.
 
-<abb/antrlTokens.png, id=739, 252.19218pt x 257.46187pt>
+<abb/antrlTokens.png, id=737, 252.19218pt x 257.46187pt>
 File: abb/antrlTokens.png Graphic file (type png)
 
 <use abb/antrlTokens.png>
 Package pdftex.def Info: abb/antrlTokens.png used on input line 352.
 (pdftex.def)             Requested size: 252.19156pt x 257.46123pt.
 
-<abb/antrlRules.png, id=740, 442.65375pt x 405.01312pt>
+<abb/antrlRules.png, id=738, 442.65375pt x 405.01312pt>
 File: abb/antrlRules.png Graphic file (type png)
 
 <use abb/antrlRules.png>
@@ -2652,10 +2652,10 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42213 strings out of 493328
- 850344 string characters out of 3139104
- 1151030 words of memory out of 3000000
- 44723 multiletter control sequences out of 15000+200000
+ 42208 strings out of 493328
+ 850284 string characters out of 3139104
+ 1150995 words of memory out of 3000000
+ 44720 multiletter control sequences out of 15000+200000
  705320 words of font info for 130 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
  65i,24n,105p,10502b,29429s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2692,9 +2692,9 @@ msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (42 pages, 840916 bytes).
+Output written on 0_bachelor_thesis.pdf (42 pages, 840272 bytes).
 PDF statistics:
- 927 PDF objects out of 1000 (max. 8388607)
- 277 named destinations out of 1000 (max. 500000)
+ 924 PDF objects out of 1000 (max. 8388607)
+ 275 named destinations out of 1000 (max. 500000)
  398 words of extra memory for PDF output out of 10000 (max. 10000000)
 
