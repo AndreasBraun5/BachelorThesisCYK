@@ -12,16 +12,16 @@
 \contentsline {subsection}{\numberline {2.4}Dice rolling and Bottom-Up variant two}{17}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}Split Top-Down and fill Bottom-Up}{20}{subsection.2.5}
 \contentsline {subsection}{\numberline {2.6}Split Top-Down and fill Top-Down}{26}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}Evaluation of Algorithms}{31}{subsection.2.7}
-\contentsline {subsubsection}{\numberline {2.7.1}Success Rates}{31}{subsubsection.2.7.1}
-\contentsline {subsubsection}{\numberline {2.7.2}Problem space exploration}{33}{subsubsection.2.7.2}
-\contentsline {paragraph}{\numberline {2.7.2.1}Comparison of the stopping criteria}{34}{paragraph.2.7.2.1}
-\contentsline {paragraph}{\numberline {2.7.2.2}Picking the best algorithm}{35}{paragraph.2.7.2.2}
-\contentsline {section}{\numberline {3}GUI Tool: CYK Instances Generator}{36}{section.3}
-\contentsline {subsection}{\numberline {3.1}Overview GUI}{36}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Working with the program}{36}{subsubsection.3.1.1}
-\contentsline {subsection}{\numberline {3.2}Exam Exercise}{37}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Scoring Model}{38}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Parsing input with ANTLR}{39}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Other Matters}{40}{subsection.3.5}
-\contentsline {section}{Erkl\IeC {\"a}rung}{42}{section*.4}
+\contentsline {subsection}{\numberline {2.7}Evaluation of Algorithms}{33}{subsection.2.7}
+\contentsline {subsubsection}{\numberline {2.7.1}Success Rates}{33}{subsubsection.2.7.1}
+\contentsline {subsubsection}{\numberline {2.7.2}Problem space exploration}{35}{subsubsection.2.7.2}
+\contentsline {paragraph}{\numberline {2.7.2.1}Comparison of the stopping criteria}{36}{paragraph.2.7.2.1}
+\contentsline {paragraph}{\numberline {2.7.2.2}Picking the best algorithm}{37}{paragraph.2.7.2.2}
+\contentsline {section}{\numberline {3}GUI Tool: CYK Instances Generator}{38}{section.3}
+\contentsline {subsection}{\numberline {3.1}Overview GUI}{38}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Working with the program}{38}{subsubsection.3.1.1}
+\contentsline {subsection}{\numberline {3.2}Exam Exercise}{39}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Scoring Model}{40}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Parsing input with ANTLR}{41}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Other Matters}{42}{subsection.3.5}
+\contentsline {section}{Erkl\IeC {\"a}rung}{44}{section*.4}

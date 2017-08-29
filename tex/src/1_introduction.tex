@@ -46,7 +46,7 @@ For a word and a sub word Definition \ref{word} holds:
 \begin{DefGrey}\label{wordLanguage} \textbf{Language $L$ and language $\mathbf{L(G)}$}~
 	\begin{itemize}[leftmargin=1cm]
 		\item Language $L$:~~~$L$ is a language over an alphabet $\Sigma$ that is subset of $\Sigma^*$, that is a set of words over that alphabet. 
-		\item Language $L(G)$:~~~$L(G)$ is a language over a grammar $G$, that describes the set of words over that alphabet.
+		\item Language $L(G)$:~~~$L(G)$ is the language over a grammar $G$, that describes the set of words over that alphabet.
 	\end{itemize}
 \end{DefGrey}
 \noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. \\
@@ -59,9 +59,9 @@ For a word and a sub word Definition \ref{word} holds:
 \subsection{General approaches of parsing} \label{approaches}
 Next, the basic approach that may help finding a good algorithm is explained informally analogous to \cite{Duda.2012}. At first, parsing is described in general and afterwards its two characteristics are explained.  
 \begin{DefGrey}
-	\textbf{Backward Problem = Parsing ($\mathbf{w\overset{?}{\subseteq}L(G)}$)}\\
+	\textbf{Backward Problem = Parsing ($\mathbf{w\overset{?}{\in}L(G)}$)}\\
 	Input: $w$ and a grammar $G$. \\
-	Output: $w \subseteq L(G) \Longrightarrow$ derivation $d$.
+	Output: $w \in L(G) \Longrightarrow$ derivation $d$.
 \end{DefGrey}
 \noindent It is called parsing if there is a word $w$ given and it is of interest to know if it is element of $L(G)$. Parsing is also the basis of the Cocke-Younger-Kasami algorithm.\\
 After having defined what parsing in general is, it is important to know the two different ways of parsing, that will act as an idea provider for the algorithms.
