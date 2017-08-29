@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  28 AUG 2017 09:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  29 AUG 2017 10:09
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -2147,52 +2147,72 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 23.
  [5]
+Underfull \hbox (badness 10000) in paragraph at lines 34--37
+
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 39.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 55.
+(mdframed)              on input line 46.
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
+
+ []
+
+[6]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 62.
- [6]
+(mdframed)              on input line 61.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 68.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 76.
-LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 229.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <2.5> on input line 229.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <1.74998> on input line 229.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <1.25> on input line 229.
+(mdframed)              on input line 74.
  [7]
-Underfull \hbox (badness 10000) in paragraph at lines 234--238
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 82.
+LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 235.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <2.5> on input line 235.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <1.74998> on input line 235.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <1.25> on input line 235.
+ [8]
+Underfull \hbox (badness 10000) in paragraph at lines 240--244
 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 269.
-[8]
-LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 434.
+(Font)              <10.95> on input line 275.
+LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 440.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.9> on input line 434.
+(Font)              <4.9> on input line 440.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <3.42998> on input line 434.
+(Font)              <3.42998> on input line 440.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <2.45> on input line 434.
+(Font)              <2.45> on input line 440.
 
-Overfull \hbox (3.98332pt too wide) in paragraph at lines 271--436
+Overfull \hbox (3.98332pt too wide) in paragraph at lines 277--442
 []$ 
  []
 
-[9
 
-]) (2_success_rates.tex) (3_algorithms.tex
+Underfull \hbox (badness 10000) in paragraph at lines 245--444
+
+ []
+
+[9] [10]) (2_success_rates.tex) (3_algorithms.tex
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
@@ -2207,7 +2227,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--26
 
  []
 
-[10
+[11
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 36--38
@@ -2224,7 +2244,7 @@ Overfull \hbox (3.98332pt too wide) in paragraph at lines 57--171
 []$ 
  []
 
-[11]
+[12]
 Underfull \hbox (badness 10000) in paragraph at lines 179--180
 
  []
@@ -2239,7 +2259,7 @@ Overfull \hbox (3.98332pt too wide) in paragraph at lines 198--217
 []$ 
  []
 
-[12]
+[13]
 Underfull \hbox (badness 10000) in paragraph at lines 226--228
 
  []
@@ -2254,14 +2274,14 @@ Overfull \hbox (3.98332pt too wide) in paragraph at lines 448--553
  []$[]$ 
  []
 
-[13
+[14
 
-] [14]
+] [15]
 Underfull \hbox (badness 10000) in paragraph at lines 557--558
 
  []
 
-[15]
+[16]
 Underfull \hbox (badness 10000) in paragraph at lines 594--595
 
  []
@@ -2281,12 +2301,12 @@ Overfull \hbox (15.73315pt too wide) in paragraph at lines 616--639
 []$[]$ 
  []
 
-[16]
+[17]
 Underfull \hbox (badness 10000) in paragraph at lines 643--676
 
  []
 
-[17]
+[18]
 Underfull \hbox (badness 10000) in paragraph at lines 681--683
 
  []
@@ -2301,7 +2321,7 @@ Overfull \hbox (15.73315pt too wide) in paragraph at lines 684--696
 []$[]$ 
  []
 
-[18
+[19
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 702--704
@@ -2314,16 +2334,21 @@ Overfull \hbox (3.98332pt too wide) in paragraph at lines 705--885
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 887--888
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 889--891
 
  []
 
-[19]
+[20]
 Underfull \hbox (badness 10000) in paragraph at lines 893--913
 
  []
 
-[20] [21]
+[21] [22]
 Underfull \hbox (badness 10000) in paragraph at lines 943--945
 
  []
@@ -2383,9 +2408,9 @@ Overfull \hbox (15.73315pt too wide) in paragraph at lines 1765--1930
 []$[]$ 
  []
 
-[22
+[23
 
-] [23] [24
+] [24] [25
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 1937--1940
@@ -2457,9 +2482,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 1959--2969
 
  []
 
-[25
+[26
 
-] [26] [27] [28] [29]
+] [27] [28] [29] [30]
 Underfull \hbox (badness 10000) in paragraph at lines 2985--2986
 
  []
@@ -2470,9 +2495,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 2987--2988
  []
 
 
-Overfull \hbox (10.99472pt too wide) in paragraph at lines 2989--2992
-\T1/lmr/bx/n/12 Success Rate Pro-ducibil-ity:  \T1/lmr/m/n/12 A gen-er-ated $\O
-ML/lmm/m/it/12 exercise$ \T1/lmr/m/n/12 con-tributes to the SR-Producibility
+Overfull \hbox (7.31635pt too wide) in paragraph at lines 2989--2992
+\T1/lmr/bx/n/12 Success Rate Pro-ducibil-ity:  \T1/lmr/m/n/12 A gen-er-ated ex-
+er-cise con-tributes to the SR-Producibility
  []
 
 
@@ -2490,7 +2515,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3004--3005
 
  []
 
-[30
+[31
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 3011--3013
@@ -2503,66 +2528,71 @@ Overfull \hbox (15.73315pt too wide) in paragraph at lines 3014--3276
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3280--3282
+Underfull \hbox (badness 10000) in paragraph at lines 3279--3281
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3308--3310
+Underfull \hbox (badness 10000) in paragraph at lines 3307--3309
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 3311--3421
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 3310--3420
 []$[]$ 
  []
 
-[31
-
-] [32]
-Underfull \hbox (badness 10000) in paragraph at lines 3458--3459
-
- []
-
-[33
+[32
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3478--3480
+Underfull \hbox (badness 10000) in paragraph at lines 3422--3423
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 3481--3482
-
- []
-
-
-Overfull \hbox (15.90063pt too wide) in paragraph at lines 3485--3495
- [][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3498--3499
-
- []
-
-
-Overfull \hbox (3.01166pt too wide) in paragraph at lines 3502--3512
- [][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3515--3516
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 3457--3458
 
  []
 
 [34
 
+]
+Underfull \hbox (badness 10000) in paragraph at lines 3477--3479
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3480--3481
+
+ []
+
+
+Overfull \hbox (15.90063pt too wide) in paragraph at lines 3484--3494
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3497--3498
+
+ []
+
+
+Overfull \hbox (3.01166pt too wide) in paragraph at lines 3501--3511
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3514--3515
+
+ []
+
+[35
+
 ]) (5_implementation.tex
 
 pdfTeX warning: pdflatex.exe (file ./abb/CYKInstancesGenerator.pdf): PDF inclus
 ion: found PDF version <1.7>, but at most version <1.5> allowed
-<abb/CYKInstancesGenerator.pdf, id=700, 963.6pt x 542.025pt>
+<abb/CYKInstancesGenerator.pdf, id=706, 963.6pt x 542.025pt>
 File: abb/CYKInstancesGenerator.pdf Graphic file (type pdf)
 
 <use abb/CYKInstancesGenerator.pdf>
@@ -2574,7 +2604,7 @@ Overfull \hbox (2.78706pt too wide) in paragraph at lines 21--22
 -cise" a new "exerciseLatex.tex"-
  []
 
-[35
+[36
 
  <./abb/CYKInstancesGenerator.pdf>]
 Overfull \hbox (7.79866pt too wide) in paragraph at lines 24--25
@@ -2588,23 +2618,23 @@ Overfull \hbox (3.98332pt too wide) in paragraph at lines 26--309
 []$ 
  []
 
-[36] [37
+[37] [38
 
-] <abb/exampleGrammarInput.png, id=736, 133.24782pt x 287.57437pt>
+] <abb/exampleGrammarInput.png, id=742, 133.24782pt x 287.57437pt>
 File: abb/exampleGrammarInput.png Graphic file (type png)
 
 <use abb/exampleGrammarInput.png>
 Package pdftex.def Info: abb/exampleGrammarInput.png used on input line 351.
 (pdftex.def)             Requested size: 133.24748pt x 287.57367pt.
 
-<abb/antrlTokens.png, id=737, 252.19218pt x 257.46187pt>
+<abb/antrlTokens.png, id=743, 252.19218pt x 257.46187pt>
 File: abb/antrlTokens.png Graphic file (type png)
 
 <use abb/antrlTokens.png>
 Package pdftex.def Info: abb/antrlTokens.png used on input line 352.
 (pdftex.def)             Requested size: 252.19156pt x 257.46123pt.
 
-<abb/antrlRules.png, id=738, 442.65375pt x 405.01312pt>
+<abb/antrlRules.png, id=744, 442.65375pt x 405.01312pt>
 File: abb/antrlRules.png Graphic file (type png)
 
 <use abb/antrlRules.png>
@@ -2614,12 +2644,12 @@ Package pdftex.def Info: abb/antrlRules.png used on input line 358.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[38 <./abb/exampleGrammarInput.png> <./abb/antrlTokens.png>]
+[39 <./abb/exampleGrammarInput.png> <./abb/antrlTokens.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 365--377
 
  []
 
-) [39 <./abb/antrlRules.png>] (0_bachelor_thesis.bbl) [40
+) [40 <./abb/antrlRules.png>] (0_bachelor_thesis.bbl) [41
 
 ]
 \openout2 = `erklaerung.aux'.
@@ -2629,9 +2659,9 @@ Overfull \hbox (59.59001pt too wide) detected at line 17
 []
  []
 
-) [41
+) [42
 
-] [42
+] [43
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 390.
@@ -2641,7 +2671,7 @@ ng.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 390.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 390.
 Package rerunfilecheck Info: File `0_bachelor_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: F080150D147B3FAC18A2030A2B98F1C3;2060.
+(rerunfilecheck)             Checksum: AFC01F83BA4D70419F034E3C98CF5401;2059.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2652,15 +2682,18 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42208 strings out of 493328
- 850284 string characters out of 3139104
- 1150995 words of memory out of 3000000
- 44720 multiletter control sequences out of 15000+200000
+ 42213 strings out of 493328
+ 850368 string characters out of 3139104
+ 1151000 words of memory out of 3000000
+ 44723 multiletter control sequences out of 15000+200000
  705320 words of font info for 130 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
  65i,24n,105p,10502b,29429s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{Def.5} has been referenced but does
+pdfTeX warning (dest): name{Def.6} has been referenced but does
  not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Def.4} has been referenced but does not exist, repl
+aced by a fixed one
 
 pdfTeX warning (dest): name{Def.3} has been referenced but does not exist, repl
 aced by a fixed one
@@ -2692,9 +2725,9 @@ msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (42 pages, 840272 bytes).
+Output written on 0_bachelor_thesis.pdf (43 pages, 841782 bytes).
 PDF statistics:
- 924 PDF objects out of 1000 (max. 8388607)
- 275 named destinations out of 1000 (max. 500000)
+ 932 PDF objects out of 1000 (max. 8388607)
+ 277 named destinations out of 1000 (max. 500000)
  398 words of extra memory for PDF output out of 10000 (max. 10000000)
 

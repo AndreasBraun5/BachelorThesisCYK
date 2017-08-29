@@ -3,7 +3,7 @@
 \section{Introduction}\label{Introduction}
 
 \subsection{Motivation}
-Every year, lecturer in the field of theoretical computer science or an related one face the task to create the 4-tuple exam $exercise = (grammar,\ word,\ parse\ table,\ derivation\ $ $tree)$ that tests if their students have understood the way of working of the Cocke-Younger-Kasami (CYK) algorithm. For it $exercises$ need to be created which is a bit of a time consuming task. \\
+Every year, lecturer in the field of theoretical computer science or an related one face the task to create the 4-tuple exam $exercise = (grammar,\ word,\ parse\ table,\ derivation\ $ $tree)$ that tests if their students have understood the way of working of the Cocke-Younger-Kasami (CYK) algorithm. For it exercises need to be created which is a bit of a time consuming task. \\
 Various implementations and small online tools of the CYK algorithm can be found \footnote{\href{http://lxmls.it.pt/2015/cky.html}{CYK online tool: http://lxmls.it.pt/2015/cky.html}} \footnote{\href{http://jflap.org/tutorial/grammar/cyk/index.html}{CYK parser implementation: http://jflap.org/tutorial/grammar/cyk/index.html}} \footnote{\href{https://github.com/ajh17/CYK-Java}{CYK algorithm implementation in Java: https://github.com/ajh17/CYK-Java}} but none actually assists during the process of creating an exercise.\\
 Therefore algorithms are needed to generate specifically suitable exercises with a high chance of success. Also a GUI tool, that allows automatic generation of the suitable exam exercises and further modification, is required and so a own solution is implemented.
 
@@ -23,33 +23,39 @@ Firstly, we define a Context Free Grammar (CFG) as follows:
 \begin{DefGrey}\label{CFGinCNF} \textbf{CFG with restrictions (CFGR)}\\
 	A CFG $G=(V,\ \Sigma,\ S,\ P)$ is a CFGR if:
 	\begin{itemize}
-		\item $P \subseteq V \times (V^2 \cup \Sigma)$.
+		\item $P \subseteq V \times (V^2 \cup \Sigma)$.~
 	\end{itemize}
 \end{DefGrey}
 \noindent Throughout this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. Note that a CFGR is not necessarily in chomsyk normal form (CNF) because it is still possible that there are unreachable variables \textendash~from the starting variable \textendash~ or useless rules. For further convenience the following default values are always assumed in this thesis:
 \begin{itemize}
-	\item $V = \{A, B, ...\}=:Rhse.$
-	\item $(V^2 \cup\ \Sigma)=\{AA, AB, BB, BA, BS, AC, ... \} \cup \{a, b, ...\}=:Lhse.$
+	\item $V = \{A, B, ...\}=:Lhse.$
+	\item $(V^2 \cup\ \Sigma)=\{AA, AB, BB, BA, BS, AC, ... \} \cup \{a, b, ...\}=:Rhse.$
 \end{itemize}
-A rule consists of a left hand side element ($lhse \in Lhse$) and a right hand side element ($rhse \in Rhse$). 
+A rule consists of a left hand side element ($lhse \in Lhse$) and a right hand side element ($rhse \in Rhse$). \\
 \begin{testexample}[lhse and rhse]
 	$lhse \longrightarrow rhse$ applied to $A \longrightarrow c$ and $B \longrightarrow AC$ means that $A$ and $B$ are a $lhse$ and $c$ and $AC$ are a $rhse$. Elements of $V^2$ are often referred to as variable compounds.
-\end{testexample}
-While talking about a word $w$ or a language $L(G)$ Definition \ref{wordLanguage} holds:
-\begin{DefGrey}\label{wordLanguage} \textbf{Word $\mathbf{w}$ and language $\mathbf{L(G)}$}~
-	\begin{itemize}
-		\item Word: $w = w_0\cdot w_1\cdot ...\cdot w_j~and~w \in \Sigma^*$.
-		\item Language: $L(G)$ over an alphabet $\Sigma$ is a set of words over $\Sigma$ .
+\end{testexample}~\\
+For a word and a sub word Definition \ref{word} holds:
+\begin{DefGrey} \label{word} \textbf{Word $\mathbf{w}$ and sub word}
+	\begin{itemize}[leftmargin=1cm]
+		\item Word $w$:~~~$w = w_0\cdot w_1\cdot ...\cdot w_j$ and $w \in \Sigma^*$.
+		\item Sub word $sw$ of a word $w$:~~~$sw = w_k\cdot ...\cdot w_{l+k}$ where $0\leq i$ and $l+k \leq j$.
 	\end{itemize}
 \end{DefGrey}
-\noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. 
+\noindent For a language and a language over a grammar Definition \ref{wordLanguage} holds:
+\begin{DefGrey}\label{wordLanguage} \textbf{Language $L$ and language $\mathbf{L(G)}$}~
+	\begin{itemize}[leftmargin=1cm]
+		\item Language $L$:~~~$L$ is a language over an alphabet $\Sigma$ that is subset of $\Sigma^*$, that is a set of words over that alphabet. 
+		\item Language $L(G)$:~~~$L(G)$ is a language over a grammar $G$, that describes the set of words over that alphabet.
+	\end{itemize}
+\end{DefGrey}
+\noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. \\
 \begin{testexample}[Upper Case Letter for sets]
-	Example: See the A "$Pyramid$" is a set consisting of multiple "$Cell$"s, whereas a $Cell$ is again a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further explanation behind this specific example see chapter \ref{dataStructurePyramid})
-\end{testexample}
+	Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, whereas a $Cell$ is again a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further explanation behind this specific example see chapter \ref{dataStructurePyramid})
+\end{testexample}~\\
 
 
-
- 
+\pagebreak
 \subsection{General approaches of parsing} \label{approaches}
 Next, the basic approach that may help finding a good algorithm is explained informally analogous to \cite{Duda.2012}. At first, parsing is described in general and afterwards its two characteristics are explained.  
 \begin{DefGrey}
@@ -69,8 +75,8 @@ Bottom-up parsing starts by recognizing the words smallest sub words before its 
 	\textbf{Top-Down parsing} \\
 	 Top-Down parsing means to start parsing from the root node down to the leaves.
 \end{mdframed}
-\noindent "Top-Down parsing starts with the root node and successively applies productions from $P$, with the goal of finding a derivation of the test sentence $w$." \cite{Duda.2012} (The so called test sentence is synonymous to an word $w$.)
-
+\noindent "Top-Down parsing starts with the root node and successively applies rules from $P$, with the goal of finding a derivation of the test sentence $w$." \cite{Duda.2012} (The so called test sentence is synonymous to an word $w$.)
+\pagebreak
 \subsection{Data Structure Pyramid} \label{dataStructurePyramid}
 To be able to describe how the different algorithms work in a simpler way, the help data structure $Pyramid$ is defined \textendash~note that $Pyramid$ is a set and starts with upper case.
 \begin{DefGrey} \textbf{$Pyramid$} \\
@@ -266,8 +272,8 @@ Later on it can be seen that the CYK algorithm can be used as a basis to find go
 		Line \ref{true}: True if $Cell_{i_{max},0}$ contains the start variable.
 		}
 	\end{algorithm}
-}\clearpage
-
+}
+~
 \begin{testexample}[Algorithm CYK]
 During the execution of the CYK algorithm the parsing table is filled as shown in Figure \ref{exampleCYK}. At first the row with index $i=0$ is filled after Line 2 to Line 4 of the CYK algorithm, i.e. a $Cell_{0,j}$ will contain the variable if it has the terminal $w_j$ as its $rhse$. Then for each row $i$ every cell with index $j$ is looked at. Every possible combination of sub words for a cell are taken into account, i.e. for $Cell_{4,1}$ there are the combinations of ($Cell_{0,1},Cell_{3,2}$), ($Cell_{1,1},Cell_{2,3}$), ($Cell_{2,1},Cell_{1,4}$) and ($Cell_{3,1},Cell_{0,5}$). Applying Line 8 for example to the cell combination ($Cell_{2,1},Cell_{1,4}$) it leads to $X\rightarrow AC$ here and because the compound variable $AC$ is $rhse$ of the variable $S$ the $Cell_{4,1}$ contains the element $(S,4)$.\\
 	\begin{minipage}{6in}
