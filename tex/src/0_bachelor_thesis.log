@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  30 AUG 2017 16:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  30 AUG 2017 22:00
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -1983,9 +1983,6 @@ Package: nomencl 2005/09/22 v4.2 Nomenclature package (LN)
 Writing nomenclature file 0_bachelor_thesis.nlo
 (0_bachelor_thesis.aux (latex_settings/deckblatt.aux) (abstract.aux)
 
-LaTeX Warning: Label `cyk' multiply defined.
-
-
 LaTeX Warning: Label `left' multiply defined.
 
 
@@ -2406,250 +2403,253 @@ Underfull \hbox (badness 10000) in paragraph at lines 890--892
  []
 
 [20]
-Underfull \hbox (badness 10000) in paragraph at lines 894--915
-
- []
-
-[21] [22]
-Underfull \hbox (badness 10000) in paragraph at lines 948--950
+Underfull \hbox (badness 10000) in paragraph at lines 914--944
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 951--952
+Underfull \hbox (badness 10000) in paragraph at lines 945--947
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 953--1111
+Underfull \hbox (badness 10000) in paragraph at lines 948--949
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 952--1110
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1115--1116
+Underfull \hbox (badness 10000) in paragraph at lines 1114--1115
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 1117--1275
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1116--1274
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1278--1279
+Underfull \hbox (badness 10000) in paragraph at lines 1279--1280
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 1280--1438
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1281--1439
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1440--1442
+Underfull \hbox (badness 10000) in paragraph at lines 1441--1443
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 1443--1602
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1444--1603
 []$[]$ 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 1606--1765
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1607--1766
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1767--1769
+Underfull \hbox (badness 10000) in paragraph at lines 1768--1770
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 1770--1935
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1771--1936
 []$[]$ 
  []
 
-[23
-
-] [24] [25
+[21] [22] [23] [24] [25
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1942--1945
+Underfull \hbox (badness 10000) in paragraph at lines 1945--1948
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1946--1963
-
- []
-
-
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 1998--2156
-[]$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2157--2158
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2160
-
- []
-
-
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 2162--2320
-[]$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2325--2326
-
- []
-
-
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 2327--2485
-[]$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2486--2487
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2488--2489
-
- []
-
-
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 2490--2648
-[]$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2653--2654
-
- []
-
-
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 2655--2813
-[]$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2814--2815
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2816--2817
-
- []
-
-
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 2818--2978
-[]$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1964--2981
+Underfull \hbox (badness 10000) in paragraph at lines 1949--1966
 
  []
 
 [26
 
-] [27] [28] [29] [30]
-Underfull \hbox (badness 10000) in paragraph at lines 2998--2999
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1998--2000
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3000--3001
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2004--2162
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2163--2164
 
  []
 
 
-Overfull \hbox (7.31635pt too wide) in paragraph at lines 3002--3005
+Underfull \hbox (badness 10000) in paragraph at lines 2165--2166
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2168--2326
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2331--2332
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2333--2491
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2492--2493
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2494--2495
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2496--2654
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2659--2660
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2661--2819
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2820--2821
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2822--2823
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2824--2984
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1969--2987
+
+ []
+
+[27] [28] [29] [30]
+Underfull \hbox (badness 10000) in paragraph at lines 3004--3005
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3006--3007
+
+ []
+
+
+Overfull \hbox (7.31635pt too wide) in paragraph at lines 3008--3011
 \T1/lmr/bx/n/12 Success Rate Pro-ducibil-ity:  \T1/lmr/m/n/12 A gen-er-ated ex-
 er-cise con-tributes to the SR-Producibility
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3002--3005
+Underfull \hbox (badness 10000) in paragraph at lines 3008--3011
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3006--3009
+Underfull \hbox (badness 10000) in paragraph at lines 3012--3015
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3017--3018
+Underfull \hbox (badness 10000) in paragraph at lines 3023--3024
 
  []
 
 [31
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3024--3026
+Underfull \hbox (badness 10000) in paragraph at lines 3030--3032
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 3027--3289
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 3033--3295
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3292--3294
+Underfull \hbox (badness 10000) in paragraph at lines 3298--3300
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3320--3322
+Underfull \hbox (badness 10000) in paragraph at lines 3326--3328
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 3323--3433
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 3329--3439
 []$[]$ 
  []
 
 [32
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3435--3436
+Underfull \hbox (badness 10000) in paragraph at lines 3441--3442
 
  []
 
 [33]
-Underfull \hbox (badness 10000) in paragraph at lines 3470--3471
+Underfull \hbox (badness 10000) in paragraph at lines 3476--3477
 
  []
 
 [34
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3490--3492
+Underfull \hbox (badness 10000) in paragraph at lines 3496--3498
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3493--3494
+Underfull \hbox (badness 10000) in paragraph at lines 3499--3500
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3513--3514
+Underfull \hbox (badness 10000) in paragraph at lines 3519--3520
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3532--3533
+Underfull \hbox (badness 10000) in paragraph at lines 3538--3539
 
  []
 
@@ -2749,10 +2749,10 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42976 strings out of 493328
- 862831 string characters out of 3139104
- 1166866 words of memory out of 3000000
- 45449 multiletter control sequences out of 15000+200000
+ 42978 strings out of 493328
+ 862853 string characters out of 3139104
+ 1167599 words of memory out of 3000000
+ 45451 multiletter control sequences out of 15000+200000
  705320 words of font info for 130 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
  65i,24n,105p,10502b,30143s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2792,7 +2792,7 @@ msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (43 pages, 840259 bytes).
+Output written on 0_bachelor_thesis.pdf (43 pages, 839938 bytes).
 PDF statistics:
  934 PDF objects out of 1000 (max. 8388607)
  280 named destinations out of 1000 (max. 500000)

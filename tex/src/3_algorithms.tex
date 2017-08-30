@@ -700,7 +700,7 @@ The approach here only makes sense together with \circled{D} in which all possib
 
 \pagebreak
 \subsection{Split Top-Down and fill Bottom-Up variant one}
-Until now we have only discussed algorithms that purely use the Bottom-Up approach, so another way is to utilize the Top-Down approach in combination with the Bottom-Up approach.\\
+Until now only algorithms have been discussed that purely use the Bottom-Up approach, so another way is to utilize the Top-Down approach in combination with the Bottom-Up approach.\\
 The idea here is first to distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFill} SplitThenFillCYK) and then to uniformly randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{SplitThenFill} and in general Algorithm \ref{SplitThenFillRecursion} SplitThenFillCYKRec) Top-Downwards and then again to fill the parsing table Bottom-Upwards accordingly to fill this derivation tree. The structure of the derivation tree for instance can look as follows:\\
 
 \begin{testexample}[Derivation structure in the pyramid and as a derivation tree]
@@ -887,7 +887,7 @@ The idea here is first to distribute the terminals (Line \ref{splitThenStepii} o
 	\label{treeStruct}
 \end{testexample}~\\
 
-\noindent As the name of the algorithms implies only after completely generating the structure of the derivation tree (splitting of the word in sub words) the rules are added to the grammar that help filling the cells occurring in the derivation tree.\\
+\noindent As the name of the algorithms implies only after completely generating the structure of the derivation tree (splitting of the word in sub words) the rules are added to the grammar that help filling the cells occurring in the derivation tree. The phrase CYK is included in the name because in every recursion the CYK algorithm is executed (Line \ref{cyk2}) one time.\\
 Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} SplitThenFillCYKRec Line \ref{splitThenFillB}) the already available information regarding the other rules is used to determine if a new rule is needed to fill this node of the derivation tree (Line \ref{empty} of Algorithm \ref{SplitThenFillRecursion} SplitThenFillCYKRec).\\
 
 
@@ -910,8 +910,6 @@ Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} 
 		}
 	\end{algorithm}
 }
-\\
-For this algorithm it is important to mention that while using \circled{B} (Line \ref{splitThenFillB} of Algorithm \ref{SplitThenFillRecursion}) a variable compound is added to at least one $lhse$. For every element of $vc \in VarComp$ (Line \ref{splitThenFillVc} of Algorithm \ref{SplitThenFillRecursion}) there exists at least one rule $lhse \rightarrow vc$.\\
 
 \noindent
 \frame{
@@ -928,27 +926,28 @@ For this algorithm it is important to mention that while using \circled{B} (Line
 		$choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
 		$(P,\ Cell_l) = SplitThenFillCYKRec(P,\ w,\ (m-j-1),\ j)$\label{left}\;
 		$(P,\ Cell_r) = SplitThenFillCYKRec(P,\ w,\ (j+i-m),\ m)$\label{right}\;
-		$Pyramid = CYK(G,\ w)$\label{cyk}\;
+		$Pyramid = CYK(G,\ w)$\label{cyk2}\;
 		\If{$stopping\ criteria~met$~\circled{C}}{ \label{cMet}
 			\Return $(P,\ Cell_{i,j})$\;
 		}
 		\If{$Cell_{i,j} = \emptyset$}{ \label{empty}
 			$VarComp = uniform\ random\ subset\ of\ \{vc\ |\ v \in Cell_l\ \wedge $\\$~~~c \in Cell_r\} ~with~|VarComp| \geq 1$\; \label{splitThenFillVc}
-			$P = P \cup Distribute(VarComp,\ V) $; \circled{B} \label{splitThenFillB}  \\
+			$foreach~vc\in VarComp~choose~v\in V~uniformly~randomly~and~add~the$ $~rule~v\longrightarrow vc~to~P$\; \label{splitThenFillB}
 		}
 		
 		\Return $(P,\ Cell_{i,j})$\;
 		\footnotetext{
-			\noindent Line \ref{cyk}: Needed to update the $pyramid$ to be able to check if the stopping criteria is met in Line \ref{cMet}.	
+			\noindent Line \ref{cyk2}: Needed to update the $pyramid$ to be able to check if the stopping criteria is met in Line \ref{cMet}.	
 		}
 	\end{algorithm}
-}
-\clearpage
+}~\\
 
 \begin{testexample}[Algorithm SplitThenFillCYK]
 	\noindent The same example tree structure as in Figure \ref{treeStruct} is used here \textendash~remember that each number represents the recursion depth of its subtree.\\
 	
 	\noindent The situation after adding the terminals (Line \ref{splitThenStepii} in Algorithm \ref{SplitThenFill} SplitThenFillCYK) to the grammar is shown in Figure \ref{IllustrationAlgorithmSplitThenFillPart1}:\\
+	
+	\pagebreak
 	
 	\begin{minipage}{6in}
 		\centering
@@ -1274,6 +1273,8 @@ For this algorithm it is important to mention that while using \circled{B} (Line
 		\end{minipage}
 		\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFillCYK part 2 after adding $S\rightarrow BA$.}
 		\label{IllustrationAlgorithmSplitThenFillPart2}
+		
+		\pagebreak
 		
 		\noindent The next recursion step happens in $Cell_{2,0}$. Now $Cell_l=\{B_1\}$ and $Cell_r=\{S_2\}$. Analogously the rule $A\rightarrow BS$ is added to the grammar as seen in Figure \ref{IllustrationAlgorithmSplitThenFillPart3}:\\
 		
@@ -1939,9 +1940,11 @@ For this algorithm it is important to mention that while using \circled{B} (Line
 \clearpage
 
 \subsection{Split Top-Down and fill Bottom-Up variant two}
-After defining an algorithm that uses the combination of the Bottom-Up approach and the Top-Down approach (Algorithm \ref{SplitThenFill}) a step further is to find an algorithm that only makes use of the Top-Down approach to see if an even better algorithm can be found.\\
-This algorithm again generates a predefined structure of the derivation tree Top-Downwards. Every time a node of the structure of the derivation tree has been decided on, a rule is immediately added to the grammar \textendash~therefore the name SplitThenFill, which is like "split for a node and then directly add a rule so that the node is then filled with at least one variable". \\
-Note that the count of rules in the grammar is dependent on the count of nodes in the derivation tree and a terminal is distributed to only one variable. While resolving the last recursion step (Line \ref{splitAndFillRecLastStep}) of Algorithm \ref{SplitAndFillRecursion} SplitThenFillRec the start variable will be in the root of the pyramid that always leads to $w \in L(G)$.\\
+
+
+\noindent Yet another algorithm that uses the split Top-Down and fill Bottom-Up behaviour is Algorithm \ref{SplitAndFill}.\\
+The algorithm generates recursively Top-Down the derivation tree structure and the rules are added Bottom-Upwards to the grammar that would help to fill the structure of the derivation tree (see Figure \ref{treeStruct} for this issue). In Line 2 to Line 8 of Algorithm \ref{SplitAndFillRecursion} it is ensured that every terminal of the word is $rhse$ of exactly one rule. Line \ref{splitAndFillRecLastStep}, of the same algorithm, guarantees that the start variable is always element of the root cell and Line \ref{SplitAndFillReturn} is responsible to add rules that would fill the other cell combinations according to the predefined tree structure. \\
+One difference to Algorithm \ref{SplitThenFill} is that no CYK algorithm is run in every recursion step to evaluate what elements are already in the pyramid and as a consequence the algorithm is quite fast. Moreover no stopping criteria is used. \\
 
 \noindent
 \frame{
@@ -1960,6 +1963,8 @@ Note that the count of rules in the grammar is dependent on the count of nodes i
 		}
 	\end{algorithm}
 }\\
+
+\pagebreak
 
 \noindent
 \frame{
@@ -1991,8 +1996,9 @@ Note that the count of rules in the grammar is dependent on the count of nodes i
 	\end{algorithm}
 }
 \begin{testexample}[Algorithm SplitThenFill]
-	According to this algorithm, only productions corresponding to the tree structure are added to the grammar. For illustration purposes, the pyramid is  shown to reflect the immediate changes of the added rules to the pyramid in the Figures \ref{IllustrationAlgorithmSplitAndFillPart1} to \ref{IllustrationAlgorithmSplitAndFillPart6}. Again the predefined derivation tree structure of Figure \ref{treeStruct} is used.\\	
-	At first the rule $B\longrightarrow b$ is added as shown in Figure \ref{IllustrationAlgorithmSplitAndFillPart1}.\\
+	According to this algorithm, only productions corresponding to the tree structure are added to the grammar. The same example tree structure as in Figure \ref{treeStruct} is used here \textendash~remember that each number represents the recursion depth of its subtree.\\ For illustration purposes, the pyramid is shown to reflect the immediate changes of the added rules to the pyramid in the Figures \ref{IllustrationAlgorithmSplitAndFillPart1} to \ref{IllustrationAlgorithmSplitAndFillPart6}. Note that the pyramid is actually not filled during the execution of the algorithm.\\	
+	
+	\noindent At first the rule $B\longrightarrow b$ is added as shown in Figure \ref{IllustrationAlgorithmSplitAndFillPart1}.\\
 	\pagebreak
 	
 	\begin{minipage}{6in}
