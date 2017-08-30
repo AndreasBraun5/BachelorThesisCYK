@@ -251,12 +251,12 @@ Later on it can be seen that the CYK algorithm can be used as a basis to find go
 		\KwOut{true $\Leftrightarrow w\in L(G)$}
 		$Pyramid = \emptyset $\;
 		\For{$j:=0 \to i_{max}$}{ \label{row1}
-			$Pyramid~\cup \{(X,j+1)~|~X \longrightarrow w_j\}$; \tcp{Fills cells $Cell_{0,j}$} \label{fill1}
+			$Pyramid = Pyramid~\cup \{(X,j+1)~|~X \longrightarrow w_j\}$; \tcp{Fills cells $Cell_{0,j}$} \label{fill1}
 		}
 		\For{$i:=1 \to i_{max}$}{ \label{rows}
 			\For{$j:=0 \to j_{max,i}$}{ \label{eachCell}
 				\For{$k:=i-1 \to 0$}{ \label{cykCellCombs}
-					$Pyramid~\cup \{(X,j)\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$; \tcp{Fills cells $Cell_{i,j}$ \label{fill2}}
+					$Pyramid = Pyramid~\cup \{(X,k+j+1)\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$; \tcp{Fills cells $Cell_{i,j}$ \label{fill2}}
 				}
 			}
 		}
