@@ -45,8 +45,8 @@ For a word and a sub word Definition \ref{word} holds:
 \noindent For a language and a language over a grammar Definition \ref{wordLanguage} holds:
 \begin{DefGrey}\label{wordLanguage} \textbf{Language $L$ and language $\mathbf{L(G)}$}~
 	\begin{itemize}[leftmargin=1cm]
-		\item Language $L$:~~~$L$ is a language over an alphabet $\Sigma$ that is subset of $\Sigma^*$, that is a set of words over that alphabet. 
-		\item Language $L(G)$:~~~$L(G)$ is the language over a grammar $G$, that describes the set of words over that alphabet.
+		\item Language $L$:~~~$L$ is a language over an alphabet $\Sigma$, that is a subset of $\Sigma^*$, meaning it is a set of words over alphabet $\Sigma$. 
+		\item Language $L(G)$:~~~$L(G)$ is the language over a grammar $G$, that is the set of words the grammar $G$ describes.
 	\end{itemize}
 \end{DefGrey}
 \noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. \\
@@ -59,9 +59,14 @@ For a word and a sub word Definition \ref{word} holds:
 \subsection{General approaches of parsing} \label{approaches}
 Next, the basic approach that may help finding a good algorithm is explained informally analogous to \cite{Duda.2012}. At first, parsing is described in general and afterwards its two characteristics are explained.  
 \begin{DefGrey}
+	\textbf{Derivation}\\
+	A derivation of a word $w \in \Sigma^{*}$ over a grammar $G=(V,\ \Sigma,\ S,\ P)$ is a sequence of words $v_0, v_1,...,v_n,~v_i \in (V \cup \Sigma)^{*}$, $v_0 = S$, $v_n = w$, where $v_{i+1}$ is obtained by replacing an occurrence of some $lhse$ of a rule $p \in P$ by the corresponding $rhse$ in word $v_i$.
+\end{DefGrey}
+
+\begin{DefGrey}
 	\textbf{Backward Problem = Parsing ($\mathbf{w\overset{?}{\in}L(G)}$)}\\
 	Input: $w$ and a grammar $G$. \\
-	Output: $w \in L(G) \Longrightarrow$ derivation $d$.
+	Output: Derivation of $w$ over $G$ or error if $w \notin L(G)$.
 \end{DefGrey}
 \noindent It is called parsing if there is a word $w$ given and it is of interest to know if it is element of $L(G)$. Parsing is also the basis of the Cocke-Younger-Kasami algorithm.\\
 After having defined what parsing in general is, it is important to know the two different ways of parsing, that will act as an idea provider for the algorithms.
@@ -251,12 +256,12 @@ Later on it can be seen that the CYK algorithm can be used as a basis to find go
 		\KwOut{true $\Leftrightarrow w\in L(G)$}
 		$Pyramid = \emptyset $\;
 		\For{$j:=0 \to i_{max}$}{ \label{row1}
-			$Pyramid = Pyramid~\cup \{(X,j+1)~|~X \longrightarrow w_j\}$; \tcp{Fills cells $Cell_{0,j}$} \label{fill1}
+			$Pyramid = Pyramid\cup Cell_{0,j} = \{(X,j+1)~|~X \longrightarrow w_j\}$\; \label{fill1}
 		}
 		\For{$i:=1 \to i_{max}$}{ \label{rows}
 			\For{$j:=0 \to j_{max,i}$}{ \label{eachCell}
 				\For{$k:=i-1 \to 0$}{ \label{cykCellCombs}
-					$Pyramid = Pyramid~\cup \{(X,k+j+1)\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$; \tcp{Fills cells $Cell_{i,j}$ \label{fill2}}
+					$Pyramid = Pyramid\cup Cell_{i,j} = \{(X,k+j+1)\ |\ X\longrightarrow YZ,\ (Y,...) \in Cell_{k,j},\ (Z,...) \in Cell_{i-k-1,k+j+1} \}$\; \label{fill2}
 				}
 			}
 		}

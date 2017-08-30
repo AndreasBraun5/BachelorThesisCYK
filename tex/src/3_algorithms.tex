@@ -45,7 +45,7 @@ This procedure is needed to determine all possible compound variables out of all
 		\KwOut{$CellSet \subseteq V^2$}
 		$CellSet=\emptyset$\;
 		\For{$k:=i-1 \to 0$}{ \label{cellCombs}
-			$CellSet = CellSet \cup \{YZ\ |\ X\longrightarrow YZ,\ Y \in Cell_{k,j},\ Z \in Cell_{i-k-1,k+j+1} \}$\; \label{cellSet}
+			$CellSet = CellSet \cup \{YZ\ |\ X\longrightarrow YZ,\ (Y,...) \in Cell_{k,j},\ (Z,...) \in Cell_{i-k-1,k+j+1} \}$\; \label{cellSet}
 		}
 		\Return $CellSet$;
 		
@@ -900,7 +900,8 @@ Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} 
 		\KwIn{Word $w \in \Sigma^{*}$}
 		\KwOut{Set of rules $P$}
 		$P = \emptyset$;~~\tcp{$P \subseteq V \times (V^{2} \cup \Sigma)$}
-		$P = Distribute(\Sigma,\ V)$; \circled{A} \label{splitThenStepii}  \\		
+		$P = Distribute(\Sigma,\ V)$; \circled{A} \label{splitThenStepii}  \\	
+		$Pyramid = CYK(G,\ w)$\label{cyk}\;	
 		$Sol = (P_{Sol},~Cell_{i_{max},0})$;~~\tcp{$P_{Sol} \subseteq P~\wedge~ Cell_{i_{max},0} \in Pyramid$} \label{cell}
 		$Sol = SplitThenFillCYKRec(P,\ w,\ i_{max},\ 0)$\; \label{splitThenFillTreeStart}
 		\Return $P_{Sol}$\;
@@ -1974,7 +1975,7 @@ Note that the count of rules in the grammar is dependent on the count of nodes i
 				$choose~v\in V~uniformly~randomly$\;
 				\Return $(P \cup \{(v,~ w_j)\},\ v)$\; \label{termDistr1}	
 			}
-			\Return $(P,\ v_{lhse})$\;	\label{termDistr2}
+			\Return $(P,\ v_{lhse})$;~~\tcp{see note below} \label{termDistr2}
 		}
 		$choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
 		$(P,\ v_l) = SplitThenFillRec(P,\ w,\ (m-j-1),\ j)$\label{left}\;
@@ -1985,7 +1986,7 @@ Note that the count of rules in the grammar is dependent on the count of nodes i
 		$choose~v\in V~uniformly~randomly$\;
 		\Return $(P \cup \{(v,~v_l v_r)\},\ v)$\; \label{SplitAndFillReturn}
 		\footnotetext{
-			Line \ref{termDistr2}: There is the rule $v_{lhse}\rightarrow w_j$, then $v_{lhse}$ is the variable on the left side of the one rule that has the terminal $w_j$ as its rhse.
+			Line \ref{termDistr2}: $v_{lhse} \longrightarrow w_j \in P$ at this point, as terminal $w_j$ was already distributed.
 		}
 	\end{algorithm}
 }
@@ -3494,6 +3495,7 @@ Now that the choice of the stopping criteria has been decided in favour of RootN
 
 \begin{table}[h]
 	\centering
+	\begin{adjustbox}{max width=\textwidth}
 	\begin{tabular}{|l|c|c|c|c|c|c|c|}
 		\hline
 		\multicolumn{1}{|c|}{Algorithm} & SR   & \begin{tabular}[c]{@{}c@{}}Produci-\\ bility\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cardinality-\\ Rules\end{tabular} & \multicolumn{4}{c|}{Pyramid}                                                                                                                                                        \\ \cline{6-8} 
@@ -3504,6 +3506,7 @@ Now that the choice of the stopping criteria has been decided in favour of RootN
 		SplitThenFillCYK                   &\textbf{1.4\%}    &4.3\%                                                           &14.5\%                                                              &14.7\%      &15.8\%                                                        &27.6\%                                                         &28.5\%                                                           \\ \hline
 		SplitThenFill                    &\textbf{8.4\%}      &28.7\%                                                           &17.4\%                                                              &14.8\%      &18.3\%                                                        &25.3\%                                                         &27.3\%                                                           \\ \hline
 	\end{tabular}
+\end{adjustbox}
 	\caption{More detailed comparision of the average SRs over all the configurations of parameters for each algorithm.}
 	\label{comparisionsAlgorithmsMean}
 \end{table}
@@ -3511,6 +3514,7 @@ Now that the choice of the stopping criteria has been decided in favour of RootN
  
 \begin{table}[h]
 	\centering
+	\begin{adjustbox}{max width=\textwidth}
 	\begin{tabular}{|l|c|c|c|c|c|c|c|}
 		\hline
 		\multicolumn{1}{|c|}{Algorithm} & SR   & \begin{tabular}[c]{@{}c@{}}Produci-\\ bility\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cardinality-\\ Rules\end{tabular} & \multicolumn{4}{c|}{Pyramid}                                                                                                                                                        \\ \cline{6-8} 
@@ -3521,6 +3525,7 @@ Now that the choice of the stopping criteria has been decided in favour of RootN
 		SplitThenFillCYK                   &\textbf{36\%}    &51\%                                                           &97\%                                                              &71\%      &71\%                                                        &100\%                                                         &99\%                                                           \\ \hline
 		SplitThenFill                    &\textbf{74\%}      &100\%                                                           &100\%                                                              &74\%      &74\%                                                        &100\%                                                         &100\%                                                           \\ \hline
 	\end{tabular}
+\end{adjustbox}
 	\caption{More detailed comparison of the best possible SRs of each algorithm. (N = 1024)}
 	\label{comparisionsAlgorithms}
 \end{table}
