@@ -2,10 +2,10 @@
 
 \section{Algorithms}\label{algorithms}
 \subsection{Sub Modules} \label{subModules}
-Sub modules are parts of the algorithms that are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that will be explained in more detail for a better understanding of the algorithms in the following chapters. \circled{E} is explained not until Chapter \ref{var2} because it is needed only there.\\
+Sub modules are parts of the algorithms that are denoted circled with \circled{A}, \circled{B}, \circled{C}, \circled{D} and \circled{E}. They are procedures that will be explained in more detail for a better understanding of the algorithms in the following chapters. \circled{E} is explained in Chapter \ref{var2} because it is needed only there.\\
 
 \noindent \textbf{Distribute$(\Sigma,\ V) $ \circled{A} and Distribute$(V^2,\ V)$ \circled{B}:}\\
-The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. But in both cases a uniform random subset of the $Rhse$ is taken and again uniform randomly distributed over the set of available variables $V$. While distributing the terminals there exists at least one rule for every terminal used in the word $w$. The specifics of how they are distributed are described in the following algorithm: \\
+The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and the other time $V^2$ are distributed. In both cases a uniform random subset of $\Sigma$ or $V^2$ uniformly randomly distributed over the set of available variables $V$. While distributing the terminals there exists at least one rule for every terminal used in the word $w$. The specifics of how they are distributed are described in the following algorithm: \\
 
 \noindent
 \frame{
@@ -27,8 +27,8 @@ The difference between \circled{A} and \circled{B} is that one time $\Sigma$ and
 \noindent \textbf{Stopping Criteria \circled{C}:}\\
 Two kinds of stopping criteria are used to determine whether an algorithm should terminate early on because an already suitable exercise has been found:
 \begin{itemize}[noitemsep,nolistsep]
-	\item stop if more than half of the pyramid cells are not empty any more
-	\item stop if the root of the pyramid is not empty any more
+	\item stop if more than half of the pyramid cells are not empty any more.
+	\item stop if the root of the pyramid is not empty any more.
 \end{itemize}
 Both stopping criteria are compared in Chapter \ref{AnalysisOfAlgorithms} to see which one leads to more suitable exam exercises. \\
 \pagebreak
@@ -55,7 +55,7 @@ This procedure is needed to determine all possible compound variables out of all
 
 
 \begin{testexample}[Algorithm CalculateSubsetForCell]
-			In the following situation a rule is added to $Cell_{3,0}$ while using Algorithm \ref{CalculateSubsetForCell}.\\
+			In the following situation a rule is added to $P$ while using while using Algorithm \ref{CalculateSubsetForCell} on $Cell_{3,0}$.\\
 	\begin{minipage}{6in}
 		\centering
 				\raisebox{-0.5\height}{
@@ -171,12 +171,12 @@ This procedure is needed to determine all possible compound variables out of all
 \captionof{figure}{Example of Algorithm \ref{CalculateSubsetForCell} while applying it on $Cell_{3,0}$ via adding the rule $B \rightarrow SC$.}
 \noindent The calculation of CellSet for $Cell_{3,0}$ results in $\{SA,~SC,~BS\}$, whereas $SA$ and $SC$ stem from $Cell_{1,0}$ together with $Cell_{1,2}$ and $BA$ comes from $Cell_{0,0}$ together with $Cell_{2,1}$. Now if either one of the rules $lhse \rightarrow SA$, $lhse \rightarrow SC$ or  $lhse \rightarrow BS$ is added to the grammar, then $lhse\in Cell_{3,0}$. Here the rule  \textbf{B $\rightarrow$ SC} has been added and finally $(B,2)$ is element of $Cell_{3,0}$.
 \end{testexample}~\\
-In general if for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \in CellSet$ (Line~\ref{cellSet}) is added, then automatically $Cell_{i,j}$ will not be empty any more.
+In general if for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \in CellSet$ (Line~\ref{cellSet}) is added, then automatically $Cell_{i,j}$ is not empty any more.
 
 \pagebreak
 
 \subsection{Dice rolling the distributions only} \label{diceRollOnlyCYK}
-\noindent We start off by a primitive way of generating grammars, which will be the lower boundary while comparing the algorithms. Note that later on in Chapter \ref{successRates} it is described what "performing better" means in the context of this thesis. \\
+\noindent We start off by a primitive way of generating grammars, which can be used the lower boundary while comparing the algorithms. Note that later on in Chapter \ref{successRates} it is described what "performing better" means in the context of this thesis. \\
 
 \noindent
 \frame{
@@ -193,7 +193,7 @@ In general if for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \i
 	\end{algorithm}
 }
 
-\noindent The algoritm DiceRollOnly (Algorithm \ref{DiceRollOnlyCYK}) distributes terminals $\Sigma$ to at least one $lhse$, but a compound variable $vc \in V^2$ does not has to be distributed at all. Note that for each terminal of $\Sigma=\{a,b\}$ at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ is generated.\\
+\noindent The algoritm DiceRollOnly (Algorithm \ref{DiceRollOnlyCYK}) distributes terminals $\Sigma$ to at least one $lhse$. Note that for each terminal of $\Sigma=\{a,b\}$ at least one rule like $lhse\rightarrow a$ and $lhse\rightarrow b$ is generated. On the other hand not every compound variable $vc \in V^2$ has to be distributed.\\
 
 \begin{testexample}[Algorithm DiceRollOnlyCYK]
 	For each possible compound variable $V^2=\{AA,~AB,~AC,~AS,~BB,~BC,~BS,~$ $CC,$ $CS,SS\}$ it is possible that only a smaller subset like $\{AA,~BA,~CC,~SC\}$ is distributed (Figure \ref{DiceRollONlyCYKExample}) so that only rules like $lhse\rightarrow AA$, $lhse\rightarrow BA$, $lhse\rightarrow CC$ and $lhse\rightarrow SC$ exist.\\
@@ -215,7 +215,7 @@ In general if for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \i
 			\end{tabular}
 		} 	
 	\end{minipage}
-	\captionof{figure}{Shortend overview of the example of Algorithm \ref{DiceRollOnlyCYK}.}
+	\captionof{figure}{Shortened overview of the example of Algorithm \ref{DiceRollOnlyCYK}.}
 	\label{DiceRollONlyCYKExample}
 \end{testexample}
 
@@ -224,11 +224,11 @@ In general if for one $Cell_{i,j}$ a rule like $lhse \rightarrow cs$ with $cs \i
 \pagebreak
 \clearpage
 \subsection{Dice rolling and Bottom-Up variant one} \label{var1}
-Another approach to design an algorithm is after the Bottom-Up approach (Chapter \ref{approaches}) in which the parsing table is filled starting from the leaves in direction of the root node.\\
+Another approach to design an algorithm uses the Bottom-Up approach (Chapter \ref{approaches}) in which the parsing table is filled starting from the leaves in direction of the root node.\\
 The basic idea is to guide the choice of rules while distributing the compound variables $V^2$. In Algorithm \ref{DiceRollOnlyCYK}, the naive approach, it is possible that the terminals are distributed to the variables $A$ and $B$ and Algorithm \ref{DiceRollOnlyCYK} completely discards this fact during the distribution of the compound variables (see Figure \ref{var1ExampleMiddle} in the middle). \\
 
 \begin{testexample}[Disregarding already added rules]
-	Figure \ref{var1ExampleTop} shows the starting situation for this example.
+	Figure \ref{var1ExampleTop} shows the starting situation for this example:
 	
 		\centering
 				\raisebox{-0.5\height}{
@@ -334,7 +334,7 @@ The basic idea is to guide the choice of rules while distributing the compound v
 		\captionof{figure}{Disregarding the already added rules: Starting situation.}
 	    \label{var1ExampleTop}
 	    
-	   \justify If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they do not directly help to fill the parsing table and bloat the grammar with useless rules (see Figure \ref{var1ExampleMiddle}). This is a unfortunate adding of rules that does not help to fill the parsing table and can happen in Algorithm \ref{DiceRollOnlyCYK}.
+	   \justify If rules like $lhse \rightarrow CC$ or $lhse \rightarrow SC$ are added they do not directly help to fill the parsing table and bloat the grammar with rules (see Figure \ref{var1ExampleMiddle}). This is a unfortunate adding of rules that does not help to fill the parsing table and this may happen in Algorithm \ref{DiceRollOnlyCYK}.
 	   
 	   \centering
 		\begin{minipage}{6in}
@@ -440,7 +440,7 @@ The basic idea is to guide the choice of rules while distributing the compound v
 				}	
 			}
 		\end{minipage}
-	\captionof{figure}{Disregarding the already added rules middle: Unfortunate adding. Bottom: Advantageous adding of rules.}
+	\captionof{figure}{Disregarding the already added rules: Unfortunate adding.}
 	\label{var1ExampleMiddle}
 	
 	\justify More reasonable rules to add would be $lhse \rightarrow BA$, $lhse \rightarrow AA$ or $lhse \rightarrow AB$ (see Figure \ref{var1ExampleDown}). This is an advantageous adding of rules as intended in Algorithm \ref{BottomUpDiceRollVar1} that helps to fill the $pyramid$.
@@ -551,11 +551,14 @@ The basic idea is to guide the choice of rules while distributing the compound v
 				}	
 			}
 		\end{minipage}	
-\captionof{figure}{Disregarding the already added rules Bottom: Advantageous adding of rules.}
+\captionof{figure}{Disregarding the already added rules: Advantageous adding of rules.}
 \label{var1ExampleDown}
-\end{testexample}
+\end{testexample}~\\
+
+\noindent Algorithm 5 is seen on the next page.\\
+
 \pagebreak
-\noindent Algorithm \ref{BottomUpDiceRollVar1} continues on this idea: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating (Line \ref{var1D}) variable compounds and to finally add a part of them (Line \ref{var1Add}) in form of rules to the grammar. As explanation, for each chosen cell a $CellSet$ (Line \ref{var1D}) is calculated, that only contains reasonable variable compounds. This way only variable compounds are added that directly help to fill the parsing table.\\
+\noindent Algorithm \ref{BottomUpDiceRollVar1} continues on this idea: After distributing the terminals (Line \ref{distrTerm}) the updated parsing table (Line \ref{var1Update}) is always taken into consideration while calculating variable compounds (Line \ref{var1D})  and to finally add a part of them as rules (Line \ref{var1Add}) to the grammar. As explanation, for each chosen cell a $CellSet$ (Line \ref{var1D}) is calculated, that only contains reasonable variable compounds. This way only variable compounds are added that directly help to fill the parsing table.\\
 
 \noindent
 \frame{
@@ -572,7 +575,7 @@ The basic idea is to guide the choice of rules while distributing the compound v
 			$J = \{0,~...~,~j_{max} -1\}$;~~\tcp{$J \subseteq \mathbb{N}$}
 			$CellSet = \emptyset$;~~\tcp{$CellSet \subseteq V^2$} \label{var1A}
 			\While{$|J|>0$}{
-				$choose\ one\ j \in J\ uniform\ randomly$\;
+				$choose\ one\ j \in J\ uniformly\ randomly$\;
 				$J = J \setminus \{j\} $\label{chooseJ}\;
 				$CellSet = CalculateSubsetForCell(Pyramid,\ i,\ j)$;  \circled{D} \label{var1D}\\
 				$P = P \cup Distribute(CellSet,\ V)$;  \circled{B} \label{var1Add}\\
@@ -592,7 +595,7 @@ The basic idea is to guide the choice of rules while distributing the compound v
 
 \pagebreak
 \subsection{Dice rolling and Bottom-Up variant two} \label{var2}
-While examining Algorithm \ref{BottomUpDiceRollVar1} via its log file (Figure \ref{logsVar1}) it can be seen that already a very small number of rules in the grammar is sufficient so that the stopping criteria \circled{C} is met \textendash~the cells that indirectly decide what rules to add are mostly from row one ($i=1$) and sometimes if at all from row two ($i=2$).\\
+While examining Algorithm \ref{BottomUpDiceRollVar1} via its log file (Figure \ref{logsVar1}) it can be observed that already a very small number of rules in the grammar is sufficient so that the stopping criteria \circled{C} is met \textendash~the cells that indirectly decide what rules to add are mostly from row one ($i=1$) and sometimes if at all from row two ($i=2$).\\
 
 \begin{figure}[h]
 	\centering
@@ -605,10 +608,10 @@ While examining Algorithm \ref{BottomUpDiceRollVar1} via its log file (Figure \r
 			Final cell worked with Index: 1,3\\
 			Final cell worked with Index: 2,4\\
 	\end{tabular}
-	\caption{Overview of log files of Algorithm \ref{BottomUpDiceRollVar1} with $|V|=4$ and $|\Sigma|=2$.}
+	\caption{Digest of the log file of Algorithm \ref{BottomUpDiceRollVar1} with $|V|=4$ and $|\Sigma|=2$.}
 	\label{logsVar1}
 \end{figure}
-\noindent This again leads to a further improvement idea to introduce a row dependent $threshold_i$ (Line \ref{var2threshold} of Algorithm \ref{BottomUpDiceRollVar2} BottomUpDiceRollVars) which helps that more cells with $i\geq2$ are chosen \textendash~what possibly leads to more diverse grammars being generated. The diversity, in context of the procedure BottomUpDiceRollVar1 (Algorithm \ref{BottomUpDiceRollVar1}), is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the grammar will contain one of these $lhse$s as explained in Chapter \ref{var1}. This is caused by the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the relatively small number of rules that are added to the grammar altogether. \\
+\noindent This again leads to the next improvement idea. This is to introduce a row dependent $threshold_i$ (Line \ref{var2threshold} of Algorithm \ref{BottomUpDiceRollVar2} BottomUpDiceRollVars) which helps that more cells with $i\geq2$ are chosen \textendash~what possibly leads to more diverse grammars being generated. The diversity, in context of the procedure BottomUpDiceRollVar1 (Algorithm \ref{BottomUpDiceRollVar1}), is somewhat too restricted to the $lhse$s that have one of the terminals as its $rhse$. Most of the rules that are part of the grammar will contain one of these $lhse$s as explained in Chapter \ref{var1}. This is caused by the basic idea of Algorithm \ref{BottomUpDiceRollVar1} but also due to the relatively small number of rules that are added to the grammar altogether. \\
 Further diversification is achieved through the usage of \circled{E} (Line \ref{chooseVc} of Algorithm \ref{BottomUpDiceRollVar2} BottomUpDiceRollVars), i.e. the variable compounds that already have been used in a row with low index $i$ are at a disadvantage to be picked again (A more detailed explanation is found at the and of this chapter).\\
 
 \begin{testexample}[Better diversity in a grammar]
@@ -659,7 +662,7 @@ Further diversification is achieved through the usage of \circled{E} (Line \ref{
 				$RowSet = RowSet \cup \{(xy,i)\ |\ xy \in CalculateSubsetForCell(Pyramid,\ i,\ j) $\circled{D}$\}$\label{rowSet}\;  
 			}
 			\While{$threshold_i\ not\ reached $}{ \label{var2threshold}
-				$choose~ one~ (xy,\ i)~ from~ RowSet~ uniform\ randomly\ with$ $probability~depending~on~i $;\label{chooseVc} \circled{E}  \\
+				$choose~ one~ (xy,i)~ from~ RowSet~ uniformly\ randomly\ with$ $probability~depending~on~i $;\label{chooseVc} \circled{E}  \\
 				$P = P \cup Distribute(xy,\ V) $; \circled{B}  \\
 				$Pyramid = CYK(G,\ w)$\;
 				\If{$stopping\ criteria~met$~\circled{C}}{
@@ -675,36 +678,39 @@ Further diversification is achieved through the usage of \circled{E} (Line \ref{
 }
 ~
 
-\noindent \textbf{Choose one xy from (xy,i) $\in$ RowSet uniform randomly with probability depending on row i \circled{E} :}\\
-At some point a decision needs to me made about what rule $lhse\rightarrow xy$ with $xy \in V^2$ will be added to the grammar. Depending on which $xy$ is chosen the influence on the entire pyramid varies. Some $xy$ only change the parsing table in one of its later rows ($i>>1$) but other $xy$ even change it in one of the first rows. If there is a change in one of the first rows it is more likely that the entire pyramid will be filled with more elements. Now the task of choosing rules to add, that only change the pyramid in one of the later rows, with a higher probability than the others is tackled with \circled{E}. \\
-The approach here only makes sense together with \circled{D} in which all possible compound variables are calculated that help to fill one specific cell. $RowSet \subseteq \{(xy,i)\ |\ x,y \in V \wedge i \in \mathbb{N} \}$ whereas the $xy$ are calculated with \circled{D} and $i$ is the row number of the specific cell. \pagebreak \clearpage
+\noindent \textbf{Choose one xy from (xy,i) $\in$ RowSet uniformly randomly with probability depending on row i \circled{E} :}\\
+At some point a decision needs to me made about what rule $lhse\rightarrow xy$ with $xy \in V^2$ will be added to the grammar. Depending on the chosen $xy$ the influence on the entire pyramid varies. Some $xy$ only change the parsing table in one of its later rows ($i>>1$) but other $xy$ even change it in one of the first rows. If there is a change in one of the first rows it is more likely that the entire pyramid will be filled with more elements. Now the task of choosing rules to add, that only change the pyramid in one of the later rows with a higher probability than the others is tackled with \circled{E}. \\
+The approach here only makes sense together with \circled{D} where all possible compound variables are calculated that would help to fill one specific cell. $RowSet \subseteq \{(xy,i)\ |\ x,y \in V \wedge i \in \mathbb{N} \}$ where the $xy$ are calculated with \circled{D} and $i$ is the row number of the specific cell. \pagebreak \clearpage
 
 \begin{testexample}[Procedure \circled{E}]
-	With $RowSet$ the choice can be influenced regarding the row number $i$: Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be merged to its lowest $i$, as following: $RowSet = \{(AB,3),~(AB,1),~(AB,5),~... \}$ will become $RowSet = \{(AB,1),~... \}$. Afterwards all elements of $RowSet$ will be placed in the $RowMultiSet$ that  can contain multiple equivalent elements. Now each element of $RowMultiSet$ will be weighted according to their $i$. That means that elements like $(AB,1)$ will only occur one time while elements like $(BC,3)$ will occur three times and so on: $RowMultiSet = \{(AB,1),~(BC,3),~...\}$ becomes $RowMultiSet = \{(AB,1),~(BC,3),~(BC,3),~(BC,3),~...\}$. Now one element will be chosen uniformly randomly out of this weighted $RowMultiSet$. In the example in Figure \ref{exampleProcE} this results in $xy = BC$.\\
+	With $RowSet$ the choice can be influenced depending on the row number $i$: Firstly the $RowSet$ is compressed, i.e. every tuple with the same $xy$ will be merged to its lowest $i$, as following: $RowSet = \{(AB,3),~(AB,1),~(AB,5),~... \}$ will become $RowSet = \{(AB,1),~... \}$. Afterwards all elements of $RowSet$ will be placed in the $RowMultiSet$ that  can contain multiple equivalent elements. Now each element of $RowMultiSet$ will be weighted according to their $i$. That means that elements like $(AB,1)$ will only occur one time while elements like $(BC,3)$ will occur three times and so on: $RowMultiSet = \{(AB,1),~(BC,3),~...\}$ becomes $RowMultiSet = \{(AB,1),~(BC,3),~(BC,3),~(BC,3),~...\}$. Now one element will be chosen uniformly randomly out of this weighted $RowMultiSet$. In Figure \ref{exampleProcE} this results in $xy = BC$.\\
 	
+	\begin{adjustbox}{max width=\textwidth}	
 	\begin{minipage}{6in}
 		\centering
 		\raisebox{-0.5\height}{
 			\begin{tabular}{l l}
 				$RowSet = \{(AB,3),(AB,1),(AB,5),... \}$ & // compress \\
-				$RowSet = \{(AB,1),... \}$ & // put in RowMultiSet \\
+				$RowSet = \{(AB,1),... \}$ & // put into RowMultiSet \\
 				$RowMultiSet = \{(AB,1),(BC,3),...\}$ & // weight elements \\
 				$RowMultiSet = \{(AB,1),(BC,3),(BC,3),(BC,3),...\}$ & // pick element\\
 				$xy = BC$
 			\end{tabular} 
 		} 		
 	\end{minipage}
+	\end{adjustbox}
 	\captionof{figure}{Overview of the procedure E.}
 	\label{exampleProcE}
+	
 \end{testexample}
 
 \pagebreak
 \subsection{Split Top-Down and fill Bottom-Up variant one}
-Until now only algorithms have been discussed that purely use the Bottom-Up approach, so another way is to utilize the Top-Down approach in combination with the Bottom-Up approach.\\
+Until now only algorithms have been discussed that purely use the Bottom-Up approach. Another way is to utilize the Top-Down approach in combination with the Bottom-Up approach.\\
 The idea here is first to distribute the terminals (Line \ref{splitThenStepii} of Algorithm \ref{SplitThenFill} SplitThenFillCYK) and then to uniformly randomly generate a predefined structure of the derivation tree (Line \ref{splitThenFillTreeStart} of Algorithm \ref{SplitThenFill} and in general Algorithm \ref{SplitThenFillRecursion} SplitThenFillCYKRec) Top-Downwards and then again to fill the parsing table Bottom-Upwards accordingly to fill this derivation tree. The structure of the derivation tree for instance can look as follows:\\
 
 \begin{testexample}[Derivation structure in the pyramid and as a derivation tree]
-	The numbers correspond to the depth in the tree.\\
+	The numbers correspond to the depth of cell in the tree.\\
 	\begin{minipage}{6in}
 		\centering
 		\resizebox{0.8\linewidth}{!}{
@@ -883,13 +889,11 @@ The idea here is first to distribute the terminals (Line \ref{splitThenStepii} o
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\captionof{figure}{Derivation structure shown in the pyramid in the top and below as a derivation tree.}
+	\captionof{figure}{Derivation structure shown as a pyramid in the top and as a derivation tree below.}
 	\label{treeStruct}
 \end{testexample}~\\
 
-\noindent As the name of the algorithms implies only after completely generating the structure of the derivation tree (splitting of the word in sub words) the rules are added to the grammar that help filling the cells occurring in the derivation tree. The phrase CYK is included in the name because in every recursion the CYK algorithm is executed (Line \ref{cyk2}) one time.\\
-Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} SplitThenFillCYKRec Line \ref{splitThenFillB}) the already available information regarding the other rules is used to determine if a new rule is needed to fill this node of the derivation tree (Line \ref{empty} of Algorithm \ref{SplitThenFillRecursion} SplitThenFillCYKRec).\\
-
+\noindent As the name of the algorithms implies only after completely generating the structure of the derivation tree (splitting of the word in sub words) the rules are added to the grammar that help filling the cells occurring in this derivation tree. The phrase CYK is included in the name because in every recursion the CYK algorithm is executed (Line \ref{cyk2} of Algorithm 8) once.\\
 
 \noindent
 \frame{
@@ -911,7 +915,10 @@ Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} 
 	\end{algorithm}
 }
 
-\noindent
+\pagebreak
+
+\noindent Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} SplitThenFillCYKRec Line \ref{splitThenFillB}) the already available information regarding the other rules is used to determine if a new rule is needed to fill this node of the derivation tree (Line \ref{empty} of Algorithm \ref{SplitThenFillRecursion} SplitThenFillCYKRec).\\
+
 \frame{
 	\begin{algorithm}[H] %or another one check
 		\caption{SplitThenFillCYKRec}
@@ -923,7 +930,7 @@ Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} 
 		\If{$i=0$}{
 			\Return $(P,\ Cell_{i,j})$\label{row0}\;
 		}	
-		$choose\ one\ m\ uniform\ randomly\ in\ [j+1,\ j+i]$\;
+		$choose\ one\ m\ uniformly\ randomly\ in\ [j+1,\ j+i]$\;
 		$(P,\ Cell_l) = SplitThenFillCYKRec(P,\ w,\ (m-j-1),\ j)$\label{left}\;
 		$(P,\ Cell_r) = SplitThenFillCYKRec(P,\ w,\ (j+i-m),\ m)$\label{right}\;
 		$Pyramid = CYK(G,\ w)$\label{cyk2}\;
@@ -1107,11 +1114,11 @@ Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} 
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFillCYK part 1 after adding $A \rightarrow a$, $B \rightarrow b$ and $C \rightarrow c$.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFillCYK part 1 after adding the rules $A \rightarrow a$, $B \rightarrow b$ and $C \rightarrow c$.}
 	\label{IllustrationAlgorithmSplitThenFillPart1}
 	~
 	
-	\noindent After adding the terminals to the grammar now the recursion step at $Cell_{1,1}$ is taken on. Now $Cell_l=\{B_2\}$ and $Cell_r=\{A_3\}$ and therefore $VarComp=\{BA\}$. Adding the rule $S \rightarrow BA$ leads to the following $Pyramid$ shown in Figure \ref{IllustrationAlgorithmSplitThenFillPart2}: \\
+	\noindent After adding the rules for the terminals to the grammar the recursion step at $Cell_{1,1}$ is taken on. Now $Cell_l=\{B_2\}$ and $Cell_r=\{A_3\}$ and therefore $VarComp=\{BA\}$. Adding the rule $S \rightarrow BA$ leads to the following $Pyramid$ shown in Figure \ref{IllustrationAlgorithmSplitThenFillPart2}: \\
 	
 	\begin{minipage}{6in}
 			\centering
@@ -1271,7 +1278,7 @@ Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} 
 				\end{tikzpicture}
 			}
 		\end{minipage}
-		\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFillCYK part 2 after adding $S\rightarrow BA$.}
+		\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFillCYK part 2 after adding the rule $S\rightarrow BA$.}
 		\label{IllustrationAlgorithmSplitThenFillPart2}
 		
 		\pagebreak
@@ -1439,7 +1446,7 @@ Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} 
 		\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFillCYK part 3 after adding the rule $A\rightarrow BS$.}
 		\label{IllustrationAlgorithmSplitThenFillPart3}
 		~\\
-		The next two analogous steps are described with Figure \ref{IllustrationAlgorithmSplitThenFillPart4} and with Figure \ref{IllustrationAlgorithmSplitThenFillPart5}. \\
+		The next two steps are described analogously with Figure \ref{IllustrationAlgorithmSplitThenFillPart4} and with Figure \ref{IllustrationAlgorithmSplitThenFillPart5}. \\
 		
 		\begin{minipage}{6in}
 			\centering
@@ -1766,7 +1773,7 @@ Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} 
 		\captionof{figure}{Illustration of Algorithm \ref{SplitThenFill} SplitThenFillCYK part 5. The recursion step in $Cell_{2,3}$ is  resolved by adding the rule $C\rightarrow BC$.}
 		\label{IllustrationAlgorithmSplitThenFillPart5}
 		~\\
-		\noindent Finally the last recursion step that decides on the content of the root cell is shown in Figure \ref{IllustrationAlgorithmSplitThenFillPart6}. In this case the start variable is contained in the root of the pyramid.\\
+		\noindent Finally the last recursion step that decides on the content of the root cell is shown in Figure \ref{IllustrationAlgorithmSplitThenFillPart6}. In this case the start variable is luckily contained in the root of the pyramid.\\
 		
 		\begin{minipage}{6in}
 			\centering
@@ -1942,9 +1949,9 @@ Now every time before adding a new rule (Algorithm \ref{SplitThenFillRecursion} 
 \subsection{Split Top-Down and fill Bottom-Up variant two}
 
 
-\noindent Yet another algorithm that uses the split Top-Down and fill Bottom-Up behaviour is Algorithm \ref{SplitAndFill}.\\
-The algorithm generates recursively Top-Down the derivation tree structure and the rules are added Bottom-Upwards to the grammar that would help to fill the structure of the derivation tree (see Figure \ref{treeStruct} for this issue). In Line 2 to Line 8 of Algorithm \ref{SplitAndFillRecursion} it is ensured that every terminal of the word is $rhse$ of exactly one rule. Line \ref{splitAndFillRecLastStep}, of the same algorithm, guarantees that the start variable is always element of the root cell and Line \ref{SplitAndFillReturn} is responsible to add rules that would fill the other cell combinations according to the predefined tree structure. \\
-One difference to Algorithm \ref{SplitThenFill} is that no CYK algorithm is run in every recursion step to evaluate what elements are already in the pyramid and as a consequence the algorithm is quite fast. Moreover no stopping criteria is used. \\
+\noindent Yet another algorithm that uses the split Top-Down and fill Bottom-Up behaviour is Algorithm \ref{SplitAndFill} SplitAndFill.\\
+The algorithm recursively generates the derivation tree structure in a Top-Down fashion, while the rules are added to the grammar from the bottom up. In Line 2 to Line 8 of Algorithm \ref{SplitAndFillRecursion} it is ensured that every terminal of the word is $rhse$ of exactly one rule. Line \ref{splitAndFillRecLastStep}, of the same algorithm, guarantees that the start variable is always element of the root cell and Line \ref{SplitAndFillReturn} is responsible to add rules that would fill the other cell combinations according to the predefined tree structure. \\
+One difference to Algorithm \ref{SplitThenFill} is that no CYK algorithm is run once in every recursion step to evaluate what elements are already in the pyramid and as a consequence the algorithm is quite fast. \\
 
 \noindent
 \frame{
@@ -1998,7 +2005,7 @@ One difference to Algorithm \ref{SplitThenFill} is that no CYK algorithm is run 
 \begin{testexample}[Algorithm SplitThenFill]
 	According to this algorithm, only productions corresponding to the tree structure are added to the grammar. The same example tree structure as in Figure \ref{treeStruct} is used here \textendash~remember that each number represents the recursion depth of its subtree.\\ For illustration purposes, the pyramid is shown to reflect the immediate changes of the added rules to the pyramid in the Figures \ref{IllustrationAlgorithmSplitAndFillPart1} to \ref{IllustrationAlgorithmSplitAndFillPart6}. Note that the pyramid is actually not filled during the execution of the algorithm.\\	
 	
-	\noindent At first the rule $B\longrightarrow b$ is added as shown in Figure \ref{IllustrationAlgorithmSplitAndFillPart1}.\\
+	\noindent At first the rule $B\rightarrow b$ is added as shown in Figure \ref{IllustrationAlgorithmSplitAndFillPart1}.\\
 	\pagebreak
 	
 	\begin{minipage}{6in}
@@ -2162,7 +2169,7 @@ One difference to Algorithm \ref{SplitThenFill} is that no CYK algorithm is run 
 	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} SplitThenFill part 1. To resolve the recursion step that fills $Cell_{0,0}$ the rule $B\rightarrow b$ is added.}
 	\label{IllustrationAlgorithmSplitAndFillPart1}~\\
 	
-	\noindent Next are the rules $A\longrightarrow a$ and $S\longrightarrow BA$ as seen in Figure \ref{IllustrationAlgorithmSplitAndFillPart2}. To resolve the recursion step that fills $Cell_{0,1}$ no rule is added because a rule $lhse\rightarrow b$ already exists. To fill $Cell_{0,2}$ the rule $A\rightarrow a$ and regarding $Cell_{1,1}$ the rule $S \rightarrow BA$ is added.\\
+	\noindent Next are the rules $A\rightarrow a$ and $S\rightarrow BA$ as seen in Figure \ref{IllustrationAlgorithmSplitAndFillPart2}. To resolve the recursion step that fills $Cell_{0,1}$ no rule is added because a rule $lhse\rightarrow b$ already exists. To fill $Cell_{0,2}$ the rule $A\rightarrow a$ and regarding $Cell_{1,1}$ the rule $S \rightarrow BA$ is added.\\
 	
 	
 	\begin{minipage}{6in}
@@ -2323,7 +2330,7 @@ One difference to Algorithm \ref{SplitThenFill} is that no CYK algorithm is run 
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} SplitThenFill part 2. Adding of the rules $A\longrightarrow a$ and $S\longrightarrow BA$.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} SplitThenFill part 2. Adding of the rules \\$A\rightarrow a$ and $S\rightarrow BA$.}
 	\label{IllustrationAlgorithmSplitAndFillPart2}
 	~\\
 	\pagebreak
@@ -2488,10 +2495,10 @@ One difference to Algorithm \ref{SplitThenFill} is that no CYK algorithm is run 
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} SplitThenFill part 3. Adding of the rule $C \longrightarrow BS$ to fill the $Cell_{2,0}$.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} SplitThenFill part 3. Adding of the rule \\$C \rightarrow BS$ to fill the $Cell_{2,0}$.}
 	\label{IllustrationAlgorithmSplitAndFillPart3}~\\
 	
-	\noindent Analogously the other cells are filled. $Cell_{0,3}$ is responsible for the rule $C \rightarrow c$, $Cell_{0,4}$ does not cause a rule because again there already is the rule $B \rightarrow b$, $Cell_{1,3}$ contributes for the rule $B \rightarrow CB$, $Cell_{0,5}$ does not add a rule because of $C\rightarrow c$ and to fill $Cell_{2,3}$ the rule $A \rightarrow BC$ is added.\\
+	\noindent Analogously the other cells are filled. $Cell_{0,3}$ is responsible for the rule $C \rightarrow c$, $Cell_{0,4}$ does not cause a rule because again already the rule $B \rightarrow b$, $Cell_{1,3}$ contributes for the rule $B \rightarrow CB$, $Cell_{0,5}$ does not add a rule because of $C\rightarrow c$ and to fill $Cell_{2,3}$ the rule $A \rightarrow BC$ is added.\\
 	
 	\begin{minipage}{6in}
 		\centering
@@ -2651,12 +2658,12 @@ One difference to Algorithm \ref{SplitThenFill} is that no CYK algorithm is run 
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} SplitThenFill part 4. Adding of the rules $C\longrightarrow c$, $B \longrightarrow CB$ and  $A\longrightarrow BC$.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} SplitThenFill part 4. Adding of the rules \\$C\rightarrow c$, $B \rightarrow CB$ and  $A\rightarrow BC$.}
 	\label{IllustrationAlgorithmSplitAndFillPart4}
 	~\\
 	\pagebreak
 	
-	\noindent To fill the cell in the root a rule must be added that has the start variable as its $lhse$ that guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added.\\
+	\noindent To fill the cell in the root a rule must be added that has the start variable as its $lhse$ which guarantees $w \in L(G)$. Here the rule $S\rightarrow CA$ is added.\\
 	
 	\begin{minipage}{6in}
 		\centering
@@ -2816,10 +2823,10 @@ One difference to Algorithm \ref{SplitThenFill} is that no CYK algorithm is run 
 			\end{tikzpicture}
 		}
 	\end{minipage}
-	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} SplitThenFill part 5. Adding of the rule $S\longrightarrow CA$.}
+	\captionof{figure}{Illustration of Algorithm \ref{SplitAndFill} SplitThenFill part 5. Adding of the rule \\$S\rightarrow CA$.}
 	\label{IllustrationAlgorithmSplitAndFillPart5}~\\
 	
-	\noindent Finally a comparison of Figure \ref{IllustrationAlgorithmSplitAndFillPart5} and Figure \ref{IllustrationAlgorithmSplitAndFillPart6} shows the difference between parsing table after the last step of the algorithm and what the complete parsing table would look like. Additional variables are found in the cells $Cell_{1,4}$, $Cell_{2,3}$, $Cell_{4,0}$ and $Cell_{5,0}$.\\
+	\noindent Finally a comparison of Figure \ref{IllustrationAlgorithmSplitAndFillPart5} and Figure \ref{IllustrationAlgorithmSplitAndFillPart6} shows the difference between the parsing table after the last step of the algorithm and the completely updated parsing table. Additional variables are found in the cells $Cell_{1,4}$, $Cell_{2,3}$, $Cell_{4,0}$ and $Cell_{5,0}$.\\
 	
 	\begin{minipage}{6in}
 		\centering
@@ -3001,7 +3008,7 @@ One difference to Algorithm \ref{SplitThenFill} is that no CYK algorithm is run 
 \pagebreak
 \subsection{Evaluation of Algorithms} \label{AnalysisOfAlgorithms}
 \subsubsection{Success Rates} \label{successRates}
-\noindent Until now different algorithms have been described that could be used in the application to create suitable exam exercises. But it is of interest to find out which algorithm performs the best and which algorithm should actually be used in the application to generate the exercises. Therefore a composite $Success~Rate$ is defined that measures the algorithms performance for the different requirements towards an exam exercise.  \\
+\noindent Until now different algorithms have been described that could be used in a application to create suitable exam exercises. But it is of interest to find out which algorithm performs the best and which algorithm should actually be used to generate the exercises. Therefore a composite $Success~Rate$ is defined that measures the algorithms performance for the different requirements towards an exam exercise.  \\
 
 \noindent Here $N \in  \mathbb{N}$ is the sample size of all generated grammars while examining the algorithms. Before defining the overall Success Rate ($SR$) three other Success Rates set the basis for it.\\
 
@@ -3027,7 +3034,7 @@ $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \} \longrightarrow Cell_{i,j} \
 For further illustration see Figure \ref{simplificationExample} on the next page. 
 \clearpage
 
-\begin{testexample}[Simplification of cell in a pyramid]
+\begin{testexample}[Simplification of cells in a pyramid]
 	\noindent The pyramid with the simpler cells is shown right.\\
 	
 	\begin{minipage}{6in}
@@ -3296,7 +3303,7 @@ For further illustration see Figure \ref{simplificationExample} on the next page
 	\label{simplificationExample}
 \end{testexample}
 \noindent \textbf{Description of the Algorithm CheckForceCombinationPerCell: }\\
-The experience of professor Martens shows that usually most students easily find a pattern of how to fill the first two rows of the $pyramid$ during the execution of the CYK algorithm but do more mistakes starting at row $i\geq2$. Students often do not know exactly what cell combinations need to be considered while filling one specific cell of the pyramid. They simply take only the one top left cell and the one top right cell and try to find rules in the grammar that match the resulting compound variables. The approach of only finding patterns and not thoroughly understanding the algorithm is countered by Algorithm \ref{checkForceCombinationPerCell} CheckForceCombinationPerCell. Here a cell forces if it is possible to see if the student has clearly understood the algorithm and not only takes the next top left cell and the next top right cell.\\
+The experience of professor Martens shows that usually most students easily find a pattern of how to fill the first two rows of the $pyramid$ during the execution of the CYK algorithm, but do more mistakes starting at row $i\geq2$. Students often do not know exactly what cell combinations need to be considered while filling one specific cell of the pyramid. They simply take only the one top left cell and the one top right cell and try to find rules in the grammar that match the resulting compound variables. The approach of only finding patterns and not thoroughly understanding the algorithm is countered by Algorithm \ref{checkForceCombinationPerCell} CheckForceCombinationPerCell. Here a cell forces if it is possible to see if the student has clearly understood the algorithm and not only takes the next top left cell and the next top right cell.\\
 
 \noindent 
 \frame{
@@ -3304,7 +3311,7 @@ The experience of professor Martens shows that usually most students easily find
 		\caption{CheckForceCombinationPerCell}
 		\label{checkForceCombinationPerCell}
 		\SetAlgoLined
-		\KwIn{$ CellBottom,~CellTopLeft,~CellTopRight \subseteq V,~P \subseteq V \times (V^{2} \cup \Sigma) $ }
+		\KwIn{$ CellBottom,~CellTopLeft,~CellTopRight \subseteq V;~P \subseteq V \times (V^{2} \cup \Sigma) $ }
 		\KwOut{$true \iff |VarsForcing| > 0$}
 		$VarsForcing = \emptyset$;~~\tcp{$VarsForcing \subseteq V$} 
 		$VarComp = \{xy\ |\ x \in CellTopLeft\ \wedge\ y \in CellTopRight \}$\;
@@ -3316,7 +3323,7 @@ The experience of professor Martens shows that usually most students easily find
 		}
 		\Return $|VarsForcing| > 0$\;
 		\footnotetext{
-			Note: $CellBottom=Cell_{i,j}$, $CellTopLeft=Cell_{i-1,j}$ and  $CellTopRight=Cell_{i-1,j-1}$\\
+			Note: $CellBottom=Cell_{i,j}$, $CellTopLeft=Cell_{i-1,j}$ and  $CellTopRight=Cell_{i-1,j-1}$.\\
 			Line \ref{rhses}: Get all rules of $P$ that have $v$ as the $lhse$ and add their $rhse$ to $Rhses$.\\
 			Line \ref{forces}: If no $rhse \in Rhse$ can be found in VarComp, then this variables forces, concluding that this cell as a hole forces.
 		}
@@ -3443,13 +3450,13 @@ The experience of professor Martens shows that usually most students easily find
 \noindent The three success rates have been explained and finally the overall Success Rate can be specified. \\
 \noindent\textbf{Success Rate:}
 A generated exercise contributes to the Success Rate (SR) if it contributes to the SR-Producibility, to the SR-Cardinality-Rules and to the SR-Pyramid at the same time.\\
-It holds: $SR = n / N$, where $n$ is the count of exercises.
+It holds: $SR = n / N$, where $n$ is the count of exercises that fulfils the three requirements.
 \subsubsection{Problem space exploration}
 Suitable ranges of parameters, to create exam exercises with, are:
 \begin{itemize}[noitemsep,nolistsep]
 	\item count of variables = [2;~8]
 	\item count of terminals = [2;~8]
-	\item size of word = [4;~11]
+	\item wordlength = [4;~11]
 \end{itemize}
 %\vspace{0.6cm}
 This input parameter ranges are used during further comparison. Each calculated SR is based on a batch size N = 1024.
@@ -3463,11 +3470,11 @@ Table \ref{comparisionMeanValue} shows the average SRs over all configurations o
 	\begin{tabular}{l|c|c|}
 		\cline{2-3}
 		& MoreThanHalf & RootNotEmpty \\ \hline
-		\multicolumn{1}{|l|}{DiceRollOnly}  & 0.3\%             & \textbf{0.3\%}            \\ \hline
-		\multicolumn{1}{|l|}{DiceRollVar1}  & 0.5\%             & \textbf{1.3\%}            \\ \hline
-		\multicolumn{1}{|l|}{DiceRollVar2}  & 0.6\%             & \textbf{1.7\%}            \\ \hline
-		\multicolumn{1}{|l|}{SplitThenFillCYK} & 1.4\%             & \textbf{1.4\%}            \\ \hline
-		\multicolumn{1}{|l|}{SplitThenFill}  & 8.4\%             & \textbf{8.4\%}             \\ \hline
+		\multicolumn{1}{|l|}{DiceRollOnly}  & 0.9\%             & \textbf{0.9\%}            \\ \hline
+		\multicolumn{1}{|l|}{DiceRollVar1}  & 1.6\%             & \textbf{4.3\%}            \\ \hline
+		\multicolumn{1}{|l|}{DiceRollVar2}  & 1.9\%             & \textbf{6.0\%}            \\ \hline
+		\multicolumn{1}{|l|}{SplitThenFillCYK} & 4.9\%             & \textbf{4.9\%}            \\ \hline
+		\multicolumn{1}{|l|}{SplitThenFill}  & 29.4\%             & \textbf{29.5\%}             \\ \hline
 	\end{tabular}
 	\caption{Average SRs over all the configurations of parameters for each algorithm.}
 	\label{comparisionMeanValue}
@@ -3496,7 +3503,7 @@ Table \ref{comparisionMeanValue} shows the average SRs over all configurations o
 \paragraph{Picking the best algorithm}\label{comparisonOfTheAlgorithms}~\\
 Now that the choice of the stopping criteria has been decided in favour of RootNotEmpty it is time to determine the one best algorithm.\\
 
-\noindent As seen in Table \ref{comparisionsAlgorithmsMean} the Algorithm \ref{SplitAndFill} SplitThenFill performs the best in all three sub success rates Producibility, Cardinality-Rules and Pyramid and therefore the algorithm also has the best average overall SR.\\
+\noindent As seen in Table \ref{comparisionsAlgorithmsMean} the Algorithm \ref{SplitAndFill} SplitThenFill performs the best in all three sub success rates Producibility, Cardinality-Rules and Pyramid and therefore the algorithm has the best average overall SR.\\
 
 
 \begin{table}[h]
@@ -3506,11 +3513,11 @@ Now that the choice of the stopping criteria has been decided in favour of RootN
 		\hline
 		\multicolumn{1}{|c|}{Algorithm} & SR   & \begin{tabular}[c]{@{}c@{}}Produci-\\ bility\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cardinality-\\ Rules\end{tabular} & \multicolumn{4}{c|}{Pyramid}                                                                                                                                                        \\ \cline{6-8} 
 		&      &                                                           &                                                              &      & \begin{tabular}[c]{@{}c@{}}Force-\\ Right\end{tabular} & \begin{tabular}[c]{@{}c@{}}Vars-\\ PerCell\end{tabular} & \begin{tabular}[c]{@{}c@{}}VarsIn-\\ Pyramid\end{tabular} \\ \hline
-		DiceRollOnly                    & \textbf{0.3\%} & 5.2\%                                                           &2.9\%                                                              & 12.1\% &15.9\%                                                        &24.9\%                                                         &28.4\%                                                           \\ \hline
-		BottomUpVar1                    &\textbf{1.3\%}      &7.7\%                                                           &13.5\%                                                              &11.9\%      &19.8\%                                                        &20.8\%                                                         &26.1\%                                                           \\ \hline
-		BottomUpVar2                    &\textbf{1.7\%}      &10.9\%                                                           &8.7\%                                                              &13.5\%      &25.4\%                                                        &16.6\%                                                         &25.9\%                                                           \\ \hline
-		SplitThenFillCYK                   &\textbf{1.4\%}    &4.3\%                                                           &14.5\%                                                              &14.7\%      &15.8\%                                                        &27.6\%                                                         &28.5\%                                                           \\ \hline
-		SplitThenFill                    &\textbf{8.4\%}      &28.7\%                                                           &17.4\%                                                              &14.8\%      &18.3\%                                                        &25.3\%                                                         &27.3\%                                                           \\ \hline
+		DiceRollOnly                    & \textbf{0.9\%} & 18.2\%                                                           &10.2\%                                                              & 42.0\% &55.3\%                                                        &86.7\%                                                         &98.7\%                                                           \\ \hline
+		BottomUpVar1                    &\textbf{4.3\%}      &26.9\%                                                           &47.1\%                                                              &41.4\%      &68.8\%                                                        &72.7\%                                                         &91.1\%                                                           \\ \hline
+		BottomUpVar2                    &\textbf{6.0\%}      &38.1\%                                                           &30.3\%                                                              &47.2\%      &88.6\%                                                        &57.9\%                                                         &90.1\%                                                           \\ \hline
+		SplitThenFillCYK                   &\textbf{4.9\%}    &14.9\%                                                           &50.3\%                                                              &50.9\%      &54.8\%                                                        &96.0\%                                                         &99.2\%                                                           \\ \hline
+		SplitThenFill                    &\textbf{29.5\%}      &100\%                                                           &60.4\%                                                              &51.5\%      &64.0\%                                                        &88.2\%                                                         &95.1\%                                                           \\ \hline
 	\end{tabular}
 \end{adjustbox}
 	\caption{More detailed comparision of the average SRs over all the configurations of parameters for each algorithm.}

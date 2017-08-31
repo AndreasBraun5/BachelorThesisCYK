@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  30 AUG 2017 22:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  31 AUG 2017 21:52
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -2209,58 +2209,53 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 46.
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--55
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
  []
 
 [6]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 61.
+(mdframed)              on input line 58.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 66.
+(mdframed)              on input line 63.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 73.
+(mdframed)              on input line 70.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 79.
+(mdframed)              on input line 76.
  [7]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 87.
-LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 240.
+(mdframed)              on input line 84.
+LaTeX Font Info:    Calculating math sizes for size <2.5> on input line 237.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <2.5> on input line 240.
+(Font)              <2.5> on input line 237.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <1.74998> on input line 240.
+(Font)              <1.74998> on input line 237.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <1.25> on input line 240.
+(Font)              <1.25> on input line 237.
  [8]
-Underfull \hbox (badness 10000) in paragraph at lines 245--249
+Underfull \hbox (badness 10000) in paragraph at lines 242--246
 
  []
 
-LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 445.
+LaTeX Font Info:    Calculating math sizes for size <4.9> on input line 442.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.9> on input line 445.
+(Font)              <4.9> on input line 442.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <3.42998> on input line 445.
+(Font)              <3.42998> on input line 442.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <2.45> on input line 445.
+(Font)              <2.45> on input line 442.
 
-Overfull \hbox (3.98332pt too wide) in paragraph at lines 282--447
+Overfull \hbox (3.98332pt too wide) in paragraph at lines 279--444
 []$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--449
+Underfull \hbox (badness 10000) in paragraph at lines 247--446
 
  []
 
@@ -2335,18 +2330,23 @@ Overfull \hbox (3.98332pt too wide) in paragraph at lines 449--554
 
 [14
 
-] [15]
+]
+Underfull \hbox (badness 10000) in paragraph at lines 556--557
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 558--559
 
  []
 
-[16]
-Underfull \hbox (badness 10000) in paragraph at lines 595--596
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 561--562
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 611--613
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 598--599
 
  []
 
@@ -2356,300 +2356,326 @@ Underfull \hbox (badness 10000) in paragraph at lines 614--616
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 617--640
+Underfull \hbox (badness 10000) in paragraph at lines 617--619
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 620--643
 []$[]$ 
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 644--677
+Underfull \hbox (badness 10000) in paragraph at lines 647--680
 
+ []
+
+
+Overfull \hbox (3.73773pt too wide) in paragraph at lines 681--683
+\T1/lmr/m/n/12 vari-ables are cal-cu-lated that would help to fill one spe-cifi
+c cell. $\OML/lmm/m/it/12 RowSet \OMS/lmsy/m/n/12  f\OT1/lmr/m/n/12 (\OML/lmm/
+m/it/12 xy; i\OT1/lmr/m/n/12 ) \OMS/lmsy/m/n/12 j \OML/lmm/m/it/12 x; y \OMS/lm
+sy/m/n/12 2
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 682--684
+Underfull \hbox (badness 10000) in paragraph at lines 685--687
 
  []
 
 
-Overfull \hbox (1.41812pt too wide) in paragraph at lines 687--696
+Overfull \hbox (11.53604pt too wide) in paragraph at lines 691--700
  [][] 
- []
-
-
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 685--697
-[]$[]$ 
  []
 
 [19
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 703--705
+Underfull \hbox (badness 10000) in paragraph at lines 709--711
 
  []
 
 
-Overfull \hbox (3.98332pt too wide) in paragraph at lines 706--886
+Overfull \hbox (3.98332pt too wide) in paragraph at lines 712--892
 []$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 888--889
+Underfull \hbox (badness 10000) in paragraph at lines 894--895
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 890--892
+Underfull \hbox (badness 10000) in paragraph at lines 896--897
 
  []
 
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 914--944
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 945--947
+[20] [21]
+Underfull \hbox (badness 10000) in paragraph at lines 920--921
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 948--949
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 950--951
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 950--951
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 952--1110
+Underfull \hbox (badness 10000) in paragraph at lines 952--954
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 955--956
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 959--1117
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1114--1115
+Underfull \hbox (badness 10000) in paragraph at lines 1121--1122
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 1116--1274
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1123--1281
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1279--1280
+Underfull \hbox (badness 10000) in paragraph at lines 1286--1287
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 1281--1439
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1288--1446
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1441--1443
+Underfull \hbox (badness 10000) in paragraph at lines 1448--1450
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 1444--1603
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1451--1610
 []$[]$ 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 1607--1766
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1614--1773
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1768--1770
+Underfull \hbox (badness 10000) in paragraph at lines 1775--1777
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 1771--1936
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 1778--1943
 []$[]$ 
  []
 
-[21] [22] [23] [24] [25
+[22] [23] [24] [25
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1945--1948
+Underfull \hbox (badness 10000) in paragraph at lines 1952--1955
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1949--1966
+Underfull \hbox (badness 10000) in paragraph at lines 1956--1973
 
  []
 
 [26
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1998--2000
+Underfull \hbox (badness 10000) in paragraph at lines 2005--2007
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 2004--2162
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2011--2169
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2163--2164
+Underfull \hbox (badness 10000) in paragraph at lines 2170--2171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2165--2166
+Underfull \hbox (badness 10000) in paragraph at lines 2172--2173
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 2168--2326
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2175--2333
+[]$[]$ 
+ []
+
+Class scrartcl Info: Workaround for not recommended usage of \\ or
+(scrartcl)           \newlinein caption text  on input line 2333.
+
+Underfull \hbox (badness 10000) in paragraph at lines 2338--2339
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2340--2498
+[]$[]$ 
+ []
+
+Class scrartcl Info: Workaround for not recommended usage of \\ or
+(scrartcl)           \newlinein caption text  on input line 2498.
+
+Underfull \hbox (badness 10000) in paragraph at lines 2499--2500
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2501--2502
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2503--2661
+[]$[]$ 
+ []
+
+Class scrartcl Info: Workaround for not recommended usage of \\ or
+(scrartcl)           \newlinein caption text  on input line 2661.
+
+Underfull \hbox (badness 10000) in paragraph at lines 2666--2667
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2668--2826
+[]$[]$ 
+ []
+
+Class scrartcl Info: Workaround for not recommended usage of \\ or
+(scrartcl)           \newlinein caption text  on input line 2826.
+
+Underfull \hbox (badness 10000) in paragraph at lines 2827--2828
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2829--2830
+
+ []
+
+
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 2831--2991
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2331--2332
-
- []
-
-
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 2333--2491
-[]$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2492--2493
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2494--2495
-
- []
-
-
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 2496--2654
-[]$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2659--2660
-
- []
-
-
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 2661--2819
-[]$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2820--2821
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2822--2823
-
- []
-
-
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 2824--2984
-[]$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1969--2987
+Underfull \hbox (badness 10000) in paragraph at lines 1976--2994
 
  []
 
 [27] [28] [29] [30]
-Underfull \hbox (badness 10000) in paragraph at lines 3004--3005
+Underfull \hbox (badness 10000) in paragraph at lines 3011--3012
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3006--3007
+Underfull \hbox (badness 10000) in paragraph at lines 3013--3014
 
  []
 
 
-Overfull \hbox (7.31635pt too wide) in paragraph at lines 3008--3011
+Overfull \hbox (7.31635pt too wide) in paragraph at lines 3015--3018
 \T1/lmr/bx/n/12 Success Rate Pro-ducibil-ity:  \T1/lmr/m/n/12 A gen-er-ated ex-
 er-cise con-tributes to the SR-Producibility
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3008--3011
+Underfull \hbox (badness 10000) in paragraph at lines 3015--3018
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3012--3015
+Underfull \hbox (badness 10000) in paragraph at lines 3019--3022
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3023--3024
+Underfull \hbox (badness 10000) in paragraph at lines 3030--3031
 
  []
 
 [31
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3030--3032
+Underfull \hbox (badness 10000) in paragraph at lines 3037--3039
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 3033--3295
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 3040--3302
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3298--3300
+Underfull \hbox (badness 10000) in paragraph at lines 3305--3307
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3326--3328
+Underfull \hbox (badness 10000) in paragraph at lines 3333--3335
 
  []
 
 
-Overfull \hbox (15.73315pt too wide) in paragraph at lines 3329--3439
+Overfull \hbox (15.73315pt too wide) in paragraph at lines 3336--3446
 []$[]$ 
  []
 
 [32
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3441--3442
+Underfull \hbox (badness 10000) in paragraph at lines 3448--3449
 
  []
 
 [33]
-Underfull \hbox (badness 10000) in paragraph at lines 3476--3477
+Underfull \hbox (badness 10000) in paragraph at lines 3483--3484
 
  []
 
 [34
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3496--3498
+Underfull \hbox (badness 10000) in paragraph at lines 3503--3505
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3499--3500
+Underfull \hbox (badness 10000) in paragraph at lines 3506--3507
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3519--3520
+Underfull \hbox (badness 10000) in paragraph at lines 3526--3527
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3538--3539
+Underfull \hbox (badness 10000) in paragraph at lines 3545--3546
 
  []
 
@@ -2659,7 +2685,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3538--3539
 
 pdfTeX warning: pdflatex.exe (file ./abb/CYKInstancesGenerator.pdf): PDF inclus
 ion: found PDF version <1.7>, but at most version <1.5> allowed
-<abb/CYKInstancesGenerator.pdf, id=708, 963.6pt x 542.025pt>
+<abb/CYKInstancesGenerator.pdf, id=705, 963.6pt x 542.025pt>
 File: abb/CYKInstancesGenerator.pdf Graphic file (type pdf)
 
 <use abb/CYKInstancesGenerator.pdf>
@@ -2687,21 +2713,21 @@ Overfull \hbox (3.98332pt too wide) in paragraph at lines 26--309
 
 [37] [38
 
-] <abb/exampleGrammarInput.png, id=744, 133.24782pt x 287.57437pt>
+] <abb/exampleGrammarInput.png, id=741, 133.24782pt x 287.57437pt>
 File: abb/exampleGrammarInput.png Graphic file (type png)
 
 <use abb/exampleGrammarInput.png>
 Package pdftex.def Info: abb/exampleGrammarInput.png used on input line 351.
 (pdftex.def)             Requested size: 133.24748pt x 287.57367pt.
 
-<abb/antrlTokens.png, id=745, 252.19218pt x 257.46187pt>
+<abb/antrlTokens.png, id=742, 252.19218pt x 257.46187pt>
 File: abb/antrlTokens.png Graphic file (type png)
 
 <use abb/antrlTokens.png>
 Package pdftex.def Info: abb/antrlTokens.png used on input line 352.
 (pdftex.def)             Requested size: 252.19156pt x 257.46123pt.
 
-<abb/antrlRules.png, id=746, 442.65375pt x 405.01312pt>
+<abb/antrlRules.png, id=743, 442.65375pt x 405.01312pt>
 File: abb/antrlRules.png Graphic file (type png)
 
 <use abb/antrlRules.png>
@@ -2749,10 +2775,10 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42978 strings out of 493328
- 862853 string characters out of 3139104
- 1167599 words of memory out of 3000000
- 45451 multiletter control sequences out of 15000+200000
+ 42975 strings out of 493328
+ 862807 string characters out of 3139104
+ 1162878 words of memory out of 3000000
+ 45449 multiletter control sequences out of 15000+200000
  705320 words of font info for 130 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
  65i,24n,105p,10502b,30143s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2792,9 +2818,9 @@ msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (43 pages, 839938 bytes).
+Output written on 0_bachelor_thesis.pdf (43 pages, 838849 bytes).
 PDF statistics:
- 934 PDF objects out of 1000 (max. 8388607)
- 280 named destinations out of 1000 (max. 500000)
+ 931 PDF objects out of 1000 (max. 8388607)
+ 279 named destinations out of 1000 (max. 500000)
  398 words of extra memory for PDF output out of 10000 (max. 10000000)
 

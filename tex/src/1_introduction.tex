@@ -3,8 +3,8 @@
 \section{Introduction}\label{Introduction}
 
 \subsection{Motivation}
-Every year, lecturer in the field of theoretical computer science or an related one face the task to create the 4-tuple exam $exercise = (grammar,\ word,\ parse\ table,\ derivation\ $ $tree)$ that tests if their students have understood the way of working of the Cocke-Younger-Kasami (CYK) algorithm. For it exercises need to be created which is a bit of a time consuming task. \\
-Various implementations and small online tools of the CYK algorithm can be found \footnote{\href{http://lxmls.it.pt/2015/cky.html}{CYK online tool: http://lxmls.it.pt/2015/cky.html}} \footnote{\href{http://jflap.org/tutorial/grammar/cyk/index.html}{CYK parser implementation: http://jflap.org/tutorial/grammar/cyk/index.html}} \footnote{\href{https://github.com/ajh17/CYK-Java}{CYK algorithm implementation in Java: https://github.com/ajh17/CYK-Java}} but none actually assists during the process of creating an exercise.\\
+Every year, lecturers of theoretical computer science or a related field face the task to create the 4-tuple exam $exercise = (grammar,\ word,\ parse\ table,\ derivation\ $ $tree)$ that tests if their students have understood the workings of the Cocke-Younger-Kasami (CYK) algorithm. For that exercises need to be created which is a bit of a time consuming task. \\
+There are several implementations and smaller online tools of the CYK algorithm already in place \footnote{\href{http://lxmls.it.pt/2015/cky.html}{CYK online tool: http://lxmls.it.pt/2015/cky.html}} \footnote{\href{http://jflap.org/tutorial/grammar/cyk/index.html}{CYK parser implementation: http://jflap.org/tutorial/grammar/cyk/index.html}} \footnote{\href{https://github.com/ajh17/CYK-Java}{CYK algorithm implementation in Java: https://github.com/ajh17/CYK-Java}}, but none of them support the actual process of creating a suitable exercise for it.
 Therefore algorithms are needed to generate specifically suitable exercises with a high chance of success. Also a GUI tool, that allows automatic generation of the suitable exam exercises and further modification, is required and so a own solution is implemented.
 
 \subsection{Context Free Grammar} \label{cfgChapter}
@@ -13,7 +13,7 @@ Firstly, we define a Context Free Grammar (CFG) as follows:
 	A CFG is a 4-tuple $G=(V,\ \Sigma,\ S,\ P)$:
 	\begin{itemize}
 		\item $V$ is a finite set of variables.
-		\item $\Sigma$ is an alphabet
+		\item $\Sigma$ is an alphabet.
 		\item $S$ is the start symbol and $S \in V$.
 		\item $P$ is a finite set of rules: $P \subseteq V \times (V \cup \Sigma)^{*}$.
 	\end{itemize}
@@ -26,7 +26,7 @@ Firstly, we define a Context Free Grammar (CFG) as follows:
 		\item $P \subseteq V \times (V^2 \cup \Sigma)$.~
 	\end{itemize}
 \end{DefGrey}
-\noindent Throughout this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. Note that a CFGR is not necessarily in chomsyk normal form (CNF) because it is still possible that there are unreachable variables \textendash~from the starting variable \textendash~ or useless rules. For further convenience the following default values are always assumed in this thesis:
+\noindent Throughout this thesis a grammar is always synonymous with Definition \ref{CFGinCNF}. Note that a CFGR is not necessarily in Chomsyk Normal Form (CNF) because it is still possible that there are unreachable variables \textendash~from the starting variable \textendash~ or useless rules. For further convenience the following default values are always assumed in this thesis:
 \begin{itemize}
 	\item $V = \{A, B, ...\}=:Lhse.$
 	\item $(V^2 \cup\ \Sigma)=\{AA, AB, BB, BA, BS, AC, ... \} \cup \{a, b, ...\}=:Rhse.$
@@ -50,9 +50,6 @@ For a word and a sub word Definition \ref{word} holds:
 	\end{itemize}
 \end{DefGrey}
 \noindent Moreover in the context of talking about sets, a set is always described beginning with an upper case letter, while one specific element of a set is described beginning with a lower case letter. \\
-\begin{testexample}[Upper Case Letter for sets]
-	Example: A "$Pyramid$" is a set consisting of multiple "$Cell$"s, whereas a $Cell$ is again a subset of the set of variables "$V$". A "$cellElement$" is one specific element of a "$Cell$". (For further explanation behind this specific example see chapter \ref{dataStructurePyramid})
-\end{testexample}~\\
 
 
 \pagebreak
@@ -64,30 +61,30 @@ Next, the basic approach that may help finding a good algorithm is explained inf
 \end{DefGrey}
 
 \begin{DefGrey}
-	\textbf{Backward Problem = Parsing ($\mathbf{w\overset{?}{\in}L(G)}$)}\\
+	\textbf{Backward Problem = Parsing ($\mathbf{w\overset{?}{\in}L(G)}$}\\
 	Input: $w$ and a grammar $G$. \\
 	Output: Derivation of $w$ over $G$ or error if $w \notin L(G)$.
 \end{DefGrey}
-\noindent It is called parsing if there is a word $w$ given and it is of interest to know if it is element of $L(G)$. Parsing is also the basis of the Cocke-Younger-Kasami algorithm.\\
+\noindent It is called parsing if a word $w$ given and it is of interest to know if it is element of $L(G)$. Parsing is also the basis of the Cocke-Younger-Kasami algorithm.\\
 After having defined what parsing in general is, it is important to know the two different ways of parsing, that will act as an idea provider for the algorithms.
 \begin{mdframed}[backgroundcolor=defColour]
 	\textbf{Bottom-Up parsing} \\
 Bottom-Up parsing means to start parsing from the leaves up to the root node.
 \end{mdframed}
 \noindent Actually, Bottom-Up parsing is the method used in the Cocke-Younger-Kasami algorithm, which fills the parse table from the "bottom up"\cite{Duda.2012}.\\
-Bottom-up parsing starts by recognizing the words smallest sub words before its mid-size sub words, and leaving the largest overall word as the last.
+Bottom-up parsing starts by recognizing the words smallest sub words before its mid-size sub words and leaves the largest overall word as the last.
 \begin{mdframed}[backgroundcolor=defColour]
 	\textbf{Top-Down parsing} \\
 	 Top-Down parsing means to start parsing from the root node down to the leaves.
 \end{mdframed}
-\noindent "Top-Down parsing starts with the root node and successively applies rules from $P$, with the goal of finding a derivation of the test sentence $w$." \cite{Duda.2012} (The so called test sentence is synonymous to an word $w$.)
+\noindent "Top-Down parsing starts with the root node and successively applies rules from $P$, with the goal of finding a derivation of the test sentence $w$." \cite{Duda.2012} (The so called test sentence is synonymous to a word $w$.)
 \pagebreak
 \subsection{Data Structure Pyramid} \label{dataStructurePyramid}
-To be able to describe how the different algorithms work in a simpler way, the help data structure $Pyramid$ is defined \textendash~note that $Pyramid$ is a set and starts with upper case.
-\begin{DefGrey} \textbf{$Pyramid$} \\
+To be able to describe how the different algorithms work in a simpler way, the help data structure $Pyramid$ is defined \textendash~note that $Pyramid$ is a set and starts with an upper case letter.
+\begin{DefGrey} $\mathbf{Pyramid}$ \\
 	$Pyramid :=\{ Cell_{i,j}\ |\ i \in [0,\ i_{max}],\  j \in [0,\ j_{max,i}],\ i_{max} = |w|-1,~j_{max,i} = i_{max} -i\}$\\
 	~~~where $Cell_{i,j} \subseteq \{(V,k)~|~k \in \mathbb{N} \}$ denotes the contents of the j'th cell in row i\\
-	~~~and $[i,\ j] := \{i,\ i+1,..., j-1,\ j\} \subseteq \mathbb{N}$.
+	~~~and $[i,\ j] := \{i,\ i+1,...,~j-1,\ j\} \subseteq \mathbb{N}$.
 \end{DefGrey}
 \noindent The cell $Cell_{i_{max},0}$ is called the root of such a $Pyramid$ and Figure \ref{visualPyramid} shows the visual representation of one.
 \newcommand{\boxpyramid}[1]{
@@ -261,7 +258,7 @@ Later on it can be seen that the CYK algorithm can be used as a basis to find go
 		\For{$i:=1 \to i_{max}$}{ \label{rows}
 			\For{$j:=0 \to j_{max,i}$}{ \label{eachCell}
 				\For{$k:=i-1 \to 0$}{ \label{cykCellCombs}
-					$Pyramid = Pyramid\cup Cell_{i,j} = \{(X,k+j+1)\ |\ X\longrightarrow YZ,\ (Y,...) \in Cell_{k,j},\ (Z,...) \in Cell_{i-k-1,k+j+1} \}$\; \label{fill2}
+					$Pyramid = Pyramid\cup Cell_{i,j} = \{(X,k+j+1)\ |\ X\longrightarrow YZ, $ $\ (Y,...) \in Cell_{k,j},\ (Z,...) \in Cell_{i-k-1,k+j+1} \}$\; \label{fill2}
 				}
 			}
 		}
@@ -280,7 +277,7 @@ Later on it can be seen that the CYK algorithm can be used as a basis to find go
 }
 ~
 \begin{testexample}[Algorithm CYK]
-During the execution of the CYK algorithm the parsing table is filled as shown in Figure \ref{exampleCYK}. At first the row with index $i=0$ is filled after Line 2 to Line 4 of the CYK algorithm, i.e. a $Cell_{0,j}$ will contain the variable if it has the terminal $w_j$ as its $rhse$. Then for each row $i$ every cell with index $j$ is looked at. Every possible combination of sub words for a cell are taken into account, i.e. for $Cell_{4,1}$ there are the combinations of ($Cell_{0,1},Cell_{3,2}$), ($Cell_{1,1},Cell_{2,3}$), ($Cell_{2,1},Cell_{1,4}$) and ($Cell_{3,1},Cell_{0,5}$). Applying Line 8 for example to the cell combination ($Cell_{2,1},Cell_{1,4}$) it leads to $X\rightarrow AC$ here and because the compound variable $AC$ is $rhse$ of the variable $S$ the $Cell_{4,1}$ contains the element $(S,4)$.\\
+During the execution of the CYK algorithm the parsing table is filled as shown in Figure \ref{exampleCYK}. At first the row with index $i=0$ is filled after Line 2 to Line 4 of the CYK algorithm, i.e. a $Cell_{0,j}$ will contain the variable if it has the terminal $w_j$ as its $rhse$. Then for each row $i$ every cell with index $j$ is looked at. Every possible combination of sub words for a cell are taken into account, i.e. for $Cell_{4,1}$ there are the combinations of ($Cell_{0,1},Cell_{3,2}$), ($Cell_{1,1},Cell_{2,3}$), ($Cell_{2,1},Cell_{1,4}$) and ($Cell_{3,1},Cell_{0,5}$). Applying Line 8 for example to the cell combination ($Cell_{2,1},Cell_{1,4}$) it leads to $X\rightarrow AC$ here and because the compound variable $AC$ is $rhse$ of the variable $S$, the $Cell_{4,1}$ contains the element $(S,4)$.\\
 	\begin{minipage}{6in}
 		\centering
 		\begin{tabular}{l}

@@ -306,7 +306,7 @@ A exam $exercise$ is a 4-tuple $exercise = (grammar,\ word,\ parse\ table,\ deri
 	\end{tikzpicture}
 }
 	\end{minipage}
-	\captionof{figure}{Example output for a $exercise$. Top: Context free grammar. Middle: A $pyramid$ filled after the CYK algorithm. Bottom: Exemplary random derivation tree.}
+	\captionof{figure}{Example output for an $exercise$. Top: Context free grammar. Middle: A $pyramid$ filled after the CYK algorithm. Bottom: Exemplary random derivation tree.}
 	\label{exampleOutputExercise}
 \end{testexample}
 
@@ -338,7 +338,7 @@ Not every exercise is actually suitable for an exam. Therefore a scoring model i
 
 
 
-\noindent The score of each $exercise$ is normalized to the maximum possible points so the maximum score is 1.0: $score = (\#Parameter\cdot10)^{-1}\cdot\sum\limits_{parameter}^{}points$. \\
+\noindent The score of each $exercise$ is normalized to the maximum possible points so the maximum score is 1.0. The score is calculated as following:\\ $score = (\#Parameter\cdot10)^{-1}\cdot\sum\limits_{parameter}^{}points$. \\
 One negative score is already sufficient to avoid examples in area 3 with undesired properties. One negative score is already sufficient that the overall score of the exercise is negative.
 \pagebreak
 

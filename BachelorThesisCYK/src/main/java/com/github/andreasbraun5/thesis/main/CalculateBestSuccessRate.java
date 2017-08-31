@@ -78,6 +78,7 @@ public class CalculateBestSuccessRate {
         double meanValuesForceRightAcc = 0.0;
         double meanValuesVarPerPyramidAcc = 0.0;
         double meanValuesVarsPerCellAcc = 0.0;
+        int count = 0;
         for (int varCount = MIN_VARS; varCount < MAX_VARS; ++varCount) {
             for (int termCount = MIN_TERMS; termCount < MAX_TERMS; ++termCount) {
                 for (int wordSize = MIN_SIZE_WORD; wordSize < MAX_SIZE_WORD; ++wordSize) {
@@ -90,6 +91,7 @@ public class CalculateBestSuccessRate {
                     meanValuesForceRightAcc += tempResult.getSuccessRates().getSuccessRatesPyramidConstraints().getSuccessRateRightCellCombinationsForced();
                     meanValuesVarPerPyramidAcc += tempResult.getSuccessRates().getSuccessRatesPyramidConstraints().getSuccessRateMaxSumOfVarsInPyramid();
                     meanValuesVarsPerCellAcc += tempResult.getSuccessRates().getSuccessRatesPyramidConstraints().getSuccessRateMaxNumberOfVarsPerCell();
+                    count++;
                     if (tempResult.getSuccessRates().getSuccessRate() > bestResult.getSuccessRates().getSuccessRate()) {
                         bestResult = tempResult;
                     }
@@ -104,13 +106,13 @@ public class CalculateBestSuccessRate {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        meanValuesOverall.put(generatorType.name(), meanValuesOverallAcc / SAMPLE_SIZE);
-        meanValuesProducibility.put(generatorType.name(), meanValuesProducibilityAcc / SAMPLE_SIZE);
-        meanValuesCardinality.put(generatorType.name(), meanValuesCardinalityAcc / SAMPLE_SIZE);
-        meanValuesPyramid.put(generatorType.name(), meanValuesPyramidAcc / SAMPLE_SIZE);
-        meanValuesForceRight.put(generatorType.name(), meanValuesForceRightAcc / SAMPLE_SIZE);
-        meanValuesVarPerPyramid.put(generatorType.name(), meanValuesVarPerPyramidAcc / SAMPLE_SIZE);
-        meanValuesVarsPerCell.put(generatorType.name(), meanValuesVarsPerCellAcc / SAMPLE_SIZE);
+        meanValuesOverall.put(generatorType.name(), meanValuesOverallAcc / count);
+        meanValuesProducibility.put(generatorType.name(), meanValuesProducibilityAcc / count);
+        meanValuesCardinality.put(generatorType.name(), meanValuesCardinalityAcc / count);
+        meanValuesPyramid.put(generatorType.name(), meanValuesPyramidAcc / count);
+        meanValuesForceRight.put(generatorType.name(), meanValuesForceRightAcc / count);
+        meanValuesVarPerPyramid.put(generatorType.name(), meanValuesVarPerPyramidAcc / count);
+        meanValuesVarsPerCell.put(generatorType.name(), meanValuesVarsPerCellAcc / count);
     }
 
     private static Result startAlgorithms(Generators generatorType, GrammarProperties grammarProperties) throws IOException {

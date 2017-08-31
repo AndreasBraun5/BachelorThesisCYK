@@ -58,9 +58,9 @@ public class Main {
                 countDifferentWords(countDifferentWords).
                 countOfGrammarsToGeneratePerWord(countGeneratedGrammarsPerWord).build();
         GrammarProperties grammarProperties = generateGrammarPropertiesForTesting();
-        grammarProperties.examConstraints.sizeOfWord = 20;
+        grammarProperties.examConstraints.sizeOfWord = 5;
 
-        GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnly = new GrammarGeneratorSettings(
+        /*GrammarGeneratorSettings settingsGrammarGeneratorDiceRollOnly = new GrammarGeneratorSettings(
                 grammarProperties, "GrammarGeneratorDiceRollOnly");
         Tuple<Result, BestResultSamples> resultGrammarGeneratorDiceRollOnly = resultCalculator.buildResultWithGenerator(
                 new GrammarGeneratorDiceRollOnly(settingsGrammarGeneratorDiceRollOnly),
@@ -94,6 +94,7 @@ public class Main {
                 WorkLog.createFromWriter(new FileWriter(ThesisDirectory.LOGS.fileAsTxt(settingsGrammarGeneratorSplitThenFill.name)))
         );
         Util.writeResultToTxtFile(resultGrammarGeneratorSplitThenFill);
+        */
 
         GrammarGeneratorSettings settingsGrammarGeneratorSplitAndFill = new GrammarGeneratorSettings(
                 grammarProperties, "GrammarGeneratorSplitAndFill");
@@ -131,10 +132,15 @@ public class Main {
         variables.add(new Variable("A"));
         variables.add(new Variable("B"));
         variables.add(new Variable("C"));
+        variables.add(new Variable("D"));
+        variables.add(new Variable("E"));
+        variables.add(new Variable("F"));
+        variables.add(new Variable("G"));
+
         Set<Terminal> terminals = new HashSet<>();
         terminals.add(new Terminal("a"));
         terminals.add(new Terminal("b"));
-        //terminals.add( new Terminal( "c" ) );
+        terminals.add( new Terminal( "c" ) );
         //terminals.add( new Terminal( "d" ) );
         //terminals.add( new Terminal( "e" ) );
         //terminals.add( new Terminal( "f" ) );
