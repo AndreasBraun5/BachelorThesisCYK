@@ -339,30 +339,30 @@ Not every exercise is actually suitable for an exam. Therefore a scoring model i
 
 
 \noindent The score of each $exercise$ is normalized to the maximum possible points so the maximum score is 1.0. The score is calculated as following:\\ $score = (\#Parameter\cdot10)^{-1}\cdot\sum\limits_{parameter}^{}points$. \\
-One negative score is already sufficient to avoid examples in area 3 with undesired properties. One negative score is already sufficient that the overall score of the exercise is negative.
+One negative score is already sufficient to avoid examples in area 3 with undesired properties because the overall score of the exercise will be negative and it is unlikely that it will be displayed.
 \pagebreak
 
 \subsection{Parsing input with ANTLR}
-In area 4 of the application a context free grammar is given as input as seen in Figure \ref{antlrGrammarTokens} on the left. This input is parsed with ANTLR \footnote{ANTLR works with LL(k) grammars, which means that each derivation step can be distinctly identified through the next k tokens.} because it allows a clear separation between the language definition and the Java code.\\
+In area 4 of the application a context free grammar input is given as seen in Figure \ref{antlrGrammarTokens} on the left. This input is parsed with ANTLR \footnote{ANTLR works with LL(k) grammars, which means that each derivation step can be distinctly identified through the next k tokens.} because it allows a clear separation between the language definition and the Java code.\\
 The first step here is the tokenization of the input in token as seen in Figure \ref{antlrGrammarTokens} on the right. After that with the help of the Grammar as seen in Figure \ref{antlrGrammarRules} an abstract syntax tree is generated out of which Java souce code is generated.\\
 \noindent
 \begin{figure} [h]
 	\centering
-	\includegraphics{abb/exampleGrammarInput.png}
-	\includegraphics{abb/antrlTokens.png}
+	\includegraphics[width=0.25\textwidth]{abb/exampleGrammarInput.png}
+	\includegraphics[width=0.5\textwidth]{abb/antrlTokens.png}
 	\caption{Left: Input grammar example of the application. Right: Formal definition of the used ANTLR grammar tokens to parse the input grammar.}
 	\label{antlrGrammarTokens}
 \end{figure}
 \begin{figure} [h]
 	\centering 
-	\includegraphics[width=0.9\textwidth]{abb/antrlRules.png}
+	\includegraphics[width=0.8\textwidth]{abb/antrlRules.png}
 	\caption{Formal definition of the used ANTLR grammar rules.}
 	\label{antlrGrammarRules}
 \end{figure}
 
 \pagebreak
 \subsection{Other Matters}
-Lastly, just some general information about the implementation are given here.\\
+Lastly, some general information about the implementation is given here.\\
 Technologies that have been used for programming are 
 Github \footnote{\href{https://github.com/}{Github: https://github.com/}} with 
 Sourcetree \footnote{\href{https://www.sourcetreeapp.com/}{Sourcetree: https://www.sourcetreeapp.com/}} for version control, 

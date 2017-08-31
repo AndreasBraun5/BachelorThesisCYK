@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  31 AUG 2017 21:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.6.1)  31 AUG 2017 22:17
 entering extended mode
 **./0_bachelor_thesis.tex
 (0_bachelor_thesis.tex
@@ -2718,21 +2718,21 @@ File: abb/exampleGrammarInput.png Graphic file (type png)
 
 <use abb/exampleGrammarInput.png>
 Package pdftex.def Info: abb/exampleGrammarInput.png used on input line 351.
-(pdftex.def)             Requested size: 133.24748pt x 287.57367pt.
+(pdftex.def)             Requested size: 110.25443pt x 237.95825pt.
 
 <abb/antrlTokens.png, id=742, 252.19218pt x 257.46187pt>
 File: abb/antrlTokens.png Graphic file (type png)
 
 <use abb/antrlTokens.png>
 Package pdftex.def Info: abb/antrlTokens.png used on input line 352.
-(pdftex.def)             Requested size: 252.19156pt x 257.46123pt.
+(pdftex.def)             Requested size: 220.50887pt x 225.1175pt.
 
 <abb/antrlRules.png, id=743, 442.65375pt x 405.01312pt>
 File: abb/antrlRules.png Graphic file (type png)
 
 <use abb/antrlRules.png>
 Package pdftex.def Info: abb/antrlRules.png used on input line 358.
-(pdftex.def)             Requested size: 396.91325pt x 363.17972pt.
+(pdftex.def)             Requested size: 352.81552pt x 322.83054pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -2818,7 +2818,7 @@ msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb>
-Output written on 0_bachelor_thesis.pdf (43 pages, 838849 bytes).
+Output written on 0_bachelor_thesis.pdf (43 pages, 838892 bytes).
 PDF statistics:
  931 PDF objects out of 1000 (max. 8388607)
  279 named destinations out of 1000 (max. 500000)
