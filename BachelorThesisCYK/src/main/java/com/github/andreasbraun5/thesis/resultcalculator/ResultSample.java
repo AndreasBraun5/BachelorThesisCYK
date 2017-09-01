@@ -4,7 +4,7 @@ import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammarproperties.ExamConstraints;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarConstraints;
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.*;
+import com.github.andreasbraun5.thesis.valididtychecker.*;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;
 import lombok.Getter;

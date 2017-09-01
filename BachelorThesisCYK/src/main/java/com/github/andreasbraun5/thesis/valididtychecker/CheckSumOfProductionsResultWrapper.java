@@ -1,4 +1,4 @@
-package com.github.andreasbraun5.thesis.grammarvalididtychecker;
+package com.github.andreasbraun5.thesis.valididtychecker;
 
 import lombok.Builder;
 import lombok.Getter;

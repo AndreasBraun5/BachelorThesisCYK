@@ -1,7 +1,7 @@
 package com.github.andreasbraun5.thesis.generator;
 
 import com.github.andreasbraun5.thesis.grammar.*;
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
+import com.github.andreasbraun5.thesis.valididtychecker.GrammarValidityChecker;
 import com.github.andreasbraun5.thesis.pyramid.CellK;
 import com.github.andreasbraun5.thesis.pyramid.GrammarPyramidWrapper;
 import com.github.andreasbraun5.thesis.pyramid.Pyramid;

@@ -4,7 +4,7 @@ import com.github.andreasbraun5.thesis.exception.GrammarSettingRuntimeException;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorDiceRollOnly;
 import com.github.andreasbraun5.thesis.generator.GrammarGeneratorSettings;
 import com.github.andreasbraun5.thesis.grammarproperties.GrammarProperties;
-import com.github.andreasbraun5.thesis.grammarvalididtychecker.GrammarValidityChecker;
+import com.github.andreasbraun5.thesis.valididtychecker.GrammarValidityChecker;
 import com.github.andreasbraun5.thesis.main.Main;
 import com.github.andreasbraun5.thesis.mylogger.WorkLog;
 import com.github.andreasbraun5.thesis.util.Tuple;

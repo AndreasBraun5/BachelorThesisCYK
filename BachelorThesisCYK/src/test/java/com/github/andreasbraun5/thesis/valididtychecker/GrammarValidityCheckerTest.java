@@ -1,4 +1,4 @@
-package com.github.andreasbraun5.thesis.grammarvalididtychecker;
+package com.github.andreasbraun5.thesis.valididtychecker;
 
 import com.github.andreasbraun5.thesis.grammar.Grammar;
 import com.github.andreasbraun5.thesis.grammar.Variable;
